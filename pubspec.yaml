@@ -16,3 +16,4 @@ flutter:
   uses-material-design: true
   assets:
   - lib/images/login-bg.png
+  - lib/images/menu.png
