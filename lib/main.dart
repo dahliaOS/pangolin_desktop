@@ -262,6 +262,9 @@ class MyApp extends StatelessWidget {
   }
 }
 
+
+
+
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
 
@@ -319,16 +322,23 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
             ),
-            new FlatButton(key:null, onPressed:null,
-                child:
-                new Text(
-                  "Flat Button 1",
-                  style: new TextStyle(fontSize:12.0,
-                      color: const Color(0xFF000000),
-                      fontWeight: FontWeight.w200,
-                      fontFamily: "Roboto"),
-                )
-            ),
+
+new Container(
+  alignment: Alignment.bottomLeft,
+  padding: const EdgeInsets.fromLTRB(12.5 ,12.5 , 0,0),
+  child: new IconButton(
+
+    icon: const Icon(Icons.panorama_fish_eye),
+
+    onPressed: () {
+      // Perform some action
+    },
+    iconSize: 25.0,
+    color: const Color(0xFFFFFFFF),
+  ),
+)
+
+
 
 
           ],
