@@ -305,16 +305,30 @@ class _MyHomePageState extends State<MyHomePage> {
               color: Color.fromARGB(150, 0, 0, 0),
               width: 1.7976931348623157e+308,
               height: 50.0,
-
-
+              alignment: Alignment.bottomRight,
+              padding: const EdgeInsets.fromLTRB(0, 0, 13,13),
 
              child: Text(_timeString,
+
                style:
                TextStyle(fontSize: 20, color: Colors.white),),
 
 
-            ),
 
+
+
+
+            ),
+            new FlatButton(key:null, onPressed:null,
+                child:
+                new Text(
+                  "Flat Button 1",
+                  style: new TextStyle(fontSize:12.0,
+                      color: const Color(0xFF000000),
+                      fontWeight: FontWeight.w200,
+                      fontFamily: "Roboto"),
+                )
+            ),
 
 
           ],
