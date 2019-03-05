@@ -253,11 +253,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Time Demo',
+      title: 'Pangolin Desktop',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.deepOrange,
       ),
-      home: MyHomePage(title: 'Flutter Time Demo'),
+      home: MyHomePage(title: 'Pangolin Desktop'),
     );
   }
 }

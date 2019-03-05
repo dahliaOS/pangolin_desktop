@@ -8,7 +8,7 @@
          FlutterApplication and put your custom class here. -->
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="pangolin_desktop"
+        android:label="Pangolin Desktop (Alpha)"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
