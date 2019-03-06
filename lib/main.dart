@@ -250,6 +250,8 @@ import 'menu.dart';
 
 void main() => runApp(MyApp());
 
+
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -323,6 +325,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
 
 
+   // new WallpaperPicker(),
 
 new Container(
   alignment: Alignment.bottomLeft,
@@ -332,11 +335,19 @@ new Container(
     icon: const Icon(Icons.panorama_fish_eye),
 
     onPressed: () {
-      showDialog(context: context, child:
-      new AlertDialog(
-        title: new Text("Apps"),
-        content: new Text("no apps installed..."),
-      )
+      showDialog(
+          context: context,
+          builder: (_) => Center( // Aligns the container to center
+              child: Container( // A simplified version of dialog.
+                width: 600,
+                height: 400,
+                color: Colors.white,
+                child:
+                new AppMenu()
+                ,
+              )
+          )
+
       );
     },
     iconSize: 25.0,
