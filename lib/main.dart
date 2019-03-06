@@ -246,6 +246,7 @@ class _MyHomePageState extends State<MyHomePage> {
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'menu.dart';
 
 void main() => runApp(MyApp());
 
@@ -261,8 +262,6 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
 
 
 class MyHomePage extends StatefulWidget {
@@ -323,6 +322,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
             ),
 
+
+
 new Container(
   alignment: Alignment.bottomLeft,
   padding: const EdgeInsets.fromLTRB(12.5 ,12.5 , 0,0),
@@ -331,7 +332,12 @@ new Container(
     icon: const Icon(Icons.panorama_fish_eye),
 
     onPressed: () {
-      // Perform some action
+      showDialog(context: context, child:
+      new AlertDialog(
+        title: new Text("Apps"),
+        content: new Text("Test"),
+      )
+      );
     },
     iconSize: 25.0,
     color: const Color(0xFFFFFFFF),
