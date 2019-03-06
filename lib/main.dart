@@ -293,7 +293,7 @@ class _MyHomePageState extends State<MyHomePage> {
             new Container(
               decoration: new BoxDecoration(
                 image: new DecorationImage(
-                  image: new AssetImage("lib/images/login-bg.png"),
+                  image: new AssetImage("lib/images/def.png"),
                   fit: BoxFit.cover,
                 ),
               ),
