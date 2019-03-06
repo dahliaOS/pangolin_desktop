@@ -335,7 +335,7 @@ new Container(
       showDialog(context: context, child:
       new AlertDialog(
         title: new Text("Apps"),
-        content: new Text("Test"),
+        content: new Text("no apps installed..."),
       )
       );
     },
