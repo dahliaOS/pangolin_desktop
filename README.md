@@ -4,6 +4,8 @@ The desktop UI for Dahlia OS
 
 ![Capybara UI Apk](https://github.com/dahlia-os/Icons/blob/master/Screenshot_2019-03-06_204745.jpg)
 
+![Capybara UI Apk](https://github.com/dahlia-os/Icons/blob/master/UI-ChromeOS.png)
+
 ## To Use
 
 To run Pangolin, you will need to have Flutter installed in your PATH, and a android device / chromebook or emulator to run it on.
