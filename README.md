@@ -3,7 +3,7 @@
 The desktop UI for Dahlia OS
 
 ## What Is Pangolin?
-pangolin is named after a animal with a shell (kinda like a armadillo) this UI is based on the capybara ui bringing a more complete look. We are adding android like icons bringing a more familiar atomsphere.
+pangolin is named after a animal with a shell (kinda like a armadillo) this UI is based on the capybara ui bringing a more complete look. We are adding android like icons bringing a more familiar atomsphere, and with a touch of chromeOS.
 
 ![Capybara UI Apk](https://github.com/dahlia-os/Icons/blob/master/Screenshot_2019-03-06_204745.jpg)
 
