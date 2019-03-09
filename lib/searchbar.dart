@@ -5,15 +5,6 @@ import 'package:flutter/material.dart';
 
 
 
-class SearchBar extends StatelessWidget {
-  @override
-  Widget build (BuildContext ctxt) {
-
-
-
-
-  }
-}
 
 class SearchWidget extends StatelessWidget {
 
@@ -24,13 +15,14 @@ class SearchWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Container(
-      padding: new EdgeInsets.only(left: 10.0, right: 10.0, top: 40.0),
+      padding: new EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
       margin: const EdgeInsets.only(),
       child: new Material(
         borderRadius: const BorderRadius.all(const Radius.circular(25.0)),
-        elevation: 2.0,
+        color: const Color(0xFFffffff),
+        elevation: 0.0,
         child: new Container(
-          height: 45.0,
+          height: 50.0,
           margin: new EdgeInsets.only(left: 16.0, right: 16.0),
           child: new Row(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -42,7 +34,7 @@ class SearchWidget extends StatelessWidget {
                         icon: Icon(Icons.search, color: Theme
                             .of(context)
                             .accentColor,),
-                        hintText: "hello",
+                        hintText: "Search your device, apps, web...",
                         border: InputBorder.none
                     ),
                     onSubmitted: null,
