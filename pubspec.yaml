@@ -17,4 +17,5 @@ flutter:
   assets:
   - lib/images/def.png
   - lib/images/menu.png
-  - lib/images/gallery.png
+  - lib/images/wallpaper.png
+  - lib/images/google_logo.png

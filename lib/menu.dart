@@ -1,29 +1,41 @@
 
 import 'dart:async';
 import 'package:flutter/material.dart';
-
+import 'searchbar.dart';
 
 class AppMenu extends StatelessWidget {
   @override
   Widget build (BuildContext ctxt) {
+
     return new Scaffold(
+
       body:
-      new GridView.extent(
-          maxCrossAxisExtent: 150.0,
-          mainAxisSpacing: 4.0,
-          crossAxisSpacing: 4.0,
-          padding: const EdgeInsets.all(0.0),
-          children: <Widget>[
-            new Image.asset(
-              'lib/images/gallery.png',
-              fit:BoxFit.fill,
-              width: 50.0,
-              height: 50.0,
-            )
-          ]
+      new Container(
+        color: const Color(0xFFffffff),
+        padding: const EdgeInsets.all(0.0),
+        alignment: Alignment.centerLeft,
+        width: 1.7976931348623157e+308,
+        height: 75.0,
+
+        child:
+            new Container(
+              width: 500,
+              height: 75.0,
+              color: const Color(0xFFffa500),
+              alignment: Alignment.centerLeft,
+              child: new SearchWidget(),
+
+
+
+
+            ),
+
 
       ),
 
     );
+
+
+
   }
 }
