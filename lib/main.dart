@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'menu.dart';
 
+
 void main() => runApp(MyApp());
 
 
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
       title: 'Pangolin Desktop',
       theme: ThemeData(
         primarySwatch: Colors.deepOrange,
+        canvasColor: const Color(0xFFEEEEEE),
       ),
       home: MyHomePage(title: 'Pangolin Desktop'),
     );
@@ -93,10 +95,13 @@ new Container(
 
     onPressed: () {
       showDialog(
+
           context: context,
           builder: (_) => Center( // Aligns the container to center
+
               child: Container( // A simplified version of dialog.
                 width: 600,
+
                 height: 400,
                 color: Colors.white,
                 child:
