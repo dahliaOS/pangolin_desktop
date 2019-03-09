@@ -17,18 +17,11 @@ class AppMenu extends StatelessWidget {
         width: 1.7976931348623157e+308,
         height: 75.0,
 
-        child:
-            new Container(
-              width: 500,
-              height: 75.0,
-              color: const Color(0xFFffa500),
-              alignment: Alignment.centerLeft,
-              child: new SearchWidget(),
+
+        child: new SearchWidget(),
 
 
 
-
-            ),
 
 
       ),
