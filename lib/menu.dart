@@ -2,6 +2,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'searchbar.dart';
+import 'apps.dart';
 
 class AppMenu extends StatelessWidget {
   @override
@@ -25,6 +26,9 @@ class AppMenu extends StatelessWidget {
 
 
       ),
+
+
+
 
     );
 
