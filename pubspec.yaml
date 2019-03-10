@@ -4,6 +4,7 @@ description: A generated Flutter project.
 dependencies:
   intl: ^0.15.7
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
