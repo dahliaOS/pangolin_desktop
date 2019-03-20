@@ -4,7 +4,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'menu.dart';
-
+import 'package:flutter/services.dart';
 
 void main() => runApp(MyApp());
 
@@ -12,6 +12,7 @@ void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
+
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Pangolin Desktop',
@@ -94,9 +95,13 @@ new Container(
     icon: const Icon(Icons.panorama_fish_eye),
 
     onPressed: () {
+      SystemChrome.setEnabledSystemUIOverlays([]);
+
       showDialog(
 
+
           context: context,
+
           builder: (_) => Center( // Aligns the container to center
 
               child: Container( // A simplified version of dialog.
@@ -111,7 +116,9 @@ new Container(
           )
 
       );
+
     },
+
     iconSize: 25.0,
     color: const Color(0xFFFFFFFF),
   ),
