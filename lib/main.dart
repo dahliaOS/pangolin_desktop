@@ -1,5 +1,4 @@
-
-
+import 'window.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -62,6 +61,21 @@ class _MyHomePageState extends State<MyHomePage> {
 
             ),
 
+            // Example usage of windows widget
+            Window(
+              initialPosition: Offset.fromDirection(350.0,-40.0),
+              initialSize: Size(355,628),
+              child: Container(
+                color: Colors.deepOrange[200],
+              ),
+              color: Colors.deepOrange
+            ),
+            Window(
+              initialPosition: Offset.fromDirection(350.0,-40.0),
+              initialSize: Size(355,628),
+              child: Container(color: Colors.deepPurple[200]),
+              color: Colors.deepPurple //Calculator(),
+            ),
 
 
             new Container(
