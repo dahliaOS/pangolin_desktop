@@ -1,9 +1,9 @@
 import 'window.dart';
-import 'dart:async';
+//import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+//import 'package:intl/intl.dart';
 import 'menu.dart';
-import 'package:flutter/services.dart';
+//import 'package:flutter/services.dart';
 import 'system_overlay.dart';
 import 'quick_settings.dart';
 import 'toggle.dart';
@@ -11,8 +11,6 @@ import 'launcher_toggle.dart';
 import 'status_tray.dart';
 
 void main() => runApp(MyApp());
-
-
 
 class MyApp extends StatelessWidget {
   @override
@@ -46,33 +44,32 @@ class _MyHomePageState extends State<MyHomePage> {
   final GlobalKey<SystemOverlayState> _statusOverlayKey = new GlobalKey<SystemOverlayState>();
   final Tween<double> _overlayScaleTween = new Tween<double>(begin: 0.9, end: 1.0);
   final Tween<double> _overlayOpacityTween = new Tween<double>(begin: 0.0, end: 1.0);
-  String _timeString;
+  //String _timeString;
 
-  @override
+  /*@override
   void initState() {
     _timeString = _formatDateTime(DateTime.now());
     Timer.periodic(Duration(seconds: 1), (Timer t) => _getTime());
     super.initState();
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-        body: new Stack(
+    return Scaffold(
+        body: Stack(
           fit: StackFit.passthrough,
-
           children: <Widget>[
-            new Container(
-              decoration: new BoxDecoration(
-                image: new DecorationImage(
-                  image: new AssetImage("lib/images/def.png"),
+            // 1 - Desktop background image
+            Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("lib/images/def.png"),
                   fit: BoxFit.cover,
                 ),
               ),
-
             ),
 
-            // Example usage of windows widget
+            // 2 - Example usage of windows widgets
             Window(
               initialPosition: Offset.fromDirection(350.0,-40.0),
               initialSize: Size(355,628),
@@ -88,16 +85,16 @@ class _MyHomePageState extends State<MyHomePage> {
               color: Colors.deepPurple //Calculator(),
             ),
 
-            // Launcher Panel
-            new SystemOverlay(
+            // 3 - Launcher Panel
+            SystemOverlay(
               key: _launcherOverlayKey,
-              builder: (Animation<double> animation) => new Center(
-                child: new AnimatedBuilder(
+              builder: (Animation<double> animation) => Center(
+                child: AnimatedBuilder(
                   animation: animation,
                   builder: (BuildContext context, Widget child) =>
-                  new FadeTransition(
+                  FadeTransition(
                     opacity: _overlayOpacityTween.animate(animation),
-                    child: new ScaleTransition(
+                    child: ScaleTransition(
                       scale: _overlayScaleTween.animate(animation),
                       child: child,
                     ),
@@ -110,18 +107,18 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
 
-            // Quick settings panel
-            new SystemOverlay(
+            // 4 - Quick settings panel
+            SystemOverlay(
               key: _statusOverlayKey,
-              builder: (Animation<double> animation) => new Positioned(
+              builder: (Animation<double> animation) => Positioned(
                 right: 0.0,
                 bottom: 48.0,
-                child: new AnimatedBuilder(
+                child: AnimatedBuilder(
                   animation: animation,
                   builder: (BuildContext context, Widget child) =>
-                  new FadeTransition(
+                  FadeTransition(
                     opacity: _overlayOpacityTween.animate(animation),
-                    child: new ScaleTransition(
+                    child: ScaleTransition(
                       scale: _overlayScaleTween.animate(animation),
                       alignment: FractionalOffset.bottomRight,
                       child: child,
@@ -135,6 +132,7 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
 
+            // 5 - The bottom bar
             Positioned(
               left: 0.0,
               right: 0.0,
@@ -176,44 +174,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
    // new WallpaperPicker(),
 
-/*new Container(
-  alignment: Alignment.bottomLeft,
-  padding: const EdgeInsets.fromLTRB(12.5 ,12.5 , 0,0),
-  child: new IconButton(
-
-    icon: const Icon(Icons.panorama_fish_eye),
-
-    onPressed: () {
-      SystemChrome.setEnabledSystemUIOverlays([]);
-
-      showDialog(
-
-
-          context: context,
-
-          builder: (_) => Center( // Aligns the container to center
-
-              child: AppMenu()
-          )
-
-      );
-
-    },
-
-    iconSize: 25.0,
-    color: const Color(0xFFFFFFFF),
-  ),
-)*/
-
-
-
-
           ],
         )
     );
   }
 
-  void _getTime() {
+  /*void _getTime() {
     final DateTime now = DateTime.now();
     final String formattedDateTime = _formatDateTime(now);
     setState(() {
@@ -224,7 +190,7 @@ class _MyHomePageState extends State<MyHomePage> {
   String _formatDateTime(DateTime dateTime) {
 
     return DateFormat('hh:mm').format(dateTime);
-  }
+  }*/
   /// Hides all overlays except [except] if applicable.
   void _hideOverlays({GlobalKey<SystemOverlayState> except}) {
     <GlobalKey<SystemOverlayState>>[

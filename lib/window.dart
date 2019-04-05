@@ -19,7 +19,7 @@ class Window extends StatefulWidget{
     Key key,
     this.initialPosition: Offset.zero,
     this.initialSize: Size.zero,
-    this.child: null,
+  @required this.child,
     this.color: Colors.blueAccent,
   }):super(key: key);
 
