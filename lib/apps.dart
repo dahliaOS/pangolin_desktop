@@ -1,27 +1,12 @@
 /*This will ultimately be replaced by a global system file, but keep it for android*/
-
-
-
-import 'dart:async';
+//import 'dart:async';
 import 'package:flutter/material.dart';
-
-
-
-
-
-
-
-
-
 
 class AppGrid extends StatelessWidget {
   @override
-  Widget build (BuildContext ctxt) {
-
-
-    return new Container(
-      child:
-      new Image.asset(
+  Widget build (BuildContext context) {
+    return Container(
+      child: Image.asset(
         'lib/images/wallpaper.png',
         fit:BoxFit.fill,
         width: 50.0,
@@ -33,35 +18,14 @@ class AppGrid extends StatelessWidget {
       width: 100.0,
       height: 100.0,
     );
-
-
   }
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 class WallpaperIcon extends StatelessWidget {
   @override
-  Widget build (BuildContext ctxt) {
-
-    return new Container(
-      child:
-      new Image.asset(
+  Widget build (BuildContext context) {
+    return Container(
+      child: Image.asset(
         'lib/images/wallpaper.png',
         fit:BoxFit.fill,
         width: 50.0,
@@ -73,8 +37,5 @@ class WallpaperIcon extends StatelessWidget {
       width: 100.0,
       height: 100.0,
     );
-
-
   }
-
 }
