@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'menu.dart';
 import 'package:flutter/services.dart';
+import 'system_overlay.dart';
+import 'quick_settings.dart';
+import 'toggle.dart';
 
 void main() => runApp(MyApp());
 
@@ -35,6 +38,12 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final GlobalKey<ToggleState> _launcherToggleKey = new GlobalKey<ToggleState>();
+  final GlobalKey<SystemOverlayState> _launcherOverlayKey = GlobalKey<SystemOverlayState>();
+  final GlobalKey<ToggleState> _statusToggleKey = new GlobalKey<ToggleState>();
+  final GlobalKey<SystemOverlayState> _statusOverlayKey = new GlobalKey<SystemOverlayState>();
+  final Tween<double> _overlayScaleTween = new Tween<double>(begin: 0.9, end: 1.0);
+  final Tween<double> _overlayOpacityTween = new Tween<double>(begin: 0.0, end: 1.0);
   String _timeString;
 
   @override
@@ -77,6 +86,52 @@ class _MyHomePageState extends State<MyHomePage> {
               color: Colors.deepPurple //Calculator(),
             ),
 
+            // Launcher Panel
+            new SystemOverlay(
+              key: _launcherOverlayKey,
+              builder: (Animation<double> animation) => new Center(
+                child: new AnimatedBuilder(
+                  animation: animation,
+                  builder: (BuildContext context, Widget child) =>
+                  new FadeTransition(
+                    opacity: _overlayOpacityTween.animate(animation),
+                    child: new ScaleTransition(
+                      scale: _overlayScaleTween.animate(animation),
+                      child: child,
+                    ),
+                  ),
+                  child: AppMenu()//Launcher(),
+                ),
+              ),
+              callback: (bool visible) {
+                _launcherToggleKey.currentState.toggled = visible;
+              },
+            ),
+
+            // Quick settings panel
+            new SystemOverlay(
+              key: _statusOverlayKey,
+              builder: (Animation<double> animation) => new Positioned(
+                right: 0.0,
+                bottom: 48.0,
+                child: new AnimatedBuilder(
+                  animation: animation,
+                  builder: (BuildContext context, Widget child) =>
+                  new FadeTransition(
+                    opacity: _overlayOpacityTween.animate(animation),
+                    child: new ScaleTransition(
+                      scale: _overlayScaleTween.animate(animation),
+                      alignment: FractionalOffset.bottomRight,
+                      child: child,
+                    ),
+                  ),
+                  child: QuickSettings(),
+                ),
+              ),
+              callback: (bool visible) {
+                _statusToggleKey.currentState.toggled = visible;
+              },
+            ),
 
             new Container(
 
@@ -118,15 +173,7 @@ new Container(
 
           builder: (_) => Center( // Aligns the container to center
 
-              child: Container( // A simplified version of dialog.
-                width: 600,
-
-                height: 400,
-                color: Colors.white,
-                child:
-                new AppMenu()
-                ,
-              )
+              child: AppMenu()
           )
 
       );
