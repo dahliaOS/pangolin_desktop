@@ -1,9 +1,4 @@
-
-import 'dart:async';
 import 'package:flutter/material.dart';
-import 'searchbar.dart';
-import 'apps.dart';
-import 'launcher-widget.dart';
 
 class QuickSettings extends StatelessWidget {
   @override
@@ -53,6 +48,7 @@ class QuickSettings extends StatelessWidget {
             child: Text(
               label,
               style: biggerFont,
+              textAlign: TextAlign.center,
             ),
           ),
         ],
@@ -66,7 +62,7 @@ class QuickSettings extends StatelessWidget {
         crossAxisCount: 3,
         children: [
           buildTile(Icons.network_wifi, 'Starbucks'),
-          buildTile(Icons.network_cell, 'Verizon Wirele'),
+          buildTile(Icons.network_cell, 'Verizon Wireless'),
           buildTile(Icons.battery_full, '85%'),
           buildTile(Icons.do_not_disturb_off, 'Do not disturb'),
           buildTile(Icons.lightbulb_outline, 'Flashlight'),
@@ -79,16 +75,12 @@ class QuickSettings extends StatelessWidget {
         ),
     );
 
-    return Scaffold(
-      body:
-      /*Column(
-        children: [*/
-          Container(
-            color: Color(0xFF29353A),
+    return Container(
+      color: Color(0xFF29353A),
             //padding: const EdgeInsets.all(10.0),
             //alignment: Alignment.centerLeft,
-            width: 600,
-            height: 400,
+            width: 350,
+            height: 350,
             child: Column(
               children: [
                 topSection,
@@ -96,10 +88,7 @@ class QuickSettings extends StatelessWidget {
                 tileSection
               ],
             ),
-          ),
-        /*],
-      ),*/
-    );
+          );
   }
 }
 

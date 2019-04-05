@@ -1,16 +1,11 @@
-
-import 'dart:async';
+//import 'dart:async';
 import 'package:flutter/material.dart';
-
-
-
-
 
 class SearchWidget extends StatelessWidget {
 
   final TextEditingController editingController = new TextEditingController();
 
-  BuildContext _context;
+  //BuildContext _context;
 
   @override
   Widget build(BuildContext context) {
