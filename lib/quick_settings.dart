@@ -1,9 +1,5 @@
 
-import 'dart:async';
 import 'package:flutter/material.dart';
-import 'searchbar.dart';
-import 'apps.dart';
-import 'launcher-widget.dart';
 
 class QuickSettings extends StatelessWidget {
   @override
