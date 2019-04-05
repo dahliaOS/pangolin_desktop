@@ -9,9 +9,7 @@ class AppMenu extends StatelessWidget {
   @override
   Widget build (BuildContext ctxt) {
 
-    return new Scaffold(
-
-      body: Container( // A simplified version of dialog.
+    return Container( // A simplified version of dialog.
           width: 600,
 
           height: 400,
@@ -56,7 +54,7 @@ class AppMenu extends StatelessWidget {
 
 
 
-      ),
+
 
 
     );
