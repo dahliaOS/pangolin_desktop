@@ -3,7 +3,7 @@ import 'window.dart';
 import 'package:flutter/material.dart';
 //import 'package:intl/intl.dart';
 import 'menu.dart';
-//import 'package:flutter/services.dart';
+import 'package:flutter/services.dart';
 import 'system_overlay.dart';
 import 'quick_settings.dart';
 import 'toggle.dart';
@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
   @override
 
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIOverlays([]);
     return MaterialApp(
       title: 'Pangolin Desktop',
       theme: ThemeData(
