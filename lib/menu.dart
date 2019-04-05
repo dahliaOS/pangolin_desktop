@@ -11,7 +11,12 @@ class AppMenu extends StatelessWidget {
 
     return new Scaffold(
 
-      body:
+      body: Container( // A simplified version of dialog.
+          width: 600,
+
+          height: 400,
+          color: Colors.white,
+          child:
 
       ListView(
         children: <Widget>[
@@ -51,11 +56,10 @@ class AppMenu extends StatelessWidget {
 
 
 
-      );
+      ),
 
 
-
-
+    );
 
 
 
