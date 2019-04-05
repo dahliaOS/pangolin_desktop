@@ -1,18 +1,22 @@
 import 'window.dart';
-import 'dart:async';
+//import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+//import 'package:intl/intl.dart';
 import 'menu.dart';
 import 'package:flutter/services.dart';
+import 'widgets/system_overlay.dart';
+import 'quick_settings.dart';
+import 'widgets/toggle.dart';
+import 'launcher_toggle.dart';
+import 'status_tray.dart';
 
 void main() => runApp(MyApp());
-
-
 
 class MyApp extends StatelessWidget {
   @override
 
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIOverlays([]);
     return MaterialApp(
       title: 'Pangolin Desktop',
       theme: ThemeData(
@@ -35,33 +39,38 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String _timeString;
+  final GlobalKey<ToggleState> _launcherToggleKey = new GlobalKey<ToggleState>();
+  final GlobalKey<SystemOverlayState> _launcherOverlayKey = GlobalKey<SystemOverlayState>();
+  final GlobalKey<ToggleState> _statusToggleKey = new GlobalKey<ToggleState>();
+  final GlobalKey<SystemOverlayState> _statusOverlayKey = new GlobalKey<SystemOverlayState>();
+  final Tween<double> _overlayScaleTween = new Tween<double>(begin: 0.9, end: 1.0);
+  final Tween<double> _overlayOpacityTween = new Tween<double>(begin: 0.0, end: 1.0);
+  //String _timeString;
 
-  @override
+  /*@override
   void initState() {
     _timeString = _formatDateTime(DateTime.now());
     Timer.periodic(Duration(seconds: 1), (Timer t) => _getTime());
     super.initState();
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-        body: new Stack(
-          alignment: Alignment.bottomCenter,
-
+    return Scaffold(
+        body: Stack(
+          fit: StackFit.passthrough,
           children: <Widget>[
-            new Container(
-              decoration: new BoxDecoration(
-                image: new DecorationImage(
-                  image: new AssetImage("lib/images/def.png"),
+            // 1 - Desktop background image
+            Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("lib/images/def.png"),
                   fit: BoxFit.cover,
                 ),
               ),
-
             ),
 
-            // Example usage of windows widget
+            // 2 - Example usage of windows widgets
             Window(
               initialPosition: Offset.fromDirection(350.0,-40.0),
               initialSize: Size(355,628),
@@ -77,76 +86,101 @@ class _MyHomePageState extends State<MyHomePage> {
               color: Colors.deepPurple //Calculator(),
             ),
 
+            // 3 - Launcher Panel
+            SystemOverlay(
+              key: _launcherOverlayKey,
+              builder: (Animation<double> animation) => Center(
+                child: AnimatedBuilder(
+                  animation: animation,
+                  builder: (BuildContext context, Widget child) =>
+                  FadeTransition(
+                    opacity: _overlayOpacityTween.animate(animation),
+                    child: ScaleTransition(
+                      scale: _overlayScaleTween.animate(animation),
+                      child: child,
+                    ),
+                  ),
+                  child: AppMenu()//Launcher(),
+                ),
+              ),
+              callback: (bool visible) {
+                _launcherToggleKey.currentState.toggled = visible;
+              },
+            ),
 
-            new Container(
+            // 4 - Quick settings panel
+            SystemOverlay(
+              key: _statusOverlayKey,
+              builder: (Animation<double> animation) => Positioned(
+                right: 0.0,
+                bottom: 48.0,
+                child: AnimatedBuilder(
+                  animation: animation,
+                  builder: (BuildContext context, Widget child) =>
+                  FadeTransition(
+                    opacity: _overlayOpacityTween.animate(animation),
+                    child: ScaleTransition(
+                      scale: _overlayScaleTween.animate(animation),
+                      alignment: FractionalOffset.bottomRight,
+                      child: child,
+                    ),
+                  ),
+                  child: QuickSettings(),
+                ),
+              ),
+              callback: (bool visible) {
+                _statusToggleKey.currentState.toggled = visible;
+              },
+            ),
 
-              color: Color.fromARGB(150, 0, 0, 0),
-              width: 1.7976931348623157e+308,
-              height: 50.0,
-              alignment: Alignment.bottomRight,
-              padding: const EdgeInsets.fromLTRB(0, 0, 13,13),
-
-             child: Text(_timeString,
-
-               style:
-               TextStyle(fontSize: 20, color: Colors.white),),
-
-
-
-
-
-
+            // 5 - The bottom bar
+            Positioned(
+              left: 0.0,
+              right: 0.0,
+              bottom: 0.0,
+              child: GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onTap: _hideOverlays,
+                child: Container(
+                  //color: Color.fromARGB(150, 0, 0, 0),
+                  decoration: BoxDecoration(
+                    color: Colors.black87
+                  ),
+                  height: 50.0,
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      LauncherToggleWidget(
+                        toggleKey: _launcherToggleKey,
+                        callback: (bool toggled) => _setOverlayVisibility(
+                            overlay: _launcherOverlayKey,
+                            visible: toggled,
+                        ),
+                      ),
+                      StatusTrayWidget(
+                        toggleKey: _statusToggleKey,
+                        callback: (bool toggled) => _setOverlayVisibility(
+                            overlay: _statusOverlayKey,
+                            visible: toggled,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ),
 
 
    // new WallpaperPicker(),
-
-new Container(
-  alignment: Alignment.bottomLeft,
-  padding: const EdgeInsets.fromLTRB(12.5 ,12.5 , 0,0),
-  child: new IconButton(
-
-    icon: const Icon(Icons.panorama_fish_eye),
-
-    onPressed: () {
-      SystemChrome.setEnabledSystemUIOverlays([]);
-
-      showDialog(
-
-
-          context: context,
-
-          builder: (_) => Center( // Aligns the container to center
-
-              child: Container( // A simplified version of dialog.
-                width: 600,
-
-                height: 400,
-                color: Colors.white,
-                child:
-                new AppMenu()
-                ,
-              )
-          )
-
-      );
-
-    },
-
-    iconSize: 25.0,
-    color: const Color(0xFFFFFFFF),
-  ),
-)
-
-
-
 
           ],
         )
     );
   }
 
-  void _getTime() {
+  /*void _getTime() {
     final DateTime now = DateTime.now();
     final String formattedDateTime = _formatDateTime(now);
     setState(() {
@@ -157,5 +191,27 @@ new Container(
   String _formatDateTime(DateTime dateTime) {
 
     return DateFormat('hh:mm').format(dateTime);
+  }*/
+  /// Hides all overlays except [except] if applicable.
+  void _hideOverlays({GlobalKey<SystemOverlayState> except}) {
+    <GlobalKey<SystemOverlayState>>[
+      _launcherOverlayKey,
+      _statusOverlayKey,
+    ]
+        .where((GlobalKey<SystemOverlayState> overlay) => overlay != except)
+        .forEach((GlobalKey<SystemOverlayState> overlay) =>
+    overlay.currentState.visible = false);
+  }
+
+  /// Sets the given [overlay]'s visibility to [visible].
+  /// When showing an overlay, this also hides every other overlay.
+  void _setOverlayVisibility({
+    @required GlobalKey<SystemOverlayState> overlay,
+    @required bool visible,
+  }) {
+    if (visible) {
+      _hideOverlays(except: overlay);
+    }
+    overlay.currentState.visible = visible;
   }
 }
