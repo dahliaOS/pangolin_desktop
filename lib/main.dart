@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 //import 'package:intl/intl.dart';
 import 'menu.dart';
 import 'package:flutter/services.dart';
-import 'system_overlay.dart';
+import 'widgets/system_overlay.dart';
 import 'quick_settings.dart';
-import 'toggle.dart';
+import 'widgets/toggle.dart';
 import 'launcher_toggle.dart';
 import 'status_tray.dart';
 

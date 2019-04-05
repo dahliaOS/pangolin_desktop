@@ -7,7 +7,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import 'toggle.dart';
+import 'widgets/toggle.dart';
 
 /// A toggle button for the launcher.
 class LauncherToggleWidget extends StatelessWidget {

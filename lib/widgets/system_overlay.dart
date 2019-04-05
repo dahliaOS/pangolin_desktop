@@ -15,7 +15,7 @@ class SystemOverlay extends StatefulWidget {
   /// Constructor.
   /// [builder] is invoked to build the content of the overlay. [callback]
   /// receives notifications when the overlay is shown or hidden.
-  SystemOverlay(
+  const SystemOverlay(
       {Key key, AnimatedContentBuilder builder, ValueChanged<bool> callback})
       : _builder = builder,
         _callback = callback,

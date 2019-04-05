@@ -5,7 +5,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import 'toggle.dart';
+import 'widgets/toggle.dart';
 
 /// Hosts a collection of status icons.
 class StatusTrayWidget extends StatelessWidget {
@@ -14,6 +14,8 @@ class StatusTrayWidget extends StatelessWidget {
 
   final Tween<double> _backgroundOpacityTween =
       new Tween<double>(begin: 0.0, end: 0.33);
+
+  final String _timeString='3:14';
 
   /// Constructor.
   StatusTrayWidget({
@@ -41,7 +43,7 @@ class StatusTrayWidget extends StatelessWidget {
                 ),
             child: Center(
               child: Text(
-                /*_timeString*/'3:14',
+                _timeString,
                 style: TextStyle(fontSize: 20, color: Colors.white),
               ),
             ),
