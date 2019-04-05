@@ -7,6 +7,8 @@ import 'package:flutter/services.dart';
 import 'system_overlay.dart';
 import 'quick_settings.dart';
 import 'toggle.dart';
+import 'launcher_toggle.dart';
+import 'status_tray.dart';
 
 void main() => runApp(MyApp());
 
@@ -57,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return new Scaffold(
         body: new Stack(
-          alignment: Alignment.bottomCenter,
+          fit: StackFit.passthrough,
 
           children: <Widget>[
             new Container(
@@ -133,30 +135,48 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
 
-            new Container(
-
-              color: Color.fromARGB(150, 0, 0, 0),
-              width: 1.7976931348623157e+308,
-              height: 50.0,
-              alignment: Alignment.bottomRight,
-              padding: const EdgeInsets.fromLTRB(0, 0, 13,13),
-
-             child: Text(_timeString,
-
-               style:
-               TextStyle(fontSize: 20, color: Colors.white),),
-
-
-
-
-
-
+            Positioned(
+              left: 0.0,
+              right: 0.0,
+              bottom: 0.0,
+              child: GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onTap: _hideOverlays,
+                child: Container(
+                  //color: Color.fromARGB(150, 0, 0, 0),
+                  decoration: BoxDecoration(
+                    color: Colors.black87
+                  ),
+                  height: 50.0,
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      LauncherToggleWidget(
+                        toggleKey: _launcherToggleKey,
+                        callback: (bool toggled) => _setOverlayVisibility(
+                            overlay: _launcherOverlayKey,
+                            visible: toggled,
+                        ),
+                      ),
+                      StatusTrayWidget(
+                        toggleKey: _statusToggleKey,
+                        callback: (bool toggled) => _setOverlayVisibility(
+                            overlay: _statusOverlayKey,
+                            visible: toggled,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ),
 
 
    // new WallpaperPicker(),
 
-new Container(
+/*new Container(
   alignment: Alignment.bottomLeft,
   padding: const EdgeInsets.fromLTRB(12.5 ,12.5 , 0,0),
   child: new IconButton(
@@ -183,7 +203,7 @@ new Container(
     iconSize: 25.0,
     color: const Color(0xFFFFFFFF),
   ),
-)
+)*/
 
 
 
@@ -204,5 +224,27 @@ new Container(
   String _formatDateTime(DateTime dateTime) {
 
     return DateFormat('hh:mm').format(dateTime);
+  }
+  /// Hides all overlays except [except] if applicable.
+  void _hideOverlays({GlobalKey<SystemOverlayState> except}) {
+    <GlobalKey<SystemOverlayState>>[
+      _launcherOverlayKey,
+      _statusOverlayKey,
+    ]
+        .where((GlobalKey<SystemOverlayState> overlay) => overlay != except)
+        .forEach((GlobalKey<SystemOverlayState> overlay) =>
+    overlay.currentState.visible = false);
+  }
+
+  /// Sets the given [overlay]'s visibility to [visible].
+  /// When showing an overlay, this also hides every other overlay.
+  void _setOverlayVisibility({
+    @required GlobalKey<SystemOverlayState> overlay,
+    @required bool visible,
+  }) {
+    if (visible) {
+      _hideOverlays(except: overlay);
+    }
+    overlay.currentState.visible = visible;
   }
 }
