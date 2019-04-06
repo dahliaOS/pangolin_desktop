@@ -1,6 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'dart:async';
 
-class QuickSettings extends StatelessWidget {
+class QuickSettings extends StatefulWidget {
+  @override
+  QuickSettingsState createState() => QuickSettingsState();
+}
+
+class QuickSettingsState extends State<QuickSettings> {
+  String _timeString;
+  String _dateString;
+
+  @override
+  void initState() {
+    _timeString = _formatDateTime(DateTime.now(),'hh:mm');
+    _dateString = _formatDateTime(DateTime.now(),'E, MMM d');
+    Timer.periodic(Duration(seconds: 1), (Timer t) => _getTime());
+    super.initState();
+  }
+
+  void _getTime() {
+    final DateTime now = DateTime.now();
+    final String formattedTime = _formatDateTime(now,'hh:mm');
+    final String formattedDate = _formatDateTime(now,'E, MMM d');
+    setState(() {
+      _timeString = formattedTime;
+      _dateString = formattedDate;
+    });
+  }
+  String _formatDateTime(DateTime dateTime, String pattern) {
+
+    return DateFormat(pattern).format(dateTime);
+  }
+
   @override
   Widget build (BuildContext context) {
     const biggerFont = TextStyle(
@@ -17,10 +49,10 @@ class QuickSettings extends StatelessWidget {
             child:*/ Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('12:15', style: biggerFont),
+                Text(_timeString, style: biggerFont),
                 //Icon(Icons.brightness_1, size: 10.0,color: Colors.white),
                 Text('  •  ', style: biggerFont),
-                Text('Tue, March 11', style: biggerFont),
+                Text(_dateString, style: biggerFont),
               ],
             ),
           //),
