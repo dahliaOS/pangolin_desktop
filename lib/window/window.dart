@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import '../model.dart';
+import 'model.dart';
+
+/// Signature of window interaction callbacks.
+typedef void WindowInteractionCallback();
+
 /// A window container
 class Window extends StatefulWidget{
   /// The window's initial position.
@@ -6,6 +12,9 @@ class Window extends StatefulWidget{
 
   /// The window's initial size.
   final Size initialSize;
+
+  /// Called when the user started interacting with this window.
+  final WindowInteractionCallback onWindowInteraction;
 
   /// The window's child.
   final Widget child;
@@ -17,9 +26,10 @@ class Window extends StatefulWidget{
   /// Constructor.
   Window({
     Key key,
+    this.onWindowInteraction,
     this.initialPosition: Offset.zero,
     this.initialSize: Size.zero,
-  @required this.child,
+    @required this.child,
     this.color: Colors.blueAccent,
   }):super(key: key);
 
@@ -40,6 +50,15 @@ class WindowState extends State<Window> {
   /// The window's color.
   Color _color;
 
+  /// The window's minimum height.
+  final double _minHeight = 100.0;
+
+  /// The window's minimum width.
+  final double _minWidth = 100.0;
+
+  /// Controls focus on this window.
+  final FocusNode _focusNode = new FocusNode();
+
   @override
   void initState() {
     super.initState();
@@ -50,13 +69,53 @@ class WindowState extends State<Window> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Positioned(
+  void dispose() {
+    _focusNode.dispose();
+    super.dispose();
+  }
+
+  /// Requests this window to be focused.
+  void focus() => FocusScope.of(context).requestFocus(_focusNode);
+
+  void _registerInteraction() {
+    widget.onWindowInteraction?.call();
+    focus();
+  }
+
+  @override
+  Widget build(BuildContext context) => ScopedModelDescendant<WindowData>(
+      builder: (
+          BuildContext context,
+          Widget child,
+          WindowData model,
+          ) {
+        // Make sure the focus tree is properly updated.
+        FocusScope.of(context).reparentIfNeeded(_focusNode);
+        /*if (model.tabs.length == 1 && model.tabs[0].id == _draggedTabId) {
+          // If the lone tab is being dragged, hide this window.
+          return new Container();
+        }
+        final TabData selectedTab = _getCurrentSelection(model);*/
+  return Positioned(
       left: _position.dx,
       top: _position.dy,
-      child: Container(
+
+      child:GestureDetector(
+      onTapDown: (_) => _registerInteraction(),
+        child: /*new RawKeyboardListener(
+        focusNode: _focusNode,
+        onKey: (RawKeyEvent event) =>
+        _handleKeyEvent(event, model, selectedTab.id),
+        child: new*/ RepaintBoundary(
+        child:
+
+        Container(
         width: _size.width,
         height: _size.height,
+        constraints: BoxConstraints(
+          minWidth: _minWidth,
+          minHeight: _minHeight
+        ),
         decoration: BoxDecoration(boxShadow: kElevationToShadow[12]),
         child: Column(
           children: [
@@ -85,7 +144,9 @@ class WindowState extends State<Window> {
               GestureDetector(
                 onPanUpdate: (DragUpdateDetails details) {
                   setState(() {
-                    _size += details.delta;
+                    var _newSize = _size+details.delta;
+                    if (_newSize.width>=_minWidth&&_newSize.height>=_minHeight)
+                      _size += details.delta;
                   });
                 },
                 child: _child,
@@ -94,6 +155,9 @@ class WindowState extends State<Window> {
           ],
         ),
       ),
+        ),
+      ),
     );
   }
+  );
 }
