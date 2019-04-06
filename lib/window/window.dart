@@ -50,6 +50,12 @@ class WindowState extends State<Window> {
   /// The window's color.
   Color _color;
 
+  /// The window's minimum height.
+  final double _minHeight = 100.0;
+
+  /// The window's minimum width.
+  final double _minWidth = 100.0;
+
   /// Controls focus on this window.
   final FocusNode _focusNode = new FocusNode();
 
@@ -106,6 +112,10 @@ class WindowState extends State<Window> {
         Container(
         width: _size.width,
         height: _size.height,
+        constraints: BoxConstraints(
+          minWidth: _minWidth,
+          minHeight: _minHeight
+        ),
         decoration: BoxDecoration(boxShadow: kElevationToShadow[12]),
         child: Column(
           children: [
@@ -134,7 +144,9 @@ class WindowState extends State<Window> {
               GestureDetector(
                 onPanUpdate: (DragUpdateDetails details) {
                   setState(() {
-                    _size += details.delta;
+                    var _newSize = _size+details.delta;
+                    if (_newSize.width>=_minWidth&&_newSize.height>=_minHeight)
+                      _size += details.delta;
                   });
                 },
                 child: _child,
