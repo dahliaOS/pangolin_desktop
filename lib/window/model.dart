@@ -6,6 +6,7 @@
 
 import '../model.dart';
 import 'package:meta/meta.dart';
+import 'package:flutter/material.dart';
 
 /*/// Signature of tab ownership change callbacks.
 typedef void OwnershipChangeCallback(TabData data);
@@ -47,7 +48,8 @@ class WindowId {
 class WindowData extends Model {
   /// The window's id.
   final WindowId id;
-
+  final Widget child;
+  final Color color;
   /*/// The tabs hosted by the window.
   final List<TabData> tabs;
 
@@ -55,7 +57,7 @@ class WindowData extends Model {
   final ClaimTabCallback claimTab;*/
 
   /// Constructor.
-  WindowData(/*{this.tabs: const <TabData>[], @required this.claimTab}*/)
+  WindowData({this.color, @required this.child})
       : id = new WindowId();
 
   /*/// Returns true if this window contains the given tab.
@@ -129,9 +131,11 @@ class WindowsData extends Model {
   }*/
 
   /// Adds a new window, with an optional existing tab.
-  void add(/*{TabId id}*/) {
+  void add({Widget child, Color color}) {
     //final TabData tab = id != null ? _claimTab(id) : null;
     windows.add(new WindowData(
+      child: child != null ? child : Container(color: Colors.deepPurple[200]),
+      color: color != null ? color: Colors.deepPurple,
       /*tabs: tab != null
           ? <TabData>[tab]
           : <TabData>[

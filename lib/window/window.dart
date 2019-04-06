@@ -17,11 +17,11 @@ class Window extends StatefulWidget{
   final WindowInteractionCallback onWindowInteraction;
 
   /// The window's child.
-  //final Widget child;
+  final Widget child;
 
   //TODO: get the color from child's material app primary swatch
   /// The window's theme color.
-  //final Color color;
+  final Color color;
 
   /// Constructor.
   Window({
@@ -29,8 +29,8 @@ class Window extends StatefulWidget{
     this.onWindowInteraction,
     this.initialPosition: Offset.zero,
     this.initialSize: Size.zero,
-    //@required this.child,
-    //this.color: Colors.blueAccent,
+    @required this.child,
+    this.color: Colors.blueAccent,
   }):super(key: key);
 
   @override
@@ -45,10 +45,10 @@ class WindowState extends State<Window> {
   Size _size;
 
   /// The window's child.
-  //Widget _child;
+  Widget _child;
 
   /// The window's color.
-  //Color _color;
+  Color _color;
 
   /// Controls focus on this window.
   final FocusNode _focusNode = new FocusNode();
@@ -58,8 +58,8 @@ class WindowState extends State<Window> {
     super.initState();
     _position = widget.initialPosition;
     _size = widget.initialSize;
-    //_child = widget.child;
-    //_color = widget.color;
+    _child = widget.child;
+    _color = widget.color;
   }
 
   @override
@@ -118,7 +118,7 @@ class WindowState extends State<Window> {
               child: Container(
                 padding: EdgeInsets.all(4.0),
                 height: 35.0,
-                color: Colors.deepPurple,//_color,
+                color: _color,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -137,7 +137,7 @@ class WindowState extends State<Window> {
                     _size += details.delta;
                   });
                 },
-                child: Container(color: Colors.deepPurple[200]),//_child,
+                child: _child,
               ),
             ),
           ],
