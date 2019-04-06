@@ -1,4 +1,4 @@
-import 'window.dart';
+import 'window_playground.dart';
 //import 'dart:async';
 import 'package:flutter/material.dart';
 //import 'package:intl/intl.dart';
@@ -71,7 +71,8 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
 
             // 2 - Example usage of windows widgets
-            Window(
+            WindowPlaygroundWidget(),
+            /*Window(
               initialPosition: Offset.fromDirection(350.0,-40.0),
               initialSize: Size(355,628),
               child: Container(
@@ -84,7 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
               initialSize: Size(355,628),
               child: Container(color: Colors.deepPurple[200]),
               color: Colors.deepPurple //Calculator(),
-            ),
+            ),*/
 
             // 3 - Launcher Panel
             SystemOverlay(
