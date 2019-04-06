@@ -9,24 +9,28 @@ class QuickSettings extends StatefulWidget {
 
 class QuickSettingsState extends State<QuickSettings> {
   String _timeString;
+  String _dateString;
 
   @override
   void initState() {
-    _timeString = _formatDateTime(DateTime.now());
+    _timeString = _formatDateTime(DateTime.now(),'hh:mm');
+    _dateString = _formatDateTime(DateTime.now(),'E, MMM d');
     Timer.periodic(Duration(seconds: 1), (Timer t) => _getTime());
     super.initState();
   }
 
   void _getTime() {
     final DateTime now = DateTime.now();
-    final String formattedDateTime = _formatDateTime(now);
+    final String formattedTime = _formatDateTime(now,'hh:mm');
+    final String formattedDate = _formatDateTime(now,'E, MMM d');
     setState(() {
-      _timeString = formattedDateTime;
+      _timeString = formattedTime;
+      _dateString = formattedDate;
     });
   }
-  String _formatDateTime(DateTime dateTime) {
+  String _formatDateTime(DateTime dateTime, String pattern) {
 
-    return DateFormat('hh:mm').format(dateTime);
+    return DateFormat(pattern).format(dateTime);
   }
 
   @override
@@ -48,7 +52,7 @@ class QuickSettingsState extends State<QuickSettings> {
                 Text(_timeString, style: biggerFont),
                 //Icon(Icons.brightness_1, size: 10.0,color: Colors.white),
                 Text('  •  ', style: biggerFont),
-                Text('Tue, March 11', style: biggerFont),
+                Text(_dateString, style: biggerFont),
               ],
             ),
           //),
