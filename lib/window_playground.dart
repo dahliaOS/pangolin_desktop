@@ -5,7 +5,7 @@
 //import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'model.dart';
-
+import 'package:flutter/material.dart';
 import 'window/model.dart';
 import 'window/window.dart';
 
@@ -16,7 +16,14 @@ class WindowPlaygroundWidget extends StatefulWidget {
 }
 
 class _PlaygroundState extends State<WindowPlaygroundWidget> {
-  final WindowsData _windows = new WindowsData()..add()..add();
+  final WindowsData _windows = new WindowsData()
+    ..add(
+      color: Colors.deepOrange,
+      child: Container(
+      color: Colors.deepOrange[200],
+      ),
+    )
+    ..add(); //adds default purple window, see widget/model.dart
   final Map<WindowId, GlobalKey<WindowState>> _windowKeys =
       new Map<WindowId, GlobalKey<WindowState>>();
   final FocusScopeNode _focusNode = new FocusScopeNode();
@@ -97,6 +104,8 @@ class _PlaygroundState extends State<WindowPlaygroundWidget> {
                 initialPosition: new Offset(maxWidth / 4, maxHeight / 4),
                 initialSize: new Size(maxWidth / 2, maxHeight / 2),
                 onWindowInteraction: () => model.moveToFront(window),
+                color: window.color,
+                child: window.child,
               ),
             ))
         .toList();
