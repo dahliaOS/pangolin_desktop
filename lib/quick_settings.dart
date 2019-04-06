@@ -1,6 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'dart:async';
 
-class QuickSettings extends StatelessWidget {
+class QuickSettings extends StatefulWidget {
+  @override
+  QuickSettingsState createState() => QuickSettingsState();
+}
+
+class QuickSettingsState extends State<QuickSettings> {
+  String _timeString;
+
+  @override
+  void initState() {
+    _timeString = _formatDateTime(DateTime.now());
+    Timer.periodic(Duration(seconds: 1), (Timer t) => _getTime());
+    super.initState();
+  }
+
+  void _getTime() {
+    final DateTime now = DateTime.now();
+    final String formattedDateTime = _formatDateTime(now);
+    setState(() {
+      _timeString = formattedDateTime;
+    });
+  }
+  String _formatDateTime(DateTime dateTime) {
+
+    return DateFormat('hh:mm').format(dateTime);
+  }
+
   @override
   Widget build (BuildContext context) {
     const biggerFont = TextStyle(
@@ -17,7 +45,7 @@ class QuickSettings extends StatelessWidget {
             child:*/ Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('12:15', style: biggerFont),
+                Text(_timeString, style: biggerFont),
                 //Icon(Icons.brightness_1, size: 10.0,color: Colors.white),
                 Text('  •  ', style: biggerFont),
                 Text('Tue, March 11', style: biggerFont),
