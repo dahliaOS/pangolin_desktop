@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:intl/intl.dart';
+import 'dart:async';
 
 import 'widgets/toggle.dart';
 
 /// Hosts a collection of status icons.
-class StatusTrayWidget extends StatelessWidget {
+class StatusTrayWidget extends StatefulWidget {
   final ValueChanged<bool> _callback;
   final GlobalKey<ToggleState> _toggleKey;
 
   final Tween<double> _backgroundOpacityTween =
       new Tween<double>(begin: 0.0, end: 0.33);
 
-  final String _timeString='3:14';
 
   /// Constructor.
   StatusTrayWidget({
@@ -22,9 +23,34 @@ class StatusTrayWidget extends StatelessWidget {
         _callback = callback;
 
   @override
+  StatusTrayWidgetState createState() => StatusTrayWidgetState();
+}
+
+class StatusTrayWidgetState extends State<StatusTrayWidget> {
+  String _timeString;
+  @override
+  void initState() {
+    _timeString = _formatDateTime(DateTime.now());
+    Timer.periodic(Duration(seconds: 1), (Timer t) => _getTime());
+    super.initState();
+  }
+
+  void _getTime() {
+    final DateTime now = DateTime.now();
+    final String formattedDateTime = _formatDateTime(now);
+    setState(() {
+      _timeString = formattedDateTime;
+    });
+  }
+
+  String _formatDateTime(DateTime dateTime) {
+
+    return DateFormat('hh:mm').format(dateTime);
+  }
+  @override
   Widget build(BuildContext context) => new Toggle(
-        key: _toggleKey,
-        callback: _callback,
+        key: widget._toggleKey,
+        callback: widget._callback,
         builder: (Animation<double> animation) {
           return new AnimatedBuilder(
             animation: animation,
@@ -33,7 +59,7 @@ class StatusTrayWidget extends StatelessWidget {
                   decoration: new BoxDecoration(
                     borderRadius: new BorderRadius.circular(4.0),
                     color: Colors.grey.withOpacity(
-                        _backgroundOpacityTween.evaluate(animation)),
+                        widget._backgroundOpacityTween.evaluate(animation)),
                   ),
                   child: child,
                 ),
