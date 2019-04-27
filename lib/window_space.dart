@@ -105,6 +105,7 @@ class _PlaygroundState extends State<WindowPlaygroundWidget> {
                 initialPosition: new Offset(maxWidth / 4, maxHeight / 4),
                 initialSize: new Size(maxWidth / 2, maxHeight / 2),
                 onWindowInteraction: () => model.moveToFront(window),
+                onWindowClose: () => model.close(window),
                 color: window.color,
                 child: window.child,
               ),
