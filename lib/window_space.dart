@@ -6,12 +6,13 @@ import 'window/model.dart';
 import 'window/window.dart';
 
 /// Displays a set of windows.
-class WindowPlaygroundWidget extends StatefulWidget {
+class WindowSpaceWidget extends StatefulWidget {
   @override
   _PlaygroundState createState() => new _PlaygroundState();
 }
 
-class _PlaygroundState extends State<WindowPlaygroundWidget> {
+class _PlaygroundState extends State<WindowSpace
+  Widget> {
   final WindowsData _windows = new WindowsData()
     ..add(
       color: Colors.deepOrange,
