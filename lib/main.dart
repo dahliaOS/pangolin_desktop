@@ -1,4 +1,4 @@
-import 'window_playground.dart';
+import 'window_space.dart';
 //import 'dart:async';
 import 'package:flutter/material.dart';
 //import 'package:intl/intl.dart';
@@ -71,7 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
 
             // 2 - Example usage of windows widgets
-            WindowPlaygroundWidget(),
+            WindowSpaceWidget(),
             /*Window(
               initialPosition: Offset.fromDirection(350.0,-40.0),
               initialSize: Size(355,628),
