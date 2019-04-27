@@ -1,6 +1,6 @@
 # Pangolin Desktop
 
-The desktop UI for Dahlia OS
+desktop shell for dahlia
 
 ## Build Pangolin Desktop
 
