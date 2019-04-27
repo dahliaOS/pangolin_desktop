@@ -16,6 +16,9 @@ class Window extends StatefulWidget{
   /// Called when the user started interacting with this window.
   final WindowInteractionCallback onWindowInteraction;
 
+  /// Called when the user clicks close button in this window.
+  final WindowInteractionCallback onWindowClose;
+
   /// The window's child.
   final Widget child;
 
@@ -26,6 +29,7 @@ class Window extends StatefulWidget{
   Window({
     Key key,
     this.onWindowInteraction,
+    this.onWindowClose,
     this.initialPosition: Offset.zero,
     this.initialSize: Size.zero,
     @required this.child,
@@ -81,6 +85,10 @@ class WindowState extends State<Window> {
     focus();
   }
 
+  void _closeWindow() {
+    widget.onWindowClose?.call();
+  }
+
   @override
   Widget build(BuildContext context) => ScopedModelDescendant<WindowData>(
       builder: (
@@ -133,7 +141,11 @@ class WindowState extends State<Window> {
                   children: [
                     Icon(Icons.minimize,color: Colors.white),
                     Icon(Icons.crop_square,color: Colors.white),
+                    GestureDetector(
+                      onTap: () => _closeWindow(),
+                      child:
                     Icon(Icons.close,color: Colors.white),
+                    )
                   ],
                 )
               ),
