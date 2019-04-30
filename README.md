@@ -9,7 +9,7 @@ Check The Wiki:
 [/wiki/Build-Pangolin-Desktop](https://github.com/dahlia-os/pangolin-desktop/wiki/Build-Pangolin-Desktop)
 
 ## What Is Pangolin?
-pangolin is named after a animal with a shell (kinda like a armadillo) this UI is based on the capybara ui bringing a more complete look. We are adding android like icons bringing a more familiar atomsphere, and with a touch of chromeOS.
+pangolin is named after a animal with a shell (kinda like a armadillo) Pangolin is based off the earlyer versions of chromeOS. Comes with the charm of the old launcher and some other old features with a modern twist.
 
 ![Capybara UI Apk](https://github.com/dahlia-os/Icons/blob/master/CalCu-Dahlia.png)
 Pangolin Desktop
