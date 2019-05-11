@@ -116,3 +116,22 @@ class MusicGrid extends StatelessWidget {
   }
 }
 
+class SettingsGrid extends StatelessWidget {
+  @override
+  Widget build (BuildContext context) {
+    return Container(
+      child: Image.asset(
+        'lib/images/settings.png',
+        fit:BoxFit.fill,
+        width: 50.0,
+        height: 50.0,
+      ),
+
+      padding: const EdgeInsets.all(0.0),
+      alignment: Alignment.center,
+      width: 100.0,
+      height: 100.0,
+    );
+  }
+}
+
