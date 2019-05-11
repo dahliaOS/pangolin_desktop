@@ -25,6 +25,7 @@ class AppMenu extends StatelessWidget {
           GmailGrid(),
           CalculatorGrid(),
           MusicGrid(),
+          SettingsGrid(),
         ],
       ),
     );
