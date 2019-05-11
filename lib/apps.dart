@@ -2,7 +2,7 @@
 //import 'dart:async';
 import 'package:flutter/material.dart';
 
-class AppGrid extends StatelessWidget {
+class WallpaperGrid extends StatelessWidget {
   @override
   Widget build (BuildContext context) {
     return Container(
