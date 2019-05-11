@@ -20,3 +20,7 @@ flutter:
   - lib/images/menu.png
   - lib/images/wallpaper.png
   - lib/images/google_logo.png
+  - lib/images/Gmail-icon.png
+  - lib/images/phone.png
+  - lib/images/calculator.png
+  - lib/images/music.png

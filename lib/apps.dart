@@ -39,3 +39,80 @@ class WallpaperIcon extends StatelessWidget {
     );
   }
 }
+
+class CalculatorGrid extends StatelessWidget {
+  @override
+  Widget build (BuildContext context) {
+    return Container(
+      child: Image.asset(
+        'lib/images/calculator.png',
+        fit:BoxFit.fill,
+        width: 50.0,
+        height: 50.0,
+      ),
+
+      padding: const EdgeInsets.all(0.0),
+      alignment: Alignment.center,
+      width: 100.0,
+      height: 100.0,
+    );
+  }
+}
+
+class PhoneGrid extends StatelessWidget {
+  @override
+  Widget build (BuildContext context) {
+    return Container(
+      child: Image.asset(
+        'lib/images/phone.png',
+        fit:BoxFit.fill,
+        width: 50.0,
+        height: 50.0,
+      ),
+
+      padding: const EdgeInsets.all(0.0),
+      alignment: Alignment.center,
+      width: 100.0,
+      height: 100.0,
+    );
+  }
+}
+
+class GmailGrid extends StatelessWidget {
+  @override
+  Widget build (BuildContext context) {
+    return Container(
+      child: Image.asset(
+        'lib/images/Gmail-icon.png',
+        fit:BoxFit.fill,
+        width: 50.0,
+        height: 50.0,
+      ),
+
+      padding: const EdgeInsets.all(0.0),
+      alignment: Alignment.center,
+      width: 100.0,
+      height: 100.0,
+    );
+  }
+}
+
+class MusicGrid extends StatelessWidget {
+  @override
+  Widget build (BuildContext context) {
+    return Container(
+      child: Image.asset(
+        'lib/images/music.png',
+        fit:BoxFit.fill,
+        width: 50.0,
+        height: 50.0,
+      ),
+
+      padding: const EdgeInsets.all(0.0),
+      alignment: Alignment.center,
+      width: 100.0,
+      height: 100.0,
+    );
+  }
+}
+
