@@ -26,3 +26,4 @@ flutter:
   - lib/images/calculator.png
   - lib/images/music.png
   - lib/images/settings.png
+  - lib/images/clock.png

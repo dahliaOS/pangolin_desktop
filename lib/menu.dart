@@ -26,6 +26,7 @@ class AppMenu extends StatelessWidget {
           CalculatorGrid(),
           MusicGrid(),
           SettingsGrid(),
+          ClockGrid(),
         ],
       ),
     );
