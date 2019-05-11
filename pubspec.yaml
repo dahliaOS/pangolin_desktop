@@ -3,6 +3,7 @@ description: A generated Flutter project.
 
 dependencies:
   intl: ^0.15.7
+  expressions: ^0.1.2
 
 
 dev_dependencies:
