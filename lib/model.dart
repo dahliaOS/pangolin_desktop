@@ -31,7 +31,6 @@ abstract class Model {
     // listener notifications to occur in a build step and for listeners to
     // call setState.  Its a big no-no to setState during build so we schedule
     // for them to happen later.
-    // TODO(apwilson): This is a bad-flutter-code-smell. Eliminate the need for
     // this scheduleMicrotask.
     if (_microtaskVersion == _version) {
       _microtaskVersion++;

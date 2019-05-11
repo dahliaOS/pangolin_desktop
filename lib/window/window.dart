@@ -19,7 +19,6 @@ class Window extends StatefulWidget{
   /// The window's child.
   final Widget child;
 
-  //TODO: get the color from child's material app primary swatch
   /// The window's theme color.
   final Color color;
 
