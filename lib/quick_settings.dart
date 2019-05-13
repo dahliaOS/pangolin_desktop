@@ -36,8 +36,8 @@ class QuickSettingsState extends State<QuickSettings> {
   @override
   Widget build (BuildContext context) {
     const biggerFont = TextStyle(
-        fontSize: 20.0,
-        fontWeight: FontWeight.w300,
+        fontSize: 18.0,
+        fontWeight: FontWeight.w400,
         color: Colors.white,
     );
     Widget topSection = Container(
@@ -65,7 +65,7 @@ class QuickSettingsState extends State<QuickSettings> {
 
     Widget sliderSection = Container(
       padding: EdgeInsets.all(15.0),
-      child: Slider(value: 1.0, onChanged: (double){})
+      child: Slider(value: 0.75, onChanged: (double){} )
     );
 
     Column buildTile(IconData icon, String label) {

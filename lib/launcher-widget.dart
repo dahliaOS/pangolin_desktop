@@ -13,6 +13,7 @@ class LauncherWidget extends StatelessWidget {
         decoration: BoxDecoration(
           color: Color.fromARGB(255, 255, 255, 255),
         ),
+         
         child: Stack(
           fit: StackFit.expand,
           children: [
