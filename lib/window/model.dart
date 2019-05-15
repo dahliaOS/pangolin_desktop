@@ -145,6 +145,11 @@ class WindowsData extends Model {
     notifyListeners();
   }
 
+  void close(WindowData window) {
+    windows.remove(window);
+    notifyListeners();
+  }
+
   /// Moves the given [window] to the front of the pack.
   void moveToFront(WindowData window) {
     if (windows.isEmpty ||
