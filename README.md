@@ -8,6 +8,11 @@ Check The Wiki:
 
 [/wiki/Build-Pangolin-Desktop](https://github.com/dahlia-os/pangolin-desktop/wiki/Build-Pangolin-Desktop)
 
+Get the dahlia environment:
+
+[Dahlia Environment Installer](https://github.com/EnderNightLord-ChromeBook/dahlia-environment)
+
+
 ## What Is Pangolin?
 pangolin is named after a animal with a shell (kinda like a armadillo) Pangolin is based off the earlyer versions of chromeOS. Comes with the charm of the old launcher and some other old features with a modern twist.
 
