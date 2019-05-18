@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'window/model.dart';
 import 'window/window.dart';
 import 'calculator.dart';
+import 'editor.dart';
 
 /// Displays a set of windows.
 class WindowPlaygroundWidget extends StatefulWidget {
@@ -15,14 +16,12 @@ class WindowPlaygroundWidget extends StatefulWidget {
 class _PlaygroundState extends State<WindowPlaygroundWidget> {
   final WindowsData _windows = new WindowsData()
     ..add(
-      color: Colors.deepOrange,
-      child: Container(
-      color: Colors.deepOrange[200],
-      ),
-    )
-    ..add(
       color: Colors.green[600],
       child: Calculator(),
+    )
+    ..add(
+      color: Colors.blue,
+      child: TextEditorApp(),
     )
     ..add(); //adds default purple window, see widget/model.dart
   final Map<WindowId, GlobalKey<WindowState>> _windowKeys =
