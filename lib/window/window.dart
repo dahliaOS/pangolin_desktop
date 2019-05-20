@@ -40,12 +40,28 @@ class Window extends StatefulWidget{
   WindowState createState() => WindowState();
 }
 
+/// The window's mode.
+enum WindowMode {
+  NORMAL_MODE,
+  MAXIMIZE_MODE,
+  MINIMIZE_MODE
+}
+
 class WindowState extends State<Window> {
   /// The window's position.
   Offset _position;
 
+  /// The window's position before maximizing.
+  Offset _prePosition;
+
   /// The window's size.
   Size _size;
+
+  /// The window's size before maximizing.
+  Size _preSize;
+
+  /// The windows's current mode.
+  WindowMode _windowMode = WindowMode.NORMAL_MODE;
 
   /// The window's child.
   Widget _child;
@@ -83,6 +99,25 @@ class WindowState extends State<Window> {
   void _registerInteraction() {
     widget.onWindowInteraction?.call();
     focus();
+  }
+
+  void _maximizeWindow() {
+    Size deviceSize = MediaQuery.of(context).size;
+    setState(() {
+      _windowMode = WindowMode.MAXIMIZE_MODE;
+      _prePosition = _position;
+      _preSize = _size;
+      _position = Offset(0, 0);
+      _size = Size(deviceSize.width, deviceSize.height - 50);
+    });
+  }
+
+  void _restoreWindowFromMaximizeMode() {
+    setState(() {
+      _windowMode = WindowMode.NORMAL_MODE;
+      _size = _preSize;
+      _position = _prePosition;
+    });
   }
 
   void _closeWindow() {
@@ -130,6 +165,10 @@ class WindowState extends State<Window> {
               onPanUpdate: (DragUpdateDetails details){
                 setState(() {
                   _position += details.delta;
+                  if(_windowMode == WindowMode.MAXIMIZE_MODE) {
+                    _windowMode = WindowMode.NORMAL_MODE;
+                    _size = _preSize;
+                  }
                 });
               },
               child: Container(
@@ -140,7 +179,11 @@ class WindowState extends State<Window> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Icon(Icons.minimize,color: Colors.white),
-                    Icon(Icons.crop_square,color: Colors.white),
+                    GestureDetector(
+                      onTap: () => _windowMode == WindowMode.NORMAL_MODE ? _maximizeWindow() : _restoreWindowFromMaximizeMode(),
+                      child:
+                    Icon(Icons.crop_square,color: Colors.white)
+                    ),
                     GestureDetector(
                       onTap: () => _closeWindow(),
                       child:
