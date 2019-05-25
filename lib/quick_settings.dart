@@ -93,8 +93,8 @@ class QuickSettingsState extends State<QuickSettings> {
       child: GridView.count(
         crossAxisCount: 3,
         children: [
-          buildTile(Icons.network_wifi, 'Starbucks'),
-          buildTile(Icons.network_cell, 'Verizon Wireless'),
+          buildTile(Icons.network_wifi, 'Wifi Network'),
+          buildTile(Icons.network_cell, 'LTE'),
           buildTile(Icons.battery_full, '85%'),
           buildTile(Icons.do_not_disturb_off, 'Do not disturb'),
           buildTile(Icons.lightbulb_outline, 'Flashlight'),
