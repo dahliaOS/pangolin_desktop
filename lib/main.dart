@@ -10,6 +10,7 @@ import 'widgets/toggle.dart';
 import 'launcher_toggle.dart';
 import 'status_tray.dart';
 
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
