@@ -146,7 +146,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Container(
                   //color: Color.fromARGB(150, 0, 0, 0),
                   decoration: BoxDecoration(
-                    color: Colors.black87
+                    color: Color.fromARGB(150, 0, 0, 0),
                   ),
                   height: 50.0,
                   padding: const EdgeInsets.all(8.0),
