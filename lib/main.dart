@@ -160,7 +160,15 @@ class _MyHomePageState extends State<MyHomePage> {
                             overlay: _launcherOverlayKey,
                             visible: toggled,
                         ),
+                        
                       ),
+                        
+                         LauncherToggleWidget(
+                       
+                        
+                      ),
+                        
+                        
                       StatusTrayWidget(
                         toggleKey: _statusToggleKey,
                         callback: (bool toggled) => _setOverlayVisibility(
