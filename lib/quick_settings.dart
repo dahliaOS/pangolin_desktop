@@ -108,7 +108,8 @@ class QuickSettingsState extends State<QuickSettings> {
     );
 
     return Container(
-      color: Color(0xFF29353A),
+      color: Color(0xFF2D2D2D),
+        //original color was 29353a, migrated to 2D2D2D
             //padding: const EdgeInsets.all(10.0),
             //alignment: Alignment.centerLeft,
             width: 350,
