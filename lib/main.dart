@@ -9,7 +9,7 @@ import 'quick_settings.dart';
 import 'widgets/toggle.dart';
 import 'launcher_toggle.dart';
 import 'status_tray.dart';
-
+import 'app_toggle.dart';
 
 void main() => runApp(MyApp());
 
@@ -154,6 +154,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: <Widget>[
+                        
+                        
                       LauncherToggleWidget(
                         toggleKey: _launcherToggleKey,
                         callback: (bool toggled) => _setOverlayVisibility(
@@ -162,11 +164,11 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                         
                       ),
-                        
-                         LauncherToggleWidget(
+                        demoAppToggleWidget(
                        
                         
                       ),
+                         
                         
                         
                       StatusTrayWidget(
