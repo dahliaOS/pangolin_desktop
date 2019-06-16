@@ -1,6 +1,7 @@
 # Pangolin Desktop
-
-desktop shell for dahlia
+Our pride and joy of the dahliaOS project... our desktop is made to be
+simple and easy to use. Pangolin-Desktop is still in development and can't be used
+for everyday tasks (yet).
 
 ## Build Pangolin Desktop
 
