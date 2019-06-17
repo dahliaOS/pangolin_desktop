@@ -147,7 +147,7 @@ class _CalculatorHomeState extends State<CalculatorHome> {
             .replaceAll(RegExp(r'0+$'), '')
             .replaceAll(RegExp(r'\.$'), '');
       } catch (e) {
-        _controller.text = 'Error';
+        _controller.text = 'error';
       }
     });
     _onTextChanged();
