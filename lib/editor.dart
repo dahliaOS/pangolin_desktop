@@ -4,7 +4,7 @@ class TextEditorApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Petal Text Editor',
+      title: 'Text Editor',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -15,7 +15,7 @@ class TextEditorApp extends StatelessWidget {
 
 class TextEditor extends StatefulWidget {
 
-  final String title="Petal Text Editor";
+  final String title="Text Editor";
 
   @override
   _TextEditorState createState() => _TextEditorState();
