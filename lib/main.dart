@@ -103,13 +103,17 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: child,
                     ),
                   ),
-                  
+                  child:new ClipRRect(
+                    
+  borderRadius: BorderRadius.circular(5.0),
                   child:new Container(
             padding: const EdgeInsets.all(0.0),
+                    
             alignment: Alignment.center,
             width: 700.0,
             height: 500.0,
             child: LauncherWidget()//Launcher(),
+          ),
           ),
                   
                 ),
@@ -136,7 +140,16 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: child,
                     ),
                   ),
-                  child: QuickSettings(),
+                  child:
+                  
+                   new ClipRRect(
+                    
+  borderRadius: BorderRadius.circular(5.0),
+  
+  child: new QuickSettings(),
+  ),
+                  
+                  
                 ),
               ),
               callback: (bool visible) {
