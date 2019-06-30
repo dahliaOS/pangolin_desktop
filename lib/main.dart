@@ -10,6 +10,7 @@ import 'widgets/toggle.dart';
 import 'launcher_toggle.dart';
 import 'status_tray.dart';
 import 'app_toggle.dart';
+import 'launcher.dart';
 
 void main() => runApp(MyApp());
 
@@ -102,7 +103,15 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: child,
                     ),
                   ),
-                  child: AppMenu()//Launcher(),
+                  
+                  child:new Container(
+            padding: const EdgeInsets.all(0.0),
+            alignment: Alignment.center,
+            width: 700.0,
+            height: 500.0,
+            child: LauncherWidget()//Launcher(),
+          ),
+                  
                 ),
               ),
               callback: (bool visible) {
