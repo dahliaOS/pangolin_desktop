@@ -58,6 +58,8 @@ class _launcherState extends State<launcher> {
               
               
               new SingleChildScrollView(
+                padding: new EdgeInsets.only(left: 10.0,right: 10.0,top: 10.0),
+     
   scrollDirection: Axis.horizontal,
   child: new Row(
    children: <Widget>[
