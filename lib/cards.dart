@@ -45,7 +45,7 @@ return new Card(
         // return object of type Dialog
         return AlertDialog(
           title: new Text("Feature not implemented"),
-          content: new Text("This feature is currently not available on your build of Pangolin. Please see https://reddit.com/r/fuchsia to check for updates."),
+          content: new Text("This feature is currently not available on your build of Pangolin. Please see https://reddit.com/r/dahliaos to check for updates."),
           actions: <Widget>[
             // usually buttons at the bottom of the dialog
             new FlatButton(
