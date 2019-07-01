@@ -69,21 +69,11 @@ class _launcherState extends State<launcher> {
        
        
        new SysInfoCard(),
-       new SysInfoCard(),
-       new SysInfoCard(),
-       new SysInfoCard(),
-       new SysInfoCard(),
-       new SysInfoCard(),
-       new SysInfoCard(),
-       new SysInfoCard(),
-       new SysInfoCard(),
-       new SysInfoCard(),
-       new SysInfoCard(),
-       new SysInfoCard(),
-       new SysInfoCard(),
-       new SysInfoCard(),
-       new SysInfoCard(),
- 
+       new NewsCard(),
+       new NewsCard(),
+       new NewsCard(),
+       new NewsCard(),
+       
        
     
        
