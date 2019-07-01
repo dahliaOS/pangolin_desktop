@@ -4,10 +4,29 @@ import 'dart:async';
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 class SysInfoCard extends StatelessWidget {
   @override
   Widget build (BuildContext context) {
 
+      
+      
+      
+      
+    
+      
       
       
 return new Card(
@@ -18,7 +37,30 @@ return new Card(
       child: InkWell(
         splashColor: Colors.blue.withAlpha(30),
         onTap: () {
-          print('Card tapped.');
+          
+          
+           showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Feature not implemented"),
+          content: new Text("This feature is currently not available on your build of Pangolin. Please see https://reddit.com/r/fuchsia to check for updates."),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: new Text("OK"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+        
+          
+          
         },
         child: Container(
           width: 300,
@@ -55,7 +97,7 @@ return new Card(
               
               
               new Text(
-                  "pangolin-desktop, commit #cce41b5",
+                  "pangolin-desktop, commit 'varCommit'",
                     style: new TextStyle(fontSize:15.0,
                     color: Colors.black,
                     fontWeight: FontWeight.w400,
@@ -107,7 +149,36 @@ return new Card(
       child: InkWell(
         splashColor: Colors.deepOrange.withAlpha(30),
         onTap: () {
-          print('Card tapped.');
+         
+         
+         
+         
+         
+           showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Feature not implemented"),
+          content: new Text("This feature is currently not available on your build of Pangolin. Please see https://reddit.com/r/dahliaos to check for updates."),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: new Text("OK"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+         
+         
+         
+         
+         
+         
         },
         child: Container(
           width: 300,
