@@ -55,7 +55,7 @@ return new Card(
               
               
               new Text(
-                  "pangolin-desktop, commit ",
+                  "pangolin-desktop, commit #cce41b5",
                     style: new TextStyle(fontSize:15.0,
                     color: Colors.black,
                     fontWeight: FontWeight.w400,
