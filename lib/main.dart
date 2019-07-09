@@ -174,10 +174,20 @@ class _MyHomePageState extends State<MyHomePage> {
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                         
-                        
+                     
+                       
+
+                   new Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+
+
+   
                       LauncherToggleWidget(
                         toggleKey: _launcherToggleKey,
                         callback: (bool toggled) => _setOverlayVisibility(
@@ -186,11 +196,22 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                         
                       ),
-                        demoAppToggleWidget(
-                       
-                        
-                      ),
-                         
+
+
+
+              new IconButton(
+                icon: const Icon(Icons.insert_emoticon),
+                onPressed:null,
+                iconSize: 48.0,
+                color: const Color(0xFF000000), 
+              )
+
+
+
+
+            ]
+    
+          ),
                         
                         
                       StatusTrayWidget(
