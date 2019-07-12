@@ -99,7 +99,6 @@ class WindowState extends State<Window> {
   }
 
   /// Requests this window to be focused.
-  //void focus() => FocusScope.of(context).requestFocus(_focusNode);
   void focus() => _focusNode.requestFocus();
 
   void _registerInteraction() {
@@ -138,7 +137,6 @@ class WindowState extends State<Window> {
           WindowData model,
           ) {
         // Make sure the focus tree is properly updated.
-        //FocusScope.of(context).reparentIfNeeded(_focusNode);
         _focusAttachment.reparent();
         /*if (model.tabs.length == 1 && model.tabs[0].id == _draggedTabId) {
           // If the lone tab is being dragged, hide this window.
