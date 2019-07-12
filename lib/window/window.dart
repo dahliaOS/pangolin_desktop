@@ -78,9 +78,13 @@ class WindowState extends State<Window> {
   /// Controls focus on this window.
   final FocusNode _focusNode = new FocusNode();
 
+  /// Control is an illusion so let's make it a big one
+  FocusAttachment _focusAttachment;
+
   @override
   void initState() {
     super.initState();
+    _focusAttachment = _focusNode.attach(context);
     _position = widget.initialPosition;
     _size = widget.initialSize;
     _child = widget.child;
@@ -89,12 +93,14 @@ class WindowState extends State<Window> {
 
   @override
   void dispose() {
+    _focusAttachment.detach();
     _focusNode.dispose();
     super.dispose();
   }
 
   /// Requests this window to be focused.
-  void focus() => FocusScope.of(context).requestFocus(_focusNode);
+  //void focus() => FocusScope.of(context).requestFocus(_focusNode);
+  void focus() => _focusNode.requestFocus();
 
   void _registerInteraction() {
     widget.onWindowInteraction?.call();
@@ -132,7 +138,8 @@ class WindowState extends State<Window> {
           WindowData model,
           ) {
         // Make sure the focus tree is properly updated.
-        FocusScope.of(context).reparentIfNeeded(_focusNode);
+        //FocusScope.of(context).reparentIfNeeded(_focusNode);
+        _focusAttachment.reparent();
         /*if (model.tabs.length == 1 && model.tabs[0].id == _draggedTabId) {
           // If the lone tab is being dragged, hide this window.
           return new Container();
