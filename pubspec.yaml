@@ -23,7 +23,7 @@ flutter:
   - lib/images/google_logo.png
   - lib/images/Gmail-icon.png
   - lib/images/phone.png
-  - lib/images/calculator.png
+  - lib/images/calc.png
   - lib/images/music.png
   - lib/images/settings.png
   - lib/images/clock.png
