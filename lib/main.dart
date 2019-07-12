@@ -128,7 +128,7 @@ class _MyHomePageState extends State<MyHomePage> {
               key: _statusOverlayKey,
               builder: (Animation<double> animation) => Positioned(
                 right: 0.0,
-                bottom: 48.0,
+                bottom: 50.0,
                 child: AnimatedBuilder(
                   animation: animation,
                   builder: (BuildContext context, Widget child) =>
@@ -181,7 +181,7 @@ class _MyHomePageState extends State<MyHomePage> {
                        
 
                    new Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -199,12 +199,20 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
 
-              new IconButton(
-                icon: const Icon(Icons.insert_emoticon),
-                onPressed:null,
-                iconSize: 48.0,
-                color: const Color(0xFF000000), 
-              )
+              new Image.asset(
+            'lib/images/calc.png',
+            fit:BoxFit.contain,
+            width: 60.0, 
+            height: 60.0,
+            ),
+
+
+            new Image.asset(
+            'lib/images/clock.png',
+            fit:BoxFit.contain,
+            width: 60.0, 
+            height: 60.0,
+            ),
 
 
 
