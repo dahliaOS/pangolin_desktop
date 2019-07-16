@@ -200,7 +200,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
               new Image.asset(
-            'lib/images/calc.png',
+            'lib/images/icons/v2/compiled/calculator.png',
             fit:BoxFit.contain,
             width: 60.0, 
             height: 60.0,
@@ -208,13 +208,38 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
             new Image.asset(
-            'lib/images/clock.png',
+            'lib/images/icons/v2/compiled/notes.png',
+            fit:BoxFit.contain,
+            width: 60.0, 
+            height: 60.0,
+            ),
+                
+                
+                new Image.asset(
+            'lib/images/icons/v2/compiled/terminal.png',
             fit:BoxFit.contain,
             width: 60.0, 
             height: 60.0,
             ),
 
 
+                
+                new Image.asset(
+            'lib/images/icons/v2/compiled/files.png',
+            fit:BoxFit.contain,
+            width: 60.0, 
+            height: 60.0,
+            ),
+                
+                
+                
+                new Image.asset(
+            'lib/images/icons/v2/compiled/settings.png',
+            fit:BoxFit.contain,
+            width: 60.0, 
+            height: 60.0,
+            ),
+                
 
 
             ]
