@@ -16,11 +16,11 @@ class WindowPlaygroundWidget extends StatefulWidget {
 class _PlaygroundState extends State<WindowPlaygroundWidget> {
   final WindowsData _windows = new WindowsData()
     ..add(
-      color: Colors.green[600],
+      color: Colors.green[700],
       child: Calculator(),
     )
     ..add(
-      color: Colors.blue,
+      color: Colors.amber[700],
       child: TextEditorApp(),
     )
     ..add(); //adds default purple window, see widget/model.dart
