@@ -6,6 +6,7 @@ import 'window/model.dart';
 import 'window/window.dart';
 import 'calculator.dart';
 import 'editor.dart';
+import 'terminal.dart';
 
 /// Displays a set of windows.
 class WindowPlaygroundWidget extends StatefulWidget {
@@ -23,7 +24,11 @@ class _PlaygroundState extends State<WindowPlaygroundWidget> {
       color: Colors.blue,
       child: TextEditorApp(),
     )
-    ..add(); //adds default purple window, see widget/model.dart
+    ..add(
+      color: Colors.deepOrange[600],
+      child: Terminal(),
+    );
+    //..add(); //adds default purple window, see widget/model.dart
   final Map<WindowId, GlobalKey<WindowState>> _windowKeys =
       new Map<WindowId, GlobalKey<WindowState>>();
   final FocusScopeNode _focusNode = new FocusScopeNode();
