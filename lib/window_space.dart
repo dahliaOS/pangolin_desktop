@@ -25,7 +25,7 @@ class _PlaygroundState extends State<WindowPlaygroundWidget> {
       child: TextEditorApp(),
     )
     ..add(
-      color: Colors.deepOrange[600],
+      color: Colors.grey[900],
       child: Terminal(),
     );
     //..add(); //adds default purple window, see widget/model.dart
