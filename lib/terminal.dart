@@ -16,10 +16,21 @@ import 'package:flutter/material.dart';
                   color: Colors.grey[850],
                   width: MediaQuery.of(context).size.width,
                   height: 55.0,
-                  child:  Text(
+
+
+
+                  child:  
+                  
+                  new Padding(
+            child:
+             new    Text(
                       "Terminal",
                       style: TextStyle(color: Colors.white, fontSize: 18.0),
                     ),
+    
+            padding: const EdgeInsets.all(17.0),
+                  
+               
               
                 
                 )
