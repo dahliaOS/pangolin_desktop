@@ -12,6 +12,8 @@ import 'package:flutter/material.dart';
             height: 1.7976931348623157e+308,
             child: Stack(
               children: <Widget>[
+
+               
                 Container(
                   color: Colors.grey[850],
                   width: MediaQuery.of(context).size.width,
@@ -37,18 +39,14 @@ import 'package:flutter/material.dart';
                 ),
 
 
-
-
-
-             
-    
-            
+ 
+  
 
           new Padding(
             child:
 new TextFormField(
  style:    
-         TextStyle(fontSize:18.0,
+         TextStyle(fontSize:15.0,
             color: const Color(0xFFf2f2f2),
             
             fontFamily: "monospace",),
