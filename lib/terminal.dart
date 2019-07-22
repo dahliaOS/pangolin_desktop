@@ -46,7 +46,7 @@ import 'package:flutter/material.dart';
 
           new Padding(
             child:
-new TextField(
+new TextFormField(
  style:    
          TextStyle(fontSize:18.0,
             color: const Color(0xFFf2f2f2),
@@ -57,6 +57,7 @@ new TextField(
           minLines: null,
           maxLines: null,
           expands: true,
+          initialValue: "debug_shell \$"
         ),
 padding: const EdgeInsets.fromLTRB(0.0, 55.0, 0.0, 0.0),
           ),
