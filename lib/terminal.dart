@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
         return Scaffold(
           key: _scaffoldKey,
           body: Container(
-            height: 160.0,
+            height: 1.7976931348623157e+308,
             child: Stack(
               children: <Widget>[
                 Container(
@@ -33,7 +33,36 @@ import 'package:flutter/material.dart';
                
               
                 
-                )
+                ),
+                ),
+
+
+
+
+
+             
+    
+            
+
+          new Padding(
+            child:
+new TextField(
+ style:    
+         TextStyle(fontSize:18.0,
+            color: const Color(0xFFf2f2f2),
+            
+            fontFamily: "monospace",),
+          decoration: InputDecoration.collapsed(hintText: ""),
+          autocorrect: false,
+          minLines: null,
+          maxLines: null,
+          expands: true,
+        ),
+padding: const EdgeInsets.fromLTRB(0.0, 55.0, 0.0, 0.0),
+          ),
+
+                
+
               ],
             ),
           ),
@@ -56,7 +85,7 @@ class Terminal extends StatelessWidget {
         primarySwatch: Colors.deepOrange,
         primaryColor: const Color(0xFFff5722),
         accentColor: const Color(0xFFff5722),
-        canvasColor: const Color(0xFFfafafa),
+        canvasColor: const Color(0xFF222222),
       ),
       home: new MyHomePage(),
     );
@@ -75,7 +104,17 @@ class _MyHomePageState extends State<MyHomePage> {
       return new Scaffold(
         body:
           
+
+         
 new CustomBarWidget(),
+
+
+           
+    
+         
+    
+
+
 
 
           
