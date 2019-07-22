@@ -55,7 +55,10 @@ new TextFormField(
           minLines: null,
           maxLines: null,
           expands: true,
-          initialValue: "debug_shell \$"
+          initialValue: "debug_shell \$",
+    cursorColor: const Color(0xFFf2f2f2),
+  cursorRadius: Radius.circular(0.0),
+  cursorWidth: 10.0,
         ),
 padding: const EdgeInsets.fromLTRB(0.0, 55.0, 0.0, 0.0),
           ),
