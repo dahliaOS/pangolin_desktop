@@ -10,7 +10,7 @@ import 'package:flutter/widgets.dart';
 import 'widgets/toggle.dart';
 
 /// A toggle button for the launcher.
-class demoAppToggleWidget extends StatelessWidget {
+class DemoAppToggleWidget extends StatelessWidget {
   final ValueChanged<bool> _callback;
   final GlobalKey<ToggleState> _toggleKey;
 
@@ -18,7 +18,7 @@ class demoAppToggleWidget extends StatelessWidget {
       new Tween<double>(begin: 0.0, end: 0.33);
 
   /// Constructor.
-  demoAppToggleWidget({
+  DemoAppToggleWidget({
     GlobalKey<ToggleState> toggleKey,
     ValueChanged<bool> callback,
   })
