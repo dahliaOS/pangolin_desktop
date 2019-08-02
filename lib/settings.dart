@@ -15,13 +15,13 @@ import 'package:flutter/material.dart';
 
                
                 Container(
-                  color: const Color(0xFFf6f6f6),
+                  color: const Color(0xFFf5f5f5),
                   width: MediaQuery.of(context).size.width,
                   height: 55.0,
 
 
 
-                  child:  
+                  child:
                   
                   new Padding(
             child:
@@ -37,31 +37,70 @@ import 'package:flutter/material.dart';
                 
                 ),
                 ),
+                
+                
+                new Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              
+              
+              new FlutterLogo(
+                size: 50.0,
+                colors: Colors.red
+              ),
+              
+              
+              new FlutterLogo(
+                size: 50.0,
+                colors: Colors.deepOrange
+              ),
+              
+              new FlutterLogo(
+                size: 50.0,
+                colors: Colors.yellow
+              ),
+              
+              
+              new FlutterLogo(
+                size: 50.0,
+                colors: Colors.amber
+              ),
+              
+              
+              new FlutterLogo(
+                size: 50.0,
+                colors: Colors.green
+              ),
+              
+              new FlutterLogo(
+                size: 50.0,
+                colors: Colors.blue
+              ),
+              
+              
+              new FlutterLogo(
+                size: 50.0,
+                colors: Colors.indigo
+              ),
+              
+              new FlutterLogo(
+                size: 50.0,
+                colors: Colors.pink
+              ),
+              
+              
+              
+              
+            ]
+    
+          ),
+
 
 
  
   
-
-          new Padding(
-            child:
-new TextFormField(
- style:    
-         TextStyle(fontSize:15.0,
-            color: const Color(0xFFf2f2f2),
-            
-            fontFamily: "monospace",),
-          decoration: InputDecoration.collapsed(hintText: ""),
-          autocorrect: false,
-          minLines: null,
-          maxLines: null,
-          expands: true,
-          initialValue: "debug_shell \$",
-    cursorColor: const Color(0xFFf2f2f2),
-  cursorRadius: Radius.circular(0.0),
-  cursorWidth: 10.0,
-        ),
-padding: const EdgeInsets.fromLTRB(0.0, 55.0, 0.0, 0.0),
-          ),
 
                 
 
@@ -87,7 +126,7 @@ class Settings extends StatelessWidget {
         primarySwatch: Colors.deepOrange,
         primaryColor: const Color(0xFFff5722),
         accentColor: const Color(0xFFff5722),
-        canvasColor: const Color(0xFF222222),
+        canvasColor: const Color(0xFFffffff),
       ),
       home: new MyHomePage(),
     );
