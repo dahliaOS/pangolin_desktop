@@ -68,7 +68,17 @@ padding: const EdgeInsets.fromLTRB(0.0, 55.0, 0.0, 0.0),
               ],
             ),
           ),
+
+  floatingActionButton: new FloatingActionButton(
+          child: new Icon(Icons.play_arrow),
+          onPressed: null),
+        
+    
+ 
+    
+
         );
+         
       }
     }
 
