@@ -1,0 +1,9 @@
+{
+  "name": "Terminal",
+  "theme": "0xFFffa500",
+  "version": "1.0",
+  "icon": "terminal.png",
+  "language": "EN-US",
+  "type": "system",
+  "author": "none"
+}

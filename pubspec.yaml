@@ -14,9 +14,11 @@ dev_dependencies:
 # following page: https://www.dartlang.org/tools/pub/pubspec
 
 # The following section is specific to Flutter.
+# application.json handles all applications and must not be deleted.
 flutter:
   uses-material-design: true
   assets:
+  - lib/application.json
   - lib/images/def.png
   - lib/images/menu.png
   - lib/images/wallpaper.png
