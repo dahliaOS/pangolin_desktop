@@ -1,4 +1,5 @@
 {
+"terminal": {
   "name": "Terminal",
   "theme": "0xFFffa500",
   "version": "1.0",
@@ -6,4 +7,32 @@
   "language": "EN-US",
   "type": "system",
   "author": "none"
+},
+"calculator": {
+  "name": "Calculator",
+  "theme": "0xFF4caf50",
+  "version": "1.0",
+  "icon": "calculator.png",
+  "language": "EN-US",
+  "type": "math",
+  "author": "none"
+},
+"notes": {
+  "name": "Notes",
+  "theme": "0xFFFFA000",
+  "version": "1.0",
+  "icon": "notes.png",
+  "language": "EN-US",
+  "type": "utilities",
+  "author": "none"
+},
+"demo": {
+  "name": "demo",
+  "theme": "0xFFffa500",
+  "version": "1.0",
+  "icon": "null.png",
+  "language": "EN-US",
+  "type": "none",
+  "author": "none"
+}
 }
