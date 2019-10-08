@@ -6,7 +6,7 @@
   "icon": "terminal.png",
   "language": "EN-US",
   "type": "system",
-  "author": "none"
+  "author": "pangolin"
 },
 "calculator": {
   "name": "Calculator",
@@ -15,7 +15,7 @@
   "icon": "calculator.png",
   "language": "EN-US",
   "type": "math",
-  "author": "none"
+  "author": "pangolin"
 },
 "notes": {
   "name": "Notes",
@@ -24,7 +24,7 @@
   "icon": "notes.png",
   "language": "EN-US",
   "type": "utilities",
-  "author": "none"
+  "author": "pangolin"
 },
 "demo": {
   "name": "demo",
@@ -33,6 +33,6 @@
   "icon": "null.png",
   "language": "EN-US",
   "type": "none",
-  "author": "none"
+  "author": "pangolin"
 }
 }
