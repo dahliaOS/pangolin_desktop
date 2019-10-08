@@ -5,7 +5,6 @@ dependencies:
   intl: ^0.15.7
   expressions: ^0.1.2
 
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
