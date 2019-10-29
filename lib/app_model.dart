@@ -1,16 +1,16 @@
 //finds data
 class Shape{
-  String shapeName;
+  String appName;
   Property property;
 
   Shape({
-    this.shapeName,
+    this.appName,
     this.property
 });
 
   factory Shape.fromJson(Map<String, dynamic> parsedJson){
     return Shape(
-      shapeName: parsedJson['shape_name'],
+      appName: parsedJson['shape_name'],
       property: Property.fromJson(parsedJson['property'])
     );
   }
