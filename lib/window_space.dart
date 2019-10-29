@@ -8,6 +8,7 @@ import 'calculator.dart';
 import 'editor.dart';
 import 'terminal.dart';
 import 'settings.dart';
+import 'developer.dart';
 /// Displays a set of windows.
 class WindowPlaygroundWidget extends StatefulWidget {
   @override
@@ -31,6 +32,11 @@ class _PlaygroundState extends State<WindowPlaygroundWidget> {
     ..add(
       color: Colors.deepOrange[500],
       child: Settings(),
+    )
+
+    ..add(
+      color: Colors.red[800],
+      child: Desktop(),
     );
     //..add(); //adds default purple window, see widget/model.dart
   final Map<WindowId, GlobalKey<WindowState>> _windowKeys =
