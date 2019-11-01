@@ -12,7 +12,11 @@ import 'status_tray.dart';
 import 'app_toggle.dart';
 import 'launcher.dart';
 
-void main() => runApp(MyApp());
+void main()  {
+  /// To keep app in Portrait Mode
+  SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeRight]);
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override

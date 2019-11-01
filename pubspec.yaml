@@ -16,6 +16,58 @@ dev_dependencies:
 # application.json handles all applications and must not be deleted.
 flutter:
   uses-material-design: true
+  fonts:
+    - family: Roboto
+      fonts:
+        - asset: fonts/Roboto/Roboto-Thin.ttf
+          weight: 100
+        - asset: fonts/Roboto/Roboto-Light.ttf
+          weight: 300
+        - asset: fonts/Roboto/Roboto-Regular.ttf
+          weight: 400
+        - asset: fonts/Roboto/Roboto-Medium.ttf
+          weight: 500
+        - asset: fonts/Roboto/Roboto-Bold.ttf
+          weight: 700
+        - asset: fonts/Roboto/Roboto-Black.ttf
+          weight: 900
+    - family: Source Code pro
+      fonts:
+        - asset: fonts/Source_Code_Pro/SourceCodePro-ExtraLight.ttf
+          weight: 100
+        - asset: fonts/Source_Code_Pro/SourceCodePro-ExtraLightItalic.ttf
+          weight: 100
+          style: italic
+        - asset: fonts/Source_Code_Pro/SourceCodePro-Light.ttf
+          weight: 300
+        - asset: fonts/Source_Code_Pro/SourceCodePro-LightItalic.ttf
+          weight: 300
+          style: italic
+        - asset: fonts/Source_Code_Pro/SourceCodePro-Regular.ttf
+          weight: 400
+        - asset: fonts/Source_Code_Pro/SourceCodePro-Italic.ttf
+          weight: 400
+          style: italic
+        - asset: fonts/Source_Code_Pro/SourceCodePro-Medium.ttf
+          weight: 500
+        - asset: fonts/Source_Code_Pro/SourceCodePro-MediumItalic.ttf
+          weight: 500
+          style: italic
+        - asset: fonts/Source_Code_Pro/SourceCodePro-SemiBold.ttf
+          weight: 700
+        - asset: fonts/Source_Code_Pro/SourceCodePro-SemiBoldItalic.ttf
+          weight: 700
+          style: italic
+        - asset: fonts/Source_Code_Pro/SourceCodePro-Bold.ttf
+          weight: 900
+        - asset: fonts/Source_Code_Pro/SourceCodePro-BoldItalic.ttf
+          weight: 900
+          style: italic
+        - asset: fonts/Source_Code_Pro/SourceCodePro-Black.ttf
+          weight: 900
+        - asset: fonts/Source_Code_Pro/SourceCodePro-BlackItalic.ttf
+          weight: 900
+          style: italic
   assets:
   - lib/application.json
   - lib/images/def.png
