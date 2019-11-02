@@ -4,11 +4,11 @@ import 'model.dart';
 import 'package:flutter/material.dart';
 import 'window/model.dart';
 import 'window/window.dart';
-import 'calculator.dart';
-import 'editor.dart';
-import 'terminal.dart';
+import 'applications/calculator.dart';
+import 'applications/editor.dart';
+import 'applications/terminal.dart';
 import 'settings.dart';
-import 'developer.dart';
+import 'applications/developer.dart';
 /// Displays a set of windows.
 class WindowPlaygroundWidget extends StatefulWidget {
   @override
@@ -130,8 +130,10 @@ class _PlaygroundState extends State<WindowPlaygroundWidget> {
   @override
   Widget build(BuildContext context) => new LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
-          final double width = constraints.maxWidth;
-          final double height = constraints.maxHeight;
+          // Multiplying maxWidth by 1.4 & maxHeight by 1.2 to avoid overflow on
+          // smaller screens.
+          final double width = constraints.maxWidth * 1.4;
+          final double height = constraints.maxHeight * 1.2;
           return new Overlay(
             initialEntries: <OverlayEntry>[
               new OverlayEntry(

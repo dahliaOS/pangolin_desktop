@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'searchbar.dart';
 
-import 'cards.dart';
+import 'applications/cards.dart';
 
 
 
