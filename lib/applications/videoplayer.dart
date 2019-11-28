@@ -9,7 +9,7 @@ class TextEditorApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.brown,
       ),
-      home: VideoPlayer(),
+      home: VideoApp(),
     );
   }
 }
