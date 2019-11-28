@@ -9,6 +9,7 @@ import 'applications/editor.dart';
 import 'applications/terminal.dart';
 import 'settings.dart';
 import 'applications/developer.dart';
+import 'applications/videoplayer.dart';
 /// Displays a set of windows.
 class WindowPlaygroundWidget extends StatefulWidget {
   @override
@@ -33,10 +34,16 @@ class _PlaygroundState extends State<WindowPlaygroundWidget> {
       color: Colors.deepOrange[500],
       child: Settings(),
     )
+    
+    ..add(
+      color: Colors.brown[900],
+      child: VideoPlayerApp(),
+    )
 
     ..add(
       color: Colors.red[800],
       child: Desktop(),
+    
     );
     //..add(); //adds default purple window, see widget/model.dart
   final Map<WindowId, GlobalKey<WindowState>> _windowKeys =
