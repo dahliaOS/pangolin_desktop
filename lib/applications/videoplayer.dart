@@ -1,7 +1,7 @@
 import 'package:video_player/video_player.dart';
 import 'package:flutter/material.dart';
 
-class TextEditorApp extends StatelessWidget {
+class VideoPlayerApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
