@@ -9,6 +9,19 @@
   "author": "noah cain @ dahlia",
   "path": "applications/terminal.dart"
 }
+  
+{
+"terminal": {
+  "name": "Video Player",
+  "theme": "",
+  "version": "1.0",
+  "icon": "",
+  "language": "EN-US",
+  "type": "utilities",
+  "author": "Camden Bruce @ dahlia",
+  "path": "applications/videoplayer.dart"
+},
+
 "calculator": {
   "name": "Calculator",
   "theme": "0xFF4caf50",
