@@ -1,3 +1,4 @@
+- name: Flutter action
 steps:
 - uses: actions/checkout@v1
 - uses: actions/setup-java@v1
