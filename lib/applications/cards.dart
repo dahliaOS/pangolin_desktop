@@ -6,12 +6,16 @@ import 'package:flutter/material.dart';
 
 
 
-
-
-
-
-
-
+Map appMap = jsonDecode('application.json');
+var name = name.fromJson(appMap);
+var theme = theme.fromJson(appMap);
+var version = version.fromJson(appMap);
+var name = name.fromJson(appMap);
+var icon = icon.fromJson(appMap);
+var language = language.fromJson(appMap);
+var type = type.fromJson(appMap);
+var author = author.fromJson(appMap);
+var path = path.fromJson(appMap);
 
 
 
@@ -215,7 +219,7 @@ return new Card(
               
               
                new Text(
-                  "UNABLE TO PARSE JSON!!!",
+                  "${appMap.name}, ${appMap.author}",
                     style: new TextStyle(fontSize:15.0,
                     color: Colors.black,
                     fontWeight: FontWeight.w400,
