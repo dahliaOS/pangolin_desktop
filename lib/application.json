@@ -9,7 +9,6 @@
   "author": "noah cain @ dahlia",
   "path": "applications/terminal.dart"
 }
-
 "calculator": {
   "name": "Calculator",
   "theme": "0xFF4caf50",
