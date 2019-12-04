@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 
 
+var jsonString = new File('application.json');
 
 
-
-Map appMap = jsonDecode('application.json');
+Map appMap = jsonDecode('jsonString');
 var appname = name.fromJson(appMap);
 var apptheme = theme.fromJson(appMap);
 var appversion = version.fromJson(appMap);
@@ -218,7 +218,7 @@ return new Card(
               
               
                new Text(
-                  "${appMap.name}, ${appMap.author}",
+                  "${appMap.appname}, ${appMap.appauthor}",
                     style: new TextStyle(fontSize:15.0,
                     color: Colors.black,
                     fontWeight: FontWeight.w400,
