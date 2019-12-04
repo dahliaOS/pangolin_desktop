@@ -1,4 +1,5 @@
 {
+"applications": {
 "terminal": {
   "name": "Terminal",
   "theme": "0xFFffa500",
@@ -39,5 +40,6 @@
   "type": "none",
   "author": "demo",
   "path": "null"
+}
 }
 }
