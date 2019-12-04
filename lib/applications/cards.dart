@@ -7,15 +7,14 @@ var jsonString = new File('application.json');
 
 
 Map appMap = jsonDecode('jsonString');
-var appname = name.fromJson(appMap);
-var apptheme = theme.fromJson(appMap);
-var appversion = version.fromJson(appMap);
-var appname = name.fromJson(appMap);
-var appicon = icon.fromJson(appMap);
-var applanguage = language.fromJson(appMap);
-var apptype = type.fromJson(appMap);
-var appauthor = author.fromJson(appMap);
-var apppath = path.fromJson(appMap);
+var name = name.fromJson(appMap);
+var theme = theme.fromJson(appMap);
+var version = version.fromJson(appMap);
+var icon = icon.fromJson(appMap);
+var language = language.fromJson(appMap);
+var type = type.fromJson(appMap);
+var author = author.fromJson(appMap);
+var path = path.fromJson(appMap);
 
 
 
