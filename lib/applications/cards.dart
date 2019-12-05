@@ -3,7 +3,40 @@ import 'dart:convert';
 import 'dart:async';
 import 'dart:io';
 
-var jsonString = new File('application.json');
+class Application {
+  final String name;
+  final String theme;
+  final String version;
+  final String icon;
+  final String language;
+  final String type;
+  final String author;
+  final String path;
+
+  Application(this.name, this.theme, this.version, this.icon, this.language, this.type, this.author, this.path);
+
+  User.fromJson(Map<String, dynamic> json)
+      : name = json['name'],
+        theme = json['theme'],
+        version = json['version'],
+        icon = json['icon'],
+        language = json['language'],
+        type = json['type'],
+        author = json['author'],
+        path = json['path'];
+
+  Map<String, dynamic> toJson() =>
+    {
+      'name': name,
+      'version': version,
+      'theme': theme,
+      'icon': icon,
+      'language' = language,
+      'type' = type,
+      'author' = author,
+      'path' = path,
+    };
+}
 
 
 Map appMap = jsonDecode('jsonString');
