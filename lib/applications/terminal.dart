@@ -69,9 +69,14 @@ padding: const EdgeInsets.fromLTRB(0.0, 55.0, 0.0, 0.0),
             ),
           ),
 
+           notImplemented(){
+              Scaffold.of(context).showSnackBar(SnackBar(
+      content: Text("Sending Message"),
+    ));
+           }
   floatingActionButton: new FloatingActionButton(
           child: new Icon(Icons.play_arrow),
-          onPressed: null),
+          onPressed: notImplemented) ,
         
     
  
