@@ -14,7 +14,7 @@ Get the dahlia environment:
 [Dahlia Environment Installer](https://github.com/dahlia-os/dahlia-environment)
 
 ## What Is Pangolin?
-pangolin is named after a animal with a shell (kinda like a armadillo) Pangolin is based off the earlyer versions of chromeOS. Comes with the charm of the old launcher and some other old features with a modern twist.
+Pangolin is named after a animal with a shell (kinda like a armadillo) Pangolin is based off a old FuchsiaOS shell called Capybara. We now continue googles project of capybara as Pangolin.
 
 ![Capybara UI Apk](https://github.com/dahlia-os/Icons/blob/master/UI-Screenshots/ScreenShot-Term.png)
 Pangolin Desktop
