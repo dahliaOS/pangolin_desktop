@@ -14,23 +14,25 @@ class SearchWidget extends StatelessWidget{
     return new Container(
         
       padding: new EdgeInsets.only(left: 10.0,right: 10.0,top: 10.0),
-      margin: const EdgeInsets.only(),
+      margin: new EdgeInsets.only(top: 15.0),
       child: new Material(
-          color: const Color(0xFFffffff),
-        borderRadius: const BorderRadius.all(const Radius.circular(5.0)),
+          color: Colors.white.withOpacity(0.5),
+        borderRadius: const BorderRadius.all(const Radius.circular(25)),
         elevation: 2.0,
         child: new Container(
-            
-          height: 55.0,
+            width:700,
+          height: 50.0,
           margin: new EdgeInsets.only(left: 16.0,right: 16.0),
           child: new Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               new Expanded(
                   child: new TextField(
+                    style: new TextStyle(color: Colors.white),
                     maxLines: 1,
                     decoration: new InputDecoration(
-                      icon: Icon(Icons.search, color: Theme.of(context).accentColor,),
+                      hintStyle: TextStyle(color: Colors.white),
+                      icon: Icon(Icons.search, color: const Color(0xFFffffff),),
                       hintText: 'Search your device, apps, web...',
                       border: InputBorder.none
                     ),

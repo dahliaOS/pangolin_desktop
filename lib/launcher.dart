@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'searchbar.dart';
-
+import 'dart:ui';
 import 'applications/cards.dart';
 
 
@@ -20,38 +20,38 @@ class LauncherWidget extends StatelessWidget {
         primarySwatch: Colors.deepOrange,
         primaryColor: const Color(0xFFff5722),
         accentColor: const Color(0xFFff5722),
-        canvasColor: const Color(0xFFeeeeee),
+        canvasColor: Colors.black.withOpacity(0.5),
       ),
       home: launcher(title: 'Launcher'),
     );
   }
 }
 
-class launcher extends StatefulWidget {
+class launcher extends StatelessWidget {
   launcher({Key key, this.title}) : super(key: key);
 
 
 
   final String title;
 
-  @override
-  _launcherState createState() => _launcherState();
-}
+  
 
-class _launcherState extends State<launcher> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
   
-    return Scaffold(
+return new Stack(
+      children: [
+         new BackdropFilter(
+          filter: new ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+          child: new Container(
+            decoration: new BoxDecoration(color: Colors.black.withOpacity(0.5)),
+          ),
+        ),
+
+        new Scaffold(
       
+
       body: Center(
       
         child: Column(
@@ -63,10 +63,12 @@ class _launcherState extends State<launcher> {
               
               
               new SingleChildScrollView(
+                
                 padding: new EdgeInsets.only(left: 10.0,right: 10.0,top: 10.0),
-     
+        
   scrollDirection: Axis.horizontal,
   child: new Row(
+  
    children: <Widget>[
        
        
@@ -125,6 +127,11 @@ class _launcherState extends State<launcher> {
         ),
       ),
       
+    ),
+       
+      ],
     );
+
+   
   }
 }

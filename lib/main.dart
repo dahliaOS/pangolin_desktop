@@ -70,7 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage("lib/images/Desktop/Cityscapes/stairs.png"),
+                  image: AssetImage("lib/images/Desktop/Dahlia/forest.jpg"),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -101,6 +101,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   animation: animation,
                   builder: (BuildContext context, Widget child) =>
                   FadeTransition(
+                    
                     opacity: _overlayOpacityTween.animate(animation),
                     child: ScaleTransition(
                       scale: _overlayScaleTween.animate(animation),
@@ -109,13 +110,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   child:new ClipRRect(
                     
-  borderRadius: BorderRadius.circular(5.0),
+  //borderRadius: BorderRadius.circular(5.0),
                   child:new Container(
             padding: const EdgeInsets.all(0.0),
                     
             alignment: Alignment.center,
-            width: 700.0,
-            height: 500.0,
+            width: 1.7976931348623157e+308,
+            height: 1.7976931348623157e+308,
             child: LauncherWidget()//Launcher(),
           ),
           ),

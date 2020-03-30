@@ -34,6 +34,9 @@ class QuickSettingsState extends State<QuickSettings> {
   }
 
   @override
+
+
+  
   Widget build (BuildContext context) {
     const biggerFont = TextStyle(
         fontSize: 18.0,
@@ -107,8 +110,10 @@ class QuickSettingsState extends State<QuickSettings> {
         ),
     );
 
+
+
     return Container(
-      color: Color(0xFF2D2D2D),
+      color: Colors.black.withOpacity(0.99),
         //original color was 29353a, migrated to 2D2D2D
             //padding: const EdgeInsets.all(10.0),
             //alignment: Alignment.centerLeft,

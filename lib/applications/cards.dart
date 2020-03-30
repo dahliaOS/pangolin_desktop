@@ -29,6 +29,7 @@ class SysInfoCard extends StatelessWidget {
       
       
 return new Card(
+  
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(5.0),
               ),
