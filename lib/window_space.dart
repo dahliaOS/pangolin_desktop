@@ -22,7 +22,7 @@ class _PlaygroundState extends State<WindowPlaygroundWidget> {
       color: Colors.green[700],
       child: Calculator(),
     )
- ..add(
+ /*..add(
       color: Colors.amber[700],
       child: TextEditorApp(),
     )
@@ -38,7 +38,7 @@ class _PlaygroundState extends State<WindowPlaygroundWidget> {
     ..add(
       color: Colors.red[800],
       child: Desktop(),
-    );
+    )*/;
     //..add(); //adds default purple window, see widget/model.dart
   final Map<WindowId, GlobalKey<WindowState>> _windowKeys =
       new Map<WindowId, GlobalKey<WindowState>>();

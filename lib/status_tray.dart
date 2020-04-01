@@ -64,10 +64,41 @@ class StatusTrayWidgetState extends State<StatusTrayWidget> {
                   child: child,
                 ),
             child: Center(
-              child: Text(
+              child: 
+              
+              new Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              
+              new Icon(
+                Icons.signal_wifi_4_bar,
+                color: const Color(0xFFffffff),
+                size: 20.0),
+    
+             
+              new Icon(
+                Icons.bluetooth,
+                color: const Color(0xFFffffff),
+                size: 20.0),
+                
+                 new Icon(
+                Icons.battery_charging_full,
+                color: const Color(0xFFffffff),
+                size: 20.0),
+    
+                Text(
                 _timeString,
                 style: TextStyle(fontSize: 20, color: Colors.white),
               ),
+            ]
+    
+          ),
+    
+              
+              
+              
             ),
           );
         },
