@@ -1,7 +1,5 @@
 # Pangolin Desktop
-Our pride and joy of the dahliaOS project... our desktop is made to be
-simple and easy to use. Pangolin-Desktop is still in development and can't be used
-for everyday tasks (yet).
+Desktop shell for DahliaOS
 
 ## Build Pangolin Desktop
 
@@ -9,12 +7,9 @@ Check The Wiki:
 
 [/wiki/Build-Pangolin-Desktop](https://github.com/dahlia-os/pangolin-desktop/wiki/Build-Pangolin-Desktop)
 
-Get the dahlia environment:
-
-[Dahlia Environment Installer](https://github.com/dahlia-os/dahlia-environment)
 
 ## What Is Pangolin?
-Pangolin is named after a animal with a shell (kinda like a armadillo) Pangolin is based on the deprecated Capybara shell, however is far more complete, with a custom window management system built from the ground up.
+Pangolin was named after a shelled animal like the armadillo ([armadillo ui](https://9to5google.com/2018/12/26/fuchsia-armadillo-ui-gone/)). Pangolin-Desktop is based on the deprecated Capybara shell, with a custom window management system built from the ground up.
 
 ![Capybara UI Apk](https://github.com/dahlia-os/Icons/blob/master/UI-Screenshots/ScreenShot-Term.png)
 Pangolin Desktop
