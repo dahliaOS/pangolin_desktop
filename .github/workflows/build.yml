@@ -28,7 +28,8 @@ jobs:
         git clone https://github.com/flutter/flutter.git lib/flutter
         cd lib/flutter
         git checkout v1.16.3 # <--- Flutter version to use
-        export PATH="$PATH:`pwd`/lib/flutter/bin"
+        export PATH="$PATH:$GITHUB_WORKSPACE/lib/flutter/bin"
+        flutter doctor
         cd $GITHUB_WORKSPACE #be ready for the build job
     - name: Get dependencies
       run: flutter pub get #TODO: figure out how to cache this
