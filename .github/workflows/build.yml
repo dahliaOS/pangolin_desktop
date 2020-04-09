@@ -13,7 +13,8 @@ jobs:
     - uses: actions/setup-java@v1
       with:
         java-version: '12.x'
-    - uses: subosito/flutter-action@v1
+    - name: Flutter CLI
+      uses: steebchen/flutter@v1.0.0
       with:
         flutter-version: '1.16.3'
     - run: flutter pub get
