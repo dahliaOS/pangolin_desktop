@@ -17,9 +17,21 @@ jobs:
       uses: takuyaohashi/setup-flutter@v1
       with:
         flutter-version: 'v1.16.3'
-    - run: flutter pub get
-    - run: flutter test
-    - run: flutter build apk --debug --split-per-abi
+    - name: Fetch dependencies
+      uses: jddeep/Flutter-Runner@1.2.0
+      with:
+        args: pub get
+    - name: Fetch dependencies
+      uses: jddeep/Flutter-Runner@1.2.0
+      with:
+        args: test
+    - name: Fetch dependencies
+      uses: jddeep/Flutter-Runner@1.2.0
+      with:
+        args: build apk --debug --split-per-abi    
+    #- run: flutter pub get
+    #- run: flutter test
+    #- run: flutter build apk --debug --split-per-abi
     - name: Upload artifact
       uses: actions/upload-artifact@v1.0.0
       with:
