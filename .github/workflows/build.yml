@@ -39,10 +39,24 @@ jobs:
     # It uses the tests under $GITHUB_WORKSPACE/tests, which don't exist
     - name: Build APKs
       run: flutter build apk --debug --split-per-abi
-    - name: Upload artifact
+    - name: Upload armeabi artifact
       uses: actions/upload-artifact@v1.0.0
       with:
         # Artifact name
-        name: pangolin-desktop
+        name: pangolin-desktop-armeabi-v7a
         # Directory containing files to upload
-        path: build/app/outputs/apk/debug
+        path: build/app/outputs/apk/debug/app-armeabi-v7a-debug.apk
+    - name: Upload arm64 artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        # Artifact name
+        name: pangolin-desktop-arm64-v8a
+        # Directory containing files to upload
+        path: build/app/outputs/apk/debug/app-arm64-v8a-debug.apk
+    - name: Upload x86_64 artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        # Artifact name
+        name: pangolin-desktop-x86_64
+        # Directory containing files to upload
+        path: build/app/outputs/apk/debug/app-x86_64-debug.apk
