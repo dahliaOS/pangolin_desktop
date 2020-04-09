@@ -30,6 +30,7 @@ jobs:
         git checkout v1.16.3 # <--- Flutter version to use
         export PATH="$PATH:$GITHUB_WORKSPACE/lib/flutter/bin"
         flutter doctor
+        echo ::set-env name=PATH::$PATH
         cd $GITHUB_WORKSPACE #be ready for the build job
     - name: Get dependencies
       run: flutter pub get #TODO: figure out how to cache this
