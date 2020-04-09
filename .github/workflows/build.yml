@@ -18,6 +18,7 @@ jobs:
         path: $GITHUB_WORKSPACE/lib/flutter
         # An explicit key for restoring and saving the cache
         key: flutter
+        restore-key: flutter
     - uses: actions/setup-java@v1
       with:
         java-version: '12.x'
@@ -28,10 +29,12 @@ jobs:
         git clone https://github.com/flutter/flutter.git lib/flutter
         cd lib/flutter
         git checkout stable # <--- Flutter version to use
+        cd $GITHUB_WORKSPACE #be ready for the build job
+    - name: Flutter Doctor; set path
+      run: |
         export PATH="$PATH:$GITHUB_WORKSPACE/lib/flutter/bin"
         flutter doctor
         echo ::set-env name=PATH::$PATH
-        cd $GITHUB_WORKSPACE #be ready for the build job
     - name: Get dependencies
       run: flutter pub get #TODO: figure out how to cache this
     #- name: Run test
@@ -43,20 +46,6 @@ jobs:
       uses: actions/upload-artifact@v1.0.0
       with:
         # Artifact name
-        name: pangolin-desktop-armeabi-v7a
+        name: pangolin-desktop-apks.zip
         # Directory containing files to upload
-        path: build/app/outputs/apk/debug/app-armeabi-v7a-debug.apk
-    - name: Upload arm64 artifact
-      uses: actions/upload-artifact@v1.0.0
-      with:
-        # Artifact name
-        name: pangolin-desktop-arm64-v8a
-        # Directory containing files to upload
-        path: build/app/outputs/apk/debug/app-arm64-v8a-debug.apk
-    - name: Upload x86_64 artifact
-      uses: actions/upload-artifact@v1.0.0
-      with:
-        # Artifact name
-        name: pangolin-desktop-x86_64
-        # Directory containing files to upload
-        path: build/app/outputs/apk/debug/app-x86_64-debug.apk
+        path: build/app/outputs/apk/debug/
