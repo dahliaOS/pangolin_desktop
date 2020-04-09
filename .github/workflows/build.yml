@@ -34,8 +34,9 @@ jobs:
         cd $GITHUB_WORKSPACE #be ready for the build job
     - name: Get dependencies
       run: flutter pub get #TODO: figure out how to cache this
-    - name: Run test
-      run: flutter test
+    #- name: Run test
+    #  run: flutter test
+    # It uses the tests under $GITHUB_WORKSPACE/tests, which don't exist
     - name: Build APKs
       run: flutter build apk --debug --split-per-abi
     - name: Upload artifact
