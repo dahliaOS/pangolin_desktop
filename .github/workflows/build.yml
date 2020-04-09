@@ -16,7 +16,7 @@ jobs:
     - name: setup-flutter
       uses: takuyaohashi/setup-flutter@v1
       with:
-        flutter-version: '1.16.3'
+        flutter-version: 'v1.16.3'
     - run: flutter pub get
     - run: flutter test
     - run: flutter build apk --debug --split-per-abi
