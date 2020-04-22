@@ -22,11 +22,11 @@ class _PlaygroundState extends State<WindowPlaygroundWidget> {
       color: Colors.green[700],
       child: Calculator(),
     )
- /*..add(
+     ..add(
       color: Colors.amber[700],
       child: TextEditorApp(),
     )
-    ..add(
+    /*..add(
       color: Colors.grey[900],
       child: Terminal(),
     )
