@@ -1,3 +1,4 @@
+import 'quick_settings.dart';
 import 'window_space.dart';
 //import 'dart:async';
 import 'package:flutter/material.dart';
@@ -12,9 +13,12 @@ import 'status_tray.dart';
 import 'app_toggle.dart';
 import 'launcher.dart';
 
+import 'dart:ui';
+
+
 void main()  {
   /// To keep app in Portrait Mode
-  SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeRight]);
+  //SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeRight]);
   runApp(MyApp());
 }
 
@@ -151,7 +155,21 @@ class _MyHomePageState extends State<MyHomePage> {
                     
   borderRadius: BorderRadius.circular(5.0),
   
-  child: new QuickSettings(),
+  child: 
+  
+  
+  new Stack(
+      children: [
+         new BackdropFilter(
+          filter: new ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+          child: new Container(
+            decoration: new BoxDecoration(color: Colors.black.withOpacity(0.75)),
+            child: new QuickSettings(),
+          ),
+        ),
+      ]
+      ),
+
   ),
                   
                   
