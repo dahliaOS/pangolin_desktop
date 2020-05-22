@@ -123,7 +123,37 @@ class QuickSettingsState extends State<QuickSettings> {
             color: const Color(0xFFffffff),
           ),
 
-          Icon(Icons.keyboard_arrow_down, color: Colors.white),
+           new IconButton(
+            icon: const Icon(Icons.keyboard_arrow_down),
+            onPressed:() {
+          
+          
+           showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Feature not implemented"),
+          content: new Text("This feature is currently not available on your build of Pangolin. Please see https://reddit.com/r/dahliaos to check for updates."),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: new Text("OK"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+        
+          
+          
+        },
+           
+            color: const Color(0xFFffffff),
+          ),
         ],
       ),
     );
