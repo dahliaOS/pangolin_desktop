@@ -50,7 +50,7 @@ jobs:
         # Directory containing files to upload
         path: build/app/outputs/apk/debug/
     - name: Upload release
-      if: "${{github.event == 'push'}}"
+      if: "${{github.event_name == 'push'}}"
       uses: softprops/action-gh-release@v1
       with:
         prerelease: yes
