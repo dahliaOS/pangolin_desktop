@@ -19,7 +19,6 @@ jobs:
         path: $GITHUB_WORKSPACE/lib/flutter
         # An explicit key for restoring and saving the cache
         key: flutter
-        restore-key: flutter
     - uses: actions/setup-java@v1
       with:
         java-version: '12.x'
