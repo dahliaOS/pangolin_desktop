@@ -141,7 +141,7 @@ class QuickSettingsState extends State<QuickSettings> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
 
-          FloatingActionButton(backgroundColor: Colors.deepOrange,elevation: 0.0,child: Icon(icon, color: Colors.white, size: 30.0),),
+          FloatingActionButton(elevation: 0.0,child: Icon(icon, color: Colors.white, size: 30.0),),
           
           Container(
             margin: EdgeInsets.only(top: 8),

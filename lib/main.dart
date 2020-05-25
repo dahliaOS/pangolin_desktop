@@ -31,6 +31,7 @@ class MyApp extends StatelessWidget {
       defaultBrightness: Brightness.light,
       data: (Brightness brightness) => ThemeData(
         primarySwatch: Colors.deepOrange,
+        accentColor: Colors.deepOrange,
         brightness: brightness,
       ),
       loadBrightnessOnStart: true,
