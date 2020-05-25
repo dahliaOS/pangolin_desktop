@@ -140,7 +140,9 @@ class QuickSettingsState extends State<QuickSettings> {
         //mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Icon(icon, color: Colors.white, size: 30.0),
+
+          FloatingActionButton(backgroundColor: Colors.deepOrange,elevation: 0.0,child: Icon(icon, color: Colors.white, size: 30.0),),
+          
           Container(
             margin: EdgeInsets.only(top: 8),
             child: Text(
@@ -153,6 +155,8 @@ class QuickSettingsState extends State<QuickSettings> {
       );
     }
     
+
+
     Widget tileSection = Expanded(
         child: Container(
       padding: EdgeInsets.all(10.0),
