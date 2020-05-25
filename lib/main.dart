@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 //import 'package:intl/intl.dart';
 import 'menu.dart';
 import 'themes/dynamic_theme.dart';
-import 'themes/theme_switcher_widgets.dart';
 import 'package:flutter/services.dart';
 import 'widgets/system_overlay.dart';
 import 'quick_settings.dart';
