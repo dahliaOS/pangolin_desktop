@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'dart:async';
 import 'themes/dynamic_theme.dart';
-import 'themes/theme_switcher_widgets.dart';
 
 class QuickSettings extends StatefulWidget {
   @override
