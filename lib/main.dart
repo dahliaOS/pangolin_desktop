@@ -4,6 +4,7 @@ import 'window_space.dart';
 import 'package:flutter/material.dart';
 //import 'package:intl/intl.dart';
 import 'menu.dart';
+import 'themes/dynamic_theme.dart';
 import 'package:flutter/services.dart';
 import 'widgets/system_overlay.dart';
 import 'quick_settings.dart';
@@ -24,20 +25,25 @@ void main()  {
 
 class MyApp extends StatelessWidget {
   @override
-
   Widget build(BuildContext context) {
-    SystemChrome.setEnabledSystemUIOverlays([]);
-    return MaterialApp(
-      title: 'Pangolin Desktop',
-      theme: ThemeData(
+    return DynamicTheme(
+      defaultBrightness: Brightness.light,
+      data: (Brightness brightness) => ThemeData(
         primarySwatch: Colors.deepOrange,
-        canvasColor: const Color(0xFFEEEEEE),
+        accentColor: Colors.deepOrange,
+        brightness: brightness,
       ),
-      home: MyHomePage(title: 'Pangolin Desktop'),
+      loadBrightnessOnStart: true,
+      themedWidgetBuilder: (BuildContext context, ThemeData theme) {
+        return MaterialApp(
+          title: 'Pangolin Desktop',
+          theme: theme,
+          home: MyHomePage(title: 'Pangolin Desktop'),
+        );
+      },
     );
   }
 }
-
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);

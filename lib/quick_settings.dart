@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'dart:async';
+import 'themes/dynamic_theme.dart';
 
 class QuickSettings extends StatefulWidget {
   @override
@@ -129,6 +130,17 @@ class QuickSettingsState extends State<QuickSettings> {
       ),
     );
 
+ void changeColor() {
+    DynamicTheme.of(context).setThemeData(
+      ThemeData(
+        primaryColor: Theme.of(context).primaryColor == Colors.indigo
+            ? Colors.red
+            : Colors.indigo,
+      ),
+    );
+  }
+
+
     Widget sliderSection = Container(
       padding: EdgeInsets.all(15.0),
       child: Slider(value: 0.75, onChanged: (double){} )
@@ -140,7 +152,9 @@ class QuickSettingsState extends State<QuickSettings> {
         //mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Icon(icon, color: Colors.white, size: 30.0),
+
+          FloatingActionButton(onPressed: changeColor, elevation: 0.0,child: Icon(icon, color: Colors.white, size: 30.0),),
+          
           Container(
             margin: EdgeInsets.only(top: 8),
             child: Text(
@@ -153,6 +167,8 @@ class QuickSettingsState extends State<QuickSettings> {
       );
     }
     
+
+
     Widget tileSection = Expanded(
         child: Container(
       padding: EdgeInsets.all(10.0),
@@ -160,7 +176,7 @@ class QuickSettingsState extends State<QuickSettings> {
         crossAxisCount: 3,
         children: [
           buildTile(Icons.network_wifi, 'Wifi Network'),
-          buildTile(Icons.network_cell, 'LTE'),
+          buildTile(Icons.palette, 'Theme'),
           buildTile(Icons.battery_full, '85%'),
           buildTile(Icons.do_not_disturb_off, 'Do not disturb'),
           buildTile(Icons.lightbulb_outline, 'Flashlight'),

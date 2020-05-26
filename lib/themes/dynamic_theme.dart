@@ -151,3 +151,4 @@ class DynamicThemeState extends State<DynamicTheme> {
     return widget.themedWidgetBuilder(context, _themeData);
   }
 }
+
