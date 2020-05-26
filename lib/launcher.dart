@@ -46,8 +46,8 @@ class LauncherWidget extends StatelessWidget {
             child: Text(
               label,
               style: TextStyle(
-        fontSize: 18.0,
-        fontWeight: FontWeight.w400,
+        fontSize: 15.0,
+        fontWeight: FontWeight.w200,
         color: Colors.white,
     ),
               textAlign: TextAlign.center,
@@ -161,12 +161,7 @@ return new Stack(
 
 
 
-
-
-tileSection
-
-
-             
+tileSection  
     
 
        
