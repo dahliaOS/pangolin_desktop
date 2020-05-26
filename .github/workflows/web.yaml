@@ -12,7 +12,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Cache Flutter
-      id: flutter-cache
+      id: flutter-cache-web
       uses: actions/cache@v1.1.2
       with:
         # A directory to store and save the cache
@@ -30,6 +30,7 @@ jobs:
         cd lib/flutter
         git checkout v1.12.13+hotfix.9 # <--- Flutter version to use
         ./bin/flutter channel master # for web build
+        ./bin/flutter upgrade
         cd $GITHUB_WORKSPACE #be ready for the build job
     - name: Flutter Doctor; set path
       run: |
