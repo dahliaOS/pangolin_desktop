@@ -41,7 +41,7 @@ jobs:
     #  run: flutter test
     # It uses the tests under $GITHUB_WORKSPACE/tests, which don't exist
     - name: Build for web
-      run: flutter build web --debug
+      run: flutter build web
     - name: Upload release to GitHub Pages
       #if: "${{github.event_name == 'push'}}"
       uses: crazy-max/ghaction-github-pages@v2.0.1
