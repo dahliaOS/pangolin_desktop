@@ -45,5 +45,7 @@ jobs:
     - name: Upload release to GitHub Pages
       #if: "${{github.event_name == 'push'}}"
       uses: crazy-max/ghaction-github-pages@v2.0.1
+      with:
+        build_dir: build/web
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
