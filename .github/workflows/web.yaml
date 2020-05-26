@@ -23,12 +23,13 @@ jobs:
       with:
         java-version: '12.x'
     - name: Setup Flutter
-      if: steps.flutter-cache.outputs.cache-hit != 'true'
+      if: "${{steps.flutter-cache.outputs.cache-hit != 'true'}}"
       run: |
         cd $GITHUB_WORKSPACE
         git clone https://github.com/flutter/flutter.git lib/flutter
         cd lib/flutter
         git checkout v1.12.13+hotfix.9 # <--- Flutter version to use
+        ./bin/flutter channel master # for web build
         cd $GITHUB_WORKSPACE #be ready for the build job
     - name: Flutter Doctor; set path
       run: |
