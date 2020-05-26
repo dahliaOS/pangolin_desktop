@@ -29,8 +29,9 @@ jobs:
         git clone https://github.com/flutter/flutter.git lib/flutter
         cd lib/flutter
         git checkout v1.12.13+hotfix.9 # <--- Flutter version to use
-        ./bin/flutter channel master # for web build
-        ./bin/flutter upgrade
+        #./bin/flutter channel master # for web build
+        #./bin/flutter upgrade
+        ./bin/flutter config --enable-web
         cd $GITHUB_WORKSPACE #be ready for the build job
     - name: Flutter Doctor; set path
       run: |
