@@ -7,7 +7,7 @@ on:
 name: Deploy to GitHub Pages
 jobs:
   build:
-    name: Build APK
+    name: Build & Deploy
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
@@ -29,8 +29,6 @@ jobs:
         git clone https://github.com/flutter/flutter.git lib/flutter
         cd lib/flutter
         git checkout v1.12.13+hotfix.9 # <--- Flutter version to use
-        #./bin/flutter channel master # for web build
-        #./bin/flutter upgrade
         ./bin/flutter config --enable-web
         cd $GITHUB_WORKSPACE #be ready for the build job
     - name: Flutter Doctor; set path
@@ -46,7 +44,7 @@ jobs:
     - name: Build for web
       run: flutter build web
     - name: Upload release to GitHub Pages
-      #if: "${{github.event_name == 'push'}}"
+      if: "${{github.event_name == 'push'}}"
       uses: crazy-max/ghaction-github-pages@v2.0.1
       with:
         build_dir: build/web
