@@ -9,7 +9,7 @@ jobs:
   build:
     name: Build APK
     runs-on: ubuntu-latest
-    if: '${{github.event_name == "push" && !contains(github.event.commit.message, "[nobuild]")}}'
+    if: "${{ (github.event_name == 'push' && !contains(github.event.commit.message, '[nobuild]')) || !(github.event_name == 'push') }}"
     steps:
     - uses: actions/checkout@v1
     - name: Cache Flutter
