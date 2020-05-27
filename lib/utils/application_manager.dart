@@ -58,3 +58,5 @@ class AppInfo {
     return await PaletteGenerator.fromUint8List(this.iconData);
   }
 }
+
+///[AppInfoList]
