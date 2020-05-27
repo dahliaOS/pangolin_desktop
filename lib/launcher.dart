@@ -61,6 +61,7 @@ class LauncherWidget extends StatelessWidget {
 
   Widget tileSection = Expanded(
         child: Container(
+           constraints: BoxConstraints(maxWidth: 900),
       padding: EdgeInsets.all(10.0),
       child: GridView.count(
         crossAxisCount: 5,
