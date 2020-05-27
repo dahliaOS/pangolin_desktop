@@ -9,6 +9,7 @@ jobs:
   build:
     name: Build APK
     runs-on: ubuntu-latest
+    if: "${{ contains(github.event.commit.message, '[nobuild]') }}"
     steps:
     - uses: actions/checkout@v1
     - name: Cache Flutter
