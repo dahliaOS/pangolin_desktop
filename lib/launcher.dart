@@ -5,7 +5,6 @@ import 'applications/cards.dart';
 
 class LauncherWidget extends StatelessWidget {
   // This widget is the root of your application.
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
