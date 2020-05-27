@@ -53,8 +53,7 @@ class WindowData extends Model {
   final ClaimTabCallback claimTab;*/
 
   /// Constructor.
-  WindowData({this.color, @required this.child})
-      : id = new WindowId();
+  WindowData({this.color, @required this.child}) : id = new WindowId();
 
   /*/// Returns true if this window contains the given tab.
   bool has(TabId id) => tabs.any((TabData tab) => tab.id == id);
@@ -105,7 +104,7 @@ class WindowData extends Model {
 }
 
 /// A collection of windows.
-class WindowsData extends Model {
+class WindowsData extends Model with ChangeNotifier {
   /// The actual windows.
   final List<WindowData> windows = new List<WindowData>();
 
@@ -131,7 +130,7 @@ class WindowsData extends Model {
     //final TabData tab = id != null ? _claimTab(id) : null;
     windows.add(new WindowData(
       child: child != null ? child : Container(color: Colors.deepPurple[200]),
-      color: color != null ? color: Colors.deepPurple,
+      color: color != null ? color : Colors.deepPurple,
       /*tabs: tab != null
           ? <TabData>[tab]
           : <TabData>[

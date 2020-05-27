@@ -2,9 +2,7 @@ import 'dynamic_theme.dart';
 import 'theme_switcher_widgets.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
+class HisApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DynamicTheme(

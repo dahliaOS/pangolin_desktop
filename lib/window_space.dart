@@ -4,43 +4,44 @@ import 'model.dart';
 import 'package:flutter/material.dart';
 import 'window/model.dart';
 import 'window/window.dart';
-import 'applications/calculator.dart';
-import 'applications/editor.dart';
-import 'applications/terminal.dart';
-import 'settings.dart';
-import 'applications/developer.dart';
 import 'themes/main.dart';
 
 /// Displays a set of windows.
 class WindowPlaygroundWidget extends StatefulWidget {
+  WindowsData _app;
+  WindowPlaygroundWidget(this._app);
+
   @override
   _PlaygroundState createState() => new _PlaygroundState();
 }
 
 class _PlaygroundState extends State<WindowPlaygroundWidget> {
-  final WindowsData _windows = new WindowsData()
-    ..add(
-      color: Colors.green[700],
-      child: Calculator(),
-    )
-     ..add(
-      color: Colors.amber[700],
-      child: TextEditorApp(),
-    )
-    ..add(
-      color: Colors.grey[900],
-      child: Terminal(),
-    )
-    ..add(
-      color: Colors.deepOrange[500],
-      child: Settings(),
-    )
+  WindowsData _windows;
+//    ..add(
+//      color: Colors.green[700],
+//      child: Calculator(),
+//    )
+//     ..add(
+//      color: Colors.amber[700],
+//      child: TextEditorApp(),
+//    )
+//    ..add(
+//      color: Colors.grey[900],
+//      child: Terminal(),
+//    )
+//    ..add(
+//      color: Colors.deepOrange[500],
+//      child: Settings(),
+//    )
+//
 
-    ..add(
-      color: Colors.red[800],
-      child: MyApp(),
-    );
-    //..add(); //adds default purple window, see widget/model.dart
+  @override
+  void initState() {
+    super.initState();
+    _windows = widget._app..add(color: Colors.red[800], child: HisApp());
+  }
+
+  //..add(); //adds default purple window, see widget/model.dart
   final Map<WindowId, GlobalKey<WindowState>> _windowKeys =
       new Map<WindowId, GlobalKey<WindowState>>();
   final FocusScopeNode _focusNode = new FocusScopeNode();
@@ -87,6 +88,8 @@ class _PlaygroundState extends State<WindowPlaygroundWidget> {
       });
     }
   }*/
+
+  ///Adds widgets to [_windows], rebuilding widget representations of the current windows
 
   /// Builds the widget representations of the current windows.
   List<Widget> _buildWindows(
@@ -140,30 +143,30 @@ class _PlaygroundState extends State<WindowPlaygroundWidget> {
             initialEntries: <OverlayEntry>[
               new OverlayEntry(
                 builder: (BuildContext context) => new FocusScope(
-                      node: _focusNode,
-                      autofocus: true,
-                      child: new ScopedModel<WindowsData>(
-                        model: _windows,
-                        child: new ScopedModelDescendant<WindowsData>(
-                          builder: (
-                            BuildContext context,
-                            Widget child,
-                            WindowsData model,
-                          ) =>
-                              new Stack(
-                                children: <Widget>[
-                                  /*new DragTarget<TabId>(
+                  node: _focusNode,
+                  autofocus: true,
+                  child: new ScopedModel<WindowsData>(
+                    model: _windows,
+                    child: new ScopedModelDescendant<WindowsData>(
+                      builder: (
+                        BuildContext context,
+                        Widget child,
+                        WindowsData model,
+                      ) =>
+                          new Stack(
+                        children: <Widget>[
+                          /*new DragTarget<TabId>(
                                     builder: (BuildContext context,
                                             List<TabId> candidateData,
                                             List<dynamic> rejectedData) =>
                                         new Container(),
                                     onAccept: (TabId id) => model.add(id: id),
                                   )*/
-                                ]..addAll(_buildWindows(model, width, height)),
-                              ),
-                        ),
+                        ]..addAll(_buildWindows(model, width, height)),
                       ),
                     ),
+                  ),
+                ),
               ),
             ],
           );
