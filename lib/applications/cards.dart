@@ -8,6 +8,57 @@ import 'package:flutter/material.dart';
 
 
 
+    Column buildTile(String icon, String label) {
+      return Column(
+        //mainAxisSize: MainAxisSize.min,
+        //mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+           new Image.asset(
+            icon,
+            fit:BoxFit.fill,
+            width: 64.0,
+            height: 64.0,
+            ),
+          Container(
+            margin: EdgeInsets.only(top: 8),
+            child: Text(
+              label,
+              style: TextStyle(
+        fontSize: 15.0,
+        fontWeight: FontWeight.w200,
+        color: Colors.white,
+    ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ],
+      );
+    }
+    
+
+
+  Widget tileSection = Expanded(
+        child: Container(
+      padding: EdgeInsets.all(10.0),
+      child: GridView.count(
+        crossAxisCount: 5,
+        children: [
+          buildTile('lib/images/icons/v2/compiled/terminal.png', 'Terminal'),
+          buildTile('lib/images/icons/v2/compiled/task.png', 'Task Manager'),
+          buildTile('lib/images/icons/v2/compiled/settings.png', 'Settings'),
+          buildTile('lib/images/icons/v2/compiled/root.png', 'Root Terminal'),
+          buildTile('lib/images/icons/v2/compiled/notes.png', 'Notes'),
+          buildTile('lib/images/icons/v2/compiled/note_mobile.png', 'Notes (mobile)'),
+          buildTile('lib/images/icons/v2/compiled/logs.png', 'System Logs'),
+          buildTile('lib/images/icons/v2/compiled/files.png', 'Files'),
+          buildTile('lib/images/icons/v2/compiled/disks.png', 'Disks'),
+          buildTile('lib/images/icons/v2/compiled/calculator.png', 'Calculator'),
+          buildTile('lib/images/icons/v2/compiled/android.png', 'Android Subsystem'),
+        ]
+      )
+        ),
+    );
 
 
 

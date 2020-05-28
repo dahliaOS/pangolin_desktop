@@ -2,6 +2,7 @@ import 'dynamic_theme.dart';
 import 'theme_switcher_widgets.dart';
 import 'package:flutter/material.dart';
 
+//TODO: Haru-senses are tingling
 class HisApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
