@@ -1,7 +1,12 @@
+import 'package:GeneratedApp/widgets/app_launcher.dart';
 import 'package:flutter/material.dart';
 import 'searchbar.dart';
 import 'dart:ui';
 import 'applications/cards.dart';
+import 'applications/calculator.dart';
+import 'applications/editor.dart';
+import 'applications/terminal.dart';
+import 'settings.dart';
 
 class LauncherWidget extends StatelessWidget {
   // This widget is the root of your application.
@@ -19,18 +24,20 @@ class LauncherWidget extends StatelessWidget {
   }
 }
 
-Column buildTile(String icon, String label) {
+Column buildTile({Widget app, String icon, String label, bool appExists}) {
   return Column(
     //mainAxisSize: MainAxisSize.min,
     //mainAxisAlignment: MainAxisAlignment.center,
     crossAxisAlignment: CrossAxisAlignment.center,
     children: [
-      new Image.asset(
-        icon,
-        fit: BoxFit.fill,
-        width: 64.0,
-        height: 64.0,
-      ),
+      AppLauncherButton(app, icon, appExists: appExists)
+          .copyWith(childWidth: 64.0, childHeight: 64.0),
+//      new Image.asset(
+//        icon,
+//        fit: BoxFit.fill,
+//        width: 64.0,
+//        height: 64.0,
+//      ),
       Container(
         margin: EdgeInsets.only(top: 8),
         child: Text(
@@ -51,19 +58,50 @@ Widget tileSection = Expanded(
   child: Container(
       padding: EdgeInsets.all(10.0),
       child: GridView.count(crossAxisCount: 5, children: [
-        buildTile('lib/images/icons/v2/compiled/terminal.png', 'Terminal'),
-        buildTile('lib/images/icons/v2/compiled/task.png', 'Task Manager'),
-        buildTile('lib/images/icons/v2/compiled/settings.png', 'Settings'),
-        buildTile('lib/images/icons/v2/compiled/root.png', 'Root Terminal'),
-        buildTile('lib/images/icons/v2/compiled/notes.png', 'Notes'),
         buildTile(
-            'lib/images/icons/v2/compiled/note_mobile.png', 'Notes (mobile)'),
-        buildTile('lib/images/icons/v2/compiled/logs.png', 'System Logs'),
-        buildTile('lib/images/icons/v2/compiled/files.png', 'Files'),
-        buildTile('lib/images/icons/v2/compiled/disks.png', 'Disks'),
-        buildTile('lib/images/icons/v2/compiled/calculator.png', 'Calculator'),
+            app: Terminal(),
+            icon: 'lib/images/icons/v2/compiled/terminal.png',
+            label: 'Terminal'),
         buildTile(
-            'lib/images/icons/v2/compiled/android.png', 'Android Subsystem'),
+            icon: 'lib/images/icons/v2/compiled/task.png',
+            label: 'Task Manager',
+            appExists: false),
+        buildTile(
+            app: Settings(),
+            icon: 'lib/images/icons/v2/compiled/settings.png',
+            label: 'Settings'),
+        buildTile(
+            icon: 'lib/images/icons/v2/compiled/root.png',
+            label: 'Root Terminal',
+            appExists: false),
+        buildTile(
+            app: TextEditor(),
+            icon: 'lib/images/icons/v2/compiled/notes.png',
+            label: 'Notes'),
+        buildTile(
+            icon: 'lib/images/icons/v2/compiled/note_mobile.png',
+            label: 'Notes (mobile)',
+            appExists: false),
+        buildTile(
+            icon: 'lib/images/icons/v2/compiled/logs.png',
+            label: 'System Logs',
+            appExists: false),
+        buildTile(
+            icon: 'lib/images/icons/v2/compiled/files.png',
+            label: 'Files',
+            appExists: false),
+        buildTile(
+            icon: 'lib/images/icons/v2/compiled/disks.png',
+            label: 'Disks',
+            appExists: false),
+        buildTile(
+            app: Calculator(),
+            icon: 'lib/images/icons/v2/compiled/calculator.png',
+            label: 'Calculator'),
+        buildTile(
+            icon: 'lib/images/icons/v2/compiled/android.png',
+            label: 'Android Subsystem',
+            appExists: false),
       ])),
 );
 

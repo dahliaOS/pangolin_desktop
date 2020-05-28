@@ -5,12 +5,10 @@ import 'package:flutter/material.dart';
 import 'window/model.dart';
 import 'window/window.dart';
 import 'themes/main.dart';
+import 'package:provider/provider.dart';
 
 /// Displays a set of windows.
 class WindowPlaygroundWidget extends StatefulWidget {
-  WindowsData _app;
-  WindowPlaygroundWidget(this._app);
-
   @override
   _PlaygroundState createState() => new _PlaygroundState();
 }
@@ -35,11 +33,13 @@ class _PlaygroundState extends State<WindowPlaygroundWidget> {
 //    )
 //
 
-  @override
-  void initState() {
-    super.initState();
-    _windows = widget._app..add(color: Colors.red[800], child: HisApp());
-  }
+  ///Throws 'soft' exception //TODO: Dear Haru, think about your crimes. Love, Haru.
+//  @override
+//  void initState() {
+//    super.initState();
+//
+//    _windows = widget._app..add(color: Colors.red[800], child: HisApp());
+//  }
 
   //..add(); //adds default purple window, see widget/model.dart
   final Map<WindowId, GlobalKey<WindowState>> _windowKeys =
@@ -89,8 +89,6 @@ class _PlaygroundState extends State<WindowPlaygroundWidget> {
     }
   }*/
 
-  ///Adds widgets to [_windows], rebuilding widget representations of the current windows
-
   /// Builds the widget representations of the current windows.
   List<Widget> _buildWindows(
       WindowsData model, double maxWidth, double maxHeight) {
@@ -135,6 +133,8 @@ class _PlaygroundState extends State<WindowPlaygroundWidget> {
   @override
   Widget build(BuildContext context) => new LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
+          _windows = Provider.of<WindowsData>(context);
+
           // Multiplying maxWidth by 1.4 & maxHeight by 1.2 to avoid overflow on
           // smaller screens.
           final double width = constraints.maxWidth * 1.4;
