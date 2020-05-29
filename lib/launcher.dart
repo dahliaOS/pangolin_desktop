@@ -37,7 +37,7 @@ Column buildTile(String icon, String label) {
           label,
           style: TextStyle(
             fontSize: 15.0,
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.w200,
             color: Colors.white,
           ),
           textAlign: TextAlign.center,
