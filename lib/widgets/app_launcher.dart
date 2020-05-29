@@ -12,7 +12,13 @@ class AppLauncherButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new FlatButton(
+    return new
+SizedBox(
+  width: 64.0,
+  height: 64.0,
+  child:
+     FlatButton(
+      
       child: icon,
       onPressed: () {
         (appExists)
@@ -39,6 +45,7 @@ class AppLauncherButton extends StatelessWidget {
                 },
               );
       },
+    ),
     );
   }
 }
