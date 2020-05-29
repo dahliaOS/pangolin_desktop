@@ -36,7 +36,7 @@ Column buildTile(String icon, String label) {
         child: Text(
           label,
           style: TextStyle(
-            fontSize: 18.0,
+            fontSize: 15.0,
             fontWeight: FontWeight.w400,
             color: Colors.white,
           ),
@@ -94,7 +94,10 @@ class launcher extends StatelessWidget {
                     child: new Row(children: <Widget>[
                       buildCard(Icons.brightness_low, 'System', Colors.deepOrange, Colors.deepOrange.withAlpha(30), 'Welcome to dahliaOS!'),
                        buildCard(Icons.info, 'Information', Colors.blue, Colors.blue.withAlpha(30), 'You are on a pre-release development build!'),
-                      
+                        buildCard(Icons.music_note, 'Music - Now Playing', Colors.lightGreen, Colors.lightGreen.withAlpha(30), 'Powerhouse of the Sell - The Revival'),
+                         buildCard(Icons.lock, 'Security', Colors.red, Colors.red.withAlpha(30), 'Filesystem lock is ON'),
+                      buildCard(Icons.memory, 'Kernel', Colors.pink, Colors.pink.withAlpha(30), 'Drivers for Integrated GPU updated'),
+                         
                     ])),
                 tileSection
               ],
