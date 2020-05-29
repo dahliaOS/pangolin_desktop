@@ -28,12 +28,12 @@ jobs:
         cd $GITHUB_WORKSPACE
         git clone https://github.com/flutter/flutter.git lib/flutter
         cd lib/flutter
-        git checkout v1.12.13+hotfix.9 # <--- Flutter version to use
+        git checkout 1.17.0 # <--- Flutter version to use
         cd $GITHUB_WORKSPACE #be ready for the build job
     - name: Flutter Doctor; set path
       run: |
         export PATH="$PATH:$GITHUB_WORKSPACE/lib/flutter/bin"
-        flutter doctor
+        flutter doctor -v
         echo ::set-env name=PATH::$PATH
     - name: Get dependencies
       run: flutter pub get #TODO: figure out how to cache this
