@@ -36,7 +36,7 @@ Column buildTile(String icon, String label) {
         child: Text(
           label,
           style: TextStyle(
-            fontSize: 18.0,
+            fontSize: 15.0,
             fontWeight: FontWeight.w400,
             color: Colors.white,
           ),
@@ -91,11 +91,7 @@ class launcher extends StatelessWidget {
                         new EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
                     scrollDirection: Axis.horizontal,
                     child: new Row(children: <Widget>[
-                      new SysInfoCard(),
-                      new NewsCard(),
-                      new NewsCard(),
-                      new NewsCard(),
-                      new NewsCard(),
+                       buildCard(Icons.info, 'System Information', Colors.blue, Colors.blue.withAlpha(30), 'You are on a pre-release development build!'),
                     ])),
                 tileSection
               ],
