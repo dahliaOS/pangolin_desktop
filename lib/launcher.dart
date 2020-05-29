@@ -56,14 +56,12 @@ Widget tileSection = Expanded(
         buildTile('lib/images/icons/v2/compiled/settings.png', 'Settings'),
         buildTile('lib/images/icons/v2/compiled/root.png', 'Root Terminal'),
         buildTile('lib/images/icons/v2/compiled/notes.png', 'Notes'),
-        buildTile(
-            'lib/images/icons/v2/compiled/note_mobile.png', 'Notes (mobile)'),
+        buildTile('lib/images/icons/v2/compiled/note_mobile.png', 'Notes (mobile)'),
         buildTile('lib/images/icons/v2/compiled/logs.png', 'System Logs'),
         buildTile('lib/images/icons/v2/compiled/files.png', 'Files'),
         buildTile('lib/images/icons/v2/compiled/disks.png', 'Disks'),
         buildTile('lib/images/icons/v2/compiled/calculator.png', 'Calculator'),
-        buildTile(
-            'lib/images/icons/v2/compiled/android.png', 'Android Subsystem'),
+        buildTile('lib/images/icons/v2/compiled/android.png', 'Android Subsystem'),
       ])),
 );
 
