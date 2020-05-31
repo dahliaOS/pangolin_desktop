@@ -10,7 +10,7 @@ import 'package:provider/provider.dart';
 /// Displays a set of windows.
 class WindowPlaygroundWidget extends StatefulWidget {
   @override
-  _PlaygroundState createState() => new _PlaygroundState();
+  _PlaygroundState createState() => _PlaygroundState();
 }
 
 class _PlaygroundState extends State<WindowPlaygroundWidget> {
@@ -43,8 +43,8 @@ class _PlaygroundState extends State<WindowPlaygroundWidget> {
 
   //..add(); //adds default purple window, see widget/model.dart
   final Map<WindowId, GlobalKey<WindowState>> _windowKeys =
-      new Map<WindowId, GlobalKey<WindowState>>();
-  final FocusScopeNode _focusNode = new FocusScopeNode();
+      Map<WindowId, GlobalKey<WindowState>>();
+  final FocusScopeNode _focusNode = FocusScopeNode();
 
   /// Currently highlighted window when paging through windows.
   WindowId _highlightedWindow;
@@ -93,7 +93,7 @@ class _PlaygroundState extends State<WindowPlaygroundWidget> {
   List<Widget> _buildWindows(
       WindowsData model, double maxWidth, double maxHeight) {
     // Remove keys that are no longer useful.
-    List<WindowId> obsoleteIds = new List<WindowId>();
+    List<WindowId> obsoleteIds = List<WindowId>();
     _windowKeys.keys.forEach((WindowId id) {
       if (!model.windows.any((WindowData window) => window.id == id)) {
         obsoleteIds.add(id);
@@ -102,7 +102,7 @@ class _PlaygroundState extends State<WindowPlaygroundWidget> {
     obsoleteIds.forEach((WindowId id) => _windowKeys.remove(id));
 
     // Adjust window order if there's a highlighted window.
-    final List<WindowData> windows = new List<WindowData>.from(model.windows);
+    final List<WindowData> windows = List<WindowData>.from(model.windows);
     if (_highlightedWindow != null) {
       final WindowData window = model.find(_highlightedWindow);
       if (window != null) {
@@ -112,15 +112,15 @@ class _PlaygroundState extends State<WindowPlaygroundWidget> {
     }
 
     return windows
-        .map((WindowData window) => new ScopedModel<WindowData>(
+        .map((WindowData window) => ScopedModel<WindowData>(
               model: window,
-              child: new Window(
+              child: Window(
                 key: _windowKeys.putIfAbsent(
                   window.id,
-                  () => new GlobalKey<WindowState>(),
+                  () => GlobalKey<WindowState>(),
                 ),
-                initialPosition: new Offset(maxWidth / 4, maxHeight / 4),
-                initialSize: new Size(maxWidth / 2, maxHeight / 2),
+                initialPosition: Offset(maxWidth / 4, maxHeight / 4),
+                initialSize: Size(maxWidth / 2, maxHeight / 2),
                 onWindowInteraction: () => model.moveToFront(window),
                 onWindowClose: () => model.close(window),
                 color: window.color,
@@ -131,7 +131,7 @@ class _PlaygroundState extends State<WindowPlaygroundWidget> {
   }
 
   @override
-  Widget build(BuildContext context) => new LayoutBuilder(
+  Widget build(BuildContext context) => LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
           _windows = Provider.of<WindowsData>(context);
 
@@ -139,27 +139,27 @@ class _PlaygroundState extends State<WindowPlaygroundWidget> {
           // smaller screens.
           final double width = constraints.maxWidth * 1.4;
           final double height = constraints.maxHeight * 1.2;
-          return new Overlay(
+          return Overlay(
             initialEntries: <OverlayEntry>[
-              new OverlayEntry(
-                builder: (BuildContext context) => new FocusScope(
+              OverlayEntry(
+                builder: (BuildContext context) => FocusScope(
                   node: _focusNode,
                   autofocus: true,
-                  child: new ScopedModel<WindowsData>(
+                  child: ScopedModel<WindowsData>(
                     model: _windows,
-                    child: new ScopedModelDescendant<WindowsData>(
+                    child: ScopedModelDescendant<WindowsData>(
                       builder: (
                         BuildContext context,
                         Widget child,
                         WindowsData model,
                       ) =>
-                          new Stack(
+                          Stack(
                         children: <Widget>[
-                          /*new DragTarget<TabId>(
+                          /* DragTarget<TabId>(
                                     builder: (BuildContext context,
                                             List<TabId> candidateData,
                                             List<dynamic> rejectedData) =>
-                                        new Container(),
+                                         Container(),
                                     onAccept: (TabId id) => model.add(id: id),
                                   )*/
                         ]..addAll(_buildWindows(model, width, height)),
