@@ -52,7 +52,7 @@ Widget tileSection = Expanded(
      constraints: BoxConstraints(maxWidth: 900),
       padding: EdgeInsets.all(10.0),
       child: GridView.count(crossAxisCount: 5, children: [
-        buildTile('lib/images/icons/v2/compiled/terminal.png', 'Terminal'),
+        buildTile('lib/images/icons/v2/compiled/terminal.png', 'Terminal' ),
         buildTile('lib/images/icons/v2/compiled/task.png', 'Task Manager'),
         buildTile('lib/images/icons/v2/compiled/settings.png', 'Settings'),
         buildTile('lib/images/icons/v2/compiled/root.png', 'Root Terminal'),
@@ -64,6 +64,7 @@ Widget tileSection = Expanded(
         buildTile('lib/images/icons/v2/compiled/calculator.png', 'Calculator'),
         buildTile('lib/images/icons/v2/compiled/android.png', 'Android Subsystem'),
         buildTile('lib/images/icons/v2/compiled/theme.png', 'Theme Demo'),
+        buildTile('lib/images/dahlia.png', 'Welcome'),
       ])),
 );
 
