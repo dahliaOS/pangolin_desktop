@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 //import 'package:intl/intl.dart';
 import 'menu.dart';
 import 'themes/dynamic_theme.dart';
+import 'themes/main.dart';
 import 'package:flutter/services.dart';
 import 'widgets/system_overlay.dart';
 import 'widgets/toggle.dart';
@@ -263,6 +264,16 @@ class _MyHomePageState extends State<MyHomePage> {
                               height: 60.0,
                             ),
                             Colors.deepOrange 
+                            ),
+                            new AppLauncherButton(
+                            HisApp(),
+                            Image.asset(
+                              'lib/images/icons/v2/compiled/theme.png',
+                              fit: BoxFit.contain,
+                              width: 60.0,
+                              height: 60.0,
+                            ),
+                            Colors.grey[800]
                             ),
                       ]),
                   StatusTrayWidget(

@@ -63,6 +63,7 @@ Widget tileSection = Expanded(
         buildTile('lib/images/icons/v2/compiled/disks.png', 'Disks'),
         buildTile('lib/images/icons/v2/compiled/calculator.png', 'Calculator'),
         buildTile('lib/images/icons/v2/compiled/android.png', 'Android Subsystem'),
+        buildTile('lib/images/icons/v2/compiled/theme.png', 'Theme Demo'),
       ])),
 );
 
