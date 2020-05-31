@@ -6,9 +6,10 @@ import 'package:random_color/random_color.dart';
 class AppLauncherButton extends StatelessWidget {
   Widget app;
   Image icon;
+  Color color;
   bool appExists;
 
-  AppLauncherButton(this.app, this.icon, {this.appExists = true});
+  AppLauncherButton(this.app, this.icon, this.color, {this.appExists = true});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ SizedBox(
       onPressed: () {
         (appExists)
             ? Provider.of<WindowsData>(context, listen: false)
-                .add(child: app, color: RandomColor().randomColor())
+                .add(child: app, color: color)
             : showDialog(
                 context: context,
                 builder: (BuildContext context) {

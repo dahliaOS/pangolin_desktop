@@ -221,7 +221,9 @@ class _MyHomePageState extends State<MyHomePage> {
                               fit: BoxFit.contain,
                               width: 60.0,
                               height: 60.0,
-                            )),
+                            ),
+                            Colors.deepOrange 
+                            ),
                         new AppLauncherButton(
                             TextEditor(),
                             Image.asset(
@@ -229,7 +231,9 @@ class _MyHomePageState extends State<MyHomePage> {
                               fit: BoxFit.contain,
                               width: 60.0,
                               height: 60.0,
-                            )),
+                            ),
+                            Colors.deepOrange 
+                            ),
                         new AppLauncherButton(
                             Terminal(),
                             Image.asset(
@@ -237,7 +241,9 @@ class _MyHomePageState extends State<MyHomePage> {
                               fit: BoxFit.contain,
                               width: 60.0,
                               height: 60.0,
-                            )),
+                            ),
+                            Colors.deepOrange 
+                            ),
                         new AppLauncherButton(
                           null,
                           Image.asset('lib/images/icons/v2/compiled/files.png',
@@ -245,6 +251,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               width: 60.0,
                               height: 60.0,
                               color: Colors.grey),
+                              Colors.deepOrange,
                           appExists: false,
                         ),
                         new AppLauncherButton(
@@ -254,7 +261,9 @@ class _MyHomePageState extends State<MyHomePage> {
                               fit: BoxFit.contain,
                               width: 60.0,
                               height: 60.0,
-                            )),
+                            ),
+                            Colors.deepOrange 
+                            ),
                       ]),
                   StatusTrayWidget(
                     toggleKey: _statusToggleKey,
