@@ -222,7 +222,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               width: 60.0,
                               height: 60.0,
                             ),
-                            Colors.deepOrange 
+                            Colors.green 
                             ),
                         new AppLauncherButton(
                             TextEditor(),
@@ -232,7 +232,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               width: 60.0,
                               height: 60.0,
                             ),
-                            Colors.deepOrange 
+                            Colors.deepOrange[800] 
                             ),
                         new AppLauncherButton(
                             Terminal(),
@@ -242,7 +242,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               width: 60.0,
                               height: 60.0,
                             ),
-                            Colors.deepOrange 
+                            Colors.grey[900]
                             ),
                         new AppLauncherButton(
                           null,
