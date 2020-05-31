@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'window/model.dart';
 import 'window/window.dart';
 import 'themes/main.dart';
+import 'applications/welcome.dart';
 
 /// Displays a set of windows.
 class WindowPlaygroundWidget extends StatefulWidget {
@@ -38,7 +39,7 @@ class _PlaygroundState extends State<WindowPlaygroundWidget> {
   @override
   void initState() {
     super.initState();
-    _windows = widget._app..add(color: Colors.red[800], child: HisApp());
+    _windows = widget._app..add(color: Colors.grey[800], child: Welcome());
   }
 
   //..add(); //adds default purple window, see widget/model.dart
