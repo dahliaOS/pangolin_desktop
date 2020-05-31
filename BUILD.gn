@@ -1,0 +1,5 @@
+group("pangolin-desktop") {
+  public_deps = [
+    "session:workstation_session"
+  ]
+}

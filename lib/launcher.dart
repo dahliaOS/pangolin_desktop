@@ -20,6 +20,60 @@ class LauncherWidget extends StatelessWidget {
   }
 }
 
+MaterialButton buildTile(String icon, String label) {
+  return MaterialButton(
+    onPressed: null //kanou pls help
+    ,
+    child: Column(
+      //mainAxisSize: MainAxisSize.min,
+      //mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        new Image.asset(
+          icon,
+          fit: BoxFit.fill,
+          width: 64.0,
+          height: 64.0,
+        ),
+        Container(
+          margin: EdgeInsets.only(top: 8),
+          child: Text(
+            label,
+            style: TextStyle(
+              fontSize: 15.0,
+              color: Colors.white,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
+Widget tileSection = Expanded(
+  child: Container(
+      constraints: BoxConstraints(maxWidth: 900),
+      padding: EdgeInsets.all(10.0),
+      child: GridView.count(crossAxisCount: 5, children: [
+        buildTile('lib/images/icons/v2/compiled/terminal.png', 'Terminal'),
+        buildTile('lib/images/icons/v2/compiled/task.png', 'Task Manager'),
+        buildTile('lib/images/icons/v2/compiled/settings.png', 'Settings'),
+        buildTile('lib/images/icons/v2/compiled/root.png', 'Root Terminal'),
+        buildTile('lib/images/icons/v2/compiled/notes.png', 'Notes'),
+        buildTile(
+            'lib/images/icons/v2/compiled/note_mobile.png', 'Notes (mobile)'),
+        buildTile('lib/images/icons/v2/compiled/logs.png', 'System Logs'),
+        buildTile('lib/images/icons/v2/compiled/files.png', 'Files'),
+        buildTile('lib/images/icons/v2/compiled/disks.png', 'Disks'),
+        buildTile('lib/images/icons/v2/compiled/calculator.png', 'Calculator'),
+        buildTile(
+            'lib/images/icons/v2/compiled/android.png', 'Android Subsystem'),
+        buildTile('lib/images/icons/v2/compiled/theme.png', 'Theme Demo'),
+        buildTile('lib/images/dahlia.png', 'Welcome'),
+      ])),
+);
+
 class Launcher extends StatelessWidget {
   Launcher({Key key, this.title}) : super(key: key);
 
@@ -46,11 +100,41 @@ class Launcher extends StatelessWidget {
                         new EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
                     scrollDirection: Axis.horizontal,
                     child: new Row(children: <Widget>[
-                      new SysInfoCard(),
-                      new NewsCard(),
-                      new NewsCard(),
-                      new NewsCard(),
-                      new NewsCard(),
+                      buildCard(
+                          Icons.brightness_low,
+                          'System',
+                          Colors.deepOrange,
+                          Colors.deepOrange.withAlpha(30),
+                          'Welcome to dahliaOS!',
+                          context),
+                      buildCard(
+                          Icons.info,
+                          'Information',
+                          Colors.blue,
+                          Colors.blue.withAlpha(30),
+                          'Warning: You are on a pre-release development build. For your protection, this build has been airgapped.',
+                          context),
+                      buildCard(
+                          Icons.music_note,
+                          'Music - Now Playing',
+                          Colors.lightGreen,
+                          Colors.lightGreen.withAlpha(30),
+                          'Powerhouse of the Sell - The Revival',
+                          context),
+                      buildCard(
+                          Icons.lock,
+                          'Security',
+                          Colors.red,
+                          Colors.red.withAlpha(30),
+                          'Filesystem lock is ON',
+                          context),
+                      buildCard(
+                          Icons.memory,
+                          'Kernel',
+                          Colors.pink,
+                          Colors.pink.withAlpha(30),
+                          'Drivers for Integrated GPU updated',
+                          context),
                     ])),
                 tileSection
               ],
