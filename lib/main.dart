@@ -26,6 +26,51 @@ import 'applications/terminal.dart';
 import 'settings.dart';
 
 WindowsData provisionalWindowData = new WindowsData();
+final GlobalKey<ToggleState> _launcherToggleKey = GlobalKey<ToggleState>();
+final GlobalKey<SystemOverlayState> _launcherOverlayKey =
+    GlobalKey<SystemOverlayState>();
+final GlobalKey<ToggleState> _statusToggleKey = GlobalKey<ToggleState>();
+final GlobalKey<SystemOverlayState> _statusOverlayKey =
+    GlobalKey<SystemOverlayState>();
+final Tween<double> _overlayScaleTween = Tween<double>(begin: 0.9, end: 1.0);
+final Tween<double> _overlayOpacityTween = Tween<double>(begin: 0.0, end: 1.0);
+
+/// Hides all overlays except [except] if applicable.
+void _hideOverlays({GlobalKey<SystemOverlayState> except}) {
+  <GlobalKey<SystemOverlayState>>[
+    _launcherOverlayKey,
+    _statusOverlayKey,
+  ].where((GlobalKey<SystemOverlayState> overlay) => overlay != except).forEach(
+      (GlobalKey<SystemOverlayState> overlay) =>
+          overlay.currentState.visible = false);
+}
+
+/// Sets the given [overlay]'s visibility to [visible].
+/// When showing an overlay, this also hides every other overlay.
+void _setOverlayVisibility({
+  @required GlobalKey<SystemOverlayState> overlay,
+  @required bool visible,
+}) {
+  if (visible) {
+    _hideOverlays(except: overlay);
+  }
+  overlay.currentState.visible = visible;
+}
+
+List<AppLauncherPanelButton> testLaunchers = [
+  AppLauncherPanelButton(
+      app: Calculator(), icon: 'lib/images/icons/v2/compiled/calculator.png'),
+  AppLauncherPanelButton(
+      app: TextEditor(), icon: 'lib/images/icons/v2/compiled/notes.png'),
+  AppLauncherPanelButton(
+      app: Terminal(), icon: 'lib/images/icons/v2/compiled/terminal.png'),
+  AppLauncherPanelButton(
+    icon: 'lib/images/icons/v2/compiled/files.png',
+    appExists: false,
+  ),
+  AppLauncherPanelButton(
+      app: Settings(), icon: 'lib/images/icons/v2/compiled/settings.png'),
+];
 
 void main() {
   /// To keep app in Portrait Mode
@@ -47,6 +92,8 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.deepOrange,
           accentColor: Colors.deepOrange,
           brightness: brightness,
+          canvasColor: Colors.black.withOpacity(0.5),
+          primaryColor: const Color(0xFFff5722),
         ),
         loadBrightnessOnStart: true,
         themedWidgetBuilder: (BuildContext context, ThemeData theme) {
@@ -71,15 +118,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final GlobalKey<ToggleState> _launcherToggleKey = GlobalKey<ToggleState>();
-  final GlobalKey<SystemOverlayState> _launcherOverlayKey =
-      GlobalKey<SystemOverlayState>();
-  final GlobalKey<ToggleState> _statusToggleKey = GlobalKey<ToggleState>();
-  final GlobalKey<SystemOverlayState> _statusOverlayKey =
-      GlobalKey<SystemOverlayState>();
-  final Tween<double> _overlayScaleTween = Tween<double>(begin: 0.9, end: 1.0);
-  final Tween<double> _overlayOpacityTween =
-      Tween<double>(begin: 0.0, end: 1.0);
   //String _timeString;
   /*@override
   void initState() {
@@ -218,19 +256,23 @@ class _MyHomePageState extends State<MyHomePage> {
                             visible: toggled,
                           ),
                         ),
-                        AppLauncherButton(Calculator(),
-                            'lib/images/icons/v2/compiled/calculator.png'),
-                        AppLauncherButton(TextEditor(),
-                            'lib/images/icons/v2/compiled/notes.png'),
-                        AppLauncherButton(Terminal(),
-                            'lib/images/icons/v2/compiled/terminal.png'),
-                        AppLauncherButton(
-                          null,
-                          'lib/images/icons/v2/compiled/files.png',
+                        AppLauncherPanelButton(
+                            app: Calculator(),
+                            icon:
+                                'lib/images/icons/v2/compiled/calculator.png'),
+                        AppLauncherPanelButton(
+                            app: TextEditor(),
+                            icon: 'lib/images/icons/v2/compiled/notes.png'),
+                        AppLauncherPanelButton(
+                            app: Terminal(),
+                            icon: 'lib/images/icons/v2/compiled/terminal.png'),
+                        AppLauncherPanelButton(
+                          icon: 'lib/images/icons/v2/compiled/files.png',
                           appExists: false,
                         ),
-                        AppLauncherButton(Settings(),
-                            'lib/images/icons/v2/compiled/settings.png'),
+                        AppLauncherPanelButton(
+                            app: Settings(),
+                            icon: 'lib/images/icons/v2/compiled/settings.png'),
                       ]),
                   StatusTrayWidget(
                     toggleKey: _statusToggleKey,
@@ -250,7 +292,6 @@ class _MyHomePageState extends State<MyHomePage> {
     ));
   }
 
-  dynamic getWindows() => Provider.of<WindowsData>(context);
   /*void _getTime() {
     final DateTime now = DateTime.now();
     final String formattedDateTime = _formatDateTime(now);
@@ -263,26 +304,18 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return DateFormat('hh:mm').format(dateTime);
   }*/
-  /// Hides all overlays except [except] if applicable.
-  void _hideOverlays({GlobalKey<SystemOverlayState> except}) {
-    <GlobalKey<SystemOverlayState>>[
-      _launcherOverlayKey,
-      _statusOverlayKey,
-    ]
-        .where((GlobalKey<SystemOverlayState> overlay) => overlay != except)
-        .forEach((GlobalKey<SystemOverlayState> overlay) =>
-            overlay.currentState.visible = false);
-  }
 
-  /// Sets the given [overlay]'s visibility to [visible].
-  /// When showing an overlay, this also hides every other overlay.
-  void _setOverlayVisibility({
-    @required GlobalKey<SystemOverlayState> overlay,
-    @required bool visible,
-  }) {
-    if (visible) {
-      _hideOverlays(except: overlay);
-    }
-    overlay.currentState.visible = visible;
-  }
+//  List<Widget> wrappedLaunchers(List<AppLauncherButton> launcherList) {
+//    double positionOffSet = 10.0;
+//    List<Widget> list = [];
+//
+//    for (AppLauncherButton launcher in launcherList) {
+//      list.add(Positioned.directional(
+//          textDirection: TextDirection.ltr,
+//          start: positionOffSet,
+//          child: launcher));
+//      positionOffSet += 20;
+//    }
+//    return list;
+//  }
 }
