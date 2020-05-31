@@ -19,8 +19,13 @@ class LauncherWidget extends StatelessWidget {
   }
 }
 
-Column buildTile(String icon, String label) {
-  return Column(
+MaterialButton buildTile(String icon, String label) {
+  return 
+  MaterialButton(
+    onPressed: null //kanou pls help
+    ,
+child: 
+  Column(
     //mainAxisSize: MainAxisSize.min,
     //mainAxisAlignment: MainAxisAlignment.center,
     crossAxisAlignment: CrossAxisAlignment.center,
@@ -44,7 +49,7 @@ Column buildTile(String icon, String label) {
         ),
       ),
     ],
-  );
+  ),);
 }
 
 Widget tileSection = Expanded(
@@ -95,7 +100,7 @@ class launcher extends StatelessWidget {
                     scrollDirection: Axis.horizontal,
                     child: new Row(children: <Widget>[
                       buildCard(Icons.brightness_low, 'System', Colors.deepOrange, Colors.deepOrange.withAlpha(30), 'Welcome to dahliaOS!'),
-                       buildCard(Icons.info, 'Information', Colors.blue, Colors.blue.withAlpha(30), 'You are on a pre-release development build!'),
+                       buildCard(Icons.info, 'Information', Colors.blue, Colors.blue.withAlpha(30), 'Warning: You are on a pre-release development build. For your protection, this build has been airgapped.'),
                         buildCard(Icons.music_note, 'Music - Now Playing', Colors.lightGreen, Colors.lightGreen.withAlpha(30), 'Powerhouse of the Sell - The Revival'),
                          buildCard(Icons.lock, 'Security', Colors.red, Colors.red.withAlpha(30), 'Filesystem lock is ON'),
                       buildCard(Icons.memory, 'Kernel', Colors.pink, Colors.pink.withAlpha(30), 'Drivers for Integrated GPU updated'),
