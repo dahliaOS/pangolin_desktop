@@ -25,6 +25,7 @@ import 'applications/editor.dart';
 import 'applications/terminal.dart';
 import 'settings.dart';
 import 'commons/key_ring.dart';
+import 'commons/functions.dart';
 
 WindowsData provisionalWindowData = new WindowsData();
 
@@ -92,6 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final Tween<double> _overlayScaleTween = Tween<double>(begin: 0.9, end: 1.0);
   final Tween<double> _overlayOpacityTween =
       Tween<double>(begin: 0.0, end: 1.0);
+
   //String _timeString;
   /*@override
   void initState() {
@@ -206,7 +208,7 @@ class _MyHomePageState extends State<MyHomePage> {
           bottom: 0.0,
           child: GestureDetector(
             behavior: HitTestBehavior.opaque,
-            onTap: _hideOverlays,
+            onTap: hideOverlays,
             child: Container(
               //color: Color.fromARGB(150, 0, 0, 0),
               decoration: BoxDecoration(
@@ -225,10 +227,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       children: <Widget>[
                         LauncherToggleWidget(
                           toggleKey: KeyRing.launcherToggleKey,
-                          callback: (bool toggled) => _setOverlayVisibility(
-                            overlay: KeyRing.launcherOverlayKey,
-                            visible: toggled,
-                          ),
+                          callback: toggleCallback,
                         ),
                         AppLauncherPanelButton(
                           app: Calculator(),
@@ -263,7 +262,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ]),
                   StatusTrayWidget(
                     toggleKey: KeyRing.statusToggleKey,
-                    callback: (bool toggled) => _setOverlayVisibility(
+                    callback: (bool toggled) => setOverlayVisibility(
                       overlay: KeyRing.statusOverlayKey,
                       visible: toggled,
                     ),
@@ -279,7 +278,7 @@ class _MyHomePageState extends State<MyHomePage> {
     ));
   }
 
-  /*void _getTime() {
+/*void _getTime() {
     final DateTime now = DateTime.now();
     final String formattedDateTime = _formatDateTime(now);
     setState(() {
@@ -305,26 +304,5 @@ class _MyHomePageState extends State<MyHomePage> {
 //    }
 //    return list;
 //  }
-  /// Hides all overlays except [except] if applicable.
-  void _hideOverlays({GlobalKey<SystemOverlayState> except}) {
-    <GlobalKey<SystemOverlayState>>[
-      KeyRing.launcherOverlayKey,
-      KeyRing.statusOverlayKey,
-    ]
-        .where((GlobalKey<SystemOverlayState> overlay) => overlay != except)
-        .forEach((GlobalKey<SystemOverlayState> overlay) =>
-            overlay.currentState.visible = false);
-  }
 
-  /// Sets the given [overlay]'s visibility to [visible].
-  /// When showing an overlay, this also hides every other overlay.
-  void _setOverlayVisibility({
-    @required GlobalKey<SystemOverlayState> overlay,
-    @required bool visible,
-  }) {
-    if (visible) {
-      _hideOverlays(except: overlay);
-    }
-    overlay.currentState.visible = visible;
-  }
 }

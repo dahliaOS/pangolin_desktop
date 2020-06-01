@@ -92,14 +92,14 @@ class AppLauncherDrawerButton extends StatefulWidget {
   final ValueChanged<bool> _callback;
 
   AppLauncherDrawerButton(
-      {@required this.app,
+      {this.app,
       @required this.icon,
       this.label,
       this.appExists = true,
       this.childHeight = 64.0,
       this.childWidth = 64.0,
       this.color,
-      @required callback})
+      callback})
       : _callback =
             callback; //This alien syntax must be syntactical glucose for a setter. Neato.
 
