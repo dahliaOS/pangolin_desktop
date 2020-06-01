@@ -6,7 +6,7 @@ import 'model.dart';
 typedef void WindowInteractionCallback();
 
 /// A window container
-class Window extends StatefulWidget{
+class Window extends StatefulWidget {
   /// The window's initial position.
   final Offset initialPosition;
 
@@ -34,18 +34,14 @@ class Window extends StatefulWidget{
     this.initialSize: Size.zero,
     @required this.child,
     this.color: Colors.blueAccent,
-  }):super(key: key);
+  }) : super(key: key);
 
   @override
   WindowState createState() => WindowState();
 }
 
 /// The window's mode.
-enum WindowMode {
-  NORMAL_MODE,
-  MAXIMIZE_MODE,
-  MINIMIZE_MODE
-}
+enum WindowMode { NORMAL_MODE, MAXIMIZE_MODE, MINIMIZE_MODE }
 
 class WindowState extends State<Window> {
   /// The window's position.
@@ -130,12 +126,12 @@ class WindowState extends State<Window> {
   }
 
   @override
-  Widget build(BuildContext context) => ScopedModelDescendant<WindowData>(
-      builder: (
-          BuildContext context,
-          Widget child,
-          WindowData model,
-          ) {
+  Widget build(BuildContext context) =>
+      ScopedModelDescendant<WindowData>(builder: (
+        BuildContext context,
+        Widget child,
+        WindowData model,
+      ) {
         // Make sure the focus tree is properly updated.
         _focusAttachment.reparent();
         /*if (model.tabs.length == 1 && model.tabs[0].id == _draggedTabId) {
@@ -143,80 +139,76 @@ class WindowState extends State<Window> {
           return new Container();
         }
         final TabData selectedTab = _getCurrentSelection(model);*/
-  return Positioned(
-      left: _position.dx,
-      top: _position.dy,
-
-      child:GestureDetector(
-      onTapDown: (_) => _registerInteraction(),
-        child: /*new RawKeyboardListener(
+        return Positioned(
+          left: _position.dx,
+          top: _position.dy,
+          child: GestureDetector(
+            onTapDown: (_) => _registerInteraction(),
+            child:
+                /*new RawKeyboardListener(
         focusNode: _focusNode,
         onKey: (RawKeyEvent event) =>
         _handleKeyEvent(event, model, selectedTab.id),
-        child: new*/ RepaintBoundary(
-        child:
-
-        Container(
-        width: _size.width,
-        height: _size.height,
-        constraints: BoxConstraints(
-          minWidth: _minWidth,
-          minHeight: _minHeight
-        ),
-        decoration: BoxDecoration(boxShadow: kElevationToShadow[12]),
-        child: Column(
-          children: [
-            GestureDetector(
-              onPanUpdate: (DragUpdateDetails details){
-                setState(() {
-                  _position += details.delta;
-                  if(_windowMode == WindowMode.MAXIMIZE_MODE) {
-                    _windowMode = WindowMode.NORMAL_MODE;
-                    _size = _preSize;
-                  }
-                });
-              },
+        child: new*/
+                RepaintBoundary(
               child: Container(
-                padding: EdgeInsets.all(4.0),
-                height: 35.0,
-                color: _color,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                width: _size.width,
+                height: _size.height,
+                constraints: BoxConstraints(
+                    minWidth: _minWidth, minHeight: _minHeight), //
+//                decoration: BoxDecoration(boxShadow: kElevationToShadow[12]),
+                child: Column(
                   children: [
-                    Icon(Icons.minimize,color: Colors.white),
                     GestureDetector(
-                      onTap: () => _windowMode == WindowMode.NORMAL_MODE ? _maximizeWindow() : _restoreWindowFromMaximizeMode(),
-                      child:
-                    Icon(Icons.crop_square,color: Colors.white)
+                      onPanUpdate: (DragUpdateDetails details) {
+                        setState(() {
+                          _position += details.delta;
+                          if (_windowMode == WindowMode.MAXIMIZE_MODE) {
+                            _windowMode = WindowMode.NORMAL_MODE;
+                            _size = _preSize;
+                          }
+                        });
+                      },
+                      child: Container(
+                          padding: EdgeInsets.all(4.0),
+                          height: 35.0,
+                          color: _color,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Icon(Icons.minimize, color: Colors.white),
+                              GestureDetector(
+                                  onTap: () =>
+                                      _windowMode == WindowMode.NORMAL_MODE
+                                          ? _maximizeWindow()
+                                          : _restoreWindowFromMaximizeMode(),
+                                  child: Icon(Icons.crop_square,
+                                      color: Colors.white)),
+                              GestureDetector(
+                                onTap: () => _closeWindow(),
+                                child: Icon(Icons.close, color: Colors.white),
+                              )
+                            ],
+                          )),
                     ),
-                    GestureDetector(
-                      onTap: () => _closeWindow(),
-                      child:
-                    Icon(Icons.close,color: Colors.white),
-                    )
+                    Expanded(
+                      child: GestureDetector(
+                        onPanUpdate: (DragUpdateDetails details) {
+                          setState(() {
+                            var _newSize = _size + details.delta;
+                            if (_newSize.width >= _minWidth &&
+                                _newSize.height >= _minHeight)
+                              _size += details.delta;
+                          });
+                        },
+                        child: _child,
+                      ),
+                    ),
                   ],
-                )
+                ),
               ),
             ),
-            Expanded(
-              child:
-              GestureDetector(
-                onPanUpdate: (DragUpdateDetails details) {
-                  setState(() {
-                    var _newSize = _size+details.delta;
-                    if (_newSize.width>=_minWidth&&_newSize.height>=_minHeight)
-                      _size += details.delta;
-                  });
-                },
-                child: _child,
-              ),
-            ),
-          ],
-        ),
-      ),
-        ),
-      ),
-    );
-  }
-  );
+          ),
+        );
+      });
 }

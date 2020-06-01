@@ -1,97 +1,313 @@
 import 'package:flutter/material.dart';
+import '../applications/calculator.dart';
+import '../applications/editor.dart';
+import '../applications/terminal.dart';
+import '../settings.dart';
+import 'package:GeneratedApp/widgets/app_launcher.dart';
 
+Column buildTile({bool exists = true, Widget app, String icon, String label}) {
+  return Column(
+    //mainAxisSize: MainAxisSize.min,
+    //mainAxisAlignment: MainAxisAlignment.center,
+    crossAxisAlignment: CrossAxisAlignment.center,
+    children: [
+      AppLauncherPanelButton(app: app, icon: icon, appExists: exists ?? false)
+          .copyWith(childWidth: 64.0, childHeight: 64.0),
+//      new Image.asset(
+//        icon,
+//        fit: BoxFit.fill,
+//        width: 64.0,
+//        height: 64.0,
+//      ),
+      Container(
+        margin: EdgeInsets.only(top: 8),
+        child: Text(
+          label,
+          style: TextStyle(
+            fontSize: 18.0,
+            fontWeight: FontWeight.w400,
+            color: exists ? Colors.white : Colors.grey[700],
+          ),
+          textAlign: TextAlign.center,
+        ),
+      ),
+    ],
+  );
+}
 
+Widget tileSection = Expanded(
+  child: Container(
+      constraints: BoxConstraints(maxWidth: 900),
+      padding: EdgeInsets.all(10.0),
+      child: GridView.count(crossAxisCount: 5, children: [
+        AppLauncherDrawerButton(
+            app: Terminal(),
+            icon: 'lib/images/icons/v2/compiled/terminal.png',
+            label: 'Terminal'),
+        AppLauncherDrawerButton(
+            icon: 'lib/images/icons/v2/compiled/task.png',
+            label: 'Task Manager',
+            appExists: false),
+        AppLauncherDrawerButton(
+            app: Settings(),
+            icon: 'lib/images/icons/v2/compiled/settings.png',
+            label: 'Settings'),
+        AppLauncherDrawerButton(
+            icon: 'lib/images/icons/v2/compiled/root.png',
+            label: 'Root Terminal',
+            appExists: false),
+        AppLauncherDrawerButton(
+            app: TextEditor(),
+            icon: 'lib/images/icons/v2/compiled/notes.png',
+            label: 'Notes'),
+        AppLauncherDrawerButton(
+            icon: 'lib/images/icons/v2/compiled/note_mobile.png',
+            label: 'Notes (mobile)',
+            appExists: false),
+        AppLauncherDrawerButton(
+            icon: 'lib/images/icons/v2/compiled/logs.png',
+            label: 'System Logs',
+            appExists: false),
+        AppLauncherDrawerButton(
+            icon: 'lib/images/icons/v2/compiled/files.png',
+            label: 'Files',
+            appExists: false),
+        AppLauncherDrawerButton(
+            icon: 'lib/images/icons/v2/compiled/disks.png',
+            label: 'Disks',
+            appExists: false),
+        AppLauncherDrawerButton(
+            app: Calculator(),
+            icon: 'lib/images/icons/v2/compiled/calculator.png',
+            label: 'Calculator'),
+        AppLauncherDrawerButton(
+            icon: 'lib/images/icons/v2/compiled/android.png',
+            label: 'Android Subsystem',
+            appExists: false),
+        AppLauncherDrawerButton(
+          icon: 'lib/images/icons/v2/compiled/theme.png',
+          label: 'Theme Demo',
+          appExists: false, //TODO: Import and arg
+        ),
+        AppLauncherDrawerButton(
+          icon: 'lib/images/dahlia.png',
+          label: 'Welcome',
+          appExists: false,
+        )
+      ])),
+);
 
-
-      
- Card buildCard(IconData icon, String title, Color color, Color splash, String text) {
-return new Card(
-  
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5.0),
-              ),
-           
+class SysInfoCard extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(5.0),
+      ),
       child: InkWell(
-        splashColor: splash,
+        splashColor: Colors.blue.withAlpha(30),
         onTap: () {
-          
-          
-  showDialog(
-
-      builder: (BuildContext context) {
-        
-        // return object of type Dialog
-        return AlertDialog(
-          title: new Text("Feature not implemented"),
-          content: new Text("This feature is currently not available on your build of Pangolin. Please see https://reddit.com/r/dahliaos to check for updates."),
-          actions: <Widget>[
-            // usually buttons at the bottom of the dialog
-            new FlatButton(
-              child: new Text("OK"),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-          
-          
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              // return object of type Dialog
+              return AlertDialog(
+                title: new Text("Feature not implemented"),
+                content: new Text(
+                    "This feature is currently not available on your build of Pangolin. Please see https://reddit.com/r/dahliaos to check for updates."),
+                actions: <Widget>[
+                  // usually buttons at the bottom of the dialog
+                  new FlatButton(
+                    child: new Text("OK"),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              );
+            },
+          );
         },
         child: Container(
           width: 300,
           height: 100,
           child: new Padding(
-                padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
-               child:  new Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              new Row(
+            padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
+            child: new Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  new Icon(
-                    icon,
-                    color: color,
-                    size: 20.0),
-    
+                  new Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.max,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        new Icon(Icons.info, color: Colors.blue, size: 20.0),
+                        new Text(
+                          " " + "System Information",
+                          style: new TextStyle(
+                              fontSize: 15.0,
+                              color: Colors.blue,
+                              fontWeight: FontWeight.w400,
+                              fontFamily: "Roboto"),
+                        )
+                      ]),
                   new Text(
-                  " " + title,
-                    style: new TextStyle(fontSize:15.0,
-                    color: color,
-                    fontWeight: FontWeight.w400,
-                    fontFamily: "Roboto"),
+                    "pangolin-desktop, commit 'varCommit'",
+                    style: new TextStyle(
+                        fontSize: 15.0,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w400,
+                        fontFamily: "Roboto"),
                   )
-                ]
-    
-              ),
-              
-              
-              
-              
-              new Text(
-                 text,
-                    style: new TextStyle(fontSize:15.0,
-                    color: Colors.black,
-                    fontWeight: FontWeight.w400,
-                    fontFamily: "Roboto"),
-                  )
-                  
-                  
-                  
-            ]
-    
+                ]),
           ),
- 
-              ),
         ),
       ),
     );
+  }
 }
 
+class NewsCard extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(5.0),
+      ),
+      child: InkWell(
+        splashColor: Colors.deepOrange.withAlpha(30),
+        onTap: () {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              // return object of type Dialog
+              return AlertDialog(
+                title: new Text("Feature not implemented"),
+                content: new Text(
+                    "This feature is currently not available on your build of Pangolin. Please see https://reddit.com/r/dahliaos to check for updates."),
+                actions: <Widget>[
+                  // usually buttons at the bottom of the dialog
+                  new FlatButton(
+                    child: new Text("OK"),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              );
+            },
+          );
+        },
+        child: Container(
+          width: 300,
+          height: 100,
+          child: new Padding(
+            padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
+            child: new Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  new Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.max,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        new Icon(Icons.speaker_notes,
+                            color: Colors.deepOrange, size: 20.0),
+                        new Text(
+                          " " + "News",
+                          style: new TextStyle(
+                              fontSize: 15.0,
+                              color: Colors.deepOrange,
+                              fontWeight: FontWeight.w400,
+                              fontFamily: "Roboto"),
+                        )
+                      ]),
+                  new Text(
+                    "UNABLE TO PARSE JSON!!!",
+                    style: new TextStyle(
+                        fontSize: 15.0,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w400,
+                        fontFamily: "Roboto"),
+                  )
+                ]),
+          ),
+        ),
+      ),
+    );
+  }
+}
 
-
+Card buildCard(IconData icon, String title, Color color, Color splash,
+    String text, BuildContext context) {
+  return new Card(
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(5.0),
+    ),
+    child: InkWell(
+      splashColor: splash,
+      onTap: () {
+        showDialog(
+          builder: (BuildContext context) {
+            // return object of type Dialog
+            return AlertDialog(
+              title: new Text("Feature not implemented"),
+              content: new Text(
+                  "This feature is currently not available on your build of Pangolin. Please see https://reddit.com/r/dahliaos to check for updates."),
+              actions: <Widget>[
+                // usually buttons at the bottom of the dialog
+                new FlatButton(
+                  child: new Text("OK"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          },
+          context: context,
+        );
+      },
+      child: Container(
+        width: 300,
+        height: 100,
+        child: new Padding(
+          padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
+          child: new Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                new Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      new Icon(icon, color: color, size: 20.0),
+                      new Text(
+                        " " + title,
+                        style: new TextStyle(
+                            fontSize: 15.0,
+                            color: color,
+                            fontWeight: FontWeight.w400,
+                            fontFamily: "Roboto"),
+                      )
+                    ]),
+                new Text(
+                  text,
+                  style: new TextStyle(
+                      fontSize: 15.0,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w400,
+                      fontFamily: "Roboto"),
+                )
+              ]),
+        ),
+      ),
+    ),
+  );
+}

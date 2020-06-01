@@ -25,6 +25,53 @@ import 'applications/editor.dart';
 import 'applications/terminal.dart';
 import 'settings.dart';
 
+WindowsData provisionalWindowData = new WindowsData();
+final GlobalKey<ToggleState> _launcherToggleKey = GlobalKey<ToggleState>();
+final GlobalKey<SystemOverlayState> _launcherOverlayKey =
+    GlobalKey<SystemOverlayState>();
+final GlobalKey<ToggleState> _statusToggleKey = GlobalKey<ToggleState>();
+final GlobalKey<SystemOverlayState> _statusOverlayKey =
+    GlobalKey<SystemOverlayState>();
+final Tween<double> _overlayScaleTween = Tween<double>(begin: 0.9, end: 1.0);
+final Tween<double> _overlayOpacityTween = Tween<double>(begin: 0.0, end: 1.0);
+
+/// Hides all overlays except [except] if applicable.
+void _hideOverlays({GlobalKey<SystemOverlayState> except}) {
+  <GlobalKey<SystemOverlayState>>[
+    _launcherOverlayKey,
+    _statusOverlayKey,
+  ].where((GlobalKey<SystemOverlayState> overlay) => overlay != except).forEach(
+      (GlobalKey<SystemOverlayState> overlay) =>
+          overlay.currentState.visible = false);
+}
+
+/// Sets the given [overlay]'s visibility to [visible].
+/// When showing an overlay, this also hides every other overlay.
+void _setOverlayVisibility({
+  @required GlobalKey<SystemOverlayState> overlay,
+  @required bool visible,
+}) {
+  if (visible) {
+    _hideOverlays(except: overlay);
+  }
+  overlay.currentState.visible = visible;
+}
+
+List<AppLauncherPanelButton> testLaunchers = [
+  AppLauncherPanelButton(
+      app: Calculator(), icon: 'lib/images/icons/v2/compiled/calculator.png'),
+  AppLauncherPanelButton(
+      app: TextEditor(), icon: 'lib/images/icons/v2/compiled/notes.png'),
+  AppLauncherPanelButton(
+      app: Terminal(), icon: 'lib/images/icons/v2/compiled/terminal.png'),
+  AppLauncherPanelButton(
+    icon: 'lib/images/icons/v2/compiled/files.png',
+    appExists: false,
+  ),
+  AppLauncherPanelButton(
+      app: Settings(), icon: 'lib/images/icons/v2/compiled/settings.png'),
+];
+
 void main() {
   /// To keep app in Portrait Mode
   //SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeRight]);
@@ -34,14 +81,19 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    //Gets DahliaOS UI set up in a familiar way.
+    provisionalWindowData.add(child: HisApp(), color: Colors.red[800]);
+
     return ChangeNotifierProvider<WindowsData>(
-      create: (context) => new WindowsData(),
+      create: (context) => provisionalWindowData,
       child: DynamicTheme(
         defaultBrightness: Brightness.light,
         data: (Brightness brightness) => ThemeData(
           primarySwatch: Colors.deepOrange,
           accentColor: Colors.deepOrange,
           brightness: brightness,
+          canvasColor: Colors.black.withOpacity(0.5),
+          primaryColor: const Color(0xFFff5722),
         ),
         loadBrightnessOnStart: true,
         themedWidgetBuilder: (BuildContext context, ThemeData theme) {
@@ -66,17 +118,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final GlobalKey<ToggleState> _launcherToggleKey =
-      new GlobalKey<ToggleState>();
-  final GlobalKey<SystemOverlayState> _launcherOverlayKey =
-      GlobalKey<SystemOverlayState>();
-  final GlobalKey<ToggleState> _statusToggleKey = new GlobalKey<ToggleState>();
-  final GlobalKey<SystemOverlayState> _statusOverlayKey =
-      new GlobalKey<SystemOverlayState>();
-  final Tween<double> _overlayScaleTween =
-      new Tween<double>(begin: 0.9, end: 1.0);
-  final Tween<double> _overlayOpacityTween =
-      new Tween<double>(begin: 0.0, end: 1.0);
   //String _timeString;
   /*@override
   void initState() {
@@ -102,7 +143,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
 
         // 2 - Example usage of windows widgets
-        WindowPlaygroundWidget(Provider.of<WindowsData>(context)),
+        WindowPlaygroundWidget(),
         /*Window(
               initialPosition: Offset.fromDirection(350.0,-40.0),
               initialSize: Size(355,628),
@@ -131,9 +172,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: child,
                 ),
               ),
-              child: new ClipRRect(
+              child: ClipRRect(
                 //borderRadius: BorderRadius.circular(5.0),
-                child: new Container(
+                child: Container(
                     padding: const EdgeInsets.all(0.0),
                     alignment: Alignment.center,
                     width: 1.7976931348623157e+308,
@@ -164,15 +205,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: child,
                 ),
               ),
-              child: new ClipRRect(
+              child: ClipRRect(
                 borderRadius: BorderRadius.circular(5.0),
-                child: new Stack(children: [
-                  new BackdropFilter(
-                    filter: new ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
-                    child: new Container(
-                      decoration: new BoxDecoration(
-                          color: Colors.black.withOpacity(0.75)),
-                      child: new QuickSettings(),
+                child: Stack(children: [
+                  BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+                    child: Container(
+                      decoration:
+                          BoxDecoration(color: Colors.black.withOpacity(0.75)),
+                      child: QuickSettings(),
                     ),
                   ),
                 ]),
@@ -203,7 +244,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  new Row(
+                  Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -215,66 +256,31 @@ class _MyHomePageState extends State<MyHomePage> {
                             visible: toggled,
                           ),
                         ),
-                        new AppLauncherButton(
-                            Calculator(),
-                            Image.asset(
-                              'lib/images/icons/v2/compiled/calculator.png',
-                              fit: BoxFit.contain,
-                              width: 60.0,
-                              height: 60.0,
-                            ),
-                            Colors.green 
-                            ),
-                        new AppLauncherButton(
-                            TextEditor(),
-                            Image.asset(
-                              'lib/images/icons/v2/compiled/notes.png',
-                              fit: BoxFit.contain,
-                              width: 60.0,
-                              height: 60.0,
-                            ),
-                            Colors.deepOrange[800] 
-                            ),
-                        new AppLauncherButton(
-                            Terminal(),
-                            Image.asset(
-                              'lib/images/icons/v2/compiled/terminal.png',
-                              fit: BoxFit.contain,
-                              width: 60.0,
-                              height: 60.0,
-                            ),
-                            Colors.grey[900]
-                            ),
-                        new AppLauncherButton(
-                          null,
-                          Image.asset('lib/images/icons/v2/compiled/files.png',
-                              fit: BoxFit.contain,
-                              width: 60.0,
-                              height: 60.0,
-                              color: Colors.grey),
-                              Colors.deepOrange,
-                          appExists: false,
+                        AppLauncherPanelButton(
+                          app: Calculator(),
+                          icon: 'lib/images/icons/v2/compiled/calculator.png',
+                          color: Colors.green,
                         ),
-                        new AppLauncherButton(
-                            Settings(),
-                            Image.asset(
-                              'lib/images/icons/v2/compiled/settings.png',
-                              fit: BoxFit.contain,
-                              width: 60.0,
-                              height: 60.0,
-                            ),
-                            Colors.deepOrange 
-                            ),
-                            new AppLauncherButton(
-                            HisApp(),
-                            Image.asset(
-                              'lib/images/icons/v2/compiled/theme.png',
-                              fit: BoxFit.contain,
-                              width: 60.0,
-                              height: 60.0,
-                            ),
-                            Colors.grey[800]
-                            ),
+                        AppLauncherPanelButton(
+                          app: TextEditor(),
+                          icon: 'lib/images/icons/v2/compiled/notes.png',
+                          color: Colors.deepOrange[900],
+                        ),
+                        AppLauncherPanelButton(
+                          app: Terminal(),
+                          icon: 'lib/images/icons/v2/compiled/terminal.png',
+                          color: Colors.grey[900],
+                        ),
+                        AppLauncherPanelButton(
+                          icon: 'lib/images/icons/v2/compiled/files.png',
+                          appExists: false,
+                          color: Colors.grey,
+                        ),
+                        AppLauncherPanelButton(
+                          app: Settings(),
+                          icon: 'lib/images/icons/v2/compiled/settings.png',
+                          color: Colors.deepOrange,
+                        ),
                       ]),
                   StatusTrayWidget(
                     toggleKey: _statusToggleKey,
@@ -289,12 +295,11 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
 
-        // new WallpaperPicker(),
+        // WallpaperPicker(),
       ],
     ));
   }
 
-  dynamic getWindows() => Provider.of<WindowsData>(context);
   /*void _getTime() {
     final DateTime now = DateTime.now();
     final String formattedDateTime = _formatDateTime(now);
@@ -307,26 +312,18 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return DateFormat('hh:mm').format(dateTime);
   }*/
-  /// Hides all overlays except [except] if applicable.
-  void _hideOverlays({GlobalKey<SystemOverlayState> except}) {
-    <GlobalKey<SystemOverlayState>>[
-      _launcherOverlayKey,
-      _statusOverlayKey,
-    ]
-        .where((GlobalKey<SystemOverlayState> overlay) => overlay != except)
-        .forEach((GlobalKey<SystemOverlayState> overlay) =>
-            overlay.currentState.visible = false);
-  }
 
-  /// Sets the given [overlay]'s visibility to [visible].
-  /// When showing an overlay, this also hides every other overlay.
-  void _setOverlayVisibility({
-    @required GlobalKey<SystemOverlayState> overlay,
-    @required bool visible,
-  }) {
-    if (visible) {
-      _hideOverlays(except: overlay);
-    }
-    overlay.currentState.visible = visible;
-  }
+//  List<Widget> wrappedLaunchers(List<AppLauncherButton> launcherList) {
+//    double positionOffSet = 10.0;
+//    List<Widget> list = [];
+//
+//    for (AppLauncherButton launcher in launcherList) {
+//      list.add(Positioned.directional(
+//          textDirection: TextDirection.ltr,
+//          start: positionOffSet,
+//          child: launcher));
+//      positionOffSet += 20;
+//    }
+//    return list;
+//  }
 }
