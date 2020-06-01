@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../window/model.dart';
-import 'package:random_color/random_color.dart';
+
 
 class AppLauncherPanelButton extends StatelessWidget {
   final Widget app;
@@ -35,7 +35,7 @@ class AppLauncherPanelButton extends StatelessWidget {
 
               appExists
                   ? Provider.of<WindowsData>(context, listen: false)
-                      .add(child: app, color: RandomColor().randomColor())
+                      .add(child: app, color: color)
                   : showDialog(
                       context: context,
                       builder: (BuildContext context) {
@@ -88,6 +88,7 @@ class AppLauncherDrawerButton extends AppLauncherPanelButton {
   final double childHeight;
   final double childWidth;
   final String label;
+  final Color color;
 
   AppLauncherDrawerButton(
       {this.app,
@@ -95,7 +96,8 @@ class AppLauncherDrawerButton extends AppLauncherPanelButton {
       this.label,
       this.appExists = true,
       this.childHeight = 64.0,
-      this.childWidth = 64.0});
+      this.childWidth = 64.0,
+      this.color});
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -109,7 +111,7 @@ class AppLauncherDrawerButton extends AppLauncherPanelButton {
 
               appExists
                   ? Provider.of<WindowsData>(context, listen: false)
-                      .add(child: app, color: RandomColor().randomColor())
+                      .add(child: app, color: color)
                   : showDialog(
                       context: context,
                       builder: (BuildContext context) {
@@ -142,7 +144,7 @@ class AppLauncherDrawerButton extends AppLauncherPanelButton {
         Text(
           label,
           style: TextStyle(
-            fontSize: 18.0,
+            fontSize: 15.0,
             fontWeight: FontWeight.w400,
             color: appExists ? Colors.white : Colors.grey[700],
           ),

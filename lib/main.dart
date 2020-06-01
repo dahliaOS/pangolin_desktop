@@ -1,5 +1,6 @@
 import 'package:GeneratedApp/applications/calculator.dart';
 import 'package:GeneratedApp/applications/editor.dart';
+import 'package:GeneratedApp/applications/welcome.dart';
 
 import 'quick_settings.dart';
 import 'window_space.dart';
@@ -82,7 +83,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //Gets DahliaOS UI set up in a familiar way.
-    provisionalWindowData.add(child: HisApp(), color: Colors.red[800]);
+    provisionalWindowData.add(child: Welcome(), color: Colors.grey[900]);
 
     return ChangeNotifierProvider<WindowsData>(
       create: (context) => provisionalWindowData,
@@ -280,6 +281,11 @@ class _MyHomePageState extends State<MyHomePage> {
                           app: Settings(),
                           icon: 'lib/images/icons/v2/compiled/settings.png',
                           color: Colors.deepOrange,
+                        ),
+                        AppLauncherPanelButton(
+                          app: HisApp(),
+                          icon: 'lib/images/icons/v2/compiled/theme.png',
+                          color: Colors.grey[900],
                         ),
                       ]),
                   StatusTrayWidget(

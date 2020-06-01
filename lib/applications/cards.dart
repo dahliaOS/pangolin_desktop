@@ -4,6 +4,8 @@ import '../applications/editor.dart';
 import '../applications/terminal.dart';
 import '../settings.dart';
 import 'package:GeneratedApp/widgets/app_launcher.dart';
+import 'package:GeneratedApp/applications/welcome.dart';
+import 'package:GeneratedApp/themes/main.dart';
 
 Column buildTile({bool exists = true, Widget app, String icon, String label}) {
   return Column(
@@ -43,7 +45,8 @@ Widget tileSection = Expanded(
         AppLauncherDrawerButton(
             app: Terminal(),
             icon: 'lib/images/icons/v2/compiled/terminal.png',
-            label: 'Terminal'),
+            label: 'Terminal',
+            color: Colors.grey[900],),
         AppLauncherDrawerButton(
             icon: 'lib/images/icons/v2/compiled/task.png',
             label: 'Task Manager',
@@ -51,7 +54,8 @@ Widget tileSection = Expanded(
         AppLauncherDrawerButton(
             app: Settings(),
             icon: 'lib/images/icons/v2/compiled/settings.png',
-            label: 'Settings'),
+            label: 'Settings',
+            color: Colors.deepOrange,),
         AppLauncherDrawerButton(
             icon: 'lib/images/icons/v2/compiled/root.png',
             label: 'Root Terminal',
@@ -59,7 +63,8 @@ Widget tileSection = Expanded(
         AppLauncherDrawerButton(
             app: TextEditor(),
             icon: 'lib/images/icons/v2/compiled/notes.png',
-            label: 'Notes'),
+            label: 'Notes',
+            color: Colors.deepOrange,),
         AppLauncherDrawerButton(
             icon: 'lib/images/icons/v2/compiled/note_mobile.png',
             label: 'Notes (mobile)',
@@ -79,20 +84,25 @@ Widget tileSection = Expanded(
         AppLauncherDrawerButton(
             app: Calculator(),
             icon: 'lib/images/icons/v2/compiled/calculator.png',
-            label: 'Calculator'),
+            label: 'Calculator',
+            color: Colors.green,
+            ),
         AppLauncherDrawerButton(
             icon: 'lib/images/icons/v2/compiled/android.png',
             label: 'Android Subsystem',
             appExists: false),
         AppLauncherDrawerButton(
+           app: HisApp(),
           icon: 'lib/images/icons/v2/compiled/theme.png',
           label: 'Theme Demo',
-          appExists: false, //TODO: Import and arg
+          color: Colors.grey[900],
+          
         ),
         AppLauncherDrawerButton(
+           app: Welcome(),
           icon: 'lib/images/dahlia.png',
           label: 'Welcome',
-          appExists: false,
+            color: Colors.grey[900],
         )
       ])),
 );
