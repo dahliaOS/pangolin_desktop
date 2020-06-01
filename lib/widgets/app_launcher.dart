@@ -11,15 +11,15 @@ class AppLauncherPanelButton extends StatelessWidget {
   final bool appExists;
   final double childHeight;
   final double childWidth;
-  final String label;
+  final Color color;
 
   AppLauncherPanelButton(
       {this.app,
       this.icon,
-      this.label,
       this.appExists = true,
       this.childHeight = 35.0,
-      this.childWidth = 35.0});
+      this.childWidth = 35.0,
+      this.color});
 
   @override
   Widget build(BuildContext context) {
