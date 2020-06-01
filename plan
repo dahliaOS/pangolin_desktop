@@ -1,0 +1,19 @@
+
+ _launcherToggleKey = GlobalKey<ToggleState>(); ##
+_launcherOverlayKey = GlobalKey<SystemOverlayState>();  ###
+ _statusToggleKey = GlobalKey<ToggleState>(); ##
+_statusOverlayKey =  GlobalKey<SystemOverlayState>();
+-----------------------------------------------------------------------
+Keys here represent state modelled by either toggleState or SystemOverlayState?
+Structure:
+
+Widget SystemOverlay
+        key: _launcherOverlayKey
+        callback:  callback: (bool visible) {
+                              _launcherToggleKey.currentState.toggled = visible;}
+
+Widget LauncherToggleWidget
+        toggleKey: _statusToggleKey
+        overlay: (toogled)=> func(_launcherOverlayKey,
+                                    visible: toggled,)
+
