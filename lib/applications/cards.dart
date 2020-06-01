@@ -37,6 +37,7 @@ Column buildTile({bool exists = true, Widget app, String icon, String label}) {
 
 Widget tileSection = Expanded(
   child: Container(
+      constraints: BoxConstraints(maxWidth: 900),
       padding: EdgeInsets.all(10.0),
       child: GridView.count(crossAxisCount: 5, children: [
         AppLauncherDrawerButton(
@@ -83,6 +84,16 @@ Widget tileSection = Expanded(
             icon: 'lib/images/icons/v2/compiled/android.png',
             label: 'Android Subsystem',
             appExists: false),
+        AppLauncherDrawerButton(
+          icon: 'lib/images/icons/v2/compiled/theme.png',
+          label: 'Theme Demo',
+          appExists: false, //TODO: Import and arg
+        ),
+        AppLauncherDrawerButton(
+          icon: 'lib/images/dahlia.png',
+          label: 'Welcome',
+          appExists: false,
+        )
       ])),
 );
 

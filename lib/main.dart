@@ -257,22 +257,30 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                         ),
                         AppLauncherPanelButton(
-                            app: Calculator(),
-                            icon:
-                                'lib/images/icons/v2/compiled/calculator.png'),
+                          app: Calculator(),
+                          icon: 'lib/images/icons/v2/compiled/calculator.png',
+                          color: Colors.green,
+                        ),
                         AppLauncherPanelButton(
-                            app: TextEditor(),
-                            icon: 'lib/images/icons/v2/compiled/notes.png'),
+                          app: TextEditor(),
+                          icon: 'lib/images/icons/v2/compiled/notes.png',
+                          color: Colors.deepOrange[900],
+                        ),
                         AppLauncherPanelButton(
-                            app: Terminal(),
-                            icon: 'lib/images/icons/v2/compiled/terminal.png'),
+                          app: Terminal(),
+                          icon: 'lib/images/icons/v2/compiled/terminal.png',
+                          color: Colors.grey[900],
+                        ),
                         AppLauncherPanelButton(
                           icon: 'lib/images/icons/v2/compiled/files.png',
                           appExists: false,
+                          color: Colors.grey,
                         ),
                         AppLauncherPanelButton(
-                            app: Settings(),
-                            icon: 'lib/images/icons/v2/compiled/settings.png'),
+                          app: Settings(),
+                          icon: 'lib/images/icons/v2/compiled/settings.png',
+                          color: Colors.deepOrange,
+                        ),
                       ]),
                   StatusTrayWidget(
                     toggleKey: _statusToggleKey,
