@@ -12,7 +12,6 @@ import 'themes/dynamic_theme.dart';
 import 'themes/main.dart';
 import 'package:flutter/services.dart';
 import 'widgets/system_overlay.dart';
-import 'widgets/toggle.dart';
 import 'launcher_toggle.dart';
 import 'status_tray.dart';
 import 'app_toggle.dart';
@@ -25,38 +24,9 @@ import 'applications/calculator.dart';
 import 'applications/editor.dart';
 import 'applications/terminal.dart';
 import 'settings.dart';
+import 'commons/key_ring.dart';
 
 WindowsData provisionalWindowData = new WindowsData();
-final GlobalKey<ToggleState> _launcherToggleKey = GlobalKey<ToggleState>();
-final GlobalKey<SystemOverlayState> _launcherOverlayKey =
-    GlobalKey<SystemOverlayState>();
-final GlobalKey<ToggleState> _statusToggleKey = GlobalKey<ToggleState>();
-final GlobalKey<SystemOverlayState> _statusOverlayKey =
-    GlobalKey<SystemOverlayState>();
-final Tween<double> _overlayScaleTween = Tween<double>(begin: 0.9, end: 1.0);
-final Tween<double> _overlayOpacityTween = Tween<double>(begin: 0.0, end: 1.0);
-
-/// Hides all overlays except [except] if applicable.
-void _hideOverlays({GlobalKey<SystemOverlayState> except}) {
-  <GlobalKey<SystemOverlayState>>[
-    _launcherOverlayKey,
-    _statusOverlayKey,
-  ].where((GlobalKey<SystemOverlayState> overlay) => overlay != except).forEach(
-      (GlobalKey<SystemOverlayState> overlay) =>
-          overlay.currentState.visible = false);
-}
-
-/// Sets the given [overlay]'s visibility to [visible].
-/// When showing an overlay, this also hides every other overlay.
-void _setOverlayVisibility({
-  @required GlobalKey<SystemOverlayState> overlay,
-  @required bool visible,
-}) {
-  if (visible) {
-    _hideOverlays(except: overlay);
-  }
-  overlay.currentState.visible = visible;
-}
 
 List<AppLauncherPanelButton> testLaunchers = [
   AppLauncherPanelButton(
@@ -119,6 +89,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final Tween<double> _overlayScaleTween = Tween<double>(begin: 0.9, end: 1.0);
+  final Tween<double> _overlayOpacityTween =
+      Tween<double>(begin: 0.0, end: 1.0);
   //String _timeString;
   /*@override
   void initState() {
@@ -162,7 +135,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
         // 3 - Launcher Panel
         SystemOverlay(
-          key: _launcherOverlayKey,
+          key: KeyRing.launcherOverlayKey,
           builder: (Animation<double> animation) => Center(
             child: AnimatedBuilder(
               animation: animation,
@@ -186,13 +159,13 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           callback: (bool visible) {
-            _launcherToggleKey.currentState.toggled = visible;
+            KeyRing.launcherToggleKey.currentState.toggled = visible;
           },
         ),
 
         // 4 - Quick settings panel
         SystemOverlay(
-          key: _statusOverlayKey,
+          key: KeyRing.statusOverlayKey,
           builder: (Animation<double> animation) => Positioned(
             right: 0.0,
             bottom: 50.0,
@@ -222,7 +195,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           callback: (bool visible) {
-            _statusToggleKey.currentState.toggled = visible;
+            KeyRing.statusToggleKey.currentState.toggled = visible;
           },
         ),
 
@@ -251,9 +224,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         LauncherToggleWidget(
-                          toggleKey: _launcherToggleKey,
+                          toggleKey: KeyRing.launcherToggleKey,
                           callback: (bool toggled) => _setOverlayVisibility(
-                            overlay: _launcherOverlayKey,
+                            overlay: KeyRing.launcherOverlayKey,
                             visible: toggled,
                           ),
                         ),
@@ -289,9 +262,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ]),
                   StatusTrayWidget(
-                    toggleKey: _statusToggleKey,
+                    toggleKey: KeyRing.statusToggleKey,
                     callback: (bool toggled) => _setOverlayVisibility(
-                      overlay: _statusOverlayKey,
+                      overlay: KeyRing.statusOverlayKey,
                       visible: toggled,
                     ),
                   ),
@@ -332,4 +305,26 @@ class _MyHomePageState extends State<MyHomePage> {
 //    }
 //    return list;
 //  }
+  /// Hides all overlays except [except] if applicable.
+  void _hideOverlays({GlobalKey<SystemOverlayState> except}) {
+    <GlobalKey<SystemOverlayState>>[
+      KeyRing.launcherOverlayKey,
+      KeyRing.statusOverlayKey,
+    ]
+        .where((GlobalKey<SystemOverlayState> overlay) => overlay != except)
+        .forEach((GlobalKey<SystemOverlayState> overlay) =>
+            overlay.currentState.visible = false);
+  }
+
+  /// Sets the given [overlay]'s visibility to [visible].
+  /// When showing an overlay, this also hides every other overlay.
+  void _setOverlayVisibility({
+    @required GlobalKey<SystemOverlayState> overlay,
+    @required bool visible,
+  }) {
+    if (visible) {
+      _hideOverlays(except: overlay);
+    }
+    overlay.currentState.visible = visible;
+  }
 }
