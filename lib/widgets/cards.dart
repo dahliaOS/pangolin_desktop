@@ -7,64 +7,37 @@ import 'package:GeneratedApp/widgets/app_launcher.dart';
 import 'package:GeneratedApp/applications/welcome.dart';
 import 'package:GeneratedApp/themes/main.dart';
 
-Column buildTile({bool exists = true, Widget app, String icon, String label}) {
-  return Column(
-    //mainAxisSize: MainAxisSize.min,
-    //mainAxisAlignment: MainAxisAlignment.center,
-    crossAxisAlignment: CrossAxisAlignment.center,
-    children: [
-      AppLauncherPanelButton(app: app, icon: icon, appExists: exists ?? false)
-          .copyWith(childWidth: 64.0, childHeight: 64.0),
-//      new Image.asset(
-//        icon,
-//        fit: BoxFit.fill,
-//        width: 64.0,
-//        height: 64.0,
-//      ),
-      Container(
-        margin: EdgeInsets.only(top: 8),
-        child: Text(
-          label,
-          style: TextStyle(
-            fontSize: 18.0,
-            fontWeight: FontWeight.w400,
-            color: exists ? Colors.white : Colors.grey[700],
-          ),
-          textAlign: TextAlign.center,
-        ),
-      ),
-    ],
-  );
-}
-
 Widget tileSection = Expanded(
   child: Container(
       constraints: BoxConstraints(maxWidth: 900),
       padding: EdgeInsets.all(10.0),
       child: GridView.count(crossAxisCount: 5, children: [
         AppLauncherDrawerButton(
-            app: Terminal(),
-            icon: 'lib/images/icons/v2/compiled/terminal.png',
-            label: 'Terminal',
-            color: Colors.grey[900],),
+          app: Terminal(),
+          icon: 'lib/images/icons/v2/compiled/terminal.png',
+          label: 'Terminal',
+          color: Colors.grey[900],
+        ),
         AppLauncherDrawerButton(
             icon: 'lib/images/icons/v2/compiled/task.png',
             label: 'Task Manager',
             appExists: false),
         AppLauncherDrawerButton(
-            app: Settings(),
-            icon: 'lib/images/icons/v2/compiled/settings.png',
-            label: 'Settings',
-            color: Colors.deepOrange,),
+          app: Settings(),
+          icon: 'lib/images/icons/v2/compiled/settings.png',
+          label: 'Settings',
+          color: Colors.deepOrange,
+        ),
         AppLauncherDrawerButton(
             icon: 'lib/images/icons/v2/compiled/root.png',
             label: 'Root Terminal',
             appExists: false),
         AppLauncherDrawerButton(
-            app: TextEditor(),
-            icon: 'lib/images/icons/v2/compiled/notes.png',
-            label: 'Notes',
-            color: Colors.deepOrange,),
+          app: TextEditor(),
+          icon: 'lib/images/icons/v2/compiled/notes.png',
+          label: 'Notes',
+          color: Colors.deepOrange,
+        ),
         AppLauncherDrawerButton(
             icon: 'lib/images/icons/v2/compiled/note_mobile.png',
             label: 'Notes (mobile)',
@@ -82,27 +55,26 @@ Widget tileSection = Expanded(
             label: 'Disks',
             appExists: false),
         AppLauncherDrawerButton(
-            app: Calculator(),
-            icon: 'lib/images/icons/v2/compiled/calculator.png',
-            label: 'Calculator',
-            color: Colors.green,
-            ),
+          app: Calculator(),
+          icon: 'lib/images/icons/v2/compiled/calculator.png',
+          label: 'Calculator',
+          color: Colors.green,
+        ),
         AppLauncherDrawerButton(
             icon: 'lib/images/icons/v2/compiled/android.png',
             label: 'Android Subsystem',
             appExists: false),
         AppLauncherDrawerButton(
-           app: HisApp(),
+          app: HisApp(),
           icon: 'lib/images/icons/v2/compiled/theme.png',
           label: 'Theme Demo',
           color: Colors.grey[900],
-          
         ),
         AppLauncherDrawerButton(
-           app: Welcome(),
+          app: Welcome(),
           icon: 'lib/images/dahlia.png',
           label: 'Welcome',
-            color: Colors.grey[900],
+          color: Colors.grey[900],
         )
       ])),
 );

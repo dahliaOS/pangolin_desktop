@@ -8,6 +8,7 @@
 .buildlog/
 .history
 .svn/
+plan_c
 
 # IntelliJ related
 *.iml

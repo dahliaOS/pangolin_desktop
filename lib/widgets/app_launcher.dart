@@ -1,9 +1,7 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../window/model.dart';
-
 
 class AppLauncherPanelButton extends StatelessWidget {
   final Widget app;
@@ -21,6 +19,10 @@ class AppLauncherPanelButton extends StatelessWidget {
       this.childWidth = 35.0,
       this.color});
 
+  Widget addAppLauncher(double margin) {
+    return Container(child: app, margin: EdgeInsets.all(margin));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -31,11 +33,9 @@ class AppLauncherPanelButton extends StatelessWidget {
           opacity: appExists ? 1.0 : 0.4,
           child: GestureDetector(
             onTap: () {
-              print(appExists);
-
               appExists
                   ? Provider.of<WindowsData>(context, listen: false)
-                      .add(child: app, color: color)
+                      .add(child: addAppLauncher(50.0), color: color)
                   : showDialog(
                       context: context,
                       builder: (BuildContext context) {
@@ -69,19 +69,19 @@ class AppLauncherPanelButton extends StatelessWidget {
     );
   }
 
-  /// Creates a copy of this [AppLauncherPanelButton] but with the given fields replaced with
-  /// the new values.
-  AppLauncherPanelButton copyWith({double childWidth, double childHeight}) {
-    return AppLauncherPanelButton(
-      app: this.app,
-      icon: this.icon,
-      childHeight: childWidth,
-      childWidth: childHeight,
-    );
-  }
+//  /// Creates a copy of this [AppLauncherPanelButton] but with the given fields replaced with
+//  /// the new values.
+//  AppLauncherPanelButton copyWith({double childWidth, double childHeight}) {
+//    return AppLauncherPanelButton(
+//      app: this.app,
+//      icon: this.icon,
+//      childHeight: childWidth,
+//      childWidth: childHeight,
+//    );
+//  }
 }
 
-class AppLauncherDrawerButton extends AppLauncherPanelButton {
+class AppLauncherDrawerButton extends StatefulWidget {
   final Widget app;
   final String icon;
   final bool appExists;
@@ -89,29 +89,44 @@ class AppLauncherDrawerButton extends AppLauncherPanelButton {
   final double childWidth;
   final String label;
   final Color color;
+  final ValueChanged<bool> _callback;
 
   AppLauncherDrawerButton(
-      {this.app,
-      this.icon,
+      {@required this.app,
+      @required this.icon,
       this.label,
       this.appExists = true,
       this.childHeight = 64.0,
       this.childWidth = 64.0,
-      this.color});
+      this.color,
+      @required callback})
+      : _callback =
+            callback; //This alien syntax must be syntactical glucose for a setter. Neato.
+
+  @override
+  AppLauncherDrawerButtonState createState() => AppLauncherDrawerButtonState();
+}
+
+class AppLauncherDrawerButtonState extends State<AppLauncherDrawerButton> {
+  bool _toggled = false;
+
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.max,
       children: [
         Opacity(
-          opacity: appExists ? 1.0 : 0.4,
+          opacity: widget.appExists ? 1.0 : 0.4,
           child: GestureDetector(
             onTap: () {
-              print(appExists);
+              setState(() {
+                toggled = !_toggled;
+                widget._callback?.call(_toggled);
+              });
 
-              appExists
+              widget.appExists
                   ? Provider.of<WindowsData>(context, listen: false)
-                      .add(child: app, color: color)
+                      .add(child: widget.app, color: widget.color)
                   : showDialog(
                       context: context,
                       builder: (BuildContext context) {
@@ -133,24 +148,30 @@ class AppLauncherDrawerButton extends AppLauncherPanelButton {
             child: Container(
               padding: EdgeInsets.all(0),
               child: Image.asset(
-                icon,
+                widget.icon,
                 fit: BoxFit.cover,
-                width: childWidth,
-                height: childHeight,
+                width: widget.childWidth,
+                height: widget.childHeight,
               ),
             ),
           ),
         ),
         Text(
-          label,
+          widget.label,
           style: TextStyle(
             fontSize: 15.0,
             fontWeight: FontWeight.w400,
-            color: appExists ? Colors.white : Colors.grey[700],
+            color: widget.appExists ? Colors.white : Colors.grey[700],
           ),
           textAlign: TextAlign.center,
         )
       ],
     );
+  }
+
+  set toggled(bool value) {
+    if (value == _toggled) {
+      return;
+    }
   }
 }

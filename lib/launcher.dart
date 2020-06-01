@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'searchbar.dart';
 import 'dart:ui';
-import 'applications/cards.dart';
+import 'widgets/cards.dart';
 import 'widgets/app_launcher.dart';
 
 class LauncherWidget extends StatelessWidget {
