@@ -6,6 +6,8 @@ import '../settings.dart';
 import 'package:GeneratedApp/widgets/app_launcher.dart';
 import 'package:GeneratedApp/applications/welcome.dart';
 import 'package:GeneratedApp/themes/main.dart';
+import 'package:GeneratedApp/commons/key_ring.dart';
+import 'package:GeneratedApp/commons/functions.dart';
 
 Widget tileSection = Expanded(
   child: Container(
@@ -17,27 +19,28 @@ Widget tileSection = Expanded(
           icon: 'lib/images/icons/v2/compiled/terminal.png',
           label: 'Terminal',
           color: Colors.grey[900],
+          callback: toggleCallback,
         ),
         AppLauncherDrawerButton(
             icon: 'lib/images/icons/v2/compiled/task.png',
             label: 'Task Manager',
             appExists: false),
         AppLauncherDrawerButton(
-          app: Settings(),
-          icon: 'lib/images/icons/v2/compiled/settings.png',
-          label: 'Settings',
-          color: Colors.deepOrange,
-        ),
+            app: Settings(),
+            icon: 'lib/images/icons/v2/compiled/settings.png',
+            label: 'Settings',
+            color: Colors.deepOrange,
+            callback: toggleCallback),
         AppLauncherDrawerButton(
             icon: 'lib/images/icons/v2/compiled/root.png',
             label: 'Root Terminal',
             appExists: false),
         AppLauncherDrawerButton(
-          app: TextEditor(),
-          icon: 'lib/images/icons/v2/compiled/notes.png',
-          label: 'Notes',
-          color: Colors.deepOrange,
-        ),
+            app: TextEditor(),
+            icon: 'lib/images/icons/v2/compiled/notes.png',
+            label: 'Notes',
+            color: Colors.deepOrange,
+            callback: toggleCallback),
         AppLauncherDrawerButton(
             icon: 'lib/images/icons/v2/compiled/note_mobile.png',
             label: 'Notes (mobile)',
@@ -55,27 +58,27 @@ Widget tileSection = Expanded(
             label: 'Disks',
             appExists: false),
         AppLauncherDrawerButton(
-          app: Calculator(),
-          icon: 'lib/images/icons/v2/compiled/calculator.png',
-          label: 'Calculator',
-          color: Colors.green,
-        ),
+            app: Calculator(),
+            icon: 'lib/images/icons/v2/compiled/calculator.png',
+            label: 'Calculator',
+            color: Colors.green,
+            callback: toggleCallback),
         AppLauncherDrawerButton(
             icon: 'lib/images/icons/v2/compiled/android.png',
             label: 'Android Subsystem',
             appExists: false),
         AppLauncherDrawerButton(
-          app: HisApp(),
-          icon: 'lib/images/icons/v2/compiled/theme.png',
-          label: 'Theme Demo',
-          color: Colors.grey[900],
-        ),
+            app: HisApp(),
+            icon: 'lib/images/icons/v2/compiled/theme.png',
+            label: 'Theme Demo',
+            color: Colors.grey[900],
+            callback: toggleCallback),
         AppLauncherDrawerButton(
-          app: Welcome(),
-          icon: 'lib/images/dahlia.png',
-          label: 'Welcome',
-          color: Colors.grey[900],
-        )
+            app: Welcome(),
+            icon: 'lib/images/dahlia.png',
+            label: 'Welcome',
+            color: Colors.grey[900],
+            callback: toggleCallback)
       ])),
 );
 

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'searchbar.dart';
 import 'dart:ui';
 import 'widgets/cards.dart';
-import 'widgets/app_launcher.dart';
 
 class LauncherWidget extends StatelessWidget {
   // This widget is the root of your application.
