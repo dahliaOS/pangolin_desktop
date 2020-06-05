@@ -27,7 +27,7 @@ class AppLauncherPanelButton extends StatefulWidget {
 }
 
 class _AppLauncherPanelButtonState extends State<AppLauncherPanelButton> {
-  bool _toggled = true;
+  bool _toggled = false;
 
   @override
   Widget build(BuildContext context) {
