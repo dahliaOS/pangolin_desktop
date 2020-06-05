@@ -156,7 +156,7 @@ class WindowState extends State<Window> {
                 height: _size.height,
                 constraints: BoxConstraints(
                     minWidth: _minWidth, minHeight: _minHeight), //
-//                decoration: BoxDecoration(boxShadow: kElevationToShadow[12]),
+               decoration: BoxDecoration(boxShadow: kElevationToShadow[12]),
                 child: Column(
                   children: [
                     GestureDetector(

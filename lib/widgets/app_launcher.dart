@@ -55,7 +55,7 @@ class AppLauncherPanelButton extends StatelessWidget {
                       });
             },
             child: Container(
-              padding: EdgeInsets.all(0),
+              padding: EdgeInsets.symmetric(horizontal: 5, vertical: 0,),
               child: Image.asset(
                 icon,
                 fit: BoxFit.cover,
