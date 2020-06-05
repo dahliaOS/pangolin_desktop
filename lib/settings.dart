@@ -1,169 +1,177 @@
 import 'package:flutter/material.dart';
-import 'dart:convert';
 
-   class CustomBarWidget extends StatelessWidget {
-
-      GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
-
-      @override
-      Widget build(BuildContext context) {
-        return Scaffold(
-          key: _scaffoldKey,
-          body: Container(
-            height: 1.7976931348623157e+308,
-            child: Stack(
-              children: <Widget>[
-
-               
-                Container(
-                  color: const Color(0xFFf5f5f5),
-                  width: MediaQuery.of(context).size.width,
-                  height: 55.0,
-
-
-
-                  child:
-                  
-                  new Padding(
-            child:
-             new    Text(
-                      "Settings",
-                      style: TextStyle(color: Colors.deepOrange[500], fontSize: 18.0),
-                    ),
-    
-            padding: const EdgeInsets.all(17.0),
-                  
-               
-              
-                
-                ),
-                ),
-                
-                
-                new Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              
-              
-              new FlutterLogo(
-                size: 50.0,
-                colors: Colors.red
-              ),
-              
-              
-              new FlutterLogo(
-                size: 50.0,
-                colors: Colors.deepOrange
-              ),
-              
-              new FlutterLogo(
-                size: 50.0,
-                colors: Colors.yellow
-              ),
-              
-              
-              new FlutterLogo(
-                size: 50.0,
-                colors: Colors.amber
-              ),
-              
-              
-              new FlutterLogo(
-                size: 50.0,
-                colors: Colors.green
-              ),
-              
-              new FlutterLogo(
-                size: 50.0,
-                colors: Colors.blue
-              ),
-              
-              
-              new FlutterLogo(
-                size: 50.0,
-                colors: Colors.indigo
-              ),
-              
-              new FlutterLogo(
-                size: 50.0,
-                colors: Colors.pink
-              ),
-              
-              
-              
-              
-            ]
-    
-          ),
-
-
-
- 
-  
-
-                
-
-              ],
-            ),
-          ),
-        );
-      }
-    }
-
-
-/*void main() {
-  runApp(new MyApp());
-}*/
+void main() {
+  runApp(
+    MaterialApp(
+      home: Settings(),
+    ),
+  );
+}
 
 class Settings extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      title: 'Terminal',
-      theme: new ThemeData(
-        primarySwatch: Colors.deepOrange,
-        primaryColor: const Color(0xFFff5722),
-        accentColor: const Color(0xFFff5722),
-        canvasColor: const Color(0xFFffffff),
-      ),
-      home: new MyHomePage(),
-    );
+    return new Pixel();
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key}) : super(key: key);
+
+Container buildSettings(IconData icon, String title, Color color) {
+  return new Container(
+                height: 30,
+                margin: EdgeInsets.only(left:15,top:15,),
+                child: Row(children: [
+                  Padding(
+                      padding: EdgeInsets.all(5),
+                      child: Icon(icon,
+                          size: 20, color: color)),
+                  Padding(
+                      padding: EdgeInsets.all(5),
+                      child: Text(title,
+                          style: TextStyle(
+                              fontSize: 15, color: Color(0xff000000))))
+                ]));
+}
+
+Container buildSettingsHeader(String title) {
+  return new Container(
+            padding: const EdgeInsets.only(top:25, left:15,),
+            alignment: Alignment.centerLeft,
+            child:
+            Text(title,
+                        style: TextStyle(
+                            fontSize: 15,
+                            color: Color(0xff222222),
+                            fontWeight: FontWeight.w600)));
+}
+
+
+
+final TextEditingController editingController = new TextEditingController();
+
+class Pixel extends StatelessWidget {
   @override
-  _MyHomePageState createState() => new _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-    @override
-    Widget build(BuildContext context) {
-      return new Scaffold(
-        body:
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: Row(children: [
+      Material(
+          color: Color(0xffffffff),
+          elevation: 10,
+          child: 
+          Container(width: 300, child:
+          Column(children: [
+            Container(
+                height: 50,
+                color: Color(0xffeeeeee),
+                child: Row(children: [
+                  Padding(
+                      padding: EdgeInsets.all(10),
+                      child: Icon(Icons.settings, color: Color(0xffff3D00))),
+                  Text('Settings',
+                      style:
+                          TextStyle(fontSize: 20, color: Color(0xff222222)))
+                ])),
           
 
-         
-new CustomBarWidget(),
 
 
-           
-    
-         
-    
+ new 
+ Expanded(child: 
+ SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: new Column(children: <Widget>[
+Container(
+color: Color(0xffeeeeee),
+child:
+ Container(
+        
+      padding: new EdgeInsets.only(left: 10,right: 10,top: 0),
+      margin: new EdgeInsets.only(bottom: 10.0),
+      child: new Material(
+          color: Colors.white,
+        borderRadius: const BorderRadius.all(const Radius.circular(25)),
+        elevation: 5.0,
+        child: new Container(
+            width:700,
+          height: 35.0,
+          margin: new EdgeInsets.only(left: 10,right:5),
+          child: new Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              new Expanded(
+                  child: new TextField(
+                    style: new TextStyle(color: Colors.grey[900],fontSize: 15,),
+                    maxLines: 1,
+                    decoration: new InputDecoration(
+                      hintStyle: TextStyle(color: Colors.grey[900],fontSize: 15,),
+                      icon: Icon(Icons.search, color: const Color(0xFFff3d00),),
+                      hintText: 'Search settings...',
+                      border: InputBorder.none
+                    ),
+                    onSubmitted: null,
+                    controller: editingController,
+                  )
+              )
+            ],
+          ),
+        ),
+      ),
+    ),
+),
+
+buildSettingsHeader('WIRELESS & NETWORKS'),
+
+buildSettings(Icons.network_wifi, 'Wifi', Colors.cyan[600]),
+buildSettings(Icons.bluetooth, 'Bluetooth', Colors.blue[600]),
+buildSettings(Icons.sim_card, 'Data', Colors.red[500]),
+buildSettings(Icons.settings_ethernet, 'Wired', Colors.amber[500]),
+
+buildSettingsHeader('DEVICE'),
+
+buildSettings(Icons.brightness_medium, 'Display', Colors.red[600]),
+buildSettings(Icons.keyboard, 'Input', Colors.blue[800]),
+buildSettings(Icons.usb, 'Ports', Colors.orange[500]),
+buildSettings(Icons.volume_up, 'Sound', Colors.teal[500]),
+buildSettings(Icons.storage, 'Storage', Colors.blue[500]),
+buildSettings(Icons.power, 'Power', Colors.amber[500]),
+buildSettings(Icons.devices, 'Devices', Colors.blue[800]),
 
 
+buildSettingsHeader('SYSTEM'),
 
+buildSettings(Icons.system_update, 'Updates', Colors.deepOrange[500]),
+buildSettings(Icons.palette, 'Appearance', Colors.green[500]),
+buildSettings(Icons.apps, 'Applications', Colors.purple[800]),
+buildSettings(Icons.person, 'Users', Colors.cyan[800]),
+buildSettings(Icons.visibility_off, 'Privacy', Colors.pink[500]),
+buildSettings(Icons.access_time, 'Time', Colors.deepOrange[500]),
+buildSettings(Icons.security, 'Security', Colors.blue[500]),
+buildSettings(Icons.domain, 'Enterprise Enrollment', Colors.deepOrange[500]),
+buildSettings(Icons.developer_board, 'Kernel', Colors.deepOrange[500]),
+buildSettings(Icons.flag, 'Language', Colors.deepOrange[500]),
 
-          
+buildSettingsHeader('DEVELOPER'),
 
-    
-      );
-    }
+buildSettings(Icons.flag, 'Flags', Colors.deepOrange[500]),
+buildSettings(Icons.developer_mode, 'Bootloader', Colors.green[500]),
+buildSettings(Icons.extension, 'Extensions', Colors.blueGrey[500]),
+buildSettings(Icons.brightness_low, 'Flutter', Colors.lightBlue[500]),
+buildSettings(Icons.attach_money, 'System Shell', Colors.grey[500]),
+buildSettings(Icons.android, 'Android Subsystem', Color(0xFF3DDA84)),
+buildSettings(Icons.note, 'System Logs', Colors.deepOrange),
+
+buildSettingsHeader('ABOUT'),
+
+buildSettings(Icons.brightness_low, 'System', Colors.deepOrange[500]),
+buildSettings(Icons.phone_android, 'Device', Colors.lightBlue[500]),
+buildSettings(Icons.people, 'Credits', Colors.amber[600]),
+
+buildSettingsHeader(' '),
+
+                    ]))),
+
+            
+          ])))
+    ]));
+  }
 }
-
-
