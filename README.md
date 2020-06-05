@@ -1,5 +1,5 @@
 # Pangolin Desktop
-Desktop shell for DahliaOS
+Desktop shell for DahliaOS, Written in flutter. Runs on Linux and Zircon.
 
 ## Build Pangolin Desktop
 
