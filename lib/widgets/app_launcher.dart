@@ -3,13 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../window/model.dart';
 
-class AppLauncherPanelButton extends StatelessWidget {
+class AppLauncherPanelButton extends StatefulWidget {
   final Widget app;
   final String icon;
   final bool appExists;
   final double childHeight;
   final double childWidth;
   final Color color;
+  final ValueChanged<bool> _callback;
 
   AppLauncherPanelButton(
       {this.app,
@@ -17,11 +18,16 @@ class AppLauncherPanelButton extends StatelessWidget {
       this.appExists = true,
       this.childHeight = 35.0,
       this.childWidth = 35.0,
-      this.color});
+      this.color,
+      callback})
+      : _callback = callback;
 
-  Widget addAppLauncher(double margin) {
-    return Container(child: app, margin: EdgeInsets.all(margin));
-  }
+  @override
+  _AppLauncherPanelButtonState createState() => _AppLauncherPanelButtonState();
+}
+
+class _AppLauncherPanelButtonState extends State<AppLauncherPanelButton> {
+  bool _toggled = true;
 
   @override
   Widget build(BuildContext context) {
@@ -30,12 +36,16 @@ class AppLauncherPanelButton extends StatelessWidget {
       children: [
         Expanded(
             child: Opacity(
-          opacity: appExists ? 1.0 : 0.4,
+          opacity: widget.appExists ? 1.0 : 0.4,
           child: GestureDetector(
             onTap: () {
-              appExists
+              setState(() {
+                toggled = !_toggled;
+                widget._callback?.call(_toggled);
+              });
+              widget.appExists
                   ? Provider.of<WindowsData>(context, listen: false)
-                      .add(child: addAppLauncher(50.0), color: color)
+                      .add(child: widget.app, color: widget.color)
                   : showDialog(
                       context: context,
                       builder: (BuildContext context) {
@@ -55,12 +65,12 @@ class AppLauncherPanelButton extends StatelessWidget {
                       });
             },
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 5, vertical: 0,),
+              margin: EdgeInsets.symmetric(horizontal: 10.0),
               child: Image.asset(
-                icon,
+                widget.icon,
                 fit: BoxFit.cover,
-                width: childWidth,
-                height: childHeight,
+                width: widget.childWidth,
+                height: widget.childHeight,
               ),
             ),
           ),
@@ -69,16 +79,11 @@ class AppLauncherPanelButton extends StatelessWidget {
     );
   }
 
-//  /// Creates a copy of this [AppLauncherPanelButton] but with the given fields replaced with
-//  /// the new values.
-//  AppLauncherPanelButton copyWith({double childWidth, double childHeight}) {
-//    return AppLauncherPanelButton(
-//      app: this.app,
-//      icon: this.icon,
-//      childHeight: childWidth,
-//      childWidth: childHeight,
-//    );
-//  }
+  set toggled(bool value) {
+    if (value == _toggled) {
+      return;
+    }
+  }
 }
 
 class AppLauncherDrawerButton extends StatefulWidget {
