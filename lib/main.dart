@@ -1,6 +1,7 @@
 import 'package:GeneratedApp/applications/calculator.dart';
 import 'package:GeneratedApp/applications/editor.dart';
 import 'package:GeneratedApp/applications/welcome.dart';
+import 'package:GeneratedApp/applications/monitor.dart';
 
 import 'quick_settings.dart';
 import 'window_space.dart';
@@ -273,9 +274,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           color: Colors.grey[900],
                         ),
                         AppLauncherPanelButton(
-                          icon: 'lib/images/icons/v2/compiled/files.png',
-                          appExists: false,
-                          color: Colors.grey,
+                          app: MonitorApp(),
+                          icon: 'lib/images/icons/v2/compiled/task.png',
+                          color: Colors.cyan[900],
                         ),
                         AppLauncherPanelButton(
                           app: Settings(),

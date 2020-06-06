@@ -4,13 +4,14 @@ class MonitorApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
         body: 
         
         new Column(children: [
 
  Container(
             height: 45,
-            color: Color(0xff008071),
+            color: Color(0xff00838f),
             child: Row(children: [
               new Expanded(child: 
               new Container(
@@ -110,10 +111,7 @@ class Tasks extends StatelessWidget {
     return new MaterialApp(
       title: 'Generated App',
       theme: new ThemeData(
-        primarySwatch: Colors.blue,
-        primaryColor: const Color(0xFF2196f3),
-        accentColor: const Color(0xFF2196f3),
-        canvasColor: const Color(0xFFfafafa),
+        primarySwatch: Colors.cyan,
       ),
       home: new TasksPage(),
     );
