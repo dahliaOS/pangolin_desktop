@@ -318,7 +318,73 @@ buildProcess('lib/images/icons/v2/compiled/android.png', 'Android Subsystem'),
               ,
               
               )),
-      Container(width: 300, color: Color(0x0))
+      Container(width: 300, color: Color(0x0), child:  new Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: new Column(children: [
+
+
+                      new Image.asset(
+                'lib/images/icons/v2/compiled/grey-drag.png',
+                fit:BoxFit.fill,
+                width: 64.0,
+                height: 64.0,
+                ),
+
+
+  new Text(
+              "Select a process to view stats and manage functionality.",
+                style: new TextStyle(fontSize:15.0,
+                color: const Color(0xFF000000),
+
+                fontFamily: "Roboto"),
+              ),
+    
+              new Text(
+              "io.dahliaos.null",
+                style: new TextStyle(fontSize:15.0,
+                color: const Color(0xFF000000),
+
+                fontFamily: "Roboto"),
+              ),
+    
+              new Text(
+              "null",
+                style: new TextStyle(fontSize:15.0,
+                color: const Color(0xFF000000),
+
+                fontFamily: "Roboto"),
+              ),
+    
+              new RaisedButton(key:null, onPressed:null,
+                color: Colors.cyan[800],
+                child:
+                  new Text(
+                  "LAUNCH",
+                   
+                  )
+                ),
+    
+              new RaisedButton(key:null, onPressed:null,
+                color: Colors.cyan[800],
+                child:
+                  new Text(
+                  "ABOUT",
+                    
+                  )
+                ),
+    
+              new RaisedButton(key:null, onPressed:null,
+                color: Colors.red,
+                child:
+                  new Text(
+                  "KILL",
+                  
+                  )
+                ),
+    
+              
+                    ],))
+                    ,)
     ])));
   }
 }
