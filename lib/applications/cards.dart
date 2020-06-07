@@ -49,7 +49,7 @@ Widget tileSection = Expanded(
             label: 'Terminal',
             color: Colors.grey[900],),
         AppLauncherDrawerButton(
-            app: MonitorApp(),
+            app: Tasks(),
             icon: 'lib/images/icons/v2/compiled/task.png',
             label: 'Task Manager',
             color: Colors.cyan[900],),

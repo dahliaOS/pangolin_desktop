@@ -274,7 +274,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           color: Colors.grey[900],
                         ),
                         AppLauncherPanelButton(
-                          app: MonitorApp(),
+                          app: Tasks(),
                           icon: 'lib/images/icons/v2/compiled/task.png',
                           color: Colors.cyan[900],
                         ),

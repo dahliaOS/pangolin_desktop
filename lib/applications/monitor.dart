@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+/*import 'package:flutter/material.dart';
 
 class MonitorApp extends StatelessWidget {
   @override
@@ -101,7 +101,7 @@ new Expanded(child: new Row(children: [
 
 
 
-  
+
 ],),)
 
 
@@ -137,5 +137,98 @@ class _TasksState extends State<TasksPage> {
     @override
     Widget build(BuildContext context) {
       return new MonitorApp();
+    }
+}
+
+*/
+
+import 'package:flutter/material.dart';
+
+
+void main() {
+  runApp(new Tasks());
+}
+class Tasks extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return new MaterialApp(
+      title: 'Task Manager',
+      theme: new ThemeData(
+        primarySwatch: Colors.cyan,
+        canvasColor: const Color(0xFFfffffff),
+      ),
+      home: new TasksPage(),
+    );
+  }
+}
+
+class TasksPage extends StatefulWidget {
+  TasksPage({Key key}) : super(key: key);
+  @override
+  _TasksState createState() => new _TasksState();
+}
+
+class _TasksState extends State<TasksPage> {
+    @override
+    Widget build(BuildContext context) {
+      return new DefaultTabController(
+        length: 3,
+        child: Scaffold(
+          appBar: 
+          PreferredSize(
+          preferredSize: Size.fromHeight(52.0), // here the desired height
+          child: 
+
+          AppBar(
+            backgroundColor: Color(0xff00838f),
+            
+            title: new Text(
+          "Task Manager",
+            style: new TextStyle(
+            color: const Color(0xFFffffff),
+            fontFamily: "Roboto"),
+          ),
+            
+            elevation: 0,
+            bottom: TabBar(
+                labelColor: Color(0xFF222222),
+                unselectedLabelColor: Colors.white,
+                indicatorSize: TabBarIndicatorSize.label,
+                indicator: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(5),
+                        topRight: Radius.circular(5)),
+                    color: Colors.white),
+                tabs: [
+                  Tab(
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text("PROCESSES"),
+                    ),
+                  ),
+                  Tab(
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text("RESOURCES"),
+                    ),
+                  ),
+                  Tab(
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text("CONTAINERS"),
+                    ),
+                  ),
+                ]
+            ),
+          ),),
+          body: TabBarView(children: [
+            Icon(Icons.apps),
+            Icon(Icons.movie),
+            Icon(Icons.games),
+          ]),
+        )
+     );
+    
     }
 }
