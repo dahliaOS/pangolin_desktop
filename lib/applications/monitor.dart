@@ -183,12 +183,6 @@ class _TasksState extends State<TasksPage> {
           AppBar(
             backgroundColor: Color(0xff00838f),
             
-            title: new Text(
-          "Task Manager",
-            style: new TextStyle(
-            color: const Color(0xFFffffff),
-            fontFamily: "Roboto"),
-          ),
             
             elevation: 0,
             bottom: TabBar(
@@ -223,7 +217,7 @@ class _TasksState extends State<TasksPage> {
             ),
           ),),
           body: TabBarView(children: [
-            Icon(Icons.apps),
+            new Process(),
             Icon(Icons.movie),
             Icon(Icons.games),
           ]),
@@ -231,4 +225,100 @@ class _TasksState extends State<TasksPage> {
      );
     
     }
+}
+
+Container buildProcess(String icon, String name) {
+  return new Container(
+            padding: const EdgeInsets.only(top:25, left:15,),
+            alignment: Alignment.centerLeft,
+            child:
+           
+            new Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  new Image.asset(
+                    icon,
+                    fit:BoxFit.fill,
+                    width: 30.0,
+                    height: 30.0,
+                    ),
+    
+                  new Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: new Text(
+                  name,
+                    style: new TextStyle(fontSize:15.0,
+                    color: const Color(0xFF000000),
+                    fontFamily: "Roboto"),
+                  ),
+                  ),
+    
+                  
+                ]
+    
+              ),
+    
+           
+           );
+}
+
+class Process extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+        child: Scaffold(
+            body: Row(children: [
+      Expanded(
+          child:
+              Container(color: Color(0xffeeeeee), margin: EdgeInsets.all(10),
+              
+              child: 
+              
+              new Expanded(child: new SingleChildScrollView(scrollDirection: Axis.vertical,child: new Column(children: [
+
+
+
+buildProcess('lib/images/icons/v2/compiled/calculator.png', 'Calculator'),
+buildProcess('lib/images/icons/v2/compiled/disks.png', 'Disks'),
+buildProcess('lib/images/icons/v2/compiled/files.png', 'Files'),
+buildProcess('lib/images/icons/v2/compiled/logs.png', 'Logs'),
+buildProcess('lib/images/icons/v2/compiled/note_mobile.png', 'Notes (Mobile)'),
+buildProcess('lib/images/icons/v2/compiled/notes.png', 'Notes'),
+buildProcess('lib/images/icons/v2/compiled/root.png', 'Root Terminal'),
+buildProcess('lib/images/icons/v2/compiled/settings.png', 'Settings'),
+buildProcess('lib/images/icons/v2/compiled/task.png', 'Task Manager'),
+buildProcess('lib/images/icons/v2/compiled/terminal.png', 'Terminal'),
+buildProcess('lib/images/icons/v2/compiled/theme.png', 'Theme Demo'),
+buildProcess('lib/images/icons/v2/compiled/android.png', 'Android Subsystem'),
+buildProcess('lib/images/icons/v2/compiled/android.png', 'Android Subsystem'),
+buildProcess('lib/images/icons/v2/compiled/android.png', 'Android Subsystem'),
+buildProcess('lib/images/icons/v2/compiled/android.png', 'Android Subsystem'),
+buildProcess('lib/images/icons/v2/compiled/android.png', 'Android Subsystem'),
+buildProcess('lib/images/icons/v2/compiled/android.png', 'Android Subsystem'),
+buildProcess('lib/images/icons/v2/compiled/android.png', 'Android Subsystem'),
+buildProcess('lib/images/icons/v2/compiled/android.png', 'Android Subsystem'),
+buildProcess('lib/images/icons/v2/compiled/android.png', 'Android Subsystem'),
+buildProcess('lib/images/icons/v2/compiled/android.png', 'Android Subsystem'),
+buildProcess('lib/images/icons/v2/compiled/android.png', 'Android Subsystem'),
+buildProcess('lib/images/icons/v2/compiled/android.png', 'Android Subsystem'),
+buildProcess('lib/images/icons/v2/compiled/android.png', 'Android Subsystem'),
+buildProcess('lib/images/icons/v2/compiled/android.png', 'Android Subsystem'),
+buildProcess('lib/images/icons/v2/compiled/android.png', 'Android Subsystem'),
+buildProcess('lib/images/icons/v2/compiled/android.png', 'Android Subsystem'),
+buildProcess('lib/images/icons/v2/compiled/android.png', 'Android Subsystem'),
+buildProcess('lib/images/icons/v2/compiled/android.png', 'Android Subsystem'),
+buildProcess('lib/images/icons/v2/compiled/android.png', 'Android Subsystem'),
+buildProcess('lib/images/icons/v2/compiled/android.png', 'Android Subsystem'),
+buildProcess('lib/images/icons/v2/compiled/android.png', 'Android Subsystem'),
+buildProcess('lib/images/icons/v2/compiled/android.png', 'Android Subsystem'),
+              ],),),)
+              
+              ,
+              
+              )),
+      Container(width: 300, color: Color(0x0))
+    ])));
+  }
 }
