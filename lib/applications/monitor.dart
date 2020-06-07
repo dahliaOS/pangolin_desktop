@@ -93,7 +93,16 @@ class MonitorApp extends StatelessWidget {
             color: const Color(0xFFffffff),
           ), 
              
-            ]))
+            ])),
+
+new Expanded(child: new Row(children: [
+
+
+
+
+
+  
+],),)
 
 
         ],)
