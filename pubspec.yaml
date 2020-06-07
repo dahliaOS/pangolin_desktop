@@ -101,5 +101,9 @@ flutter:
   - lib/images/icons/v2/compiled/calculator.png
   - lib/images/icons/v2/compiled/android.png
   - lib/images/icons/v2/compiled/theme.png
+  - lib/images/icons/v2/compiled/grey-drag.png
+  - lib/images/icons/v2/compiled/macos.png
+  - lib/images/icons/v2/compiled/debian.png
+  - lib/images/icons/v2/compiled/ubuntu.png
   - lib/images/logo-color.png
   - lib/images/dahlia.png
