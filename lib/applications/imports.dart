@@ -1,5 +1,5 @@
 import 'calculator.dart';
-import 'cards.dart';
+import 'package:GeneratedApp/widgets/cards.dart';
 import 'developer.dart';
 import 'editor.dart';
 import 'monitor.dart';

@@ -26,6 +26,8 @@ import 'applications/calculator.dart';
 import 'applications/editor.dart';
 import 'applications/terminal.dart';
 import 'settings.dart';
+import 'commons/key_ring.dart';
+import 'commons/functions.dart';
 
 WindowsData provisionalWindowData = new WindowsData();
 final GlobalKey<ToggleState> _launcherToggleKey = GlobalKey<ToggleState>();
@@ -120,6 +122,10 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final Tween<double> _overlayScaleTween = Tween<double>(begin: 0.9, end: 1.0);
+  final Tween<double> _overlayOpacityTween =
+      Tween<double>(begin: 0.0, end: 1.0);
+
   //String _timeString;
   /*@override
   void initState() {
@@ -163,7 +169,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
         // 3 - Launcher Panel
         SystemOverlay(
-          key: _launcherOverlayKey,
+          key: KeyRing.launcherOverlayKey,
           builder: (Animation<double> animation) => Center(
             child: AnimatedBuilder(
               animation: animation,
@@ -187,13 +193,13 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           callback: (bool visible) {
-            _launcherToggleKey.currentState.toggled = visible;
+            KeyRing.launcherToggleKey.currentState.toggled = visible;
           },
         ),
 
         // 4 - Quick settings panel
         SystemOverlay(
-          key: _statusOverlayKey,
+          key: KeyRing.statusOverlayKey,
           builder: (Animation<double> animation) => Positioned(
             right: 0.0,
             bottom: 50.0,
@@ -223,7 +229,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           callback: (bool visible) {
-            _statusToggleKey.currentState.toggled = visible;
+            KeyRing.statusToggleKey.currentState.toggled = visible;
           },
         ),
 
@@ -234,7 +240,7 @@ class _MyHomePageState extends State<MyHomePage> {
           bottom: 0.0,
           child: GestureDetector(
             behavior: HitTestBehavior.opaque,
-            onTap: _hideOverlays,
+            onTap: hideOverlays,
             child: Container(
               //color: Color.fromARGB(150, 0, 0, 0),
               decoration: BoxDecoration(
@@ -252,47 +258,51 @@ class _MyHomePageState extends State<MyHomePage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         LauncherToggleWidget(
-                          toggleKey: _launcherToggleKey,
-                          callback: (bool toggled) => _setOverlayVisibility(
-                            overlay: _launcherOverlayKey,
-                            visible: toggled,
-                          ),
+                          toggleKey: KeyRing.launcherToggleKey,
+                          callback: toggleCallback,
                         ),
                         AppLauncherPanelButton(
                           app: Calculator(),
                           icon: 'lib/images/icons/v2/compiled/calculator.png',
                           color: Colors.green,
+                          callback: toggleCallback,
                         ),
                         AppLauncherPanelButton(
-                          app: TextEditor(),
-                          icon: 'lib/images/icons/v2/compiled/notes.png',
-                          color: Colors.deepOrange[900],
-                        ),
+                            app: TextEditor(),
+                            icon: 'lib/images/icons/v2/compiled/notes.png',
+                            color: Colors.deepOrange[900],
+                            callback: toggleCallback),
                         AppLauncherPanelButton(
-                          app: Terminal(),
-                          icon: 'lib/images/icons/v2/compiled/terminal.png',
-                          color: Colors.grey[900],
-                        ),
+                            app: Terminal(),
+                            icon: 'lib/images/icons/v2/compiled/terminal.png',
+                            color: Colors.grey[900],
+                            callback: toggleCallback),
+                        AppLauncherPanelButton(
+                            icon: 'lib/images/icons/v2/compiled/files.png',
+                            appExists: false,
+                            color: Colors.grey,
+                            callback: toggleCallback),
                         AppLauncherPanelButton(
                           app: Tasks(),
                           icon: 'lib/images/icons/v2/compiled/task.png',
                           color: Colors.cyan[900],
+                          callback: toggleCallback,
                         ),
                         AppLauncherPanelButton(
-                          app: Settings(),
-                          icon: 'lib/images/icons/v2/compiled/settings.png',
-                          color: Colors.deepOrange,
-                        ),
+                            app: Settings(),
+                            icon: 'lib/images/icons/v2/compiled/settings.png',
+                            color: Colors.deepOrange,
+                            callback: toggleCallback),
                         AppLauncherPanelButton(
-                          app: HisApp(),
-                          icon: 'lib/images/icons/v2/compiled/theme.png',
-                          color: Colors.grey[900],
-                        ),
+                            app: HisApp(),
+                            icon: 'lib/images/icons/v2/compiled/theme.png',
+                            color: Colors.grey[900],
+                            callback: toggleCallback),
                       ]),
                   StatusTrayWidget(
-                    toggleKey: _statusToggleKey,
-                    callback: (bool toggled) => _setOverlayVisibility(
-                      overlay: _statusOverlayKey,
+                    toggleKey: KeyRing.statusToggleKey,
+                    callback: (bool toggled) => setOverlayVisibility(
+                      overlay: KeyRing.statusOverlayKey,
                       visible: toggled,
                     ),
                   ),
