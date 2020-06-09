@@ -282,8 +282,12 @@ class _MyHomePageState extends State<MyHomePage> {
                             appExists: false,
                             color: Colors.grey,
                             callback: toggleCallback),
-                       AppLauncherPanelButton(app: Tasks(),icon: 'lib/images/icons/v2/compiled/task.png',color: Colors.cyan[900],)
-                        ,
+                        AppLauncherPanelButton(
+                          app: Tasks(),
+                          icon: 'lib/images/icons/v2/compiled/task.png',
+                          color: Colors.cyan[900],
+                          callback: toggleCallback,
+                        ),
                         AppLauncherPanelButton(
                             app: Settings(),
                             icon: 'lib/images/icons/v2/compiled/settings.png',

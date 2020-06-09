@@ -23,10 +23,12 @@ Widget tileSection = Expanded(
           callback: toggleCallback,
         ),
         AppLauncherDrawerButton(
-            app: Tasks(),
-            icon: 'lib/images/icons/v2/compiled/task.png',
-            label: 'Task Manager',
-            color: Colors.cyan[900],),
+          app: Tasks(),
+          icon: 'lib/images/icons/v2/compiled/task.png',
+          label: 'Task Manager',
+          color: Colors.cyan[900],
+          callback: toggleCallback,
+        ),
         AppLauncherDrawerButton(
             app: Settings(),
             icon: 'lib/images/icons/v2/compiled/settings.png',
@@ -80,7 +82,7 @@ Widget tileSection = Expanded(
             icon: 'lib/images/dahlia.png',
             label: 'Welcome',
             color: Colors.grey[900],
-            callback: toggleCallback)
+            callback: toggleCallback),
       ])),
 );
 
