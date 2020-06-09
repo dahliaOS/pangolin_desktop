@@ -3,6 +3,7 @@ import '../applications/calculator.dart';
 import '../applications/editor.dart';
 import '../applications/terminal.dart';
 import '../settings.dart';
+import '../applications/monitor.dart';
 import 'package:GeneratedApp/widgets/app_launcher.dart';
 import 'package:GeneratedApp/applications/welcome.dart';
 import 'package:GeneratedApp/themes/main.dart';
@@ -22,9 +23,10 @@ Widget tileSection = Expanded(
           callback: toggleCallback,
         ),
         AppLauncherDrawerButton(
+            app: Tasks(),
             icon: 'lib/images/icons/v2/compiled/task.png',
             label: 'Task Manager',
-            appExists: false),
+            color: Colors.cyan[900],),
         AppLauncherDrawerButton(
             app: Settings(),
             icon: 'lib/images/icons/v2/compiled/settings.png',
