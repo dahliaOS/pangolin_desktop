@@ -1,6 +1,7 @@
 import 'package:GeneratedApp/applications/calculator.dart';
 import 'package:GeneratedApp/applications/editor.dart';
 import 'package:GeneratedApp/applications/welcome.dart';
+import 'package:GeneratedApp/applications/monitor.dart';
 
 import 'quick_settings.dart';
 import 'window_space.dart';
@@ -12,6 +13,7 @@ import 'themes/dynamic_theme.dart';
 import 'themes/main.dart';
 import 'package:flutter/services.dart';
 import 'widgets/system_overlay.dart';
+import 'widgets/toggle.dart';
 import 'launcher_toggle.dart';
 import 'status_tray.dart';
 import 'app_toggle.dart';
@@ -28,6 +30,36 @@ import 'commons/key_ring.dart';
 import 'commons/functions.dart';
 
 WindowsData provisionalWindowData = new WindowsData();
+final GlobalKey<ToggleState> _launcherToggleKey = GlobalKey<ToggleState>();
+final GlobalKey<SystemOverlayState> _launcherOverlayKey =
+    GlobalKey<SystemOverlayState>();
+final GlobalKey<ToggleState> _statusToggleKey = GlobalKey<ToggleState>();
+final GlobalKey<SystemOverlayState> _statusOverlayKey =
+    GlobalKey<SystemOverlayState>();
+final Tween<double> _overlayScaleTween = Tween<double>(begin: 0.9, end: 1.0);
+final Tween<double> _overlayOpacityTween = Tween<double>(begin: 0.0, end: 1.0);
+
+/// Hides all overlays except [except] if applicable.
+void _hideOverlays({GlobalKey<SystemOverlayState> except}) {
+  <GlobalKey<SystemOverlayState>>[
+    _launcherOverlayKey,
+    _statusOverlayKey,
+  ].where((GlobalKey<SystemOverlayState> overlay) => overlay != except).forEach(
+      (GlobalKey<SystemOverlayState> overlay) =>
+          overlay.currentState.visible = false);
+}
+
+/// Sets the given [overlay]'s visibility to [visible].
+/// When showing an overlay, this also hides every other overlay.
+void _setOverlayVisibility({
+  @required GlobalKey<SystemOverlayState> overlay,
+  @required bool visible,
+}) {
+  if (visible) {
+    _hideOverlays(except: overlay);
+  }
+  overlay.currentState.visible = visible;
+}
 
 List<AppLauncherPanelButton> testLaunchers = [
   AppLauncherPanelButton(
@@ -250,6 +282,8 @@ class _MyHomePageState extends State<MyHomePage> {
                             appExists: false,
                             color: Colors.grey,
                             callback: toggleCallback),
+                       AppLauncherPanelButton(app: Tasks(),icon: 'lib/images/icons/v2/compiled/task.png',color: Colors.cyan[900],)
+                        ,
                         AppLauncherPanelButton(
                             app: Settings(),
                             icon: 'lib/images/icons/v2/compiled/settings.png',
@@ -279,7 +313,7 @@ class _MyHomePageState extends State<MyHomePage> {
     ));
   }
 
-/*void _getTime() {
+  /*void _getTime() {
     final DateTime now = DateTime.now();
     final String formattedDateTime = _formatDateTime(now);
     setState(() {
@@ -305,5 +339,4 @@ class _MyHomePageState extends State<MyHomePage> {
 //    }
 //    return list;
 //  }
-
 }

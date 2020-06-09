@@ -8,6 +8,48 @@ void main() {
   );
 }
 
+
+
+
+class Wifi extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return new MaterialApp(
+      title: 'Generated App',
+      theme: new ThemeData(
+        primarySwatch: Colors.blue,
+        primaryColor: const Color(0xFF2196f3),
+        accentColor: const Color(0xFF2196f3),
+        canvasColor: const Color(0xFFfafafa),
+      ),
+      home: new WifiSettings(),
+    );
+  }
+}
+
+class WifiSettings extends StatefulWidget {
+  WifiSettings({Key key}) : super(key: key);
+  @override
+  _WifiSettingsState createState() => new _WifiSettingsState();
+}
+
+class _WifiSettingsState extends State<WifiSettings> {
+    @override
+    Widget build(BuildContext context) {
+      return new Scaffold(
+        appBar: new AppBar(
+          title: new Text('Wi-Fi'),
+          ),
+      );
+    }
+}
+
+
+
+
+
+
 class Settings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -121,7 +163,7 @@ child:
 
 buildSettingsHeader('WIRELESS & NETWORKS'),
 
-buildSettings(Icons.network_wifi, 'Wifi', Colors.cyan[600]),
+buildSettings(Icons.network_wifi, 'Wi-Fi', Colors.cyan[600]),
 buildSettings(Icons.bluetooth, 'Bluetooth', Colors.blue[600]),
 buildSettings(Icons.sim_card, 'Data', Colors.red[500]),
 buildSettings(Icons.settings_ethernet, 'Wired', Colors.amber[500]),
@@ -171,7 +213,22 @@ buildSettingsHeader(' '),
                     ]))),
 
             
-          ])))
+          ]))),
+
+
+new Expanded(child: 
+new Wifi(),
+
+
+
+)
+
+
     ]));
   }
 }
+
+
+
+
+
