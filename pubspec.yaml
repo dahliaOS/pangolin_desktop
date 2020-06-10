@@ -7,7 +7,7 @@ dependencies:
   json_annotation: ^2.0.0
   shared_preferences: ^0.5.7+3
   provider: ^4.1.2
-  random_color: ^1.0.5
+#Useful in an ideal future but not now.  random_color: ^1.0.5
 
 dev_dependencies:
   build_runner: ^1.0.0
@@ -101,5 +101,9 @@ flutter:
   - lib/images/icons/v2/compiled/calculator.png
   - lib/images/icons/v2/compiled/android.png
   - lib/images/icons/v2/compiled/theme.png
+  - lib/images/icons/v2/compiled/grey-drag.png
+  - lib/images/icons/v2/compiled/macos.png
+  - lib/images/icons/v2/compiled/debian.png
+  - lib/images/icons/v2/compiled/ubuntu.png
   - lib/images/logo-color.png
   - lib/images/dahlia.png

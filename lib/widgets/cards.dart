@@ -3,39 +3,12 @@ import '../applications/calculator.dart';
 import '../applications/editor.dart';
 import '../applications/terminal.dart';
 import '../settings.dart';
+import '../applications/monitor.dart';
 import 'package:GeneratedApp/widgets/app_launcher.dart';
 import 'package:GeneratedApp/applications/welcome.dart';
 import 'package:GeneratedApp/themes/main.dart';
-
-Column buildTile({bool exists = true, Widget app, String icon, String label}) {
-  return Column(
-    //mainAxisSize: MainAxisSize.min,
-    //mainAxisAlignment: MainAxisAlignment.center,
-    crossAxisAlignment: CrossAxisAlignment.center,
-    children: [
-      AppLauncherPanelButton(app: app, icon: icon, appExists: exists ?? false)
-          .copyWith(childWidth: 64.0, childHeight: 64.0),
-//      new Image.asset(
-//        icon,
-//        fit: BoxFit.fill,
-//        width: 64.0,
-//        height: 64.0,
-//      ),
-      Container(
-        margin: EdgeInsets.only(top: 8),
-        child: Text(
-          label,
-          style: TextStyle(
-            fontSize: 18.0,
-            fontWeight: FontWeight.w400,
-            color: exists ? Colors.white : Colors.grey[700],
-          ),
-          textAlign: TextAlign.center,
-        ),
-      ),
-    ],
-  );
-}
+import 'package:GeneratedApp/commons/key_ring.dart';
+import 'package:GeneratedApp/commons/functions.dart';
 
 Widget tileSection = Expanded(
   child: Container(
@@ -43,19 +16,25 @@ Widget tileSection = Expanded(
       padding: EdgeInsets.all(10.0),
       child: GridView.count(crossAxisCount: 5, children: [
         AppLauncherDrawerButton(
-            app: Terminal(),
-            icon: 'lib/images/icons/v2/compiled/terminal.png',
-            label: 'Terminal',
-            color: Colors.grey[900],),
+          app: Terminal(),
+          icon: 'lib/images/icons/v2/compiled/terminal.png',
+          label: 'Terminal',
+          color: Colors.grey[900],
+          callback: toggleCallback,
+        ),
         AppLauncherDrawerButton(
-            icon: 'lib/images/icons/v2/compiled/task.png',
-            label: 'Task Manager',
-            appExists: false),
+          app: Tasks(),
+          icon: 'lib/images/icons/v2/compiled/task.png',
+          label: 'Task Manager',
+          color: Colors.cyan[900],
+          callback: toggleCallback,
+        ),
         AppLauncherDrawerButton(
             app: Settings(),
             icon: 'lib/images/icons/v2/compiled/settings.png',
             label: 'Settings',
-            color: Colors.deepOrange,),
+            color: Colors.deepOrange,
+            callback: toggleCallback),
         AppLauncherDrawerButton(
             icon: 'lib/images/icons/v2/compiled/root.png',
             label: 'Root Terminal',
@@ -64,7 +43,8 @@ Widget tileSection = Expanded(
             app: TextEditor(),
             icon: 'lib/images/icons/v2/compiled/notes.png',
             label: 'Notes',
-            color: Colors.deepOrange,),
+            color: Colors.deepOrange,
+            callback: toggleCallback),
         AppLauncherDrawerButton(
             icon: 'lib/images/icons/v2/compiled/note_mobile.png',
             label: 'Notes (mobile)',
@@ -86,24 +66,23 @@ Widget tileSection = Expanded(
             icon: 'lib/images/icons/v2/compiled/calculator.png',
             label: 'Calculator',
             color: Colors.green,
-            ),
+            callback: toggleCallback),
         AppLauncherDrawerButton(
             icon: 'lib/images/icons/v2/compiled/android.png',
             label: 'Android Subsystem',
             appExists: false),
         AppLauncherDrawerButton(
-           app: HisApp(),
-          icon: 'lib/images/icons/v2/compiled/theme.png',
-          label: 'Theme Demo',
-          color: Colors.grey[900],
-          
-        ),
-        AppLauncherDrawerButton(
-           app: Welcome(),
-          icon: 'lib/images/dahlia.png',
-          label: 'Welcome',
+            app: HisApp(),
+            icon: 'lib/images/icons/v2/compiled/theme.png',
+            label: 'Theme Demo',
             color: Colors.grey[900],
-        )
+            callback: toggleCallback),
+        AppLauncherDrawerButton(
+            app: Welcome(),
+            icon: 'lib/images/dahlia.png',
+            label: 'Welcome',
+            color: Colors.grey[900],
+            callback: toggleCallback),
       ])),
 );
 
