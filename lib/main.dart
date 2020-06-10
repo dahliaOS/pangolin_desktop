@@ -86,7 +86,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //Gets DahliaOS UI set up in a familiar way.
-    provisionalWindowData.add(child: Welcome(), color: Colors.grey[900]);
+  
 
     return ChangeNotifierProvider<WindowsData>(
       create: (context) => provisionalWindowData,
