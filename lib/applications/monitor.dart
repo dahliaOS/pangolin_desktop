@@ -344,6 +344,7 @@ class Process extends StatelessWidget {
                   width: 64.0,
                   height: 64.0,
                 ),
+                //
                 new Text(
                   "Select a process to view stats and manage functionality.",
                   style: new TextStyle(
