@@ -83,6 +83,30 @@ Widget tileSection = Expanded(
             label: 'Welcome',
             color: Colors.grey[900],
             callback: toggleCallback),
+        AppLauncherDrawerButton(
+            icon: 'lib/images/icons/v2/compiled/clock.png',
+            label: 'Clock',
+            appExists: false),
+        AppLauncherDrawerButton(
+            icon: 'lib/images/icons/v2/compiled/messages.png',
+            label: 'Messages',
+            appExists: false),
+        AppLauncherDrawerButton(
+            icon: 'lib/images/icons/v2/compiled/music.png',
+            label: 'Music',
+            appExists: false),
+        AppLauncherDrawerButton(
+            icon: 'lib/images/icons/v2/compiled/photos.png',
+            label: 'Media',
+            appExists: false),
+
+
+
+
+
+
+
+
       ])),
 );
 
