@@ -20,11 +20,21 @@ class TerminalApp extends StatelessWidget {
   }
 }
 
+
+
+     
+
 class Terminal extends StatefulWidget {
   Terminal({Key key}) : super(key: key);
   @override
   _TerminalState createState() => new _TerminalState();
 }
+
+void terminulll() {
+    
+    print('yep, you pressed it! good job');
+  }
+
 
 class _TerminalState extends State<Terminal> {
     @override
@@ -40,24 +50,31 @@ class _TerminalState extends State<Terminal> {
           height: 55,
           color: Color(0xff292929),
           child: Row(children: [
-            MaterialButton(
-              onPressed:null,
-              child: Icon(Icons.add, size: 25, color: Color(0xffffffff))),
-            
+          new IconButton(
+            icon: const Icon(Icons.add),
+            onPressed:terminulll,
+            iconSize: 25.0,
+            color: const Color(0xFFffffff),
+          ),
             Expanded(
                 child: Center(
                     child: Text('Terminal',
                        style: TextStyle(
                             fontSize: 18, color: Color(0xffffffff))))),
             
-            MaterialButton(
-              onPressed:null,
-                child:
-                    Icon(Icons.settings, size: 25, color: Color(0xffffffff))),
-            MaterialButton(
-              onPressed:null,
-                child:
-                    Icon(Icons.more_vert, size: 25, color: Color(0xffffffff)))
+            new IconButton(
+            icon: const Icon(Icons.settings),
+            onPressed:terminulll,
+            iconSize: 25.0,
+            color: const Color(0xFFffffff),
+          ),
+
+            new IconButton(
+            icon: const Icon(Icons.more_vert),
+            onPressed:terminulll,
+            iconSize: 25.0,
+            color: const Color(0xFFffffff),
+          ),
           ])),
          new Expanded(child: 
          
@@ -87,6 +104,8 @@ padding: const EdgeInsets.fromLTRB(2.0, 2.0, 2.0, 2.0),
           
     ]),        
         
+        
+
         
           );
       
