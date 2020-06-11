@@ -181,7 +181,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               child: ClipRRect(
-                //borderRadius: BorderRadius.circular(5.0),
+                //borderRadius: BorderRadius.circular(5.0),//THIS IS THE ROUNDING OF THE LAUNCHER INCASE YOU WANT IT TO CHANGE
                 child: Container(
                     padding: const EdgeInsets.all(0.0),
                     alignment: Alignment.center,
