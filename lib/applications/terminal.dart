@@ -30,6 +30,7 @@ class _TerminalState extends State<Terminal> {
     @override
     Widget build(BuildContext context) {
       return new Scaffold(
+        backgroundColor: const Color(0xFF222222),
         body:
           
         
