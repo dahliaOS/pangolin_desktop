@@ -30,6 +30,9 @@ class Terminal extends StatefulWidget {
   _TerminalState createState() => new _TerminalState();
 }
 
+
+
+
 void terminulll() {
     
     print('yep, you pressed it! good job');
@@ -37,6 +40,18 @@ void terminulll() {
 
 
 class _TerminalState extends State<Terminal> {
+
+
+final myController = TextEditingController();
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    myController.dispose();
+    super.dispose();
+  }
+
+
     @override
     Widget build(BuildContext context) {
       return new Scaffold(
@@ -63,8 +78,9 @@ class _TerminalState extends State<Terminal> {
                             fontSize: 18, color: Color(0xffffffff))))),
             
             new IconButton(
-            icon: const Icon(Icons.settings),
-            onPressed:terminulll,
+            icon: const Icon(Icons.play_arrow),
+            onPressed: () {
+            print(myController.text);},
             iconSize: 25.0,
             color: const Color(0xFFffffff),
           ),
@@ -81,6 +97,7 @@ class _TerminalState extends State<Terminal> {
           new Padding(
             child:
 new TextFormField(
+  controller: myController,
  style:    
          TextStyle(fontSize:15.0,
             color: const Color(0xFFf2f2f2),
@@ -91,7 +108,7 @@ new TextFormField(
           minLines: null,
           maxLines: null,
           expands: true,
-          initialValue: "debug_shell \$",
+          //initialValue: "debug_shell \$",
     cursorColor: const Color(0xFFf2f2f2),
   cursorRadius: Radius.circular(0.0),
   cursorWidth: 10.0,
@@ -141,6 +158,16 @@ class RootTerminal extends StatefulWidget {
 
 
 class _RootTerminalState extends State<RootTerminal> {
+    
+    final rootController = TextEditingController();
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    rootController.dispose();
+    super.dispose();
+  }
+    
     @override
     Widget build(BuildContext context) {
       return new Scaffold(
@@ -167,8 +194,9 @@ class _RootTerminalState extends State<RootTerminal> {
                             fontSize: 18, color: Color(0xffffffff))))),
             
             new IconButton(
-            icon: const Icon(Icons.settings),
-            onPressed:terminulll,
+            icon: const Icon(Icons.play_arrow),
+            onPressed:() {
+            print(rootController.text);},
             iconSize: 25.0,
             color: const Color(0xFFffffff),
           ),
@@ -185,6 +213,7 @@ class _RootTerminalState extends State<RootTerminal> {
           new Padding(
             child:
 new TextFormField(
+  controller: rootController,
  style:    
          TextStyle(fontSize:15.0,
             color: const Color(0xFFf2f2f2),
