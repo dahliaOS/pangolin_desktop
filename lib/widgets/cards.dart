@@ -36,9 +36,11 @@ Widget tileSection = Expanded(
             color: Colors.deepOrange,
             callback: toggleCallback),
         AppLauncherDrawerButton(
+            app: RootTerminal(),
             icon: 'lib/images/icons/v2/compiled/root.png',
             label: 'Root Terminal',
-            appExists: false),
+           color: Colors.red[700],
+            callback: toggleCallback),
         AppLauncherDrawerButton(
             app: TextEditor(),
             icon: 'lib/images/icons/v2/compiled/notes.png',

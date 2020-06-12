@@ -15,7 +15,7 @@ class TerminalApp extends StatelessWidget {
         accentColor: const Color(0xFF2196f3),
         canvasColor: const Color(0xFFfafafa),
       ),
-      home: new Terminal(),
+      home: new TerminalApp(),
     );
   }
 }
@@ -93,6 +93,110 @@ new TextFormField(
           expands: true,
           initialValue: "debug_shell \$",
     cursorColor: const Color(0xFFf2f2f2),
+  cursorRadius: Radius.circular(0.0),
+  cursorWidth: 10.0,
+        ),
+padding: const EdgeInsets.fromLTRB(2.0, 2.0, 2.0, 2.0),
+          ),
+         
+         
+         ),
+          
+    ]),        
+        
+        
+
+        
+          );
+      
+    }
+}
+
+
+
+class RootTerminalApp extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return new MaterialApp(
+      title: 'Root Terminal',
+      theme: new ThemeData(
+        primarySwatch: Colors.grey,
+      ),
+      home: new RootTerminal(),
+    );
+  }
+}
+
+
+
+     
+
+class RootTerminal extends StatefulWidget {
+  RootTerminal({Key key}) : super(key: key);
+  @override
+  _RootTerminalState createState() => new _RootTerminalState();
+}
+
+
+
+class _RootTerminalState extends State<RootTerminal> {
+    @override
+    Widget build(BuildContext context) {
+      return new Scaffold(
+        backgroundColor: const Color(0xFF222222),
+        body:
+          
+        
+        
+       new Column(children: [
+      Container(
+          height: 55,
+          color: Colors.red[600],
+          child: Row(children: [
+          new IconButton(
+            icon: const Icon(Icons.add),
+            onPressed:terminulll,
+            iconSize: 25.0,
+            color: const Color(0xFFffffff),
+          ),
+            Expanded(
+                child: Center(
+                    child: Text('Root Terminal',
+                       style: TextStyle(
+                            fontSize: 18, color: Color(0xffffffff))))),
+            
+            new IconButton(
+            icon: const Icon(Icons.settings),
+            onPressed:terminulll,
+            iconSize: 25.0,
+            color: const Color(0xFFffffff),
+          ),
+
+            new IconButton(
+            icon: const Icon(Icons.more_vert),
+            onPressed:terminulll,
+            iconSize: 25.0,
+            color: const Color(0xFFffffff),
+          ),
+          ])),
+         new Expanded(child: 
+         
+          new Padding(
+            child:
+new TextFormField(
+ style:    
+         TextStyle(fontSize:15.0,
+            color: const Color(0xFFf2f2f2),
+            
+            fontFamily: "Cousine",),
+          decoration: InputDecoration.collapsed(hintText: ""),
+          autocorrect: false,
+          minLines: null,
+          maxLines: null,
+          expands: true,
+          initialValue: "debug_shell \#",
+    cursorColor: Colors.red[500],
   cursorRadius: Radius.circular(0.0),
   cursorWidth: 10.0,
         ),
