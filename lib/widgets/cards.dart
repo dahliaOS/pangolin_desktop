@@ -42,10 +42,10 @@ Widget tileSection = Expanded(
            color: Colors.red[700],
             callback: toggleCallback),
         AppLauncherDrawerButton(
-            app: TextEditor(),
+            app: TextEditorApp(),
             icon: 'lib/images/icons/v2/compiled/notes.png',
             label: 'Notes',
-            color: Colors.deepOrange,
+            color: Colors.amber[700],
             callback: toggleCallback),
         AppLauncherDrawerButton(
             icon: 'lib/images/icons/v2/compiled/note_mobile.png',

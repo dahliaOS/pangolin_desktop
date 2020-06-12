@@ -65,7 +65,7 @@ List<AppLauncherPanelButton> testLaunchers = [
   AppLauncherPanelButton(
       app: Calculator(), icon: 'lib/images/icons/v2/compiled/calculator.png'),
   AppLauncherPanelButton(
-      app: TextEditor(), icon: 'lib/images/icons/v2/compiled/notes.png'),
+      app: TextEditorApp(), icon: 'lib/images/icons/v2/compiled/notes.png'),
   AppLauncherPanelButton(
       app: Terminal(), icon: 'lib/images/icons/v2/compiled/terminal.png'),
   AppLauncherPanelButton(
@@ -268,9 +268,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           callback: toggleCallback,
                         ),
                         AppLauncherPanelButton(
-                            app: TextEditor(),
+                            app: TextEditorApp(),
                             icon: 'lib/images/icons/v2/compiled/notes.png',
-                            color: Colors.deepOrange[900],
+                            color: Colors.amber[700],
                             callback: toggleCallback),
                         AppLauncherPanelButton(
                             app: Terminal(),
