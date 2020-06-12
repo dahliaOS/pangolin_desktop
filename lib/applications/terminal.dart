@@ -224,7 +224,7 @@ new TextFormField(
           minLines: null,
           maxLines: null,
           expands: true,
-          initialValue: "debug_shell \#",
+          //initialValue: "debug_shell \#",
     cursorColor: Colors.red[500],
   cursorRadius: Radius.circular(0.0),
   cursorWidth: 10.0,
