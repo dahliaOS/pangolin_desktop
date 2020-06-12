@@ -36,32 +36,32 @@ class _TextEditorState extends State<TextEditor> {
        new Column(children: [
       Container(
           height: 55,
-          color: Color(0xff292929),
+          color: Colors.amber[500],
           child: Row(children: [
           new IconButton(
             icon: const Icon(Icons.add),
             onPressed:textButtonNull,
             iconSize: 25.0,
-            color: const Color(0xFFffffff),
+            color: const Color(0xFF222222),
           ),
             Expanded(
                 child: Center(
-                    child: Text('Terminal',
+                    child: Text('Notes',
                        style: TextStyle(
-                            fontSize: 18, color: Color(0xffffffff))))),
+                            fontSize: 18, color: Color(0xff222222))))),
             
             new IconButton(
-            icon: const Icon(Icons.settings),
+            icon: const Icon(Icons.save),
             onPressed:textButtonNull,
             iconSize: 25.0,
-            color: const Color(0xFFffffff),
+            color: const Color(0xFF222222),
           ),
 
             new IconButton(
             icon: const Icon(Icons.more_vert),
             onPressed:textButtonNull,
             iconSize: 25.0,
-            color: const Color(0xFFffffff),
+            color: const Color(0xFF222222),
           ),
           ])),
          new Expanded(child: 
@@ -71,20 +71,18 @@ class _TextEditorState extends State<TextEditor> {
 new TextFormField(
  style:    
          TextStyle(fontSize:15.0,
-            color: const Color(0xFFf2f2f2),
+            color: const Color(0xFF222222),
             
-            fontFamily: "Cousine",),
+            fontFamily: "Roboto",),
           decoration: InputDecoration.collapsed(hintText: ""),
           autocorrect: false,
           minLines: null,
           maxLines: null,
           expands: true,
-          initialValue: "debug_shell \$",
-    cursorColor: const Color(0xFFf2f2f2),
-  cursorRadius: Radius.circular(0.0),
-  cursorWidth: 10.0,
+          
+    cursorColor: const Color(0xFF222222),
         ),
-padding: const EdgeInsets.fromLTRB(2.0, 2.0, 2.0, 2.0),
+padding: const EdgeInsets.fromLTRB(100.0, 2.0, 100.0, 2.0),
           ),
          
          
