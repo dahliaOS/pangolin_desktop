@@ -214,6 +214,9 @@ class _RootTerminalState extends State<RootTerminal> {
             child:
 new TextFormField(
   controller: rootController,
+   onFieldSubmitted: (_) async {
+                  print(rootController.text);
+                },
  style:    
          TextStyle(fontSize:15.0,
             color: const Color(0xFFf2f2f2),
