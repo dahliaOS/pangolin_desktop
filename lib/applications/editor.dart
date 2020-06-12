@@ -69,6 +69,9 @@ class _TextEditorState extends State<TextEditor> {
           new Padding(
             child:
 new TextFormField(
+    onChanged: (text) {
+    print("First text field: $text");
+  },
  style:    
          TextStyle(fontSize:15.0,
             color: const Color(0xFF222222),
