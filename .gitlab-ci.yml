@@ -1,0 +1,53 @@
+default:
+  image: cirrusci/flutter:stable
+
+  before_script:
+    - flutter channel master
+    - flutter upgrade
+    - flutter config --enable-web
+  
+.runchecks: &runchecks
+  only:
+    - pushes
+    - schedules
+    - merge_requests
+    - external_pull_requests
+  except:
+    changes:
+      - "*.md"
+
+stages:
+  - install
+  - build # this should be used multiple times, i.e. for Android and Web builds
+# - test # this could be used at some point
+# - deploy # this will be used for web and releases
+
+pub_get:
+  <<: *runchecks
+  stage: install
+  script:
+    - flutter pub get
+  cache:
+    key: pub_get
+    paths:
+      - .dart_tool
+
+#after_script:
+
+build_android:
+  <<: *runchecks
+  stage: build
+  script:
+    - flutter build apk --debug --split-per-abi
+  artifacts:
+    name: 'APKs'
+    expose_as: 'APKs'
+    paths: ['build/app/outputs/apk/debug/']
+  cache:
+    key: build_android
+    paths:
+      - /opt/android-sdk-linux/
+      - build/flutter_assets/
+
+#test1:
+#  stage: test
