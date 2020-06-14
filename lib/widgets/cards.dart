@@ -1,3 +1,19 @@
+/*
+Copyright 2019 The dahliaOS Authors
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
 import 'package:flutter/material.dart';
 import '../applications/calculator.dart';
 import '../applications/editor.dart';
@@ -36,14 +52,16 @@ Widget tileSection = Expanded(
             color: Colors.deepOrange,
             callback: toggleCallback),
         AppLauncherDrawerButton(
+            app: RootTerminal(),
             icon: 'lib/images/icons/v2/compiled/root.png',
             label: 'Root Terminal',
-            appExists: false),
+           color: Colors.red[700],
+            callback: toggleCallback),
         AppLauncherDrawerButton(
-            app: TextEditor(),
+            app: TextEditorApp(),
             icon: 'lib/images/icons/v2/compiled/notes.png',
             label: 'Notes',
-            color: Colors.deepOrange,
+            color: Colors.amber[700],
             callback: toggleCallback),
         AppLauncherDrawerButton(
             icon: 'lib/images/icons/v2/compiled/note_mobile.png',
@@ -83,6 +101,30 @@ Widget tileSection = Expanded(
             label: 'Welcome',
             color: Colors.grey[900],
             callback: toggleCallback),
+        AppLauncherDrawerButton(
+            icon: 'lib/images/icons/v2/compiled/clock.png',
+            label: 'Clock',
+            appExists: false),
+        AppLauncherDrawerButton(
+            icon: 'lib/images/icons/v2/compiled/messages.png',
+            label: 'Messages',
+            appExists: false),
+        AppLauncherDrawerButton(
+            icon: 'lib/images/icons/v2/compiled/music.png',
+            label: 'Music',
+            appExists: false),
+        AppLauncherDrawerButton(
+            icon: 'lib/images/icons/v2/compiled/photos.png',
+            label: 'Media',
+            appExists: false),
+
+
+
+
+
+
+
+
       ])),
 );
 

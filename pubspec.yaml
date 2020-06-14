@@ -76,34 +76,10 @@ flutter:
           style: italic
   assets:
   - lib/application.json
-  - lib/images/def.png
-  - lib/images/menu.png
-  - lib/images/wallpaper.png
-  - lib/images/google_logo.png
-  - lib/images/Gmail-icon.png
-  - lib/images/phone.png
-  - lib/images/calc.png
-  - lib/images/music.png
-  - lib/images/settings.png
-  - lib/images/clock.png
+  - lib/images/
   - lib/images/Desktop/Dahlia/dahlia_material_background.jpg
   - lib/images/Desktop/Dahlia/forest.jpg
   - lib/images/Desktop/Cityscapes/stairs.png
-  - lib/images/icons/v2/compiled/terminal.png
-  - lib/images/icons/v2/compiled/task.png
-  - lib/images/icons/v2/compiled/settings.png
-  - lib/images/icons/v2/compiled/root.png
-  - lib/images/icons/v2/compiled/notes.png
-  - lib/images/icons/v2/compiled/note_mobile.png
-  - lib/images/icons/v2/compiled/logs.png
-  - lib/images/icons/v2/compiled/files.png
-  - lib/images/icons/v2/compiled/disks.png
-  - lib/images/icons/v2/compiled/calculator.png
-  - lib/images/icons/v2/compiled/android.png
-  - lib/images/icons/v2/compiled/theme.png
-  - lib/images/icons/v2/compiled/grey-drag.png
-  - lib/images/icons/v2/compiled/macos.png
-  - lib/images/icons/v2/compiled/debian.png
-  - lib/images/icons/v2/compiled/ubuntu.png
+  - lib/images/icons/v2/compiled/
   - lib/images/logo-color.png
   - lib/images/dahlia.png

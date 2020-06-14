@@ -1,3 +1,19 @@
+/*
+Copyright 2019 The dahliaOS Authors
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
 import 'package:GeneratedApp/applications/calculator.dart';
 import 'package:GeneratedApp/applications/editor.dart';
 import 'package:GeneratedApp/applications/welcome.dart';
@@ -65,7 +81,7 @@ List<AppLauncherPanelButton> testLaunchers = [
   AppLauncherPanelButton(
       app: Calculator(), icon: 'lib/images/icons/v2/compiled/calculator.png'),
   AppLauncherPanelButton(
-      app: TextEditor(), icon: 'lib/images/icons/v2/compiled/notes.png'),
+      app: TextEditorApp(), icon: 'lib/images/icons/v2/compiled/notes.png'),
   AppLauncherPanelButton(
       app: Terminal(), icon: 'lib/images/icons/v2/compiled/terminal.png'),
   AppLauncherPanelButton(
@@ -86,7 +102,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //Gets DahliaOS UI set up in a familiar way.
-  
+
 
     return ChangeNotifierProvider<WindowsData>(
       create: (context) => provisionalWindowData,
@@ -181,7 +197,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               child: ClipRRect(
-                //borderRadius: BorderRadius.circular(5.0),
+                //borderRadius: BorderRadius.circular(5.0),//THIS IS THE ROUNDING OF THE LAUNCHER INCASE YOU WANT IT TO CHANGE
                 child: Container(
                     padding: const EdgeInsets.all(0.0),
                     alignment: Alignment.center,
@@ -268,9 +284,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           callback: toggleCallback,
                         ),
                         AppLauncherPanelButton(
-                            app: TextEditor(),
+                            app: TextEditorApp(),
                             icon: 'lib/images/icons/v2/compiled/notes.png',
-                            color: Colors.deepOrange[900],
+                            color: Colors.amber[700],
                             callback: toggleCallback),
                         AppLauncherPanelButton(
                             app: Terminal(),
