@@ -14,6 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'dart:async';
@@ -117,32 +119,61 @@ class QuickSettingsState extends State<QuickSettings> {
                   color: Colors.white,
                 ),
                 Expanded(
-                    child: Slider(
-                        value: brightness,
-                        divisions: 10,
-                        onChanged: (newBrightness) {
-                          setState(() {
-                            brightness = newBrightness;
-                          });
-                        })),
+                  child: Slider(
+                      value: brightness,
+                      divisions: 10,
+                      onChanged: (newBrightness) {
+                        setState(() {
+                          brightness = newBrightness;
+                        });
+                      }),
+                ),
+                Container(
+                  width: 35,
+                  child: Center(
+                    child: Text(
+                      "${(brightness * 100).toInt().toString()}",
+                      style: TextStyle(
+                        color: Colors.white,
+                        letterSpacing: 1.2,
+                        fontSize: 17.0,
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 Icon(
                   Icons.volume_up,
                   color: Colors.white,
                 ),
                 Expanded(
-                    child: Slider(
-                        value: volume,
-                        divisions: 20,
-                        onChanged: (newVolume) {
-                          setState(() {
-                            volume = newVolume;
-                          });
-                        })),
+                  child: Slider(
+                    value: volume,
+                    divisions: 20,
+                    onChanged: (newVolume) {
+                      setState(() {
+                        volume = newVolume;
+                      });
+                    },
+                  ),
+                ),
+                Container(
+                  width: 35,
+                  child: Center(
+                    child: Text(
+                      "${(volume * 100).toInt().toString()}",
+                      style: TextStyle(
+                        color: Colors.white,
+                        letterSpacing: 1.2,
+                        fontSize: 17.0,
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ],
