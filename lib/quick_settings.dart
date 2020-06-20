@@ -27,6 +27,8 @@ class QuickSettings extends StatefulWidget {
 class QuickSettingsState extends State<QuickSettings> {
   String _timeString;
   String _dateString;
+  double volume = 0.5;
+  double brightness = 0.8;
 
   @override
   void initState() {
@@ -103,8 +105,48 @@ class QuickSettingsState extends State<QuickSettings> {
       );
     }
 
-    Widget sliderSection =
-        Container(child: Slider(value: 0.75, onChanged: (double) {}));
+    Widget sliderSection = Container(
+        margin: EdgeInsets.symmetric(horizontal: 25),
+        child: Column(
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Icon(
+                  Icons.brightness_6,
+                  color: Colors.white,
+                ),
+                Expanded(
+                    child: Slider(
+                        value: brightness,
+                        divisions: 10,
+                        onChanged: (newBrightness) {
+                          setState(() {
+                            brightness = newBrightness;
+                          });
+                        })),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Icon(
+                  Icons.volume_up,
+                  color: Colors.white,
+                ),
+                Expanded(
+                    child: Slider(
+                        value: volume,
+                        divisions: 20,
+                        onChanged: (newVolume) {
+                          setState(() {
+                            volume = newVolume;
+                          });
+                        })),
+              ],
+            ),
+          ],
+        ));
 
     Column buildTile(IconData icon, String label) {
       return Column(
@@ -133,7 +175,7 @@ class QuickSettingsState extends State<QuickSettings> {
       child: Container(
           padding: EdgeInsets.all(10.0),
           child: GridView.count(
-            physics: BouncingScrollPhysics(),
+              physics: BouncingScrollPhysics(),
               crossAxisCount: 4,
               childAspectRatio: 2.5 / 4,
               children: [
