@@ -217,8 +217,8 @@ class _MyHomePageState extends State<MyHomePage> {
         SystemOverlay(
           key: KeyRing.statusOverlayKey,
           builder: (Animation<double> animation) => Positioned(
-            right: 0.0,
-            bottom: 50.0,
+            right:5.0,
+            bottom: 55.0,
             child: AnimatedBuilder(
               animation: animation,
               builder: (BuildContext context, Widget child) => FadeTransition(
@@ -230,7 +230,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(5.0),
+                borderRadius: BorderRadius.circular(15.0),
                 child: Stack(children: [
                   BackdropFilter(
                     filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
