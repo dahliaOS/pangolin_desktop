@@ -68,14 +68,17 @@ class QuickSettingsState extends State<QuickSettings> {
         children: [
           /*Expanded(
             child:*/
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(_timeString, style: biggerFont),
-              //Icon(Icons.brightness_1, size: 10.0,color: Colors.white),
-              Text('  •  ', style: biggerFont),
-              Text(_dateString, style: biggerFont),
-            ],
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(_timeString, style: biggerFont),
+                //Icon(Icons.brightness_1, size: 10.0,color: Colors.white),
+                Text('  •  ', style: biggerFont),
+                Text(_dateString, style: biggerFont),
+              ],
+            ),
           ),
           Spacer(),
           //),
