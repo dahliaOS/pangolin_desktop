@@ -230,7 +230,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(15.0),
+                borderRadius: BorderRadius.circular(5.0),
                 child: Stack(children: [
                   BackdropFilter(
                     filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
