@@ -112,7 +112,7 @@ class QuickSettingsState extends State<QuickSettings> {
     }
 
     Widget sliderSection = Container(
-        margin: EdgeInsets.symmetric(horizontal: 25),
+        margin: EdgeInsets.fromLTRB(25, 0, 25, 10),
         child: Column(
           children: <Widget>[
             Row(
