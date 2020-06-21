@@ -62,7 +62,7 @@ class QuickSettingsState extends State<QuickSettings> {
       color: Colors.white,
     );
     Widget topSection = Container(
-      padding: EdgeInsets.all(25.0),
+      padding: EdgeInsets.all(10.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -77,6 +77,7 @@ class QuickSettingsState extends State<QuickSettings> {
               Text(_dateString, style: biggerFont),
             ],
           ),
+          Spacer(),
           //),
           new IconButton(
             icon: const Icon(Icons.power_settings_new),
@@ -187,7 +188,7 @@ class QuickSettingsState extends State<QuickSettings> {
         children: [
           FloatingActionButton(
             onPressed: changeColor,
-            elevation: 3.0,
+            elevation: 0.0,
             child: Icon(icon, color: Colors.white, size: 30.0),
           ),
           Container(
