@@ -140,7 +140,7 @@ class QuickSettingsState extends State<QuickSettings> {
                       style: TextStyle(
                         color: Colors.white,
                         letterSpacing: 1.2,
-                        fontSize: 17.0,
+                        fontSize: 15.0,
                       ),
                     ),
                   ),
@@ -173,7 +173,7 @@ class QuickSettingsState extends State<QuickSettings> {
                       style: TextStyle(
                         color: Colors.white,
                         letterSpacing: 1.2,
-                        fontSize: 17.0,
+                        fontSize: 15.0,
                       ),
                     ),
                   ),
