@@ -75,8 +75,8 @@ deploy_ghpages:
   script:
     - git worktree add branch-ghpages
     - cd branch-ghpages
-    - git fetch
-    - git checkout origin/gh-pages
+    - git fetch origin
+    - git checkout gh-pages
     - cp -r ../build/web .
     - git add .
     - git commit -m "Update GitHub Pages"
