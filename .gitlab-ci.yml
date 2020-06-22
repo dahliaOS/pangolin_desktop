@@ -18,9 +18,12 @@ default:
 
 stages:
   - install
-  - build # this should be used multiple times, i.e. for Android and Web builds
-# - test # this could be used at some point
-# - deploy # this will be used for web and releases
+  - build
+    # this should be used multiple times, i.e. for Android and Web builds
+# - test
+    # this could be used at some point
+  - deploy 
+    # this will be used for web and releases
 
 pub_get:
   <<: *runchecks
@@ -48,6 +51,29 @@ build_android:
     paths:
       - /opt/android-sdk-linux/
       - build/flutter_assets/
+
+build_web:
+  <<: *runchecks
+  stage: build
+  script:
+    - flutter build web --debug
+  artifacts:
+    name: 'pangolin-web-preview'
+    expose_as: 'Web Zip'
+    paths: ['build/web']
+
+deploy_ghpages:
+  <<: *runchecks
+  stage: deploy
+  needs: ['build_web']
+  script:
+    - git worktree add branch-ghpages gh-pages
+    - cp -r build/web branch-ghpages
+    - cd branch-ghpages
+    - git add .
+    - git commit -m "Update GitHub Pages"
+    - git push
+  environment: staging
 
 #test1:
 #  stage: test
