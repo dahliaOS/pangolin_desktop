@@ -17,7 +17,7 @@ default:
       - "*.md"
 
 stages:
-  - install
+# - install
   - build
     # this should be used multiple times, i.e. for Android and Web builds
 # - test
@@ -25,15 +25,15 @@ stages:
   - deploy 
     # this will be used for web and releases
 
-pub_get:
-  <<: *runchecks
-  stage: install
-  script:
-    - flutter pub get
-  cache:
-    key: pub_get
-    paths:
-      - .dart_tool
+# pub_get:
+#   <<: *runchecks
+#   stage: install
+#   script:
+#     - flutter pub get
+#   cache:
+#     key: pub_get
+#     paths:
+#       - .dart_tool
 
 #after_script:
 
@@ -67,6 +67,8 @@ deploy_ghpages:
   image: alpine:latest
   stage: deploy
   needs: ['build_web']
+  before_script:
+    - echo "Flutter does not need to be initialized. *piano solo*"
   script:
     - git worktree add branch-ghpages gh-pages
     - cp -r build/web branch-ghpages
