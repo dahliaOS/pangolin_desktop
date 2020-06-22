@@ -183,14 +183,14 @@ class QuickSettingsState extends State<QuickSettings> {
           ],
         ));
 
-    Column buildTile(IconData icon, String label) {
+    Column buildTile(IconData icon, String label, Function onClick) {
       return Column(
         //mainAxisSize: MainAxisSize.min,
         //mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           FloatingActionButton(
-            onPressed: changeColor,
+            onPressed: onClick,
             elevation: 0.0,
             child: Icon(icon, color: Colors.white, size: 30.0),
           ),
@@ -214,15 +214,15 @@ class QuickSettingsState extends State<QuickSettings> {
               crossAxisCount: 4,
               childAspectRatio: 2.5 / 4,
               children: [
-                buildTile(Icons.network_wifi, 'Wifi Network'),
-                buildTile(Icons.palette, 'Theme'),
-                buildTile(Icons.battery_full, '85%'),
-                buildTile(Icons.do_not_disturb_off, 'Do not disturb'),
-                buildTile(Icons.lightbulb_outline, 'Flashlight'),
-                buildTile(Icons.screen_lock_rotation, 'Auto-rotate'),
-                buildTile(Icons.bluetooth, 'Bluetooth'),
-                buildTile(Icons.airplanemode_inactive, 'Airplane mode'),
-                buildTile(Icons.invert_colors_off, 'Invert colors'),
+                buildTile(Icons.network_wifi, 'Wifi Network', changeColor),
+                buildTile(Icons.palette, 'Theme', changeColor),
+                buildTile(Icons.battery_full, '85%', changeColor),
+                buildTile(Icons.do_not_disturb_off, 'Do not disturb', changeColor),
+                buildTile(Icons.lightbulb_outline, 'Flashlight', changeColor),
+                buildTile(Icons.screen_lock_rotation, 'Auto-rotate', changeColor),
+                buildTile(Icons.bluetooth, 'Bluetooth', changeColor),
+                buildTile(Icons.airplanemode_inactive, 'Airplane mode', changeColor),
+                buildTile(Icons.invert_colors_off, 'Invert colors', changeColor),
               ])),
     );
 
