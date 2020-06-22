@@ -71,7 +71,10 @@ deploy_ghpages:
     - echo "Flutter does not need to be initialized. *piano solo*"
     - apk add git
   script:
-    - git worktree add branch-ghpages gh-pages
+    - git worktree add branch-ghpages
+    - cd branch-ghpages
+    - git checkout gh-pages
+    - cd ..
     - cp -r build/web branch-ghpages
     - cd branch-ghpages
     - git add .
