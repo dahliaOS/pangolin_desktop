@@ -64,6 +64,8 @@ build_web:
 
 deploy_ghpages:
   <<: *runchecks
+  only:
+    - master
   image: alpine:latest
   stage: deploy
   needs: ['build_web']
@@ -77,7 +79,7 @@ deploy_ghpages:
     - cd branch-ghpages
     - git fetch origin
     - git checkout gh-pages
-    - cp -r ../build/web .
+    - cp -r ../build/web/* .
     - git add .
     - git commit -m "Update GitHub Pages"
     - git remote add github https://${GH_REMOTE_AUTH}@github.com/dahlia-os/pangolin-desktop.git
