@@ -73,7 +73,8 @@ deploy_ghpages:
   script:
     - git worktree add branch-ghpages
     - cd branch-ghpages
-    - git checkout gh-pages
+    - git fetch
+    - git checkout origin/gh-pages
     - cd ..
     - cp -r build/web branch-ghpages
     - cd branch-ghpages
