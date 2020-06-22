@@ -64,6 +64,7 @@ build_web:
 
 deploy_ghpages:
   <<: *runchecks
+  image: alpine:latest
   stage: deploy
   needs: ['build_web']
   script:
