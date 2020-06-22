@@ -35,7 +35,7 @@ class QuickSettingsState extends State<QuickSettings> {
   @override
   void initState() {
     _timeString = _formatDateTime(DateTime.now(), 'hh:mm');
-    _dateString = _formatDateTime(DateTime.now(), 'E, MMM d');
+    _dateString = _formatDateTime(DateTime.now(), 'E, d MMMM yyyy');
     Timer.periodic(Duration(seconds: 1), (Timer t) => _getTime());
     super.initState();
   }
@@ -43,7 +43,7 @@ class QuickSettingsState extends State<QuickSettings> {
   void _getTime() {
     final DateTime now = DateTime.now();
     final String formattedTime = _formatDateTime(now, 'hh:mm');
-    final String formattedDate = _formatDateTime(now, 'E, MMM d');
+    final String formattedDate = _formatDateTime(now, 'E, d MMMM yyyy');
     setState(() {
       _timeString = formattedTime;
       _dateString = formattedDate;
