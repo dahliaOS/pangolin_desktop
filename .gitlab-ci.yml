@@ -70,18 +70,21 @@ deploy_ghpages:
   before_script:
     - echo "Flutter does not need to be initialized. *piano solo*"
     - apk add git
+    - git config --global user.name "GitLab Auto Build"
+    - git config --global user.email "build+web@dahliaos.io"
   script:
     - git worktree add branch-ghpages
     - cd branch-ghpages
     - git fetch
     - git checkout origin/gh-pages
-    - cd ..
-    - cp -r build/web branch-ghpages
-    - cd branch-ghpages
+    - cp -r ../build/web .
     - git add .
     - git commit -m "Update GitHub Pages"
-    - git push
-  environment: staging
+    - git remote add github https://${GH_REMOTE_AUTH}@github.com/dahlia-os/pangolin-desktop.git
+    - git push --set-upstream github gh-pages
+  environment: 
+    name: staging
+    url: https://dahlia-os.github.io/pangolin-desktop/index.html
 
 #test1:
 #  stage: test
