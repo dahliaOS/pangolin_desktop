@@ -56,7 +56,7 @@ build_web:
   <<: *runchecks
   stage: build
   script:
-    - flutter build web --debug
+    - flutter build web
   artifacts:
     name: 'pangolin-web-preview'
     expose_as: 'Web Zip'
