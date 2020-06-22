@@ -81,6 +81,7 @@ deploy_ghpages:
     - git add .
     - git commit -m "Update GitHub Pages"
     - git remote add github https://${GH_REMOTE_AUTH}@github.com/dahlia-os/pangolin-desktop.git
+    - git fetch github
     - git push --set-upstream github gh-pages
   environment: 
     name: staging
