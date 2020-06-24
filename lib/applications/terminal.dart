@@ -15,6 +15,7 @@ limitations under the License.
 */
 
 import 'package:flutter/material.dart';
+import 'dart:io';
 
 void main() {
   runApp(new TerminalApp());
@@ -24,14 +25,12 @@ class TerminalApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-      title: 'Generated App',
+      title: 'Terminal',
       theme: new ThemeData(
         primarySwatch: Colors.grey,
-        primaryColor: const Color(0xFF2196f3),
-        accentColor: const Color(0xFF2196f3),
-        canvasColor: const Color(0xFFfafafa),
+        
       ),
-      home: new TerminalApp(),
+      home: new Terminal(),
     );
   }
 }
@@ -60,6 +59,8 @@ class _TerminalState extends State<Terminal> {
 
 final myController = TextEditingController();
 
+String output = "";
+
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
@@ -67,6 +68,14 @@ final myController = TextEditingController();
     super.dispose();
   }
 
+runCommand(String command) {
+setState(() {
+//ProcessResult result = Process.runSync('uname', ['-a']);
+print("running "+command+":");
+ProcessResult result = Process.runSync(command, ['-a']);
+   output = result.stdout;
+});
+  }
 
     @override
     Widget build(BuildContext context) {
@@ -96,6 +105,7 @@ final myController = TextEditingController();
             new IconButton(
             icon: const Icon(Icons.play_arrow),
             onPressed: () {
+            runCommand(myController.text);
             print(myController.text);},
             iconSize: 25.0,
             color: const Color(0xFFffffff),
@@ -112,29 +122,42 @@ final myController = TextEditingController();
          
           new Padding(
             child:
-new TextFormField(
+            new Container( 
+
+
+    alignment: Alignment.topLeft,
+    child: new Text(
+          output,
+            style: new TextStyle(fontSize:15.0,
+            color: const Color(0xFFf2f2f2),
+            fontFamily: "Cousine"),
+          ),
+),
+padding: const EdgeInsets.fromLTRB(2.0, 2.0, 2.0, 2.0),
+          ),
+         
+         
+         ),
+         new Padding(child:
+          new TextFormField(
   controller: myController,
  style:    
          TextStyle(fontSize:15.0,
             color: const Color(0xFFf2f2f2),
             
             fontFamily: "Cousine",),
-          decoration: InputDecoration.collapsed(hintText: ""),
+          decoration: InputDecoration.collapsed(hintText: "\$", hintStyle: TextStyle(fontWeight: FontWeight.w900,color: const Color(0xFFf2f2f2)),),
           autocorrect: false,
+          autofocus: true,
           minLines: null,
           maxLines: null,
-          expands: true,
+          
           //initialValue: "debug_shell \$",
     cursorColor: const Color(0xFFf2f2f2),
   cursorRadius: Radius.circular(0.0),
   cursorWidth: 10.0,
         ),
-padding: const EdgeInsets.fromLTRB(2.0, 2.0, 2.0, 2.0),
-          ),
-         
-         
-         ),
-          
+        padding: const EdgeInsets.fromLTRB(2.0, 2.0, 2.0, 2.0),),
     ]),        
         
         
