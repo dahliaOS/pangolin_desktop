@@ -139,8 +139,11 @@ updateOutput(var data) {
           ])),
          new Expanded(child: 
          
-          new Padding(
-            child:
+          SingleChildScrollView(
+                    padding:
+                        const EdgeInsets.fromLTRB(2.0, 2.0, 2.0, 2.0),
+                    scrollDirection: Axis.vertical,
+                    child:
             new Container( 
 
 
@@ -151,8 +154,7 @@ updateOutput(var data) {
             color: const Color(0xFFf2f2f2),
             fontFamily: "Cousine"),
           ),
-),
-padding: const EdgeInsets.fromLTRB(2.0, 2.0, 2.0, 2.0),
+            ),
           ),
          
          
