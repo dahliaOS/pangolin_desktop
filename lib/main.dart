@@ -19,6 +19,9 @@ import 'package:GeneratedApp/applications/editor.dart';
 import 'package:GeneratedApp/applications/welcome.dart';
 import 'package:GeneratedApp/applications/monitor.dart';
 import 'package:GeneratedApp/applications/files.dart';
+import 'package:GeneratedApp/localization/localization.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+
 import 'quick_settings.dart';
 import 'window_space.dart';
 //import 'dart:async';
@@ -95,14 +98,31 @@ List<AppLauncherPanelButton> testLaunchers = [
 void main() {
   /// To keep app in Portrait Mode
   //SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeRight]);
-  runApp(MyApp());
+  runApp(Pangolin());
 }
 
-class MyApp extends StatelessWidget {
+class Pangolin extends StatefulWidget {
+  @override
+  _PangolinState createState() => _PangolinState();
+
+  static void setLocale(BuildContext context, Locale locale) {
+    _PangolinState state = context.findAncestorStateOfType<_PangolinState>();
+    state.setLocale(locale);
+  }
+}
+
+class _PangolinState extends State<Pangolin> {
+  Locale _locale;
+
+  void setLocale(Locale locale) {
+    setState(() {
+      _locale = locale;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     //Gets DahliaOS UI set up in a familiar way.
-
 
     return ChangeNotifierProvider<WindowsData>(
       create: (context) => provisionalWindowData,
@@ -121,6 +141,17 @@ class MyApp extends StatelessWidget {
             title: 'Pangolin Desktop',
             theme: theme,
             home: MyHomePage(title: 'Pangolin Desktop'),
+            supportedLocales: [
+              Locale("en", ""),
+              Locale("de", ""),
+            ],
+            localizationsDelegates: [
+              Localization.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            locale: _locale,
           );
         },
       ),
@@ -217,7 +248,7 @@ class _MyHomePageState extends State<MyHomePage> {
         SystemOverlay(
           key: KeyRing.statusOverlayKey,
           builder: (Animation<double> animation) => Positioned(
-            right:5.0,
+            right: 5.0,
             bottom: 55.0,
             child: AnimatedBuilder(
               animation: animation,
