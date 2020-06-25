@@ -16,6 +16,7 @@ limitations under the License.
 
 import 'package:flutter/material.dart';
 import '../applications/calculator.dart';
+import '../applications/files.dart';
 import '../applications/editor.dart';
 import '../applications/terminal.dart';
 import '../settings.dart';
@@ -72,9 +73,11 @@ Widget tileSection = Expanded(
             label: 'System Logs',
             appExists: false),
         AppLauncherDrawerButton(
+           app: Files(),
             icon: 'lib/images/icons/v2/compiled/files.png',
             label: 'Files',
-            appExists: false),
+            color: Colors.deepOrange,
+            callback: toggleCallback),
         AppLauncherDrawerButton(
             icon: 'lib/images/icons/v2/compiled/disks.png',
             label: 'Disks',

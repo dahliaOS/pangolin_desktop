@@ -18,7 +18,7 @@ import 'package:GeneratedApp/applications/calculator.dart';
 import 'package:GeneratedApp/applications/editor.dart';
 import 'package:GeneratedApp/applications/welcome.dart';
 import 'package:GeneratedApp/applications/monitor.dart';
-
+import 'package:GeneratedApp/applications/files.dart';
 import 'quick_settings.dart';
 import 'window_space.dart';
 //import 'dart:async';
@@ -294,9 +294,9 @@ class _MyHomePageState extends State<MyHomePage> {
                             color: Colors.grey[900],
                             callback: toggleCallback),
                         AppLauncherPanelButton(
+                            app: Files(),
                             icon: 'lib/images/icons/v2/compiled/files.png',
-                            appExists: false,
-                            color: Colors.grey,
+                            color: Colors.deepOrange,
                             callback: toggleCallback),
                         AppLauncherPanelButton(
                           app: Tasks(),
