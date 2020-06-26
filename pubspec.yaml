@@ -85,3 +85,5 @@ flutter:
   - lib/images/icons/v2/compiled/
   - lib/images/logo-color.png
   - lib/images/dahlia.png
+  - lib/localization/languages/de.json
+  - lib/localization/languages/en.json
