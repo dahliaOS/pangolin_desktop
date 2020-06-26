@@ -23,6 +23,7 @@ class AppLauncherPanelButton extends StatefulWidget {
   final Widget app;
   final String icon;
   final bool appExists;
+  final bool customBar;
   final double childHeight;
   final double childWidth;
   final Color color;
@@ -32,6 +33,7 @@ class AppLauncherPanelButton extends StatefulWidget {
       {this.app,
       this.icon,
       this.appExists = true,
+      this.customBar = false,
       this.childHeight = 35.0,
       this.childWidth = 35.0,
       this.color,
@@ -106,6 +108,7 @@ class AppLauncherDrawerButton extends StatefulWidget {
   final Widget app;
   final String icon;
   final bool appExists;
+  final bool customBar;
   final double childHeight;
   final double childWidth;
   final String label;
@@ -117,6 +120,7 @@ class AppLauncherDrawerButton extends StatefulWidget {
       @required this.icon,
       this.label,
       this.appExists = true,
+      this.customBar = true,
       this.childHeight = 64.0,
       this.childWidth = 64.0,
       this.color,
