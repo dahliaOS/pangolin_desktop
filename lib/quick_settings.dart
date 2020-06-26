@@ -231,7 +231,6 @@ class QuickSettingsState extends State<QuickSettings> {
                 buildTile(
                     Icons.invert_colors_off, local.get("qs_invertcolors"), changeColor),
                 buildTile(Icons.language, local.get("qs_changelanguage"), () {
-                  print(Localizations.localeOf(context));
                   if (Localizations.localeOf(context).toString() == "en") {
                     Pangolin.setLocale(context, Locale("de",));
                   }
