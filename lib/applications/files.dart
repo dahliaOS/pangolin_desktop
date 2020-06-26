@@ -19,6 +19,7 @@ void main() {
   runApp(new Files());
 }
 class Files extends StatelessWidget {
+  final customBar = true;
 
   @override
   Widget build(BuildContext context) {
