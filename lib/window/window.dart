@@ -29,6 +29,9 @@ class Window extends StatefulWidget {
   /// The window's initial size.
   final Size initialSize;
 
+  /// Whether or not the window has a custom title bar.
+  final bool customBar;
+
   /// Called when the user started interacting with this window.
   final WindowInteractionCallback onWindowInteraction;
 
@@ -48,6 +51,7 @@ class Window extends StatefulWidget {
     this.onWindowClose,
     this.initialPosition: Offset.zero,
     this.initialSize: Size.zero,
+	  this.customBar: false,
     @required this.child,
     this.color: Colors.blueAccent,
   }) : super(key: key);
@@ -166,7 +170,7 @@ class WindowState extends State<Window> {
         onKey: (RawKeyEvent event) =>
         _handleKeyEvent(event, model, selectedTab.id),
         child: new*/
-                RepaintBoundary(
+              !widget.customBar ? RepaintBoundary(
               child: Container(
                 width: _size.width,
                 height: _size.height,
@@ -223,7 +227,7 @@ class WindowState extends State<Window> {
                   ],
                 ),
               ),
-            ),
+            ) : null,
           ),
         );
       });
