@@ -29,9 +29,6 @@ class Window extends StatefulWidget {
   /// The window's initial size.
   final Size initialSize;
 
-  /// Whether or not the window has a custom title bar.
-  final bool customBar;
-
   /// Called when the user started interacting with this window.
   final WindowInteractionCallback onWindowInteraction;
 
@@ -39,7 +36,7 @@ class Window extends StatefulWidget {
   final WindowInteractionCallback onWindowClose;
 
   /// The window's child.
-  final Widget child;
+  final dynamic child;
 
   /// The window's theme color.
   final Color color;
@@ -51,7 +48,6 @@ class Window extends StatefulWidget {
     this.onWindowClose,
     this.initialPosition: Offset.zero,
     this.initialSize: Size.zero,
-	  this.customBar: false,
     @required this.child,
     this.color: Colors.blueAccent,
   }) : super(key: key);
@@ -80,7 +76,7 @@ class WindowState extends State<Window> {
   WindowMode _windowMode = WindowMode.NORMAL_MODE;
 
   /// The window's child.
-  Widget _child;
+  dynamic _child;
 
   /// The window's color.
   Color _color;
@@ -159,6 +155,10 @@ class WindowState extends State<Window> {
           return new Container();
         }
         final TabData selectedTab = _getCurrentSelection(model);*/
+        bool customBar = false;
+        try {
+          customBar = widget.child.customBar;
+        } catch(e) {}
         return Positioned(
           left: _position.dx,
           top: _position.dy,
@@ -170,7 +170,8 @@ class WindowState extends State<Window> {
         onKey: (RawKeyEvent event) =>
         _handleKeyEvent(event, model, selectedTab.id),
         child: new*/
-              !widget.customBar ? RepaintBoundary(
+              //check to see if there's a customBar property in the passed app class
+              RepaintBoundary(
               child: Container(
                 width: _size.width,
                 height: _size.height,
@@ -179,6 +180,7 @@ class WindowState extends State<Window> {
                decoration: BoxDecoration(boxShadow: kElevationToShadow[12]),
                 child: Column(
                   children: [
+                    customBar ? Container(height:0) : 
                     GestureDetector(
                       onPanUpdate: (DragUpdateDetails details) {
                         setState(() {
@@ -221,13 +223,13 @@ class WindowState extends State<Window> {
                               _size += details.delta;
                           });
                         },
-                        child: _child,
+                        child: (_child is Widget) ? _child : Text("ERROR: Window is not a Widget!"),
                       ),
                     ),
                   ],
                 ),
               ),
-            ) : null,
+            ),
           ),
         );
       });
