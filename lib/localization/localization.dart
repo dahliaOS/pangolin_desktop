@@ -26,7 +26,11 @@ class Localization {
   }
 
   String get(String key) {
+   if (_localizationValues[key] == null) {
+    return "Error";
+   } else {
     return _localizationValues[key];
+   }
   }
 
   static const LocalizationsDelegate<Localization> delegate =

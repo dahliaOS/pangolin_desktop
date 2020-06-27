@@ -18,21 +18,11 @@ import 'package:flutter/material.dart';
 import 'searchbar.dart';
 import 'dart:ui';
 import 'widgets/cards.dart';
+import 'localization/localization.dart';
 
-class LauncherWidget extends StatelessWidget {
-  // This widget is the root of your application.
+class LauncherWidget extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.deepOrange,
-        primaryColor: const Color(0xFFff5722),
-        accentColor: const Color(0xFFff5722),
-        canvasColor: Colors.black.withOpacity(0.5),
-      ),
-      home: Launcher(title: 'Launcher'),
-    );
-  }
+  LauncherState createState() => LauncherState();
 }
 
 MaterialButton buildTile(String icon, String label) {
@@ -66,14 +56,21 @@ MaterialButton buildTile(String icon, String label) {
   );
 }
 
-class Launcher extends StatelessWidget {
-  Launcher({Key key, this.title}) : super(key: key);
-
-  final String title;
+class LauncherState extends State<LauncherWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return new Stack(
+    Localization local = Localization.of(context);
+
+  return MaterialApp(
+      theme: ThemeData(
+        primarySwatch: Colors.deepOrange,
+        primaryColor: const Color(0xFFff5722),
+        accentColor: const Color(0xFFff5722),
+        canvasColor: Colors.black.withOpacity(0.5),
+      ),
+      home:
+     new Stack(
       children: [
         new BackdropFilter(
           filter: new ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
@@ -94,10 +91,10 @@ class Launcher extends StatelessWidget {
                     child: new Row(children: <Widget>[
                       buildCard(
                           Icons.brightness_low,
-                          'System',
+                          local.get("launcher_card_system_title"),
                           Colors.deepOrange,
                           Colors.deepOrange.withAlpha(30),
-                          'Welcome to dahliaOS!',
+                          local.get("launcher_card_system_value"),
                           context),
                       buildCard(
                           Icons.info,
@@ -134,6 +131,7 @@ class Launcher extends StatelessWidget {
           ),
         ),
       ],
+    ),
     );
   }
 }
