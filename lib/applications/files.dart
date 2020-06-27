@@ -13,6 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -46,9 +47,49 @@ class _FilesHomeState extends State<FilesHome> {
     @override
     Widget build(BuildContext context) {
       return new Scaffold(
-        appBar: new AppBar(
-          title: new Text('Files'),
+        body:
+        
+
+ Column(children: [
+      Container(
+          height: 50,
+          color: Color(0xffffffff),
+          child: Row(children: [
+            Center(
+                child: Padding(
+                    padding: EdgeInsets.all(15),
+                    child: Text('Files',
+                        style: TextStyle(
+                            fontSize: 18, color: Color(0xff000000))))),
+            Expanded(child: new Text('test'),),
+            Row(children: [
+              new IconButton(
+            icon: const Icon(Icons.minimize),
+            onPressed:null,
+            iconSize: 18.0,
+            color: const Color(0xFF000000),
           ),
+               new IconButton(
+            icon: const Icon(Icons.crop_square),
+            onPressed:null,
+            iconSize: 18.0,
+            color: const Color(0xFF000000),
+          ),
+             new IconButton(
+            icon: const Icon(Icons.close),
+            onPressed:null,
+            iconSize: 18.0,
+            color: const Color(0xFF000000),
+          ),
+            ])
+          ])),
+      Row(children: [
+        Container(width: 256, color: Color(0xffeeeeee)),
+        Expanded(child: Container(color: Color(0xfff3f3f3)))
+      ])
+    ]),
+
+
       );
     }
 }
