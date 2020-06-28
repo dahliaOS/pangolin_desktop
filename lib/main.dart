@@ -251,9 +251,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
         // 5 - The bottom bar
         Positioned(
-          left: 15.0,
-          right: 15.0,
-          bottom: 15.0,
+          //change below values to 15 or something to give it a starlight-like look
+          left: 0.0,
+          right: 0.0,
+          bottom: 0.0,
           child: GestureDetector(
             behavior: HitTestBehavior.opaque,
             onTap: hideOverlays,
@@ -261,7 +262,8 @@ class _MyHomePageState extends State<MyHomePage> {
               //color: Color.fromARGB(150, 0, 0, 0),
               decoration: BoxDecoration(
                 color: Color.fromARGB(150, 0, 0, 0),
-                borderRadius: BorderRadius.circular(100),
+                //uncomment below to add radius to the launcher panel
+                //borderRadius: BorderRadius.circular(100),
               ),
               height: 50.0,
               padding: const EdgeInsets.all(8.0),
