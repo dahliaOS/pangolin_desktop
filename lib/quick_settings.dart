@@ -18,6 +18,7 @@ import 'dart:ui';
 
 import 'package:GeneratedApp/localization/localization.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
 import 'dart:async';
 import 'main.dart';
@@ -36,6 +37,7 @@ class QuickSettingsState extends State<QuickSettings> {
 
   @override
   void initState() {
+    Pangolin.settingsBox = Hive.box("settings");
     _timeString = _formatDateTime(DateTime.now(), 'hh:mm');
     _dateString = _formatDateTime(DateTime.now(), 'E, d MMMM yyyy');
     Timer.periodic(Duration(milliseconds: 100), (Timer t) => _getTime(context));
@@ -243,9 +245,11 @@ class QuickSettingsState extends State<QuickSettings> {
                 buildTile(Icons.language, local.get("qs_changelanguage"), () {
                   if (Localizations.localeOf(context).toString() == "en") {
                     Pangolin.setLocale(context, Locale("de"));
+                    Pangolin.settingsBox.put("language", "de");
                   }
                   if (Localizations.localeOf(context).toString() == "de") {
                     Pangolin.setLocale(context, Locale("en"));
+                    Pangolin.settingsBox.put("language", "en");
                   }
                 }),
               ])),

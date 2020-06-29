@@ -9,6 +9,8 @@ dependencies:
   provider: ^4.1.2
   flutter_localizations:
     sdk: flutter
+  hive: ^1.4.1+1
+  path_provider: ^1.6.11
 #Useful in an ideal future but not now.  random_color: ^1.0.5
 
 dev_dependencies:
