@@ -38,14 +38,14 @@ class QuickSettingsState extends State<QuickSettings> {
   void initState() {
     _timeString = _formatDateTime(DateTime.now(), 'hh:mm');
     _dateString = _formatDateTime(DateTime.now(), 'E, d MMMM yyyy');
-    Timer.periodic(Duration(seconds: 1), (Timer t) => _getTime());
+    Timer.periodic(Duration(milliseconds: 100), (Timer t) => _getTime(context));
     super.initState();
   }
 
-  void _getTime() {
+  void _getTime(BuildContext context) {
     final DateTime now = DateTime.now();
     final String formattedTime = _formatDateTime(now, 'hh:mm');
-    final String formattedDate = _formatDateTime(now, 'E, d MMMM yyyy');
+    final String formattedDate = _formatLocaleDate(now);
     setState(() {
       _timeString = formattedTime;
       _dateString = formattedDate;
@@ -54,6 +54,11 @@ class QuickSettingsState extends State<QuickSettings> {
 
   String _formatDateTime(DateTime dateTime, String pattern) {
     return DateFormat(pattern).format(dateTime);
+  }
+
+  String _formatLocaleDate(DateTime dateTime) {
+    return DateFormat.yMMMMd(Localizations.localeOf(context).languageCode)
+        .format(dateTime);
   }
 
   @override
@@ -217,22 +222,29 @@ class QuickSettingsState extends State<QuickSettings> {
               crossAxisCount: 4,
               childAspectRatio: 2.5 / 4,
               children: [
-                buildTile(Icons.network_wifi, local.get("qs_wifi"), changeColor),
+                buildTile(
+                    Icons.network_wifi, local.get("qs_wifi"), changeColor),
                 buildTile(Icons.palette, local.get("qs_theme"), changeColor),
                 buildTile(Icons.battery_full, '85%', changeColor),
                 buildTile(
                     Icons.do_not_disturb_off, local.get("qs_dnd"), changeColor),
-                buildTile(Icons.lightbulb_outline, local.get("qs_flashlight"), changeColor),
+                buildTile(Icons.lightbulb_outline, local.get("qs_flashlight"),
+                    changeColor),
+                buildTile(Icons.screen_lock_rotation,
+                    local.get("qs_autorotate"), changeColor),
                 buildTile(
-                    Icons.screen_lock_rotation, local.get("qs_autorotate"), changeColor),
-                buildTile(Icons.bluetooth, local.get("qs_bluetooth"), changeColor),
-                buildTile(
-                    Icons.airplanemode_inactive, local.get("qs_airplanemode"), changeColor),
-                buildTile(
-                    Icons.invert_colors_off, local.get("qs_invertcolors"), changeColor),
+                    Icons.bluetooth, local.get("qs_bluetooth"), changeColor),
+                buildTile(Icons.airplanemode_inactive,
+                    local.get("qs_airplanemode"), changeColor),
+                buildTile(Icons.invert_colors_off, local.get("qs_invertcolors"),
+                    changeColor),
                 buildTile(Icons.language, local.get("qs_changelanguage"), () {
                   if (Localizations.localeOf(context).toString() == "en") {
-                    Pangolin.setLocale(context, Locale("de",));
+                    Pangolin.setLocale(
+                        context,
+                        Locale(
+                          "de",
+                        ));
                   }
                   if (Localizations.localeOf(context).toString() == "de") {
                     Pangolin.setLocale(context, Locale("en"));
@@ -262,8 +274,10 @@ void notImplemented(BuildContext context) {
     builder: (BuildContext context) {
       // return object of type Dialog
       return AlertDialog(
-        title: new Text(Localization.of(context).get("featurenotimplemented_title")),
-        content: new Text(Localization.of(context).get("featurenotimplemented_value")),
+        title: new Text(
+            Localization.of(context).get("featurenotimplemented_title")),
+        content: new Text(
+            Localization.of(context).get("featurenotimplemented_value")),
         actions: <Widget>[
           // usually buttons at the bottom of the dialog
           new FlatButton(
