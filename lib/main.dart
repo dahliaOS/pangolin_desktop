@@ -301,80 +301,86 @@ class _MyHomePageState extends State<MyHomePage> {
 
         // 5 - The bottom bar
         Positioned(
+          //change below values to 15 or something to give it a starlight-like look
           left: 0.0,
           right: 0.0,
           bottom: 0.0,
           child: GestureDetector(
             behavior: HitTestBehavior.opaque,
             onTap: hideOverlays,
-            child: Container(
-              //color: Color.fromARGB(150, 0, 0, 0),
-              decoration: BoxDecoration(
-                color: Color.fromARGB(150, 0, 0, 0),
-              ),
-              height: 50.0,
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      mainAxisSize: MainAxisSize.max,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        LauncherToggleWidget(
-                          toggleKey: KeyRing.launcherToggleKey,
-                          callback: toggleCallback,
-                        ),
-                        AppLauncherPanelButton(
-                          app: Calculator(),
-                          icon: 'lib/images/icons/v2/compiled/calculator.png',
-                          color: Colors.green,
-                          callback: toggleCallback,
-                        ),
-                        AppLauncherPanelButton(
-                            app: TextEditorApp(),
-                            icon: 'lib/images/icons/v2/compiled/notes.png',
-                            color: Colors.amber[700],
-                            callback: toggleCallback),
-                        AppLauncherPanelButton(
-                            app: Terminal(),
-                            icon: 'lib/images/icons/v2/compiled/terminal.png',
-                            color: Colors.grey[900],
-                            callback: toggleCallback),
-                        AppLauncherPanelButton(
-                            app: Files(),
-                            icon: 'lib/images/icons/v2/compiled/files.png',
-                            color: Colors.deepOrange,
-                            callback: toggleCallback),
-                        AppLauncherPanelButton(
-                          app: Tasks(),
-                          icon: 'lib/images/icons/v2/compiled/task.png',
-                          color: Colors.cyan[900],
-                          callback: toggleCallback,
-                        ),
-                        AppLauncherPanelButton(
-                            app: Settings(),
-                            icon: 'lib/images/icons/v2/compiled/settings.png',
-                            color: Colors.deepOrange,
-                            callback: toggleCallback),
-                        AppLauncherPanelButton(
-                            app: HisApp(),
-                            icon: 'lib/images/icons/v2/compiled/theme.png',
-                            color: Colors.grey[900],
-                            callback: toggleCallback),
-                      ]),
-                  StatusTrayWidget(
-                    toggleKey: KeyRing.statusToggleKey,
-                    callback: (bool toggled) => setOverlayVisibility(
-                      overlay: KeyRing.statusOverlayKey,
-                      visible: toggled,
+            child: ClipRRect(child: BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+                child: Container(
+                //color: Color.fromARGB(150, 0, 0, 0),
+                decoration: BoxDecoration(
+                  color: Color.fromARGB(150, 0, 0, 0),
+                  //uncomment below to add radius to the launcher panel
+                  //borderRadius: BorderRadius.circular(100),
+                ),
+                height: 50.0,
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisSize: MainAxisSize.max,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          LauncherToggleWidget(
+                            toggleKey: KeyRing.launcherToggleKey,
+                            callback: toggleCallback,
+                          ),
+                          AppLauncherPanelButton(
+                            app: Calculator(),
+                            icon: 'lib/images/icons/v2/compiled/calculator.png',
+                            color: Colors.green,
+                            callback: toggleCallback,
+                          ),
+                          AppLauncherPanelButton(
+                              app: TextEditorApp(),
+                              icon: 'lib/images/icons/v2/compiled/notes.png',
+                              color: Colors.amber[700],
+                              callback: toggleCallback),
+                          AppLauncherPanelButton(
+                              app: Terminal(),
+                              icon: 'lib/images/icons/v2/compiled/terminal.png',
+                              color: Colors.grey[900],
+                              callback: toggleCallback),
+                          AppLauncherPanelButton(
+                              app: Files(),
+                              icon: 'lib/images/icons/v2/compiled/files.png',
+                              color: Colors.deepOrange,
+                              callback: toggleCallback),
+                          AppLauncherPanelButton(
+                            app: Tasks(),
+                            icon: 'lib/images/icons/v2/compiled/task.png',
+                            color: Colors.cyan[900],
+                            callback: toggleCallback,
+                          ),
+                          AppLauncherPanelButton(
+                              app: Settings(),
+                              icon: 'lib/images/icons/v2/compiled/settings.png',
+                              color: Colors.deepOrange,
+                              callback: toggleCallback),
+                          AppLauncherPanelButton(
+                              app: HisApp(),
+                              icon: 'lib/images/icons/v2/compiled/theme.png',
+                              color: Colors.grey[900],
+                              callback: toggleCallback),
+                        ]),
+                    StatusTrayWidget(
+                      toggleKey: KeyRing.statusToggleKey,
+                      callback: (bool toggled) => setOverlayVisibility(
+                        overlay: KeyRing.statusOverlayKey,
+                        visible: toggled,
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            ),
+                  ],
+                ),
+              )
+            )),
           ),
         ),
 

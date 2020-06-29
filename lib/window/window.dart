@@ -36,7 +36,7 @@ class Window extends StatefulWidget {
   final WindowInteractionCallback onWindowClose;
 
   /// The window's child.
-  final Widget child;
+  final dynamic child;
 
   /// The window's theme color.
   final Color color;
@@ -76,7 +76,7 @@ class WindowState extends State<Window> {
   WindowMode _windowMode = WindowMode.NORMAL_MODE;
 
   /// The window's child.
-  Widget _child;
+  dynamic _child;
 
   /// The window's color.
   Color _color;
@@ -141,6 +141,10 @@ class WindowState extends State<Window> {
     widget.onWindowClose?.call();
   }
 
+  bool hoverClose = false;
+  bool hoverMaximize = false;
+  bool hoverMinimize = false;
+
   @override
   Widget build(BuildContext context) =>
       ScopedModelDescendant<WindowData>(builder: (
@@ -155,6 +159,17 @@ class WindowState extends State<Window> {
           return new Container();
         }
         final TabData selectedTab = _getCurrentSelection(model);*/
+        Widget Function({
+          /// The function called to close the window.
+          Function close, 
+          /// The function called to minimize the window.
+          Function minimize, 
+          /// The function called to maximize or restore the window.
+          Function maximize,
+          /// The getter to determine whether or not the window is maximized.
+          bool Function() maximizeState}) customBar;
+        try {customBar = widget.child.customBar;} catch (e) {}
+        try {setState(() {_color = widget.child.customBackground;});} catch (e) {}
         return Positioned(
           left: _position.dx,
           top: _position.dy,
@@ -166,13 +181,14 @@ class WindowState extends State<Window> {
         onKey: (RawKeyEvent event) =>
         _handleKeyEvent(event, model, selectedTab.id),
         child: new*/
+                //check to see if there's a customBar property in the passed app class
                 RepaintBoundary(
               child: Container(
                 width: _size.width,
                 height: _size.height,
                 constraints: BoxConstraints(
                     minWidth: _minWidth, minHeight: _minHeight), //
-               decoration: BoxDecoration(boxShadow: kElevationToShadow[12]),
+                decoration: BoxDecoration(boxShadow: kElevationToShadow[12]),
                 child: Column(
                   children: [
                     GestureDetector(
@@ -185,25 +201,27 @@ class WindowState extends State<Window> {
                           }
                         });
                       },
-                      child: Container(
-                          padding: EdgeInsets.all(4.0),
+                      child: customBar != null ? customBar(
+                        close: _closeWindow,
+                        maximize: () => _windowMode == WindowMode.NORMAL_MODE
+                          ? _maximizeWindow()
+                          : _restoreWindowFromMaximizeMode(),
+                        minimize: () => null, // for now
+                        maximizeState: () => _windowMode == WindowMode.MAXIMIZE_MODE
+                          ? true
+                          : false
+                      ) : Container(
+                          padding: EdgeInsets.symmetric(horizontal: 4.0),
                           height: 35.0,
                           color: _color,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              Icon(Icons.minimize, color: Colors.white),
-                              GestureDetector(
-                                  onTap: () =>
-                                      _windowMode == WindowMode.NORMAL_MODE
-                                          ? _maximizeWindow()
-                                          : _restoreWindowFromMaximizeMode(),
-                                  child: Icon(Icons.crop_square,
-                                      color: Colors.white)),
-                              GestureDetector(
-                                onTap: () => _closeWindow(),
-                                child: Icon(Icons.close, color: Colors.white),
-                              )
+                              minimizeButton(),
+                              SizedBox(width: 3.0),
+                              maximizeButton(),
+                              SizedBox(width: 3.0),
+                              closeButton()
                             ],
                           )),
                     ),
@@ -217,7 +235,9 @@ class WindowState extends State<Window> {
                               _size += details.delta;
                           });
                         },
-                        child: _child,
+                        child: (_child is Widget)
+                            ? _child
+                            : Text("ERROR: Window is not a Widget!"),
                       ),
                     ),
                   ],
@@ -227,4 +247,90 @@ class WindowState extends State<Window> {
           ),
         );
       });
+
+  MouseRegion closeButton() {
+    return MouseRegion(
+      onEnter: (event) {
+        setState(() {
+          hoverClose = true;
+        });
+      },
+      onExit: (event) {
+        setState(() {
+          hoverClose = false;
+        });
+      },
+      child: GestureDetector(
+        onTap: () => _closeWindow(),
+        child: Container(
+            width: 30,
+            height: 30,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(30),
+              color: hoverClose
+                  ? Colors.grey[800].withOpacity(0.3)
+                  : Colors.grey[800].withOpacity(0.0),
+            ),
+            child: Icon(Icons.close, color: Colors.white, size: 20)),
+      ),
+    );
+  }
+
+  MouseRegion maximizeButton() {
+    return MouseRegion(
+      onEnter: (event) {
+        setState(() {
+          hoverMaximize = true;
+        });
+      },
+      onExit: (event) {
+        setState(() {
+          hoverMaximize = false;
+        });
+      },
+      child: GestureDetector(
+        onTap: () => _windowMode == WindowMode.NORMAL_MODE
+            ? _maximizeWindow()
+            : _restoreWindowFromMaximizeMode(),
+        child: Container(
+            width: 30,
+            height: 30,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(30),
+              color: hoverMaximize
+                  ? Colors.grey[600].withOpacity(0.3)
+                  : Colors.grey[600].withOpacity(0.0),
+            ),
+            child: Icon(Icons.crop_square, color: Colors.white, size: 20)),
+      ),
+    );
+  }
+
+  MouseRegion minimizeButton() {
+    return MouseRegion(
+      onEnter: (event) {
+        setState(() {
+          hoverMinimize = true;
+        });
+      },
+      onExit: (event) {
+        setState(() {
+          hoverMinimize = false;
+        });
+      },
+      child: GestureDetector(
+        onTap: () => () {},
+        child: Container(
+            width: 30,
+            height: 30,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(30),
+              color: hoverMinimize
+                  ? Colors.grey[800].withOpacity(0.3)
+                  : Colors.grey[800].withOpacity(0.0),
+            ),
+            child: Icon(Icons.minimize, color: Colors.white, size: 20)),
+      ),
+    );
+  }
 }
