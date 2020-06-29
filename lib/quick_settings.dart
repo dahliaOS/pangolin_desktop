@@ -226,22 +226,15 @@ class QuickSettingsState extends State<QuickSettings> {
               crossAxisCount: 4,
               childAspectRatio: 2.5 / 4,
               children: [
-                buildTile(
-                    Icons.network_wifi, local.get("qs_wifi"), changeColor),
+                buildTile(Icons.network_wifi, local.get("qs_wifi"), changeColor),
                 buildTile(Icons.palette, local.get("qs_theme"), changeColor),
                 buildTile(Icons.battery_full, '85%', changeColor),
-                buildTile(
-                    Icons.do_not_disturb_off, local.get("qs_dnd"), changeColor),
-                buildTile(Icons.lightbulb_outline, local.get("qs_flashlight"),
-                    changeColor),
-                buildTile(Icons.screen_lock_rotation,
-                    local.get("qs_autorotate"), changeColor),
-                buildTile(
-                    Icons.bluetooth, local.get("qs_bluetooth"), changeColor),
-                buildTile(Icons.airplanemode_inactive,
-                    local.get("qs_airplanemode"), changeColor),
-                buildTile(Icons.invert_colors_off, local.get("qs_invertcolors"),
-                    changeColor),
+                buildTile(Icons.do_not_disturb_off, local.get("qs_dnd"), changeColor),
+                buildTile(Icons.lightbulb_outline, local.get("qs_flashlight"),changeColor),
+                buildTile(Icons.screen_lock_rotation,local.get("qs_autorotate"), changeColor),
+                buildTile(Icons.bluetooth, local.get("qs_bluetooth"), changeColor),
+                buildTile(Icons.airplanemode_inactive,local.get("qs_airplanemode"), changeColor),
+                buildTile(Icons.invert_colors_off, local.get("qs_invertcolors"),changeColor),
                 buildTile(Icons.language, local.get("qs_changelanguage"), () {
                   if (Localizations.localeOf(context).toString() == "en") {
                     Pangolin.setLocale(context, Locale("de"));

@@ -17,20 +17,23 @@ default:
       - "*.md"
 
 stages:
-  - install
-  - build # this should be used multiple times, i.e. for Android and Web builds
-# - test # this could be used at some point
-# - deploy # this will be used for web and releases
+# - install
+  - build
+    # this should be used multiple times, i.e. for Android and Web builds
+# - test
+    # this could be used at some point
+  - deploy 
+    # this will be used for web and releases
 
-pub_get:
-  <<: *runchecks
-  stage: install
-  script:
-    - flutter pub get
-  cache:
-    key: pub_get
-    paths:
-      - .dart_tool
+# pub_get:
+#   <<: *runchecks
+#   stage: install
+#   script:
+#     - flutter pub get
+#   cache:
+#     key: pub_get
+#     paths:
+#       - .dart_tool
 
 #after_script:
 
@@ -48,6 +51,58 @@ build_android:
     paths:
       - /opt/android-sdk-linux/
       - build/flutter_assets/
+
+build_web:
+  <<: *runchecks
+  stage: build
+  script:
+    - flutter build web
+  artifacts:
+    name: 'pangolin-web-preview'
+    expose_as: 'Web Zip'
+    paths: ['build/web']
+
+.deploy_ghpages:
+  <<: *runchecks
+  only:
+    - master
+  image: alpine:latest
+  stage: deploy
+  needs: ['build_web']
+  before_script:
+    - echo "Flutter does not need to be initialized. *piano solo*"
+    - apk add git
+    - git config --global user.name "GitLab Auto Build"
+    - git config --global user.email "build+web@dahliaos.io"
+  script:
+    - git worktree add branch-ghpages
+    - cd branch-ghpages
+    - git fetch origin
+    - git checkout gh-pages
+    - cp -r ../build/web/* .
+    - git add .
+    - git commit -m "Update GitHub Pages"
+    - git remote add github https://${GH_REMOTE_AUTH}@github.com/dahlia-os/pangolin-desktop.git
+    - git fetch github
+    - git push --set-upstream github gh-pages
+    
+pages: #or deploy_web
+  only:
+    - master
+  stage: deploy
+  image: alpine:latest
+  needs: ['build_web']
+  before_script:
+    - echo "Nothing to see here..."
+  script:
+    - mkdir public
+    - cp -r build/web/* public/
+    - stat public/index.html
+  artifacts:
+    paths: ['public']
+  environment:
+    name: staging
+    url: https://web.dahliaos.io
 
 #test1:
 #  stage: test

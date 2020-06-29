@@ -56,7 +56,7 @@ class Welcome extends StatelessWidget {
               
 Text('Welcome to dahliaOS!',
                   style: TextStyle(fontSize: 25, color: Color(0xff000000))),
-                  Text('dahliaOS Linux-based rolling v200531.1',
+                  Text('dahliaOS Linux-based rolling v200630.1',//version string
                   style: TextStyle(fontSize: 15, color: Color(0xff000000))),
 Text('You are on the latest version of DahliaOS, powered by Linux. This is a pre-release, and not indicative of the final product. If you run into bugs, feel free to create an issue report on Github, Reddit, or Discord.',
                   style: TextStyle(fontSize: 15, color: Color(0xff000000))),
