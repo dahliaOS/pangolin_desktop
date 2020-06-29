@@ -52,10 +52,12 @@ class QuickSettingsState extends State<QuickSettings> {
     });
   }
 
+  //Default date format
   String _formatDateTime(DateTime dateTime, String pattern) {
     return DateFormat(pattern).format(dateTime);
   }
 
+  //Format date using language
   String _formatLocaleDate(DateTime dateTime) {
     return DateFormat.yMMMMd(Localizations.localeOf(context).languageCode)
         .format(dateTime);
@@ -240,11 +242,7 @@ class QuickSettingsState extends State<QuickSettings> {
                     changeColor),
                 buildTile(Icons.language, local.get("qs_changelanguage"), () {
                   if (Localizations.localeOf(context).toString() == "en") {
-                    Pangolin.setLocale(
-                        context,
-                        Locale(
-                          "de",
-                        ));
+                    Pangolin.setLocale(context, Locale("de"));
                   }
                   if (Localizations.localeOf(context).toString() == "de") {
                     Pangolin.setLocale(context, Locale("en"));
