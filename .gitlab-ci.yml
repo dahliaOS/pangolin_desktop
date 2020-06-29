@@ -62,7 +62,7 @@ build_web:
     expose_as: 'Web Zip'
     paths: ['build/web']
 
-deploy_ghpages:
+.deploy_ghpages:
   <<: *runchecks
   only:
     - master
