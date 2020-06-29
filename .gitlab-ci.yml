@@ -92,6 +92,8 @@ pages: #or deploy_web
   stage: deploy
   image: alpine:latest
   needs: ['build_web']
+  before_script:
+    - echo "Nothing to see here..."
   script:
     - mkdir public
     - cp -r build/web/* public/
