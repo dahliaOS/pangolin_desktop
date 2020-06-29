@@ -1,11 +1,11 @@
 {
-    "name": "pangolin_desktop",
-    "short_name": "pangolin_desktop",
+    "name": "Pangolin Desktop",
+    "short_name": "Pangolin Desktop",
     "start_url": ".",
-    "display": "minimal-ui",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "display": "fullscreen",
+    "background_color": "#ff3d00",
+    "theme_color": "#ff3d00",
+    "description": "The web demo of the Pangolin Desktop for Dahlia OS.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
