@@ -14,6 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'dart:io';
+
 import 'package:GeneratedApp/applications/calculator.dart';
 import 'package:GeneratedApp/applications/editor.dart';
 import 'package:GeneratedApp/applications/welcome.dart';
@@ -21,6 +23,8 @@ import 'package:GeneratedApp/applications/monitor.dart';
 import 'package:GeneratedApp/applications/files.dart';
 import 'package:GeneratedApp/localization/localization.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:hive/hive.dart';
+import 'package:path_provider/path_provider.dart';
 
 import 'quick_settings.dart';
 import 'window_space.dart';
@@ -95,7 +99,13 @@ List<AppLauncherPanelButton> testLaunchers = [
       app: Settings(), icon: 'lib/images/icons/v2/compiled/settings.png'),
 ];
 
-void main() {
+void main() async {
+  //init hive
+  WidgetsFlutterBinding.ensureInitialized();
+  Directory dir = await getApplicationDocumentsDirectory();
+  Hive.init(dir.path);
+  await Hive.openBox<String>("settings");
+
   /// To keep app in Portrait Mode
   //SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeRight]);
   runApp(Pangolin());
@@ -109,10 +119,19 @@ class Pangolin extends StatefulWidget {
     _PangolinState state = context.findAncestorStateOfType<_PangolinState>();
     state.setLocale(locale);
   }
+
+  static Box<String> settingsBox;
 }
 
 class _PangolinState extends State<Pangolin> {
   Locale _locale;
+
+  @override
+  void initState() {
+    Pangolin.settingsBox = Hive.box("settings");
+    _locale = Locale(Pangolin.settingsBox.get("language"));
+    super.initState();
+  }
 
   void setLocale(Locale locale) {
     setState(() {
