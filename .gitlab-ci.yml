@@ -85,9 +85,22 @@ deploy_ghpages:
     - git remote add github https://${GH_REMOTE_AUTH}@github.com/dahlia-os/pangolin-desktop.git
     - git fetch github
     - git push --set-upstream github gh-pages
-  environment: 
+    
+pages: #or deploy_web
+  only:
+    - master
+  stage: deploy
+  image: alpine:latest
+  needs: ['build_web']
+  script:
+    - mkdir public
+    - cp -r build/web/* public/
+    - stat public/index.html
+  artifacts:
+    paths: ['public']
+  environment:
     name: staging
-    url: https://dahlia-os.github.io/pangolin-desktop/index.html
+    url: https://web.dahliaos.io
 
 #test1:
 #  stage: test
