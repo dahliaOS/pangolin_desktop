@@ -5,7 +5,7 @@
     "display": "fullscreen",
     "background_color": "#ff3d00",
     "theme_color": "#ff3d00",
-    "description": "The web demo of the Pangolin Desktop for Dahlia OS.",
+    "description": "The web demo of the Pangolin Desktop for dahliaOS.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
