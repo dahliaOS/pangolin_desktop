@@ -1,11 +1,11 @@
 {
-    "name": "Pangolin Desktop",
-    "short_name": "Pangolin Desktop",
+    "name": "Pangolin Desktop Demo",
+    "short_name": "Pangolin Desktop Demo",
     "start_url": ".",
     "display": "fullscreen",
     "background_color": "#ff3d00",
     "theme_color": "#ff3d00",
-    "description": "The web demo of the Pangolin Desktop for Dahlia OS.",
+    "description": "The official web demo of Pangolin Desktop, designed for dahliaOS",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
