@@ -19,6 +19,7 @@ import '../applications/calculator.dart';
 import '../applications/files.dart';
 import '../applications/editor.dart';
 import '../applications/terminal.dart';
+import '../applications/developer.dart';
 import '../settings.dart';
 import '../applications/monitor.dart';
 import 'package:GeneratedApp/widgets/app_launcher.dart';
@@ -103,6 +104,12 @@ Widget tileSection = Expanded(
             icon: 'lib/images/dahlia.png',
             label: 'Welcome',
             color: Colors.grey[900],
+            callback: toggleCallback),
+            AppLauncherDrawerButton(
+            app: DeveloperApp(),
+            icon: 'lib/images/icons/v2/compiled/developer.png',
+            label: 'Developer Options',
+            color: Colors.red[700],
             callback: toggleCallback),
         AppLauncherDrawerButton(
             icon: 'lib/images/icons/v2/compiled/clock.png',
