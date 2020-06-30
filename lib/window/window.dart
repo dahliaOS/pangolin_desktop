@@ -159,10 +159,17 @@ class WindowState extends State<Window> {
           return new Container();
         }
         final TabData selectedTab = _getCurrentSelection(model);*/
-        bool customBar = false;
-        try {
-          customBar = widget.child.customBar;
-        } catch (e) {}
+        Widget Function({
+          /// The function called to close the window.
+          Function close, 
+          /// The function called to minimize the window.
+          Function minimize, 
+          /// The function called to maximize or restore the window.
+          Function maximize,
+          /// The getter to determine whether or not the window is maximized.
+          bool Function() maximizeState}) customBar;
+        try {customBar = widget.child.customBar;} catch (e) {}
+        try {setState(() {_color = widget.child.customBackground;});} catch (e) {}
         return Positioned(
           left: _position.dx,
           top: _position.dy,
@@ -184,33 +191,40 @@ class WindowState extends State<Window> {
                 decoration: BoxDecoration(boxShadow: kElevationToShadow[12]),
                 child: Column(
                   children: [
-                    customBar
-                        ? Container(height: 0)
-                        : GestureDetector(
-                            onPanUpdate: (DragUpdateDetails details) {
-                              setState(() {
-                                _position += details.delta;
-                                if (_windowMode == WindowMode.MAXIMIZE_MODE) {
-                                  _windowMode = WindowMode.NORMAL_MODE;
-                                  _size = _preSize;
-                                }
-                              });
-                            },
-                            child: Container(
-                                padding: EdgeInsets.symmetric(horizontal: 4.0),
-                                height: 35.0,
-                                color: _color,
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    minimizeButton(),
-                                    SizedBox(width: 3.0),
-                                    maximizeButton(),
-                                    SizedBox(width: 3.0),
-                                    closeButton()
-                                  ],
-                                )),
-                          ),
+                    GestureDetector(
+                      onPanUpdate: (DragUpdateDetails details) {
+                        setState(() {
+                          _position += details.delta;
+                          if (_windowMode == WindowMode.MAXIMIZE_MODE) {
+                            _windowMode = WindowMode.NORMAL_MODE;
+                            _size = _preSize;
+                          }
+                        });
+                      },
+                      child: customBar != null ? customBar(
+                        close: _closeWindow,
+                        maximize: () => _windowMode == WindowMode.NORMAL_MODE
+                          ? _maximizeWindow()
+                          : _restoreWindowFromMaximizeMode(),
+                        minimize: () => null, // for now
+                        maximizeState: () => _windowMode == WindowMode.MAXIMIZE_MODE
+                          ? true
+                          : false
+                      ) : Container(
+                          padding: EdgeInsets.symmetric(horizontal: 4.0),
+                          height: 35.0,
+                          color: _color,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              minimizeButton(),
+                              SizedBox(width: 3.0),
+                              maximizeButton(),
+                              SizedBox(width: 3.0),
+                              closeButton()
+                            ],
+                          )),
+                    ),
                     Expanded(
                       child: GestureDetector(
                         onPanUpdate: (DragUpdateDetails details) {
