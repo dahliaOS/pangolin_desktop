@@ -20,6 +20,7 @@ import '../applications/calculator.dart';
 import '../applications/files.dart';
 import '../applications/editor.dart';
 import '../applications/terminal.dart';
+import '../applications/developer.dart';
 import '../settings.dart';
 import '../applications/monitor.dart';
 import 'package:GeneratedApp/widgets/app_launcher.dart';
@@ -106,6 +107,12 @@ Expanded tileSection(BuildContext context){
               icon: 'lib/images/dahlia.png',
               label: local.get("app_welcome"),
               color: Colors.grey[900],
+              callback: toggleCallback),
+          AppLauncherDrawerButton(
+              app: DeveloperApp(),
+              icon: 'lib/images/icons/v2/compiled/developer.png',
+              label: 'Developer Options',
+              color: Colors.red[700],
               callback: toggleCallback),
           AppLauncherDrawerButton(
               icon: 'lib/images/icons/v2/compiled/clock.png',
