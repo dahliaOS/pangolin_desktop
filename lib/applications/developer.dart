@@ -16,6 +16,7 @@ limitations under the License.
 
 
 import 'package:flutter/material.dart';
+import 'dart:io';
 
 void main() {
   runApp(new DeveloperApp());
@@ -54,12 +55,17 @@ class _DeveloperAppPageState extends State<DeveloperAppPage> {
           new Center(child: 
            Column(children: [
              Text("Warning: These options are intended only for development purposes. If something goes seriously wrong when using these, hold down the power button for 5-10 seconds to force a shutdown."),
-      RaisedButton(child: Text('Reboot')),
-      RaisedButton(child: Text('Shutdown')),
-      RaisedButton(child: Text('Enter commandline mode')),
+      RaisedButton(onPressed: (){Process.run('reboot', [' ']);},
+      child: Text('Reboot')),
+      RaisedButton(onPressed:(){Process.run('shutdown', ['-h','now']);},
+      child: Text('Shutdown')),
+      RaisedButton(onPressed:(){Process.run('killall', ['pangolin_desktop']);},
+        child: Text('Enter commandline mode')),
       Text('DANGEROUS OPTIONS!!!!'),
-    RaisedButton(child: Text('Induce Kernel Panic')),
-      RaisedButton(child: Text('Execute Fork Bomb')),
+    RaisedButton(
+      onPressed:(){Process.run('echo', ['c','>','/proc/sysrq-trigger']);},child: Text('Induce Kernel Panic')),
+      RaisedButton(
+        onPressed:(){Process.run(':(){ :|:& };', ['']);},child: Text('Execute Fork Bomb')),
    
     ]
 
