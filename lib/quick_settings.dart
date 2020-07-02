@@ -157,7 +157,7 @@ MaterialButton buildPowerItem(IconData icon, String label, String function, Stri
                                   padding: EdgeInsets.only(top:20.0,right:20),child: buildPowerItem(Icons.developer_mode, 'Terminal', 'killall', 'pangolin_desktop'),),
                                                             
                                                             ],)),),
-                                                          margin: EdgeInsets.only(bottom: 50, left: 12, right: 12),
+                                                          margin: EdgeInsets.only(bottom: 75, left: 12, right: 12),
                                                           decoration: BoxDecoration(
                                                             color: Colors.white,
                                                             borderRadius: BorderRadius.circular(10),
