@@ -17,6 +17,7 @@ limitations under the License.
 import 'package:GeneratedApp/localization/localization.dart';
 import 'package:flutter/material.dart';
 import '../applications/calculator.dart';
+import '../applications/containers.dart';
 import '../applications/files.dart';
 import '../applications/editor.dart';
 import '../applications/terminal.dart';
@@ -93,9 +94,11 @@ Expanded tileSection(BuildContext context){
               color: Colors.green,
               callback: toggleCallback),
           AppLauncherDrawerButton(
+             app: Containers(),
               icon: 'lib/images/icons/v2/compiled/containers.png',
               label: local.get("app_containers"),
-              appExists: false),
+             color: Colors.lightBlue,
+              callback: toggleCallback),
           AppLauncherDrawerButton(
               app: HisApp(),
               icon: 'lib/images/icons/v2/compiled/theme.png',
