@@ -97,7 +97,7 @@ Expanded tileSection(BuildContext context){
              app: Containers(),
               icon: 'lib/images/icons/v2/compiled/containers.png',
               label: local.get("app_containers"),
-             color: Colors.lightBlue,
+             color: Colors.blue[800],
               callback: toggleCallback),
           AppLauncherDrawerButton(
               app: HisApp(),
