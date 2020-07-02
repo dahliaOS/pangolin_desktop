@@ -93,8 +93,8 @@ Expanded tileSection(BuildContext context){
               color: Colors.green,
               callback: toggleCallback),
           AppLauncherDrawerButton(
-              icon: 'lib/images/icons/v2/compiled/android.png',
-              label: local.get("app_androidsubsystem"),
+              icon: 'lib/images/icons/v2/compiled/containers.png',
+              label: local.get("app_containers"),
               appExists: false),
           AppLauncherDrawerButton(
               app: HisApp(),
