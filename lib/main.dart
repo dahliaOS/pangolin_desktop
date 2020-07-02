@@ -259,7 +259,7 @@ class _MyHomePageState extends State<MyHomePage> {
             behavior: HitTestBehavior.opaque,
             onTap: hideOverlays,
             child: ClipRRect(child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+              filter: ImageFilter.blur(sigmaX: 2.0, sigmaY: 2.0),
                 child: Container(
                 //color: Color.fromARGB(150, 0, 0, 0),
                 decoration: BoxDecoration(
