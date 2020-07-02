@@ -226,7 +226,9 @@ class WindowState extends State<Window> {
                           )),
                     ),
                     Expanded(
-                      child: GestureDetector(
+                      child: 
+                       ClipRRect(child:
+                      GestureDetector(
                         onPanUpdate: (DragUpdateDetails details) {
                           setState(() {
                             var _newSize = _size + details.delta;
@@ -239,6 +241,7 @@ class WindowState extends State<Window> {
                             ? _child
                             : Text("ERROR: Window is not a Widget!"),
                       ),
+                    ),
                     ),
                   ],
                 ),
