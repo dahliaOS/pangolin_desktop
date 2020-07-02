@@ -15,7 +15,7 @@ limitations under the License.
 */
 
 import 'dart:ui';
-
+import 'dart:io';
 import 'package:GeneratedApp/localization/localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
@@ -65,6 +65,40 @@ class QuickSettingsState extends State<QuickSettings> {
         .format(dateTime);
   }
 
+
+
+MaterialButton buildPowerItem(IconData icon, String label, String function, String subARG) {
+  return MaterialButton(
+    onPressed: (){
+      Process.run(function, [subARG],);
+    },
+    child: Column(
+      //mainAxisSize: MainAxisSize.min,
+      //mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+          Icon(
+      icon,
+      color: Colors.grey[900],
+      size: 25.0,
+      semanticLabel: 'Power off',
+    ),
+        Container(
+          margin: EdgeInsets.only(top: 8),
+          child: Text(
+            label,
+            style: TextStyle(
+              fontSize: 15.0,
+              color: Colors.grey[900],
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
   @override
   Widget build(BuildContext context) {
     Localization local = Localization.of(context);
@@ -97,8 +131,48 @@ class QuickSettingsState extends State<QuickSettings> {
           new IconButton(
             icon: const Icon(Icons.power_settings_new),
             onPressed: () {
-              notImplemented(context);
-            },
+                                                          showGeneralDialog(
+                                                    barrierLabel: "Barrier",
+                                                    barrierDismissible: true,
+                                                    barrierColor: Colors.black.withOpacity(0.5),
+                                                    transitionDuration: Duration(milliseconds: 200),
+                                                    context: context,
+                                                    pageBuilder: (_, __, ___) {
+                                                      return Align(
+                                                        alignment: Alignment.bottomCenter,
+                                                        child: Container(
+                                                          height: 90,
+                                                          width: 400,
+                                                          child: SizedBox.expand(child: new Center(child:new Row(
+                                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                            children: [
+                                                           Padding(
+                                  padding: EdgeInsets.only(top:20.0,right:20),child: buildPowerItem(Icons.power_settings_new, 'Power off', 'shutdown', '-h now'),),
+                                                            
+                                                             Padding(
+                                  padding: EdgeInsets.only(top:20.0,right:20),child: buildPowerItem(Icons.refresh, 'Restart', 'reboot', ''),),
+                                                            
+                                  Padding(
+                                  padding: EdgeInsets.only(top:20.0,right:20),child: buildPowerItem(Icons.developer_mode, 'Terminal', 'killall', 'pangolin_desktop'),),
+                                                            
+                                                            ],)),),
+                                                          margin: EdgeInsets.only(bottom: 50, left: 12, right: 12),
+                                                          decoration: BoxDecoration(
+                                                            color: Colors.white,
+                                                            borderRadius: BorderRadius.circular(10),
+                                                          ),
+                                                        ),
+                                                      );
+                                                    },
+                                                    transitionBuilder: (_, anim, __, child) {
+                                                      return SlideTransition(
+                                                        position: Tween(begin: Offset(0, 1), end: Offset(0, 0)).animate(anim),
+                                                        child: child,
+                                                      );
+                                                    },
+                                                  );
+          },
             color: const Color(0xFFffffff),
           ),
 
