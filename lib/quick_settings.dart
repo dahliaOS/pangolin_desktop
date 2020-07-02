@@ -15,10 +15,13 @@ limitations under the License.
 */
 
 import 'dart:ui';
-
+import 'dart:io';
+import 'package:GeneratedApp/localization/localization.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
 import 'dart:async';
+import 'main.dart';
 import 'themes/dynamic_theme.dart';
 
 class QuickSettings extends StatefulWidget {
@@ -34,28 +37,71 @@ class QuickSettingsState extends State<QuickSettings> {
 
   @override
   void initState() {
+    Pangolin.settingsBox = Hive.box("settings");
     _timeString = _formatDateTime(DateTime.now(), 'hh:mm');
     _dateString = _formatDateTime(DateTime.now(), 'E, d MMMM yyyy');
-    Timer.periodic(Duration(seconds: 1), (Timer t) => _getTime());
+    Timer.periodic(Duration(milliseconds: 100), (Timer t) => _getTime(context));
     super.initState();
   }
 
-  void _getTime() {
+  void _getTime(BuildContext context) {
     final DateTime now = DateTime.now();
     final String formattedTime = _formatDateTime(now, 'hh:mm');
-    final String formattedDate = _formatDateTime(now, 'E, d MMMM yyyy');
+    final String formattedDate = _formatLocaleDate(now);
     setState(() {
       _timeString = formattedTime;
       _dateString = formattedDate;
     });
   }
 
+  //Default date format
   String _formatDateTime(DateTime dateTime, String pattern) {
     return DateFormat(pattern).format(dateTime);
   }
 
+  //Format date using language
+  String _formatLocaleDate(DateTime dateTime) {
+    return DateFormat.yMMMMd(Localizations.localeOf(context).languageCode)
+        .format(dateTime);
+  }
+
+
+
+MaterialButton buildPowerItem(IconData icon, String label, String function, String subARG) {
+  return MaterialButton(
+    onPressed: (){
+      Process.run(function, [subARG],);
+    },
+    child: Column(
+      //mainAxisSize: MainAxisSize.min,
+      //mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+          Icon(
+      icon,
+      color: Colors.grey[900],
+      size: 25.0,
+      semanticLabel: 'Power off',
+    ),
+        Container(
+          margin: EdgeInsets.only(top: 8),
+          child: Text(
+            label,
+            style: TextStyle(
+              fontSize: 15.0,
+              color: Colors.grey[900],
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
   @override
   Widget build(BuildContext context) {
+    Localization local = Localization.of(context);
     const biggerFont = TextStyle(
       fontSize: 15.0,
       fontWeight: FontWeight.w400,
@@ -85,8 +131,48 @@ class QuickSettingsState extends State<QuickSettings> {
           new IconButton(
             icon: const Icon(Icons.power_settings_new),
             onPressed: () {
-              notImplemented(context);
-            },
+                                                          showGeneralDialog(
+                                                    barrierLabel: "Barrier",
+                                                    barrierDismissible: true,
+                                                    barrierColor: Colors.black.withOpacity(0.5),
+                                                    transitionDuration: Duration(milliseconds: 200),
+                                                    context: context,
+                                                    pageBuilder: (_, __, ___) {
+                                                      return Align(
+                                                        alignment: Alignment.bottomCenter,
+                                                        child: Container(
+                                                          height: 90,
+                                                          width: 400,
+                                                          child: SizedBox.expand(child: new Center(child:new Row(
+                                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                            children: [
+                                                           Padding(
+                                  padding: EdgeInsets.only(top:20.0,right:20),child: buildPowerItem(Icons.power_settings_new, 'Power off', 'shutdown', '-h now'),),
+                                                            
+                                                             Padding(
+                                  padding: EdgeInsets.only(top:20.0,right:20),child: buildPowerItem(Icons.refresh, 'Restart', 'reboot', ''),),
+                                                            
+                                  Padding(
+                                  padding: EdgeInsets.only(top:20.0,right:20),child: buildPowerItem(Icons.developer_mode, 'Terminal', 'killall', 'pangolin_desktop'),),
+                                                            
+                                                            ],)),),
+                                                          margin: EdgeInsets.only(bottom: 75, left: 12, right: 12),
+                                                          decoration: BoxDecoration(
+                                                            color: Colors.white,
+                                                            borderRadius: BorderRadius.circular(10),
+                                                          ),
+                                                        ),
+                                                      );
+                                                    },
+                                                    transitionBuilder: (_, anim, __, child) {
+                                                      return SlideTransition(
+                                                        position: Tween(begin: Offset(0, 1), end: Offset(0, 0)).animate(anim),
+                                                        child: child,
+                                                      );
+                                                    },
+                                                  );
+          },
             color: const Color(0xFFffffff),
           ),
 
@@ -214,15 +300,25 @@ class QuickSettingsState extends State<QuickSettings> {
               crossAxisCount: 4,
               childAspectRatio: 2.5 / 4,
               children: [
-                buildTile(Icons.network_wifi, 'Wifi Network', changeColor),
-                buildTile(Icons.palette, 'Theme', changeColor),
+                buildTile(Icons.network_wifi, local.get("qs_wifi"), changeColor),
+                buildTile(Icons.palette, local.get("qs_theme"), changeColor),
                 buildTile(Icons.battery_full, '85%', changeColor),
-                buildTile(Icons.do_not_disturb_off, 'Do not disturb', changeColor),
-                buildTile(Icons.lightbulb_outline, 'Flashlight', changeColor),
-                buildTile(Icons.screen_lock_rotation, 'Auto-rotate', changeColor),
-                buildTile(Icons.bluetooth, 'Bluetooth', changeColor),
-                buildTile(Icons.airplanemode_inactive, 'Airplane mode', changeColor),
-                buildTile(Icons.invert_colors_off, 'Invert colors', changeColor),
+                buildTile(Icons.do_not_disturb_off, local.get("qs_dnd"), changeColor),
+                buildTile(Icons.lightbulb_outline, local.get("qs_flashlight"),changeColor),
+                buildTile(Icons.screen_lock_rotation,local.get("qs_autorotate"), changeColor),
+                buildTile(Icons.bluetooth, local.get("qs_bluetooth"), changeColor),
+                buildTile(Icons.airplanemode_inactive,local.get("qs_airplanemode"), changeColor),
+                buildTile(Icons.invert_colors_off, local.get("qs_invertcolors"),changeColor),
+                buildTile(Icons.language, local.get("qs_changelanguage"), () {
+                  if (Localizations.localeOf(context).toString() == "en") {
+                    Pangolin.setLocale(context, Locale("de"));
+                    Pangolin.settingsBox.put("language", "de");
+                  }
+                  if (Localizations.localeOf(context).toString() == "de") {
+                    Pangolin.setLocale(context, Locale("en"));
+                    Pangolin.settingsBox.put("language", "en");
+                  }
+                }),
               ])),
     );
 
@@ -247,9 +343,10 @@ void notImplemented(BuildContext context) {
     builder: (BuildContext context) {
       // return object of type Dialog
       return AlertDialog(
-        title: new Text("Feature not implemented"),
+        title: new Text(
+            Localization.of(context).get("featurenotimplemented_title")),
         content: new Text(
-            "This feature is currently not available on your build of Pangolin. Please see https://reddit.com/r/dahliaos to check for updates."),
+            Localization.of(context).get("featurenotimplemented_value")),
         actions: <Widget>[
           // usually buttons at the bottom of the dialog
           new FlatButton(
