@@ -13,6 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -198,7 +199,7 @@ class FirstScreen extends StatelessWidget {
                                         top: 0.0, right: 20, bottom: 15),
                                     child: RaisedButton(
                                       onPressed: () {
-                                        Navigator.pop(context);
+                                        Navigator.pushNamed(context, '/second');
                                       },
                                       elevation: 1.0,
                                       color: Colors.blue[500],
@@ -340,7 +341,7 @@ new Center(
                                         top: 0.0, right: 20, bottom: 15),
                                     child: RaisedButton(
                                       onPressed: () {
-                                        Navigator.pop(context);
+                                        Navigator.pushNamed(context, '/second');
                                       },
                                       elevation: 1.0,
                                       color: Colors.blue[500],
@@ -476,7 +477,7 @@ new Center(
                                         top: 0.0, right: 20, bottom: 15),
                                     child: RaisedButton(
                                       onPressed: () {
-                                        Navigator.pop(context);
+                                        Navigator.pushNamed(context, '/second');
                                       },
                                       elevation: 1.0,
                                       color: Colors.blue[500],
@@ -513,27 +514,40 @@ new Center(
           padding: EdgeInsets.zero,
           children: <Widget>[
             DrawerHeader(
-              child: Text('Drawer Header'),
+              child: Text('Containers'),
               decoration: BoxDecoration(
                 color: Colors.blue,
+                
               ),
             ),
             ListTile(
-              title: Text('Item 1'),
+              title: Text('Debian'),
               onTap: () {
                 // Update the state of the app
                 // ...
                 // Then close the drawer
                 Navigator.pop(context);
+                Navigator.pushNamed(context, '/second');
               },
             ),
             ListTile(
-              title: Text('Item 2'),
+              title: Text('Android'),
               onTap: () {
                 // Update the state of the app
                 // ...
                 // Then close the drawer
                 Navigator.pop(context);
+                Navigator.pushNamed(context, '/second');
+              },
+            ),
+              ListTile(
+              title: Text('Settings'),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                Navigator.pop(context);
+                Navigator.pushNamed(context, '/second');
               },
             ),
           ],
@@ -548,7 +562,7 @@ class SecondScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Second Screen"),
+        title: Text("Debian Container"),
       ),
       body: Center(
         child: RaisedButton(
