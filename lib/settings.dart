@@ -15,6 +15,7 @@ limitations under the License.
 */
 
 import 'package:flutter/material.dart';
+import 'dart:ui';
 
 void main() {
   runApp(
@@ -25,17 +26,91 @@ void main() {
 }
 
 class Settings extends StatelessWidget {
-  final appTitle = 'Drawer Demo';
-
+   final Widget Function() customBar = ({ //customBar in lib/window/window.dart
+  /// The function called to close the window.
+  Function close,
+  /// The function called to minimize the window.
+  Function minimize,
+  /// The function called to maximize or restore the window.
+  Function maximize,
+  /// The getter to determine whether or not the window is maximized.
+  bool Function() maximizeState}) {
+    return SettingsBar(close: close, minimize: minimize, maximize: maximize);
+  };
+  final Color customBackground = const Color(0xFFfafafa);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: appTitle,
-      home: SettingsPage(title: appTitle),
+      title: 'Settings',
+      theme: new ThemeData(
+        primarySwatch: Colors.deepOrange,
+        primaryColor: const Color(0xFFff5722),
+        accentColor: const Color(0xFFff5722),
+        canvasColor: const Color(0xFFfafafa),
+      ),
+      home: SettingsPage(title: 'Settings'),
     );
   }
 }
 
+class SettingsBar extends StatelessWidget {
+  final Function() minimize;
+  final Function() maximize;
+  final Function() close;
+
+  SettingsBar({
+    Key key,
+    this.minimize,
+    this.maximize,
+    this.close
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(child: BackdropFilter(
+      filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+      child: Container(
+        height: 50,
+        color: Color(0x7fffffff),
+        child: Row(children: [
+          Center(
+            child: Padding(
+              padding: EdgeInsets.all(15),
+                child: Text('Files',
+                  style:
+                    TextStyle(fontSize: 18, color: Color(0xff000000)
+                  )
+                )
+            )
+          ),
+          Expanded(
+            child: new Text('test'),
+          ),
+          Row(children: [
+            new IconButton(
+              icon: const Icon(Icons.minimize),
+              onPressed: minimize,
+              iconSize: 18.0,
+              color: const Color(0xFF000000),
+            ),
+            new IconButton(
+              icon: const Icon(Icons.crop_square),
+              onPressed: maximize,
+              iconSize: 18.0,
+              color: const Color(0xFF000000),
+            ),
+            new IconButton(
+              icon: const Icon(Icons.close),
+              onPressed: close,
+              iconSize: 18.0,
+              color: const Color(0xFF000000),
+            ),
+          ])
+        ])
+      )
+    ));
+  }
+}
 
 Container buildSettings(IconData icon, String title, Color color) {
   return new Container(

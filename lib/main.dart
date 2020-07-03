@@ -362,7 +362,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           AppLauncherPanelButton(
                               app: Settings(),
                               icon: 'lib/images/icons/v2/compiled/settings.png',
-                              color: Colors.deepOrange,
+                              color: Colors.deepOrange[700],
                               callback: toggleCallback),
                           AppLauncherPanelButton(
                               app: HisApp(),
