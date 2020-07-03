@@ -89,3 +89,6 @@ flutter:
   - lib/images/dahlia.png
   - lib/localization/languages/de.json
   - lib/localization/languages/en.json
+  - lib/localization/languages/fr.json
+  - lib/localization/languages/pl.json
+  - lib/localization/languages/hr.json
