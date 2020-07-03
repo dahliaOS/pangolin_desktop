@@ -55,7 +55,7 @@ Expanded tileSection(BuildContext context){
               app: Settings(),
               icon: 'lib/images/icons/v2/compiled/settings.png',
               label: local.get("app_settings"),
-              color: Colors.deepOrange,
+              color: Colors.deepOrange[700],
               callback: toggleCallback),
           AppLauncherDrawerButton(
               app: RootTerminal(),
