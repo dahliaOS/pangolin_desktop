@@ -16,6 +16,7 @@
   "app_terminal": "Terminal",
   "app_themedemo": "Thema Vorschau",
   "app_welcome": "Willkommen",
+  "app_help": "Hilfeseite",
   "featurenotimplemented_title": "Funktion noch nicht Intigriert",
   "featurenotimplemented_value": "Diese Funktion ist in ihrer Version von Pangolin noch nicht verfügbar. Bitte siehe https://reddit.com/r/dahliaos für Aktualisierungen und weiter Informationen.",
   "launcher_card_information_title": "Information",
