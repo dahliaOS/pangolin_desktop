@@ -244,8 +244,8 @@ class _MyHomePageState extends State<MyHomePage> {
               animation: animation,
               builder: (BuildContext context, Widget child) => FadeTransition(
                 opacity: _overlayOpacityTween.animate(animation),
-                child: ScaleTransition(
-                  scale: _overlayScaleTween.animate(animation),
+                child: SlideTransition(
+                  position: Tween(begin: Offset(0, 1), end: Offset(0, 0)).animate(animation),
                   child: child,
                 ),
               ),
