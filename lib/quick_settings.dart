@@ -141,7 +141,7 @@ class QuickSettingsState extends State<QuickSettings> {
                 context: context,
                 pageBuilder: (_, __, ___) {
                   return Align(
-                    alignment: Alignment.bottomCenter,
+                    alignment: Alignment.center,
                     child: Container(
                       height: 90,
                       width: 400,
@@ -178,9 +178,8 @@ class QuickSettingsState extends State<QuickSettings> {
                   );
                 },
                 transitionBuilder: (_, anim, __, child) {
-                  return SlideTransition(
-                    position: Tween(begin: Offset(0, 1), end: Offset(0, 0))
-                        .animate(anim),
+                  return FadeTransition(
+                    opacity: anim,
                     child: child,
                   );
                 },
