@@ -133,7 +133,10 @@ Expanded tileSection(BuildContext context){
               icon: 'lib/images/icons/v2/compiled/photos.png',
               label: local.get("app_media"),
               appExists: false),
-
+ AppLauncherDrawerButton(
+              icon: 'lib/images/icons/v2/compiled/help.png',
+              label: local.get("app_help"),
+              appExists: false),
 
 
 
