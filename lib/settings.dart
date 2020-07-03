@@ -24,52 +24,15 @@ void main() {
   );
 }
 
-
-
-
-class Wifi extends StatelessWidget {
-
-  @override
-  Widget build(BuildContext context) {
-    return new MaterialApp(
-      title: 'Generated App',
-      theme: new ThemeData(
-        primarySwatch: Colors.blue,
-        primaryColor: const Color(0xFF2196f3),
-        accentColor: const Color(0xFF2196f3),
-        canvasColor: const Color(0xFFfafafa),
-      ),
-      home: new WifiSettings(),
-    );
-  }
-}
-
-class WifiSettings extends StatefulWidget {
-  WifiSettings({Key key}) : super(key: key);
-  @override
-  _WifiSettingsState createState() => new _WifiSettingsState();
-}
-
-class _WifiSettingsState extends State<WifiSettings> {
-    @override
-    Widget build(BuildContext context) {
-      return new Scaffold(
-        appBar: new AppBar(
-          title: new Text('Wi-Fi'),
-          ),
-      );
-    }
-}
-
-
-
-
-
-
 class Settings extends StatelessWidget {
+  final appTitle = 'Drawer Demo';
+
   @override
   Widget build(BuildContext context) {
-    return new Pixel();
+    return MaterialApp(
+      title: appTitle,
+      home: SettingsPage(title: appTitle),
+    );
   }
 }
 
@@ -102,21 +65,29 @@ Container buildSettingsHeader(String title) {
                             color: Color(0xff222222),
                             fontWeight: FontWeight.w600)));
 }
+        final TextEditingController editingController = new TextEditingController();
 
+class SettingsPage extends StatelessWidget {
+  final String title;
 
+  SettingsPage({Key key, this.title}) : super(key: key);
 
-final TextEditingController editingController = new TextEditingController();
-
-class Pixel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Row(children: [
-      Material(
-          color: Color(0xffffffff),
-          elevation: 10,
-          child: 
-          Container(width: 300, child:
+      appBar: AppBar(title: Text(title)),
+      body: Center(child: Text('My Page!')),
+      drawer: Drawer(
+        // Add a ListView to the drawer. This ensures the user can scroll
+        // through the options in the drawer if there isn't enough vertical
+        // space to fit everything.
+        child: 
+        
+        
+        
+
+
+
           Column(children: [
             Container(
                 height: 50,
@@ -229,21 +200,16 @@ buildSettingsHeader(' '),
                     ]))),
 
             
-          ]))),
-
-
-new Expanded(child: 
-new Wifi(),
-
-
-
-)
-
-
-    ]));
+          ]),
+        
+        
+        
+        
+        
+      ),
+    );
   }
 }
-
 
 
 
