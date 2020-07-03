@@ -26,11 +26,11 @@ class Localization {
   }
 
   String get(String key) {
-   if (_localizationValues[key] == null) {
-    return "Error";
-   } else {
-    return _localizationValues[key];
-   }
+    if (_localizationValues[key] == null) {
+      return "Error";
+    } else {
+      return _localizationValues[key];
+    }
   }
 
   static const LocalizationsDelegate<Localization> delegate =
@@ -42,7 +42,7 @@ class _LocalizationDelegate extends LocalizationsDelegate<Localization> {
 
   @override
   bool isSupported(Locale locale) {
-    return ["de", "en"].contains(locale.languageCode);
+    return ["en", "de", "fr", "pl", "hr"].contains(locale.languageCode);
   }
 
   @override
