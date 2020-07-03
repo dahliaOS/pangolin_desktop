@@ -61,13 +61,13 @@ class FirstScreen extends StatelessWidget {
         title: const Text('Containers'),
         actions: <Widget>[
           IconButton(
-            icon: const Icon(Icons.add_alert),
-            tooltip: 'Show Snackbar',
+            icon: const Icon(Icons.file_download),
+            tooltip: 'Downloads',
             onPressed: null,
           ),
           IconButton(
-            icon: const Icon(Icons.navigate_next),
-            tooltip: 'Next page',
+            icon: const Icon(Icons.settings),
+            tooltip: 'Settings',
             onPressed: null,
           ),
         ],
