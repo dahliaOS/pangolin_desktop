@@ -65,39 +65,41 @@ class QuickSettingsState extends State<QuickSettings> {
         .format(dateTime);
   }
 
-
-
-MaterialButton buildPowerItem(IconData icon, String label, String function, String subARG) {
-  return MaterialButton(
-    onPressed: (){
-      Process.run(function, [subARG],);
-    },
-    child: Column(
-      //mainAxisSize: MainAxisSize.min,
-      //mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
+  MaterialButton buildPowerItem(
+      IconData icon, String label, String function, String subARG) {
+    return MaterialButton(
+      onPressed: () {
+        Process.run(
+          function,
+          [subARG],
+        );
+      },
+      child: Column(
+        //mainAxisSize: MainAxisSize.min,
+        //mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
           Icon(
-      icon,
-      color: Colors.grey[900],
-      size: 25.0,
-      semanticLabel: 'Power off',
-    ),
-        Container(
-          margin: EdgeInsets.only(top: 8),
-          child: Text(
-            label,
-            style: TextStyle(
-              fontSize: 15.0,
-              color: Colors.grey[900],
-            ),
-            textAlign: TextAlign.center,
+            icon,
+            color: Colors.grey[900],
+            size: 25.0,
+            semanticLabel: 'Power off',
           ),
-        ),
-      ],
-    ),
-  );
-}
+          Container(
+            margin: EdgeInsets.only(top: 8),
+            child: Text(
+              label,
+              style: TextStyle(
+                fontSize: 15.0,
+                color: Colors.grey[900],
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -131,48 +133,59 @@ MaterialButton buildPowerItem(IconData icon, String label, String function, Stri
           new IconButton(
             icon: const Icon(Icons.power_settings_new),
             onPressed: () {
-                                                          showGeneralDialog(
-                                                    barrierLabel: "Barrier",
-                                                    barrierDismissible: true,
-                                                    barrierColor: Colors.black.withOpacity(0.5),
-                                                    transitionDuration: Duration(milliseconds: 200),
-                                                    context: context,
-                                                    pageBuilder: (_, __, ___) {
-                                                      return Align(
-                                                        alignment: Alignment.bottomCenter,
-                                                        child: Container(
-                                                          height: 90,
-                                                          width: 400,
-                                                          child: SizedBox.expand(child: new Center(child:new Row(
-                                                            crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                            children: [
-                                                           Padding(
-                                  padding: EdgeInsets.only(top:20.0,right:20),child: buildPowerItem(Icons.power_settings_new, 'Power off', 'shutdown', '-h now'),),
-                                                            
-                                                             Padding(
-                                  padding: EdgeInsets.only(top:20.0,right:20),child: buildPowerItem(Icons.refresh, 'Restart', 'reboot', ''),),
-                                                            
-                                  Padding(
-                                  padding: EdgeInsets.only(top:20.0,right:20),child: buildPowerItem(Icons.developer_mode, 'Terminal', 'killall', 'pangolin_desktop'),),
-                                                            
-                                                            ],)),),
-                                                          margin: EdgeInsets.only(bottom: 75, left: 12, right: 12),
-                                                          decoration: BoxDecoration(
-                                                            color: Colors.white,
-                                                            borderRadius: BorderRadius.circular(10),
-                                                          ),
-                                                        ),
-                                                      );
-                                                    },
-                                                    transitionBuilder: (_, anim, __, child) {
-                                                      return SlideTransition(
-                                                        position: Tween(begin: Offset(0, 1), end: Offset(0, 0)).animate(anim),
-                                                        child: child,
-                                                      );
-                                                    },
-                                                  );
-          },
+              showGeneralDialog(
+                barrierLabel: "Barrier",
+                barrierDismissible: true,
+                barrierColor: Colors.black.withOpacity(0.5),
+                transitionDuration: Duration(milliseconds: 200),
+                context: context,
+                pageBuilder: (_, __, ___) {
+                  return Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Container(
+                      height: 90,
+                      width: 400,
+                      child: SizedBox.expand(
+                        child: new Center(
+                            child: new Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(top: 20.0, right: 20),
+                              child: buildPowerItem(Icons.power_settings_new,
+                                  'Power off', 'shutdown', '-h now'),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(top: 20.0, right: 20),
+                              child: buildPowerItem(
+                                  Icons.refresh, 'Restart', 'reboot', ''),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(top: 20.0, right: 20),
+                              child: buildPowerItem(Icons.developer_mode,
+                                  'Terminal', 'killall', 'pangolin_desktop'),
+                            ),
+                          ],
+                        )),
+                      ),
+                      margin: EdgeInsets.only(bottom: 75, left: 12, right: 12),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                  );
+                },
+                transitionBuilder: (_, anim, __, child) {
+                  return SlideTransition(
+                    position: Tween(begin: Offset(0, 1), end: Offset(0, 0))
+                        .animate(anim),
+                    child: child,
+                  );
+                },
+              );
+            },
             color: const Color(0xFFffffff),
           ),
 
@@ -300,23 +313,57 @@ MaterialButton buildPowerItem(IconData icon, String label, String function, Stri
               crossAxisCount: 4,
               childAspectRatio: 2.5 / 4,
               children: [
-                buildTile(Icons.network_wifi, local.get("qs_wifi"), changeColor),
+                buildTile(
+                    Icons.network_wifi, local.get("qs_wifi"), changeColor),
                 buildTile(Icons.palette, local.get("qs_theme"), changeColor),
                 buildTile(Icons.battery_full, '85%', changeColor),
-                buildTile(Icons.do_not_disturb_off, local.get("qs_dnd"), changeColor),
-                buildTile(Icons.lightbulb_outline, local.get("qs_flashlight"),changeColor),
-                buildTile(Icons.screen_lock_rotation,local.get("qs_autorotate"), changeColor),
-                buildTile(Icons.bluetooth, local.get("qs_bluetooth"), changeColor),
-                buildTile(Icons.airplanemode_inactive,local.get("qs_airplanemode"), changeColor),
-                buildTile(Icons.invert_colors_off, local.get("qs_invertcolors"),changeColor),
+                buildTile(
+                    Icons.do_not_disturb_off, local.get("qs_dnd"), changeColor),
+                buildTile(Icons.lightbulb_outline, local.get("qs_flashlight"),
+                    changeColor),
+                buildTile(Icons.screen_lock_rotation,
+                    local.get("qs_autorotate"), changeColor),
+                buildTile(
+                    Icons.bluetooth, local.get("qs_bluetooth"), changeColor),
+                buildTile(Icons.airplanemode_inactive,
+                    local.get("qs_airplanemode"), changeColor),
+                buildTile(Icons.invert_colors_off, local.get("qs_invertcolors"),
+                    changeColor),
                 buildTile(Icons.language, local.get("qs_changelanguage"), () {
-                  if (Localizations.localeOf(context).toString() == "en") {
+                  /*if (Localizations.localeOf(context).toString() == "en") {
                     Pangolin.setLocale(context, Locale("de"));
                     Pangolin.settingsBox.put("language", "de");
                   }
                   if (Localizations.localeOf(context).toString() == "de") {
                     Pangolin.setLocale(context, Locale("en"));
                     Pangolin.settingsBox.put("language", "en");
+                  }*/
+                  switch (
+                      Localizations.localeOf(context).languageCode.toString()) {
+                    case "en":
+                      Pangolin.setLocale(context, Locale("de"));
+                      Pangolin.settingsBox.put("language", "de");
+                      break;
+                    case "de":
+                      Pangolin.setLocale(context, Locale("fr"));
+                      Pangolin.settingsBox.put("language", "fr");
+                      break;
+                    case "fr":
+                      Pangolin.setLocale(context, Locale("pl"));
+                      Pangolin.settingsBox.put("language", "pl");
+                      break;
+                    case "pl":
+                      Pangolin.setLocale(context, Locale("hr"));
+                      Pangolin.settingsBox.put("language", "hr");
+                      break;
+                    case "hr":
+                      Pangolin.setLocale(context, Locale("en"));
+                      Pangolin.settingsBox.put("language", "en");
+                      break;
+                    default:
+                      Pangolin.setLocale(context, Locale("en"));
+                      Pangolin.settingsBox.put("language", "en");
+                      break;
                   }
                 }),
               ])),
