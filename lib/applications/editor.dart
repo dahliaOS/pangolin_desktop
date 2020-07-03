@@ -30,84 +30,83 @@ class TextEditorApp extends StatelessWidget {
 }
 
 class TextEditor extends StatefulWidget {
-
-  final String title="Text Editor";
+  final String title = "Text Editor";
 
   @override
   _TextEditorState createState() => _TextEditorState();
 }
 
 void textButtonNull() {
-    
-    print('yep, you pressed it! good job');
-  }
+  print('yep, you pressed it! good job');
+}
 
 class _TextEditorState extends State<TextEditor> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:
-        
-       new Column(children: [
-      Container(
-          height: 55,
-          color: Colors.amber[500],
-          child: Row(children: [
-          new IconButton(
-            icon: const Icon(Icons.add),
-            onPressed:textButtonNull,
-            iconSize: 25.0,
-            color: const Color(0xFF222222),
+      body: new Column(children: [
+        Container(
+            height: 55,
+            color: Colors.amber[500],
+            child: Row(children: [
+              new IconButton(
+                icon: const Icon(Icons.add),
+                onPressed: textButtonNull,
+                iconSize: 25.0,
+                color: const Color(0xFF222222),
+              ),
+              Expanded(
+                  child: Center(
+                      child: Text('Notes',
+                          style: TextStyle(
+                              fontSize: 18, color: Color(0xff222222))))),
+              new IconButton(
+                icon: const Icon(Icons.save),
+                onPressed: textButtonNull,
+                iconSize: 25.0,
+                color: const Color(0xFF222222),
+              ),
+              new IconButton(
+                icon: const Icon(Icons.more_vert),
+                onPressed: textButtonNull,
+                iconSize: 25.0,
+                color: const Color(0xFF222222),
+              ),
+            ])),
+        new Expanded(
+          child: Container(
+            color: Colors.black.withOpacity(0.1),
+            child: new Padding(
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(5)),
+                  color: Colors.white,
+                ),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+                  child: new TextFormField(
+                    onChanged: (text) {
+                      print("First text field: $text");
+                    },
+                    style: TextStyle(
+                      fontSize: 15.0,
+                      color: const Color(0xFF222222),
+                      fontFamily: "Roboto",
+                    ),
+                    decoration: InputDecoration.collapsed(hintText: ""),
+                    autocorrect: false,
+                    minLines: null,
+                    maxLines: null,
+                    expands: true,
+                    cursorColor: const Color(0xFF222222),
+                  ),
+                ),
+              ),
+              padding: const EdgeInsets.fromLTRB(100.0, 2.0, 100.0, 2.0),
+            ),
           ),
-            Expanded(
-                child: Center(
-                    child: Text('Notes',
-                       style: TextStyle(
-                            fontSize: 18, color: Color(0xff222222))))),
-            
-            new IconButton(
-            icon: const Icon(Icons.save),
-            onPressed:textButtonNull,
-            iconSize: 25.0,
-            color: const Color(0xFF222222),
-          ),
-
-            new IconButton(
-            icon: const Icon(Icons.more_vert),
-            onPressed:textButtonNull,
-            iconSize: 25.0,
-            color: const Color(0xFF222222),
-          ),
-          ])),
-         new Expanded(child: 
-         
-          new Padding(
-            child:
-new TextFormField(
-    onChanged: (text) {
-    print("First text field: $text");
-  },
- style:    
-         TextStyle(fontSize:15.0,
-            color: const Color(0xFF222222),
-            
-            fontFamily: "Roboto",),
-          decoration: InputDecoration.collapsed(hintText: ""),
-          autocorrect: false,
-          minLines: null,
-          maxLines: null,
-          expands: true,
-          
-    cursorColor: const Color(0xFF222222),
         ),
-padding: const EdgeInsets.fromLTRB(100.0, 2.0, 100.0, 2.0),
-          ),
-         
-         
-         ),
-          
-    ]),        
+      ]),
     );
   }
 }
