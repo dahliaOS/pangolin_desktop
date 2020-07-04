@@ -1,12 +1,9 @@
 /*
 Copyright 2019 The dahliaOS Authors
-
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
-
     http://www.apache.org/licenses/LICENSE-2.0
-
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -59,7 +56,6 @@ class Settings extends StatelessWidget {
         '/': (context) => SettingsPage(title: 'Settings'),
         // When navigating to the "/second" route, build the SecondScreen widget.
         '/second': (context) => SecondScreen(),
-        '/language': (context) => LanguagePage(),
       },
     );
   }
@@ -111,15 +107,12 @@ class SettingsBar extends StatelessWidget {
   }
 }
 
-Function defaultTap(BuildContext context) {
-  Navigator.pop(context);
-  Navigator.pushNamed(context, '/second');
-}
-
-Widget buildSettings(
-    IconData icon, String title, Color color, context, Function onTap) {
+Widget buildSettings(IconData icon, String title, Color color, context) {
   return new GestureDetector(
-      onTap: onTap,
+      onTap: () {
+        Navigator.pop(context);
+        Navigator.pushNamed(context, '/second');
+      },
       child: Container(
           height: 30,
           margin: EdgeInsets.only(
@@ -228,75 +221,72 @@ class SettingsPage extends StatelessWidget {
                       ),
                     ),
                     buildSettingsHeader('WIRELESS & NETWORKS'),
-                    buildSettings(Icons.network_wifi, 'Wi-Fi', Colors.cyan[600],
-                        context, defaultTap(context)),
+                    buildSettings(
+                        Icons.network_wifi, 'Wi-Fi', Colors.cyan[600], context),
                     buildSettings(Icons.bluetooth, 'Bluetooth',
-                        Colors.blue[600], context, defaultTap(context)),
-                    buildSettings(Icons.sim_card, 'Data', Colors.red[500],
-                        context, defaultTap(context)),
+                        Colors.blue[600], context),
+                    buildSettings(
+                        Icons.sim_card, 'Data', Colors.red[500], context),
                     buildSettings(Icons.settings_ethernet, 'Wired',
-                        Colors.amber[500], context, defaultTap(context)),
+                        Colors.amber[500], context),
                     buildSettingsHeader('DEVICE'),
                     buildSettings(Icons.brightness_medium, 'Display',
-                        Colors.red[600], context, defaultTap(context)),
-                    buildSettings(Icons.keyboard, 'Input', Colors.blue[800],
-                        context, defaultTap(context)),
-                    buildSettings(Icons.usb, 'Ports', Colors.orange[500],
-                        context, defaultTap(context)),
-                    buildSettings(Icons.volume_up, 'Sound', Colors.teal[500],
-                        context, defaultTap(context)),
-                    buildSettings(Icons.storage, 'Storage', Colors.blue[500],
-                        context, defaultTap(context)),
-                    buildSettings(Icons.power, 'Power', Colors.amber[500],
-                        context, defaultTap(context)),
-                    buildSettings(Icons.devices, 'Devices', Colors.blue[800],
-                        context, defaultTap(context)),
+                        Colors.red[600], context),
+                    buildSettings(
+                        Icons.keyboard, 'Input', Colors.blue[800], context),
+                    buildSettings(
+                        Icons.usb, 'Ports', Colors.orange[500], context),
+                    buildSettings(
+                        Icons.volume_up, 'Sound', Colors.teal[500], context),
+                    buildSettings(
+                        Icons.storage, 'Storage', Colors.blue[500], context),
+                    buildSettings(
+                        Icons.power, 'Power', Colors.amber[500], context),
+                    buildSettings(
+                        Icons.devices, 'Devices', Colors.blue[800], context),
                     buildSettingsHeader('SYSTEM'),
                     buildSettings(Icons.system_update, 'Updates',
-                        Colors.deepOrange[500], context, defaultTap(context)),
+                        Colors.deepOrange[500], context),
                     buildSettings(Icons.palette, 'Appearance',
-                        Colors.green[500], context, defaultTap(context)),
+                        Colors.green[500], context),
                     buildSettings(Icons.apps, 'Applications',
-                        Colors.purple[800], context, defaultTap(context)),
-                    buildSettings(Icons.person, 'Users', Colors.cyan[800],
-                        context, defaultTap(context)),
-                    buildSettings(Icons.visibility_off, 'Privacy',
-                        Colors.pink[500], context, defaultTap(context)),
-                    buildSettings(Icons.access_time, 'Time',
-                        Colors.deepOrange[500], context, defaultTap(context)),
-                    buildSettings(Icons.security, 'Security', Colors.blue[500],
-                        context, defaultTap(context)),
-                    buildSettings(Icons.domain, 'Enterprise Enrollment',
-                        Colors.deepOrange[500], context, defaultTap(context)),
-                    buildSettings(Icons.developer_board, 'Kernel',
-                        Colors.deepOrange[500], context, defaultTap(context)),
+                        Colors.purple[800], context),
                     buildSettings(
-                        Icons.flag, 'Language', Colors.deepOrange[500], context,
-                        () {
-                      Navigator.popAndPushNamed(context, '/language');
-                    }),
+                        Icons.person, 'Users', Colors.cyan[800], context),
+                    buildSettings(Icons.visibility_off, 'Privacy',
+                        Colors.pink[500], context),
+                    buildSettings(Icons.access_time, 'Time',
+                        Colors.deepOrange[500], context),
+                    buildSettings(
+                        Icons.security, 'Security', Colors.blue[500], context),
+                    buildSettings(Icons.domain, 'Enterprise Enrollment',
+                        Colors.deepOrange[500], context),
+                    buildSettings(Icons.developer_board, 'Kernel',
+                        Colors.deepOrange[500], context),
+                    buildSettings(Icons.flag, 'Language',
+                        Colors.deepOrange[500], context),
                     buildSettingsHeader('DEVELOPER'),
-                    buildSettings(Icons.flag, 'Flags', Colors.deepOrange[500],
-                        context, defaultTap(context)),
+                    buildSettings(
+                        Icons.flag, 'Flags', Colors.deepOrange[500], context),
                     buildSettings(Icons.developer_mode, 'Bootloader',
-                        Colors.green[500], context, defaultTap(context)),
+                        Colors.green[500], context),
                     buildSettings(Icons.extension, 'Extensions',
-                        Colors.blueGrey[500], context, defaultTap(context)),
+                        Colors.blueGrey[500], context),
                     buildSettings(Icons.brightness_low, 'Flutter',
-                        Colors.lightBlue[500], context, defaultTap(context)),
+                        Colors.lightBlue[500], context),
                     buildSettings(Icons.attach_money, 'System Shell',
-                        Colors.grey[500], context, defaultTap(context)),
+                        Colors.grey[500], context),
                     buildSettings(Icons.android, 'Android Subsystem',
-                        Color(0xFF3DDA84), context, defaultTap(context)),
-                    buildSettings(Icons.note, 'System Logs', Colors.deepOrange,
-                        context, defaultTap(context)),
+                        Color(0xFF3DDA84), context),
+                    buildSettings(
+                        Icons.note, 'System Logs', Colors.deepOrange, context),
                     buildSettingsHeader('ABOUT'),
                     buildSettings(Icons.brightness_low, 'System',
-                        Colors.deepOrange[500], context, defaultTap(context)),
+                        Colors.deepOrange[500], context),
                     buildSettings(Icons.phone_android, 'Device',
-                        Colors.lightBlue[500], context, defaultTap(context)),
-                    buildSettings(Icons.people, 'Credits', Colors.amber[600],
-                        context, defaultTap(context)),
+                        Colors.lightBlue[500], context),
+                    buildSettings(
+                        Icons.people, 'Credits', Colors.amber[600], context),
                     buildSettingsHeader(' '),
                   ]))),
         ]),
@@ -320,24 +310,6 @@ class SecondScreen extends StatelessWidget {
             Navigator.pop(context);
           },
           child: Text('Go back!'),
-        ),
-      ),
-    );
-  }
-}
-
-class LanguagePage extends StatefulWidget {
-  @override
-  _LanguagePageState createState() => _LanguagePageState();
-}
-
-class _LanguagePageState extends State<LanguagePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-        child: Text(
-          "Comming soon",
         ),
       ),
     );
