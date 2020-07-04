@@ -30,10 +30,11 @@ class QuickSettings extends StatefulWidget {
 }
 
 class QuickSettingsState extends State<QuickSettings> {
-  String _timeString;
-  String _dateString;
-  double volume = 0.5;
   double brightness = 0.8;
+  double volume = 0.5;
+
+  String _dateString;
+  String _timeString;
 
   @override
   void initState() {
@@ -337,28 +338,35 @@ class QuickSettingsState extends State<QuickSettings> {
                     Pangolin.setLocale(context, Locale("en"));
                     Pangolin.settingsBox.put("language", "en");
                   }*/
-                  switch (
-                      Localizations.localeOf(context).languageCode.toString()) {
-                    case "en":
+                  switch (Localizations.localeOf(context).toString()) {
+                    case "en_US":
                       Pangolin.setLocale(context, Locale("de"));
                       Pangolin.settingsBox.put("language", "de");
                       break;
-                    case "de":
+                    case "de_DE":
                       Pangolin.setLocale(context, Locale("fr"));
                       Pangolin.settingsBox.put("language", "fr");
                       break;
-                    case "fr":
+                    case "fr_FR":
                       Pangolin.setLocale(context, Locale("pl"));
                       Pangolin.settingsBox.put("language", "pl");
                       break;
-                    case "pl":
+                    case "pl_PL":
                       Pangolin.setLocale(context, Locale("hr"));
                       Pangolin.settingsBox.put("language", "hr");
                       break;
-                    case "hr":
+                    case "hr_HR":
+                      Pangolin.setLocale(context, Locale("nl"));
+                      Pangolin.settingsBox.put("language", "nl");
+                      break;
+                    case "nl_BE":
                       Pangolin.setLocale(context, Locale("en"));
                       Pangolin.settingsBox.put("language", "en");
                       break;
+                    /*case "nl_NL":
+                      Pangolin.setLocale(context, Locale("en"));
+                      Pangolin.settingsBox.put("language", "en");
+                      break;*/
                     default:
                       Pangolin.setLocale(context, Locale("en"));
                       Pangolin.settingsBox.put("language", "en");
