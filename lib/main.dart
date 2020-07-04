@@ -129,7 +129,8 @@ class _PangolinState extends State<Pangolin> {
   @override
   void initState() {
     Pangolin.settingsBox = Hive.box("settings");
-    _locale = Locale(Pangolin.settingsBox.get("language") ?? "en");
+    _locale = Locale(Pangolin.settingsBox.get("language").substring(0, 2),
+        Pangolin.settingsBox.get("language").substring(3, 5) ?? "en");
     super.initState();
   }
 
