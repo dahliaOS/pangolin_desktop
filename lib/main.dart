@@ -129,7 +129,8 @@ class _PangolinState extends State<Pangolin> {
   @override
   void initState() {
     Pangolin.settingsBox = Hive.box("settings");
-    _locale = Locale(Pangolin.settingsBox.get("language") ?? "en");
+    _locale = Locale(Pangolin.settingsBox.get("language").substring(0, 2),
+        Pangolin.settingsBox.get("language").substring(3, 5) ?? "en");
     super.initState();
   }
 
@@ -166,6 +167,8 @@ class _PangolinState extends State<Pangolin> {
               Locale("fr", "FR"),
               Locale("pl", "PL"),
               Locale("hr", "HR"),
+              Locale("nl", "BE"),
+              Locale("nl", "NL"),
             ],
             localizationsDelegates: [
               Localization.delegate,
@@ -245,7 +248,8 @@ class _MyHomePageState extends State<MyHomePage> {
               builder: (BuildContext context, Widget child) => FadeTransition(
                 opacity: _overlayOpacityTween.animate(animation),
                 child: SlideTransition(
-                  position: Tween(begin: Offset(0, 1), end: Offset(0, 0)).animate(animation),
+                  position: Tween(begin: Offset(0, 1), end: Offset(0, 0))
+                      .animate(animation),
                   child: child,
                 ),
               ),
