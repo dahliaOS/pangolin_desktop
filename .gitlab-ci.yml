@@ -71,7 +71,7 @@ build_linux:
   artifacts:
     name: 'pangolin-linux-builds'
     expose_as: 'Linux Builds'
-    paths: ['build/linux/pangolin_desktop']
+    paths: ['build/linux/debug/pangolin_desktop']
 
 .deploy_ghpages:
   <<: *runchecks
