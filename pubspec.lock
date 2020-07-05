@@ -571,11 +571,7 @@ packages:
       name: test_api
       url: "https://pub.dartlang.org"
     source: hosted
-<<<<<<< HEAD
     version: "0.2.16"
-=======
-    version: "0.2.17"
->>>>>>> fd275b6... Implement (failing) widget tests! `flutter test`
   timing:
     dependency: transitive
     description:
