@@ -51,7 +51,6 @@ build_android:
     paths:
       - /opt/android-sdk-linux/
       - build/flutter_assets/
-
 build_web:
   <<: *runchecks
   stage: build
@@ -61,6 +60,17 @@ build_web:
     name: 'pangolin-web-preview'
     expose_as: 'Web Zip'
     paths: ['build/web']
+build_linux:
+  <<: *runchecks
+  stage: build
+  script:
+    - flutter config --enable-linux-desktop
+    - apt install cmake ninja-build clang libgtk3-dev -y
+    - flutter build linux --debug
+  artifacts:
+    name: 'pangolin-linux-builds'
+    expose_as: 'Linux Builds'
+    paths: ['build/linux/pangolin_desktop']
 
 .deploy_ghpages:
   <<: *runchecks
