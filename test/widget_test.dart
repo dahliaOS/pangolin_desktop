@@ -18,7 +18,7 @@ import 'package:GeneratedApp/main.dart';
 void main() {
   // testWidgets('Counter increments smoke test', (WidgetTester tester) async {
   //   // Build our app and trigger a frame.
-  //   await tester.pumpWidget(MyApp());
+  //   await tester.pumpWidget(Pangolin());
 
   //   // Verify that our counter starts at 0.
   //   expect(find.text('0'), findsOneWidget);
@@ -33,7 +33,7 @@ void main() {
   //   expect(find.text('1'), findsOneWidget);
   // });
   testWidgets('Try to open Files', (WidgetTester tester) async {
-    await tester.pumpWidget(MyApp());
+    await tester.pumpWidget(Pangolin());
     await tester.tap(
       find.byWidgetPredicate(
         (element) => (element is AppLauncherPanelButton && element.icon.endsWith("files.png"))
@@ -49,7 +49,7 @@ void main() {
     // ); //don't know why I did that one
   });
   testWidgets('Try to open Terminal', (WidgetTester tester) async {
-    await tester.pumpWidget(MyApp());
+    await tester.pumpWidget(Pangolin());
     await tester.tap(
       find.byWidgetPredicate(
         (element) => (element is AppLauncherPanelButton && element.icon.endsWith("terminal.png"))
@@ -60,12 +60,12 @@ void main() {
     //TODO(bleonard252): wait for Bash to be ready. if it errors, fail
   });
   testWidgets('Try to open Quick Settings', (WidgetTester tester) async {
-    await tester.pumpWidget(MyApp());
+    await tester.pumpWidget(Pangolin());
     await tester.tap(find.byType(StatusTrayWidget));
     print((await tester.pumpAndSettle()).toString() + " frames on animation!");
   });
   testWidgets('Try to open Launcher', (WidgetTester tester) async {
-    await tester.pumpWidget(MyApp());
+    await tester.pumpWidget(Pangolin());
     await tester.tap(find.byType(LauncherToggleWidget));
     print((await tester.pumpAndSettle()).toString() + " frames on animation!");
   });
