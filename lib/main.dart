@@ -135,7 +135,7 @@ class _PangolinState extends State<Pangolin> {
 
         language = ["en", "US"];
       } else {
-        language = Pangolin.settingsBox.get("language").split("_").toList();
+        language = Pangolin.settingsBox.get("language").split("_");
       }
     }
 
