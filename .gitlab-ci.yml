@@ -65,7 +65,7 @@ build_linux:
   stage: build
   script:
     - flutter config --enable-linux-desktop
-    - apt install cmake ninja-build clang libgtk3-dev -y
+    - sudo apt install cmake ninja-build clang libgtk3-dev -y
     - flutter build linux --debug
   artifacts:
     name: 'pangolin-linux-builds'
