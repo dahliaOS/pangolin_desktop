@@ -41,6 +41,9 @@ class Window extends StatefulWidget {
   /// The window's theme color.
   final Color color;
 
+  /// The window's custom bar, if there is one.
+  Widget customBar;
+
   /// Constructor.
   Window({
     Key key,
@@ -168,7 +171,7 @@ class WindowState extends State<Window> {
           Function maximize,
           /// The getter to determine whether or not the window is maximized.
           bool Function() maximizeState}) customBar;
-        try {customBar = widget.child.customBar;} catch (e) {}
+        try {customBar = widget.child.customBar; widget.customBar = widget.child.customBar;} catch (e) {}
         try {setState(() {_color = widget.child.customBackground;});} catch (e) {}
         return Positioned(
           left: _position.dx,
