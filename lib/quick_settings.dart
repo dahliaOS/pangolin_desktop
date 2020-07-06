@@ -41,7 +41,8 @@ class QuickSettingsState extends State<QuickSettings> {
     Pangolin.settingsBox = Hive.box("settings");
     _timeString = _formatDateTime(DateTime.now(), 'hh:mm');
     _dateString = _formatDateTime(DateTime.now(), 'E, d MMMM yyyy');
-    Timer.periodic(Duration(milliseconds: 100), (Timer t) => _getTime(context));
+    if (!isTesting) Timer.periodic(Duration(milliseconds: 100), (Timer t) => _getTime(context));
+    else print("WARNING: Clock was disabled due to testing flag!");
     super.initState();
   }
 
