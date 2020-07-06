@@ -12,6 +12,18 @@ limitations under the License.
 */
 
 import 'package:GeneratedApp/applications/containers.dart';
+import 'package:GeneratedApp/settings/pages/Backup.dart';
+import 'package:GeneratedApp/settings/pages/about.dart';
+import 'package:GeneratedApp/settings/pages/accounts.dart';
+import 'package:GeneratedApp/settings/pages/advfeatures.dart';
+import 'package:GeneratedApp/settings/pages/applications.dart';
+import 'package:GeneratedApp/settings/pages/connections.dart';
+import 'package:GeneratedApp/settings/pages/customization.dart';
+import 'package:GeneratedApp/settings/pages/display.dart';
+import 'package:GeneratedApp/settings/pages/genmanagement.dart';
+import 'package:GeneratedApp/settings/pages/security.dart';
+import 'package:GeneratedApp/settings/pages/sound.dart';
+import 'package:GeneratedApp/settings/pages/updates.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui';
 
@@ -161,18 +173,34 @@ class _SettingsPageState extends State<SettingsPage> {
 
   @override
   void initState() {
-    items.add(new TileItem("Wifi", Icons.wifi, true, pageone()));
-    items.add(new TileItem("Bluetooth", Icons.bluetooth, false, pageone()));
-    items.add(new TileItem("Bluetooth", Icons.bluetooth, false, pagetwo()));
-    items.add(new TileItem("Bluetooth", Icons.bluetooth, false, pagethree()));
-    items.add(new TileItem("Bluetooth", Icons.bluetooth, false, pagefour()));
-    items.add(new TileItem("Bluetooth", Icons.bluetooth, false, pagefive()));
-    items.add(new TileItem("Bluetooth", Icons.bluetooth, false, pagesix()));
-    items.add(new TileItem("Bluetooth", Icons.bluetooth, false, pageseven()));
-    items.add(new TileItem("Bluetooth", Icons.bluetooth, false, pageone()));
-    items.add(new TileItem("Bluetooth", Icons.bluetooth, false, pagetwo()));
-    items.add(new TileItem("Bluetooth", Icons.bluetooth, false, pagethree()));
-    items.add(new TileItem("Bluetooth", Icons.bluetooth, false, pagefour()));
+    items.add(new TileItem("Connections", "Wifi, Bluetooth, other Connections",
+        Icons.wifi, true, Connections()));
+    items.add(new TileItem("Volume and Sounds", "Sound mode, Volume",
+        Icons.volume_up, false, Sound()));
+    items.add(new TileItem("Display", "Brightness, Blue light filter",
+        Icons.brightness_5, false, Display()));
+    items.add(new TileItem(
+        "Customization",
+        "Customize the look and feel of Pangolin",
+        Icons.color_lens,
+        false,
+        Customization()));
+    items.add(new TileItem("Applications", "Manage Apps and Permissions",
+        Icons.apps, false, Applications()));
+    items.add(new TileItem("Security", "Settings for Security and Privacy",
+        Icons.security, false, Security()));
+    items.add(new TileItem("Accounts", "Manage and add Accounts", Icons.people,
+        false, Accounts()));
+    items.add(new TileItem(
+        "Backup", "Backup and Restore", Icons.update, false, Backup()));
+    items.add(new TileItem("Advanced Features", "Comming",
+        Icons.add_circle_outline, false, AdvancedFeatures()));
+    items.add(new TileItem("General Management", "Language, Keyboard, Time",
+        Icons.check_box, false, GeneralManagement()));
+    items.add(new TileItem("Updates", "Download, Changelog",
+        Icons.system_update, false, Updates()));
+    items.add(new TileItem(
+        "About Device", "Status, Information", Icons.laptop, false, About()));
     super.initState();
   }
 
@@ -274,22 +302,20 @@ class _SettingsPageState extends State<SettingsPage> {
                                             .withOpacity(0.0),
                                     borderRadius: BorderRadius.circular(10)),
                                 child: ListTile(
+                                    dense: true,
                                     title: Text(items[i].title),
+                                    subtitle: Text(items[i].subtitle),
                                     leading: Icon(
                                       items[i].icon,
                                       color: Colors.deepOrange[600],
                                     ),
                                     onTap: () {
                                       setState(() {
-                                        for (int _i = 0;
-                                            _i < items.length;
-                                            _i++) {
-                                          items[_i].selected = false;
-                                        }
-                                        items[i].selected = true;
+                                        //setSelected(i, items);
                                       });
                                       contoller.animateToPage(i,
-                                          duration: Duration(milliseconds: 750),
+                                          duration:
+                                              Duration(milliseconds: 1000),
                                           curve: Curves.decelerate);
                                     }),
                               );
@@ -300,6 +326,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     ],
                   ),
                 ),
+                VerticalDivider(),
                 Flexible(
                     flex: 5,
                     child: PageView.builder(
@@ -308,28 +335,14 @@ class _SettingsPageState extends State<SettingsPage> {
                         physics: BouncingScrollPhysics(),
                         controller: contoller,
                         onPageChanged: (index) {
-                          print(index);
+                          setState(() {
+                            setSelected(index, items);
+                          });
                         },
                         itemCount: items.length,
                         itemBuilder: (context, index) {
                           return items[index].page;
-                        })
-
-                    /*PageView(
-                      
-                      children: [
-                        Container(
-                          color: Colors.black,
-                        ),
-                        Container(
-                          color: Colors.blue,
-                        ),
-                        Container(
-                          color: Colors.green,
-                        ),
-                      ],
-                    )*/
-                    ),
+                        })),
               ],
             ),
           ),
@@ -340,73 +353,17 @@ class _SettingsPageState extends State<SettingsPage> {
 }
 
 class TileItem {
-  String title;
+  String title, subtitle;
   IconData icon;
   bool selected;
   Widget page;
 
-  TileItem(this.title, this.icon, this.selected, page);
+  TileItem(this.title, this.subtitle, this.icon, this.selected, this.page);
 }
 
-class pageone extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Colors.black,
-    );
+setSelected(int index, List items) {
+  for (int _i = 0; _i < items.length; _i++) {
+    items[_i].selected = false;
   }
-}
-
-class pagetwo extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Colors.cyan,
-    );
-  }
-}
-
-class pagethree extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Colors.green,
-    );
-  }
-}
-
-class pagefour extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Colors.blue,
-    );
-  }
-}
-
-class pagefive extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Colors.purple,
-    );
-  }
-}
-
-class pagesix extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Colors.red,
-    );
-  }
-}
-
-class pageseven extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Colors.deepOrange,
-    );
-  }
+  items[index].selected = true;
 }
