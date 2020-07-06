@@ -256,7 +256,7 @@ class _SettingsPageState extends State<SettingsPage> {
                               //elevation: 5.0,
                               child: new Container(
                                 width: 700,
-                                height: 35.0,
+                                height: 45.0,
                                 margin: new EdgeInsets.only(left: 10, right: 5),
                                 child: new Row(
                                   crossAxisAlignment: CrossAxisAlignment.center,
