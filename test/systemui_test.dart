@@ -43,6 +43,6 @@ Future<void> main() async {
     await tester.idle();
     expect(find.byType(LauncherWidget), findsOneWidget);
     expect(find.byType(ErrorWidget, skipOffstage: false), findsNothing); //no error widgets here
-  }, skip: true);
+  }, skip: false);
   print("Maybe this test works better on a different version of Flutter");
 }

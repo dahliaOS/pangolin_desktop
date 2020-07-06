@@ -38,15 +38,12 @@ class QuickSettingsState extends State<QuickSettings> {
 
   @override
   void initState() {
+    super.initState();
     Pangolin.settingsBox = Hive.box("settings");
     _timeString = _formatDateTime(DateTime.now(), 'hh:mm');
     _dateString = _formatDateTime(DateTime.now(), 'E, d MMMM yyyy');
     if (!isTesting) Timer.periodic(Duration(milliseconds: 100), (Timer t) => _getTime(context));
-    else {
-      _getTime(context);
-      print("WARNING: Clock was disabled due to testing flag!");
-    }
-    super.initState();
+    else print("WARNING: Clock was disabled due to testing flag!");
   }
 
   void _getTime(BuildContext context) {
@@ -109,6 +106,7 @@ class QuickSettingsState extends State<QuickSettings> {
   @override
   Widget build(BuildContext context) {
     Localization local = Localization.of(context);
+    _getTime(context);
     const biggerFont = TextStyle(
       fontSize: 15.0,
       fontWeight: FontWeight.w400,
