@@ -52,6 +52,10 @@ import 'settings.dart';
 import 'commons/key_ring.dart';
 import 'commons/functions.dart';
 
+/// Set this to disable certain things during testing.
+/// Use this sparingly, or better yet, not at all.
+bool isTesting = false;
+
 WindowsData provisionalWindowData = new WindowsData();
 final GlobalKey<ToggleState> _launcherToggleKey = GlobalKey<ToggleState>();
 final GlobalKey<SystemOverlayState> _launcherOverlayKey =
