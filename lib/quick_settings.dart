@@ -42,7 +42,10 @@ class QuickSettingsState extends State<QuickSettings> {
     _timeString = _formatDateTime(DateTime.now(), 'hh:mm');
     _dateString = _formatDateTime(DateTime.now(), 'E, d MMMM yyyy');
     if (!isTesting) Timer.periodic(Duration(milliseconds: 100), (Timer t) => _getTime(context));
-    else print("WARNING: Clock was disabled due to testing flag!");
+    else {
+      _getTime(context);
+      print("WARNING: Clock was disabled due to testing flag!");
+    }
     super.initState();
   }
 
@@ -113,7 +116,7 @@ class QuickSettingsState extends State<QuickSettings> {
     );
     Widget topSection = Container(
       padding: EdgeInsets.all(10.0),
-      child: Row(
+      child: SingleChildScrollView(scrollDirection: Axis.horizontal, child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           /*Expanded(
@@ -198,7 +201,7 @@ class QuickSettingsState extends State<QuickSettings> {
             color: const Color(0xFFffffff),
           ),
         ],
-      ),
+      )),
     );
 
     void changeColor() {

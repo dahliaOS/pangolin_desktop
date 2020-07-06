@@ -6,15 +6,16 @@
 // tree, read text, and verify that the values of widget properties are correct.
 
 import 'dart:io';
-import 'dart:ui';
+//import 'dart:ui' hide Window;
 
 import 'package:GeneratedApp/applications/files.dart';
 import 'package:GeneratedApp/applications/terminal.dart';
-import 'package:GeneratedApp/commons/functions.dart';
-import 'package:GeneratedApp/launcher_toggle.dart';
-import 'package:GeneratedApp/quick_settings.dart';
-import 'package:GeneratedApp/status_tray.dart';
+// import 'package:GeneratedApp/commons/functions.dart';
+// import 'package:GeneratedApp/launcher_toggle.dart';
+// import 'package:GeneratedApp/quick_settings.dart';
+// import 'package:GeneratedApp/status_tray.dart';
 import 'package:GeneratedApp/widgets/app_launcher.dart';
+// import 'package:GeneratedApp/window/window.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:GeneratedApp/main.dart';
@@ -70,7 +71,7 @@ Future<void> main() async {
   //   await tester.pumpWidget(Pangolin());
   //   await tester.pump();
   //   expect(find.byType(ErrorWidget), findsNothing); //no error widgets here
-    print("Testing Terminal");
+    print("Testing Terminal"); // ---
     await tester.tap(
       find.byWidgetPredicate(
         (element) => (element is AppLauncherPanelButton && element.app is Terminal),
@@ -81,28 +82,36 @@ Future<void> main() async {
     //print((await tester.pumpAndSettle()).toString() + " frame(s) on animation!");
     expect(find.byType(ErrorWidget), findsNothing); //no error widgets here
     await tester.pump();
-    // finish test
-    print("Finishing test");
+    // print("Checkpoint cleanup"); // ---
+    // await tester.idle();
+    // print("Closing Files"); // ---
+    // expect(find.byType(Files), findsOneWidget);
+    // await tester.tap(
+    //   // zfind.descendant(
+    //   //   of: find.byType(FilesBar), 
+    //   //   matching: find.widgetWithIcon(IconButton, Icons.close))
+    //   find.descendant(
+    //     of: find.byType(Window),
+    //     matching: find.widgetWithIcon(IconButton, Icons.close)
+    //   )
+    // );
+    // await tester.pumpAndSettle();
+    // expect(find.byType(Files), findsNothing);
+    // print("Closing Terminal"); // ---
+    // expect(find.byType(Terminal), findsOneWidget);
+    // await tester.tap(
+    //   find.descendant(
+    //     of: find.byType(Window), 
+    //     matching: find.widgetWithIcon(IconButton, Icons.close)
+    //   )
+    // );
+    // await tester.pumpAndSettle();
+    // expect(find.byType(Terminal), findsNothing);
+    print("Cleaning up"); // ---
     await tester.idle();
     //assert(tester.widget(find.byType(TerminalApp)).
     //@bleonard252: wait for Bash to be ready. if it errors, fail
     // I'll probably make more specific Terminal tests,
     // first that it opens, then how it reacts to different platforms
   });/* }); */
-  // testWidgets('Try to open Quick Settings', (WidgetTester tester) async {
-  //   await tester.pumpWidget(Pangolin());
-  //   await tester.pump();
-  //   expect(find.byType(ErrorWidget), findsNothing); //no error widgets here
-  //   await tester.tap(find.byType(StatusTrayWidget));
-  //   print((await tester.pumpAndSettle()).toString() + " frames on animation!");
-  //   expect(find.byType(ErrorWidget), findsNothing); //no error widgets here
-  // });
-  // testWidgets('Try to open Launcher', (WidgetTester tester) async {
-  //   await tester.pumpWidget(Pangolin());
-  //   await tester.pump();
-  //   expect(find.byType(ErrorWidget), findsNothing); //no error widgets here
-  //   await tester.tap(find.byType(LauncherToggleWidget));
-  //   print((await tester.pumpAndSettle()).toString() + " frames on animation!");
-  //   expect(find.byType(ErrorWidget), findsNothing); //no error widgets here
-  // });
 }
