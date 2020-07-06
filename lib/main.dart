@@ -22,6 +22,7 @@ import 'package:GeneratedApp/applications/welcome.dart';
 import 'package:GeneratedApp/applications/monitor.dart';
 import 'package:GeneratedApp/applications/files.dart';
 import 'package:GeneratedApp/localization/localization.dart';
+import 'package:GeneratedApp/settings/initHive.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
@@ -104,7 +105,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Directory dir = await getApplicationDocumentsDirectory();
   Hive.init(dir.path);
-  await Hive.openBox<String>("settings");
+  await Hive.openBox<dynamic>("settings");
 
   /// To keep app in Portrait Mode
   //SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeRight]);
@@ -120,7 +121,7 @@ class Pangolin extends StatefulWidget {
     state.setLocale(locale);
   }
 
-  static Box<String> settingsBox;
+  static Box<dynamic> settingsBox;
 }
 
 class _PangolinState extends State<Pangolin> {
@@ -139,6 +140,7 @@ class _PangolinState extends State<Pangolin> {
     }
 
     getLangFromHive();
+    initHive().initializeHive();
 
     _locale = Locale(language[0], language[1]);
     super.initState();
