@@ -145,6 +145,7 @@ Container buildSettingsHeader(String title) {
 }
 
 final TextEditingController editingController = new TextEditingController();
+PageController contoller = PageController();
 
 class SettingsPage extends StatefulWidget {
   final String title;
@@ -160,18 +161,18 @@ class _SettingsPageState extends State<SettingsPage> {
 
   @override
   void initState() {
-    items.add(new TileItem("Wifi", Icons.wifi, true));
-    items.add(new TileItem("Bluetooth", Icons.bluetooth, false));
-    items.add(new TileItem("Bluetooth", Icons.bluetooth, false));
-    items.add(new TileItem("Bluetooth", Icons.bluetooth, false));
-    items.add(new TileItem("Bluetooth", Icons.bluetooth, false));
-    items.add(new TileItem("Bluetooth", Icons.bluetooth, false));
-    items.add(new TileItem("Bluetooth", Icons.bluetooth, false));
-    items.add(new TileItem("Bluetooth", Icons.bluetooth, false));
-    items.add(new TileItem("Bluetooth", Icons.bluetooth, false));
-    items.add(new TileItem("Bluetooth", Icons.bluetooth, false));
-    items.add(new TileItem("Bluetooth", Icons.bluetooth, false));
-    items.add(new TileItem("Bluetooth", Icons.bluetooth, false));
+    items.add(new TileItem("Wifi", Icons.wifi, true, pageone()));
+    items.add(new TileItem("Bluetooth", Icons.bluetooth, false, pageone()));
+    items.add(new TileItem("Bluetooth", Icons.bluetooth, false, pagetwo()));
+    items.add(new TileItem("Bluetooth", Icons.bluetooth, false, pagethree()));
+    items.add(new TileItem("Bluetooth", Icons.bluetooth, false, pagefour()));
+    items.add(new TileItem("Bluetooth", Icons.bluetooth, false, pagefive()));
+    items.add(new TileItem("Bluetooth", Icons.bluetooth, false, pagesix()));
+    items.add(new TileItem("Bluetooth", Icons.bluetooth, false, pageseven()));
+    items.add(new TileItem("Bluetooth", Icons.bluetooth, false, pageone()));
+    items.add(new TileItem("Bluetooth", Icons.bluetooth, false, pagetwo()));
+    items.add(new TileItem("Bluetooth", Icons.bluetooth, false, pagethree()));
+    items.add(new TileItem("Bluetooth", Icons.bluetooth, false, pagefour()));
     super.initState();
   }
 
@@ -287,6 +288,9 @@ class _SettingsPageState extends State<SettingsPage> {
                                         }
                                         items[i].selected = true;
                                       });
+                                      contoller.animateToPage(i,
+                                          duration: Duration(milliseconds: 750),
+                                          curve: Curves.decelerate);
                                     }),
                               );
                             },
@@ -298,10 +302,21 @@ class _SettingsPageState extends State<SettingsPage> {
                 ),
                 Flexible(
                     flex: 5,
-                    child: PageView(
-                      scrollDirection: Axis.vertical,
-                      pageSnapping: false,
-                      physics: BouncingScrollPhysics(),
+                    child: PageView.builder(
+                        scrollDirection: Axis.vertical,
+                        pageSnapping: false,
+                        physics: BouncingScrollPhysics(),
+                        controller: contoller,
+                        onPageChanged: (index) {
+                          print(index);
+                        },
+                        itemCount: items.length,
+                        itemBuilder: (context, index) {
+                          return items[index].page;
+                        })
+
+                    /*PageView(
+                      
                       children: [
                         Container(
                           color: Colors.black,
@@ -313,215 +328,13 @@ class _SettingsPageState extends State<SettingsPage> {
                           color: Colors.green,
                         ),
                       ],
-                    )),
+                    )*/
+                    ),
               ],
             ),
           ),
         ],
       ),
-      /*drawer: Drawer(
-        // Add a ListView to the drawer. This ensures the user can scroll
-        // through the options in the drawer if there isn't enough vertical
-        // space to fit everything.
-        child: Column(children: [
-          Container(
-              height: 50,
-              color: Color(0xffeeeeee),
-              child: Row(children: [
-                Padding(
-                    padding: EdgeInsets.all(10),
-                    child: Icon(Icons.settings, color: Color(0xffff3D00))),
-                Text('Settings',
-                    style: TextStyle(fontSize: 20, color: Color(0xff222222)))
-              ])),
-          new Expanded(
-              child: SingleChildScrollView(
-                  scrollDirection: Axis.vertical,
-                  child: new Column(children: <Widget>[
-                    Container(
-                      color: Color(0xffeeeeee),
-                      child: Container(
-                        padding:
-                            new EdgeInsets.only(left: 10, right: 10, top: 0),
-                        margin: new EdgeInsets.only(bottom: 10.0),
-                        child: new Material(
-                          color: Colors.white,
-                          borderRadius:
-                              const BorderRadius.all(const Radius.circular(25)),
-                          elevation: 5.0,
-                          child: new Container(
-                            width: 700,
-                            height: 35.0,
-                            margin: new EdgeInsets.only(left: 10, right: 5),
-                            child: new Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: <Widget>[
-                                new Expanded(
-                                    child: new TextField(
-                                  style: new TextStyle(
-                                    color: Colors.grey[900],
-                                    fontSize: 15,
-                                  ),
-                                  maxLines: 1,
-                                  decoration: new InputDecoration(
-                                      hintStyle: TextStyle(
-                                        color: Colors.grey[900],
-                                        fontSize: 15,
-                                      ),
-                                      icon: Icon(
-                                        Icons.search,
-                                        color: const Color(0xFFff3d00),
-                                      ),
-                                      hintText: 'Search settings...',
-                                      border: InputBorder.none),
-                                  onSubmitted: null,
-                                  controller: editingController,
-                                ))
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    buildSettingsHeader('WIRELESS & NETWORKS'),
-                    buildSettings(Icons.network_wifi, 'Wi-Fi', Colors.cyan[600],
-                        context, () {}),
-                    buildSettings(Icons.bluetooth, 'Bluetooth',
-                        Colors.blue[600], context, () {}),
-                    buildSettings(Icons.sim_card, 'Data', Colors.red[500],
-                        context, () {}),
-                    buildSettings(Icons.settings_ethernet, 'Wired',
-                        Colors.amber[500], context, () {}),
-                    buildSettingsHeader('DEVICE'),
-                    buildSettings(Icons.brightness_medium, 'Display',
-                        Colors.red[600], context, () {}),
-                    buildSettings(Icons.keyboard, 'Input', Colors.blue[800],
-                        context, () {}),
-                    buildSettings(
-                        Icons.usb, 'Ports', Colors.orange[500], context, () {}),
-                    buildSettings(Icons.volume_up, 'Sound', Colors.teal[500],
-                        context, () {}),
-                    buildSettings(Icons.storage, 'Storage', Colors.blue[500],
-                        context, () {}),
-                    buildSettings(Icons.power, 'Power', Colors.amber[500],
-                        context, () {}),
-                    buildSettings(Icons.devices, 'Devices', Colors.blue[800],
-                        context, () {}),
-                    buildSettingsHeader('SYSTEM'),
-                    buildSettings(Icons.system_update, 'Updates',
-                        Colors.deepOrange[500], context, () {}),
-                    buildSettings(Icons.palette, 'Appearance',
-                        Colors.green[500], context, () {}),
-                    buildSettings(Icons.apps, 'Applications',
-                        Colors.purple[800], context, () {}),
-                    buildSettings(Icons.person, 'Users', Colors.cyan[800],
-                        context, () {}),
-                    buildSettings(Icons.visibility_off, 'Privacy',
-                        Colors.pink[500], context, () {}),
-                    buildSettings(Icons.access_time, 'Time',
-                        Colors.deepOrange[500], context, () {}),
-                    buildSettings(Icons.security, 'Security', Colors.blue[500],
-                        context, () {}),
-                    buildSettings(Icons.domain, 'Enterprise Enrollment',
-                        Colors.deepOrange[500], context, () {}),
-                    buildSettings(Icons.developer_board, 'Kernel',
-                        Colors.deepOrange[500], context, () {}),
-                    buildSettings(
-                        Icons.flag, 'Language', Colors.deepOrange[500], context,
-                        () {
-                      Navigator.popAndPushNamed(context, "/language");
-                    }),
-                    buildSettingsHeader('DEVELOPER'),
-                    buildSettings(Icons.flag, 'Flags', Colors.deepOrange[500],
-                        context, () {}),
-                    buildSettings(Icons.developer_mode, 'Bootloader',
-                        Colors.green[500], context, () {}),
-                    buildSettings(Icons.extension, 'Extensions',
-                        Colors.blueGrey[500], context, () {}),
-                    buildSettings(Icons.brightness_low, 'Flutter',
-                        Colors.lightBlue[500], context, () {}),
-                    buildSettings(Icons.attach_money, 'System Shell',
-                        Colors.grey[500], context, () {}),
-                    buildSettings(Icons.android, 'Android Subsystem',
-                        Color(0xFF3DDA84), context, () {}),
-                    buildSettings(Icons.note, 'System Logs', Colors.deepOrange,
-                        context, () {}),
-                    buildSettingsHeader('ABOUT'),
-                    buildSettings(Icons.brightness_low, 'System',
-                        Colors.deepOrange[500], context, () {}),
-                    buildSettings(Icons.phone_android, 'Device',
-                        Colors.lightBlue[500], context, () {}),
-                    buildSettings(Icons.people, 'Credits', Colors.amber[600],
-                        context, () {}),
-                    buildSettingsHeader(' '),
-                  ]))),
-        ]),
-      ),*/
-    );
-  }
-}
-
-class SecondScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Debian Container"),
-      ),
-      body: Center(
-        child: RaisedButton(
-          onPressed: () {
-            // Navigate back to the first screen by popping the current route
-            // off the stack.
-            Navigator.pop(context);
-          },
-          child: Text('Go back!'),
-        ),
-      ),
-    );
-  }
-}
-
-class Tile extends StatefulWidget {
-  final IconData icon;
-  final String title;
-  final void Function() onTap;
-  final int index;
-
-  const Tile({
-    Key key,
-    @required this.icon,
-    @required this.title,
-    @required this.onTap,
-    @required this.index,
-  }) : super(key: key);
-
-  @override
-  _TileState createState() => _TileState();
-}
-
-class _TileState extends State<Tile> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.all(5),
-      decoration: BoxDecoration(
-          color: selected == widget.index
-              ? Colors.deepOrange[700].withOpacity(0.2)
-              : Colors.deepOrange[700].withOpacity(0.0),
-          borderRadius: BorderRadius.circular(10)),
-      child: ListTile(
-          title: Text(widget.title),
-          leading: Icon(
-            widget.icon,
-            color: Colors.deepOrange[600],
-          ),
-          onTap: () {
-            setState(() {
-              selected = widget.index;
-            });
-            widget.onTap;
-          }),
     );
   }
 }
@@ -530,6 +343,70 @@ class TileItem {
   String title;
   IconData icon;
   bool selected;
+  Widget page;
 
-  TileItem(this.title, this.icon, this.selected);
+  TileItem(this.title, this.icon, this.selected, page);
+}
+
+class pageone extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.black,
+    );
+  }
+}
+
+class pagetwo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.cyan,
+    );
+  }
+}
+
+class pagethree extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.green,
+    );
+  }
+}
+
+class pagefour extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.blue,
+    );
+  }
+}
+
+class pagefive extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.purple,
+    );
+  }
+}
+
+class pagesix extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.red,
+    );
+  }
+}
+
+class pageseven extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.deepOrange,
+    );
+  }
 }
