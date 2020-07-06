@@ -27,13 +27,13 @@ Future<void> main() async {
     await tester.pump();
     expect(find.byType(ErrorWidget, skipOffstage: false), findsNothing); //no error widgets here
 
-    // print("Testing Quick Settings"); // ---
-    // expect(find.byType(QuickSettings), findsNothing);
-    // await tester.tap(find.byType(StatusTrayWidget));
-    // print((await tester.pumpAndSettle()).toString() + " frames on animation!");
-    // await tester.idle();
-    // expect(find.byType(QuickSettings), findsOneWidget);
-    // expect(find.byType(ErrorWidget, skipOffstage: false), findsNothing); //no error widgets here
+    print("Testing Quick Settings"); // ---
+    expect(find.byType(QuickSettings), findsNothing);
+    await tester.tap(find.byType(StatusTrayWidget));
+    print((await tester.pumpAndSettle()).toString() + " frames on animation!");
+    await tester.idle();
+    expect(find.byType(QuickSettings), findsOneWidget);
+    expect(find.byType(ErrorWidget, skipOffstage: false), findsNothing); //no error widgets here
 
     print("Testing Launcher"); // ---
     expect(find.byType(ErrorWidget, skipOffstage: false), findsNothing); //no error widgets here

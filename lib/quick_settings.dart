@@ -119,19 +119,21 @@ class QuickSettingsState extends State<QuickSettings> {
         children: [
           /*Expanded(
             child:*/
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(_timeString, style: biggerFont),
-                //Icon(Icons.brightness_1, size: 10.0,color: Colors.white),
-                Text('  •  ', style: biggerFont),
-                Text(_dateString, style: biggerFont),
-              ],
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: SingleChildScrollView(scrollDirection: Axis.horizontal, child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(_timeString, style: biggerFont),
+                  //Icon(Icons.brightness_1, size: 10.0,color: Colors.white),
+                  Text('  •  ', style: biggerFont),
+                  Text(_dateString, style: biggerFont),
+                ],
+              )),
             ),
           ),
-          Spacer(),
+          //Spacer(),
           //),
           new IconButton(
             icon: const Icon(Icons.power_settings_new),
