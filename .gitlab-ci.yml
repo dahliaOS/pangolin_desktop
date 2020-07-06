@@ -20,7 +20,7 @@ stages:
 # - install
   - build
     # this should be used multiple times, i.e. for Android and Web builds
-# - test
+  - test
     # this could be used at some point
   - deploy 
     # this will be used for web and releases
@@ -72,6 +72,12 @@ build_linux:
     name: 'pangolin-linux-builds'
     expose_as: 'Linux Builds'
     paths: ['build/linux/debug/pangolin_desktop']
+
+test_flutter:
+  <<: *runchecks
+  stage: test
+  script:
+    - flutter test
 
 .deploy_ghpages:
   <<: *runchecks
