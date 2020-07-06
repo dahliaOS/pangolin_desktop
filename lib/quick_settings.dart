@@ -114,7 +114,7 @@ class QuickSettingsState extends State<QuickSettings> {
     );
     Widget topSection = Container(
       padding: EdgeInsets.all(10.0),
-      child: SingleChildScrollView(scrollDirection: Axis.horizontal, child: Row(
+      child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           /*Expanded(
@@ -199,7 +199,7 @@ class QuickSettingsState extends State<QuickSettings> {
             color: const Color(0xFFffffff),
           ),
         ],
-      )),
+      ),
     );
 
     void changeColor() {
