@@ -196,7 +196,7 @@ class _SettingsPageState extends State<SettingsPage> {
     items.add(new TileItem("Advanced Features", "Comming",
         Icons.add_circle_outline, false, AdvancedFeatures()));
     items.add(new TileItem("General Management", "Language, Keyboard, Time",
-        Icons.check_box, false, GeneralManagement()));
+        Icons.language, false, GeneralManagement()));
     items.add(new TileItem("Updates", "Download, Changelog",
         Icons.system_update, false, Updates()));
     items.add(new TileItem(
