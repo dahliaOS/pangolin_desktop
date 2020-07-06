@@ -222,35 +222,38 @@ class _SettingsPageState extends State<SettingsPage> {
                     children: [
                       DrawerHeader(
                         padding:
-                            EdgeInsets.symmetric(vertical: 25, horizontal: 15),
+                            EdgeInsets.symmetric(vertical: 25, horizontal: 20),
                         child: Column(
                           children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Icon(
-                                  Icons.settings,
-                                  color: Colors.deepOrange[700],
-                                ),
-                                SizedBox(
-                                  width: 20,
-                                ),
-                                Text(
-                                  "Settings",
-                                  style: TextStyle(
-                                    fontSize: 25,
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Icon(
+                                    Icons.settings,
+                                    color: Colors.deepOrange[700],
                                   ),
-                                )
-                              ],
+                                  SizedBox(
+                                    width: 20,
+                                  ),
+                                  Text(
+                                    "Settings",
+                                    style: TextStyle(
+                                      fontSize: 25,
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
                             SizedBox(
                               height: 30,
                             ),
                             Material(
-                              color: Colors.white,
+                              color: Colors.grey[300],
                               borderRadius: const BorderRadius.all(
                                   const Radius.circular(25)),
-                              elevation: 5.0,
+                              //elevation: 5.0,
                               child: new Container(
                                 width: 700,
                                 height: 35.0,
