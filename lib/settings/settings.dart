@@ -12,7 +12,7 @@ limitations under the License.
 */
 
 import 'package:GeneratedApp/applications/containers.dart';
-import 'package:GeneratedApp/settings/pages/Backup.dart';
+import 'package:GeneratedApp/settings/pages/backup.dart';
 import 'package:GeneratedApp/settings/pages/about.dart';
 import 'package:GeneratedApp/settings/pages/accounts.dart';
 import 'package:GeneratedApp/settings/pages/advfeatures.dart';
