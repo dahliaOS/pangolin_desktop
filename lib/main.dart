@@ -48,7 +48,7 @@ import 'widgets/app_launcher.dart';
 import 'applications/calculator.dart';
 import 'applications/editor.dart';
 import 'applications/terminal.dart';
-import 'settings.dart';
+import 'settings/settings.dart';
 import 'commons/key_ring.dart';
 import 'commons/functions.dart';
 
@@ -131,8 +131,7 @@ class _PangolinState extends State<Pangolin> {
     Pangolin.settingsBox = Hive.box("settings");
     List<String> language = ["en", "US"];
     getLangFromHive() {
-       if (Pangolin.settingsBox.get("language") == null) {
-
+      if (Pangolin.settingsBox.get("language") == null) {
         language = ["en", "US"];
       } else {
         language = Pangolin.settingsBox.get("language").split("_");

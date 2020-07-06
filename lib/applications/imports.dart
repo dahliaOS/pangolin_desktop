@@ -21,5 +21,5 @@ import 'editor.dart';
 import 'monitor.dart';
 import 'terminal.dart';
 import 'welcome.dart';
-import '../settings.dart';
+import '../settings/settings.dart';
 import '../themes/main.dart';
