@@ -20,7 +20,7 @@ stages:
 # - install
   - build
     # this should be used multiple times, i.e. for Android and Web builds
-# - test
+  - test
     # this could be used at some point
   - deploy 
     # this will be used for web and releases
@@ -51,7 +51,6 @@ build_android:
     paths:
       - /opt/android-sdk-linux/
       - build/flutter_assets/
-
 build_web:
   <<: *runchecks
   stage: build
@@ -61,6 +60,24 @@ build_web:
     name: 'pangolin-web-preview'
     expose_as: 'Web Zip'
     paths: ['build/web']
+build_linux:
+  <<: *runchecks
+  stage: build
+  script:
+    - flutter config --enable-linux-desktop
+    - sudo apt update
+    - sudo apt install cmake ninja-build clang libgtk-3-dev -y
+    - flutter build linux --debug
+  artifacts:
+    name: 'pangolin-linux-builds'
+    expose_as: 'Linux Builds'
+    paths: ['build/linux/debug/pangolin_desktop']
+
+test_flutter:
+  <<: *runchecks
+  stage: test
+  script:
+    - flutter test
 
 .deploy_ghpages:
   <<: *runchecks

@@ -41,6 +41,9 @@ class Window extends StatefulWidget {
   /// The window's theme color.
   final Color color;
 
+  /// The window's custom bar, if there is one.
+  Widget customBar;
+
   /// Constructor.
   Window({
     Key key,
@@ -159,17 +162,29 @@ class WindowState extends State<Window> {
           return new Container();
         }
         final TabData selectedTab = _getCurrentSelection(model);*/
-        Widget Function({
-          /// The function called to close the window.
-          Function close, 
-          /// The function called to minimize the window.
-          Function minimize, 
-          /// The function called to maximize or restore the window.
-          Function maximize,
-          /// The getter to determine whether or not the window is maximized.
-          bool Function() maximizeState}) customBar;
-        try {customBar = widget.child.customBar;} catch (e) {}
-        try {setState(() {_color = widget.child.customBackground;});} catch (e) {}
+        Widget Function(
+            {
+
+            /// The function called to close the window.
+            Function close,
+
+            /// The function called to minimize the window.
+            Function minimize,
+
+            /// The function called to maximize or restore the window.
+            Function maximize,
+
+            /// The getter to determine whether or not the window is maximized.
+            bool Function() maximizeState}) customBar;
+        try {
+          customBar = widget.child.customBar;
+          widget.customBar = widget.child.customBar;
+        } catch (e) {}
+        try {
+          setState(() {
+            _color = widget.child.customBackground;
+          });
+        } catch (e) {}
         return Positioned(
           left: _position.dx,
           top: _position.dy,
@@ -201,47 +216,54 @@ class WindowState extends State<Window> {
                           }
                         });
                       },
-                      child: customBar != null ? customBar(
-                        close: _closeWindow,
-                        maximize: () => _windowMode == WindowMode.NORMAL_MODE
-                          ? _maximizeWindow()
-                          : _restoreWindowFromMaximizeMode(),
-                        minimize: () => null, // for now
-                        maximizeState: () => _windowMode == WindowMode.MAXIMIZE_MODE
-                          ? true
-                          : false
-                      ) : Container(
-                          padding: EdgeInsets.symmetric(horizontal: 4.0),
-                          height: 35.0,
-                          color: _color,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              minimizeButton(),
-                              SizedBox(width: 3.0),
-                              maximizeButton(),
-                              SizedBox(width: 3.0),
-                              closeButton()
-                            ],
-                          )),
+                      onDoubleTap: () {
+                        _windowMode == WindowMode.NORMAL_MODE
+                            ? _maximizeWindow()
+                            : _restoreWindowFromMaximizeMode();
+                      },
+                      child: customBar != null
+                          ? customBar(
+                              close: _closeWindow,
+                              maximize: () =>
+                                  _windowMode == WindowMode.NORMAL_MODE
+                                      ? _maximizeWindow()
+                                      : _restoreWindowFromMaximizeMode(),
+                              minimize: () => null, // for now
+                              maximizeState: () =>
+                                  _windowMode == WindowMode.MAXIMIZE_MODE
+                                      ? true
+                                      : false)
+                          : Container(
+                              padding: EdgeInsets.symmetric(horizontal: 4.0),
+                              height: 35.0,
+                              color: _color,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  minimizeButton(),
+                                  SizedBox(width: 3.0),
+                                  maximizeButton(),
+                                  SizedBox(width: 3.0),
+                                  closeButton()
+                                ],
+                              )),
                     ),
                     Expanded(
-                      child: 
-                       ClipRRect(child:
-                      GestureDetector(
-                        onPanUpdate: (DragUpdateDetails details) {
-                          setState(() {
-                            var _newSize = _size + details.delta;
-                            if (_newSize.width >= _minWidth &&
-                                _newSize.height >= _minHeight)
-                              _size += details.delta;
-                          });
-                        },
-                        child: (_child is Widget)
-                            ? _child
-                            : Text("ERROR: Window is not a Widget!"),
+                      child: ClipRRect(
+                        child: GestureDetector(
+                          onPanUpdate: (DragUpdateDetails details) {
+                            setState(() {
+                              var _newSize = _size + details.delta;
+                              if (_newSize.width >= _minWidth &&
+                                  _newSize.height >= _minHeight)
+                                _size += details.delta;
+                            });
+                          },
+                          child: (_child is Widget)
+                              ? _child
+                              : Text("ERROR: Window is not a Widget!"),
+                        ),
                       ),
-                    ),
                     ),
                   ],
                 ),
