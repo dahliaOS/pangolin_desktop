@@ -30,10 +30,10 @@ import 'package:GeneratedApp/themes/main.dart';
 import 'package:GeneratedApp/commons/key_ring.dart';
 import 'package:GeneratedApp/commons/functions.dart';
 
-Expanded tileSection(BuildContext context){
+Expanded tileSection(BuildContext context) {
   Localization local = Localization.of(context);
   return Expanded(
-      child: Container(
+    child: Container(
         constraints: BoxConstraints(maxWidth: 900),
         padding: EdgeInsets.all(10.0),
         child: GridView.count(crossAxisCount: 5, children: [
@@ -61,7 +61,7 @@ Expanded tileSection(BuildContext context){
               app: RootTerminal(),
               icon: 'lib/images/icons/v2/compiled/root.png',
               label: local.get("app_rootterminal"),
-             color: Colors.red[700],
+              color: Colors.red[700],
               callback: toggleCallback),
           AppLauncherDrawerButton(
               app: TextEditorApp(),
@@ -78,7 +78,7 @@ Expanded tileSection(BuildContext context){
               label: local.get("app_systemlogs"),
               appExists: false),
           AppLauncherDrawerButton(
-             app: Files(),
+              app: Files(),
               icon: 'lib/images/icons/v2/compiled/files.png',
               label: local.get("app_files"),
               color: Colors.deepOrange,
@@ -94,10 +94,10 @@ Expanded tileSection(BuildContext context){
               color: Colors.green,
               callback: toggleCallback),
           AppLauncherDrawerButton(
-             app: Containers(),
+              app: Containers(),
               icon: 'lib/images/icons/v2/compiled/containers.png',
               label: local.get("app_containers"),
-             color: Colors.blue[800],
+              color: Colors.blue[800],
               callback: toggleCallback),
           AppLauncherDrawerButton(
               app: HisApp(),
@@ -133,17 +133,10 @@ Expanded tileSection(BuildContext context){
               icon: 'lib/images/icons/v2/compiled/photos.png',
               label: local.get("app_media"),
               appExists: false),
- AppLauncherDrawerButton(
+          AppLauncherDrawerButton(
               icon: 'lib/images/icons/v2/compiled/help.png',
               label: local.get("app_help"),
               appExists: false),
-
-
-
-
-
-
-
         ])),
   );
 }
@@ -328,14 +321,12 @@ Card buildCard(IconData icon, String title, Color color, Color splash,
         height: 100,
         child: new Padding(
           padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
-          child: SingleChildScrollView(child: new Column(
+          child: new Column(
               mainAxisAlignment: MainAxisAlignment.start,
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                new SingleChildScrollView(
-                  scrollDirection: Axis.horizontal, 
-                  child: Row(
+                new Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -349,8 +340,7 @@ Card buildCard(IconData icon, String title, Color color, Color splash,
                             fontWeight: FontWeight.w400,
                             fontFamily: "Roboto"),
                       )
-                    ])
-                  ),
+                    ]),
                 new Text(
                   text,
                   style: new TextStyle(
@@ -359,7 +349,7 @@ Card buildCard(IconData icon, String title, Color color, Color splash,
                       fontWeight: FontWeight.w400,
                       fontFamily: "Roboto"),
                 )
-              ])),
+              ]),
         ),
       ),
     ),
