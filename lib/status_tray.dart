@@ -14,6 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'package:GeneratedApp/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
@@ -47,7 +48,8 @@ class StatusTrayWidgetState extends State<StatusTrayWidget> {
   @override
   void initState() {
     _timeString = _formatDateTime(DateTime.now());
-    Timer.periodic(Duration(seconds: 1), (Timer t) => _getTime());
+    if (!isTesting) Timer.periodic(Duration(seconds: 1), (Timer t) => _getTime());
+    else print("WARNING: Clock was disabled due to testing flag!");
     super.initState();
   }
 
