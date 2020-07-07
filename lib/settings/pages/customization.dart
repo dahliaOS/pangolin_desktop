@@ -9,6 +9,7 @@ class Customization extends StatefulWidget {
 class _CustomizationState extends State<Customization> {
   bool blur = true;
   bool dark = true;
+  bool taskbar = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -81,7 +82,7 @@ class _CustomizationState extends State<Customization> {
                       )
                     ],
                   ),
-                  SizedBox(height: 10),
+                  SizedBox(height: 20),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
                     child: Text("Blur",
@@ -109,7 +110,7 @@ class _CustomizationState extends State<Customization> {
                       )
                     ],
                   ),
-                  SizedBox(height: 10),
+                  SizedBox(height: 20),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
                     child: Text("Dark Mode",
@@ -137,9 +138,37 @@ class _CustomizationState extends State<Customization> {
                       )
                     ],
                   ),
+                  SizedBox(height: 20),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                    child: Text("Taskbar",
+                        style: TextStyle(
+                            fontSize: 17,
+                            letterSpacing: 0.2,
+                            fontWeight: FontWeight.bold)),
+                  ),
+                  SizedBox(height: 5),
+                  SettingsTile(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text("Center Taskbar Items"),
+                          Switch(
+                            value: taskbar,
+                            onChanged: (bool state) {
+                              setState(() {
+                                taskbar = state;
+                              });
+                            },
+                          )
+                        ],
+                      )
+                    ],
+                  ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),
