@@ -336,7 +336,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     child: PageView.builder(
                         scrollDirection: Axis.vertical,
                         pageSnapping: false,
-                        physics: BouncingScrollPhysics(),
+                        physics: NeverScrollableScrollPhysics(),
                         controller: contoller,
                         onPageChanged: (index) {
                           setState(() {
