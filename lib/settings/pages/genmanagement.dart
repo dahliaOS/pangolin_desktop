@@ -17,7 +17,6 @@ class _GeneralManagementState extends State<GeneralManagement> {
 
   @override
   Widget build(BuildContext context) {
-    bool twentyfourhtime = true;
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -136,10 +135,11 @@ class _GeneralManagementState extends State<GeneralManagement> {
                                   children: [
                                     Text("Enable 24 Hour Time"),
                                     Switch(
-                                      value: twentyfourhtime,
+                                      value: HiveManager().get("enable24hTime"),
                                       onChanged: (bool state) {
                                         setState(() {
-                                          twentyfourhtime = state;
+                                          HiveManager()
+                                              .set("enable24hTime", state);
                                         });
                                       },
                                     )
