@@ -138,7 +138,7 @@ class QuickSettingsState extends State<QuickSettings> {
                 barrierLabel: "Barrier",
                 barrierDismissible: true,
                 barrierColor: Colors.black.withOpacity(0.5),
-                transitionDuration: Duration(milliseconds: 200),
+                transitionDuration: Duration(milliseconds: 120),
                 context: context,
                 pageBuilder: (_, __, ___) {
                   return Align(
