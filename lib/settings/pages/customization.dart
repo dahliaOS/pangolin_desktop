@@ -1,3 +1,4 @@
+import 'package:GeneratedApp/settings/hiveManager.dart';
 import 'package:GeneratedApp/widgets/settingsTile.dart';
 import 'package:flutter/material.dart';
 
@@ -7,9 +8,6 @@ class Customization extends StatefulWidget {
 }
 
 class _CustomizationState extends State<Customization> {
-  bool blur = true;
-  bool dark = true;
-  bool taskbar = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -100,10 +98,10 @@ class _CustomizationState extends State<Customization> {
                           children: [
                             Text("Enable Blur Effects on the Desktop"),
                             Switch(
-                              value: blur,
+                              value: HiveManager().get("enableBlur"),
                               onChanged: (bool state) {
                                 setState(() {
-                                  blur = state;
+                                  HiveManager().set("enableBlur", state);
                                 });
                               },
                             )
@@ -129,10 +127,10 @@ class _CustomizationState extends State<Customization> {
                             Text(
                                 "Enable Dark Mode on the Desktop and all Apps"),
                             Switch(
-                              value: dark,
+                              value: HiveManager().get("darkMode"),
                               onChanged: (bool state) {
                                 setState(() {
-                                  dark = state;
+                                  HiveManager().set("darkMode", state);
                                 });
                               },
                             )
@@ -157,10 +155,10 @@ class _CustomizationState extends State<Customization> {
                           children: [
                             Text("Center Taskbar Items"),
                             Switch(
-                              value: taskbar,
+                              value: HiveManager().get("centerTaskbar"),
                               onChanged: (bool state) {
                                 setState(() {
-                                  taskbar = state;
+                                  HiveManager().set("centerTaskbar", state);
                                 });
                               },
                             )

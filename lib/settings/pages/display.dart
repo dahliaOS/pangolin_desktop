@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:GeneratedApp/settings/hiveManager.dart';
 import 'package:GeneratedApp/widgets/settingsTile.dart';
 import 'package:flutter/material.dart';
 
@@ -9,9 +10,6 @@ class Display extends StatefulWidget {
 }
 
 class _DisplayState extends State<Display> {
-  double brightness = 0.75;
-  double blueLightValue = 0.75;
-  bool blueLight = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,13 +52,14 @@ class _DisplayState extends State<Display> {
                               Expanded(
                                 child: Slider(
                                   divisions: 20,
-                                  label: "${(brightness * 100).toString()}%",
+                                  label:
+                                      "${(HiveManager().get("brightness") * 100).toString()}%",
                                   onChanged: (double state) {
                                     setState(() {
-                                      brightness = state;
+                                      HiveManager().set("brightness", state);
                                     });
                                   },
-                                  value: brightness,
+                                  value: HiveManager().get("brightness"),
                                 ),
                               )
                             ],
@@ -88,24 +87,33 @@ class _DisplayState extends State<Display> {
                                 Text(
                                     "Enable Blue Light Filter to protect your eyes"),
                                 Switch(
-                                  value: blueLight,
+                                  value: HiveManager()
+                                      .get("enableBlueLightFilter"),
                                   onChanged: (bool state) {
                                     setState(() {
-                                      blueLight = state;
+                                      HiveManager()
+                                          .set("enableBlueLightFilter", state);
                                     });
                                   },
                                 )
                               ],
                             ),
-                            Slider(
-                              divisions: 20,
-                              label: "${(blueLightValue * 100).toString()}%",
-                              onChanged: (double state) {
-                                setState(() {
-                                  blueLightValue = state;
-                                });
-                              },
-                              value: blueLightValue,
+                            AbsorbPointer(
+                              absorbing:
+                                  !(HiveManager().get("enableBlueLightFilter")),
+                              child: Slider(
+                                divisions: 20,
+                                label:
+                                    "${(HiveManager().get("blueLightFilterValue") * 100).toString()}%",
+                                onChanged: (double state) {
+                                  setState(() {
+                                    HiveManager()
+                                        .set("blueLightFilterValue", state);
+                                  });
+                                },
+                                value:
+                                    HiveManager().get("blueLightFilterValue"),
+                              ),
                             ),
                           ],
                         )
@@ -121,104 +129,102 @@ class _DisplayState extends State<Display> {
                               fontWeight: FontWeight.bold)),
                     ),
                     SizedBox(height: 5),
-                    SettingsTile(
-                      children: [
-                        Text("Adjust your Screen Resolution"),
-                        SizedBox(height: 5),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Expanded(
-                                    child: Slider(
-                                      divisions: 20,
-                                      label:
-                                          "${(brightness * 100).toString()}%",
-                                      onChanged: (double state) {
-                                        setState(() {
-                                          brightness = state;
-                                        });
-                                      },
-                                      value: brightness,
-                                    ),
-                                  )
-                                ],
-                              ),
-                              SizedBox(height: 20),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Container(
-                                    height: 200,
-                                    width: 400,
-                                    color: Colors.grey,
-                                    child: Center(
-                                      child: Container(
-                                        width: 50,
-                                        height: 50,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                          color: Colors.grey[350],
-                                        ),
-                                        child: Center(
-                                          child: Text(
-                                            "1",
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Container(
-                                    height: 200,
-                                    width: 400,
-                                    color: Colors.grey,
-                                    child: Center(
-                                      child: Container(
-                                        width: 50,
-                                        height: 50,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                          color: Colors.grey[350],
-                                        ),
-                                        child: Center(
-                                          child: Text(
-                                            "2",
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              )
-                              //TODO put into Alert Dialog for Help
-                              /*Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    AbsorbPointer(
+                      child: SettingsTile(
                         children: [
-                          Text(
-                            "You can adjust your Screen Resolution to to your personal feelings. \nThe Image to the right shows you information about different Screen Reolutions.",
-                            style: TextStyle(fontSize: 17, letterSpacing: 0.2),
-                          ),
-                          Image.network(
-                            "https://www.logicalincrements.com/assets/img/peripherals/screen/resolutions_1200.png",
-                            height: 300,
-                          ),
+                          Text("Adjust your Screen Resolution"),
+                          SizedBox(height: 5),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Expanded(
+                                      child: Slider(
+                                        divisions: 20,
+                                        onChanged: (double state) {
+                                          setState(() {});
+                                        },
+                                        value: 0.75,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                SizedBox(height: 20),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Container(
+                                      height: 200,
+                                      width: 400,
+                                      color: Colors.grey,
+                                      child: Center(
+                                        child: Container(
+                                          width: 50,
+                                          height: 50,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                            color: Colors.grey[350],
+                                          ),
+                                          child: Center(
+                                            child: Text(
+                                              "1",
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      height: 200,
+                                      width: 400,
+                                      color: Colors.grey,
+                                      child: Center(
+                                        child: Container(
+                                          width: 50,
+                                          height: 50,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                            color: Colors.grey[350],
+                                          ),
+                                          child: Center(
+                                            child: Text(
+                                              "2",
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                )
+                                //TODO put into Alert Dialog for Help
+                                /*Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Text(
+                              "You can adjust your Screen Resolution to to your personal feelings. \nThe Image to the right shows you information about different Screen Reolutions.",
+                              style: TextStyle(fontSize: 17, letterSpacing: 0.2),
+                            ),
+                            Image.network(
+                              "https://www.logicalincrements.com/assets/img/peripherals/screen/resolutions_1200.png",
+                              height: 300,
+                            ),
+                          ],
+                        ),*/
+                              ],
+                            ),
+                          )
                         ],
-                      ),*/
-                            ],
-                          ),
-                        )
-                      ],
+                      ),
                     ),
                   ],
                 ),
