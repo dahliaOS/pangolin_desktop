@@ -9,6 +9,8 @@ class HiveManager {
     createEntryIfNotExisting("brightness", 1.0);
     createEntryIfNotExisting("blueLightFilterValue", 0.5);
     createEntryIfNotExisting("enableBlueLightFilter", false);
+    createEntryIfNotExisting("enableAutoTime", true);
+    createEntryIfNotExisting("settingsLanguageSelectorList", languages);
     createEntryIfNotExisting("languageName", "English - United States");
   }
 
@@ -26,3 +28,13 @@ createEntryIfNotExisting(String key, dynamic value) {
     Pangolin.settingsBox.put(key, value);
   }
 }
+
+List<String> languages = [
+  "English - United States",
+  "Deutsch - Deutschland",
+  "Français - France",
+  "Polski - Polska",
+  "Hrvatski - Hrvatska",
+  "Nederlands - België",
+  "Nederlands - Nederland",
+];
