@@ -10,6 +10,7 @@ class HiveManager {
     createEntryIfNotExisting("blueLightFilterValue", 0.5);
     createEntryIfNotExisting("enableBlueLightFilter", false);
     createEntryIfNotExisting("enableAutoTime", true);
+    createEntryIfNotExisting("enable24hTime", true);
     createEntryIfNotExisting("settingsLanguageSelectorList", languages);
     createEntryIfNotExisting("languageName", "English - United States");
   }
@@ -38,3 +39,5 @@ List<String> languages = [
   "Nederlands - België",
   "Nederlands - Nederland",
 ];
+
+List<String> timeZones = [];
