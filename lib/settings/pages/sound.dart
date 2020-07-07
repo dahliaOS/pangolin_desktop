@@ -1,6 +1,8 @@
 import 'package:GeneratedApp/widgets/settingsTile.dart';
 import 'package:flutter/material.dart';
 
+import '../hiveManager.dart';
+
 class Sound extends StatefulWidget {
   @override
   _SoundState createState() => _SoundState();
@@ -50,13 +52,14 @@ class _SoundState extends State<Sound> {
                               Expanded(
                                 child: Slider(
                                   divisions: 20,
-                                  label: "${(volume * 100).toString()}%",
+                                  label:
+                                      "${(HiveManager().get("volumeLevel") * 100).toString()}%",
                                   onChanged: (double state) {
                                     setState(() {
-                                      volume = state;
+                                      HiveManager().set("volumeLevel", state);
                                     });
                                   },
-                                  value: volume,
+                                  value: HiveManager().get("volumeLevel"),
                                 ),
                               )
                             ],
@@ -86,13 +89,14 @@ class _SoundState extends State<Sound> {
                               Expanded(
                                 child: Slider(
                                   divisions: 20,
-                                  label: "${(volume * 100).toString()}%",
+                                  label:
+                                      "${(HiveManager().get("volumeLevel") * 100).toString()}%",
                                   onChanged: (double state) {
                                     setState(() {
-                                      volume = state;
+                                      HiveManager().set("volumeLevel", state);
                                     });
                                   },
-                                  value: volume,
+                                  value: HiveManager().get("volumeLevel"),
                                 ),
                               )
                             ],
@@ -134,16 +138,19 @@ class _SoundState extends State<Sound> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Slider(
-                              inactiveColor: Colors.transparent,
-                              divisions: 20,
-                              label: "${(volume * 100).toString()}%",
-                              onChanged: (double state) {
-                                setState(() {
-                                  volume = state;
-                                });
-                              },
-                              value: volume,
+                            Expanded(
+                              child: Slider(
+                                inactiveColor: Colors.transparent,
+                                divisions: 20,
+                                label:
+                                    "${(HiveManager().get("volumeLevel") * 100).toString()}%",
+                                onChanged: (double state) {
+                                  setState(() {
+                                    HiveManager().set("volumeLevel", state);
+                                  });
+                                },
+                                value: HiveManager().get("volumeLevel"),
+                              ),
                             ),
                           ],
                         )
