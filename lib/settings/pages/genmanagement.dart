@@ -23,6 +23,7 @@ class _GeneralManagementState extends State<GeneralManagement> {
 
   @override
   Widget build(BuildContext context) {
+    bool twentyfourhtime = true;
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -55,6 +56,93 @@ class _GeneralManagementState extends State<GeneralManagement> {
                     SettingsTile(
                       children: [
                         Text("Language"),
+                        SizedBox(height: 5),
+                        Container(
+                          width: 1.7976931348623157e+308,
+                          child: DropdownButton<String>(
+                            icon: Icon(null),
+                            hint: Text("Language"),
+                            value: _selectedLanguage,
+                            items: languages.map((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(value),
+                              );
+                            }).toList(),
+                            onChanged: (_) {
+                              _setLanguage(_, context);
+                              setState(() {
+                                _selectedLanguage =
+                                    Pangolin.settingsBox.get("languageName");
+                              });
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 20),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                      child: Text("Time",
+                          style: TextStyle(
+                              fontSize: 17,
+                              letterSpacing: 0.2,
+                              fontWeight: FontWeight.bold)),
+                    ),
+                    SettingsTile(
+                      children: [
+                        Text("Time Zone"),
+                        SizedBox(height: 5),
+                        Container(
+                          width: 1.7976931348623157e+308,
+                          child: DropdownButton<String>(
+                            icon: Icon(null),
+                            hint: Text("Language"),
+                            value: _selectedLanguage,
+                            items: languages.map((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(value),
+                              );
+                            }).toList(),
+                            onChanged: (_) {
+                              _setLanguage(_, context);
+                              setState(() {
+                                _selectedLanguage =
+                                    Pangolin.settingsBox.get("languageName");
+                              });
+                            },
+                          ),
+                        ),
+                        SizedBox(height: 5),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text("Enable 24 Hour Time"),
+                            Switch(
+                              value: twentyfourhtime,
+                              onChanged: (bool state) {
+                                setState(() {
+                                  twentyfourhtime = state;
+                                });
+                              },
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                    SizedBox(height: 20),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                      child: Text("Keyboard",
+                          style: TextStyle(
+                              fontSize: 17,
+                              letterSpacing: 0.2,
+                              fontWeight: FontWeight.bold)),
+                    ),
+                    SettingsTile(
+                      children: [
+                        Text("Set Keyboard layout"),
                         SizedBox(height: 5),
                         Container(
                           width: 1.7976931348623157e+308,
