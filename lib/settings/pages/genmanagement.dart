@@ -54,6 +54,7 @@ class _GeneralManagementState extends State<GeneralManagement> {
                   SettingsTile(
                     children: [
                       Text("Language"),
+                      SizedBox(height: 5),
                       Container(
                         width: 1.7976931348623157e+308,
                         child: DropdownButton<String>(
