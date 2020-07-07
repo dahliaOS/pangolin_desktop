@@ -1,3 +1,5 @@
+import 'package:GeneratedApp/settings/hiveManager.dart';
+import 'package:GeneratedApp/widgets/conditionWidget.dart';
 import 'package:flutter/material.dart';
 
 import '../../main.dart';
@@ -11,15 +13,7 @@ class GeneralManagement extends StatefulWidget {
 String _selectedLanguage = Pangolin.settingsBox.get("languageName");
 
 class _GeneralManagementState extends State<GeneralManagement> {
-  List<String> languages = [
-    "English - United States",
-    "Deutsch - Deutschland",
-    "Français - France",
-    "Polski - Polska",
-    "Hrvatski - Hrvatska",
-    "Nederlands - België",
-    "Nederlands - Nederland",
-  ];
+  List<String> languages = HiveManager().get("settingsLanguageSelectorList");
 
   @override
   Widget build(BuildContext context) {
@@ -91,44 +85,68 @@ class _GeneralManagementState extends State<GeneralManagement> {
                     ),
                     SettingsTile(
                       children: [
-                        Text("Time Zone"),
-                        SizedBox(height: 5),
-                        Container(
-                          width: 1.7976931348623157e+308,
-                          child: DropdownButton<String>(
-                            icon: Icon(null),
-                            hint: Text("Language"),
-                            value: _selectedLanguage,
-                            items: languages.map((String value) {
-                              return DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(value),
-                              );
-                            }).toList(),
-                            onChanged: (_) {
-                              _setLanguage(_, context);
-                              setState(() {
-                                _selectedLanguage =
-                                    Pangolin.settingsBox.get("languageName");
-                              });
-                            },
-                          ),
-                        ),
-                        SizedBox(height: 5),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text("Enable 24 Hour Time"),
+                            Text("Automatic Time"),
                             Switch(
-                              value: twentyfourhtime,
+                              value: HiveManager().get("enableAutoTime"),
                               onChanged: (bool state) {
                                 setState(() {
-                                  twentyfourhtime = state;
+                                  HiveManager().set("enableAutoTime", state);
                                 });
                               },
                             )
                           ],
-                        )
+                        ),
+                        ConditionWidget(
+                            !(HiveManager().get("enableAutoTime")),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Divider(),
+                                SizedBox(height: 15),
+                                Text("Time Zone"),
+                                SizedBox(height: 5),
+                                Container(
+                                  width: 1.7976931348623157e+308,
+                                  child: DropdownButton<String>(
+                                    icon: Icon(null),
+                                    hint: Text("Time"),
+                                    value: _selectedLanguage,
+                                    items: languages.map((String value) {
+                                      return DropdownMenuItem<String>(
+                                        value: value,
+                                        child: Text(value),
+                                      );
+                                    }).toList(),
+                                    onChanged: (_) {
+                                      _setLanguage(_, context);
+                                      setState(() {
+                                        _selectedLanguage = Pangolin.settingsBox
+                                            .get("languageName");
+                                      });
+                                    },
+                                  ),
+                                ),
+                                SizedBox(height: 5),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text("Enable 24 Hour Time"),
+                                    Switch(
+                                      value: twentyfourhtime,
+                                      onChanged: (bool state) {
+                                        setState(() {
+                                          twentyfourhtime = state;
+                                        });
+                                      },
+                                    )
+                                  ],
+                                )
+                              ],
+                            )),
                       ],
                     ),
                     SizedBox(height: 20),
