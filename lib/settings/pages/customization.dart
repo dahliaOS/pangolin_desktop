@@ -168,6 +168,30 @@ class _CustomizationState extends State<Customization> {
                         )
                       ],
                     ),
+                    SizedBox(height: 20),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                      child: Text("Wallpaper",
+                          style: TextStyle(
+                              fontSize: 17,
+                              letterSpacing: 0.2,
+                              fontWeight: FontWeight.bold)),
+                    ),
+                    SizedBox(height: 5),
+                    SettingsTile(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text("Choose a Wallpaper"),
+                            FlatButton(
+                              onPressed: () {},
+                              child: Text("Open Wallpaper Chooser"),
+                            )
+                          ],
+                        )
+                      ],
+                    ),
                   ],
                 ),
               ),
