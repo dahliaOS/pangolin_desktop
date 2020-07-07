@@ -153,7 +153,7 @@ class _CustomizationState extends State<Customization> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text("Center Taskbar Items"),
+                            Text("Center Taskbar Items -  needs restart"),
                             Switch(
                               value: HiveManager().get("centerTaskbar"),
                               onChanged: (bool state) {
