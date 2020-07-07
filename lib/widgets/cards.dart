@@ -321,12 +321,14 @@ Card buildCard(IconData icon, String title, Color color, Color splash,
         height: 100,
         child: new Padding(
           padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
-          child: new Column(
+          child: SingleChildScrollView(child: new Column(
               mainAxisAlignment: MainAxisAlignment.start,
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                new Row(
+                new SingleChildScrollView(
+                  scrollDirection: Axis.horizontal, 
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -340,7 +342,8 @@ Card buildCard(IconData icon, String title, Color color, Color splash,
                             fontWeight: FontWeight.w400,
                             fontFamily: "Roboto"),
                       )
-                    ]),
+                    ])
+                  ),
                 new Text(
                   text,
                   style: new TextStyle(
@@ -349,7 +352,7 @@ Card buildCard(IconData icon, String title, Color color, Color splash,
                       fontWeight: FontWeight.w400,
                       fontFamily: "Roboto"),
                 )
-              ]),
+              ])),
         ),
       ),
     ),
