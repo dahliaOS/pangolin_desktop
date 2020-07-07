@@ -22,7 +22,7 @@ import 'package:GeneratedApp/applications/welcome.dart';
 import 'package:GeneratedApp/applications/monitor.dart';
 import 'package:GeneratedApp/applications/files.dart';
 import 'package:GeneratedApp/localization/localization.dart';
-import 'package:GeneratedApp/settings/initHive.dart';
+import 'package:GeneratedApp/settings/hiveManager.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
@@ -144,7 +144,7 @@ class _PangolinState extends State<Pangolin> {
     }
 
     getLangFromHive();
-    initHive().initializeHive();
+    HiveManager().initializeHive();
 
     _locale = Locale(language[0], language[1]);
     super.initState();
