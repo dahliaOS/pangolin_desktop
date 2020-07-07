@@ -24,64 +24,66 @@ class _GeneralManagementState extends State<GeneralManagement> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 40),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Center(
-                child: Text(
-              "General Management",
-              style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: "Roboto"),
-            )),
-            Padding(
-              padding: const EdgeInsets.all(30.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                    child: Text("Language and Region",
-                        style: TextStyle(
-                            fontSize: 17,
-                            letterSpacing: 0.2,
-                            fontWeight: FontWeight.bold)),
-                  ),
-                  SizedBox(height: 5),
-                  SettingsTile(
-                    children: [
-                      Text("Language"),
-                      SizedBox(height: 5),
-                      Container(
-                        width: 1.7976931348623157e+308,
-                        child: DropdownButton<String>(
-                          icon: Icon(null),
-                          hint: Text("Language"),
-                          value: _selectedLanguage,
-                          items: languages.map((String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Text(value),
-                            );
-                          }).toList(),
-                          onChanged: (_) {
-                            _setLanguage(_, context);
-                            setState(() {
-                              _selectedLanguage =
-                                  Pangolin.settingsBox.get("languageName");
-                            });
-                          },
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 40),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Center(
+                  child: Text(
+                "General Management",
+                style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: "Roboto"),
+              )),
+              Padding(
+                padding: const EdgeInsets.all(30.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                      child: Text("Language and Region",
+                          style: TextStyle(
+                              fontSize: 17,
+                              letterSpacing: 0.2,
+                              fontWeight: FontWeight.bold)),
+                    ),
+                    SizedBox(height: 5),
+                    SettingsTile(
+                      children: [
+                        Text("Language"),
+                        SizedBox(height: 5),
+                        Container(
+                          width: 1.7976931348623157e+308,
+                          child: DropdownButton<String>(
+                            icon: Icon(null),
+                            hint: Text("Language"),
+                            value: _selectedLanguage,
+                            items: languages.map((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(value),
+                              );
+                            }).toList(),
+                            onChanged: (_) {
+                              _setLanguage(_, context);
+                              setState(() {
+                                _selectedLanguage =
+                                    Pangolin.settingsBox.get("languageName");
+                              });
+                            },
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            )
-          ],
+                      ],
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
