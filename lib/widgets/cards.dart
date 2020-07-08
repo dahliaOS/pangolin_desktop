@@ -29,6 +29,7 @@ import 'package:GeneratedApp/applications/welcome.dart';
 import 'package:GeneratedApp/themes/main.dart';
 import 'package:GeneratedApp/commons/key_ring.dart';
 import 'package:GeneratedApp/commons/functions.dart';
+import 'package:GeneratedApp/applications/logging.dart';
 
 Expanded tileSection(BuildContext context) {
   Localization local = Localization.of(context);
@@ -74,9 +75,11 @@ Expanded tileSection(BuildContext context) {
               label: local.get("app_notesmobile"),
               appExists: false),
           AppLauncherDrawerButton(
+              app: Logs(),
               icon: 'lib/images/icons/v2/compiled/logs.png',
               label: local.get("app_systemlogs"),
-              appExists: false),
+              color: Colors.red[700],
+              callback: toggleCallback),
           AppLauncherDrawerButton(
               app: Files(),
               icon: 'lib/images/icons/v2/compiled/files.png',
