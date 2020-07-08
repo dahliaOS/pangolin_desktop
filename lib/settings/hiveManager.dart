@@ -13,6 +13,7 @@ class HiveManager {
     createEntryIfNotExisting("enable24hTime", true);
     createEntryIfNotExisting("settingsLanguageSelectorList", languages);
     createEntryIfNotExisting("languageName", "English - United States");
+    createEntryIfNotExisting("randomWallpaper", false);
   }
 
   set(String key, dynamic value) {
