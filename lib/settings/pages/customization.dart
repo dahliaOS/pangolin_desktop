@@ -1,4 +1,5 @@
 import 'package:GeneratedApp/settings/hiveManager.dart';
+import 'package:GeneratedApp/widgets/conditionWidget.dart';
 import 'package:GeneratedApp/widgets/settingsTile.dart';
 import 'package:flutter/material.dart';
 
@@ -182,13 +183,34 @@ class _CustomizationState extends State<Customization> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text("Choose a Wallpaper"),
-                            FlatButton(
-                              onPressed: () {},
-                              child: Text("Open Wallpaper Chooser"),
+                            Text("Enable Random Wallpapers"),
+                            Switch(
+                              value: HiveManager().get("randomWallpaper"),
+                              onChanged: (bool state) {
+                                setState(() {
+                                  HiveManager().set("randomWallpaper", state);
+                                });
+                              },
                             )
                           ],
-                        )
+                        ),
+                        ConditionWidget(
+                            !HiveManager().get("randomWallpaper"),
+                            Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text("Choose a Wallpaper"),
+                                    FlatButton(
+                                      onPressed: () {},
+                                      child: Text("Open Wallpaper Chooser"),
+                                    )
+                                  ],
+                                )
+                              ],
+                            )),
                       ],
                     ),
                   ],

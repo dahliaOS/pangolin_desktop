@@ -15,6 +15,7 @@ limitations under the License.
 */
 
 import 'dart:io';
+import 'dart:math';
 
 import 'package:GeneratedApp/applications/calculator.dart';
 import 'package:GeneratedApp/applications/editor.dart';
@@ -129,6 +130,15 @@ class Pangolin extends StatefulWidget {
 
   static Box<dynamic> settingsBox;
   static Locale locale;
+
+  static List<String> wallpapers = [
+    "lib/images/Desktop/Dahlia/forest.jpg",
+    "lib/images/Desktop/Dahlia/Brick-Wall.jpg",
+    "lib/images/Desktop/Dahlia/dahlia_material_background.jpg",
+    "lib/images/Desktop/Dahlia/dahlia_material_background-1.jpg",
+    "lib/images/Desktop/Dahlia/Mountain.jpg",
+    "lib/images/Desktop/Dahlia/Sunset.png",
+  ];
 }
 
 class _PangolinState extends State<Pangolin> {
@@ -224,6 +234,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final _random = new Random();
     return Scaffold(
         body: Stack(
       fit: StackFit.passthrough,
@@ -232,7 +243,10 @@ class _MyHomePageState extends State<MyHomePage> {
         Container(
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("lib/images/Desktop/Dahlia/forest.jpg"),
+              image: AssetImage(HiveManager().get("randomWallpaper")
+                  ? Pangolin
+                      .wallpapers[_random.nextInt(Pangolin.wallpapers.length)]
+                  : "lib/images/Desktop/Dahlia/forest.jpg"),
               fit: BoxFit.cover,
             ),
           ),
