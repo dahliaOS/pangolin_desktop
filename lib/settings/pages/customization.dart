@@ -96,7 +96,8 @@ class _CustomizationState extends State<Customization> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text("Enable Blur Effects on the Desktop"),
+                            Text(
+                                "Enable Blur Effects on the Desktop - restart required"),
                             Switch(
                               value: HiveManager().get("enableBlur"),
                               onChanged: (bool state) {
@@ -153,7 +154,7 @@ class _CustomizationState extends State<Customization> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text("Center Taskbar Items -  needs restart"),
+                            Text("Center Taskbar Items - restart required"),
                             Switch(
                               value: HiveManager().get("centerTaskbar"),
                               onChanged: (bool state) {
