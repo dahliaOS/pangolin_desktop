@@ -130,6 +130,7 @@ class Pangolin extends StatefulWidget {
 
   static Box<dynamic> settingsBox;
   static Locale locale;
+  static ThemeData theme;
 
   static List<String> wallpapers = [
     "lib/images/Desktop/Dahlia/forest.jpg",
@@ -176,10 +177,10 @@ class _PangolinState extends State<Pangolin> {
         defaultBrightness: Brightness.light,
         data: (Brightness brightness) => ThemeData(
           primarySwatch: Colors.deepOrange,
-          accentColor: Colors.deepOrange,
+          accentColor: Color(HiveManager().get("accentColorValue")),
           brightness: brightness,
           canvasColor: Colors.black.withOpacity(0.5),
-          primaryColor: const Color(0xFFff5722),
+          primaryColor: Color(HiveManager().get("accentColorValue")),
         ),
         loadBrightnessOnStart: true,
         themedWidgetBuilder: (BuildContext context, ThemeData theme) {

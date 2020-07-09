@@ -1,9 +1,13 @@
 import '../main.dart';
+import 'package:flutter/material.dart';
 
 class HiveManager {
   initializeHive() {
     createEntryIfNotExisting("darkMode", false);
     createEntryIfNotExisting("enableBlur", false);
+    createEntryIfNotExisting("accentColorName", "orange");
+    createEntryIfNotExisting(
+        "accentColorValue", Colors.deepOrangeAccent[400].value);
     createEntryIfNotExisting("centerTaskbar", false);
     createEntryIfNotExisting("volumeLevel", 0.75);
     createEntryIfNotExisting("brightness", 1.0);
@@ -14,6 +18,8 @@ class HiveManager {
     createEntryIfNotExisting("settingsLanguageSelectorList", languages);
     createEntryIfNotExisting("languageName", "English - United States");
     createEntryIfNotExisting("randomWallpaper", false);
+    createEntryIfNotExisting("wifi", true);
+    createEntryIfNotExisting("bluetooth", false);
   }
 
   set(String key, dynamic value) {
@@ -23,6 +29,8 @@ class HiveManager {
   get(String key) {
     return Pangolin.settingsBox.get(key);
   }
+
+  static double magicNumber = double.infinity;
 }
 
 createEntryIfNotExisting(String key, dynamic value) {
