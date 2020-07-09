@@ -24,6 +24,7 @@ import 'package:GeneratedApp/applications/files.dart';
 import 'package:GeneratedApp/localization/localization.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'quick_settings.dart';
@@ -106,8 +107,7 @@ List<AppLauncherPanelButton> testLaunchers = [
 void main() async {
   //init hive
   WidgetsFlutterBinding.ensureInitialized();
-  Directory dir = await getApplicationDocumentsDirectory();
-  Hive.init(dir.path);
+  await Hive.initFlutter();
   await Hive.openBox<String>("settings");
 
   /// To keep app in Portrait Mode
