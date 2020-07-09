@@ -140,7 +140,6 @@ class _SoundState extends State<Sound> {
                           children: [
                             Expanded(
                               child: Slider(
-                                inactiveColor: Colors.transparent,
                                 divisions: 20,
                                 label:
                                     "${(HiveManager().get("volumeLevel") * 100).toString()}%",
