@@ -27,6 +27,8 @@ import 'package:GeneratedApp/settings/pages/updates.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui';
 
+import 'hiveManager.dart';
+
 void main() {
   runApp(
     MaterialApp(
@@ -60,8 +62,8 @@ class Settings extends StatelessWidget {
       title: 'Settings',
       theme: new ThemeData(
         primarySwatch: Colors.deepOrange,
-        primaryColor: const Color(0xFFff5722),
-        accentColor: const Color(0xFFff5722),
+        primaryColor: Color(HiveManager().get("accentColorValue")),
+        accentColor: Color(HiveManager().get("accentColorValue")),
         canvasColor: const Color(0xFFfafafa),
       ),
       initialRoute: '/',
@@ -300,9 +302,11 @@ class _SettingsPageState extends State<SettingsPage> {
                                 margin: EdgeInsets.all(5),
                                 decoration: BoxDecoration(
                                     color: items[i].selected == true
-                                        ? Colors.deepOrange[700]
+                                        ? Color(HiveManager()
+                                                .get("accentColorValue"))
                                             .withOpacity(0.2)
-                                        : Colors.deepOrange[700]
+                                        : Color(HiveManager()
+                                                .get("accentColorValue"))
                                             .withOpacity(0.0),
                                     borderRadius: BorderRadius.circular(10)),
                                 child: ListTile(
@@ -311,7 +315,8 @@ class _SettingsPageState extends State<SettingsPage> {
                                     subtitle: Text(items[i].subtitle),
                                     leading: Icon(
                                       items[i].icon,
-                                      color: Colors.deepOrange[600],
+                                      color: Color(HiveManager()
+                                          .get("accentColorValue")),
                                     ),
                                     onTap: () {
                                       setState(() {

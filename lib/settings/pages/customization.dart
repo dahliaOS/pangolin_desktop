@@ -49,22 +49,77 @@ class _CustomizationState extends State<Customization> {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               buildAcctenColorButton(
-                                  Colors.deepOrangeAccent[700], () {}),
+                                  "orange", Colors.deepOrangeAccent[400], () {
+                                setState(() {
+                                  HiveManager()
+                                      .set("accentColorName", "orange");
+                                  HiveManager().set("accentColorValue",
+                                      Colors.deepOrangeAccent[400].value);
+                                });
+                              }),
                               buildAcctenColorButton(
-                                  Colors.redAccent[700], () {}),
+                                  "red", Colors.redAccent[700], () {
+                                setState(() {
+                                  HiveManager().set("accentColorName", "red");
+                                  HiveManager().set("accentColorValue",
+                                      Colors.redAccent[700].value);
+                                });
+                              }),
                               buildAcctenColorButton(
-                                  Colors.greenAccent[700], () {}),
+                                  "green", Colors.greenAccent[700], () {
+                                setState(() {
+                                  HiveManager().set("accentColorName", "green");
+                                  HiveManager().set("accentColorValue",
+                                      Colors.greenAccent[700].value);
+                                });
+                              }),
                               buildAcctenColorButton(
-                                  Colors.blueAccent[700], () {}),
+                                  "blue", Colors.blueAccent[700], () {
+                                setState(() {
+                                  HiveManager().set("accentColorName", "blue");
+                                  HiveManager().set("accentColorValue",
+                                      Colors.blueAccent[700].value);
+                                });
+                              }),
                               buildAcctenColorButton(
-                                  Colors.purpleAccent[700], () {}),
+                                  "purple", Colors.purpleAccent[700], () {
+                                setState(() {
+                                  HiveManager()
+                                      .set("accentColorName", "purple");
+                                  HiveManager().set("accentColorValue",
+                                      Colors.purpleAccent[700].value);
+                                });
+                              }),
                               buildAcctenColorButton(
-                                  Colors.cyanAccent[700], () {}),
+                                  "cyan", Colors.cyanAccent[700], () {
+                                setState(() {
+                                  HiveManager().set("accentColorName", "cyan");
+                                  HiveManager().set("accentColorValue",
+                                      Colors.cyanAccent[700].value);
+                                });
+                              }),
                               buildAcctenColorButton(
-                                  Colors.amberAccent[700], () {}),
-                              buildAcctenColorButton(Colors.black, () {}),
+                                  "amber", Colors.amberAccent[700], () {
+                                setState(() {
+                                  HiveManager().set("accentColorName", "amber");
+                                  HiveManager().set("accentColorValue",
+                                      Colors.amberAccent[700].value);
+                                });
+                              }),
+                              buildAcctenColorButton("black", Colors.black, () {
+                                setState(() {
+                                  HiveManager().set("accentColorName", "black");
+                                  HiveManager().set(
+                                      "accentColorValue", Colors.black.value);
+                                });
+                              }),
                               GestureDetector(
-                                onTap: () {},
+                                onTap: () {
+                                  setState(() {
+                                    HiveManager()
+                                        .set("accentColorName", "custom");
+                                  });
+                                },
                                 child: Padding(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 8.0),
@@ -204,7 +259,9 @@ class _CustomizationState extends State<Customization> {
                                   children: [
                                     Text("Choose a Wallpaper"),
                                     FlatButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        wallpaperChooser(context);
+                                      },
                                       child: Text("Open Wallpaper Chooser"),
                                     )
                                   ],
@@ -226,15 +283,53 @@ class _CustomizationState extends State<Customization> {
   Color pickerColor = Color(0xff443a49);
   Color currentColor = Color(0xff443a49);
 
-  GestureDetector buildAcctenColorButton(Color color, Function onTap) {
+  GestureDetector buildAcctenColorButton(
+      String name, Color color, Function onTap) {
     return GestureDetector(
       onTap: onTap,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: CircleAvatar(
           backgroundColor: color,
+          child: (HiveManager().get("accentColorName") == name)
+              ? Icon(Icons.blur_circular, color: Colors.white)
+              : Container(
+                  height: 0,
+                ),
         ),
       ),
     );
   }
+}
+
+void wallpaperChooser(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      // return object of type Dialog
+      return AlertDialog(
+        title: Center(child: new Text("Wallpaper")),
+        content: new Container(
+          width: HiveManager.magicNumber,
+          height: HiveManager.magicNumber,
+          color: Colors.black,
+        ),
+        actions: <Widget>[
+          // usually buttons at the bottom of the dialog
+          new FlatButton(
+            child: new Text("Close"),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+          new FlatButton(
+            child: new Text("Save"),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
 }
