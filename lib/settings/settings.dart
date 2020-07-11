@@ -12,6 +12,7 @@ limitations under the License.
 */
 
 import 'package:GeneratedApp/applications/containers.dart';
+import 'package:GeneratedApp/main.dart';
 import 'package:GeneratedApp/settings/pages/backup.dart';
 import 'package:GeneratedApp/settings/pages/about.dart';
 import 'package:GeneratedApp/settings/pages/accounts.dart';
@@ -60,12 +61,13 @@ class Settings extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Settings',
-      theme: new ThemeData(
+      theme: Pangolin.theme,
+      /*new ThemeData(
         primarySwatch: Colors.deepOrange,
         primaryColor: Color(HiveManager().get("accentColorValue")),
         accentColor: Color(HiveManager().get("accentColorValue")),
         canvasColor: const Color(0xFFfafafa),
-      ),
+      ),*/
       initialRoute: '/',
       routes: {
         // When navigating to the "/" route, build the FirstScreen widget.

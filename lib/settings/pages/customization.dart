@@ -3,6 +3,8 @@ import 'package:GeneratedApp/widgets/conditionWidget.dart';
 import 'package:GeneratedApp/widgets/settingsTile.dart';
 import 'package:flutter/material.dart';
 
+import '../../main.dart';
+
 class Customization extends StatefulWidget {
   @override
   _CustomizationState createState() => _CustomizationState();
@@ -104,6 +106,7 @@ class _CustomizationState extends State<Customization> {
                                   HiveManager().set("accentColorName", "amber");
                                   HiveManager().set("accentColorValue",
                                       Colors.amberAccent[700].value);
+                                  Pangolin.refreshTheme();
                                 });
                               }),
                               buildAcctenColorButton("black", Colors.black, () {
