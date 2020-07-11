@@ -8,6 +8,7 @@ class HiveManager {
     createEntryIfNotExisting("accentColorName", "orange");
     createEntryIfNotExisting(
         "accentColorValue", Colors.deepOrangeAccent[400].value);
+    createEntryIfNotExisting("darkMode", true);
     createEntryIfNotExisting("centerTaskbar", false);
     createEntryIfNotExisting("volumeLevel", 0.75);
     createEntryIfNotExisting("brightness", 1.0);

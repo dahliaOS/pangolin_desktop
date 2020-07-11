@@ -113,6 +113,8 @@ void main() async {
   Directory dir = await getApplicationDocumentsDirectory();
   Hive.init(dir.path);
   await Hive.openBox<dynamic>("settings");
+  Pangolin.settingsBox = Hive.box("settings");
+  Pangolin.refreshTheme();
 
   /// To keep app in Portrait Mode
   //SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeRight]);
@@ -140,12 +142,27 @@ class Pangolin extends StatefulWidget {
     "lib/images/Desktop/Dahlia/Mountain.jpg",
     "lib/images/Desktop/Dahlia/Sunset.png",
   ];
+
+  static refreshTheme() {
+    Pangolin.theme = (Pangolin.settingsBox.get("darkMode")
+            ? ThemeData.dark()
+            : ThemeData.light())
+        .copyWith(
+            primaryColor: Color(Pangolin.settingsBox.get("accentColorValue")),
+            accentColor: Color(Pangolin.settingsBox.get("accentColorValue")),
+            appBarTheme: AppBarTheme(
+              color: Pangolin.settingsBox.get("darkMode")
+                  ? ThemeData.dark().cardColor
+                  : null,
+            )
+            //TODO: add Twemoji, Roboto fonts
+            );
+  }
 }
 
 class _PangolinState extends State<Pangolin> {
   @override
   void initState() {
-    Pangolin.settingsBox = Hive.box("settings");
     List<String> language = ["en", "US"];
     getLangFromHive() {
       if (Pangolin.settingsBox.get("language") == null) {
@@ -172,42 +189,28 @@ class _PangolinState extends State<Pangolin> {
   Widget build(BuildContext context) {
     //Gets DahliaOS UI set up in a familiar way.
     return ChangeNotifierProvider<WindowsData>(
-      create: (context) => provisionalWindowData,
-      child: DynamicTheme(
-        defaultBrightness: Brightness.light,
-        data: (Brightness brightness) => ThemeData(
-          primarySwatch: Colors.deepOrange,
-          accentColor: Color(HiveManager().get("accentColorValue")),
-          brightness: brightness,
-          canvasColor: Colors.black.withOpacity(0.5),
-          primaryColor: Color(HiveManager().get("accentColorValue")),
-        ),
-        loadBrightnessOnStart: true,
-        themedWidgetBuilder: (BuildContext context, ThemeData theme) {
-          return MaterialApp(
-            title: 'Pangolin Desktop',
-            theme: theme,
-            home: MyHomePage(title: 'Pangolin Desktop'),
-            supportedLocales: [
-              Locale("en", "US"),
-              Locale("de", "DE"),
-              Locale("fr", "FR"),
-              Locale("pl", "PL"),
-              Locale("hr", "HR"),
-              Locale("nl", "BE"),
-              Locale("nl", "NL"),
-            ],
-            localizationsDelegates: [
-              Localization.delegate,
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-            ],
-            locale: Pangolin.locale,
-          );
-        },
-      ),
-    );
+        create: (context) => provisionalWindowData,
+        child: MaterialApp(
+          title: 'Pangolin Desktop',
+          theme: Pangolin.theme,
+          home: MyHomePage(title: 'Pangolin Desktop'),
+          supportedLocales: [
+            Locale("en", "US"),
+            Locale("de", "DE"),
+            Locale("fr", "FR"),
+            Locale("pl", "PL"),
+            Locale("hr", "HR"),
+            Locale("nl", "BE"),
+            Locale("nl", "NL"),
+          ],
+          localizationsDelegates: [
+            Localization.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          locale: Pangolin.locale,
+        ));
   }
 }
 
