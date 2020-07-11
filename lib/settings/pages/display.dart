@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:GeneratedApp/settings/hiveManager.dart';
+import 'package:GeneratedApp/widgets/conditionWidget.dart';
 import 'package:GeneratedApp/widgets/settingsTile.dart';
 import 'package:flutter/material.dart';
 
@@ -98,10 +99,9 @@ class _DisplayState extends State<Display> {
                                 )
                               ],
                             ),
-                            AbsorbPointer(
-                              absorbing:
-                                  !(HiveManager().get("enableBlueLightFilter")),
-                              child: Slider(
+                            ConditionWidget(
+                              (HiveManager().get("enableBlueLightFilter")),
+                              Slider(
                                 divisions: 20,
                                 label:
                                     "${(HiveManager().get("blueLightFilterValue") * 100).toString()}%",
