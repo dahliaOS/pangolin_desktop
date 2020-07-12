@@ -144,14 +144,14 @@ class Pangolin extends StatefulWidget {
   ];
 
   static refreshTheme() {
-    Pangolin.theme = (Pangolin.settingsBox.get("darkMode")
+    Pangolin.theme = (Pangolin.settingsBox.get("darkMode") == null
             ? ThemeData.dark()
             : ThemeData.light())
         .copyWith(
-            primaryColor: Color(Pangolin.settingsBox.get("accentColorValue")),
-            accentColor: Color(Pangolin.settingsBox.get("accentColorValue")),
+            primaryColor: Color(Pangolin.settingsBox.get("accentColorValue") ?? Colors.deepOrangeAccent[700].value),
+            accentColor: Color(Pangolin.settingsBox.get("accentColorValue") ?? Colors.deepOrangeAccent[700].value),
             appBarTheme: AppBarTheme(
-              color: Pangolin.settingsBox.get("darkMode")
+              color: Pangolin.settingsBox.get("darkMode") == null
                   ? ThemeData.dark().cardColor
                   : null,
             )
