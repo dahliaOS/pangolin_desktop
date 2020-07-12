@@ -15,6 +15,7 @@ dependencies:
   hive: ^1.4.1+1
   hive_flutter: ^0.3.0+2
   path_provider: ^1.6.11
+  flutter_colorpicker: ^0.3.4
 #Useful in an ideal future but not now.  random_color: ^1.0.5
 
 dependency_overrides:
@@ -89,6 +90,7 @@ flutter:
   - lib/images/
   - lib/images/Desktop/Dahlia/dahlia_material_background.jpg
   - lib/images/Desktop/Dahlia/forest.jpg
+  - lib/images/Desktop/Dahlia/
   - lib/images/Desktop/Cityscapes/stairs.png
   - lib/images/icons/v2/compiled/
   - lib/images/logo-color.png

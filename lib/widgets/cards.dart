@@ -22,7 +22,7 @@ import '../applications/files.dart';
 import '../applications/editor.dart';
 import '../applications/terminal.dart';
 import '../applications/developer.dart';
-import '../settings.dart';
+import '../settings/settings.dart';
 import '../applications/monitor.dart';
 import 'package:GeneratedApp/widgets/app_launcher.dart';
 import 'package:GeneratedApp/applications/welcome.dart';

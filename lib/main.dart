@@ -15,6 +15,7 @@ limitations under the License.
 */
 
 import 'dart:io';
+import 'dart:math';
 
 import 'package:GeneratedApp/applications/calculator.dart';
 import 'package:GeneratedApp/applications/editor.dart';
@@ -22,6 +23,9 @@ import 'package:GeneratedApp/applications/welcome.dart';
 import 'package:GeneratedApp/applications/monitor.dart';
 import 'package:GeneratedApp/applications/files.dart';
 import 'package:GeneratedApp/localization/localization.dart';
+import 'package:GeneratedApp/settings/hiveManager.dart';
+import 'package:GeneratedApp/widgets/blur.dart';
+import 'package:GeneratedApp/widgets/conditionWidget.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -49,7 +53,7 @@ import 'widgets/app_launcher.dart';
 import 'applications/calculator.dart';
 import 'applications/editor.dart';
 import 'applications/terminal.dart';
-import 'settings.dart';
+import 'settings/settings.dart';
 import 'commons/key_ring.dart';
 import 'commons/functions.dart';
 
@@ -108,7 +112,8 @@ void main() async {
   //init hive
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
-  await Hive.openBox<String>("settings");
+  await Hive.openBox<dynamic>("settings");
+  Pangolin.refreshTheme();
 
   /// To keep app in Portrait Mode
   //SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeRight]);
@@ -124,19 +129,42 @@ class Pangolin extends StatefulWidget {
     state.setLocale(locale);
   }
 
-  static Box<String> settingsBox;
+  static Box<dynamic> settingsBox;
+  static Locale locale;
+  static ThemeData theme;
+
+  static List<String> wallpapers = [
+    "lib/images/Desktop/Dahlia/forest.jpg",
+    "lib/images/Desktop/Dahlia/Brick-Wall.jpg",
+    "lib/images/Desktop/Dahlia/dahlia_material_background.jpg",
+    "lib/images/Desktop/Dahlia/dahlia_material_background-1.jpg",
+    "lib/images/Desktop/Dahlia/Mountain.jpg",
+    "lib/images/Desktop/Dahlia/Sunset.png",
+  ];
+
+  static refreshTheme() {
+    Pangolin.theme = (Pangolin.settingsBox.get("darkMode") == null
+            ? ThemeData.dark()
+            : ThemeData.light())
+        .copyWith(
+            primaryColor: Color(Pangolin.settingsBox.get("accentColorValue") ?? Colors.deepOrangeAccent[700].value),
+            accentColor: Color(Pangolin.settingsBox.get("accentColorValue") ?? Colors.deepOrangeAccent[700].value),
+            appBarTheme: AppBarTheme(
+              color: Pangolin.settingsBox.get("darkMode") == null
+                  ? ThemeData.dark().cardColor
+                  : null,
+            )
+            //TODO: add Twemoji, Roboto fonts
+            );
+  }
 }
 
 class _PangolinState extends State<Pangolin> {
-  Locale _locale;
-
   @override
   void initState() {
-    Pangolin.settingsBox = Hive.box("settings");
     List<String> language = ["en", "US"];
     getLangFromHive() {
-       if (Pangolin.settingsBox.get("language") == null) {
-
+      if (Pangolin.settingsBox.get("language") == null) {
         language = ["en", "US"];
       } else {
         language = Pangolin.settingsBox.get("language").split("_");
@@ -144,58 +172,44 @@ class _PangolinState extends State<Pangolin> {
     }
 
     getLangFromHive();
+    HiveManager().initializeHive();
 
-    _locale = Locale(language[0], language[1]);
+    Pangolin.locale = Locale(language[0], language[1]);
     super.initState();
   }
 
   void setLocale(Locale locale) {
     setState(() {
-      _locale = locale;
+      Pangolin.locale = locale;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     //Gets DahliaOS UI set up in a familiar way.
-
     return ChangeNotifierProvider<WindowsData>(
-      create: (context) => provisionalWindowData,
-      child: DynamicTheme(
-        defaultBrightness: Brightness.light,
-        data: (Brightness brightness) => ThemeData(
-          primarySwatch: Colors.deepOrange,
-          accentColor: Colors.deepOrange,
-          brightness: brightness,
-          canvasColor: Colors.black.withOpacity(0.5),
-          primaryColor: const Color(0xFFff5722),
-        ),
-        loadBrightnessOnStart: true,
-        themedWidgetBuilder: (BuildContext context, ThemeData theme) {
-          return MaterialApp(
-            title: 'Pangolin Desktop',
-            theme: theme,
-            home: MyHomePage(title: 'Pangolin Desktop'),
-            supportedLocales: [
-              Locale("en", "US"),
-              Locale("de", "DE"),
-              Locale("fr", "FR"),
-              Locale("pl", "PL"),
-              Locale("hr", "HR"),
-              Locale("nl", "BE"),
-              Locale("nl", "NL"),
-            ],
-            localizationsDelegates: [
-              Localization.delegate,
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-            ],
-            locale: _locale,
-          );
-        },
-      ),
-    );
+        create: (context) => provisionalWindowData,
+        child: MaterialApp(
+          title: 'Pangolin Desktop',
+          theme: Pangolin.theme,
+          home: MyHomePage(title: 'Pangolin Desktop'),
+          supportedLocales: [
+            Locale("en", "US"),
+            Locale("de", "DE"),
+            Locale("fr", "FR"),
+            Locale("pl", "PL"),
+            Locale("hr", "HR"),
+            Locale("nl", "BE"),
+            Locale("nl", "NL"),
+          ],
+          localizationsDelegates: [
+            Localization.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          locale: Pangolin.locale,
+        ));
   }
 }
 
@@ -223,6 +237,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final _random = new Random();
     return Scaffold(
         body: Stack(
       fit: StackFit.passthrough,
@@ -231,7 +246,10 @@ class _MyHomePageState extends State<MyHomePage> {
         Container(
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("lib/images/Desktop/Dahlia/forest.jpg"),
+              image: AssetImage(HiveManager().get("randomWallpaper")
+                  ? Pangolin
+                      .wallpapers[_random.nextInt(Pangolin.wallpapers.length)]
+                  : "lib/images/Desktop/Dahlia/forest.jpg"),
               fit: BoxFit.cover,
             ),
           ),
@@ -268,16 +286,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: child,
                 ),
               ),
-              child: ClipRRect(
-                //borderRadius: BorderRadius.circular(5.0),//THIS IS THE ROUNDING OF THE LAUNCHER INCASE YOU WANT IT TO CHANGE
-                child: Container(
-                    padding: const EdgeInsets.all(0.0),
-                    alignment: Alignment.center,
-                    width: 1.7976931348623157e+308,
-                    height: 1.7976931348623157e+308,
-                    child: LauncherWidget() //Launcher(),
-                    ),
-              ),
+              child: Container(
+                  padding: const EdgeInsets.all(0.0),
+                  alignment: Alignment.center,
+                  width: 1.7976931348623157e+308,
+                  height: 1.7976931348623157e+308,
+                  child: LauncherWidget() //Launcher(),
+                  ),
             ),
           ),
           callback: (bool visible) {
@@ -301,7 +316,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: child,
                 ),
               ),
-              child: ClipRRect(
+              child: Blur(
                 borderRadius: BorderRadius.circular(5.0),
                 child: Stack(children: [
                   BackdropFilter(
@@ -330,19 +345,92 @@ class _MyHomePageState extends State<MyHomePage> {
           child: GestureDetector(
             behavior: HitTestBehavior.opaque,
             onTap: hideOverlays,
-            child: ClipRRect(
-                child: BackdropFilter(
-                    filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
-                    child: Container(
-                      //color: Color.fromARGB(150, 0, 0, 0),
-                      decoration: BoxDecoration(
-                        color: Color.fromARGB(150, 0, 0, 0),
-                        //uncomment below to add radius to the launcher panel
-                        //borderRadius: BorderRadius.circular(100),
+            child: Blur(
+                child: Container(
+                    //color: Color.fromARGB(150, 0, 0, 0),
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(150, 0, 0, 0),
+                      //uncomment below to add radius to the launcher panel
+                      //borderRadius: BorderRadius.circular(100),
+                    ),
+                    height: 50.0,
+                    padding: const EdgeInsets.all(8.0),
+                    child: CustomConditionWidget(
+                      HiveManager().get("centerTaskbar"),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          LauncherToggleWidget(
+                            toggleKey: KeyRing.launcherToggleKey,
+                            callback: toggleCallback,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    AppLauncherPanelButton(
+                                      app: Calculator(),
+                                      icon:
+                                          'lib/images/icons/v2/compiled/calculator.png',
+                                      color: Colors.green,
+                                      callback: toggleCallback,
+                                    ),
+                                    AppLauncherPanelButton(
+                                        app: TextEditorApp(),
+                                        icon:
+                                            'lib/images/icons/v2/compiled/notes.png',
+                                        color: Colors.amber[700],
+                                        callback: toggleCallback),
+                                    AppLauncherPanelButton(
+                                        app: Terminal(),
+                                        icon:
+                                            'lib/images/icons/v2/compiled/terminal.png',
+                                        color: Colors.grey[900],
+                                        callback: toggleCallback),
+                                    AppLauncherPanelButton(
+                                        app: Files(),
+                                        icon:
+                                            'lib/images/icons/v2/compiled/files.png',
+                                        color: Colors.deepOrange,
+                                        callback: toggleCallback),
+                                    AppLauncherPanelButton(
+                                      app: Tasks(),
+                                      icon:
+                                          'lib/images/icons/v2/compiled/task.png',
+                                      color: Colors.cyan[900],
+                                      callback: toggleCallback,
+                                    ),
+                                    AppLauncherPanelButton(
+                                        app: Settings(),
+                                        icon:
+                                            'lib/images/icons/v2/compiled/settings.png',
+                                        color: Colors.deepOrange[700],
+                                        callback: toggleCallback),
+                                    AppLauncherPanelButton(
+                                        app: HisApp(),
+                                        icon:
+                                            'lib/images/icons/v2/compiled/theme.png',
+                                        color: Colors.grey[900],
+                                        callback: toggleCallback),
+                                  ]),
+                            ],
+                          ),
+                          StatusTrayWidget(
+                            toggleKey: KeyRing.statusToggleKey,
+                            callback: (bool toggled) => setOverlayVisibility(
+                              overlay: KeyRing.statusOverlayKey,
+                              visible: toggled,
+                            ),
+                          ),
+                        ],
                       ),
-                      height: 50.0,
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
+                      Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
