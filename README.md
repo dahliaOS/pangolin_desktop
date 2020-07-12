@@ -1,7 +1,5 @@
 # Pangolin Desktop
-Status: ![](https://github.com/dahlia-os/pangolin-desktop/workflows/CI/badge.svg)
-
-Latest APK: [download from gitlab](https://gitlab.com/dahlia-os/pangolin-desktop/-/jobs/artifacts/master/browse/build/app/outputs/apk/debug/?job=build_android)
+Latest APK: [![pipeline status](https://gitlab.com/dahlia-os/pangolin-desktop/badges/master/pipeline.svg)](https://gitlab.com/dahlia-os/pangolin-desktop/-/jobs/artifacts/master/browse/build/app/outputs/apk/debug/?job=build_android)
 
 Desktop shell for DahliaOS, Written in flutter. Runs on Linux and Zircon.
 

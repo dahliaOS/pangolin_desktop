@@ -29,7 +29,6 @@ import 'package:GeneratedApp/applications/welcome.dart';
 import 'package:GeneratedApp/themes/main.dart';
 import 'package:GeneratedApp/commons/key_ring.dart';
 import 'package:GeneratedApp/commons/functions.dart';
-import 'package:GeneratedApp/applications/logging.dart';
 
 Expanded tileSection(BuildContext context) {
   Localization local = Localization.of(context);
@@ -75,11 +74,9 @@ Expanded tileSection(BuildContext context) {
               label: local.get("app_notesmobile"),
               appExists: false),
           AppLauncherDrawerButton(
-              app: Logs(),
               icon: 'lib/images/icons/v2/compiled/logs.png',
               label: local.get("app_systemlogs"),
-              color: Colors.red[700],
-              callback: toggleCallback),
+              appExists: false),
           AppLauncherDrawerButton(
               app: Files(),
               icon: 'lib/images/icons/v2/compiled/files.png',
@@ -324,15 +321,11 @@ Card buildCard(IconData icon, String title, Color color, Color splash,
         height: 100,
         child: new Padding(
           padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
-          child: SingleChildScrollView(
           child: new Column(
               mainAxisAlignment: MainAxisAlignment.start,
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                new SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child:
                 new Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     mainAxisSize: MainAxisSize.max,
@@ -348,7 +341,6 @@ Card buildCard(IconData icon, String title, Color color, Color splash,
                             fontFamily: "Roboto"),
                       )
                     ]),
-                ),
                 new Text(
                   text,
                   style: new TextStyle(
@@ -358,7 +350,6 @@ Card buildCard(IconData icon, String title, Color color, Color splash,
                       fontFamily: "Roboto"),
                 )
               ]),
-            ),
         ),
       ),
     ),
