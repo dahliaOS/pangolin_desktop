@@ -112,7 +112,9 @@ void main() async {
   //init hive
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
-  await Hive.openBox<String>("settings");
+  //await Hive.openBox<String>("settings");
+  Pangolin.settingsBox = await Hive.openBox("settings");
+  HiveManager().initializeHive();
   Pangolin.refreshTheme();
 
   /// To keep app in Portrait Mode
@@ -174,7 +176,6 @@ class _PangolinState extends State<Pangolin> {
     }
 
     getLangFromHive();
-    HiveManager().initializeHive();
 
     Pangolin.locale = Locale(language[0], language[1]);
     super.initState();
