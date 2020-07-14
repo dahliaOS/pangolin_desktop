@@ -224,9 +224,8 @@ class _SettingsPageState extends State<SettingsPage> {
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-                Flexible(
-                  fit: FlexFit.tight,
-                  flex: 2,
+                Container(
+                  width: 350,
                   child: Column(
                     children: [
                       DrawerHeader(
@@ -345,8 +344,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   ),
                 ),
                 VerticalDivider(),
-                Flexible(
-                    flex: 6,
+                Expanded(
                     child: PageView.builder(
                         scrollDirection: Axis.vertical,
                         pageSnapping: false,
