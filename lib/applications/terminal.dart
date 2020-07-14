@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:GeneratedApp/main.dart';
+import 'package:Pangolin/main.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'dart:convert';

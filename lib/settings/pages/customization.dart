@@ -1,6 +1,6 @@
-import 'package:GeneratedApp/settings/hiveManager.dart';
-import 'package:GeneratedApp/widgets/conditionWidget.dart';
-import 'package:GeneratedApp/widgets/settingsTile.dart';
+import 'package:Pangolin/settings/hiveManager.dart';
+import 'package:Pangolin/widgets/conditionWidget.dart';
+import 'package:Pangolin/widgets/settingsTile.dart';
 import 'package:flutter/material.dart';
 
 import '../../main.dart';

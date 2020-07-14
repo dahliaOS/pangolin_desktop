@@ -1,4 +1,4 @@
-import 'package:GeneratedApp/widgets/settingsTile.dart';
+import 'package:Pangolin/widgets/settingsTile.dart';
 import 'package:flutter/material.dart';
 
 import '../hiveManager.dart';

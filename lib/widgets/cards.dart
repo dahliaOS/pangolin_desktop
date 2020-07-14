@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:GeneratedApp/localization/localization.dart';
+import 'package:Pangolin/localization/localization.dart';
 import 'package:flutter/material.dart';
 import '../applications/calculator.dart';
 import '../applications/containers.dart';
@@ -24,12 +24,12 @@ import '../applications/terminal.dart';
 import '../applications/developer.dart';
 import '../settings/settings.dart';
 import '../applications/monitor.dart';
-import 'package:GeneratedApp/widgets/app_launcher.dart';
-import 'package:GeneratedApp/applications/welcome.dart';
-import 'package:GeneratedApp/themes/main.dart';
-import 'package:GeneratedApp/commons/key_ring.dart';
-import 'package:GeneratedApp/commons/functions.dart';
-import 'package:GeneratedApp/applications/logging.dart';
+import 'package:Pangolin/widgets/app_launcher.dart';
+import 'package:Pangolin/applications/welcome.dart';
+import 'package:Pangolin/themes/main.dart';
+import 'package:Pangolin/commons/key_ring.dart';
+import 'package:Pangolin/commons/functions.dart';
+import 'package:Pangolin/applications/logging.dart';
 
 Expanded tileSection(BuildContext context) {
   Localization local = Localization.of(context);
@@ -325,40 +325,39 @@ Card buildCard(IconData icon, String title, Color color, Color splash,
         child: new Padding(
           padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
           child: SingleChildScrollView(
-          child: new Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                new SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child:
-                new Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.max,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      new Icon(icon, color: color, size: 20.0),
-                      new Text(
-                        " " + title,
-                        style: new TextStyle(
-                            fontSize: 15.0,
-                            color: color,
-                            fontWeight: FontWeight.w400,
-                            fontFamily: "Roboto"),
-                      )
-                    ]),
-                ),
-                new Text(
-                  text,
-                  style: new TextStyle(
-                      fontSize: 15.0,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w400,
-                      fontFamily: "Roboto"),
-                )
-              ]),
-            ),
+            child: new Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  new SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: new Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.max,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          new Icon(icon, color: color, size: 20.0),
+                          new Text(
+                            " " + title,
+                            style: new TextStyle(
+                                fontSize: 15.0,
+                                color: color,
+                                fontWeight: FontWeight.w400,
+                                fontFamily: "Roboto"),
+                          )
+                        ]),
+                  ),
+                  new Text(
+                    text,
+                    style: new TextStyle(
+                        fontSize: 15.0,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w400,
+                        fontFamily: "Roboto"),
+                  )
+                ]),
+          ),
         ),
       ),
     ),

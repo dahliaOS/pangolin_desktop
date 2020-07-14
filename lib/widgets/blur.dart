@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:GeneratedApp/settings/hiveManager.dart';
+import 'package:Pangolin/settings/hiveManager.dart';
 import 'package:flutter/material.dart';
 
 class Blur extends StatefulWidget {

@@ -17,15 +17,15 @@ limitations under the License.
 import 'dart:io';
 import 'dart:math';
 
-import 'package:GeneratedApp/applications/calculator.dart';
-import 'package:GeneratedApp/applications/editor.dart';
-import 'package:GeneratedApp/applications/welcome.dart';
-import 'package:GeneratedApp/applications/monitor.dart';
-import 'package:GeneratedApp/applications/files.dart';
-import 'package:GeneratedApp/localization/localization.dart';
-import 'package:GeneratedApp/settings/hiveManager.dart';
-import 'package:GeneratedApp/widgets/blur.dart';
-import 'package:GeneratedApp/widgets/conditionWidget.dart';
+import 'package:Pangolin/applications/calculator.dart';
+import 'package:Pangolin/applications/editor.dart';
+import 'package:Pangolin/applications/welcome.dart';
+import 'package:Pangolin/applications/monitor.dart';
+import 'package:Pangolin/applications/files.dart';
+import 'package:Pangolin/localization/localization.dart';
+import 'package:Pangolin/settings/hiveManager.dart';
+import 'package:Pangolin/widgets/blur.dart';
+import 'package:Pangolin/widgets/conditionWidget.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';

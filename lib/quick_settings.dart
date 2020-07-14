@@ -16,7 +16,7 @@ limitations under the License.
 
 import 'dart:ui';
 import 'dart:io';
-import 'package:GeneratedApp/localization/localization.dart';
+import 'package:Pangolin/localization/localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
@@ -42,8 +42,11 @@ class QuickSettingsState extends State<QuickSettings> {
     Pangolin.settingsBox = Hive.box("settings");
     _timeString = _formatDateTime(DateTime.now(), 'hh:mm');
     _dateString = _formatDateTime(DateTime.now(), 'E, d MMMM yyyy');
-    if (!isTesting) Timer.periodic(Duration(milliseconds: 100), (Timer t) => _getTime(context));
-    else print("WARNING: Clock was disabled due to testing flag!");
+    if (!isTesting)
+      Timer.periodic(
+          Duration(milliseconds: 100), (Timer t) => _getTime(context));
+    else
+      print("WARNING: Clock was disabled due to testing flag!");
   }
 
   void _getTime(BuildContext context) {
@@ -122,15 +125,17 @@ class QuickSettingsState extends State<QuickSettings> {
           Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: SingleChildScrollView(scrollDirection: Axis.horizontal, child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(_timeString, style: biggerFont),
-                  //Icon(Icons.brightness_1, size: 10.0,color: Colors.white),
-                  Text('  •  ', style: biggerFont),
-                  Text(_dateString, style: biggerFont),
-                ],
-              )),
+              child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(_timeString, style: biggerFont),
+                      //Icon(Icons.brightness_1, size: 10.0,color: Colors.white),
+                      Text('  •  ', style: biggerFont),
+                      Text(_dateString, style: biggerFont),
+                    ],
+                  )),
             ),
           ),
           //Spacer(),

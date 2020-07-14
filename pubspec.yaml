@@ -1,5 +1,5 @@
-name: GeneratedApp
-description: A generated Flutter project.
+name: Pangolin
+description: A Desktop Environment Written in Flutter.
 
 environment:
   sdk: '>=2.1.0 <3.0.0'

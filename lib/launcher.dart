@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:GeneratedApp/widgets/blur.dart';
+import 'package:Pangolin/widgets/blur.dart';
 import 'package:flutter/material.dart';
 import 'searchbar.dart';
 import 'dart:ui';

@@ -11,20 +11,20 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:GeneratedApp/applications/containers.dart';
-import 'package:GeneratedApp/main.dart';
-import 'package:GeneratedApp/settings/pages/backup.dart';
-import 'package:GeneratedApp/settings/pages/about.dart';
-import 'package:GeneratedApp/settings/pages/accounts.dart';
-import 'package:GeneratedApp/settings/pages/advfeatures.dart';
-import 'package:GeneratedApp/settings/pages/applications.dart';
-import 'package:GeneratedApp/settings/pages/connections.dart';
-import 'package:GeneratedApp/settings/pages/customization.dart';
-import 'package:GeneratedApp/settings/pages/display.dart';
-import 'package:GeneratedApp/settings/pages/genmanagement.dart';
-import 'package:GeneratedApp/settings/pages/security.dart';
-import 'package:GeneratedApp/settings/pages/sound.dart';
-import 'package:GeneratedApp/settings/pages/updates.dart';
+import 'package:Pangolin/applications/containers.dart';
+import 'package:Pangolin/main.dart';
+import 'package:Pangolin/settings/pages/backup.dart';
+import 'package:Pangolin/settings/pages/about.dart';
+import 'package:Pangolin/settings/pages/accounts.dart';
+import 'package:Pangolin/settings/pages/advfeatures.dart';
+import 'package:Pangolin/settings/pages/applications.dart';
+import 'package:Pangolin/settings/pages/connections.dart';
+import 'package:Pangolin/settings/pages/customization.dart';
+import 'package:Pangolin/settings/pages/display.dart';
+import 'package:Pangolin/settings/pages/genmanagement.dart';
+import 'package:Pangolin/settings/pages/security.dart';
+import 'package:Pangolin/settings/pages/sound.dart';
+import 'package:Pangolin/settings/pages/updates.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui';
 

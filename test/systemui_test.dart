@@ -1,10 +1,10 @@
 import 'dart:io';
 
-import 'package:GeneratedApp/launcher.dart';
-import 'package:GeneratedApp/launcher_toggle.dart';
-import 'package:GeneratedApp/main.dart';
-import 'package:GeneratedApp/quick_settings.dart';
-import 'package:GeneratedApp/status_tray.dart';
+import 'package:Pangolin/launcher.dart';
+import 'package:Pangolin/launcher_toggle.dart';
+import 'package:Pangolin/main.dart';
+import 'package:Pangolin/quick_settings.dart';
+import 'package:Pangolin/status_tray.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
@@ -25,7 +25,8 @@ Future<void> main() async {
     print("Opening Pangolin"); // ---
     await tester.pumpWidget(Pangolin());
     await tester.pump();
-    expect(find.byType(ErrorWidget, skipOffstage: false), findsNothing); //no error widgets here
+    expect(find.byType(ErrorWidget, skipOffstage: false),
+        findsNothing); //no error widgets here
 
     print("Testing Quick Settings"); // ---
     expect(find.byType(QuickSettings), findsNothing);
@@ -33,16 +34,19 @@ Future<void> main() async {
     print((await tester.pumpAndSettle()).toString() + " frames on animation!");
     await tester.idle();
     expect(find.byType(QuickSettings), findsOneWidget);
-    expect(find.byType(ErrorWidget, skipOffstage: false), findsNothing); //no error widgets here
+    expect(find.byType(ErrorWidget, skipOffstage: false),
+        findsNothing); //no error widgets here
 
     print("Testing Launcher"); // ---
-    expect(find.byType(ErrorWidget, skipOffstage: false), findsNothing); //no error widgets here
+    expect(find.byType(ErrorWidget, skipOffstage: false),
+        findsNothing); //no error widgets here
     expect(find.byType(LauncherWidget), findsNothing);
     await tester.tap(find.byType(LauncherToggleWidget));
     print((await tester.pumpAndSettle()).toString() + " frames on animation!");
     await tester.idle();
     expect(find.byType(LauncherWidget), findsOneWidget);
-    expect(find.byType(ErrorWidget, skipOffstage: false), findsNothing); //no error widgets here
+    expect(find.byType(ErrorWidget, skipOffstage: false),
+        findsNothing); //no error widgets here
   }, skip: false);
   print("Maybe this test works better on a different version of Flutter");
 }
