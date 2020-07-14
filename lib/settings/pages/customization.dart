@@ -43,7 +43,7 @@ class _CustomizationState extends State<Customization> {
                     SizedBox(height: 5),
                     SettingsTile(
                       children: [
-                        Text("Choose your accent Color"),
+                        Text("Choose your accent Color -  restart required"),
                         SizedBox(height: 5),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
