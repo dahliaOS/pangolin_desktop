@@ -41,7 +41,7 @@ void main() {
 int selected;
 
 class Settings extends StatelessWidget {
-  final Widget Function() customBar = (
+  /*final Widget Function() customBar = (
       { //customBar in lib/window/window.dart
       /// The function called to close the window.
       Function close,
@@ -56,18 +56,23 @@ class Settings extends StatelessWidget {
       bool Function() maximizeState}) {
     return SettingsBar(close: close, minimize: minimize, maximize: maximize);
   };
-  final Color customBackground = const Color(0xFFfafafa);
+  final Color customBackground = const Color(0xFFfafafa);*/
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Settings',
-      theme: Pangolin.theme,
-      /*new ThemeData(
-        primarySwatch: Colors.deepOrange,
-        primaryColor: Color(HiveManager().get("accentColorValue")),
+      theme: ThemeData(
+        sliderTheme: SliderThemeData(
+          activeTickMarkColor: Color(HiveManager().get("accentColorValue")),
+          thumbColor: Color(HiveManager().get("accentColorValue")),
+          activeTrackColor: Color(HiveManager().get("accentColorValue")),
+          inactiveTrackColor:
+              Color(HiveManager().get("accentColorValue")).withAlpha(90),
+          inactiveTickMarkColor: Color(HiveManager().get("accentColorValue")),
+        ),
         accentColor: Color(HiveManager().get("accentColorValue")),
-        canvasColor: const Color(0xFFfafafa),
-      ),*/
+        primaryColor: Color(HiveManager().get("accentColorValue")),
+      ),
       initialRoute: '/',
       routes: {
         // When navigating to the "/" route, build the FirstScreen widget.
@@ -79,7 +84,7 @@ class Settings extends StatelessWidget {
   }
 }
 
-class SettingsBar extends StatelessWidget {
+/*class SettingsBar extends StatelessWidget {
   final Function() minimize;
   final Function() maximize;
   final Function() close;
@@ -123,7 +128,7 @@ class SettingsBar extends StatelessWidget {
                   ])
                 ]))));
   }
-}
+}*/
 
 Widget buildSettings(
     IconData icon, String title, Color color, context, Function onTap) {
@@ -236,7 +241,8 @@ class _SettingsPageState extends State<SettingsPage> {
                                 children: [
                                   Icon(
                                     Icons.settings,
-                                    color: Colors.deepOrange[700],
+                                    color: Color(
+                                        HiveManager().get("accentColorValue")),
                                   ),
                                   SizedBox(
                                     width: 20,
@@ -279,7 +285,8 @@ class _SettingsPageState extends State<SettingsPage> {
                                           ),
                                           icon: Icon(
                                             Icons.search,
-                                            color: const Color(0xFFff3d00),
+                                            color: Color(HiveManager()
+                                                .get("accentColorValue")),
                                           ),
                                           hintText: 'Search settings...',
                                           border: InputBorder.none),
