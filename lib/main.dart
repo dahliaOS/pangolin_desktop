@@ -192,27 +192,50 @@ class _PangolinState extends State<Pangolin> {
     //Gets DahliaOS UI set up in a familiar way.
     return ChangeNotifierProvider<WindowsData>(
         create: (context) => provisionalWindowData,
-        child: MaterialApp(
-          title: 'Pangolin Desktop',
-          theme: Pangolin.theme,
-          home: MyHomePage(title: 'Pangolin Desktop'),
-          supportedLocales: [
-            Locale("en", "US"),
-            Locale("de", "DE"),
-            Locale("fr", "FR"),
-            Locale("pl", "PL"),
-            Locale("hr", "HR"),
-            Locale("nl", "BE"),
-            Locale("nl", "NL"),
-          ],
-          localizationsDelegates: [
-            Localization.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          locale: Pangolin.locale,
-        ));
+        child: DynamicTheme(
+            defaultBrightness: Brightness.light,
+            data: (Brightness brightness) => ThemeData(
+                  sliderTheme: SliderThemeData(
+                    activeTickMarkColor:
+                        Color(HiveManager().get("accentColorValue")),
+                    thumbColor: Color(HiveManager().get("accentColorValue")),
+                    activeTrackColor:
+                        Color(HiveManager().get("accentColorValue")),
+                    inactiveTrackColor:
+                        Color(HiveManager().get("accentColorValue"))
+                            .withAlpha(90),
+                    inactiveTickMarkColor:
+                        Color(HiveManager().get("accentColorValue")),
+                  ),
+                  accentColor: Color(HiveManager().get("accentColorValue")),
+                  brightness: brightness,
+                  canvasColor: Colors.black.withOpacity(0.5),
+                  primaryColor: Color(HiveManager().get("accentColorValue")),
+                ),
+            loadBrightnessOnStart: true,
+            themedWidgetBuilder: (BuildContext context, ThemeData theme) {
+              return MaterialApp(
+                title: 'Pangolin Desktop',
+                theme: theme,
+                home: MyHomePage(title: 'Pangolin Desktop'),
+                supportedLocales: [
+                  Locale("en", "US"),
+                  Locale("de", "DE"),
+                  Locale("fr", "FR"),
+                  Locale("pl", "PL"),
+                  Locale("hr", "HR"),
+                  Locale("nl", "BE"),
+                  Locale("nl", "NL"),
+                ],
+                localizationsDelegates: [
+                  Localization.delegate,
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                  GlobalCupertinoLocalizations.delegate,
+                ],
+                locale: Pangolin.locale,
+              );
+            }));
   }
 }
 
