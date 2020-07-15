@@ -404,45 +404,38 @@ class _MyHomePageState extends State<MyHomePage> {
                                       app: Calculator(),
                                       icon:
                                           'lib/images/icons/v2/compiled/calculator.png',
-                                      color: Colors.green,
                                       callback: toggleCallback,
                                     ),
                                     AppLauncherPanelButton(
                                         app: TextEditorApp(),
                                         icon:
                                             'lib/images/icons/v2/compiled/notes.png',
-                                        color: Colors.amber[700],
                                         callback: toggleCallback),
                                     AppLauncherPanelButton(
                                         app: Terminal(),
                                         icon:
                                             'lib/images/icons/v2/compiled/terminal.png',
-                                        color: Colors.grey[900],
                                         callback: toggleCallback),
                                     AppLauncherPanelButton(
                                         app: Files(),
                                         icon:
                                             'lib/images/icons/v2/compiled/files.png',
-                                        color: Colors.deepOrange,
                                         callback: toggleCallback),
                                     AppLauncherPanelButton(
                                       app: Tasks(),
                                       icon:
                                           'lib/images/icons/v2/compiled/task.png',
-                                      color: Colors.cyan[900],
                                       callback: toggleCallback,
                                     ),
                                     AppLauncherPanelButton(
                                         app: Settings(),
                                         icon:
                                             'lib/images/icons/v2/compiled/settings.png',
-                                        color: Colors.deepOrange[700],
                                         callback: toggleCallback),
                                     AppLauncherPanelButton(
                                         app: HisApp(),
                                         icon:
                                             'lib/images/icons/v2/compiled/theme.png',
-                                        color: Colors.grey[900],
                                         callback: toggleCallback),
                                   ]),
                             ],
@@ -473,44 +466,37 @@ class _MyHomePageState extends State<MyHomePage> {
                                   app: Calculator(),
                                   icon:
                                       'lib/images/icons/v2/compiled/calculator.png',
-                                  color: Colors.green,
                                   callback: toggleCallback,
                                 ),
                                 AppLauncherPanelButton(
                                     app: TextEditorApp(),
                                     icon:
                                         'lib/images/icons/v2/compiled/notes.png',
-                                    color: Colors.amber[700],
                                     callback: toggleCallback),
                                 AppLauncherPanelButton(
                                     app: Terminal(),
                                     icon:
                                         'lib/images/icons/v2/compiled/terminal.png',
-                                    color: Colors.grey[900],
                                     callback: toggleCallback),
                                 AppLauncherPanelButton(
                                     app: Files(),
                                     icon:
                                         'lib/images/icons/v2/compiled/files.png',
-                                    color: Colors.deepOrange,
                                     callback: toggleCallback),
                                 AppLauncherPanelButton(
                                   app: Tasks(),
                                   icon: 'lib/images/icons/v2/compiled/task.png',
-                                  color: Colors.cyan[900],
                                   callback: toggleCallback,
                                 ),
                                 AppLauncherPanelButton(
                                     app: Settings(),
                                     icon:
                                         'lib/images/icons/v2/compiled/settings.png',
-                                    color: Colors.deepOrange[700],
                                     callback: toggleCallback),
                                 AppLauncherPanelButton(
                                     app: HisApp(),
                                     icon:
                                         'lib/images/icons/v2/compiled/theme.png',
-                                    color: Colors.grey[900],
                                     callback: toggleCallback),
                               ]),
                           StatusTrayWidget(

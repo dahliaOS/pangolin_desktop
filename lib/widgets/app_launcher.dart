@@ -26,7 +26,6 @@ class AppLauncherPanelButton extends StatefulWidget {
   final bool customBar;
   final double childHeight;
   final double childWidth;
-  final Color color;
   final ValueChanged<bool> _callback;
 
   AppLauncherPanelButton(
@@ -36,7 +35,6 @@ class AppLauncherPanelButton extends StatefulWidget {
       this.customBar = false,
       this.childHeight = 35.0,
       this.childWidth = 35.0,
-      this.color,
       callback})
       : _callback = callback;
 
@@ -112,7 +110,6 @@ class AppLauncherDrawerButton extends StatefulWidget {
   final double childHeight;
   final double childWidth;
   final String label;
-  final Color color;
   final ValueChanged<bool> _callback;
 
   AppLauncherDrawerButton(
@@ -123,7 +120,6 @@ class AppLauncherDrawerButton extends StatefulWidget {
       this.customBar = true,
       this.childHeight = 64.0,
       this.childWidth = 64.0,
-      this.color,
       callback})
       : _callback =
             callback; //This alien syntax must be syntactical glucose for a setter. Neato.
