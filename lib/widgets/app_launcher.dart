@@ -63,7 +63,7 @@ class _AppLauncherPanelButtonState extends State<AppLauncherPanelButton> {
               });
               widget.appExists
                   ? Provider.of<WindowsData>(context, listen: false)
-                      .add(child: widget.app, color: widget.color)
+                      .add(child: widget.app, color: Colors.grey[900])
                   : showDialog(
                       context: context,
                       builder: (BuildContext context) {
@@ -151,7 +151,7 @@ class AppLauncherDrawerButtonState extends State<AppLauncherDrawerButton> {
 
               widget.appExists
                   ? Provider.of<WindowsData>(context, listen: false)
-                      .add(child: widget.app, color: widget.color)
+                      .add(child: widget.app, color: Colors.grey[900])
                   : showDialog(
                       context: context,
                       builder: (BuildContext context) {

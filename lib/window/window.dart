@@ -96,6 +96,8 @@ class WindowState extends State<Window> {
   /// Control is an illusion so let's make it a big one
   FocusAttachment _focusAttachment;
 
+  static bool isMaximized = false;
+
   @override
   void initState() {
     super.initState();
@@ -124,6 +126,7 @@ class WindowState extends State<Window> {
   void _maximizeWindow() {
     Size deviceSize = MediaQuery.of(context).size;
     setState(() {
+      isMaximized = true;
       _windowMode = WindowMode.MAXIMIZE_MODE;
       _prePosition = _position;
       _preSize = _size;
@@ -134,6 +137,7 @@ class WindowState extends State<Window> {
 
   void _restoreWindowFromMaximizeMode() {
     setState(() {
+      isMaximized = false;
       _windowMode = WindowMode.NORMAL_MODE;
       _size = _preSize;
       _position = _prePosition;
@@ -235,8 +239,15 @@ class WindowState extends State<Window> {
                                       : false)
                           : Container(
                               padding: EdgeInsets.symmetric(horizontal: 4.0),
-                              height: 35.0,
-                              color: _color,
+                              height: 40.0,
+                              decoration: BoxDecoration(
+                                borderRadius: !isMaximized
+                                    ? BorderRadius.only(
+                                        topLeft: Radius.circular(10),
+                                        topRight: Radius.circular(10))
+                                    : BorderRadius.circular(0),
+                                color: _color,
+                              ),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
@@ -250,6 +261,11 @@ class WindowState extends State<Window> {
                     ),
                     Expanded(
                       child: ClipRRect(
+                        borderRadius: !WindowState.isMaximized
+                            ? BorderRadius.only(
+                                bottomLeft: Radius.circular(10),
+                                bottomRight: Radius.circular(10))
+                            : BorderRadius.circular(0),
                         child: GestureDetector(
                           onPanUpdate: (DragUpdateDetails details) {
                             setState(() {
