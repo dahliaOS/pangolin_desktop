@@ -43,7 +43,7 @@ class _CustomizationState extends State<Customization> {
                     SizedBox(height: 5),
                     SettingsTile(
                       children: [
-                        Text("Choose your accent Color -  restart required"),
+                        Text("Choose your accent Color"),
                         SizedBox(height: 5),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -57,6 +57,7 @@ class _CustomizationState extends State<Customization> {
                                       .set("accentColorName", "orange");
                                   HiveManager().set("accentColorValue",
                                       Colors.deepOrangeAccent[400].value);
+                                  Pangolin.restartApp(context);
                                 });
                               }),
                               buildAcctenColorButton(
@@ -65,6 +66,7 @@ class _CustomizationState extends State<Customization> {
                                   HiveManager().set("accentColorName", "red");
                                   HiveManager().set("accentColorValue",
                                       Colors.redAccent[700].value);
+                                  Pangolin.restartApp(context);
                                 });
                               }),
                               buildAcctenColorButton(
@@ -73,6 +75,7 @@ class _CustomizationState extends State<Customization> {
                                   HiveManager().set("accentColorName", "green");
                                   HiveManager().set("accentColorValue",
                                       Colors.greenAccent[700].value);
+                                  Pangolin.restartApp(context);
                                 });
                               }),
                               buildAcctenColorButton(
@@ -81,6 +84,7 @@ class _CustomizationState extends State<Customization> {
                                   HiveManager().set("accentColorName", "blue");
                                   HiveManager().set("accentColorValue",
                                       Colors.blueAccent[700].value);
+                                  Pangolin.restartApp(context);
                                 });
                               }),
                               buildAcctenColorButton(
@@ -90,6 +94,7 @@ class _CustomizationState extends State<Customization> {
                                       .set("accentColorName", "purple");
                                   HiveManager().set("accentColorValue",
                                       Colors.purpleAccent[700].value);
+                                  Pangolin.restartApp(context);
                                 });
                               }),
                               buildAcctenColorButton(
@@ -98,6 +103,7 @@ class _CustomizationState extends State<Customization> {
                                   HiveManager().set("accentColorName", "cyan");
                                   HiveManager().set("accentColorValue",
                                       Colors.cyanAccent[700].value);
+                                  Pangolin.restartApp(context);
                                 });
                               }),
                               buildAcctenColorButton(
@@ -106,7 +112,7 @@ class _CustomizationState extends State<Customization> {
                                   HiveManager().set("accentColorName", "amber");
                                   HiveManager().set("accentColorValue",
                                       Colors.amberAccent[700].value);
-                                  Pangolin.refreshTheme();
+                                  Pangolin.restartApp(context);
                                 });
                               }),
                               buildAcctenColorButton("black", Colors.black, () {
@@ -114,6 +120,7 @@ class _CustomizationState extends State<Customization> {
                                   HiveManager().set("accentColorName", "black");
                                   HiveManager().set(
                                       "accentColorValue", Colors.black.value);
+                                  Pangolin.restartApp(context);
                                 });
                               }),
                               GestureDetector(
@@ -121,6 +128,7 @@ class _CustomizationState extends State<Customization> {
                                   setState(() {
                                     HiveManager()
                                         .set("accentColorName", "custom");
+                                    Pangolin.restartApp(context);
                                   });
                                 },
                                 child: Padding(
@@ -155,13 +163,13 @@ class _CustomizationState extends State<Customization> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
-                                "Enable Blur Effects on the Desktop - restart required"),
+                            Text("Enable Blur Effects on the Desktop"),
                             Switch(
                               value: HiveManager().get("enableBlur"),
                               onChanged: (bool state) {
                                 setState(() {
                                   HiveManager().set("enableBlur", state);
+                                  Pangolin.restartApp(context);
                                 });
                               },
                             )
@@ -191,6 +199,7 @@ class _CustomizationState extends State<Customization> {
                               onChanged: (bool state) {
                                 setState(() {
                                   HiveManager().set("darkMode", state);
+                                  Pangolin.restartApp(context);
                                 });
                               },
                             )
@@ -213,12 +222,13 @@ class _CustomizationState extends State<Customization> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text("Center Taskbar Items - restart required"),
+                            Text("Center Taskbar Items"),
                             Switch(
                               value: HiveManager().get("centerTaskbar"),
                               onChanged: (bool state) {
                                 setState(() {
                                   HiveManager().set("centerTaskbar", state);
+                                  Pangolin.restartApp(context);
                                 });
                               },
                             )
