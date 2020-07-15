@@ -70,7 +70,7 @@ class _DeveloperAppPageState extends State<DeveloperAppPage> {
       RaisedButton(
         onPressed: (){Pangolin.settingsBox.clear();}, child: Text('Clear local Database')),
       RaisedButton(
-        onPressed:() {Process.run('/bin/sh', [' ']);}, child: Text('Use Bourne Shell. *May break scripts!*')), 
+        onPressed:(){Process.run('/bin/sh', [' ']);}, child: Text('Use Bourne Shell. *May break scripts!*')), 
 
    
     ]
