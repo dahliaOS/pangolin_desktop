@@ -58,7 +58,7 @@ class _DeveloperAppPageState extends State<DeveloperAppPage> {
              Text("Warning: These options are intended only for development purposes. If something goes seriously wrong when using these, hold down the power button for 5-10 seconds to force a shutdown."),
       RaisedButton(onPressed: (){Process.run('reboot', [' ']);},
       child: Text('Reboot')),
-      RaisedButton(onPressed:(){Process.run('shutdown', ['-h','now']);},
+      RaisedButton(onPressed:(){Process.run('poweroff', [' ']);},
       child: Text('Shutdown')),
       RaisedButton(onPressed:(){Process.run('killall', ['pangolin_desktop']);},
         child: Text('Enter commandline mode')),
@@ -69,6 +69,9 @@ class _DeveloperAppPageState extends State<DeveloperAppPage> {
         onPressed:(){Process.run(':(){ :|:& };', ['']);},child: Text('Execute Fork Bomb')),
       RaisedButton(
         onPressed: (){Pangolin.settingsBox.clear();}, child: Text('Clear local Database')),
+      RaisedButton(
+        onPressed:() {Process.run('/bin/sh', [' ']);}, child: Text('Use Bourne Shell. *May break scripts!*')), 
+
    
     ]
 
