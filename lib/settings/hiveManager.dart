@@ -22,6 +22,8 @@ class HiveManager {
     createEntryIfNotExisting("wifi", true);
     createEntryIfNotExisting("bluetooth", false);
     createEntryIfNotExisting("showSeconds", false);
+    createEntryIfNotExisting("keyboardLayout", "en_US");
+    createEntryIfNotExisting("keyboardLayoutName", "English - United States");
   }
 
   set(String key, dynamic value) {

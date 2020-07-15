@@ -174,14 +174,14 @@ class _GeneralManagementState extends State<GeneralManagement> {
                     ),
                     SettingsTile(
                       children: [
-                        Text("Set Keyboard layout"),
+                        Text("Set Keyboard layout - WIP"),
                         SizedBox(height: 5),
                         Container(
                           width: 1.7976931348623157e+308,
                           child: DropdownButton<String>(
                             icon: Icon(null),
                             hint: Text("Language"),
-                            value: _selectedLanguage,
+                            value: HiveManager().get("keyboardLayoutName"),
                             items: languages.map((String value) {
                               return DropdownMenuItem<String>(
                                 value: value,
@@ -189,10 +189,8 @@ class _GeneralManagementState extends State<GeneralManagement> {
                               );
                             }).toList(),
                             onChanged: (_) {
-                              _setLanguage(_, context);
                               setState(() {
-                                _selectedLanguage =
-                                    Pangolin.settingsBox.get("languageName");
+                                _setKeyboard(_, context);
                               });
                             },
                           ),
@@ -246,6 +244,46 @@ void _setLanguage(String _selected, BuildContext context) {
       Pangolin.setLocale(context, Locale("nl", "NL"));
       Pangolin.settingsBox.put("language", "nl_NL");
       Pangolin.settingsBox.put("languageName", "Nederlands - Nederland");
+      break;
+  }
+}
+
+void _setKeyboard(String _selected, BuildContext context) {
+  switch (_selected) {
+    case "English - United States":
+      Pangolin.setLocale(context, Locale("en", "US"));
+      Pangolin.settingsBox.put("keyboardLayout", "en_US");
+      Pangolin.settingsBox.put("keyboardLayoutName", "English - United States");
+      break;
+    case "Deutsch - Deutschland":
+      Pangolin.setLocale(context, Locale("de", "DE"));
+      Pangolin.settingsBox.put("keyboardLayout", "de_DE");
+      Pangolin.settingsBox.put("keyboardLayoutName", "Deutsch - Deutschland");
+      break;
+    case "Français - France":
+      Pangolin.setLocale(context, Locale("fr", "FR"));
+      Pangolin.settingsBox.put("keyboardLayout", "fr_FR");
+      Pangolin.settingsBox.put("keyboardLayoutName", "Français - France");
+      break;
+    case "Polski - Polska":
+      Pangolin.setLocale(context, Locale("pl", "PL"));
+      Pangolin.settingsBox.put("keyboardLayout", "pl_PL");
+      Pangolin.settingsBox.put("keyboardLayoutName", "Polski - Polska");
+      break;
+    case "Hrvatski - Hrvatska":
+      Pangolin.setLocale(context, Locale("hr", "HR"));
+      Pangolin.settingsBox.put("keyboardLayout", "hr_HR");
+      Pangolin.settingsBox.put("keyboardLayoutName", "Hrvatski - Hrvatska");
+      break;
+    case "Nederlands - België":
+      Pangolin.setLocale(context, Locale("nl", "BE"));
+      Pangolin.settingsBox.put("keyboardLayout", "nl_BE");
+      Pangolin.settingsBox.put("keyboardLayoutName", "Nederlands - België");
+      break;
+    case "Nederlands - Nederland":
+      Pangolin.setLocale(context, Locale("nl", "NL"));
+      Pangolin.settingsBox.put("keyboardLayout", "nl_NL");
+      Pangolin.settingsBox.put("keyboardLayoutName", "Nederlands - Nederland");
       break;
   }
 }
