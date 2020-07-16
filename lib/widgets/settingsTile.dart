@@ -1,3 +1,4 @@
+import 'package:Pangolin/settings/hiveManager.dart';
 import 'package:flutter/material.dart';
 
 class SettingsTile extends StatelessWidget {
@@ -12,7 +13,8 @@ class SettingsTile extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
         ),
-        color: Colors.grey[100],
+        color:
+            HiveManager().get("darkMode") ? Colors.grey[900] : Colors.grey[100],
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(

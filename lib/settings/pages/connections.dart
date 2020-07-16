@@ -96,7 +96,10 @@ class _ConnectionsState extends State<Connections> {
                                                 color: wifiList[i].connected
                                                     ? Color(HiveManager().get(
                                                         "accentColorValue"))
-                                                    : Colors.grey,
+                                                    : (HiveManager()
+                                                            .get("darkMode")
+                                                        ? Colors.white
+                                                        : Colors.grey),
                                               ),
                                               title: Text(
                                                 wifiList[i].name,
@@ -104,7 +107,10 @@ class _ConnectionsState extends State<Connections> {
                                                   color: wifiList[i].connected
                                                       ? Color(HiveManager().get(
                                                           "accentColorValue"))
-                                                      : Colors.black,
+                                                      : (HiveManager()
+                                                              .get("darkMode")
+                                                          ? Colors.white
+                                                          : Colors.grey[900]),
                                                 ),
                                               ),
                                               subtitle: Text(
@@ -158,7 +164,10 @@ class _ConnectionsState extends State<Connections> {
                                                         .connected
                                                     ? Color(HiveManager().get(
                                                         "accentColorValue"))
-                                                    : Colors.grey,
+                                                    : (HiveManager()
+                                                            .get("darkMode")
+                                                        ? Colors.white
+                                                        : Colors.grey),
                                               ),
                                               title: Text(
                                                 bluetoothList[i].name,
@@ -167,7 +176,10 @@ class _ConnectionsState extends State<Connections> {
                                                           .connected
                                                       ? Color(HiveManager().get(
                                                           "accentColorValue"))
-                                                      : Colors.black,
+                                                      : (HiveManager()
+                                                              .get("darkMode")
+                                                          ? Colors.white
+                                                          : Colors.grey[900]),
                                                 ),
                                               ),
                                               subtitle: Text(

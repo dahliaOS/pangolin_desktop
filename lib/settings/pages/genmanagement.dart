@@ -126,7 +126,7 @@ class _GeneralManagementState extends State<GeneralManagement> {
                                   child: DropdownButton<String>(
                                     icon: Icon(null),
                                     hint: Text("Time"),
-                                    value: _selectedLanguage,
+                                    value: HiveManager().get("timeZoneName"),
                                     items: languages.map((String value) {
                                       return DropdownMenuItem<String>(
                                         value: value,
@@ -136,8 +136,7 @@ class _GeneralManagementState extends State<GeneralManagement> {
                                     onChanged: (_) {
                                       _setLanguage(_, context);
                                       setState(() {
-                                        _selectedLanguage = Pangolin.settingsBox
-                                            .get("languageName");
+                                        _setTimezone(_, context);
                                       });
                                     },
                                   ),
@@ -284,6 +283,46 @@ void _setKeyboard(String _selected, BuildContext context) {
       Pangolin.setLocale(context, Locale("nl", "NL"));
       Pangolin.settingsBox.put("keyboardLayout", "nl_NL");
       Pangolin.settingsBox.put("keyboardLayoutName", "Nederlands - Nederland");
+      break;
+  }
+}
+
+void _setTimezone(String _selected, BuildContext context) {
+  switch (_selected) {
+    case "English - United States":
+      Pangolin.setLocale(context, Locale("en", "US"));
+      Pangolin.settingsBox.put("timeZone", "en_US");
+      Pangolin.settingsBox.put("timeZoneName", "English - United States");
+      break;
+    case "Deutsch - Deutschland":
+      Pangolin.setLocale(context, Locale("de", "DE"));
+      Pangolin.settingsBox.put("timeZone", "de_DE");
+      Pangolin.settingsBox.put("timeZoneName", "Deutsch - Deutschland");
+      break;
+    case "Français - France":
+      Pangolin.setLocale(context, Locale("fr", "FR"));
+      Pangolin.settingsBox.put("timeZone", "fr_FR");
+      Pangolin.settingsBox.put("timeZoneName", "Français - France");
+      break;
+    case "Polski - Polska":
+      Pangolin.setLocale(context, Locale("pl", "PL"));
+      Pangolin.settingsBox.put("timeZone", "pl_PL");
+      Pangolin.settingsBox.put("timeZoneName", "Polski - Polska");
+      break;
+    case "Hrvatski - Hrvatska":
+      Pangolin.setLocale(context, Locale("hr", "HR"));
+      Pangolin.settingsBox.put("timeZone", "hr_HR");
+      Pangolin.settingsBox.put("timeZoneName", "Hrvatski - Hrvatska");
+      break;
+    case "Nederlands - België":
+      Pangolin.setLocale(context, Locale("nl", "BE"));
+      Pangolin.settingsBox.put("timeZone", "nl_BE");
+      Pangolin.settingsBox.put("timeZoneName", "Nederlands - België");
+      break;
+    case "Nederlands - Nederland":
+      Pangolin.setLocale(context, Locale("nl", "NL"));
+      Pangolin.settingsBox.put("timeZone", "nl_NL");
+      Pangolin.settingsBox.put("timeZoneName", "Nederlands - Nederland");
       break;
   }
 }

@@ -24,6 +24,8 @@ class HiveManager {
     createEntryIfNotExisting("showSeconds", false);
     createEntryIfNotExisting("keyboardLayout", "en_US");
     createEntryIfNotExisting("keyboardLayoutName", "English - United States");
+    createEntryIfNotExisting("timeZone", "en_US");
+    createEntryIfNotExisting("timeZoneName", "English - United States");
   }
 
   set(String key, dynamic value) {

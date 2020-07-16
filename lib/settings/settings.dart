@@ -61,18 +61,35 @@ class Settings extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Settings',
-      theme: ThemeData(
-        sliderTheme: SliderThemeData(
-          activeTickMarkColor: Color(HiveManager().get("accentColorValue")),
-          thumbColor: Color(HiveManager().get("accentColorValue")),
-          activeTrackColor: Color(HiveManager().get("accentColorValue")),
-          inactiveTrackColor:
-              Color(HiveManager().get("accentColorValue")).withAlpha(90),
-          inactiveTickMarkColor: Color(HiveManager().get("accentColorValue")),
-        ),
-        accentColor: Color(HiveManager().get("accentColorValue")),
-        primaryColor: Color(HiveManager().get("accentColorValue")),
-      ),
+      theme: HiveManager().get("darkMode")
+          ? ThemeData.dark().copyWith(
+              sliderTheme: SliderThemeData(
+                activeTickMarkColor:
+                    Color(HiveManager().get("accentColorValue")),
+                thumbColor: Color(HiveManager().get("accentColorValue")),
+                activeTrackColor: Color(HiveManager().get("accentColorValue")),
+                inactiveTrackColor:
+                    Color(HiveManager().get("accentColorValue")).withAlpha(90),
+                inactiveTickMarkColor:
+                    Color(HiveManager().get("accentColorValue")),
+              ),
+              accentColor: Color(HiveManager().get("accentColorValue")),
+              primaryColor: Color(HiveManager().get("accentColorValue")),
+            )
+          : ThemeData.light().copyWith(
+              sliderTheme: SliderThemeData(
+                activeTickMarkColor:
+                    Color(HiveManager().get("accentColorValue")),
+                thumbColor: Color(HiveManager().get("accentColorValue")),
+                activeTrackColor: Color(HiveManager().get("accentColorValue")),
+                inactiveTrackColor:
+                    Color(HiveManager().get("accentColorValue")).withAlpha(90),
+                inactiveTickMarkColor:
+                    Color(HiveManager().get("accentColorValue")),
+              ),
+              accentColor: Color(HiveManager().get("accentColorValue")),
+              primaryColor: Color(HiveManager().get("accentColorValue")),
+            ),
       initialRoute: '/',
       routes: {
         // When navigating to the "/" route, build the FirstScreen widget.
