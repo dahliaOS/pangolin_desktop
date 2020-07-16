@@ -21,6 +21,7 @@ class HiveManager {
     createEntryIfNotExisting("randomWallpaper", false);
     createEntryIfNotExisting("wifi", true);
     createEntryIfNotExisting("bluetooth", false);
+    createEntryIfNotExisting("showSeconds", false);
   }
 
   set(String key, dynamic value) {

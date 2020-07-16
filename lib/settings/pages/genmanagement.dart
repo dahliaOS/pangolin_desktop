@@ -87,6 +87,20 @@ class _GeneralManagementState extends State<GeneralManagement> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
+                            Text("Show Seconds"),
+                            Switch(
+                              value: HiveManager().get("showSeconds"),
+                              onChanged: (bool state) {
+                                setState(() {
+                                  HiveManager().set("showSeconds", state);
+                                });
+                              },
+                            )
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
                             Text("Automatic Time"),
                             Switch(
                               value: HiveManager().get("enableAutoTime"),

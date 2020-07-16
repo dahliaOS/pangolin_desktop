@@ -17,6 +17,7 @@ limitations under the License.
 import 'dart:ui';
 import 'dart:io';
 import 'package:Pangolin/localization/localization.dart';
+import 'package:Pangolin/settings/hiveManager.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
@@ -51,7 +52,9 @@ class QuickSettingsState extends State<QuickSettings> {
 
   void _getTime(BuildContext context) {
     final DateTime now = DateTime.now();
-    final String formattedTime = _formatDateTime(now, 'hh:mm');
+    final String formattedTime = HiveManager().get("showSeconds")
+        ? _formatDateTime(now, 'hh:mm:ss')
+        : _formatDateTime(now, 'hh:mm');
     final String formattedDate = _formatLocaleDate(now);
     setState(() {
       _timeString = formattedTime;
