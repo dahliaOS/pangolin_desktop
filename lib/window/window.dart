@@ -85,10 +85,10 @@ class WindowState extends State<Window> {
   Color _color;
 
   /// The window's minimum height.
-  final double _minHeight = 100.0;
+  final double _minHeight = 400.0;
 
   /// The window's minimum width.
-  final double _minWidth = 100.0;
+  final double _minWidth = 600.0;
 
   /// Controls focus on this window.
   final FocusNode _focusNode = new FocusNode();
