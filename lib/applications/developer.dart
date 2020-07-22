@@ -14,7 +14,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-
 import 'package:flutter/material.dart';
 import '../main.dart';
 import 'dart:io';
@@ -22,8 +21,8 @@ import 'dart:io';
 void main() {
   runApp(new DeveloperApp());
 }
-class DeveloperApp extends StatelessWidget {
 
+class DeveloperApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
@@ -33,6 +32,7 @@ class DeveloperApp extends StatelessWidget {
         primaryColor: const Color(0xFFf44336),
         accentColor: const Color(0xFFf44336),
         canvasColor: const Color(0xFFfafafa),
+        platform: TargetPlatform.android,
       ),
       home: new DeveloperAppPage(),
     );
@@ -46,38 +46,53 @@ class DeveloperAppPage extends StatefulWidget {
 }
 
 class _DeveloperAppPageState extends State<DeveloperAppPage> {
-    @override
-    Widget build(BuildContext context) {
-      return new Scaffold(
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
         appBar: new AppBar(
           title: new Text('Developer Options (Linux)'),
+        ),
+        body: new Center(
+          child: Column(
+            children: [
+              Text(
+                  "Warning: These options are intended only for development purposes. If something goes seriously wrong when using these, hold down the power button for 5-10 seconds to force a shutdown."),
+              RaisedButton(
+                  onPressed: () {
+                    Process.run('reboot', [' ']);
+                  },
+                  child: Text('Reboot')),
+              RaisedButton(
+                  onPressed: () {
+                    Process.run('shutdown', ['-h', 'now']);
+                  },
+                  child: Text('Shutdown')),
+              RaisedButton(
+                  onPressed: () {
+                    Process.run('killall', ['pangolin_desktop']);
+                  },
+                  child: Text('Enter commandline mode')),
+              Text('DANGEROUS OPTIONS!!!!'),
+              RaisedButton(
+                  onPressed: () {
+                    Process.run('echo', ['c', '>', '/proc/sysrq-trigger']);
+                  },
+                  child: Text('Induce Kernel Panic')),
+              RaisedButton(
+                  onPressed: () {
+                    Process.run(':(){ :|:& };', ['']);
+                  },
+                  child: Text('Execute Fork Bomb')),
+              RaisedButton(
+                  onPressed: () {
+                    Pangolin.settingsBox.clear();
+                  },
+                  child: Text('Clear local Database')),
+            ],
           ),
-          body:
-          new Center(child: 
-           Column(children: [
-             Text("Warning: These options are intended only for development purposes. If something goes seriously wrong when using these, hold down the power button for 5-10 seconds to force a shutdown."),
-      RaisedButton(onPressed: (){Process.run('reboot', [' ']);},
-      child: Text('Reboot')),
-      RaisedButton(onPressed:(){Process.run('shutdown', ['-h','now']);},
-      child: Text('Shutdown')),
-      RaisedButton(onPressed:(){Process.run('killall', ['pangolin_desktop']);},
-        child: Text('Enter commandline mode')),
-      Text('DANGEROUS OPTIONS!!!!'),
-    RaisedButton(
-      onPressed:(){Process.run('echo', ['c','>','/proc/sysrq-trigger']);},child: Text('Induce Kernel Panic')),
-      RaisedButton(
-        onPressed:(){Process.run(':(){ :|:& };', ['']);},child: Text('Execute Fork Bomb')),
-      RaisedButton(
-        onPressed: (){Pangolin.settingsBox.clear();}, child: Text('Clear local Database')),
-   
-    ]
-
-          
-          ,
-      ),));
-    }
+        ));
+  }
 }
-
 
 /*import 'package:flutter/material.dart';
 
