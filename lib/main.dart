@@ -135,8 +135,7 @@ class _PangolinState extends State<Pangolin> {
     Pangolin.settingsBox = Hive.box("settings");
     List<String> language = ["en", "US"];
     getLangFromHive() {
-       if (Pangolin.settingsBox.get("language") == null) {
-
+      if (Pangolin.settingsBox.get("language") == null) {
         language = ["en", "US"];
       } else {
         language = Pangolin.settingsBox.get("language").split("_");
@@ -169,6 +168,7 @@ class _PangolinState extends State<Pangolin> {
           brightness: brightness,
           canvasColor: Colors.black.withOpacity(0.5),
           primaryColor: const Color(0xFFff5722),
+          platform: TargetPlatform.android,
         ),
         loadBrightnessOnStart: true,
         themedWidgetBuilder: (BuildContext context, ThemeData theme) {
