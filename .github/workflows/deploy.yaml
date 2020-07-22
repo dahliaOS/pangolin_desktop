@@ -1,0 +1,32 @@
+name: Deploy
+on:
+  push:
+    paths-ignore:
+      - '*.md'
+    branches: [ master ]
+jobs:
+  deploy:
+    name: Deploy Web
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: subosito/flutter-action@v1
+      - run: flutter channel master
+      - run: flutter config --enable-web
+      - run: flutter build web
+      - run: |
+          mkdir deploy
+          cd deploy
+          git init
+          git config --global user.email ignacykuchcinski@gmail.com
+          git config --global user.name Horus125
+          git status
+          git remote add origin https://${{github.actor}}:${{secrets.GITHUB_TOKEN}}@github.com/dahlia-os/pangolin-desktop.git
+          git fetch origin gh-pages
+          git checkout gh-pages
+          cp -r ../build/web/* .
+          if [ -n "$(git status --porcelain)" ]; then
+          git add --all
+          git commit -m "Update GitHub Pages"
+          git push origin gh-pages
+          fi
