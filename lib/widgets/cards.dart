@@ -20,7 +20,8 @@ import '../applications/calculator.dart';
 import '../applications/containers.dart';
 import '../applications/files.dart';
 import '../applications/editor.dart';
-import '../applications/terminal.dart';
+import '../applications/terminal/main.dart';
+import '../applications/terminal/root/main.dart';
 import '../applications/developer.dart';
 import '../settings.dart';
 import '../applications/monitor.dart';
@@ -39,7 +40,7 @@ Expanded tileSection(BuildContext context) {
         padding: EdgeInsets.all(10.0),
         child: GridView.count(crossAxisCount: 5, children: [
           AppLauncherDrawerButton(
-            app: Terminal(),
+            app: TerminalApp(),
             icon: 'lib/images/icons/v2/compiled/terminal.png',
             label: local.get("app_terminal"),
             color: Colors.grey[900],
@@ -59,7 +60,7 @@ Expanded tileSection(BuildContext context) {
               color: Colors.deepOrange[700],
               callback: toggleCallback),
           AppLauncherDrawerButton(
-              app: RootTerminal(),
+              app: RootTerminalApp(),
               icon: 'lib/images/icons/v2/compiled/root.png',
               label: local.get("app_rootterminal"),
               color: Colors.red[700],
@@ -325,40 +326,39 @@ Card buildCard(IconData icon, String title, Color color, Color splash,
         child: new Padding(
           padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
           child: SingleChildScrollView(
-          child: new Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                new SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child:
-                new Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.max,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      new Icon(icon, color: color, size: 20.0),
-                      new Text(
-                        " " + title,
-                        style: new TextStyle(
-                            fontSize: 15.0,
-                            color: color,
-                            fontWeight: FontWeight.w400,
-                            fontFamily: "Roboto"),
-                      )
-                    ]),
-                ),
-                new Text(
-                  text,
-                  style: new TextStyle(
-                      fontSize: 15.0,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w400,
-                      fontFamily: "Roboto"),
-                )
-              ]),
-            ),
+            child: new Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  new SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: new Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.max,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          new Icon(icon, color: color, size: 20.0),
+                          new Text(
+                            " " + title,
+                            style: new TextStyle(
+                                fontSize: 15.0,
+                                color: color,
+                                fontWeight: FontWeight.w400,
+                                fontFamily: "Roboto"),
+                          )
+                        ]),
+                  ),
+                  new Text(
+                    text,
+                    style: new TextStyle(
+                        fontSize: 15.0,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w400,
+                        fontFamily: "Roboto"),
+                  )
+                ]),
+          ),
         ),
       ),
     ),
