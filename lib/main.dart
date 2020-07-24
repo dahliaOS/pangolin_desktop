@@ -19,6 +19,7 @@ import 'dart:io';
 import 'package:GeneratedApp/applications/calculator.dart';
 import 'package:GeneratedApp/applications/editor.dart';
 import 'package:GeneratedApp/applications/welcome.dart';
+import 'package:GeneratedApp/applications/terminal/main.dart';
 import 'package:GeneratedApp/applications/monitor.dart';
 import 'package:GeneratedApp/applications/files.dart';
 import 'package:GeneratedApp/localization/localization.dart';
@@ -48,7 +49,6 @@ import 'package:provider/provider.dart';
 import 'widgets/app_launcher.dart';
 import 'applications/calculator.dart';
 import 'applications/editor.dart';
-import 'applications/terminal.dart';
 import 'settings.dart';
 import 'commons/key_ring.dart';
 import 'commons/functions.dart';
@@ -95,7 +95,7 @@ List<AppLauncherPanelButton> testLaunchers = [
   AppLauncherPanelButton(
       app: TextEditorApp(), icon: 'lib/images/icons/v2/compiled/notes.png'),
   AppLauncherPanelButton(
-      app: Terminal(), icon: 'lib/images/icons/v2/compiled/terminal.png'),
+      app: TerminalApp(), icon: 'lib/images/icons/v2/compiled/terminal.png'),
   AppLauncherPanelButton(
     icon: 'lib/images/icons/v2/compiled/files.png',
     appExists: false,
@@ -107,6 +107,7 @@ List<AppLauncherPanelButton> testLaunchers = [
 void main() async {
   //init hive
   WidgetsFlutterBinding.ensureInitialized();
+
   await Hive.initFlutter();
   await Hive.openBox<String>("settings");
 
@@ -369,7 +370,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     color: Colors.amber[700],
                                     callback: toggleCallback),
                                 AppLauncherPanelButton(
-                                    app: Terminal(),
+                                    app: TerminalApp(),
                                     icon:
                                         'lib/images/icons/v2/compiled/terminal.png',
                                     color: Colors.grey[900],

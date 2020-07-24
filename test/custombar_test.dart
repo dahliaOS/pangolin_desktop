@@ -9,7 +9,7 @@ import 'dart:io';
 //import 'dart:ui' hide Window;
 
 import 'package:GeneratedApp/applications/files.dart';
-import 'package:GeneratedApp/applications/terminal.dart';
+import 'package:GeneratedApp/applications/terminal/main.dart';
 // import 'package:GeneratedApp/commons/functions.dart';
 // import 'package:GeneratedApp/launcher_toggle.dart';
 // import 'package:GeneratedApp/quick_settings.dart';
@@ -57,27 +57,23 @@ Future<void> main() async {
     await tester.pump();
     expect(find.byType(ErrorWidget), findsNothing); //no error widgets here
     print("Testing Files");
-    await tester.tap(
-      find.byWidgetPredicate(
-        (element) => (element is AppLauncherPanelButton && element.app is Files),
-        description: "Bottom bar app icon that opens the Files app"
-      )
-    );
+    await tester.tap(find.byWidgetPredicate(
+        (element) =>
+            (element is AppLauncherPanelButton && element.app is Files),
+        description: "Bottom bar app icon that opens the Files app"));
     await tester.pump();
     expect(find.byType(ErrorWidget), findsNothing); //no error widgets here
-  //});
-  //await settingsInit();
-  // testWidgets('Try to open Terminal', (WidgetTester tester) async {
-  //   await tester.pumpWidget(Pangolin());
-  //   await tester.pump();
-  //   expect(find.byType(ErrorWidget), findsNothing); //no error widgets here
+    //});
+    //await settingsInit();
+    // testWidgets('Try to open Terminal', (WidgetTester tester) async {
+    //   await tester.pumpWidget(Pangolin());
+    //   await tester.pump();
+    //   expect(find.byType(ErrorWidget), findsNothing); //no error widgets here
     print("Testing Terminal"); // ---
-    await tester.tap(
-      find.byWidgetPredicate(
-        (element) => (element is AppLauncherPanelButton && element.app is Terminal),
-        description: "AppLauncherPanelButton that launches Terminal"
-      )
-    );
+    await tester.tap(find.byWidgetPredicate(
+        (element) =>
+            (element is AppLauncherPanelButton && element.app is TerminalApp),
+        description: "AppLauncherPanelButton that launches Terminal"));
     await tester.pump();
     //print((await tester.pumpAndSettle()).toString() + " frame(s) on animation!");
     expect(find.byType(ErrorWidget), findsNothing); //no error widgets here
@@ -88,7 +84,7 @@ Future<void> main() async {
     // expect(find.byType(Files), findsOneWidget);
     // await tester.tap(
     //   // zfind.descendant(
-    //   //   of: find.byType(FilesBar), 
+    //   //   of: find.byType(FilesBar),
     //   //   matching: find.widgetWithIcon(IconButton, Icons.close))
     //   find.descendant(
     //     of: find.byType(Window),
@@ -101,7 +97,7 @@ Future<void> main() async {
     // expect(find.byType(Terminal), findsOneWidget);
     // await tester.tap(
     //   find.descendant(
-    //     of: find.byType(Window), 
+    //     of: find.byType(Window),
     //     matching: find.widgetWithIcon(IconButton, Icons.close)
     //   )
     // );
@@ -113,5 +109,5 @@ Future<void> main() async {
     //@bleonard252: wait for Bash to be ready. if it errors, fail
     // I'll probably make more specific Terminal tests,
     // first that it opens, then how it reacts to different platforms
-  });/* }); */
+  }); /* }); */
 }
