@@ -13,6 +13,9 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
+
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'root-widget.dart';
 
@@ -117,56 +120,65 @@ class RootTerminalState extends State<RootTerminal>
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Color(0xFF212121),
-        appBar: PreferredSize(
-            preferredSize: Size.fromHeight(55.0), // here the desired height
-            child: AppBar(
-                elevation: 0.0,
-                backgroundColor: Colors.red[600],
-                bottom: PreferredSize(
-                    preferredSize:
-                        Size.fromHeight(55.0), // here the desired height
-                    child: new Row(
-                      children: [
-                        new Expanded(
-                            child: new Container(
-                          child: TabBar(
-                              controller: tabController,
-                              labelColor: Color(0xFFffffff),
-                              unselectedLabelColor: Colors.white,
-                              indicator: BoxDecoration(
-                                  borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(5),
-                                      topRight: Radius.circular(5)),
-                                  color: Color(0xFF212121)),
-                              tabs: tabs.map((tab) => tab).toList()),
-                        )),
-                        new Center(
-                          child: new IconButton(
-                              icon: Icon(Icons.add),
-                              color: Colors.white,
-                              onPressed: newTab),
-                        ),
-                        new Center(
-                          child: new IconButton(
-                              icon: Icon(Icons.play_arrow),
-                              color: Colors.white,
-                              onPressed: newTab),
-                        ),
-                        new Center(
-                          child: new IconButton(
-                              icon: Icon(Icons.more_vert),
-                              color: Colors.white,
-                              onPressed: newTab),
-                        )
-                      ],
-                    )) // A trick to trigger TabBar rebuild.
-                )),
-        body: TabBarView(
-          controller: tabController,
-          children: tabs.map((tab) => Terminal()).toList(),
-        ),
-      ),
+          backgroundColor: Color(0xFF212121),
+          appBar: PreferredSize(
+              preferredSize: Size.fromHeight(55.0), // here the desired height
+              child: AppBar(
+                  elevation: 0.0,
+                  backgroundColor: Colors.red[600],
+                  bottom: PreferredSize(
+                      preferredSize:
+                          Size.fromHeight(55.0), // here the desired height
+                      child: new Row(
+                        children: [
+                          new Expanded(
+                              child: new Container(
+                            child: TabBar(
+                                controller: tabController,
+                                labelColor: Color(0xFFffffff),
+                                unselectedLabelColor: Colors.white,
+                                indicator: BoxDecoration(
+                                    borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(5),
+                                        topRight: Radius.circular(5)),
+                                    color: Color(0xFF212121)),
+                                tabs: tabs.map((tab) => tab).toList()),
+                          )),
+                          new Center(
+                            child: new IconButton(
+                                icon: Icon(Icons.add),
+                                color: Colors.white,
+                                onPressed: newTab),
+                          ),
+                          new Center(
+                            child: new IconButton(
+                                icon: Icon(Icons.play_arrow),
+                                color: Colors.white,
+                                onPressed: newTab),
+                          ),
+                          new Center(
+                            child: new IconButton(
+                                icon: Icon(Icons.more_vert),
+                                color: Colors.white,
+                                onPressed: newTab),
+                          )
+                        ],
+                      )) // A trick to trigger TabBar rebuild.
+                  )),
+          body: Stack(
+            children: [
+              new Center(
+                child: new Text(
+                  "owo whats this",
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+              TabBarView(
+                controller: tabController,
+                children: tabs.map((tab) => Terminal()).toList(),
+              ),
+            ],
+          )),
     );
   }
 }
