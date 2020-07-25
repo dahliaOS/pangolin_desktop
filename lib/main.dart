@@ -53,7 +53,6 @@ import 'package:provider/provider.dart';
 import 'widgets/app_launcher.dart';
 import 'applications/calculator.dart';
 import 'applications/editor.dart';
-import 'applications/terminal.dart';
 import 'settings/settings.dart';
 import 'commons/key_ring.dart';
 import 'commons/functions.dart';
