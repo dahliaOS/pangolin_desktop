@@ -19,6 +19,7 @@ import 'dart:math';
 
 import 'package:Pangolin/applications/calculator.dart';
 import 'package:Pangolin/applications/editor.dart';
+import 'package:Pangolin/applications/terminal/main.dart';
 import 'package:Pangolin/applications/welcome.dart';
 import 'package:Pangolin/applications/monitor.dart';
 import 'package:Pangolin/applications/files.dart';
@@ -99,7 +100,7 @@ List<AppLauncherPanelButton> testLaunchers = [
   AppLauncherPanelButton(
       app: TextEditorApp(), icon: 'lib/images/icons/v2/compiled/notes.png'),
   AppLauncherPanelButton(
-      app: Terminal(), icon: 'lib/images/icons/v2/compiled/terminal.png'),
+      app: TerminalApp(), icon: 'lib/images/icons/v2/compiled/terminal.png'),
   AppLauncherPanelButton(
     icon: 'lib/images/icons/v2/compiled/files.png',
     appExists: false,
@@ -111,6 +112,7 @@ List<AppLauncherPanelButton> testLaunchers = [
 void main() async {
   //init hive
   WidgetsFlutterBinding.ensureInitialized();
+
   await Hive.initFlutter();
   //await Hive.openBox<String>("settings");
   Pangolin.settingsBox = await Hive.openBox("settings");
@@ -427,7 +429,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                             'lib/images/icons/v2/compiled/notes.png',
                                         callback: toggleCallback),
                                     AppLauncherPanelButton(
-                                        app: Terminal(),
+                                        app: TerminalApp(),
                                         icon:
                                             'lib/images/icons/v2/compiled/terminal.png',
                                         callback: toggleCallback),
@@ -489,7 +491,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         'lib/images/icons/v2/compiled/notes.png',
                                     callback: toggleCallback),
                                 AppLauncherPanelButton(
-                                    app: Terminal(),
+                                    app: TerminalApp(),
                                     icon:
                                         'lib/images/icons/v2/compiled/terminal.png',
                                     callback: toggleCallback),

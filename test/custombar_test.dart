@@ -72,7 +72,11 @@ Future<void> main() async {
     print("Testing Terminal"); // ---
     await tester.tap(find.byWidgetPredicate(
         (element) =>
+<<<<<<< HEAD
             (element is AppLauncherPanelButton && element.app is Terminal),
+=======
+            (element is AppLauncherPanelButton && element.app is TerminalApp),
+>>>>>>> 12f34814796d47df1fa6ebc42122e620281519f1
         description: "AppLauncherPanelButton that launches Terminal"));
     await tester.pump();
     //print((await tester.pumpAndSettle()).toString() + " frame(s) on animation!");

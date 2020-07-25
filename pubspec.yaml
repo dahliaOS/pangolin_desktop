@@ -34,6 +34,12 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   fonts:
+    - family: Cousine
+      fonts:
+        - asset: fonts/Cousine/Cousine-Bold.ttf
+        - asset: fonts/Cousine/Cousine-BoldItalic.ttf
+        - asset: fonts/Cousine/Cousine-Italic.ttf
+        - asset: fonts/Cousine/Cousine-Regular.ttf
     - family: Roboto
       fonts:
         - asset: fonts/Roboto/Roboto-Thin.ttf

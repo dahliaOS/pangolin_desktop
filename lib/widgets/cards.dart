@@ -20,7 +20,8 @@ import '../applications/calculator.dart';
 import '../applications/containers.dart';
 import '../applications/files.dart';
 import '../applications/editor.dart';
-import '../applications/terminal.dart';
+import '../applications/terminal/main.dart';
+import '../applications/terminal/root/main.dart';
 import '../applications/developer.dart';
 import '../settings/settings.dart';
 import '../applications/monitor.dart';
@@ -39,7 +40,7 @@ Expanded tileSection(BuildContext context) {
         padding: EdgeInsets.all(10.0),
         child: GridView.count(crossAxisCount: 5, children: [
           AppLauncherDrawerButton(
-            app: Terminal(),
+            app: TerminalApp(),
             icon: 'lib/images/icons/v2/compiled/terminal.png',
             label: local.get("app_terminal"),
             callback: toggleCallback,
@@ -56,7 +57,7 @@ Expanded tileSection(BuildContext context) {
               label: local.get("app_settings"),
               callback: toggleCallback),
           AppLauncherDrawerButton(
-              app: RootTerminal(),
+              app: RootTerminalApp(),
               icon: 'lib/images/icons/v2/compiled/root.png',
               label: local.get("app_rootterminal"),
               callback: toggleCallback),
