@@ -25,6 +25,7 @@ import 'package:Pangolin/settings/pages/genmanagement.dart';
 import 'package:Pangolin/settings/pages/security.dart';
 import 'package:Pangolin/settings/pages/sound.dart';
 import 'package:Pangolin/settings/pages/updates.dart';
+import 'package:Pangolin/themes/theme.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui';
 
@@ -62,34 +63,8 @@ class Settings extends StatelessWidget {
     return MaterialApp(
       title: 'Settings',
       theme: HiveManager().get("darkMode")
-          ? ThemeData.dark().copyWith(
-              sliderTheme: SliderThemeData(
-                activeTickMarkColor:
-                    Color(HiveManager().get("accentColorValue")),
-                thumbColor: Color(HiveManager().get("accentColorValue")),
-                activeTrackColor: Color(HiveManager().get("accentColorValue")),
-                inactiveTrackColor:
-                    Color(HiveManager().get("accentColorValue")).withAlpha(90),
-                inactiveTickMarkColor:
-                    Color(HiveManager().get("accentColorValue")),
-              ),
-              accentColor: Color(HiveManager().get("accentColorValue")),
-              primaryColor: Color(HiveManager().get("accentColorValue")),
-            )
-          : ThemeData.light().copyWith(
-              sliderTheme: SliderThemeData(
-                activeTickMarkColor:
-                    Color(HiveManager().get("accentColorValue")),
-                thumbColor: Color(HiveManager().get("accentColorValue")),
-                activeTrackColor: Color(HiveManager().get("accentColorValue")),
-                inactiveTrackColor:
-                    Color(HiveManager().get("accentColorValue")).withAlpha(90),
-                inactiveTickMarkColor:
-                    Color(HiveManager().get("accentColorValue")),
-              ),
-              accentColor: Color(HiveManager().get("accentColorValue")),
-              primaryColor: Color(HiveManager().get("accentColorValue")),
-            ),
+          ? Themes().darkOrange
+          : Themes().lightOrange,
       initialRoute: '/',
       routes: {
         // When navigating to the "/" route, build the FirstScreen widget.
