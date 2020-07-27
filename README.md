@@ -21,6 +21,9 @@ Pangolin Desktop
 ## What will happen to Pangolin once the kernel is ready?
 As soon as the kernel is ready to handle Pangolin, support for running Pangolin on any other system than Fuchsia and Dahlia Linux will be removed due to the deep integration the shell has with the underlying system. We will ensure that it will remain somewhat compatible with other systems, but we cannot ensure permanent compatibility with Android, IOS, Linux, Web, and Mac OS.
 
+## Why is it called Pangolin!?
+Well, its a desktop "shell", so we named it after an animal with a shell. no conspiracies here lol
+
 
 ## Important Style guide!
 All dahlia applications MUST have a central theme color, that is not #ff5722, or material-deeporange or similar, as that is reserved for the system. Uploaders must upload a theme.txt in the root of their application, that contains the theme color, in preferably hexadecimal, but RGBA is acceptable as well. Uncompliant applications will have their theme colors set to a random color.
