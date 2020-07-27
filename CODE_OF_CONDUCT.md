@@ -1,54 +1,85 @@
+# dahliaOS Code of Conduct
 
-* The use of sexualized language or imagery and unwelcome sexual attention or
- advances
-* Trolling, insulting/derogatory comments, and personal or political attacks
-* Public or private harassment
-* Publishing others' private information, such as a physical or electronic
- address, without explicit permission
-* Other conduct which could reasonably be considered inappropriate in a
- professional setting
+The dahliaOS team is committed to preserving and fostering a
+diverse, welcoming community. Below is our community code of conduct, which
+applies to our repos and organizations, issue trackers, Discord servers,
+blog content, and any other dahliaOS-supported communication group, as
+well as any private communication initiated in the context of these
+spaces. This code of conduct must be followed by everyone contributing to
+the dahliaOS project, regardless of affiliation or position.
 
-## Our Responsibilities
+Simply put, community discussions should be
 
-Project maintainers are responsible for clarifying the standards of acceptable
-behavior and are expected to take appropriate and fair corrective action in
-response to any instances of unacceptable behavior.
+ * respectful and kind;
+ * about software;
+ * about features and code, not the individuals involved.
 
-Project maintainers have the right and responsibility to remove, edit, or
-reject comments, commits, code, wiki edits, issues, and other contributions
-that are not aligned to this Code of Conduct, or to ban temporarily or
-permanently any contributor for other behaviors that they deem inappropriate,
-threatening, offensive, or harmful.
+## Be respectful and constructive.
 
-## Scope
+Treat everyone with respect. Build on each other's ideas. Each of us has the
+right to enjoy our experience and participate without fear of harassment,
+discrimination, or condescension, whether blatant or subtle. Remember that
+dahliaOS is a geographically distributed team and that you may not be
+communicating with someone in their primary language. We all get frustrated
+when working on hard problems, but we cannot allow that frustration to turn
+into personal attacks.
 
-This Code of Conduct applies both within project spaces and in public spaces
-when an individual is representing the project or its community. Examples of
-representing a project or community include using an official project e-mail
-address, posting via an official social media account, or acting as an appointed
-representative at an online or offline event. Representation of a project may be
-further defined and clarified by project maintainers.
+## Speak up if you see or hear something.
 
-## Enforcement
+You are empowered to politely engage when you feel that you or others are
+disrespected. The person making you feel uncomfortable may not be aware of what
+they are doing - politely bringing their behavior to their attention is
+encouraged.
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported by contacting the project team at contact@dahliaos.io. All
-complaints will be reviewed and investigated and will result in a response that
-is deemed necessary and appropriate to the circumstances. The project team is
-obligated to maintain confidentiality with regard to the reporter of an incident.
-Further details of specific enforcement policies may be posted separately.
+If you are uncomfortable speaking up, or feel that your concerns are not being
+duly considered, you can email the Project Integrity team at xxxxx@xxxxx.xx to request involvement from a moderator. All
+concerns shared with community managers will be kept confidential, but you may
+also submit an anonymous report [here](dahlia-os.github.io/anon).
+Please note that without a way to contact you, an anonymous report may be
+difficult to act on. You may also create a throwaway account to report. In
+cases where a public response is deemed necessary, the identities of victims
+and reporters will remain confidential unless those individuals instruct us
+otherwise.
 
-Project maintainers who do not follow or enforce the Code of Conduct in good
-faith may face temporary or permanent repercussions as determined by other
-members of the project's leadership.
+While all reports will be taken seriously, the Project Integrity Team may
+not act on complaints that they feel are not violations of this code of
+conduct.
 
-## Attribution
+## We will not tolerate harassment of any kind, including but not limited to:
 
-This Code of Conduct is adapted from the [Contributor Covenant][homepage], version 1.4,
-available at https://www.contributor-covenant.org/version/1/4/code-of-conduct.html
-This code of conduct is based apon the [Fuchsia code of conduct](https://fuchsia.googlesource.com/fuchsia/+/HEAD/CODE_OF_CONDUCT.md)
+ * Harassing comments
+ * Intimidation
+ * Encouraging a person to engage in self-harm.
+ * Sustained disruption or derailing of threads, channels, lists, etc.
+ * Offensive or violent comments, jokes or otherwise
+ * Inappropriate sexual content
+ * Unwelcome sexual or otherwise aggressive attention
+ * Continued one-on-one communication after requests to cease
+ * Distribution or threat of distribution of people's personally identifying
+   information, AKA “doxing”
 
-[homepage]: https://www.contributor-covenant.org
+## Consequences for failing to comply with this policy
 
-For answers to common questions about this code of conduct, see
-https://www.contributor-covenant.org/faq
+Consequences for failing to comply with this policy may include, at the sole
+discretion of the dahliaOS Project Integrity Team:
+
+ * a request for an apology;
+ * a private or public warning or reprimand;
+ * a temporary ban from the Discord server, blog, dahlia-os repository or
+   organization, or other dahliaOS-supported communication group, including
+   loss of committer status;
+ * a permanent ban from any of the above, or from all current and future
+   dahliaOS-supported communities, including loss of
+   committer status.
+
+Participants warned to stop any harassing behavior are expected to comply
+immediately; failure to do so will result in an escalation of consequences.
+
+## Acknowledgements
+
+This Code of Conduct is based on the Chromium Project Code of Conduct.
+
+## License
+
+This Code of Conduct is available for reuse under the Creative Commons Zero
+(CC0) license.
