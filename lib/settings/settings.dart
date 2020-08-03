@@ -62,9 +62,9 @@ class Settings extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Settings',
-      theme: HiveManager().get("darkMode")
+      /*theme: HiveManager().get("darkMode")
           ? Themes().darkOrange
-          : Themes().lightOrange,
+          : Themes().lightOrange,*/
       initialRoute: '/',
       routes: {
         // When navigating to the "/" route, build the FirstScreen widget.

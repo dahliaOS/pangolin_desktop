@@ -25,6 +25,7 @@ import 'package:Pangolin/applications/monitor.dart';
 import 'package:Pangolin/applications/files.dart';
 import 'package:Pangolin/localization/localization.dart';
 import 'package:Pangolin/settings/hiveManager.dart';
+import 'package:Pangolin/themes/theme.dart';
 import 'package:Pangolin/widgets/blur.dart';
 import 'package:Pangolin/widgets/conditionWidget.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -204,34 +205,16 @@ class _PangolinState extends State<Pangolin> {
   Widget build(BuildContext context) {
     //Gets DahliaOS UI set up in a familiar way.
     return ChangeNotifierProvider<WindowsData>(
-        create: (context) => provisionalWindowData,
-        child: KeyedSubtree(
+      create: (context) => provisionalWindowData,
+      child: KeyedSubtree(
           key: key,
-          child: DynamicTheme(
-              defaultBrightness: Brightness.light,
-              data: (Brightness brightness) => ThemeData(
-                    sliderTheme: SliderThemeData(
-                      activeTickMarkColor:
-                          Color(HiveManager().get("accentColorValue")),
-                      thumbColor: Color(HiveManager().get("accentColorValue")),
-                      activeTrackColor:
-                          Color(HiveManager().get("accentColorValue")),
-                      inactiveTrackColor:
-                          Color(HiveManager().get("accentColorValue"))
-                              .withAlpha(90),
-                      inactiveTickMarkColor:
-                          Color(HiveManager().get("accentColorValue")),
-                    ),
-                    accentColor: Color(HiveManager().get("accentColorValue")),
-                    brightness: brightness,
-                    canvasColor: Colors.black.withOpacity(0.5),
-                    primaryColor: Color(HiveManager().get("accentColorValue")),
-                  ),
-              loadBrightnessOnStart: true,
-              themedWidgetBuilder: (BuildContext context, ThemeData theme) {
+          child: ChangeNotifierProvider(
+            create: (_) => ThemeNotifier(),
+            child: Consumer(
+              builder: (context, ThemeNotifier notifier, child) {
                 return MaterialApp(
                   title: 'Pangolin Desktop',
-                  theme: theme,
+                  theme: notifier.theme,
                   home: MyHomePage(title: 'Pangolin Desktop'),
                   supportedLocales: [
                     Locale("en", "US"),
@@ -250,8 +233,10 @@ class _PangolinState extends State<Pangolin> {
                   ],
                   locale: Pangolin.locale,
                 );
-              }),
-        ));
+              },
+            ),
+          )),
+    );
   }
 }
 

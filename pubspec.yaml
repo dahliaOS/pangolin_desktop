@@ -9,7 +9,7 @@ dependencies:
   expressions: ^0.1.2
   json_annotation: ^2.0.0
   shared_preferences: ^0.5.7+3
-  provider: ^4.1.2
+  provider: ^4.3.1
   flutter_localizations:
     sdk: flutter
   hive: ^1.4.1+1

@@ -225,3 +225,12 @@ class Themes {
       primarySwatch: Colors.black,
       platform: TargetPlatform.android);
 }
+
+class ThemeNotifier extends ChangeNotifier {
+  ThemeData theme = Themes().darkAmber;
+  ToggleTheme(String themeName) {
+    if (themeName == null) {
+      themeName = "lightOrange";
+    }
+  }
+}
