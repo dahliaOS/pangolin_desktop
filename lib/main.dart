@@ -166,7 +166,7 @@ class _PangolinState extends State<Pangolin> {
         data: (Brightness brightness) => ThemeData(
           primarySwatch: Colors.deepOrange,
           accentColor: Colors.deepOrange,
-          brightness: brightness,
+          brightness: Brightness.light,
           canvasColor: Colors.black.withOpacity(0.5),
           primaryColor: const Color(0xFFff5722),
           platform: TargetPlatform.android,
@@ -232,7 +232,7 @@ class _MyHomePageState extends State<MyHomePage> {
         Container(
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("lib/images/Desktop/Dahlia/forest.jpg"),
+              image: AssetImage("lib/images/Desktop/Dahlia/mountain.jpg"),
               fit: BoxFit.cover,
             ),
           ),
