@@ -14,7 +14,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'dart:io';
+import 'dart:async';
 
 void main() {
   runApp(new Containers());
@@ -27,6 +31,7 @@ class Containers extends StatelessWidget {
       title: 'Containers',
       theme: new ThemeData(
         primarySwatch: Colors.blue,
+        platform: TargetPlatform.android,
       ),
       initialRoute: '/',
       routes: {
@@ -80,7 +85,135 @@ class FirstScreen extends StatelessWidget {
           new Center(
             child: Container(
                 width: 600,
-                
+                child: Card(
+                    color: Color(0xffffffff),
+                    elevation: 3,
+                    margin: EdgeInsets.all(10),
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Padding(
+                              padding: EdgeInsets.all(15.0),
+                              child: Image.asset(
+                                  'lib/images/icons/v2/compiled/fuchsia.png',
+                                  width: 32.0,
+                                  height: 32.0,
+                                  fit: BoxFit.fill)),
+                          Padding(
+                              padding: EdgeInsets.only(
+                                  left: 15.0,
+                                  right: 15.0,
+                                  top: 0.0,
+                                  bottom: 10.0),
+                              child: Text('Fuchsia (workstation.x64)',
+                                  style: TextStyle(
+                                    color: Color(0xff222222),
+                                    fontSize: 18.0,
+                                  ))),
+                          Padding(
+                              padding: EdgeInsets.only(
+                                  left: 15.0,
+                                  right: 15.0,
+                                  top: 0.0,
+                                  bottom: 10.0),
+                              child: Text('fuchsia.dev',
+                                  style: TextStyle(
+                                    color: Colors.blue,
+                                    fontSize: 15.0,
+                                  ))),
+                          new Container(
+                            child: new Center(
+                              child: Padding(
+                                  padding: EdgeInsets.only(
+                                      left: 15.0,
+                                      right: 15.0,
+                                      top: 0.0,
+                                      bottom: 0.0),
+                                  child: new Expanded(
+                                    child: new SingleChildScrollView(
+                                        scrollDirection:
+                                            Axis.vertical, //.horizontal
+                                        child: Text(
+                                            "This is an experimental Fuchsia VM for dahliaOS Linux. It is highly unstable and has no system acceleration yet. The VM can be started with the 'fimage' command. Due to certain system limitations, it is not interactive unless you use the 'xfimage' command. ",
+                                            style: TextStyle(
+                                              color: Color(0xff222222),
+                                              fontSize: 15.0,
+                                            ))),
+                                  )),
+                            ),
+                          ),
+                          new Center(
+                            child: Expanded(
+                              child: Center(
+                                  child: Row(
+                                mainAxisAlignment: MainAxisAlignment
+                                    .center, //Center Row contents horizontally,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  new Container(
+                                    padding: EdgeInsets.all(16.0),
+                                    child: new Column(
+                                      children: [
+                                        Center(
+                                            child: Icon(Icons.brightness_5,
+                                                size: 28,
+                                                color: Color(0xffff3b00))),
+                                        Center(child: Text('dahliaOS Verified'))
+                                      ],
+                                    ),
+                                  ),
+                                  new Container(
+                                    padding: EdgeInsets.all(16.0),
+                                    child: new Column(
+                                      children: [
+                                        Center(
+                                            child: Icon(Icons.developer_mode,
+                                                size: 28,
+                                                color: Colors.red[900])),
+                                        Center(child: Text('PRE-ALPHA'))
+                                      ],
+                                    ),
+                                  ),
+                                  new Container(
+                                    padding: EdgeInsets.all(16.0),
+                                    child: new Column(
+                                      children: [
+                                        Center(
+                                            child: Icon(Icons.file_download,
+                                                size: 28, color: Colors.blue)),
+                                        Center(child: Text('800MB'))
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              )),
+                            ),
+                          ),
+                          Align(
+                              child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                Padding(
+                                    padding: EdgeInsets.only(
+                                        top: 0.0, right: 20, bottom: 15),
+                                    child: RaisedButton(
+                                      onPressed: () {
+                                        Navigator.pushNamed(context, '/second');
+                                      },
+                                      elevation: 1.0,
+                                      color: Colors.blue[500],
+                                      child: Text('Install'),
+                                      textColor: Colors.white,
+                                    )),
+                              ]))
+                        ]))),
+          ),
+          new Center(
+            child: Container(
+                width: 600,
                 child: Card(
                     color: Color(0xffffffff),
                     elevation: 3,
@@ -167,9 +300,9 @@ class FirstScreen extends StatelessWidget {
                                       children: [
                                         Center(
                                             child: Icon(Icons.developer_board,
-                                                size: 28,
-                                                color: Colors.green)),
-                                        Center(child: Text('Developer Friendly'))
+                                                size: 28, color: Colors.green)),
+                                        Center(
+                                            child: Text('Developer Friendly'))
                                       ],
                                     ),
                                   ),
@@ -179,8 +312,7 @@ class FirstScreen extends StatelessWidget {
                                       children: [
                                         Center(
                                             child: Icon(Icons.file_download,
-                                                size: 28,
-                                                color: Colors.blue)),
+                                                size: 28, color: Colors.blue)),
                                         Center(child: Text('300MB'))
                                       ],
                                     ),
@@ -198,9 +330,7 @@ class FirstScreen extends StatelessWidget {
                                     padding: EdgeInsets.only(
                                         top: 0.0, right: 20, bottom: 15),
                                     child: RaisedButton(
-                                      onPressed: () {
-                                        Navigator.pushNamed(context, '/second');
-                                      },
+                                      onPressed: null,
                                       elevation: 1.0,
                                       color: Colors.blue[500],
                                       child: Text('Install'),
@@ -209,20 +339,9 @@ class FirstScreen extends StatelessWidget {
                               ]))
                         ]))),
           ),
-
-
-
-
-
-
-
-
-
-
-new Center(
+          new Center(
             child: Container(
                 width: 600,
-                
                 child: Card(
                     color: Color(0xffffffff),
                     elevation: 3,
@@ -309,9 +428,9 @@ new Center(
                                       children: [
                                         Center(
                                             child: Icon(Icons.developer_board,
-                                                size: 28,
-                                                color: Colors.green)),
-                                        Center(child: Text('Developer Friendly'))
+                                                size: 28, color: Colors.green)),
+                                        Center(
+                                            child: Text('Developer Friendly'))
                                       ],
                                     ),
                                   ),
@@ -321,8 +440,7 @@ new Center(
                                       children: [
                                         Center(
                                             child: Icon(Icons.file_download,
-                                                size: 28,
-                                                color: Colors.blue)),
+                                                size: 28, color: Colors.blue)),
                                         Center(child: Text('1.2GB'))
                                       ],
                                     ),
@@ -340,9 +458,7 @@ new Center(
                                     padding: EdgeInsets.only(
                                         top: 0.0, right: 20, bottom: 15),
                                     child: RaisedButton(
-                                      onPressed: () {
-                                        Navigator.pushNamed(context, '/second');
-                                      },
+                                      onPressed: null,
                                       elevation: 1.0,
                                       color: Colors.blue[500],
                                       child: Text('Install'),
@@ -351,14 +467,9 @@ new Center(
                               ]))
                         ]))),
           ),
-
-
-
-
-new Center(
+          new Center(
             child: Container(
                 width: 600,
-                
                 child: Card(
                     color: Color(0xffffffff),
                     elevation: 3,
@@ -444,7 +555,8 @@ new Center(
                                     child: new Column(
                                       children: [
                                         Center(
-                                            child: Icon(Icons.supervisor_account,
+                                            child: Icon(
+                                                Icons.supervisor_account,
                                                 size: 28,
                                                 color: Colors.green)),
                                         Center(child: Text('General Use'))
@@ -457,8 +569,7 @@ new Center(
                                       children: [
                                         Center(
                                             child: Icon(Icons.file_download,
-                                                size: 28,
-                                                color: Colors.blue)),
+                                                size: 28, color: Colors.blue)),
                                         Center(child: Text('1.5GB'))
                                       ],
                                     ),
@@ -476,9 +587,7 @@ new Center(
                                     padding: EdgeInsets.only(
                                         top: 0.0, right: 20, bottom: 15),
                                     child: RaisedButton(
-                                      onPressed: () {
-                                        Navigator.pushNamed(context, '/second');
-                                      },
+                                      onPressed: null,
                                       elevation: 1.0,
                                       color: Colors.blue[500],
                                       child: Text('Install'),
@@ -487,10 +596,6 @@ new Center(
                               ]))
                         ]))),
           )
-
-
-
-
         ]),
       ),
 
@@ -517,7 +622,6 @@ new Center(
               child: Text('Containers'),
               decoration: BoxDecoration(
                 color: Colors.blue,
-                
               ),
             ),
             ListTile(
@@ -540,7 +644,7 @@ new Center(
                 Navigator.pushNamed(context, '/second');
               },
             ),
-              ListTile(
+            ListTile(
               title: Text('Settings'),
               onTap: () {
                 // Update the state of the app
@@ -557,22 +661,163 @@ new Center(
   }
 }
 
+String value = "";
+
 class SecondScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Debian Container"),
+        title: Text("Fuchsia - Container Settings"),
       ),
-      body: Center(
-        child: RaisedButton(
-          onPressed: () {
-            // Navigate back to the first screen by popping the current route
-            // off the stack.
-            Navigator.pop(context);
-          },
-          child: Text('Go back!'),
-        ),
+      body: new SingleChildScrollView(
+        padding: new EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
+        scrollDirection: Axis.vertical,
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          new Center(
+            child: Container(
+                width: 600,
+                child: Card(
+                    color: Color(0xffffffff),
+                    elevation: 3,
+                    margin: EdgeInsets.all(10),
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Padding(
+                              padding: EdgeInsets.all(15.0),
+                              child: Image.asset(
+                                  'lib/images/icons/v2/compiled/fuchsia.png',
+                                  width: 32.0,
+                                  height: 32.0,
+                                  fit: BoxFit.fill)),
+                          Padding(
+                              padding: EdgeInsets.only(
+                                  left: 15.0,
+                                  right: 15.0,
+                                  top: 0.0,
+                                  bottom: 10.0),
+                              child: Text('Fuchsia (workstation.x64)',
+                                  style: TextStyle(
+                                    color: Color(0xff222222),
+                                    fontSize: 18.0,
+                                  ))),
+                          Padding(
+                              padding: EdgeInsets.only(
+                                  left: 15.0,
+                                  right: 15.0,
+                                  top: 0.0,
+                                  bottom: 10.0),
+                              child: Text('fuchsia.dev',
+                                  style: TextStyle(
+                                    color: Colors.blue,
+                                    fontSize: 15.0,
+                                  ))),
+                          new Container(
+                            child: new Center(
+                              child: Padding(
+                                  padding: EdgeInsets.only(
+                                      left: 15.0,
+                                      right: 15.0,
+                                      top: 0.0,
+                                      bottom: 0.0),
+                                  child: new Expanded(
+                                    child: new SingleChildScrollView(
+                                        scrollDirection:
+                                            Axis.vertical, //.horizontal
+                                        child: Text(
+                                            "This is an experimental Fuchsia VM for dahliaOS Linux. It is highly unstable and has no system acceleration yet. The VM can be started with the 'fimage' command. Due to certain system limitations, it is not interactive unless you use the 'xfimage' command. ",
+                                            style: TextStyle(
+                                              color: Color(0xff222222),
+                                              fontSize: 15.0,
+                                            ))),
+                                  )),
+                            ),
+                          ),
+                          new Center(
+                            child: Expanded(
+                                child: new Column(
+                              children: [
+                                new Container(
+                                    margin: EdgeInsets.fromLTRB(25, 25, 25, 10),
+                                    child: TextField(
+                                      keyboardType: TextInputType.number,
+                                      decoration: InputDecoration(
+                                          hintText: "1024 (AUTO)",
+                                          labelText: "Container Memory (MB)",
+                                          border: OutlineInputBorder(),
+                                          prefixIcon: Icon(Icons.memory)),
+                                      onChanged: (text) {
+                                        value = text;
+                                      },
+                                    )
+                                    //
+                                    )
+                              ],
+                            )),
+                          ),
+                          Align(
+                              child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                Padding(
+                                    padding: EdgeInsets.only(
+                                        top: 0.0, right: 20, bottom: 15),
+                                    child: RaisedButton(
+                                      onPressed: () {
+                                        showGeneralDialog(
+                                          barrierLabel: "Barrier",
+                                          barrierDismissible: true,
+                                          barrierColor:
+                                              Colors.black.withOpacity(0.5),
+                                          transitionDuration:
+                                              Duration(milliseconds: 120),
+                                          context: context,
+                                          pageBuilder: (_, __, ___) {
+                                            return AlertDialog(
+                                              title: Text(
+                                                  'Connect to the Internet'),
+                                              content: SingleChildScrollView(
+                                                child: ListBody(
+                                                  children: <Widget>[
+                                                    Text(
+                                                        'dahliaOS requires a wired connection in order to download the Fuchsia package.'),
+                                                    Text(
+                                                        'Connect to Ethernet before moving ahead..'),
+                                                  ],
+                                                ),
+                                              ),
+                                              actions: <Widget>[
+                                                FlatButton(
+                                                  child: Text('OK'),
+                                                  onPressed: () {
+                                                    Navigator.of(context).pop();
+                                                  },
+                                                ),
+                                              ],
+                                            );
+                                          },
+                                          transitionBuilder:
+                                              (_, anim, __, child) {
+                                            return FadeTransition(
+                                              opacity: anim,
+                                              child: child,
+                                            );
+                                          },
+                                        );
+                                      },
+                                      elevation: 1.0,
+                                      color: Colors.blue[500],
+                                      child: Text('Install'),
+                                      textColor: Colors.white,
+                                    )),
+                              ]))
+                        ]))),
+          ),
+        ]),
       ),
     );
   }
