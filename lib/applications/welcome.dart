@@ -369,10 +369,7 @@ class SocialMedia extends StatelessWidget {
           child: new SingleChildScrollView(
               padding: new EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
               scrollDirection: Axis.vertical,
-              child: new Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.center,
+              child: new Wrap(
                 children: [
                   /* new Image.asset(
                       
