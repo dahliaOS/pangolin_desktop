@@ -1,5 +1,5 @@
 /*
-Copyright 2019 The dahliaOS Authors
+Copyright 2020 The dahliaOS Authors
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -148,13 +148,13 @@ class FirstScreen extends StatelessWidget {
                   feature(
                       "lib/images/icons/v2/compiled/messages.png",
                       "Feedback",
-                      "Have an issue or a suggestion?",
+                      "Have an issue, suggestion, or a confused by somthing?",
                       "/feedback",
                       context),
                   feature(
                       "lib/images/icons/v2/compiled/social.png",
                       "Social media",
-                      "Check us out on nearly every platform!",
+                      "Check us out on nearly every connectable platform!",
                       "/social",
                       context),
                   feature(
