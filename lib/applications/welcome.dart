@@ -411,6 +411,11 @@ class SocialMedia extends StatelessWidget {
                     "https://reddit.com/r/dahliaos",
                   ),
                   socialItem(
+                    "lib/images/icons/v2/compiled/telegram.png",
+                    "Telegram",
+                    "https://t.me/dahliaos/",
+                  ),
+                  socialItem(
                     "lib/images/icons/v2/compiled/twitter.png",
                     "Twitter",
                     "https://twitter.com/realdahliaos",
