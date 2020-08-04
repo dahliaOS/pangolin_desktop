@@ -40,6 +40,9 @@ class Welcome extends StatelessWidget {
         // When navigating to the "/second" route, build the SecondScreen widget.
         '/info': (context) => BuildInfo(),
         '/feedback': (context) => Feedback(),
+        '/social': (context) => SocialMedia(),
+        '/credits': (context) => Credits(),
+        '/software': (context) => Software(),
       },
     );
   }
@@ -152,15 +155,19 @@ class FirstScreen extends StatelessWidget {
                       "lib/images/icons/v2/compiled/social.png",
                       "Social media",
                       "Check us out on nearly every platform!",
-                      "/info",
+                      "/social",
                       context),
-                  feature("lib/images/icons/v2/compiled/credits.png", "Credits",
-                      "See everyone who has helped out!", "/info", context),
+                  feature(
+                      "lib/images/icons/v2/compiled/credits.png",
+                      "Credits",
+                      "Here's everyone who helped make this happen!",
+                      "/credits",
+                      context),
                   feature(
                       "lib/images/icons/v2/compiled/software-shared.png",
                       "Software",
                       "View information about third-party software...",
-                      "/info",
+                      "/software",
                       context),
 
                   /* RaisedButton(
@@ -291,6 +298,191 @@ class Feedback extends StatelessWidget {
         shadowColor: const Color(0x00ffffff),
         title: new Text(
           "Feedback",
+          style: new TextStyle(color: Colors.black),
+        ),
+      ),
+      body: Center(
+        child: RaisedButton(
+          onPressed: () {
+            // Navigate back to the first screen by popping the current route
+            // off the stack.
+            Navigator.pop(context);
+          },
+          child: Text('Go back!'),
+        ),
+      ),
+    );
+  }
+}
+
+Container socialItem(String icon, String header, String main) {
+  return Container(
+      width: 512,
+      child: Card(
+        color: Color(0xffffffff),
+        elevation: 0,
+        margin: EdgeInsets.all(25),
+        child: InkWell(
+            splashColor: Colors.deepOrange.withAlpha(50),
+            child: Row(children: [
+              Center(
+                child: Container(
+                  margin: EdgeInsets.symmetric(horizontal: 10.0),
+                  child: Image.asset(
+                    icon,
+                    fit: BoxFit.cover,
+                    width: 64,
+                    height: 64,
+                  ),
+                ),
+              ),
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Text(header,
+                    style: TextStyle(
+                        fontSize: 18,
+                        color: Color(0xff222222),
+                        fontWeight: FontWeight.w600)),
+                Text(main,
+                    style: TextStyle(fontSize: 15, color: Color(0xff333333)))
+              ]),
+            ])),
+      ));
+}
+
+class SocialMedia extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        iconTheme: IconThemeData(
+          color: Colors.black, //change your color here
+        ),
+        backgroundColor: Colors.white,
+        shadowColor: const Color(0x00ffffff),
+        title: new Text(
+          "Social Media",
+          style: new TextStyle(color: Colors.black),
+        ),
+      ),
+      body: Center(
+          child: new SingleChildScrollView(
+              padding: new EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
+              scrollDirection: Axis.vertical,
+              child: new Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  /* new Image.asset(
+                      
+       'lib/images/logo-color.png',
+        fit: BoxFit.fitHeight,
+        
+        width: 300,
+       height:32,
+      ),*/
+
+                  socialItem(
+                    "lib/images/dahlia.png",
+                    "Official Website",
+                    "https://dahliaos.io",
+                  ),
+                  socialItem(
+                    "lib/images/icons/v2/compiled/discord.png",
+                    "Discord",
+                    "https://discord.gg/jwgS3t6",
+                  ),
+                  socialItem(
+                    "lib/images/icons/v2/compiled/facebook.png",
+                    "Facebook",
+                    "https://facebook.com/pg/officialdahliaos/",
+                  ),
+                  socialItem(
+                    "lib/images/icons/v2/compiled/github.png",
+                    "Github",
+                    "https://github.com/dahlia-os",
+                  ),
+                  socialItem(
+                    "lib/images/icons/v2/compiled/instagram.png",
+                    "Instagram",
+                    "https://instagram.com/officialdahliaos/",
+                  ),
+                  socialItem(
+                    "lib/images/icons/v2/compiled/reddit.png",
+                    "Reddit",
+                    "https://reddit.com/r/dahliaos",
+                  ),
+                  socialItem(
+                    "lib/images/icons/v2/compiled/twitter.png",
+                    "Twitter",
+                    "https://twitter.com/realdahliaos",
+                  ),
+
+                  /* RaisedButton(
+          child: Text('Launch screen'),
+          onPressed: () {
+            // Navigate to the second screen using a named route.
+            Navigator.pushNamed(context, '/second');
+          },
+        ),*/
+                  new Text(
+                    "    ",
+                    style: new TextStyle(
+                        fontSize: 36.0,
+                        color: const Color(0xFF000000),
+                        fontWeight: FontWeight.w400,
+                        fontFamily: "Sulphur Point"),
+                  ),
+                ],
+              ))),
+    );
+  }
+}
+
+class Credits extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        iconTheme: IconThemeData(
+          color: Colors.black, //change your color here
+        ),
+        backgroundColor: Colors.white,
+        shadowColor: const Color(0x00ffffff),
+        title: new Text(
+          "Credits",
+          style: new TextStyle(color: Colors.black),
+        ),
+      ),
+      body: Center(
+        child: RaisedButton(
+          onPressed: () {
+            // Navigate back to the first screen by popping the current route
+            // off the stack.
+            Navigator.pop(context);
+          },
+          child: Text('Go back!'),
+        ),
+      ),
+    );
+  }
+}
+
+class Software extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        iconTheme: IconThemeData(
+          color: Colors.black, //change your color here
+        ),
+        backgroundColor: Colors.white,
+        shadowColor: const Color(0x00ffffff),
+        title: new Text(
+          "Software",
           style: new TextStyle(color: Colors.black),
         ),
       ),
