@@ -33,6 +33,12 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   fonts:
+    - family: Sulphur Point
+      fonts:
+        - asset: fonts/SulphurPoint/SulphurPoint-Bold.ttf
+        - asset: fonts/SulphurPoint/SulphurPoint-Light.ttf
+        - asset: fonts/Cousine/Cousine-Italic.ttf
+        - asset: fonts/SulphurPoint/SulphurPoint-Regular.ttf
     - family: Cousine
       fonts:
         - asset: fonts/Cousine/Cousine-Bold.ttf
