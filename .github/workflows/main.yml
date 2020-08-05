@@ -7,26 +7,26 @@ on:
   pull_request:
     branches: [ master ]
 jobs:
-  build_android:
-    name: Build APK
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-java@v1
-      with:
-        java-version: '12.x'
-    - uses: subosito/flutter-action@v1
+  #build_android:
+    #name: Build APK
+    #runs-on: ubuntu-latest
+    #steps:
+    #- uses: actions/checkout@v2
+    #- uses: actions/setup-java@v1
+    #  with:
+    #    java-version: '12.x'
+    #- uses: subosito/flutter-action@v1
       #with:
         #channel: 'master' # beta, dev, alpha, default to: stable
         # flutter-version: '1.12.x'
-    - run: flutter pub get
-    - run: flutter test
-    - run: flutter build apk --debug --split-per-abi
-    - name: Upload APK for build_android
-      uses: actions/upload-artifact@v2
-      with:
-        name: pangolin_apk
-        path: build/app/outputs/apk/debug/
+    #- run: flutter pub get
+    #- run: flutter test
+    #- run: flutter build apk --debug --split-per-abi
+    #- name: Upload APK for build_android
+    #  uses: actions/upload-artifact@v2
+    #  with:
+    #    name: pangolin_apk
+    #    path: build/app/outputs/apk/debug/
   build_web:
     name: Build Web
     runs-on: ubuntu-latest
