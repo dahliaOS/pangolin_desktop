@@ -15,7 +15,7 @@ Check The Wiki:
 ## What Is Pangolin?
 Pangolin was named after a shelled animal like the armadillo ([armadillo ui](https://9to5google.com/2018/12/26/fuchsia-armadillo-ui-gone/)). Pangolin-Desktop is based on the deprecated Capybara shell, with a custom window management system built from the ground up.
 
-![Capybara UI Apk](https://user-images.githubusercontent.com/18690588/89375330-4a6e2580-d6a2-11ea-8e55-833d2754f825.png)
+![Capybara UI Apk](https://user-images.githubusercontent.com/61460660/89405582-1899a500-d71c-11ea-89a5-24b07fa07712.png)
 Pangolin Desktop
 
 ## What will happen to Pangolin once the kernel is ready?
