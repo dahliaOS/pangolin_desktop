@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class HiveManager {
   initializeHive() {
     createEntryIfNotExisting("darkMode", false);
-    createEntryIfNotExisting("enableBlur", false);
+    createEntryIfNotExisting("blur", true);
     createEntryIfNotExisting("accentColorName", "orange");
     createEntryIfNotExisting(
         "accentColorValue", Colors.deepOrangeAccent[400].value);

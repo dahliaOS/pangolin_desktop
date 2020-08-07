@@ -25,7 +25,7 @@ import 'package:Pangolin/applications/monitor.dart';
 import 'package:Pangolin/applications/files.dart';
 import 'package:Pangolin/localization/localization.dart';
 import 'package:Pangolin/settings/hiveManager.dart';
-import 'package:Pangolin/themes/theme.dart';
+import 'package:Pangolin/themes/customization_manager.dart';
 import 'package:Pangolin/widgets/blur.dart';
 import 'package:Pangolin/widgets/conditionWidget.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -209,12 +209,14 @@ class _PangolinState extends State<Pangolin> {
       child: KeyedSubtree(
           key: key,
           child: ChangeNotifierProvider(
-            create: (_) => ThemeNotifier(),
-            child: Consumer(
-              builder: (context, ThemeNotifier notifier, child) {
+            create: (_) => CustomizationNotifier(),
+            child: Consumer<CustomizationNotifier>(
+              builder: (context, CustomizationNotifier notifier, child) {
                 return MaterialApp(
                   title: 'Pangolin Desktop',
-                  theme: notifier.theme,
+                  theme: notifier.darkTheme
+                      ? Themes.dark(CustomizationNotifier().accent)
+                      : Themes.light(CustomizationNotifier().accent),
                   home: MyHomePage(title: 'Pangolin Desktop'),
                   supportedLocales: [
                     Locale("en", "US"),
@@ -264,115 +266,119 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final customizationNotifier = context.watch<CustomizationNotifier>();
     final _random = new Random();
-    return Scaffold(
-        body: Stack(
-      fit: StackFit.passthrough,
-      children: <Widget>[
-        // 1 - Desktop background image
-        Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(HiveManager().get("randomWallpaper")
-                  ? Pangolin
-                      .wallpapers[_random.nextInt(Pangolin.wallpapers.length)]
-                  : "lib/images/Desktop/Dahlia/forest.jpg"),
-              fit: BoxFit.cover,
+    return ChangeNotifierProvider(
+      create: (_) => CustomizationNotifier(),
+      child: Scaffold(
+          body: Stack(
+        fit: StackFit.passthrough,
+        children: <Widget>[
+          // 1 - Desktop background image
+          Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(HiveManager().get("randomWallpaper")
+                    ? Pangolin
+                        .wallpapers[_random.nextInt(Pangolin.wallpapers.length)]
+                    : "lib/images/Desktop/Dahlia/forest.jpg"),
+                fit: BoxFit.cover,
+              ),
             ),
           ),
-        ),
 
-        // 2 - Example usage of windows widgets
-        WindowPlaygroundWidget(),
-        /*Window(
-              initialPosition: Offset.fromDirection(350.0,-40.0),
-              initialSize: Size(355,628),
-              child: Container(
-                color: Colors.deepOrange[200],
-              ),
-              color: Colors.deepOrange
-            ),
-            Window(
-              initialPosition: Offset.fromDirection(350.0,-40.0),
-              initialSize: Size(355,628),
-              child: Container(color: Colors.deepPurple[200]),
-              color: Colors.deepPurple //Calculator(),
-            ),*/
-
-        // 3 - Launcher Panel
-        SystemOverlay(
-          key: KeyRing.launcherOverlayKey,
-          builder: (Animation<double> animation) => Center(
-            child: AnimatedBuilder(
-              animation: animation,
-              builder: (BuildContext context, Widget child) => FadeTransition(
-                opacity: _overlayOpacityTween.animate(animation),
-                child: SlideTransition(
-                  position: Tween(begin: Offset(0, 1), end: Offset(0, 0))
-                      .animate(animation),
-                  child: child,
+          // 2 - Example usage of windows widgets
+          WindowPlaygroundWidget(),
+          /*Window(
+                initialPosition: Offset.fromDirection(350.0,-40.0),
+                initialSize: Size(355,628),
+                child: Container(
+                  color: Colors.deepOrange[200],
                 ),
+                color: Colors.deepOrange
               ),
-              child: Container(
-                  padding: const EdgeInsets.all(0.0),
-                  alignment: Alignment.center,
-                  width: 1.7976931348623157e+308,
-                  height: 1.7976931348623157e+308,
-                  child: LauncherWidget() //Launcher(),
+              Window(
+                initialPosition: Offset.fromDirection(350.0,-40.0),
+                initialSize: Size(355,628),
+                child: Container(color: Colors.deepPurple[200]),
+                color: Colors.deepPurple //Calculator(),
+              ),*/
+
+          // 3 - Launcher Panel
+          SystemOverlay(
+            key: KeyRing.launcherOverlayKey,
+            builder: (Animation<double> animation) => Center(
+              child: AnimatedBuilder(
+                animation: animation,
+                builder: (BuildContext context, Widget child) => FadeTransition(
+                  opacity: _overlayOpacityTween.animate(animation),
+                  child: SlideTransition(
+                    position: Tween(begin: Offset(0, 1), end: Offset(0, 0))
+                        .animate(animation),
+                    child: child,
                   ),
-            ),
-          ),
-          callback: (bool visible) {
-            KeyRing.launcherToggleKey.currentState.toggled = visible;
-          },
-        ),
-
-        // 4 - Quick settings panel
-        SystemOverlay(
-          key: KeyRing.statusOverlayKey,
-          builder: (Animation<double> animation) => Positioned(
-            right: 5.0,
-            bottom: 55.0,
-            child: AnimatedBuilder(
-              animation: animation,
-              builder: (BuildContext context, Widget child) => FadeTransition(
-                opacity: _overlayOpacityTween.animate(animation),
-                child: ScaleTransition(
-                  scale: _overlayScaleTween.animate(animation),
-                  alignment: FractionalOffset.bottomRight,
-                  child: child,
                 ),
-              ),
-              child: Blur(
-                borderRadius: BorderRadius.circular(5.0),
-                child: Stack(children: [
-                  BackdropFilter(
-                    filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
-                    child: Container(
-                      decoration:
-                          BoxDecoration(color: Colors.black.withOpacity(0.75)),
-                      child: QuickSettings(),
+                child: Container(
+                    padding: const EdgeInsets.all(0.0),
+                    alignment: Alignment.center,
+                    width: 1.7976931348623157e+308,
+                    height: 1.7976931348623157e+308,
+                    child: LauncherWidget() //Launcher(),
                     ),
-                  ),
-                ]),
               ),
             ),
+            callback: (bool visible) {
+              KeyRing.launcherToggleKey.currentState.toggled = visible;
+            },
           ),
-          callback: (bool visible) {
-            KeyRing.statusToggleKey.currentState.toggled = visible;
-          },
-        ),
 
-        // 5 - The bottom bar
-        Positioned(
-          //change below values to 15 or something to give it a starlight-like look
-          left: 0.0,
-          right: 0.0,
-          bottom: 0.0,
-          child: GestureDetector(
-            behavior: HitTestBehavior.opaque,
-            onTap: hideOverlays,
-            child: Blur(
+          // 4 - Quick settings panel
+          SystemOverlay(
+            key: KeyRing.statusOverlayKey,
+            builder: (Animation<double> animation) => Positioned(
+              right: 5.0,
+              bottom: 55.0,
+              child: AnimatedBuilder(
+                animation: animation,
+                builder: (BuildContext context, Widget child) => FadeTransition(
+                  opacity: _overlayOpacityTween.animate(animation),
+                  child: ScaleTransition(
+                    scale: _overlayScaleTween.animate(animation),
+                    alignment: FractionalOffset.bottomRight,
+                    child: child,
+                  ),
+                ),
+                child: Blur(
+                  borderRadius: BorderRadius.circular(5.0),
+                  child: Stack(children: [
+                    BackdropFilter(
+                      filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: Colors.black.withOpacity(0.75)),
+                        child: QuickSettings(),
+                      ),
+                    ),
+                  ]),
+                ),
+              ),
+            ),
+            callback: (bool visible) {
+              KeyRing.statusToggleKey.currentState.toggled = visible;
+            },
+          ),
+
+          // 5 - The bottom bar
+          Positioned(
+            //change below values to 15 or something to give it a starlight-like look
+            left: 0.0,
+            right: 0.0,
+            bottom: 0.0,
+            child: GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              onTap: hideOverlays,
+              child: Blur(
+                blurRadius: customizationNotifier.blur ? 5.0 : 0.0,
                 child: Container(
                     //color: Color.fromARGB(150, 0, 0, 0),
                     decoration: BoxDecoration(
@@ -509,13 +515,15 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                         ],
                       ),
-                    ))),
+                    )),
+              ),
+            ),
           ),
-        ),
 
-        // WallpaperPicker(),
-      ],
-    ));
+          // WallpaperPicker(),
+        ],
+      )),
+    );
   }
 
   /*void _getTime() {

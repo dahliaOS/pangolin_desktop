@@ -1,7 +1,10 @@
+import 'package:Pangolin/quick_settings.dart';
 import 'package:Pangolin/settings/hiveManager.dart';
+import 'package:Pangolin/themes/customization_manager.dart';
 import 'package:Pangolin/widgets/conditionWidget.dart';
 import 'package:Pangolin/widgets/settingsTile.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../main.dart';
 
@@ -47,103 +50,85 @@ class _CustomizationState extends State<Customization> {
                         SizedBox(height: 5),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              buildAcctenColorButton(
-                                  "orange", Colors.deepOrangeAccent[400], () {
-                                setState(() {
-                                  HiveManager()
-                                      .set("accentColorName", "orange");
-                                  HiveManager().set("accentColorValue",
-                                      Colors.deepOrangeAccent[400].value);
-                                  Pangolin.restartApp(context);
-                                });
-                              }),
-                              buildAcctenColorButton(
-                                  "red", Colors.redAccent[700], () {
-                                setState(() {
-                                  HiveManager().set("accentColorName", "red");
-                                  HiveManager().set("accentColorValue",
-                                      Colors.redAccent[700].value);
-                                  Pangolin.restartApp(context);
-                                });
-                              }),
-                              buildAcctenColorButton(
-                                  "green", Colors.greenAccent[700], () {
-                                setState(() {
-                                  HiveManager().set("accentColorName", "green");
-                                  HiveManager().set("accentColorValue",
-                                      Colors.greenAccent[700].value);
-                                  Pangolin.restartApp(context);
-                                });
-                              }),
-                              buildAcctenColorButton(
-                                  "blue", Colors.blueAccent[700], () {
-                                setState(() {
-                                  HiveManager().set("accentColorName", "blue");
-                                  HiveManager().set("accentColorValue",
-                                      Colors.blueAccent[700].value);
-                                  Pangolin.restartApp(context);
-                                });
-                              }),
-                              buildAcctenColorButton(
-                                  "purple", Colors.purpleAccent[700], () {
-                                setState(() {
-                                  HiveManager()
-                                      .set("accentColorName", "purple");
-                                  HiveManager().set("accentColorValue",
-                                      Colors.purpleAccent[700].value);
-                                  Pangolin.restartApp(context);
-                                });
-                              }),
-                              buildAcctenColorButton(
-                                  "cyan", Colors.cyanAccent[700], () {
-                                setState(() {
-                                  HiveManager().set("accentColorName", "cyan");
-                                  HiveManager().set("accentColorValue",
-                                      Colors.cyanAccent[700].value);
-                                  Pangolin.restartApp(context);
-                                });
-                              }),
-                              buildAcctenColorButton(
-                                  "amber", Colors.amberAccent[700], () {
-                                setState(() {
-                                  HiveManager().set("accentColorName", "amber");
-                                  HiveManager().set("accentColorValue",
-                                      Colors.amberAccent[700].value);
-                                  Pangolin.restartApp(context);
-                                });
-                              }),
-                              buildAcctenColorButton("black", Colors.black, () {
-                                setState(() {
-                                  HiveManager().set("accentColorName", "black");
-                                  HiveManager().set(
-                                      "accentColorValue", Colors.black.value);
-                                  Pangolin.restartApp(context);
-                                });
-                              }),
-                              GestureDetector(
-                                onTap: () {
+                          child: Consumer<CustomizationNotifier>(
+                            builder: (context, notifier, child) => Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                buildAcctenColorButton(
+                                    Colors.deepOrangeAccent[400], () {
                                   setState(() {
-                                    HiveManager()
-                                        .set("accentColorName", "custom");
-                                    Pangolin.restartApp(context);
+                                    notifier.changeThemeColor(
+                                        Colors.deepOrangeAccent[400]);
                                   });
-                                },
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 8.0),
-                                  child: CircleAvatar(
-                                    backgroundColor: Colors.white,
-                                    child: Icon(
-                                      Icons.blur_on,
-                                      size: 30,
+                                }),
+                                buildAcctenColorButton(Colors.redAccent[700],
+                                    () {
+                                  setState(() {
+                                    notifier.changeThemeColor(
+                                        Colors.redAccent[700]);
+                                  });
+                                }),
+                                buildAcctenColorButton(Colors.greenAccent[700],
+                                    () {
+                                  setState(() {
+                                    notifier.changeThemeColor(
+                                        Colors.greenAccent[700]);
+                                  });
+                                }),
+                                buildAcctenColorButton(Colors.blueAccent[700],
+                                    () {
+                                  setState(() {
+                                    notifier.changeThemeColor(
+                                        Colors.blueAccent[700]);
+                                  });
+                                }),
+                                buildAcctenColorButton(Colors.purpleAccent[700],
+                                    () {
+                                  setState(() {
+                                    notifier.changeThemeColor(
+                                        Colors.purpleAccent[700]);
+                                  });
+                                }),
+                                buildAcctenColorButton(Colors.cyanAccent[700],
+                                    () {
+                                  setState(() {
+                                    notifier.changeThemeColor(
+                                        Colors.cyanAccent[700]);
+                                  });
+                                }),
+                                buildAcctenColorButton(Colors.amberAccent[700],
+                                    () {
+                                  setState(() {
+                                    notifier.changeThemeColor(
+                                        Colors.amberAccent[700]);
+                                  });
+                                }),
+                                buildAcctenColorButton(
+                                    !CustomizationNotifier().darkTheme
+                                        ? Colors.black
+                                        : Colors.white, () {
+                                  setState(() {
+                                    notifier.changeThemeColor(Colors.black);
+                                  });
+                                }),
+                                GestureDetector(
+                                  onTap: () {
+                                    notImplemented(context);
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 8.0),
+                                    child: CircleAvatar(
+                                      backgroundColor: Colors.white,
+                                      child: Icon(
+                                        Icons.blur_on,
+                                        size: 30,
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         )
                       ],
@@ -164,14 +149,15 @@ class _CustomizationState extends State<Customization> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text("Enable Blur Effects on the Desktop"),
-                            Switch(
-                              value: HiveManager().get("enableBlur"),
-                              onChanged: (bool state) {
-                                setState(() {
-                                  HiveManager().set("enableBlur", state);
-                                  Pangolin.restartApp(context);
-                                });
-                              },
+                            Consumer<CustomizationNotifier>(
+                              builder: (context, notifier, child) => Switch(
+                                value: HiveManager().get("blur"),
+                                onChanged: (bool state) {
+                                  setState(() {
+                                    notifier.toggleBlur(state);
+                                  });
+                                },
+                              ),
                             )
                           ],
                         )
@@ -194,14 +180,17 @@ class _CustomizationState extends State<Customization> {
                           children: [
                             Text(
                                 "Enable Dark Mode on the Desktop and all Apps"),
-                            Switch(
-                              value: HiveManager().get("darkMode"),
-                              onChanged: (bool state) {
-                                setState(() {
-                                  HiveManager().set("darkMode", state);
-                                  Pangolin.restartApp(context);
-                                });
-                              },
+                            Consumer<CustomizationNotifier>(
+                              builder: (context, notifier, child) => Switch(
+                                value: notifier.darkTheme,
+                                onChanged: (bool state) {
+                                  setState(() {
+                                    notifier.toggleThemeDarkMode(state);
+                                    //HiveManager().set("darkMode", state);
+                                    //Pangolin.restartApp(context);
+                                  });
+                                },
+                              ),
                             )
                           ],
                         )
@@ -296,19 +285,24 @@ class _CustomizationState extends State<Customization> {
   Color pickerColor = Color(0xff443a49);
   Color currentColor = Color(0xff443a49);
 
-  GestureDetector buildAcctenColorButton(
-      String name, Color color, Function onTap) {
+  GestureDetector buildAcctenColorButton(Color color, Function onTap) {
     return GestureDetector(
       onTap: onTap,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: CircleAvatar(
-          backgroundColor: color,
-          child: (HiveManager().get("accentColorName") == name)
-              ? Icon(Icons.blur_circular, color: Colors.white)
-              : Container(
-                  height: 0,
-                ),
+          backgroundColor: Colors.grey[350],
+          child: Padding(
+            padding: const EdgeInsets.all(3.0),
+            child: CircleAvatar(
+              backgroundColor: color,
+              child: (HiveManager().get("accentColorValue") == color.value)
+                  ? Icon(Icons.blur_circular, color: Colors.grey[200])
+                  : Container(
+                      height: 0,
+                    ),
+            ),
+          ),
         ),
       ),
     );

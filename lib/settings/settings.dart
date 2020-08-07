@@ -25,8 +25,9 @@ import 'package:Pangolin/settings/pages/genmanagement.dart';
 import 'package:Pangolin/settings/pages/security.dart';
 import 'package:Pangolin/settings/pages/sound.dart';
 import 'package:Pangolin/settings/pages/updates.dart';
-import 'package:Pangolin/themes/theme.dart';
+import 'package:Pangolin/themes/customization_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'dart:ui';
 
 import 'hiveManager.dart';
@@ -60,18 +61,24 @@ class Settings extends StatelessWidget {
   final Color customBackground = const Color(0xFFfafafa);*/
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Settings',
-      /*theme: HiveManager().get("darkMode")
-          ? Themes().darkOrange
-          : Themes().lightOrange,*/
-      initialRoute: '/',
-      routes: {
-        // When navigating to the "/" route, build the FirstScreen widget.
-        '/': (context) => SettingsPage(title: 'Settings'),
-        // When navigating to the "/second" route, build the SecondScreen widget.
-        '/second': (context) => SecondScreen(),
-      },
+    return ChangeNotifierProvider(
+      create: (_) => CustomizationNotifier(),
+      child: Consumer<CustomizationNotifier>(
+          builder: (context, CustomizationNotifier notifier, child) {
+        return MaterialApp(
+          title: 'Settings',
+          theme: notifier.darkTheme
+              ? Themes.dark(Colors.deepOrange)
+              : Themes.light(Colors.deepOrange),
+          initialRoute: '/',
+          routes: {
+            // When navigating to the "/" route, build the FirstScreen widget.
+            '/': (context) => SettingsPage(title: 'Settings'),
+            // When navigating to the "/second" route, build the SecondScreen widget.
+            '/second': (context) => SecondScreen(),
+          },
+        );
+      }),
     );
   }
 }
