@@ -60,49 +60,49 @@ class _CustomizationState extends State<Customization> {
                                     notifier.changeThemeColor(
                                         Colors.deepOrangeAccent[400]);
                                   });
-                                }),
+                                }, "Orange"),
                                 buildAcctenColorButton(Colors.redAccent[700],
                                     () {
                                   setState(() {
                                     notifier.changeThemeColor(
                                         Colors.redAccent[700]);
                                   });
-                                }),
+                                }, "Red"),
                                 buildAcctenColorButton(Colors.greenAccent[700],
                                     () {
                                   setState(() {
                                     notifier.changeThemeColor(
                                         Colors.greenAccent[700]);
                                   });
-                                }),
+                                }, "Green"),
                                 buildAcctenColorButton(Colors.blueAccent[700],
                                     () {
                                   setState(() {
                                     notifier.changeThemeColor(
                                         Colors.blueAccent[700]);
                                   });
-                                }),
+                                }, "Blue"),
                                 buildAcctenColorButton(Colors.purpleAccent[700],
                                     () {
                                   setState(() {
                                     notifier.changeThemeColor(
                                         Colors.purpleAccent[700]);
                                   });
-                                }),
+                                }, "Purple"),
                                 buildAcctenColorButton(Colors.cyanAccent[700],
                                     () {
                                   setState(() {
                                     notifier.changeThemeColor(
                                         Colors.cyanAccent[700]);
                                   });
-                                }),
+                                }, "Cyan"),
                                 buildAcctenColorButton(Colors.amberAccent[700],
                                     () {
                                   setState(() {
                                     notifier.changeThemeColor(
                                         Colors.amberAccent[700]);
                                   });
-                                }),
+                                }, "Amber"),
                                 buildAcctenColorButton(
                                     !CustomizationNotifier().darkTheme
                                         ? Colors.black
@@ -114,7 +114,10 @@ class _CustomizationState extends State<Customization> {
                                         : notifier
                                             .changeThemeColor(Colors.white);
                                   });
-                                }),
+                                },
+                                    !CustomizationNotifier().darkTheme
+                                        ? "Black"
+                                        : "White"),
                                 GestureDetector(
                                   onTap: () {
                                     notImplemented(context);
@@ -296,25 +299,29 @@ class _CustomizationState extends State<Customization> {
   Color pickerColor = Color(0xff443a49);
   Color currentColor = Color(0xff443a49);
 
-  GestureDetector buildAcctenColorButton(Color color, Function onTap) {
+  GestureDetector buildAcctenColorButton(
+      Color color, Function onTap, String name) {
     return GestureDetector(
       onTap: onTap,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
-        child: CircleAvatar(
-          backgroundColor: Colors.grey[350],
-          child: Padding(
-            padding: const EdgeInsets.all(3.0),
-            child: CircleAvatar(
-              backgroundColor: color,
-              child: (HiveManager().get("accentColorValue") == color.value)
-                  ? Icon(Icons.blur_circular,
-                      color: HiveManager().get("darkMode")
-                          ? Colors.black
-                          : Colors.white)
-                  : Container(
-                      height: 0,
-                    ),
+        child: Tooltip(
+          message: name,
+          child: CircleAvatar(
+            backgroundColor: Colors.grey[350],
+            child: Padding(
+              padding: const EdgeInsets.all(3.0),
+              child: CircleAvatar(
+                backgroundColor: color,
+                child: (HiveManager().get("accentColorValue") == color.value)
+                    ? Icon(Icons.blur_circular,
+                        color: HiveManager().get("darkMode")
+                            ? Colors.black
+                            : Colors.white)
+                    : Container(
+                        height: 0,
+                      ),
+              ),
             ),
           ),
         ),
