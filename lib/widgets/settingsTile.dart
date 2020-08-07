@@ -16,7 +16,7 @@ class SettingsTile extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),
           ),
-          color: notifier.darkTheme ? Colors.grey[900] : Colors.grey[100],
+          color: Theme.of(context).cardColor,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(

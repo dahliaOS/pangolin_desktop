@@ -10,12 +10,12 @@ class Themes {
       toggleableActiveColor: accent,
       primaryColor: accent,
       iconTheme: IconThemeData(color: Colors.grey[700]),
-      /*textTheme: TextTheme(
+      textTheme: TextTheme(
         headline5: TextStyle(color: Colors.black),
         bodyText1: TextStyle(color: Colors.black),
         bodyText2: TextStyle(color: Colors.black),
         caption: TextStyle(color: Colors.black),
-      ),*/
+      ),
       sliderTheme: SliderThemeData(
         activeTickMarkColor: accent,
         thumbColor: accent,
@@ -24,7 +24,7 @@ class Themes {
         inactiveTickMarkColor: accent,
       ),
       scaffoldBackgroundColor: Color.fromARGB(255, 247, 247, 247),
-      cardColor: Color.fromARGB(255, 255, 255, 255),
+      cardColor: Colors.grey[100],
       inputDecorationTheme: InputDecorationTheme(
           labelStyle: TextStyle(
             color: accent,
@@ -44,12 +44,12 @@ class Themes {
         primaryColor: accent,
         canvasColor: Color(0xff1B1B1D),
         iconTheme: IconThemeData(color: Colors.white),
-        /*textTheme: TextTheme(
+        textTheme: TextTheme(
           headline5: TextStyle(color: Colors.white),
           bodyText1: TextStyle(color: Colors.white),
           bodyText2: TextStyle(color: Colors.white),
           caption: TextStyle(color: Colors.white),
-        ),*/
+        ),
         sliderTheme: SliderThemeData(
           activeTickMarkColor: accent,
           thumbColor: accent,
@@ -58,7 +58,7 @@ class Themes {
           inactiveTickMarkColor: accent,
         ),
         toggleableActiveColor: accent,
-        cardColor: Color.fromARGB(255, 60, 60, 60),
+        cardColor: Colors.grey[900],
         inputDecorationTheme: InputDecorationTheme(
           labelStyle: TextStyle(
             color: accent,

@@ -258,7 +258,7 @@ class _SettingsPageState extends State<SettingsPage> {
                               height: 30,
                             ),
                             Material(
-                              color: Colors.grey[300],
+                              color: Theme.of(context).cardColor,
                               borderRadius: const BorderRadius.all(
                                   const Radius.circular(25)),
                               //elevation: 5.0,
@@ -278,7 +278,10 @@ class _SettingsPageState extends State<SettingsPage> {
                                       maxLines: 1,
                                       decoration: new InputDecoration(
                                           hintStyle: TextStyle(
-                                            color: Colors.grey[900],
+                                            color: Theme.of(context)
+                                                .textTheme
+                                                .bodyText1
+                                                .color,
                                             fontSize: 15,
                                           ),
                                           icon: Icon(
@@ -318,7 +321,10 @@ class _SettingsPageState extends State<SettingsPage> {
                                     borderRadius: BorderRadius.circular(10)),
                                 child: ListTile(
                                     dense: true,
-                                    title: Text(items[i].title),
+                                    title: Text(items[i].title,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText1),
                                     subtitle: Text(items[i].subtitle),
                                     leading: Icon(
                                       items[i].icon,
