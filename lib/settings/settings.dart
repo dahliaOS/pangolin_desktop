@@ -68,8 +68,8 @@ class Settings extends StatelessWidget {
         return MaterialApp(
           title: 'Settings',
           theme: notifier.darkTheme
-              ? Themes.dark(Colors.deepOrange)
-              : Themes.light(Colors.deepOrange),
+              ? Themes.dark(notifier.accent)
+              : Themes.light(notifier.accent),
           initialRoute: '/',
           routes: {
             // When navigating to the "/" route, build the FirstScreen widget.

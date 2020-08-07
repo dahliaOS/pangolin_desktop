@@ -108,7 +108,11 @@ class _CustomizationState extends State<Customization> {
                                         ? Colors.black
                                         : Colors.white, () {
                                   setState(() {
-                                    notifier.changeThemeColor(Colors.black);
+                                    !CustomizationNotifier().darkTheme
+                                        ? notifier
+                                            .changeThemeColor(Colors.black)
+                                        : notifier
+                                            .changeThemeColor(Colors.white);
                                   });
                                 }),
                                 GestureDetector(
@@ -186,6 +190,13 @@ class _CustomizationState extends State<Customization> {
                                 onChanged: (bool state) {
                                   setState(() {
                                     notifier.toggleThemeDarkMode(state);
+                                    if (notifier.darkTheme &&
+                                        notifier.accent == Colors.black) {
+                                      notifier.changeThemeColor(Colors.white);
+                                    } else if (!notifier.darkTheme &&
+                                        notifier.accent == Colors.white) {
+                                      notifier.changeThemeColor(Colors.black);
+                                    }
                                     //HiveManager().set("darkMode", state);
                                     //Pangolin.restartApp(context);
                                   });
@@ -297,7 +308,10 @@ class _CustomizationState extends State<Customization> {
             child: CircleAvatar(
               backgroundColor: color,
               child: (HiveManager().get("accentColorValue") == color.value)
-                  ? Icon(Icons.blur_circular, color: Colors.grey[200])
+                  ? Icon(Icons.blur_circular,
+                      color: HiveManager().get("darkMode")
+                          ? Colors.black
+                          : Colors.white)
                   : Container(
                       height: 0,
                     ),
