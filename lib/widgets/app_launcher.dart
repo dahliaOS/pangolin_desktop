@@ -18,6 +18,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../window/model.dart';
+import 'hover.dart';
 
 class AppLauncherPanelButton extends StatefulWidget {
   final Widget app;
@@ -47,54 +48,61 @@ class AppLauncherPanelButton extends StatefulWidget {
 class _AppLauncherPanelButtonState extends State<AppLauncherPanelButton> {
   bool _toggled = false;
 
+  void _onIconPressed() {
+    setState(() {
+      toggled = !_toggled;
+      widget._callback?.call(_toggled);
+    });
+    widget.appExists
+        ? Provider.of<WindowsData>(context, listen: false)
+            .add(child: widget.app, color: widget.color)
+        : showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              // return object of type Dialog
+              return AlertDialog(
+                  title: Text("Feature not implemented"),
+                  content: Text(
+                      "This feature is currently not available on your build of Pangolin. Please see https://reddit.com/r/dahliaos to check for updates."),
+                  actions: <Widget>[
+                    // usually buttons at the bottom of the dialog
+                    FlatButton(
+                        child: Text("OK"),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        })
+                  ]);
+            });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.max,
-      children: [
-        Expanded(
-            child: Opacity(
-          opacity: widget.appExists ? 1.0 : 0.4,
-          child: GestureDetector(
-            onTap: () {
-              setState(() {
-                toggled = !_toggled;
-                widget._callback?.call(_toggled);
-              });
-              widget.appExists
-                  ? Provider.of<WindowsData>(context, listen: false)
-                      .add(child: widget.app, color: widget.color)
-                  : showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        // return object of type Dialog
-                        return AlertDialog(
-                            title: new Text("Feature not implemented"),
-                            content: new Text(
-                                "This feature is currently not available on your build of Pangolin. Please see https://reddit.com/r/dahliaos to check for updates."),
-                            actions: <Widget>[
-                              // usually buttons at the bottom of the dialog
-                              new FlatButton(
-                                  child: new Text("OK"),
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  })
-                            ]);
-                      });
-            },
-            child: Container(
-              margin: EdgeInsets.symmetric(horizontal: 10.0),
-              child: Image.asset(
-                widget.icon,
-                fit: BoxFit.cover,
-                width: widget.childWidth,
-                height: widget.childHeight,
+    return Hover(builder: (context, animation) {
+      return Column(
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Expanded(
+              child: Opacity(
+            opacity: widget.appExists ? 1.0 : 0.4,
+            child: GestureDetector(
+              onTap: _onIconPressed,
+              child: ScaleTransition(
+                scale: Tween<double>(begin: 1, end: 1.15).animate(animation),
+                child: Container(
+                  margin: EdgeInsets.symmetric(horizontal: 10.0),
+                  child: Image.asset(
+                    widget.icon,
+                    fit: BoxFit.cover,
+                    width: widget.childWidth,
+                    height: widget.childHeight,
+                  ),
+                ),
               ),
             ),
-          ),
-        ))
-      ],
-    );
+          ))
+        ],
+      );
+    });
   }
 
   set toggled(bool value) {
@@ -135,63 +143,70 @@ class AppLauncherDrawerButton extends StatefulWidget {
 class AppLauncherDrawerButtonState extends State<AppLauncherDrawerButton> {
   bool _toggled = false;
 
+  void _onIconPressed() {
+    setState(() {
+      toggled = !_toggled;
+      widget._callback?.call(_toggled);
+    });
+
+    widget.appExists
+        ? Provider.of<WindowsData>(context, listen: false)
+            .add(child: widget.app, color: widget.color)
+        : showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              // return object of type Dialog
+              return AlertDialog(
+                  title: Text("Feature not implemented"),
+                  content: Text(
+                      "This feature is currently not available on your build of Pangolin. Please see https://reddit.com/r/dahliaos to check for updates."),
+                  actions: <Widget>[
+                    // usually buttons at the bottom of the dialog
+                    FlatButton(
+                        child: Text("OK"),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        })
+                  ]);
+            });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.max,
-      children: [
-        Opacity(
-          opacity: widget.appExists ? 1.0 : 0.4,
-          child: GestureDetector(
-            onTap: () {
-              setState(() {
-                toggled = !_toggled;
-                widget._callback?.call(_toggled);
-              });
-
-              widget.appExists
-                  ? Provider.of<WindowsData>(context, listen: false)
-                      .add(child: widget.app, color: widget.color)
-                  : showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        // return object of type Dialog
-                        return AlertDialog(
-                            title: new Text("Feature not implemented"),
-                            content: new Text(
-                                "This feature is currently not available on your build of Pangolin. Please see https://reddit.com/r/dahliaos to check for updates."),
-                            actions: <Widget>[
-                              // usually buttons at the bottom of the dialog
-                              new FlatButton(
-                                  child: new Text("OK"),
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  })
-                            ]);
-                      });
-            },
-            child: Container(
-              padding: EdgeInsets.all(0),
-              child: Image.asset(
-                widget.icon,
-                fit: BoxFit.cover,
-                width: widget.childWidth,
-                height: widget.childHeight,
+    return Hover(builder: (context, animation) {
+      return ScaleTransition(
+        scale: Tween<double>(begin: 1, end: 1.05).animate(animation),
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Opacity(
+              opacity: widget.appExists ? 1.0 : 0.4,
+              child: GestureDetector(
+                onTap: _onIconPressed,
+                child: Container(
+                  padding: EdgeInsets.all(0),
+                  child: Image.asset(
+                    widget.icon,
+                    fit: BoxFit.cover,
+                    width: widget.childWidth,
+                    height: widget.childHeight,
+                  ),
+                ),
               ),
             ),
-          ),
+            Text(
+              widget.label,
+              style: TextStyle(
+                fontSize: 15.0,
+                fontWeight: FontWeight.w400,
+                color: widget.appExists ? Colors.white : Colors.grey[700],
+              ),
+              textAlign: TextAlign.center,
+            )
+          ],
         ),
-        Text(
-          widget.label,
-          style: TextStyle(
-            fontSize: 15.0,
-            fontWeight: FontWeight.w400,
-            color: widget.appExists ? Colors.white : Colors.grey[700],
-          ),
-          textAlign: TextAlign.center,
-        )
-      ],
-    );
+      );
+    });
   }
 
   set toggled(bool value) {
