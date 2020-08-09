@@ -1,5 +1,5 @@
 /*
-Copyright 2019 The dahliaOS Authors
+Copyright 2020 The dahliaOS Authors
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -49,7 +49,7 @@ class SearchWidget extends StatelessWidget{
                     decoration: new InputDecoration(
                       hintStyle: TextStyle(color: Colors.white),
                       icon: Icon(Icons.search, color: const Color(0xFFffffff),),
-                      hintText: 'Search your device, apps, web...',
+                      hintText: 'Search your device, apps, documents, settings, web...',
                       border: InputBorder.none
                     ),
                     onSubmitted: null,
