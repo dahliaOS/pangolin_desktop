@@ -1,42 +1,65 @@
 {
-"terminal": {
-  "name": "Terminal",
-  "theme": "0xFFffa500",
-  "version": "1.0",
-  "icon": "images/icons/v2/terminal.svg",
-  "language": "EN-US",
-  "type": "system",
-  "author": "noah cain @ dahlia",
-  "path": "applications/terminal.dart"
-}, 
-"calculator": {
-  "name": "Calculator",
-  "theme": "0xFF4caf50",
-  "version": "1.0",
-  "icon": "imahes/icons/v2/calculator.png",
-  "language": "EN-US",
-  "type": "math",
-  "author": "horus @ dahlia",
-  "path": "applications/calculator.dart"
-},
-"notes": {
-  "name": "Notes",
-  "theme": "0xFFFFA000",
-  "version": "1.0",
-  "icon": "images/icons/v2/notes.png",
-  "language": "EN-US",
-  "type": "utilities",
-  "author": "horus @ dahlia",
-  "path": "applications/editor.dart"
-},
-"demo": {
-  "name": "demo",
-  "theme": "0xFFffa500",
-  "version": "1.0",
-  "icon": "null.png",
-  "language": "EN-US",
-  "type": "none",
-  "author": "demo",
-  "path": "null"
-}
+  "terminal": {
+    "name": "Terminal",
+    "theme": "0xFFffa500",
+    "version": "1.0",
+    "icon": "images/icons/v2/terminal.svg",
+    "type": "Utilities",
+    "author": "noah cain @ dahlia",
+    "path": "applications/terminal.dart"
+  },
+  "calculator": {
+    "name": "Calculator",
+    "theme": "0xFF4caf50",
+    "version": "1.0",
+    "icon": "imahes/icons/v2/calculator.png",
+    "type": "Utilities",
+    "author": "horus @ dahlia",
+    "path": "applications/calculator.dart"
+  },
+  "notes": {
+    "name": "Notes",
+    "theme": "0xFFFFA000",
+    "version": "1.0",
+    "icon": "images/icons/v2/notes.png",
+    "type": "Utilities",
+    "author": "horus @ dahlia",
+    "path": "applications/editor.dart"
+  },
+  "containers": {
+    "name": "containers",
+    "theme": "0xFF2196F3",
+    "version": "1.0",
+    "icon": "images/icons/v2/compiled/containers.png",
+    "type": "developer tools",
+    "author": "nmcain @ dahlia",
+    "path": "applications/containers.dart"
+  },
+  "developer options": {
+    "name": "Developer Options",
+    "theme": "0xFFf44336",
+    "version": "1.0",
+    "icon": "images/icons/v2/compiled/developer.png",
+    "type": "developer tools",
+    "author": "nmcain @ dahlia",
+    "path": "applications/developer.dart"
+  },
+  "files": {
+    "name": "File Manager",
+    "theme": "0xFF2196f3",
+    "version": "1.0",
+    "icon": "images/icons/v2/compiled/files.png",
+    "type": "utilities",
+    "author": "developer @ dahlia",
+    "path": "applications/files.dart"
+  },
+  "demo": {
+    "name": "demo",
+    "theme": "0xFFffa500",
+    "version": 1.0,
+    "icon": "null",
+    "type": "null",
+    "author": "demo app @ dahlia",
+    "path": "null"
+  }
 }
