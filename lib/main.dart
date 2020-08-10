@@ -134,18 +134,14 @@ class _PangolinState extends State<Pangolin> {
   @override
   void initState() {
     Pangolin.settingsBox = Hive.box("settings");
-    List<String> language = ["en", "US"];
-    getLangFromHive() {
-      if (Pangolin.settingsBox.get("language") == null) {
-        language = ["en", "US"];
-      } else {
-        language = Pangolin.settingsBox.get("language").split("_");
-      }
+    if (Pangolin.settingsBox.get("language").toString().length == 5) {
+      Pangolin.settingsBox.delete("language");
     }
-
-    getLangFromHive();
-
-    _locale = Locale(language[0], language[1]);
+    if (Pangolin.settingsBox.get("language") == null) {
+      _locale = Locale("en");
+    } else {
+      _locale = Locale(Pangolin.settingsBox.get("language"));
+    }
     super.initState();
   }
 
@@ -178,13 +174,13 @@ class _PangolinState extends State<Pangolin> {
             theme: theme,
             home: MyHomePage(title: 'Pangolin Desktop'),
             supportedLocales: [
-              Locale("en", "US"),
-              Locale("de", "DE"),
-              Locale("fr", "FR"),
-              Locale("pl", "PL"),
-              Locale("hr", "HR"),
-              Locale("nl", "BE"),
-              Locale("nl", "NL"),
+              Locale("en"),
+              Locale("de"),
+              Locale("fr"),
+              Locale("pl"),
+              Locale("hr"),
+              Locale("nl"),
+              Locale("nl"),
             ],
             localizationsDelegates: [
               Localization.delegate,

@@ -42,8 +42,11 @@ class QuickSettingsState extends State<QuickSettings> {
     Pangolin.settingsBox = Hive.box("settings");
     _timeString = _formatDateTime(DateTime.now(), 'hh:mm');
     _dateString = _formatDateTime(DateTime.now(), 'E, d MMMM yyyy');
-    if (!isTesting) Timer.periodic(Duration(milliseconds: 100), (Timer t) => _getTime(context));
-    else print("WARNING: Clock was disabled due to testing flag!");
+    if (!isTesting)
+      Timer.periodic(
+          Duration(milliseconds: 100), (Timer t) => _getTime(context));
+    else
+      print("WARNING: Clock was disabled due to testing flag!");
   }
 
   void _getTime(BuildContext context) {
@@ -122,15 +125,17 @@ class QuickSettingsState extends State<QuickSettings> {
           Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: SingleChildScrollView(scrollDirection: Axis.horizontal, child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(_timeString, style: biggerFont),
-                  //Icon(Icons.brightness_1, size: 10.0,color: Colors.white),
-                  Text('  •  ', style: biggerFont),
-                  Text(_dateString, style: biggerFont),
-                ],
-              )),
+              child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(_timeString, style: biggerFont),
+                      //Icon(Icons.brightness_1, size: 10.0,color: Colors.white),
+                      Text('  •  ', style: biggerFont),
+                      Text(_dateString, style: biggerFont),
+                    ],
+                  )),
             ),
           ),
           //Spacer(),
@@ -343,37 +348,33 @@ class QuickSettingsState extends State<QuickSettings> {
                     Pangolin.settingsBox.put("language", "en");
                   }*/
                   switch (Localizations.localeOf(context).toString()) {
-                    case "en_US":
-                      Pangolin.setLocale(context, Locale("de", "DE"));
-                      Pangolin.settingsBox.put("language", "de_DE");
+                    case "en":
+                      Pangolin.setLocale(context, Locale("de"));
+                      Pangolin.settingsBox.put("language", "de");
                       break;
-                    case "de_DE":
-                      Pangolin.setLocale(context, Locale("fr", "FR"));
-                      Pangolin.settingsBox.put("language", "fr_FR");
+                    case "de":
+                      Pangolin.setLocale(context, Locale("fr"));
+                      Pangolin.settingsBox.put("language", "fr");
                       break;
-                    case "fr_FR":
-                      Pangolin.setLocale(context, Locale("pl", "PL"));
-                      Pangolin.settingsBox.put("language", "pl_PL");
+                    case "fr":
+                      Pangolin.setLocale(context, Locale("pl"));
+                      Pangolin.settingsBox.put("language", "pl");
                       break;
-                    case "pl_PL":
-                      Pangolin.setLocale(context, Locale("hr", "HR"));
-                      Pangolin.settingsBox.put("language", "hr_HR");
+                    case "pl":
+                      Pangolin.setLocale(context, Locale("hr"));
+                      Pangolin.settingsBox.put("language", "hr");
                       break;
-                    case "hr_HR":
-                      Pangolin.setLocale(context, Locale("nl", "BE"));
-                      Pangolin.settingsBox.put("language", "nl_BE");
+                    case "hr":
+                      Pangolin.setLocale(context, Locale("nl"));
+                      Pangolin.settingsBox.put("language", "nl");
                       break;
-                    case "nl_BE":
-                      Pangolin.setLocale(context, Locale("nl", "NL"));
-                      Pangolin.settingsBox.put("language", "nl_NL");
-                      break;
-                    case "nl_NL":
-                      Pangolin.setLocale(context, Locale("en", "US"));
-                      Pangolin.settingsBox.put("language", "en_US");
+                    case "nl":
+                      Pangolin.setLocale(context, Locale("en"));
+                      Pangolin.settingsBox.put("language", "en");
                       break;
                     default:
-                      Pangolin.setLocale(context, Locale("en", "US"));
-                      Pangolin.settingsBox.put("language", "en_US");
+                      Pangolin.setLocale(context, Locale("en"));
+                      Pangolin.settingsBox.put("language", "en");
                       break;
                   }
                 }),
