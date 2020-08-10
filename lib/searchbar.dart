@@ -49,7 +49,7 @@ class SearchWidget extends StatelessWidget{
                     decoration: new InputDecoration(
                       hintStyle: TextStyle(color: Colors.white),
                       icon: Icon(Icons.search, color: const Color(0xFFffffff),),
-                      hintText: 'Search your device, apps, web...',
+                      hintText: 'Search your device, apps, documents, settings, web...',
                       border: InputBorder.none
                     ),
                     onSubmitted: null,
