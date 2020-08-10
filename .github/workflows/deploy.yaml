@@ -19,7 +19,7 @@ jobs:
           cd deploy
           git init
           git config --global user.email contact@dahliaos.io
-          git config --global user.name dahliaOS
+          git config --global user.name dahlia-os
           git status
           git remote add origin https://${{github.actor}}:${{secrets.GITHUB_TOKEN}}@github.com/dahlia-os/pangolin-desktop.git
           git fetch origin gh-pages
