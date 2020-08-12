@@ -14,6 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'package:Pangolin/commons/functions.dart';
 import 'package:flutter/material.dart';
 import '../model.dart';
 import 'model.dart';
@@ -269,6 +270,7 @@ class WindowState extends State<Window> {
                         child: GestureDetector(
                           onPanUpdate: (DragUpdateDetails details) {
                             setState(() {
+                              _windowMode = WindowMode.NORMAL_MODE;
                               var _newSize = _size + details.delta;
                               if (_newSize.width >= _minWidth &&
                                   _newSize.height >= _minHeight)
