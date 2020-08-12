@@ -122,13 +122,14 @@ class RootTerminalState extends State<RootTerminal>
       home: Scaffold(
           backgroundColor: Color(0xFF212121),
           appBar: PreferredSize(
-              preferredSize: Size.fromHeight(55.0), // here the desired height
+              preferredSize: Size.fromHeight(
+                  55.0), // here the desired height of the status bar
               child: AppBar(
                   elevation: 0.0,
                   backgroundColor: Colors.red[600],
                   bottom: PreferredSize(
-                      preferredSize:
-                          Size.fromHeight(55.0), // here the desired height
+                      preferredSize: Size.fromHeight(
+                          55.0), // here the desired height of the status bar
                       child: new Row(
                         children: [
                           new Expanded(

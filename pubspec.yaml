@@ -34,6 +34,12 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   fonts:
+    - family: Sulphur Point
+      fonts:
+        - asset: fonts/SulphurPoint/SulphurPoint-Bold.ttf
+        - asset: fonts/SulphurPoint/SulphurPoint-Light.ttf
+        - asset: fonts/Cousine/Cousine-Italic.ttf
+        - asset: fonts/SulphurPoint/SulphurPoint-Regular.ttf
     - family: Cousine
       fonts:
         - asset: fonts/Cousine/Cousine-Bold.ttf
@@ -101,10 +107,10 @@ flutter:
   - lib/images/icons/v2/compiled/
   - lib/images/logo-color.png
   - lib/images/dahlia.png
-  - lib/localization/languages/de-DE.json
-  - lib/localization/languages/en-US.json
-  - lib/localization/languages/fr-FR.json
-  - lib/localization/languages/pl-PL.json
-  - lib/localization/languages/hr-HR.json
-  - lib/localization/languages/nl-BE.json
-  - lib/localization/languages/nl-NL.json
+  - lib/localization/languages/de.json
+  - lib/localization/languages/en.json
+  - lib/localization/languages/fr.json
+  - lib/localization/languages/pl.json
+  - lib/localization/languages/hr.json
+  - lib/localization/languages/nl.json
+  - lib/localization/languages/es.json

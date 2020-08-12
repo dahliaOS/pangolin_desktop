@@ -351,37 +351,37 @@ class QuickSettingsState extends State<QuickSettings> {
                     Pangolin.settingsBox.put("language", "en");
                   }*/
                   switch (Localizations.localeOf(context).toString()) {
-                    case "en_US":
-                      Pangolin.setLocale(context, Locale("de", "DE"));
-                      Pangolin.settingsBox.put("language", "de_DE");
+                    case "en":
+                      Pangolin.setLocale(context, Locale("de"));
+                      Pangolin.settingsBox.put("language", "de");
                       break;
-                    case "de_DE":
-                      Pangolin.setLocale(context, Locale("fr", "FR"));
-                      Pangolin.settingsBox.put("language", "fr_FR");
+                    case "de":
+                      Pangolin.setLocale(context, Locale("fr"));
+                      Pangolin.settingsBox.put("language", "fr");
                       break;
-                    case "fr_FR":
-                      Pangolin.setLocale(context, Locale("pl", "PL"));
-                      Pangolin.settingsBox.put("language", "pl_PL");
+                    case "fr":
+                      Pangolin.setLocale(context, Locale("pl"));
+                      Pangolin.settingsBox.put("language", "pl");
                       break;
-                    case "pl_PL":
-                      Pangolin.setLocale(context, Locale("hr", "HR"));
-                      Pangolin.settingsBox.put("language", "hr_HR");
+                    case "pl":
+                      Pangolin.setLocale(context, Locale("hr"));
+                      Pangolin.settingsBox.put("language", "hr");
                       break;
-                    case "hr_HR":
-                      Pangolin.setLocale(context, Locale("nl", "BE"));
-                      Pangolin.settingsBox.put("language", "nl_BE");
+                    case "hr":
+                      Pangolin.setLocale(context, Locale("nl"));
+                      Pangolin.settingsBox.put("language", "nl");
                       break;
-                    case "nl_BE":
-                      Pangolin.setLocale(context, Locale("nl", "NL"));
-                      Pangolin.settingsBox.put("language", "nl_NL");
+                    case "nl":
+                      Pangolin.setLocale(context, Locale("es"));
+                      Pangolin.settingsBox.put("language", "es");
                       break;
-                    case "nl_NL":
-                      Pangolin.setLocale(context, Locale("en", "US"));
-                      Pangolin.settingsBox.put("language", "en_US");
+                    case "es":
+                      Pangolin.setLocale(context, Locale("en"));
+                      Pangolin.settingsBox.put("language", "en");
                       break;
                     default:
-                      Pangolin.setLocale(context, Locale("en", "US"));
-                      Pangolin.settingsBox.put("language", "en_US");
+                      Pangolin.setLocale(context, Locale("en"));
+                      Pangolin.settingsBox.put("language", "en");
                       break;
                   }
                 }),
