@@ -15,6 +15,7 @@ limitations under the License.
 */
 
 import 'package:Pangolin/main.dart';
+import 'package:Pangolin/settings/hiveManager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
@@ -62,7 +63,13 @@ class StatusTrayWidgetState extends State<StatusTrayWidget> {
   }
 
   String _formatDateTime(DateTime dateTime) {
-    return DateFormat('hh:mm').format(dateTime);
+    return HiveManager().get("showSeconds")
+        ? (HiveManager().get("enable24hTime")
+            ? DateFormat.Hms().format(dateTime)
+            : DateFormat('hh:mm:ss').format(dateTime))
+        : (HiveManager().get("enable24hTime")
+            ? DateFormat.Hm().format(dateTime)
+            : DateFormat('hh:mm').format(dateTime));
   }
 
   @override
@@ -73,9 +80,10 @@ class StatusTrayWidgetState extends State<StatusTrayWidget> {
           return new AnimatedBuilder(
             animation: animation,
             builder: (BuildContext context, Widget child) => new Container(
+              margin: EdgeInsets.symmetric(vertical: 4.0),
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               decoration: new BoxDecoration(
-                borderRadius: new BorderRadius.circular(4.0),
+                borderRadius: new BorderRadius.circular(50.0),
                 color: Colors.grey.withOpacity(
                     widget._backgroundOpacityTween.evaluate(animation)),
               ),
@@ -93,6 +101,11 @@ class StatusTrayWidgetState extends State<StatusTrayWidget> {
                         color: const Color(0xFFffffff), size: 20.0),
                     new Icon(Icons.battery_charging_full,
                         color: const Color(0xFFffffff), size: 20.0),
+                    VerticalDivider(
+                      thickness: 2,
+                      endIndent: 10,
+                      indent: 10,
+                    ),
                     Text(
                       _timeString,
                       style: TextStyle(fontSize: 20, color: Colors.white),

@@ -19,90 +19,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../window/model.dart';
 
-class AppLauncherPanelButton extends StatefulWidget {
-  final Widget app;
-  final String icon;
-  final bool appExists;
-  final bool customBar;
-  final double childHeight;
-  final double childWidth;
-  final ValueChanged<bool> _callback;
-
-  AppLauncherPanelButton(
-      {this.app,
-      this.icon,
-      this.appExists = true,
-      this.customBar = false,
-      this.childHeight = 35.0,
-      this.childWidth = 35.0,
-      callback})
-      : _callback = callback;
-
-  @override
-  _AppLauncherPanelButtonState createState() => _AppLauncherPanelButtonState();
-}
-
-class _AppLauncherPanelButtonState extends State<AppLauncherPanelButton> {
-  bool _toggled = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.max,
-      children: [
-        Expanded(
-            child: Opacity(
-          opacity: widget.appExists ? 1.0 : 0.4,
-          child: GestureDetector(
-            onTap: () {
-              setState(() {
-                toggled = !_toggled;
-                widget._callback?.call(_toggled);
-              });
-              widget.appExists
-                  ? Provider.of<WindowsData>(context, listen: false)
-                      .add(child: widget.app, color: Colors.grey[900])
-                  : showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        // return object of type Dialog
-                        return AlertDialog(
-                            title: new Text("Feature not implemented"),
-                            content: new Text(
-                                "This feature is currently not available on your build of Pangolin. Please see https://reddit.com/r/dahliaos to check for updates."),
-                            actions: <Widget>[
-                              // usually buttons at the bottom of the dialog
-                              new FlatButton(
-                                  child: new Text("OK"),
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  })
-                            ]);
-                      });
-            },
-            child: Container(
-              margin: EdgeInsets.symmetric(horizontal: 10.0),
-              child: Image.asset(
-                widget.icon,
-                fit: BoxFit.cover,
-                width: widget.childWidth,
-                height: widget.childHeight,
-              ),
-            ),
-          ),
-        ))
-      ],
-    );
-  }
-
-  set toggled(bool value) {
-    if (value == _toggled) {
-      return;
-    }
-  }
-}
-
-class AppLauncherDrawerButton extends StatefulWidget {
+class AppLauncherButton extends StatefulWidget {
   final Widget app;
   final String icon;
   final bool appExists;
@@ -110,12 +27,14 @@ class AppLauncherDrawerButton extends StatefulWidget {
   final double childHeight;
   final double childWidth;
   final String label;
+  final AppLauncherButtonType type;
   final ValueChanged<bool> _callback;
 
-  AppLauncherDrawerButton(
+  AppLauncherButton(
       {this.app,
       @required this.icon,
       this.label,
+      this.type = AppLauncherButtonType.TaskBar,
       this.appExists = true,
       this.customBar = true,
       this.childHeight = 64.0,
@@ -125,69 +44,102 @@ class AppLauncherDrawerButton extends StatefulWidget {
             callback; //This alien syntax must be syntactical glucose for a setter. Neato.
 
   @override
-  AppLauncherDrawerButtonState createState() => AppLauncherDrawerButtonState();
+  AppLauncherButtonState createState() => AppLauncherButtonState();
 }
 
-class AppLauncherDrawerButtonState extends State<AppLauncherDrawerButton> {
+class AppLauncherButtonState extends State<AppLauncherButton> {
   bool _toggled = false;
+  bool hover = false;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.max,
-      children: [
-        Opacity(
-          opacity: widget.appExists ? 1.0 : 0.4,
-          child: GestureDetector(
-            onTap: () {
-              setState(() {
-                toggled = !_toggled;
-                widget._callback?.call(_toggled);
-              });
+    return Container(
+        margin: (widget.type == AppLauncherButtonType.Drawer)
+            ? EdgeInsets.all(30.0)
+            : EdgeInsets.symmetric(horizontal: 8.0),
+        width: (widget.type == AppLauncherButtonType.Drawer) ? 64.0 : 39.0,
+        height: (widget.type == AppLauncherButtonType.Drawer) ? 64.0 : 39.0,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(30),
+            color: hover
+                ? (widget.appExists
+                    ? Colors.grey.withOpacity(0.3)
+                    : Colors.grey.withOpacity(0.1))
+                : Colors.grey.withOpacity(0.0)),
+        child: MouseRegion(
+          onEnter: (event) {
+            setState(() {
+              hover = true;
+            });
+          },
+          onExit: (event) {
+            setState(() {
+              hover = false;
+            });
+          },
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Opacity(
+                opacity: widget.appExists ? 1.0 : 0.4,
+                child: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      toggled = !_toggled;
+                      widget._callback?.call(_toggled);
+                    });
 
-              widget.appExists
-                  ? Provider.of<WindowsData>(context, listen: false)
-                      .add(child: widget.app, color: Colors.grey[900])
-                  : showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        // return object of type Dialog
-                        return AlertDialog(
-                            title: new Text("Feature not implemented"),
-                            content: new Text(
-                                "This feature is currently not available on your build of Pangolin. Please see https://reddit.com/r/dahliaos to check for updates."),
-                            actions: <Widget>[
-                              // usually buttons at the bottom of the dialog
-                              new FlatButton(
-                                  child: new Text("OK"),
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  })
-                            ]);
-                      });
-            },
-            child: Container(
-              padding: EdgeInsets.all(0),
-              child: Image.asset(
-                widget.icon,
-                fit: BoxFit.cover,
-                width: widget.childWidth,
-                height: widget.childHeight,
+                    widget.appExists
+                        ? Provider.of<WindowsData>(context, listen: false)
+                            .add(child: widget.app, color: Colors.grey[900])
+                        : showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              // return object of type Dialog
+                              return AlertDialog(
+                                  title: new Text("Feature not implemented"),
+                                  content: new Text(
+                                      "This feature is currently not available on your build of Pangolin. Please see https://reddit.com/r/dahliaos to check for updates."),
+                                  actions: <Widget>[
+                                    // usually buttons at the bottom of the dialog
+                                    new FlatButton(
+                                        child: new Text("OK"),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        })
+                                  ]);
+                            });
+                  },
+                  child: Container(
+                    child: Image.asset(
+                      widget.icon,
+                      fit: BoxFit.contain,
+                      width: (widget.type == AppLauncherButtonType.Drawer)
+                          ? 64.0
+                          : 34.0,
+                      height: (widget.type == AppLauncherButtonType.Drawer)
+                          ? 64.0
+                          : 34.0,
+                    ),
+                  ),
+                ),
               ),
-            ),
+              (widget.type == AppLauncherButtonType.Drawer)
+                  ? Text(
+                      widget.label,
+                      style: TextStyle(
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.w400,
+                        color:
+                            widget.appExists ? Colors.white : Colors.grey[700],
+                      ),
+                      textAlign: TextAlign.center,
+                    )
+                  : SizedBox.shrink(),
+            ],
           ),
-        ),
-        Text(
-          widget.label,
-          style: TextStyle(
-            fontSize: 15.0,
-            fontWeight: FontWeight.w400,
-            color: widget.appExists ? Colors.white : Colors.grey[700],
-          ),
-          textAlign: TextAlign.center,
-        )
-      ],
-    );
+        ));
   }
 
   set toggled(bool value) {
@@ -196,3 +148,5 @@ class AppLauncherDrawerButtonState extends State<AppLauncherDrawerButton> {
     }
   }
 }
+
+enum AppLauncherButtonType { Drawer, TaskBar }

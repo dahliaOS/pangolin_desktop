@@ -21,8 +21,7 @@ class LauncherToggleWidget extends StatelessWidget {
   LauncherToggleWidget({
     GlobalKey<ToggleState> toggleKey,
     ValueChanged<bool> callback,
-  })
-      : _toggleKey = toggleKey,
+  })  : _toggleKey = toggleKey,
         _callback = callback;
 
   @override
@@ -30,17 +29,16 @@ class LauncherToggleWidget extends StatelessWidget {
         key: _toggleKey,
         callback: _callback,
         builder: (Animation<double> animation) => new AspectRatio(
-              aspectRatio: 1.0,
-              child: new AnimatedBuilder(
-                animation: animation,
-                builder: (BuildContext context, Widget child) =>
-                    new CustomPaint(
-                      painter: new _Painter(
-                        _backgroundOpacityTween.evaluate(animation),
-                      ),
-                    ),
+          aspectRatio: 1.0,
+          child: new AnimatedBuilder(
+            animation: animation,
+            builder: (BuildContext context, Widget child) => new CustomPaint(
+              painter: new _Painter(
+                _backgroundOpacityTween.evaluate(animation),
               ),
             ),
+          ),
+        ),
       );
 }
 
@@ -51,11 +49,11 @@ class _Painter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final double radius = min(8.0, size.shortestSide / 2);
+    final double radius = min(10.0, size.shortestSide / 2);
     if (_backgroundOpacity > 0) {
       canvas.drawCircle(
         size.center(Offset.zero),
-        min(radius + 8.0, size.shortestSide),
+        min(radius + 10.0, size.shortestSide),
         new Paint()..color = Colors.grey.withOpacity(_backgroundOpacity),
       );
     }

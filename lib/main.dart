@@ -94,18 +94,18 @@ void _setOverlayVisibility({
   overlay.currentState.visible = visible;
 }
 
-List<AppLauncherPanelButton> testLaunchers = [
-  AppLauncherPanelButton(
+List<AppLauncherButton> testLaunchers = [
+  AppLauncherButton(
       app: Calculator(), icon: 'lib/images/icons/v2/compiled/calculator.png'),
-  AppLauncherPanelButton(
+  AppLauncherButton(
       app: TextEditorApp(), icon: 'lib/images/icons/v2/compiled/notes.png'),
-  AppLauncherPanelButton(
+  AppLauncherButton(
       app: TerminalApp(), icon: 'lib/images/icons/v2/compiled/terminal.png'),
-  AppLauncherPanelButton(
+  AppLauncherButton(
     icon: 'lib/images/icons/v2/compiled/files.png',
     appExists: false,
   ),
-  AppLauncherPanelButton(
+  AppLauncherButton(
       app: Settings(), icon: 'lib/images/icons/v2/compiled/settings.png'),
 ];
 
@@ -349,18 +349,21 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: child,
                   ),
                 ),
-                child: Blur(
-                  borderRadius: BorderRadius.circular(5.0),
-                  child: Stack(children: [
-                    BackdropFilter(
-                      filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: Colors.black.withOpacity(0.75)),
-                        child: QuickSettings(),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(15),
+                  child: Blur(
+                    borderRadius: BorderRadius.circular(5.0),
+                    child: Stack(children: [
+                      BackdropFilter(
+                        filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: Colors.black.withOpacity(0.75)),
+                          child: QuickSettings(),
+                        ),
                       ),
-                    ),
-                  ]),
+                    ]),
+                  ),
                 ),
               ),
             ),
@@ -388,7 +391,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       //borderRadius: BorderRadius.circular(100),
                     ),
                     height: 50.0,
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 2.0, horizontal: 8.0),
                     child: CustomConditionWidget(
                       HiveManager().get("centerTaskbar"),
                       Row(
@@ -408,39 +412,39 @@ class _MyHomePageState extends State<MyHomePage> {
                                   mainAxisSize: MainAxisSize.max,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
-                                    AppLauncherPanelButton(
+                                    AppLauncherButton(
                                       app: Calculator(),
                                       icon:
                                           'lib/images/icons/v2/compiled/calculator.png',
                                       callback: toggleCallback,
                                     ),
-                                    AppLauncherPanelButton(
+                                    AppLauncherButton(
                                         app: TextEditorApp(),
                                         icon:
                                             'lib/images/icons/v2/compiled/notes.png',
                                         callback: toggleCallback),
-                                    AppLauncherPanelButton(
+                                    AppLauncherButton(
                                         app: TerminalApp(),
                                         icon:
                                             'lib/images/icons/v2/compiled/terminal.png',
                                         callback: toggleCallback),
-                                    AppLauncherPanelButton(
+                                    AppLauncherButton(
                                         app: Files(),
                                         icon:
                                             'lib/images/icons/v2/compiled/files.png',
                                         callback: toggleCallback),
-                                    AppLauncherPanelButton(
+                                    AppLauncherButton(
                                       app: Tasks(),
                                       icon:
                                           'lib/images/icons/v2/compiled/task.png',
                                       callback: toggleCallback,
                                     ),
-                                    AppLauncherPanelButton(
+                                    AppLauncherButton(
                                         app: Settings(),
                                         icon:
                                             'lib/images/icons/v2/compiled/settings.png',
                                         callback: toggleCallback),
-                                    AppLauncherPanelButton(
+                                    AppLauncherButton(
                                         app: HisApp(),
                                         icon:
                                             'lib/images/icons/v2/compiled/theme.png',
@@ -470,38 +474,38 @@ class _MyHomePageState extends State<MyHomePage> {
                                   toggleKey: KeyRing.launcherToggleKey,
                                   callback: toggleCallback,
                                 ),
-                                AppLauncherPanelButton(
+                                AppLauncherButton(
                                   app: Calculator(),
                                   icon:
                                       'lib/images/icons/v2/compiled/calculator.png',
                                   callback: toggleCallback,
                                 ),
-                                AppLauncherPanelButton(
+                                AppLauncherButton(
                                     app: TextEditorApp(),
                                     icon:
                                         'lib/images/icons/v2/compiled/notes.png',
                                     callback: toggleCallback),
-                                AppLauncherPanelButton(
+                                AppLauncherButton(
                                     app: TerminalApp(),
                                     icon:
                                         'lib/images/icons/v2/compiled/terminal.png',
                                     callback: toggleCallback),
-                                AppLauncherPanelButton(
+                                AppLauncherButton(
                                     app: Files(),
                                     icon:
                                         'lib/images/icons/v2/compiled/files.png',
                                     callback: toggleCallback),
-                                AppLauncherPanelButton(
+                                AppLauncherButton(
                                   app: Tasks(),
                                   icon: 'lib/images/icons/v2/compiled/task.png',
                                   callback: toggleCallback,
                                 ),
-                                AppLauncherPanelButton(
+                                AppLauncherButton(
                                     app: Settings(),
                                     icon:
                                         'lib/images/icons/v2/compiled/settings.png',
                                     callback: toggleCallback),
-                                AppLauncherPanelButton(
+                                AppLauncherButton(
                                     app: HisApp(),
                                     icon:
                                         'lib/images/icons/v2/compiled/theme.png',

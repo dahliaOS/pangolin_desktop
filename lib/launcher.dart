@@ -80,12 +80,13 @@ class LauncherState extends State<LauncherWidget> {
           new Scaffold(
             body: Center(
               child: Column(
-                //mainAxisAlignment: MainAxisAlignment.top,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   new SearchWidget(),
+                  const SizedBox(height: 35),
                   new SingleChildScrollView(
                       padding: new EdgeInsets.only(
-                          left: 10.0, right: 10.0, top: 10.0),
+                          left: 10.0, right: 10.0, top: 5.0),
                       scrollDirection: Axis.horizontal,
                       child: new Row(children: <Widget>[
                         buildCard(
