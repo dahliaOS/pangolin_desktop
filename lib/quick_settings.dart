@@ -16,13 +16,17 @@ limitations under the License.
 
 import 'dart:ui';
 import 'dart:io';
+import 'package:Pangolin/commons/functions.dart';
 import 'package:Pangolin/localization/localization.dart';
 import 'package:Pangolin/settings/hiveManager.dart';
+import 'package:Pangolin/window/model.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'dart:async';
 import 'main.dart';
+import 'settings/settings.dart';
 import 'themes/dynamic_theme.dart';
 
 class QuickSettings extends StatefulWidget {
@@ -114,7 +118,7 @@ class QuickSettingsState extends State<QuickSettings> {
     Localization local = Localization.of(context);
     _getTime(context);
     const biggerFont = TextStyle(
-      fontSize: 15.0,
+      fontSize: 12.0,
       fontWeight: FontWeight.w400,
       color: Colors.white,
     );
@@ -144,7 +148,10 @@ class QuickSettingsState extends State<QuickSettings> {
           //Spacer(),
           //),
           new IconButton(
-            icon: const Icon(Icons.power_settings_new),
+            icon: const Icon(
+              Icons.power_settings_new,
+              size: 20,
+            ),
             onPressed: () {
               showGeneralDialog(
                 barrierLabel: "Barrier",
@@ -202,9 +209,14 @@ class QuickSettingsState extends State<QuickSettings> {
           ),
 
           new IconButton(
-            icon: const Icon(Icons.settings),
+            icon: const Icon(
+              Icons.settings,
+              size: 20,
+            ),
             onPressed: () {
-              notImplemented(context);
+              Provider.of<WindowsData>(context, listen: false)
+                  .add(child: Settings(), color: Colors.grey[900]);
+              hideOverlays();
             },
             color: const Color(0xFFffffff),
           ),
@@ -231,6 +243,7 @@ class QuickSettingsState extends State<QuickSettings> {
               children: <Widget>[
                 Icon(
                   Icons.brightness_6,
+                  size: 20,
                   color: Colors.white,
                 ),
                 Expanded(
@@ -251,7 +264,7 @@ class QuickSettingsState extends State<QuickSettings> {
                       style: TextStyle(
                         color: Colors.white,
                         letterSpacing: 1.2,
-                        fontSize: 15.0,
+                        fontSize: 12.0,
                       ),
                     ),
                   ),
@@ -263,6 +276,7 @@ class QuickSettingsState extends State<QuickSettings> {
               children: <Widget>[
                 Icon(
                   Icons.volume_up,
+                  size: 20,
                   color: Colors.white,
                 ),
                 Expanded(
@@ -284,7 +298,7 @@ class QuickSettingsState extends State<QuickSettings> {
                       style: TextStyle(
                         color: Colors.white,
                         letterSpacing: 1.2,
-                        fontSize: 15.0,
+                        fontSize: 12.0,
                       ),
                     ),
                   ),
@@ -300,10 +314,14 @@ class QuickSettingsState extends State<QuickSettings> {
         //mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          FloatingActionButton(
-            onPressed: onClick,
-            elevation: 0.0,
-            child: Icon(icon, color: Colors.white, size: 30.0),
+          SizedBox(
+            width: 50,
+            height: 50,
+            child: FloatingActionButton(
+              onPressed: onClick,
+              elevation: 0.0,
+              child: Icon(icon, color: Colors.white, size: 20.0),
+            ),
           ),
           Container(
             margin: EdgeInsets.only(top: 10),
@@ -323,10 +341,13 @@ class QuickSettingsState extends State<QuickSettings> {
           child: GridView.count(
               physics: BouncingScrollPhysics(),
               crossAxisCount: 4,
-              childAspectRatio: 2.5 / 4,
+              childAspectRatio: 3 / 4,
               children: [
-                buildTile(
-                    Icons.network_wifi, local.get("qs_wifi"), changeColor),
+                buildTile(Icons.network_wifi, local.get("qs_wifi"), () {
+                  setState(() {
+                    HiveManager().set("wifi", false);
+                  });
+                }),
                 buildTile(Icons.palette, local.get("qs_theme"), changeColor),
                 buildTile(Icons.battery_full, '85%', changeColor),
                 buildTile(
@@ -394,8 +415,8 @@ class QuickSettingsState extends State<QuickSettings> {
       //padding: const EdgeInsets.all(10.0),
       //alignment: Alignment.centerLeft,
       margin: EdgeInsets.all(15.0),
-      width: 375,
-      height: 600,
+      width: 320,
+      height: 500,
       child: Column(
         children: [topSection, sliderSection, tileSection],
       ),
