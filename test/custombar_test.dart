@@ -9,7 +9,7 @@ import 'dart:io';
 //import 'dart:ui' hide Window;
 
 import 'package:Pangolin/applications/files.dart';
-import 'package:Pangolin/applications/terminal.dart';
+import 'package:Pangolin/applications/terminal/main.dart';
 // import 'package:Pangolin/commons/functions.dart';
 // import 'package:Pangolin/launcher_toggle.dart';
 // import 'package:Pangolin/quick_settings.dart';
@@ -58,8 +58,7 @@ Future<void> main() async {
     expect(find.byType(ErrorWidget), findsNothing); //no error widgets here
     print("Testing Files");
     await tester.tap(find.byWidgetPredicate(
-        (element) =>
-            (element is AppLauncherPanelButton && element.app is Files),
+        (element) => (element is AppLauncherButton && element.app is Files),
         description: "Bottom bar app icon that opens the Files app"));
     await tester.pump();
     expect(find.byType(ErrorWidget), findsNothing); //no error widgets here
@@ -72,12 +71,8 @@ Future<void> main() async {
     print("Testing Terminal"); // ---
     await tester.tap(find.byWidgetPredicate(
         (element) =>
-<<<<<<< HEAD
-            (element is AppLauncherPanelButton && element.app is Terminal),
-=======
-            (element is AppLauncherPanelButton && element.app is TerminalApp),
->>>>>>> 12f34814796d47df1fa6ebc42122e620281519f1
-        description: "AppLauncherPanelButton that launches Terminal"));
+            (element is AppLauncherButton && element.app is TerminalApp),
+        description: "AppLauncherButton that launches Terminal"));
     await tester.pump();
     //print((await tester.pumpAndSettle()).toString() + " frame(s) on animation!");
     expect(find.byType(ErrorWidget), findsNothing); //no error widgets here
