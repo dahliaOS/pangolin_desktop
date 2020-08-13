@@ -123,7 +123,7 @@ class QuickSettingsState extends State<QuickSettings> {
       color: Colors.white,
     );
     Widget topSection = Container(
-      padding: EdgeInsets.all(10.0),
+      padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 5.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -235,7 +235,7 @@ class QuickSettingsState extends State<QuickSettings> {
     }
 
     Widget sliderSection = Container(
-        margin: EdgeInsets.fromLTRB(25, 0, 25, 10),
+        margin: EdgeInsets.fromLTRB(20, 0, 20, 10),
         child: Column(
           children: <Widget>[
             Row(
