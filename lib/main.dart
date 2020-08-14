@@ -390,7 +390,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       //uncomment below to add radius to the launcher panel
                       //borderRadius: BorderRadius.circular(100),
                     ),
-                    height: 50.0,
+                    height: 45.0,
                     padding: const EdgeInsets.symmetric(
                         vertical: 2.0, horizontal: 8.0),
                     child: CustomConditionWidget(
