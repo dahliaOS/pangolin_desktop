@@ -56,11 +56,13 @@ class AppLauncherButtonState extends State<AppLauncherButton> {
     return Container(
         margin: (widget.type == AppLauncherButtonType.Drawer)
             ? EdgeInsets.all(30.0)
-            : EdgeInsets.symmetric(horizontal: 8.0),
-        width: (widget.type == AppLauncherButtonType.Drawer) ? 64.0 : 39.0,
-        height: (widget.type == AppLauncherButtonType.Drawer) ? 64.0 : 39.0,
+            : EdgeInsets.symmetric(horizontal: 4.0),
+        width: (widget.type == AppLauncherButtonType.Drawer) ? 64.0 : 45.0,
+        height: (widget.type == AppLauncherButtonType.Drawer) ? 64.0 : 45.0,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(30),
+            borderRadius: (widget.type == AppLauncherButtonType.Drawer)
+                ? BorderRadius.circular(30)
+                : BorderRadius.circular(0),
             color: hover
                 ? (widget.appExists
                     ? Colors.grey.withOpacity(0.3)
