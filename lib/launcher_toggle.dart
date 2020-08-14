@@ -49,7 +49,7 @@ class _Painter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final double radius = min(10.0, size.shortestSide / 2);
+    final double radius = min(8.0, size.shortestSide / 2);
     if (_backgroundOpacity > 0) {
       canvas.drawCircle(
         size.center(Offset.zero),
