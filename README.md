@@ -1,5 +1,5 @@
 # Pangolin Desktop
-Status: ![](https://github.com/dahlia-os/pangolin-desktop/workflows/CI/badge.svg) ![gitlocalized ](https://gitlocalize.com/repo/5170/whole_project/badge.svg)
+Status: ![](https://github.com/dahlia-os/pangolin-desktop/workflows/CI/badge.svg) ![](https://github.com/dahlia-os/pangolin-desktop/workflows/Deploy/badge.svg) ![gitlocalized ](https://gitlocalize.com/repo/5170/whole_project/badge.svg)
 
 Latest APK: [download from gitlab](https://gitlab.com/dahlia-os/pangolin-desktop/-/jobs/artifacts/master/browse/build/app/outputs/apk/debug/?job=build_android)
 

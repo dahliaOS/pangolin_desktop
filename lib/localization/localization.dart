@@ -14,6 +14,7 @@ class Localization {
   }
 
   Map<String, String> _localizationValues;
+  Map<String, String> _localizationBackupValues;
 
   Future load() async {
     String jsonStringValues = await rootBundle
@@ -25,9 +26,23 @@ class Localization {
         mappedJson.map((key, value) => MapEntry(key, value.toString()));
   }
 
+  Future loadBackup() async {
+    String jsonStringValues =
+        await rootBundle.loadString("lib/localization/languages/en.json");
+
+    Map<String, dynamic> mappedJson = json.decode(jsonStringValues);
+
+    _localizationBackupValues =
+        mappedJson.map((key, value) => MapEntry(key, value.toString()));
+  }
+
   String get(String key) {
     if (_localizationValues[key] == null) {
-      return "Error";
+      if (_localizationBackupValues[key] == null) {
+        return "Error";
+      } else {
+        return _localizationBackupValues[key];
+      }
     } else {
       return _localizationValues[key];
     }
@@ -42,13 +57,15 @@ class _LocalizationDelegate extends LocalizationsDelegate<Localization> {
 
   @override
   bool isSupported(Locale locale) {
-    return ["en", "de", "fr", "pl", "hr", "nl"].contains(locale.languageCode);
+    return ["en", "de", "fr", "pl", "hr", "nl", "es"]
+        .contains(locale.languageCode);
   }
 
   @override
   Future<Localization> load(Locale locale) async {
     Localization localization = new Localization(locale);
     await localization.load();
+    await localization.loadBackup();
     return localization;
   }
 
