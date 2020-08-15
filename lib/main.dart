@@ -133,7 +133,7 @@ class _PangolinState extends State<Pangolin> {
 
   @override
   void initState() {
-    Pangolin.settingsBox = Hive.box("settings");
+    Pangolin.settingsBox = Pangolin.settingsBox ?? Hive.box("settings");
     if (Pangolin.settingsBox.get("language").toString().length == 5) {
       Pangolin.settingsBox.delete("language");
     }
