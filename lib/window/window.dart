@@ -132,7 +132,7 @@ class WindowState extends State<Window> {
       _prePosition = _position;
       _preSize = _size;
       _position = Offset(0, 0);
-      _size = Size(deviceSize.width, deviceSize.height - 50);
+      _size = Size(deviceSize.width, deviceSize.height - 45);
     });
   }
 
