@@ -188,27 +188,59 @@ class FirstScreen extends StatelessWidget {
           padding: EdgeInsets.zero,
           children: <Widget>[
             DrawerHeader(
-              child: Text('Welcome'),
+              child: Text('Welcome to dahliaOS'),
               decoration: BoxDecoration(
                 color: Colors.deepOrange[500],
               ),
             ),
             ListTile(
-              title: Text('Item 1'),
+              title: Text('Build Information'),
               onTap: () {
                 // Update the state of the app
                 // ...
-                // Then close the drawer
                 Navigator.pop(context);
+                Navigator.pushNamed(context, "/info");
+                //Navigator.pop(context);
               },
             ),
             ListTile(
-              title: Text('Item 2'),
+              title: Text('Feedback'),
               onTap: () {
                 // Update the state of the app
                 // ...
                 // Then close the drawer
                 Navigator.pop(context);
+                Navigator.pushNamed(context, "/feedback");
+              },
+            ),
+            ListTile(
+              title: Text('Social Media'),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                Navigator.pop(context);
+                Navigator.pushNamed(context, "/social");
+              },
+            ),
+            ListTile(
+              title: Text('Credits'),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                Navigator.pop(context);
+                Navigator.pushNamed(context, "/credits");
+              },
+            ),
+            ListTile(
+              title: Text('Software'),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                Navigator.pop(context);
+                Navigator.pushNamed(context, "/software");
               },
             ),
           ],
@@ -259,29 +291,75 @@ class BuildInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        iconTheme: IconThemeData(
-          color: Colors.black, //change your color here
+        appBar: AppBar(
+          centerTitle: true,
+          iconTheme: IconThemeData(
+            color: Colors.black, //change your color here
+          ),
+          backgroundColor: Colors.white,
+          shadowColor: const Color(0x00ffffff),
+          title: new Text(
+            "Build Information",
+            style: new TextStyle(color: Colors.black),
+          ),
         ),
-        backgroundColor: Colors.white,
-        shadowColor: const Color(0x00ffffff),
-        title: new Text(
-          "Build Information",
-          style: new TextStyle(color: Colors.black),
-        ),
-      ),
-      body: Center(
-        child: RaisedButton(
-          onPressed: () {
-            // Navigate back to the first screen by popping the current route
-            // off the stack.
-            Navigator.pop(context);
-          },
-          child: Text('Go back!'),
-        ),
-      ),
-    );
+        body: new Center(
+            child:
+                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          new Image.asset(
+            'lib/images/logo-color.png',
+            fit: BoxFit.fitHeight,
+            width: 300,
+            height: 32,
+          ),
+          Text('dahliaOS Linux-based 200830  PRE-RELEASE',
+              style: TextStyle(fontSize: 14, color: Color(0xff000000))),
+          Text('Kernel 5.6.15',
+              style: TextStyle(fontSize: 14, color: Color(0xff000000))),
+          Text('Pangolin 30be69cb6f5419febc27a67557efa6d256be67a4',
+              style: TextStyle(fontSize: 14, color: Color(0xff000000))),
+          RaisedButton(
+              onPressed: () {
+                final snackBar = SnackBar(
+                  behavior: SnackBarBehavior.floating,
+                  content: Text('See dahliaos.io for full release notes'),
+                  action: SnackBarAction(
+                    label: 'OK',
+                    onPressed: () {
+                      // Some code to undo the change.
+                    },
+                  ),
+                  width: 350,
+                  padding: const EdgeInsets.fromLTRB(15.0, 0.0, 5.0, 0.0),
+                );
+                /*final snackBar = SnackBar(
+                  behavior: SnackBarBehavior.floating,
+                  content: SizedBox(
+                      height: 50.0,
+                      width: 50,
+                      child: Container(
+                        child: Center(
+                            child: Text(
+                          "Connection dropped.",
+                          style: TextStyle(
+                              color: Colors.white, fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.center,
+                        )),
+                      )),
+                  duration: Duration(seconds: 10),
+                  backgroundColor: Colors.red,
+                  width: 250,
+                );*/
+
+                // Find the Scaffold in the widget tree and use
+                // it to show a SnackBar.
+                Scaffold.of(context).showSnackBar(snackBar);
+              },
+              elevation: 1,
+              color: Colors.deepOrange[600],
+              child: Text('RELEASE NOTES',
+                  style: TextStyle(fontSize: 14, color: Color(0xffffffff)))),
+        ])));
   }
 }
 
