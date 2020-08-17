@@ -142,7 +142,7 @@ class FirstScreen extends StatelessWidget {
                   feature(
                       "lib/images/icons/v2/compiled/welcome-info.png",
                       "Build Information",
-                      "dahliaOS Linux-Based 200806 ...",
+                      "dahliaOS Linux-Based 200830 ...",
                       "/info",
                       context),
                   feature(
@@ -188,7 +188,7 @@ class FirstScreen extends StatelessWidget {
           padding: EdgeInsets.zero,
           children: <Widget>[
             DrawerHeader(
-              child: Text('Welcome to dahliaOS'),
+              child: Text('Welcome to dahliaOS!'),
               decoration: BoxDecoration(
                 color: Colors.deepOrange[500],
               ),
@@ -287,6 +287,8 @@ class FirstScreen extends StatelessWidget {
   }
 }
 
+//double width = MediaQuery.of(context).size.width * MediaQuery.of(context).devicePixelRatio - 256;
+
 class BuildInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -322,16 +324,17 @@ class BuildInfo extends StatelessWidget {
               onPressed: () {
                 final snackBar = SnackBar(
                   behavior: SnackBarBehavior.floating,
-                  content: Text('See dahliaos.io for full release notes'),
+                  content: Text('See dahliaos.io for updates'),
                   action: SnackBarAction(
                     label: 'OK',
                     onPressed: () {
                       // Some code to undo the change.
                     },
                   ),
-                  width: 350,
-                  padding: const EdgeInsets.fromLTRB(15.0, 0.0, 5.0, 0.0),
+                  width: 300,
+                  padding: EdgeInsets.fromLTRB(15, 0, 5, 0),
                 );
+
                 /*final snackBar = SnackBar(
                   behavior: SnackBarBehavior.floating,
                   content: SizedBox(
@@ -380,15 +383,26 @@ class Feedback extends StatelessWidget {
         ),
       ),
       body: Center(
-        child: RaisedButton(
-          onPressed: () {
-            // Navigate back to the first screen by popping the current route
-            // off the stack.
-            Navigator.pop(context);
-          },
-          child: Text('Go back!'),
-        ),
-      ),
+          child: new Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text('We are always looking for ways we can improve!',
+              style: TextStyle(fontSize: 14, color: Color(0xff000000))),
+          Text('Please submit feedback to contact+feedback@dahliaos.io',
+              style: TextStyle(fontSize: 14, color: Color(0xff000000))),
+          Text(
+              'Experienced a bug? Report an issue at github.com/dahlia-os/releases',
+              style: TextStyle(fontSize: 14, color: Color(0xff000000))),
+          RaisedButton(
+            onPressed: () {
+              // Navigate back to the first screen by popping the current route
+              // off the stack.
+              Navigator.pop(context);
+            },
+            child: Text('BACK'),
+          ),
+        ],
+      )),
     );
   }
 }
@@ -520,33 +534,150 @@ class SocialMedia extends StatelessWidget {
   }
 }
 
+Container person(String icon, String header, String main) {
+  return Container(
+      width: 512,
+      child: Card(
+        color: Color(0xffffffff),
+        elevation: 0,
+        margin: EdgeInsets.all(25),
+        child: InkWell(
+            splashColor: Colors.deepOrange.withAlpha(50),
+            child: Row(children: [
+              Center(
+                child: new Padding(
+                  padding: EdgeInsets.fromLTRB(0, 0, 15, 0),
+                  child: CircleAvatar(
+                    radius: 32,
+                    backgroundColor: Color(0xff222222),
+                    child: CircleAvatar(
+                      radius: 30,
+                      backgroundImage: AssetImage(icon),
+                    ),
+                  ),
+                ),
+              ),
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Text(header,
+                    style: TextStyle(
+                        fontSize: 18,
+                        color: Color(0xff222222),
+                        fontWeight: FontWeight.w600)),
+                Text(main,
+                    style: TextStyle(fontSize: 15, color: Color(0xff333333)))
+              ]),
+            ])),
+      ));
+}
+
 class Credits extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        iconTheme: IconThemeData(
-          color: Colors.black, //change your color here
+        appBar: AppBar(
+          centerTitle: true,
+          iconTheme: IconThemeData(
+            color: Colors.black, //change your color here
+          ),
+          backgroundColor: Colors.white,
+          shadowColor: const Color(0x00ffffff),
+          title: new Text(
+            "Credits",
+            style: new TextStyle(color: Colors.black),
+          ),
         ),
-        backgroundColor: Colors.white,
-        shadowColor: const Color(0x00ffffff),
-        title: new Text(
-          "Credits",
-          style: new TextStyle(color: Colors.black),
-        ),
-      ),
-      body: Center(
-        child: RaisedButton(
-          onPressed: () {
-            // Navigate back to the first screen by popping the current route
-            // off the stack.
-            Navigator.pop(context);
-          },
-          child: Text('Go back!'),
-        ),
-      ),
-    );
+        body: new SingleChildScrollView(
+            padding: new EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
+            scrollDirection: Axis.vertical,
+            child: new Column(children: <Widget>[
+              Text("Thank you to everyone who made this dream into reality!",
+                  style: TextStyle(fontSize: 14, color: Color(0xff000000))),
+              Text("Want to help out? Find us at github.com/dahlia-os",
+                  style: TextStyle(fontSize: 14, color: Color(0xff000000))),
+              new Center(
+                child: new SingleChildScrollView(
+                    padding:
+                        new EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
+                    scrollDirection: Axis.vertical,
+                    child: new Wrap(children: <Widget>[
+                      person(
+                        "lib/images/people/bleonard.png",
+                        "Blake Leonard",
+                        "bleonard252",
+                      ),
+                      person(
+                        "lib/images/people/noah.jpeg",
+                        "Noah Cain",
+                        "nmcain",
+                      ),
+                      person(
+                        "lib/images/people/camden.jpeg",
+                        "Camden Bruce",
+                        "EnderNightLord-ChromeBook",
+                      ),
+                      person(
+                        "lib/images/people/faust.png",
+                        "Marin Heđeš",
+                        "SincerelyFaust",
+                      ),
+                      person(
+                        "lib/images/people/lars.jpeg",
+                        "Lars",
+                        "larsb24",
+                      ),
+                      person(
+                        "lib/images/people/horus.png",
+                        "Hackerman",
+                        "Horus125",
+                      ),
+                      person(
+                        "lib/images/people/haru.jpeg",
+                        "Kanou Haru",
+                        "kanouharu",
+                      ),
+                      person(
+                        "lib/images/people/nobody.png",
+                        "Nobody",
+                        "nobody5050",
+                      ),
+                      person(
+                        "lib/images/people/subspace.png",
+                        "Lucas Puntillo",
+                        "puntillol59",
+                      ),
+                      person(
+                        "lib/images/people/hexa.png",
+                        "Quinten",
+                        "HexaOneOfficial",
+                      ),
+                      person(
+                        "lib/images/people/x7.jpeg",
+                        "Syed Mushaheed",
+                        "predatorx7",
+                      ),
+                      person(
+                        "lib/images/people/vanzh.png",
+                        "V.",
+                        "xVanzh",
+                      ),
+                      person(
+                        "lib/images/people/funeoz.jpeg",
+                        "Funeoz",
+                        "Funeoz",
+                      ),
+                      person(
+                        "lib/images/people/fristover.png",
+                        "Fristover",
+                        "Fristover",
+                      ),
+                      person(
+                        "lib/images/dahlia.png",
+                        "And... you!",
+                        "Thanks for testing out this build!",
+                      ),
+                    ])),
+              )
+            ])));
   }
 }
 
