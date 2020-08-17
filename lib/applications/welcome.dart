@@ -124,7 +124,7 @@ class FirstScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   new Text(
-                    "Welcome to dahliaOS",
+                    "Welcome to dahliaOS!",
                     style: new TextStyle(
                         fontSize: 36.0,
                         color: const Color(0xFF000000),
