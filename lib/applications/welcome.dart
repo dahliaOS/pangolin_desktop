@@ -195,6 +195,7 @@ class FirstScreen extends StatelessWidget {
             ),
             ListTile(
               title: Text('Build Information'),
+              leading: Icon(Icons.info_outline),
               onTap: () {
                 // Update the state of the app
                 // ...
@@ -205,6 +206,7 @@ class FirstScreen extends StatelessWidget {
             ),
             ListTile(
               title: Text('Feedback'),
+              leading: Icon(Icons.comment),
               onTap: () {
                 // Update the state of the app
                 // ...
@@ -215,6 +217,7 @@ class FirstScreen extends StatelessWidget {
             ),
             ListTile(
               title: Text('Social Media'),
+              leading: Icon(Icons.share),
               onTap: () {
                 // Update the state of the app
                 // ...
@@ -225,6 +228,7 @@ class FirstScreen extends StatelessWidget {
             ),
             ListTile(
               title: Text('Credits'),
+              leading: Icon(Icons.people),
               onTap: () {
                 // Update the state of the app
                 // ...
@@ -235,6 +239,7 @@ class FirstScreen extends StatelessWidget {
             ),
             ListTile(
               title: Text('Software'),
+              leading: Icon(Icons.developer_board),
               onTap: () {
                 // Update the state of the app
                 // ...
