@@ -21,6 +21,7 @@ import '../applications/containers.dart';
 import '../applications/files.dart';
 import '../applications/editor.dart';
 import '../applications/terminal/main.dart';
+import '../applications/browser/main.dart';
 import '../applications/terminal/root/main.dart';
 import '../applications/developer.dart';
 import '../settings.dart';
@@ -121,7 +122,14 @@ Expanded tileSection(BuildContext context) {
               label: 'Developer Options',
               color: Colors.red[700],
               callback: toggleCallback),
+                AppLauncherDrawerButton(
+                  app: BrowserApp(),
+              icon: 'lib/images/icons/v2/compiled/web.png',
+              label: local.get("app_web"),
+              color: Colors.grey[500],
+              callback: toggleCallback),
           AppLauncherDrawerButton(
+            
               icon: 'lib/images/icons/v2/compiled/clock.png',
               label: local.get("app_clock"),
               appExists: false),
@@ -141,6 +149,7 @@ Expanded tileSection(BuildContext context) {
               icon: 'lib/images/icons/v2/compiled/help.png',
               label: local.get("app_help"),
               appExists: false),
+             
         ])),
   );
 }
