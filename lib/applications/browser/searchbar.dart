@@ -49,7 +49,7 @@ class SearchWidget extends StatelessWidget{
                     decoration: new InputDecoration(
                       hintStyle: TextStyle(color: Color(0xff333333)),
                       icon: Icon(Icons.search, color: const Color(0xff222222),),
-                      hintText: 'Search DuckDuckGo or type a URL',
+                      hintText: 'Search Duckduckgo, or type a URL',
                       border: InputBorder.none,
                     ),
                     onSubmitted: null,
