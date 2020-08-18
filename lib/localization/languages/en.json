@@ -17,6 +17,7 @@
   "app_themedemo": "Theme Demo",
   "app_welcome": "Welcome",
   "app_help": "Help",
+  "app_web": "Browser",
   "featurenotimplemented_title": "Feature not implemented",
   "featurenotimplemented_value": "This feature is currently not available on your build of Pangolin. Please see https://reddit.com/r/dahliaos to check for updates.",
   "launcher_card_information_title": "Information",
