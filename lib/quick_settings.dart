@@ -320,6 +320,10 @@ class QuickSettingsState extends State<QuickSettings> {
             child: FloatingActionButton(
               onPressed: onClick,
               elevation: 0.0,
+              disabledElevation: 0.0,
+              focusElevation: 0.0,
+              highlightElevation: 0.0,
+              hoverElevation: 0.0,
               child: Icon(icon, color: Colors.white, size: 20.0),
             ),
           ),
