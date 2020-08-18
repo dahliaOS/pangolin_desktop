@@ -686,6 +686,78 @@ class Credits extends StatelessWidget {
   }
 }
 
+class Item {
+  Item({
+    this.expandedValue,
+    this.headerValue,
+    this.isExpanded = false,
+  });
+
+  String expandedValue;
+  String headerValue;
+  bool isExpanded;
+}
+
+List<Item> generateItems(int numberOfItems) {
+  return List.generate(numberOfItems, (int index) {
+    return Item(
+      headerValue: 'Flutter',
+      expandedValue: 'BSD 3-Clause "New" or "Revised" License',
+    );
+    return Item(
+      headerValue: 'Hive',
+      expandedValue: 'Apache 2.0',
+    );
+  });
+}
+
+class SoftwareWidget extends StatefulWidget {
+  SoftwareWidget({Key key}) : super(key: key);
+
+  @override
+  _SoftwareWidgetState createState() => _SoftwareWidgetState();
+}
+
+class _SoftwareWidgetState extends State<SoftwareWidget> {
+  List<Item> _data = generateItems(8);
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Container(
+        child: _buildPanel(),
+      ),
+    );
+  }
+
+  Widget _buildPanel() {
+    return ExpansionPanelList(
+      expansionCallback: (int index, bool isExpanded) {
+        setState(() {
+          _data[index].isExpanded = !isExpanded;
+        });
+      },
+      children: _data.map<ExpansionPanel>((Item item) {
+        return ExpansionPanel(
+          headerBuilder: (BuildContext context, bool isExpanded) {
+            return ListTile(
+              title: Text(item.headerValue),
+            );
+          },
+          body: ListTile(
+              title: Text(item.expandedValue),
+              subtitle: Text('To view full license, tap the arrow'),
+              trailing: Icon(Icons.arrow_right),
+              onTap: () {
+                print("show licenese yes");
+              }),
+          isExpanded: item.isExpanded,
+        );
+      }).toList(),
+    );
+  }
+}
+
 class Software extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -703,15 +775,10 @@ class Software extends StatelessWidget {
         ),
       ),
       body: Center(
-        child: RaisedButton(
-          onPressed: () {
-            // Navigate back to the first screen by popping the current route
-            // off the stack.
-            Navigator.pop(context);
-          },
-          child: Text('Go back!'),
-        ),
-      ),
+          child: new SizedBox(
+        width: 800,
+        child: SoftwareWidget(),
+      )),
     );
   }
 }
