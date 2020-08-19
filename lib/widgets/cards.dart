@@ -15,6 +15,7 @@ limitations under the License.
 */
 
 import 'package:Pangolin/localization/localization.dart';
+import 'package:Pangolin/settings/hiveManager.dart';
 import 'package:flutter/material.dart';
 import '../applications/calculator.dart';
 import '../applications/containers.dart';
@@ -36,119 +37,122 @@ Expanded tileSection(BuildContext context) {
   Localization local = Localization.of(context);
   return Expanded(
     child: Container(
-        constraints: BoxConstraints(maxWidth: 1400),
+        constraints: BoxConstraints(
+            maxWidth: HiveManager.get("launcherWidth").toDouble()),
         padding: EdgeInsets.all(10.0),
-        child: GridView.count(crossAxisCount: 7, children: [
-          AppLauncherButton(
-            type: AppLauncherButtonType.Drawer,
-            app: TerminalApp(),
-            icon: 'lib/images/icons/v2/compiled/terminal.png',
-            label: local.get("app_terminal"),
-            callback: toggleCallback,
-          ),
-          AppLauncherButton(
-            type: AppLauncherButtonType.Drawer,
-            app: Tasks(),
-            icon: 'lib/images/icons/v2/compiled/task.png',
-            label: local.get("app_taskmanager"),
-            callback: toggleCallback,
-          ),
-          AppLauncherButton(
-              type: AppLauncherButtonType.Drawer,
-              app: Settings(),
-              icon: 'lib/images/icons/v2/compiled/settings.png',
-              label: local.get("app_settings"),
-              callback: toggleCallback),
-          AppLauncherButton(
-              type: AppLauncherButtonType.Drawer,
-              app: RootTerminalApp(),
-              icon: 'lib/images/icons/v2/compiled/root.png',
-              label: local.get("app_rootterminal"),
-              callback: toggleCallback),
-          AppLauncherButton(
-              type: AppLauncherButtonType.Drawer,
-              app: TextEditorApp(),
-              icon: 'lib/images/icons/v2/compiled/notes.png',
-              label: local.get("app_notes"),
-              callback: toggleCallback),
-          AppLauncherButton(
-              type: AppLauncherButtonType.Drawer,
-              icon: 'lib/images/icons/v2/compiled/note_mobile.png',
-              label: local.get("app_notesmobile"),
-              appExists: false),
-          AppLauncherButton(
-              type: AppLauncherButtonType.Drawer,
-              app: Logs(),
-              icon: 'lib/images/icons/v2/compiled/logs.png',
-              label: local.get("app_systemlogs"),
-              callback: toggleCallback),
-          AppLauncherButton(
-              type: AppLauncherButtonType.Drawer,
-              app: Files(),
-              icon: 'lib/images/icons/v2/compiled/files.png',
-              label: local.get("app_files"),
-              callback: toggleCallback),
-          AppLauncherButton(
-              type: AppLauncherButtonType.Drawer,
-              icon: 'lib/images/icons/v2/compiled/disks.png',
-              label: local.get("app_disks"),
-              appExists: false),
-          AppLauncherButton(
-              type: AppLauncherButtonType.Drawer,
-              app: Calculator(),
-              icon: 'lib/images/icons/v2/compiled/calculator.png',
-              label: local.get("app_calculator"),
-              callback: toggleCallback),
-          AppLauncherButton(
-              type: AppLauncherButtonType.Drawer,
-              app: Containers(),
-              icon: 'lib/images/icons/v2/compiled/containers.png',
-              label: local.get("app_containers"),
-              callback: toggleCallback),
-          AppLauncherButton(
-              type: AppLauncherButtonType.Drawer,
-              app: HisApp(),
-              icon: 'lib/images/icons/v2/compiled/theme.png',
-              label: local.get("app_themedemo"),
-              callback: toggleCallback),
-          AppLauncherButton(
-              type: AppLauncherButtonType.Drawer,
-              app: Welcome(),
-              icon: 'lib/images/dahlia.png',
-              label: local.get("app_welcome"),
-              callback: toggleCallback),
-          AppLauncherButton(
-              type: AppLauncherButtonType.Drawer,
-              app: DeveloperApp(),
-              icon: 'lib/images/icons/v2/compiled/developer.png',
-              label: 'Developer Options',
-              callback: toggleCallback),
-          AppLauncherButton(
-              type: AppLauncherButtonType.Drawer,
-              icon: 'lib/images/icons/v2/compiled/clock.png',
-              label: local.get("app_clock"),
-              appExists: false),
-          AppLauncherButton(
-              type: AppLauncherButtonType.Drawer,
-              icon: 'lib/images/icons/v2/compiled/messages.png',
-              label: local.get("app_messages"),
-              appExists: false),
-          AppLauncherButton(
-              type: AppLauncherButtonType.Drawer,
-              icon: 'lib/images/icons/v2/compiled/music.png',
-              label: local.get("app_music"),
-              appExists: false),
-          AppLauncherButton(
-              type: AppLauncherButtonType.Drawer,
-              icon: 'lib/images/icons/v2/compiled/photos.png',
-              label: local.get("app_media"),
-              appExists: false),
-          AppLauncherButton(
-              type: AppLauncherButtonType.Drawer,
-              icon: 'lib/images/icons/v2/compiled/help.png',
-              label: local.get("app_help"),
-              appExists: false),
-        ])),
+        child: GridView.count(
+            crossAxisCount: HiveManager.get("launcherSize").toInt(),
+            children: [
+              AppLauncherButton(
+                type: AppLauncherButtonType.Drawer,
+                app: TerminalApp(),
+                icon: 'lib/images/icons/v2/compiled/terminal.png',
+                label: local.get("app_terminal"),
+                callback: toggleCallback,
+              ),
+              AppLauncherButton(
+                type: AppLauncherButtonType.Drawer,
+                app: Tasks(),
+                icon: 'lib/images/icons/v2/compiled/task.png',
+                label: local.get("app_taskmanager"),
+                callback: toggleCallback,
+              ),
+              AppLauncherButton(
+                  type: AppLauncherButtonType.Drawer,
+                  app: Settings(),
+                  icon: 'lib/images/icons/v2/compiled/settings.png',
+                  label: local.get("app_settings"),
+                  callback: toggleCallback),
+              AppLauncherButton(
+                  type: AppLauncherButtonType.Drawer,
+                  app: RootTerminalApp(),
+                  icon: 'lib/images/icons/v2/compiled/root.png',
+                  label: local.get("app_rootterminal"),
+                  callback: toggleCallback),
+              AppLauncherButton(
+                  type: AppLauncherButtonType.Drawer,
+                  app: TextEditorApp(),
+                  icon: 'lib/images/icons/v2/compiled/notes.png',
+                  label: local.get("app_notes"),
+                  callback: toggleCallback),
+              AppLauncherButton(
+                  type: AppLauncherButtonType.Drawer,
+                  icon: 'lib/images/icons/v2/compiled/note_mobile.png',
+                  label: local.get("app_notesmobile"),
+                  appExists: false),
+              AppLauncherButton(
+                  type: AppLauncherButtonType.Drawer,
+                  app: Logs(),
+                  icon: 'lib/images/icons/v2/compiled/logs.png',
+                  label: local.get("app_systemlogs"),
+                  callback: toggleCallback),
+              AppLauncherButton(
+                  type: AppLauncherButtonType.Drawer,
+                  app: Files(),
+                  icon: 'lib/images/icons/v2/compiled/files.png',
+                  label: local.get("app_files"),
+                  callback: toggleCallback),
+              AppLauncherButton(
+                  type: AppLauncherButtonType.Drawer,
+                  icon: 'lib/images/icons/v2/compiled/disks.png',
+                  label: local.get("app_disks"),
+                  appExists: false),
+              AppLauncherButton(
+                  type: AppLauncherButtonType.Drawer,
+                  app: Calculator(),
+                  icon: 'lib/images/icons/v2/compiled/calculator.png',
+                  label: local.get("app_calculator"),
+                  callback: toggleCallback),
+              AppLauncherButton(
+                  type: AppLauncherButtonType.Drawer,
+                  app: Containers(),
+                  icon: 'lib/images/icons/v2/compiled/containers.png',
+                  label: local.get("app_containers"),
+                  callback: toggleCallback),
+              AppLauncherButton(
+                  type: AppLauncherButtonType.Drawer,
+                  app: HisApp(),
+                  icon: 'lib/images/icons/v2/compiled/theme.png',
+                  label: local.get("app_themedemo"),
+                  callback: toggleCallback),
+              AppLauncherButton(
+                  type: AppLauncherButtonType.Drawer,
+                  app: Welcome(),
+                  icon: 'lib/images/dahlia.png',
+                  label: local.get("app_welcome"),
+                  callback: toggleCallback),
+              AppLauncherButton(
+                  type: AppLauncherButtonType.Drawer,
+                  app: DeveloperApp(),
+                  icon: 'lib/images/icons/v2/compiled/developer.png',
+                  label: 'Developer Options',
+                  callback: toggleCallback),
+              AppLauncherButton(
+                  type: AppLauncherButtonType.Drawer,
+                  icon: 'lib/images/icons/v2/compiled/clock.png',
+                  label: local.get("app_clock"),
+                  appExists: false),
+              AppLauncherButton(
+                  type: AppLauncherButtonType.Drawer,
+                  icon: 'lib/images/icons/v2/compiled/messages.png',
+                  label: local.get("app_messages"),
+                  appExists: false),
+              AppLauncherButton(
+                  type: AppLauncherButtonType.Drawer,
+                  icon: 'lib/images/icons/v2/compiled/music.png',
+                  label: local.get("app_music"),
+                  appExists: false),
+              AppLauncherButton(
+                  type: AppLauncherButtonType.Drawer,
+                  icon: 'lib/images/icons/v2/compiled/photos.png',
+                  label: local.get("app_media"),
+                  appExists: false),
+              AppLauncherButton(
+                  type: AppLauncherButtonType.Drawer,
+                  icon: 'lib/images/icons/v2/compiled/help.png',
+                  label: local.get("app_help"),
+                  appExists: false),
+            ])),
   );
 }
 

@@ -14,6 +14,7 @@ class Customization extends StatefulWidget {
 }
 
 class _CustomizationState extends State<Customization> {
+  String _sliderText = HiveManager.get("launcherSize").toString();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -285,6 +286,19 @@ class _CustomizationState extends State<Customization> {
                               ],
                             )),
                       ],
+                    ),
+                    Slider(
+                      onChanged: (double value) {
+                        setState(() {
+                          HiveManager.set("launcherSize", value);
+                          _sliderText = value.toString();
+                        });
+                      },
+                      value: HiveManager.get("launcherSize").toDouble(),
+                      label: _sliderText,
+                      divisions: 2,
+                      min: 5,
+                      max: 7,
                     ),
                   ],
                 ),
