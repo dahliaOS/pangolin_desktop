@@ -13,7 +13,7 @@ class GeneralManagement extends StatefulWidget {
 String _selectedLanguage = Pangolin.settingsBox.get("languageName");
 
 class _GeneralManagementState extends State<GeneralManagement> {
-  List<String> languages = HiveManager().get("settingsLanguageSelectorList");
+  List<String> languages = HiveManager.get("settingsLanguageSelectorList");
 
   @override
   Widget build(BuildContext context) {
@@ -89,17 +89,17 @@ class _GeneralManagementState extends State<GeneralManagement> {
                           children: [
                             Text("Automatic Time"),
                             Switch(
-                              value: HiveManager().get("enableAutoTime"),
+                              value: HiveManager.get("enableAutoTime"),
                               onChanged: (bool state) {
                                 setState(() {
-                                  HiveManager().set("enableAutoTime", state);
+                                  HiveManager.set("enableAutoTime", state);
                                 });
                               },
                             )
                           ],
                         ),
                         ConditionWidget(
-                            !(HiveManager().get("enableAutoTime")),
+                            !(HiveManager.get("enableAutoTime")),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -112,7 +112,7 @@ class _GeneralManagementState extends State<GeneralManagement> {
                                   child: DropdownButton<String>(
                                     icon: Icon(null),
                                     hint: Text("Time"),
-                                    value: HiveManager().get("timeZoneName"),
+                                    value: HiveManager.get("timeZoneName"),
                                     items: languages.map((String value) {
                                       return DropdownMenuItem<String>(
                                         value: value,
@@ -135,10 +135,10 @@ class _GeneralManagementState extends State<GeneralManagement> {
                           children: [
                             Text("Show Seconds"),
                             Switch(
-                              value: HiveManager().get("showSeconds"),
+                              value: HiveManager.get("showSeconds"),
                               onChanged: (bool state) {
                                 setState(() {
-                                  HiveManager().set("showSeconds", state);
+                                  HiveManager.set("showSeconds", state);
                                 });
                               },
                             )
@@ -149,10 +149,10 @@ class _GeneralManagementState extends State<GeneralManagement> {
                           children: [
                             Text("Enable 24 Hour Time"),
                             Switch(
-                              value: HiveManager().get("enable24hTime"),
+                              value: HiveManager.get("enable24hTime"),
                               onChanged: (bool state) {
                                 setState(() {
-                                  HiveManager().set("enable24hTime", state);
+                                  HiveManager.set("enable24hTime", state);
                                 });
                               },
                             )
@@ -178,7 +178,7 @@ class _GeneralManagementState extends State<GeneralManagement> {
                           child: DropdownButton<String>(
                             icon: Icon(null),
                             hint: Text("Language"),
-                            value: HiveManager().get("keyboardLayoutName"),
+                            value: HiveManager.get("keyboardLayoutName"),
                             items: languages.map((String value) {
                               return DropdownMenuItem<String>(
                                 value: value,

@@ -25,7 +25,7 @@ class _BlurState extends State<Blur> {
           : widget.borderRadius,
       child: BackdropFilter(
         filter: (widget.blurRadius == null
-            ? (HiveManager().get("blur")
+            ? (HiveManager.get("blur")
                 ? ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0)
                 : ImageFilter.blur(sigmaX: 0.0, sigmaY: 0.0))
             : ImageFilter.blur(

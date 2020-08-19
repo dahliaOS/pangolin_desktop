@@ -394,7 +394,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     padding: const EdgeInsets.symmetric(
                         vertical: 2.0, horizontal: 8.0),
                     child: CustomConditionWidget(
-                      HiveManager().get("centerTaskbar"),
+                      HiveManager.get("centerTaskbar"),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [

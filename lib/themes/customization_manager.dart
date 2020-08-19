@@ -86,13 +86,13 @@ class CustomizationNotifier extends ChangeNotifier {
 
   changeThemeColor(Color color) {
     accent = color;
-    HiveManager().set("accentColorValue", color.value);
+    HiveManager.set("accentColorValue", color.value);
     notifyListeners();
   }
 
   toggleBlur(bool state) {
     _blur = state;
-    HiveManager().set("blur", state);
+    HiveManager.set("blur", state);
     notifyListeners();
   }
 }

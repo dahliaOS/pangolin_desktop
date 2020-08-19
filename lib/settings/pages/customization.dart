@@ -158,7 +158,7 @@ class _CustomizationState extends State<Customization> {
                             Text("Enable Blur Effects on the Desktop"),
                             Consumer<CustomizationNotifier>(
                               builder: (context, notifier, child) => Switch(
-                                value: HiveManager().get("blur"),
+                                value: HiveManager.get("blur"),
                                 onChanged: (bool state) {
                                   setState(() {
                                     notifier.toggleBlur(state);
@@ -200,7 +200,7 @@ class _CustomizationState extends State<Customization> {
                                         notifier.accent == Colors.white) {
                                       notifier.changeThemeColor(Colors.black);
                                     }
-                                    //HiveManager().set("darkMode", state);
+                                    //HiveManager.set("darkMode", state);
                                     //Pangolin.restartApp(context);
                                   });
                                 },
@@ -227,10 +227,10 @@ class _CustomizationState extends State<Customization> {
                           children: [
                             Text("Center Taskbar Items"),
                             Switch(
-                              value: HiveManager().get("centerTaskbar"),
+                              value: HiveManager.get("centerTaskbar"),
                               onChanged: (bool state) {
                                 setState(() {
-                                  HiveManager().set("centerTaskbar", state);
+                                  HiveManager.set("centerTaskbar", state);
                                   Pangolin.restartApp(context);
                                 });
                               },
@@ -256,17 +256,17 @@ class _CustomizationState extends State<Customization> {
                           children: [
                             Text("Enable Random Wallpapers"),
                             Switch(
-                              value: HiveManager().get("randomWallpaper"),
+                              value: HiveManager.get("randomWallpaper"),
                               onChanged: (bool state) {
                                 setState(() {
-                                  HiveManager().set("randomWallpaper", state);
+                                  HiveManager.set("randomWallpaper", state);
                                 });
                               },
                             )
                           ],
                         ),
                         ConditionWidget(
-                            !HiveManager().get("randomWallpaper"),
+                            !HiveManager.get("randomWallpaper"),
                             Column(
                               children: [
                                 Row(
@@ -351,9 +351,9 @@ class _CustomizationState extends State<Customization> {
               padding: const EdgeInsets.all(3.0),
               child: CircleAvatar(
                 backgroundColor: color,
-                child: (HiveManager().get("accentColorValue") == color.value)
+                child: (HiveManager.get("accentColorValue") == color.value)
                     ? Icon(Icons.blur_circular,
-                        color: HiveManager().get("darkMode")
+                        color: HiveManager.get("darkMode")
                             ? Colors.black
                             : Colors.white)
                     : Container(

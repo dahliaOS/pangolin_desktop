@@ -53,13 +53,13 @@ class _SoundState extends State<Sound> {
                                 child: Slider(
                                   divisions: 20,
                                   label:
-                                      "${(HiveManager().get("volumeLevel") * 100).toString()}%",
+                                      "${(HiveManager.get("volumeLevel") * 100).toString()}%",
                                   onChanged: (double state) {
                                     setState(() {
-                                      HiveManager().set("volumeLevel", state);
+                                      HiveManager.set("volumeLevel", state);
                                     });
                                   },
-                                  value: HiveManager().get("volumeLevel"),
+                                  value: HiveManager.get("volumeLevel"),
                                 ),
                               )
                             ],
@@ -90,13 +90,13 @@ class _SoundState extends State<Sound> {
                                 child: Slider(
                                   divisions: 20,
                                   label:
-                                      "${(HiveManager().get("volumeLevel") * 100).toString()}%",
+                                      "${(HiveManager.get("volumeLevel") * 100).toString()}%",
                                   onChanged: (double state) {
                                     setState(() {
-                                      HiveManager().set("volumeLevel", state);
+                                      HiveManager.set("volumeLevel", state);
                                     });
                                   },
-                                  value: HiveManager().get("volumeLevel"),
+                                  value: HiveManager.get("volumeLevel"),
                                 ),
                               )
                             ],
@@ -142,13 +142,13 @@ class _SoundState extends State<Sound> {
                               child: Slider(
                                 divisions: 20,
                                 label:
-                                    "${(HiveManager().get("volumeLevel") * 100).toString()}%",
+                                    "${(HiveManager.get("volumeLevel") * 100).toString()}%",
                                 onChanged: (double state) {
                                   setState(() {
-                                    HiveManager().set("volumeLevel", state);
+                                    HiveManager.set("volumeLevel", state);
                                   });
                                 },
-                                value: HiveManager().get("volumeLevel"),
+                                value: HiveManager.get("volumeLevel"),
                               ),
                             ),
                           ],

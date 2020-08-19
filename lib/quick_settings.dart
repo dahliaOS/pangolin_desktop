@@ -56,7 +56,7 @@ class QuickSettingsState extends State<QuickSettings> {
 
   void _getTime(BuildContext context) {
     final DateTime now = DateTime.now();
-    final String formattedTime = HiveManager().get("showSeconds")
+    final String formattedTime = HiveManager.get("showSeconds")
         ? _formatDateTime(now, 'hh:mm:ss')
         : _formatDateTime(now, 'hh:mm');
     final String formattedDate = _formatLocaleDate(now);
@@ -349,7 +349,7 @@ class QuickSettingsState extends State<QuickSettings> {
               children: [
                 buildTile(Icons.network_wifi, local.get("qs_wifi"), () {
                   setState(() {
-                    HiveManager().set("wifi", false);
+                    HiveManager.set("wifi", false);
                   });
                 }),
                 buildTile(Icons.palette, local.get("qs_theme"), changeColor),

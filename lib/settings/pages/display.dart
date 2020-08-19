@@ -54,13 +54,13 @@ class _DisplayState extends State<Display> {
                                 child: Slider(
                                   divisions: 20,
                                   label:
-                                      "${(HiveManager().get("brightness") * 100).toString()}%",
+                                      "${(HiveManager.get("brightness") * 100).toString()}%",
                                   onChanged: (double state) {
                                     setState(() {
-                                      HiveManager().set("brightness", state);
+                                      HiveManager.set("brightness", state);
                                     });
                                   },
-                                  value: HiveManager().get("brightness"),
+                                  value: HiveManager.get("brightness"),
                                 ),
                               )
                             ],
@@ -88,31 +88,30 @@ class _DisplayState extends State<Display> {
                                 Text(
                                     "Enable Blue Light Filter to protect your eyes"),
                                 Switch(
-                                  value: HiveManager()
-                                      .get("enableBlueLightFilter"),
+                                  value:
+                                      HiveManager.get("enableBlueLightFilter"),
                                   onChanged: (bool state) {
                                     setState(() {
-                                      HiveManager()
-                                          .set("enableBlueLightFilter", state);
+                                      HiveManager.set(
+                                          "enableBlueLightFilter", state);
                                     });
                                   },
                                 )
                               ],
                             ),
                             ConditionWidget(
-                              (HiveManager().get("enableBlueLightFilter")),
+                              (HiveManager.get("enableBlueLightFilter")),
                               Slider(
                                 divisions: 20,
                                 label:
-                                    "${(HiveManager().get("blueLightFilterValue") * 100).toString()}%",
+                                    "${(HiveManager.get("blueLightFilterValue") * 100).toString()}%",
                                 onChanged: (double state) {
                                   setState(() {
-                                    HiveManager()
-                                        .set("blueLightFilterValue", state);
+                                    HiveManager.set(
+                                        "blueLightFilterValue", state);
                                   });
                                 },
-                                value:
-                                    HiveManager().get("blueLightFilterValue"),
+                                value: HiveManager.get("blueLightFilterValue"),
                               ),
                             ),
                           ],

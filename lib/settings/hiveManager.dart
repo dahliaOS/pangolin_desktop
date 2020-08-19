@@ -2,7 +2,7 @@ import '../main.dart';
 import 'package:flutter/material.dart';
 
 class HiveManager {
-  initializeHive() {
+  static initializeHive() {
     createEntryIfNotExisting("darkMode", false);
     createEntryIfNotExisting("blur", true);
     createEntryIfNotExisting("accentColorName", "orange");
@@ -28,11 +28,11 @@ class HiveManager {
     createEntryIfNotExisting("timeZoneName", "English - United States");
   }
 
-  set(String key, dynamic value) {
+  static set(String key, dynamic value) {
     Pangolin.settingsBox.put(key, value);
   }
 
-  get(String key) {
+  static get(String key) {
     return Pangolin.settingsBox.get(key);
   }
 

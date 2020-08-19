@@ -73,17 +73,17 @@ class _ConnectionsState extends State<Connections> {
                                           fontWeight: FontWeight.bold),
                                     ),
                                     Switch(
-                                      value: HiveManager().get("wifi"),
+                                      value: HiveManager.get("wifi"),
                                       onChanged: (bool state) {
                                         setState(() {
-                                          HiveManager().set("wifi", state);
+                                          HiveManager.set("wifi", state);
                                         });
                                       },
                                     )
                                   ],
                                 ),
                                 CustomConditionWidget(
-                                    HiveManager().get("wifi"),
+                                    HiveManager.get("wifi"),
                                     Container(
                                       height: 300,
                                       child: ListView.builder(
@@ -94,10 +94,10 @@ class _ConnectionsState extends State<Connections> {
                                               leading: Icon(
                                                 wifiList[i].icon,
                                                 color: wifiList[i].connected
-                                                    ? Color(HiveManager().get(
+                                                    ? Color(HiveManager.get(
                                                         "accentColorValue"))
-                                                    : (HiveManager()
-                                                            .get("darkMode")
+                                                    : (HiveManager.get(
+                                                            "darkMode")
                                                         ? Colors.white
                                                         : Colors.grey),
                                               ),
@@ -105,10 +105,10 @@ class _ConnectionsState extends State<Connections> {
                                                 wifiList[i].name,
                                                 style: TextStyle(
                                                   color: wifiList[i].connected
-                                                      ? Color(HiveManager().get(
+                                                      ? Color(HiveManager.get(
                                                           "accentColorValue"))
-                                                      : (HiveManager()
-                                                              .get("darkMode")
+                                                      : (HiveManager.get(
+                                                              "darkMode")
                                                           ? Colors.white
                                                           : Colors.grey[900]),
                                                 ),
@@ -140,17 +140,17 @@ class _ConnectionsState extends State<Connections> {
                                           fontWeight: FontWeight.bold),
                                     ),
                                     Switch(
-                                      value: HiveManager().get("bluetooth"),
+                                      value: HiveManager.get("bluetooth"),
                                       onChanged: (bool state) {
                                         setState(() {
-                                          HiveManager().set("bluetooth", state);
+                                          HiveManager.set("bluetooth", state);
                                         });
                                       },
                                     )
                                   ],
                                 ),
                                 CustomConditionWidget(
-                                    HiveManager().get("bluetooth"),
+                                    HiveManager.get("bluetooth"),
                                     Container(
                                       height: 300,
                                       child: ListView.builder(
@@ -160,24 +160,24 @@ class _ConnectionsState extends State<Connections> {
                                             return ListTile(
                                               leading: Icon(
                                                 bluetoothList[i].icon,
-                                                color: bluetoothList[i]
-                                                        .connected
-                                                    ? Color(HiveManager().get(
-                                                        "accentColorValue"))
-                                                    : (HiveManager()
-                                                            .get("darkMode")
-                                                        ? Colors.white
-                                                        : Colors.grey),
+                                                color:
+                                                    bluetoothList[i].connected
+                                                        ? Color(HiveManager.get(
+                                                            "accentColorValue"))
+                                                        : (HiveManager.get(
+                                                                "darkMode")
+                                                            ? Colors.white
+                                                            : Colors.grey),
                                               ),
                                               title: Text(
                                                 bluetoothList[i].name,
                                                 style: TextStyle(
                                                   color: bluetoothList[i]
                                                           .connected
-                                                      ? Color(HiveManager().get(
+                                                      ? Color(HiveManager.get(
                                                           "accentColorValue"))
-                                                      : (HiveManager()
-                                                              .get("darkMode")
+                                                      : (HiveManager.get(
+                                                              "darkMode")
                                                           ? Colors.white
                                                           : Colors.grey[900]),
                                                 ),
