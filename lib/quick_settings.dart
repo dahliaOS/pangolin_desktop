@@ -74,7 +74,7 @@ class QuickSettingsState extends State<QuickSettings> {
       IconData icon, String label, String function, String subARG) {
     return MaterialButton(
       onPressed: () {
-        Process.run(
+       Process.run('poweroff', [' ']);
           function,
           [subARG],
         );
