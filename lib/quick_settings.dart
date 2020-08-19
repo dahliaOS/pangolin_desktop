@@ -164,7 +164,7 @@ class QuickSettingsState extends State<QuickSettings> {
                             Padding(
                               padding: EdgeInsets.only(top: 20.0, right: 20),
                               child: buildPowerItem(Icons.power_settings_new,
-                                  'Power off', 'shutdown', '-h now'),
+                                  'Power off', 'poweroff'),
                             ),
                             Padding(
                               padding: EdgeInsets.only(top: 20.0, right: 20),
