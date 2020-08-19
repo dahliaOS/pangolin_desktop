@@ -96,19 +96,35 @@ class StatusTrayWidgetState extends State<StatusTrayWidget> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     new Icon(Icons.signal_wifi_4_bar,
-                        color: const Color(0xFFffffff), size: 20.0),
+                        color: HiveManager.get("darkMode")
+                            ? Colors.white
+                            : Colors.black,
+                        size: 20.0),
                     new Icon(Icons.bluetooth,
-                        color: const Color(0xFFffffff), size: 20.0),
+                        color: HiveManager.get("darkMode")
+                            ? Colors.white
+                            : Colors.black,
+                        size: 20.0),
                     new Icon(Icons.battery_charging_full,
-                        color: const Color(0xFFffffff), size: 20.0),
+                        color: HiveManager.get("darkMode")
+                            ? Colors.white
+                            : Colors.black,
+                        size: 20.0),
                     VerticalDivider(
                       thickness: 2,
                       endIndent: 10,
                       indent: 10,
+                      color: HiveManager.get("darkMode")
+                          ? Colors.grey
+                          : Colors.grey[800],
                     ),
                     Text(
                       _timeString,
-                      style: TextStyle(fontSize: 20, color: Colors.white),
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: HiveManager.get("darkMode")
+                              ? Colors.white
+                              : Colors.black),
                     ),
                   ]),
             ),

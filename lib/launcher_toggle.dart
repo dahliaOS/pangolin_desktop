@@ -4,6 +4,7 @@
 
 import 'dart:math';
 
+import 'package:Pangolin/settings/hiveManager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -66,7 +67,7 @@ class _Painter extends CustomPainter {
         2 * pi,
         false,
         new Paint()
-          ..color = Colors.white
+          ..color = HiveManager.get("darkMode") ? Colors.white : Colors.black
           ..strokeWidth = 2.0
           ..style = PaintingStyle.stroke);
   }

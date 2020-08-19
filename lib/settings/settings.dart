@@ -68,14 +68,14 @@ class Settings extends StatelessWidget {
         return MaterialApp(
           title: 'Settings',
           theme: notifier.darkTheme
-              ? Themes.dark(notifier.accent)
-              : Themes.light(notifier.accent),
+              ? Themes.dark(CustomizationNotifier().accent)
+              : Themes.light(CustomizationNotifier().accent),
           initialRoute: '/',
           routes: {
             // When navigating to the "/" route, build the FirstScreen widget.
             '/': (context) => SettingsPage(title: 'Settings'),
             // When navigating to the "/second" route, build the SecondScreen widget.
-            '/second': (context) => SecondScreen(),
+            //'/second': (context) => SecondScreen(),
           },
         );
       }),
@@ -240,7 +240,7 @@ class _SettingsPageState extends State<SettingsPage> {
                                   Icon(
                                     Icons.settings,
                                     color: Color(
-                                        HiveManager().get("accentColorValue")),
+                                        HiveManager.get("accentColorValue")),
                                   ),
                                   SizedBox(
                                     width: 20,
@@ -286,8 +286,8 @@ class _SettingsPageState extends State<SettingsPage> {
                                           ),
                                           icon: Icon(
                                             Icons.search,
-                                            color: Color(HiveManager()
-                                                .get("accentColorValue")),
+                                            color: Color(HiveManager.get(
+                                                "accentColorValue")),
                                           ),
                                           hintText: 'Search settings...',
                                           border: InputBorder.none),
@@ -312,11 +312,11 @@ class _SettingsPageState extends State<SettingsPage> {
                                 margin: EdgeInsets.all(5),
                                 decoration: BoxDecoration(
                                     color: items[i].selected == true
-                                        ? Color(HiveManager()
-                                                .get("accentColorValue"))
+                                        ? Color(HiveManager.get(
+                                                "accentColorValue"))
                                             .withOpacity(0.2)
-                                        : Color(HiveManager()
-                                                .get("accentColorValue"))
+                                        : Color(HiveManager.get(
+                                                "accentColorValue"))
                                             .withOpacity(0.0),
                                     borderRadius: BorderRadius.circular(10)),
                                 child: ListTile(
@@ -328,8 +328,8 @@ class _SettingsPageState extends State<SettingsPage> {
                                     subtitle: Text(items[i].subtitle),
                                     leading: Icon(
                                       items[i].icon,
-                                      color: Color(HiveManager()
-                                          .get("accentColorValue")),
+                                      color: Color(
+                                          HiveManager.get("accentColorValue")),
                                     ),
                                     onTap: () {
                                       setState(() {
