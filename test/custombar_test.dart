@@ -20,18 +20,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:Pangolin/main.dart';
 import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:path_provider/path_provider.dart';
+
+import 'mocks.dart';
 
 Future<void> main() async {
   isTesting = true;
-  Box box;
-  var settingsInit = () async {
-    //TestWidgetsFlutterBinding.ensureInitialized();
-    Directory dir = await getApplicationDocumentsDirectory();
-    Hive.init(dir.path);
-    box = await Hive.openBox<String>("settings");
-    await box.clear(); //start with fresh settings
-  };
+  BoxMock box;
+  // var settingsInit = () async {
+  //   //TestWidgetsFlutterBinding.ensureInitialized();
+  //   Directory dir = await getApplicationDocumentsDirectory();
+  //   Hive.init(dir.path);
+  //   box = await Hive.openBox<String>("settings");
+  //   await box.clear(); //start with fresh settings
+  // };
   //test('Settings init', settingsInit, skip: "This should be ran with every test instead of on its own.");
   // testWidgets('Counter increments smoke test', (WidgetTester tester) async {
   //   // Build our app and trigger a frame.
@@ -49,13 +52,26 @@ Future<void> main() async {
   //   expect(find.text('0'), findsNothing);
   //   expect(find.text('1'), findsOneWidget);
   // });
-  await settingsInit();
+  //await settingsInit();
+  testWidgets('Mock box unit test', (WidgetTester tester) async {
+    box = BoxMock<String>();
+    box.put("test_mockup", "value");
+    assert(box.get("test_mockup") == "value");
+    Pangolin.settingsBox = box as BoxMock<String>;
+  });
   testWidgets('customBar test', (WidgetTester tester) async {
     print("Launching Pangolin");
     await tester.pumpWidget(Pangolin());
     //print((await tester.pumpAndSettle()).toString() + " frames on load!");
     await tester.pump();
     expect(find.byType(ErrorWidget), findsNothing); //no error widgets here
+    print("Opening bar");
+    var gest = await tester.startGesture(tester.getCenter(
+        find.byWidgetPredicate((widget) =>
+            widget is GestureDetector &&
+            widget.onTapCancel == () => true == true)));
+    await gest.moveBy(Offset(0, -50));
+    await gest.up();
     print("Testing Files");
     await tester.tap(find.byWidgetPredicate(
         (element) => (element is AppLauncherButton && element.app is Files),

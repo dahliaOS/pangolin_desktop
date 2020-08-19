@@ -124,7 +124,7 @@ class FirstScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   new Text(
-                    "Welcome to dahliaOS",
+                    "Welcome to dahliaOS!",
                     style: new TextStyle(
                         fontSize: 36.0,
                         color: const Color(0xFF000000),
@@ -142,7 +142,7 @@ class FirstScreen extends StatelessWidget {
                   feature(
                       "lib/images/icons/v2/compiled/welcome-info.png",
                       "Build Information",
-                      "dahliaOS Linux-Based 200806 ...",
+                      "dahliaOS Linux-Based 200830 ...",
                       "/info",
                       context),
                   feature(
@@ -188,27 +188,64 @@ class FirstScreen extends StatelessWidget {
           padding: EdgeInsets.zero,
           children: <Widget>[
             DrawerHeader(
-              child: Text('Welcome'),
+              child: Text('Welcome to dahliaOS!'),
               decoration: BoxDecoration(
                 color: Colors.deepOrange[500],
               ),
             ),
             ListTile(
-              title: Text('Item 1'),
+              title: Text('Build Information'),
+              leading: Icon(Icons.info_outline),
               onTap: () {
                 // Update the state of the app
                 // ...
-                // Then close the drawer
                 Navigator.pop(context);
+                Navigator.pushNamed(context, "/info");
+                //Navigator.pop(context);
               },
             ),
             ListTile(
-              title: Text('Item 2'),
+              title: Text('Feedback'),
+              leading: Icon(Icons.comment),
               onTap: () {
                 // Update the state of the app
                 // ...
                 // Then close the drawer
                 Navigator.pop(context);
+                Navigator.pushNamed(context, "/feedback");
+              },
+            ),
+            ListTile(
+              title: Text('Social Media'),
+              leading: Icon(Icons.share),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                Navigator.pop(context);
+                Navigator.pushNamed(context, "/social");
+              },
+            ),
+            ListTile(
+              title: Text('Credits'),
+              leading: Icon(Icons.people),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                Navigator.pop(context);
+                Navigator.pushNamed(context, "/credits");
+              },
+            ),
+            ListTile(
+              title: Text('Software'),
+              leading: Icon(Icons.developer_board),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                Navigator.pop(context);
+                Navigator.pushNamed(context, "/software");
               },
             ),
           ],
@@ -256,33 +293,82 @@ class FirstScreen extends StatelessWidget {
   }
 }
 
+//double width = MediaQuery.of(context).size.width * MediaQuery.of(context).devicePixelRatio - 256;
+
 class BuildInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        iconTheme: IconThemeData(
-          color: Colors.black, //change your color here
+        appBar: AppBar(
+          centerTitle: true,
+          iconTheme: IconThemeData(
+            color: Colors.black, //change your color here
+          ),
+          backgroundColor: Colors.white,
+          shadowColor: const Color(0x00ffffff),
+          title: new Text(
+            "Build Information",
+            style: new TextStyle(color: Colors.black),
+          ),
         ),
-        backgroundColor: Colors.white,
-        shadowColor: const Color(0x00ffffff),
-        title: new Text(
-          "Build Information",
-          style: new TextStyle(color: Colors.black),
-        ),
-      ),
-      body: Center(
-        child: RaisedButton(
-          onPressed: () {
-            // Navigate back to the first screen by popping the current route
-            // off the stack.
-            Navigator.pop(context);
-          },
-          child: Text('Go back!'),
-        ),
-      ),
-    );
+        body: new Center(
+            child:
+                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          new Image.asset(
+            'lib/images/logo-color.png',
+            fit: BoxFit.fitHeight,
+            width: 300,
+            height: 32,
+          ),
+          Text('dahliaOS Linux-based 200830  PRE-RELEASE',
+              style: TextStyle(fontSize: 14, color: Color(0xff000000))),
+          Text('Kernel 5.6.15',
+              style: TextStyle(fontSize: 14, color: Color(0xff000000))),
+          Text('Pangolin 30be69cb6f5419febc27a67557efa6d256be67a4',
+              style: TextStyle(fontSize: 14, color: Color(0xff000000))),
+          RaisedButton(
+              onPressed: () {
+                final snackBar = SnackBar(
+                  behavior: SnackBarBehavior.floating,
+                  content: Text('See dahliaos.io for updates'),
+                  action: SnackBarAction(
+                    label: 'OK',
+                    onPressed: () {
+                      // Some code to undo the change.
+                    },
+                  ),
+                  width: 300,
+                  padding: EdgeInsets.fromLTRB(15, 0, 5, 0),
+                );
+
+                /*final snackBar = SnackBar(
+                  behavior: SnackBarBehavior.floating,
+                  content: SizedBox(
+                      height: 50.0,
+                      width: 50,
+                      child: Container(
+                        child: Center(
+                            child: Text(
+                          "Connection dropped.",
+                          style: TextStyle(
+                              color: Colors.white, fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.center,
+                        )),
+                      )),
+                  duration: Duration(seconds: 10),
+                  backgroundColor: Colors.red,
+                  width: 250,
+                );*/
+
+                // Find the Scaffold in the widget tree and use
+                // it to show a SnackBar.
+                Scaffold.of(context).showSnackBar(snackBar);
+              },
+              elevation: 1,
+              color: Colors.deepOrange[600],
+              child: Text('RELEASE NOTES',
+                  style: TextStyle(fontSize: 14, color: Color(0xffffffff)))),
+        ])));
   }
 }
 
@@ -303,15 +389,26 @@ class Feedback extends StatelessWidget {
         ),
       ),
       body: Center(
-        child: RaisedButton(
-          onPressed: () {
-            // Navigate back to the first screen by popping the current route
-            // off the stack.
-            Navigator.pop(context);
-          },
-          child: Text('Go back!'),
-        ),
-      ),
+          child: new Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text('We are always looking for ways we can improve!',
+              style: TextStyle(fontSize: 14, color: Color(0xff000000))),
+          Text('Please submit feedback to contact+feedback@dahliaos.io',
+              style: TextStyle(fontSize: 14, color: Color(0xff000000))),
+          Text(
+              'Experienced a bug? Report an issue at github.com/dahlia-os/releases',
+              style: TextStyle(fontSize: 14, color: Color(0xff000000))),
+          RaisedButton(
+            onPressed: () {
+              // Navigate back to the first screen by popping the current route
+              // off the stack.
+              Navigator.pop(context);
+            },
+            child: Text('BACK'),
+          ),
+        ],
+      )),
     );
   }
 }
@@ -443,32 +540,221 @@ class SocialMedia extends StatelessWidget {
   }
 }
 
+Container person(String icon, String header, String main) {
+  return Container(
+      width: 512,
+      child: Card(
+        color: Color(0xffffffff),
+        elevation: 0,
+        margin: EdgeInsets.all(25),
+        child: InkWell(
+            splashColor: Colors.deepOrange.withAlpha(50),
+            child: Row(children: [
+              Center(
+                child: new Padding(
+                  padding: EdgeInsets.fromLTRB(0, 0, 15, 0),
+                  child: CircleAvatar(
+                    radius: 32,
+                    backgroundColor: Color(0xff222222),
+                    child: CircleAvatar(
+                      radius: 30,
+                      backgroundImage: AssetImage(icon),
+                    ),
+                  ),
+                ),
+              ),
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Text(header,
+                    style: TextStyle(
+                        fontSize: 18,
+                        color: Color(0xff222222),
+                        fontWeight: FontWeight.w600)),
+                Text(main,
+                    style: TextStyle(fontSize: 15, color: Color(0xff333333)))
+              ]),
+            ])),
+      ));
+}
+
 class Credits extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        iconTheme: IconThemeData(
-          color: Colors.black, //change your color here
+        appBar: AppBar(
+          centerTitle: true,
+          iconTheme: IconThemeData(
+            color: Colors.black, //change your color here
+          ),
+          backgroundColor: Colors.white,
+          shadowColor: const Color(0x00ffffff),
+          title: new Text(
+            "Credits",
+            style: new TextStyle(color: Colors.black),
+          ),
         ),
-        backgroundColor: Colors.white,
-        shadowColor: const Color(0x00ffffff),
-        title: new Text(
-          "Credits",
-          style: new TextStyle(color: Colors.black),
-        ),
+        body: new SingleChildScrollView(
+            padding: new EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
+            scrollDirection: Axis.vertical,
+            child: new Column(children: <Widget>[
+              Text("Thank you to everyone who made this dream into reality!",
+                  style: TextStyle(fontSize: 14, color: Color(0xff000000))),
+              Text("Want to help out? Find us at github.com/dahlia-os",
+                  style: TextStyle(fontSize: 14, color: Color(0xff000000))),
+              new Center(
+                child: new SingleChildScrollView(
+                    padding:
+                        new EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
+                    scrollDirection: Axis.vertical,
+                    child: new Wrap(children: <Widget>[
+                      person(
+                        "lib/images/people/bleonard.png",
+                        "Blake Leonard",
+                        "bleonard252",
+                      ),
+                      person(
+                        "lib/images/people/noah.jpeg",
+                        "Noah Cain",
+                        "nmcain",
+                      ),
+                      person(
+                        "lib/images/people/camden.jpeg",
+                        "Camden Bruce",
+                        "EnderNightLord-ChromeBook",
+                      ),
+                      person(
+                        "lib/images/people/faust.png",
+                        "Marin Heđeš",
+                        "SincerelyFaust",
+                      ),
+                      person(
+                        "lib/images/people/lars.jpeg",
+                        "Lars",
+                        "larsb24",
+                      ),
+                      person(
+                        "lib/images/people/horus.png",
+                        "Hackerman",
+                        "Horus125",
+                      ),
+                      person(
+                        "lib/images/people/haru.jpeg",
+                        "Kanou Haru",
+                        "kanouharu",
+                      ),
+                      person(
+                        "lib/images/people/nobody.png",
+                        "Nobody",
+                        "nobody5050",
+                      ),
+                      person(
+                        "lib/images/people/subspace.png",
+                        "Lucas Puntillo",
+                        "puntillol59",
+                      ),
+                      person(
+                        "lib/images/people/hexa.png",
+                        "Quinten",
+                        "HexaOneOfficial",
+                      ),
+                      person(
+                        "lib/images/people/x7.jpeg",
+                        "Syed Mushaheed",
+                        "predatorx7",
+                      ),
+                      person(
+                        "lib/images/people/vanzh.png",
+                        "V.",
+                        "xVanzh",
+                      ),
+                      person(
+                        "lib/images/people/funeoz.jpeg",
+                        "Funeoz",
+                        "Funeoz",
+                      ),
+                      person(
+                        "lib/images/people/fristover.png",
+                        "Fristover",
+                        "Fristover",
+                      ),
+                      person(
+                        "lib/images/dahlia.png",
+                        "And... you!",
+                        "Thanks for testing out this build!",
+                      ),
+                    ])),
+              )
+            ])));
+  }
+}
+
+class Item {
+  Item({
+    this.expandedValue,
+    this.headerValue,
+    this.isExpanded = false,
+  });
+
+  String expandedValue;
+  String headerValue;
+  bool isExpanded;
+}
+
+List<Item> generateItems(int numberOfItems) {
+  return List.generate(numberOfItems, (int index) {
+    return Item(
+      headerValue: 'Flutter',
+      expandedValue: 'BSD 3-Clause "New" or "Revised" License',
+    );
+    return Item(
+      headerValue: 'Hive',
+      expandedValue: 'Apache 2.0',
+    );
+  });
+}
+
+class SoftwareWidget extends StatefulWidget {
+  SoftwareWidget({Key key}) : super(key: key);
+
+  @override
+  _SoftwareWidgetState createState() => _SoftwareWidgetState();
+}
+
+class _SoftwareWidgetState extends State<SoftwareWidget> {
+  List<Item> _data = generateItems(8);
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Container(
+        child: _buildPanel(),
       ),
-      body: Center(
-        child: RaisedButton(
-          onPressed: () {
-            // Navigate back to the first screen by popping the current route
-            // off the stack.
-            Navigator.pop(context);
+    );
+  }
+
+  Widget _buildPanel() {
+    return ExpansionPanelList(
+      expansionCallback: (int index, bool isExpanded) {
+        setState(() {
+          _data[index].isExpanded = !isExpanded;
+        });
+      },
+      children: _data.map<ExpansionPanel>((Item item) {
+        return ExpansionPanel(
+          headerBuilder: (BuildContext context, bool isExpanded) {
+            return ListTile(
+              title: Text(item.headerValue),
+            );
           },
-          child: Text('Go back!'),
-        ),
-      ),
+          body: ListTile(
+              title: Text(item.expandedValue),
+              subtitle: Text('To view full license, tap the arrow'),
+              trailing: Icon(Icons.arrow_right),
+              onTap: () {
+                print("show licenese yes");
+              }),
+          isExpanded: item.isExpanded,
+        );
+      }).toList(),
     );
   }
 }
@@ -490,15 +776,10 @@ class Software extends StatelessWidget {
         ),
       ),
       body: Center(
-        child: RaisedButton(
-          onPressed: () {
-            // Navigate back to the first screen by popping the current route
-            // off the stack.
-            Navigator.pop(context);
-          },
-          child: Text('Go back!'),
-        ),
-      ),
+          child: new SizedBox(
+        width: 800,
+        child: SoftwareWidget(),
+      )),
     );
   }
 }

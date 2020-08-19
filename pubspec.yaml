@@ -22,6 +22,7 @@ dependency_overrides:
   path: ^1.6.4
 
 dev_dependencies:
+  mockito:
   json_serializable: ^2.0.0
   flutter_test:
     sdk: flutter
@@ -101,6 +102,7 @@ flutter:
   - lib/application.json
   - lib/images/
   - lib/images/settings/customization/
+  - lib/images/people/
   - lib/images/Desktop/Dahlia/dahlia_material_background.jpg
   - lib/images/Desktop/Dahlia/forest.jpg
   - lib/images/Desktop/Dahlia/

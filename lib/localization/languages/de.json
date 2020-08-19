@@ -46,5 +46,6 @@
   "taskmanager_launch": "Ausführen",
   "taskmanager_processes": "Prozesse",
   "taskmanager_resources": "Ressourcen",
-  "taskmanager_selectedprocessplaceholder": "io.dahliaos.null"
+  "taskmanager_selectedprocessplaceholder": "io.dahliaos.null",
+  "app_web": "Browser"
 }

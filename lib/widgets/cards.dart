@@ -22,6 +22,7 @@ import '../applications/containers.dart';
 import '../applications/files.dart';
 import '../applications/editor.dart';
 import '../applications/terminal/main.dart';
+import '../applications/browser/main.dart';
 import '../applications/terminal/root/main.dart';
 import '../applications/developer.dart';
 import '../settings/settings.dart';
@@ -126,6 +127,11 @@ Expanded tileSection(BuildContext context) {
                   app: DeveloperApp(),
                   icon: 'lib/images/icons/v2/compiled/developer.png',
                   label: 'Developer Options',
+                  callback: toggleCallback),
+              AppLauncherButton(
+                  app: BrowserApp(),
+                  icon: 'lib/images/icons/v2/compiled/web.png',
+                  label: local.get("app_web"),
                   callback: toggleCallback),
               AppLauncherButton(
                   type: AppLauncherButtonType.Drawer,
