@@ -27,6 +27,7 @@ class _AdvancedFeaturesState extends State<AdvancedFeatures> {
         ),
       ),
       bottomNavigationBar: BottomAppBar(
+          elevation: 0.0,
           color: Color(0x00ffffff),
           child: new SizedBox(
               height: 50,
