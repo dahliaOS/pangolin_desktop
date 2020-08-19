@@ -216,9 +216,7 @@ class _PangolinState extends State<Pangolin> {
               builder: (context, CustomizationNotifier notifier, child) {
                 return MaterialApp(
                   title: 'Pangolin Desktop',
-                  theme: notifier.darkTheme
-                      ? Themes.dark(CustomizationNotifier().accent)
-                      : Themes.light(CustomizationNotifier().accent),
+                  theme: notifier.theme,
                   home: MyHomePage(title: 'Pangolin Desktop'),
                   supportedLocales: [
                     Locale("en"),
@@ -389,12 +387,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Container(
                     //color: Color.fromARGB(150, 0, 0, 0),
                     decoration: BoxDecoration(
-                      color: HiveManager.get("darkMode")
+                        /*color: HiveManager.get("darkMode")
                           ? Colors.grey[900].withAlpha(120)
-                          : Colors.grey[400].withAlpha(120),
-                      //uncomment below to add radius to the launcher panel
-                      //borderRadius: BorderRadius.circular(100),
-                    ),
+                          : Colors.grey[400].withAlpha(120),*/
+                        color: Theme.of(context).iconTheme.color.withAlpha(120)
+                        //uncomment below to add radius to the launcher panel
+                        //borderRadius: BorderRadius.circular(100),
+                        ),
                     height: 45.0,
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                     child: CustomConditionWidget(
