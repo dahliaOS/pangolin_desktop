@@ -46,5 +46,6 @@
   "taskmanager_launch": "Pokreni",
   "taskmanager_processes": "Procesi",
   "taskmanager_resources": "Resursi",
-  "taskmanager_selectedprocessplaceholder": "io.dahliaos.null"
+  "taskmanager_selectedprocessplaceholder": "io.dahliaos.null",
+  "app_web": "Web preglednik"
 }
