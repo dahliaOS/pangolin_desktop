@@ -64,7 +64,7 @@ class _DeveloperAppPageState extends State<DeveloperAppPage> {
                   child: Text('Reboot')),
               RaisedButton(
                   onPressed: () {
-                    Process.run('shutdown', ['-h', 'now']);
+                    Process.run('sudo', ['poweroff']);
                   },
                   child: Text('Shutdown')),
               RaisedButton(
