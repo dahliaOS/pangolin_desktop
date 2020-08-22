@@ -4,10 +4,12 @@ class Hover extends StatefulWidget {
   final Widget child;
   final Color color;
   final BorderRadius borderRadius;
+  final double opacity;
   const Hover({
     @required this.child,
     this.color,
     this.borderRadius,
+    this.opacity,
     Key key,
   }) : super(key: key);
 
@@ -24,8 +26,8 @@ class _HoverState extends State<Hover> {
         borderRadius: widget.borderRadius ?? BorderRadius.circular(0),
         color: _hover
             ? (widget.color == null)
-                ? Colors.black.withOpacity(0.3)
-                : widget.color.withOpacity(0.3)
+                ? Colors.black.withOpacity(widget.opacity ?? 0.3)
+                : widget.color.withOpacity(widget.opacity ?? 0.3)
             : Colors.black.withOpacity(0.0),
       ),
       child: Center(
