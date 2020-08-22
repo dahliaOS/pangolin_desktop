@@ -129,6 +129,7 @@ Expanded tileSection(BuildContext context) {
                   label: 'Developer Options',
                   callback: toggleCallback),
               AppLauncherButton(
+                  type: AppLauncherButtonType.Drawer,
                   app: BrowserApp(),
                   icon: 'lib/images/icons/v2/compiled/web.png',
                   label: local.get("app_web"),
