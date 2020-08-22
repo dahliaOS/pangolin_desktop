@@ -15,6 +15,7 @@ limitations under the License.
 */
 
 import 'dart:ui';
+import 'package:Pangolin/widgets/hover.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../window/model.dart';
@@ -59,26 +60,10 @@ class AppLauncherButtonState extends State<AppLauncherButton> {
             : EdgeInsets.symmetric(horizontal: 4.0),
         width: (widget.type == AppLauncherButtonType.Drawer) ? 64.0 : 45.0,
         height: (widget.type == AppLauncherButtonType.Drawer) ? 64.0 : 45.0,
-        decoration: BoxDecoration(
-            borderRadius: (widget.type == AppLauncherButtonType.Drawer)
-                ? BorderRadius.circular(30)
-                : BorderRadius.circular(0),
-            color: hover
-                ? (widget.appExists
-                    ? Colors.grey.withOpacity(0.3)
-                    : Colors.grey.withOpacity(0.1))
-                : Colors.grey.withOpacity(0.0)),
-        child: MouseRegion(
-          onEnter: (event) {
-            setState(() {
-              hover = true;
-            });
-          },
-          onExit: (event) {
-            setState(() {
-              hover = false;
-            });
-          },
+        child: Hover(
+          borderRadius: (widget.type == AppLauncherButtonType.Drawer)
+              ? BorderRadius.circular(30)
+              : BorderRadius.circular(0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.max,
