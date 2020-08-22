@@ -170,7 +170,7 @@ class RootTerminalState extends State<RootTerminal>
             children: [
               new Center(
                 child: new Text(
-                  "owo whats this",
+                  "!! an error has occured and the terminal was unable to access the shell. !!",
                   style: TextStyle(color: Colors.white),
                 ),
               ),
