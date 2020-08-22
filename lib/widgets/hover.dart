@@ -24,8 +24,8 @@ class _HoverState extends State<Hover> {
         borderRadius: widget.borderRadius ?? BorderRadius.circular(0),
         color: _hover
             ? (widget.color == null)
-                ? Colors.black.withOpacity(0.5)
-                : widget.color.withOpacity(0.5)
+                ? Colors.black.withOpacity(0.3)
+                : widget.color.withOpacity(0.3)
             : Colors.black.withOpacity(0.0),
       ),
       child: Center(
