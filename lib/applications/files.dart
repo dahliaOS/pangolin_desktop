@@ -24,7 +24,7 @@ void main() {
 }
 
 class Files extends StatelessWidget {
- /* final Widget Function() customBar = ({ //customBar in lib/window/window.dart
+  /* final Widget Function() customBar = ({ //customBar in lib/window/window.dart
   /// The function called to close the window.
   Function close,
   /// The function called to minimize the window.
@@ -42,8 +42,8 @@ class Files extends StatelessWidget {
     return new MaterialApp(
       title: 'Files',
       theme: new ThemeData(
+        platform: TargetPlatform.fuchsia,
         primarySwatch: Colors.deepOrange,
-    
       ),
       home: new FilesHome(),
     );
@@ -108,8 +108,24 @@ class Files extends StatelessWidget {
     ));
   }
 }*/
-
-
+Column buildFolder(IconData icon, String label, Function onClick) {
+  return Column(
+    //mainAxisSize: MainAxisSize.min,
+    //mainAxisAlignment: MainAxisAlignment.center,
+    crossAxisAlignment: CrossAxisAlignment.center,
+    children: [
+      Icon(icon, color: Colors.deepOrange, size: 50.0),
+      Container(
+        margin: EdgeInsets.only(top: 5),
+        child: Text(
+          label,
+          style: TextStyle(color: Colors.grey[900]),
+          textAlign: TextAlign.center,
+        ),
+      ),
+    ],
+  );
+}
 
 class FilesHome extends StatefulWidget {
   FilesHome({Key key}) : super(key: key);
@@ -117,22 +133,192 @@ class FilesHome extends StatefulWidget {
   _FilesHomeState createState() => new _FilesHomeState();
 }
 
- 
-
 class _FilesHomeState extends State<FilesHome> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-     
-      body: Column(children: [
-       Material(
-         elevation: 5.0,
-child: new Container(height: 55,color: Colors.deepOrange[500],),
-
-       ),
-      ]),
+      appBar: AppBar(
+        title: Text('Files'),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.refresh,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              // do something
+            },
+          ),
+          IconButton(
+            icon: Icon(
+              Icons.share,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              // do something
+            },
+          )
+        ],
+      ),
+      body: new Row(
+        children: [
+          new Container(
+            color: Colors.white,
+            width: 250,
+            child: Drawer(
+              // Add a ListView to the drawer. This ensures the user can scroll
+              // through the options in the drawer if there isn't enough vertical
+              // space to fit everything.
+              child: ListView(
+                // Important: Remove any padding from the ListView.
+                padding: EdgeInsets.zero,
+                children: <Widget>[
+                  ListTile(
+                    title: Text('Home'),
+                    leading: Icon(
+                      Icons.home,
+                      color: Colors.deepOrange,
+                    ),
+                    onTap: () {
+                      // Update the state of the app
+                      // ...
+                      // Navigator.pop(context);
+                      // Navigator.pushNamed(context, "/info");
+                      //Navigator.pop(context);
+                    },
+                  ),
+                  ListTile(
+                    title: Text('Documents'),
+                    leading: Icon(
+                      Icons.create,
+                      color: Colors.deepOrange,
+                    ),
+                    onTap: () {
+                      // Update the state of the app
+                      // ...
+                      // Then close the drawer
+                      // Navigator.pop(context);
+                      //Navigator.pushNamed(context, "/feedback");
+                    },
+                  ),
+                  ListTile(
+                    title: Text('Downloads'),
+                    leading: Icon(
+                      Icons.file_download,
+                      color: Colors.deepOrange,
+                    ),
+                    onTap: () {
+                      // Update the state of the app
+                      // ...
+                      // Then close the drawer
+                      //Navigator.pop(context);
+                      //Navigator.pushNamed(context, "/social");
+                    },
+                  ),
+                  ListTile(
+                    title: Text('Applications'),
+                    leading: Icon(
+                      Icons.apps,
+                      color: Colors.deepOrange,
+                    ),
+                    onTap: () {
+                      // Update the state of the app
+                      // ...
+                      // Then close the drawer
+                      // Navigator.pop(context);
+                      // Navigator.pushNamed(context, "/credits");
+                    },
+                  ),
+                  ListTile(
+                    title: Text('Pictures'),
+                    leading: Icon(
+                      Icons.photo,
+                      color: Colors.deepOrange,
+                    ),
+                    onTap: () {
+                      // Update the state of the app
+                      // ...
+                      // Then close the drawer
+                      // Navigator.pop(context);
+                      // Navigator.pushNamed(context, "/software");
+                    },
+                  ),
+                  ListTile(
+                    title: Text('Videos'),
+                    leading: Icon(
+                      Icons.video_library,
+                      color: Colors.deepOrange,
+                    ),
+                    onTap: () {
+                      // Update the state of the app
+                      // ...
+                      // Then close the drawer
+                      // Navigator.pop(context);
+                      // Navigator.pushNamed(context, "/software");
+                    },
+                  ),
+                  ListTile(
+                    title: Text('Music'),
+                    leading: Icon(
+                      Icons.music_note,
+                      color: Colors.deepOrange,
+                    ),
+                    onTap: () {
+                      // Update the state of the app
+                      // ...
+                      // Then close the drawer
+                      // Navigator.pop(context);
+                      // Navigator.pushNamed(context, "/software");
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Expanded(
+              child: Container(
+                  //constraints: BoxConstraints(maxWidth: 900),
+                  padding: EdgeInsets.all(10.0),
+                  child: GridView.count(crossAxisCount: 10, children: [
+                    buildFolder(Icons.folder, "label", () {}),
+                    buildFolder(Icons.folder, "label", () {}),
+                    buildFolder(Icons.folder, "label", () {}),
+                    buildFolder(Icons.folder, "label", () {}),
+                    buildFolder(Icons.folder, "label", () {}),
+                    buildFolder(Icons.folder, "label", () {}),
+                    buildFolder(Icons.folder, "label", () {}),
+                    buildFolder(Icons.folder, "label", () {}),
+                    buildFolder(Icons.folder, "label", () {}),
+                    buildFolder(Icons.folder, "label", () {}),
+                    buildFolder(Icons.folder, "label", () {}),
+                    buildFolder(Icons.folder, "label", () {}),
+                    buildFolder(Icons.folder, "label", () {}),
+                    buildFolder(Icons.folder, "label", () {}),
+                    buildFolder(Icons.folder, "label", () {}),
+                    buildFolder(Icons.folder, "label", () {}),
+                    buildFolder(Icons.folder, "label", () {}),
+                    buildFolder(Icons.folder, "label", () {}),
+                    buildFolder(Icons.folder, "label", () {}),
+                    buildFolder(Icons.folder, "label", () {}),
+                    buildFolder(Icons.folder, "label", () {}),
+                    buildFolder(Icons.folder, "label", () {}),
+                    buildFolder(Icons.folder, "label", () {}),
+                    buildFolder(Icons.folder, "label", () {}),
+                    buildFolder(Icons.folder, "label", () {}),
+                    buildFolder(Icons.folder, "label", () {}),
+                    buildFolder(Icons.folder, "label", () {}),
+                    buildFolder(Icons.folder, "label", () {}),
+                    buildFolder(Icons.folder, "label", () {}),
+                    buildFolder(Icons.folder, "label", () {}),
+                    buildFolder(Icons.folder, "label", () {}),
+                    buildFolder(Icons.folder, "label", () {}),
+                    buildFolder(Icons.folder, "label", () {}),
+                    buildFolder(Icons.folder, "label", () {}),
+                    buildFolder(Icons.folder, "label", () {}),
+                    buildFolder(Icons.folder, "label", () {}),
+                  ])))
+        ],
+      ),
     );
   }
 }
-
-
