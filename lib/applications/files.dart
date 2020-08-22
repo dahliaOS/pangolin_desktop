@@ -16,7 +16,7 @@ limitations under the License.
 
 import 'dart:ui';
 
-import 'package:GeneratedApp/applications/containers.dart';
+import 'package:GeneratedApp/widgets/hover.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -108,22 +108,32 @@ class Files extends StatelessWidget {
     ));
   }
 }*/
-Column buildFolder(IconData icon, String label, Function onClick) {
-  return Column(
-    //mainAxisSize: MainAxisSize.min,
-    //mainAxisAlignment: MainAxisAlignment.center,
-    crossAxisAlignment: CrossAxisAlignment.center,
-    children: [
-      Icon(icon, color: Colors.deepOrange, size: 50.0),
-      Container(
-        margin: EdgeInsets.only(top: 5),
-        child: Text(
-          label,
-          style: TextStyle(color: Colors.grey[900]),
-          textAlign: TextAlign.center,
+Container buildFolder(IconData icon, String label, Function onClick) {
+  return Container(
+    margin: EdgeInsets.all(25),
+    child: Hover(
+      borderRadius: BorderRadius.circular(10),
+      child: Container(
+        width: double.infinity,
+        height: double.infinity,
+        child: Column(
+          //mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Icon(icon, color: Colors.deepOrange, size: 50.0),
+            Container(
+              margin: EdgeInsets.only(top: 5),
+              child: Text(
+                label,
+                style: TextStyle(color: Colors.grey[900]),
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ],
         ),
       ),
-    ],
+    ),
   );
 }
 
@@ -279,44 +289,47 @@ class _FilesHomeState extends State<FilesHome> {
               child: Container(
                   //constraints: BoxConstraints(maxWidth: 900),
                   padding: EdgeInsets.all(10.0),
-                  child: GridView.count(crossAxisCount: 10, children: [
-                    buildFolder(Icons.folder, "label", () {}),
-                    buildFolder(Icons.folder, "label", () {}),
-                    buildFolder(Icons.folder, "label", () {}),
-                    buildFolder(Icons.folder, "label", () {}),
-                    buildFolder(Icons.folder, "label", () {}),
-                    buildFolder(Icons.folder, "label", () {}),
-                    buildFolder(Icons.folder, "label", () {}),
-                    buildFolder(Icons.folder, "label", () {}),
-                    buildFolder(Icons.folder, "label", () {}),
-                    buildFolder(Icons.folder, "label", () {}),
-                    buildFolder(Icons.folder, "label", () {}),
-                    buildFolder(Icons.folder, "label", () {}),
-                    buildFolder(Icons.folder, "label", () {}),
-                    buildFolder(Icons.folder, "label", () {}),
-                    buildFolder(Icons.folder, "label", () {}),
-                    buildFolder(Icons.folder, "label", () {}),
-                    buildFolder(Icons.folder, "label", () {}),
-                    buildFolder(Icons.folder, "label", () {}),
-                    buildFolder(Icons.folder, "label", () {}),
-                    buildFolder(Icons.folder, "label", () {}),
-                    buildFolder(Icons.folder, "label", () {}),
-                    buildFolder(Icons.folder, "label", () {}),
-                    buildFolder(Icons.folder, "label", () {}),
-                    buildFolder(Icons.folder, "label", () {}),
-                    buildFolder(Icons.folder, "label", () {}),
-                    buildFolder(Icons.folder, "label", () {}),
-                    buildFolder(Icons.folder, "label", () {}),
-                    buildFolder(Icons.folder, "label", () {}),
-                    buildFolder(Icons.folder, "label", () {}),
-                    buildFolder(Icons.folder, "label", () {}),
-                    buildFolder(Icons.folder, "label", () {}),
-                    buildFolder(Icons.folder, "label", () {}),
-                    buildFolder(Icons.folder, "label", () {}),
-                    buildFolder(Icons.folder, "label", () {}),
-                    buildFolder(Icons.folder, "label", () {}),
-                    buildFolder(Icons.folder, "label", () {}),
-                  ])))
+                  child: GridView.count(
+                      crossAxisCount: 10,
+                      padding: EdgeInsets.all(10.0),
+                      children: [
+                        buildFolder(Icons.folder, "label", () {}),
+                        buildFolder(Icons.folder, "label", () {}),
+                        buildFolder(Icons.folder, "label", () {}),
+                        buildFolder(Icons.folder, "label", () {}),
+                        buildFolder(Icons.folder, "label", () {}),
+                        buildFolder(Icons.folder, "label", () {}),
+                        buildFolder(Icons.folder, "label", () {}),
+                        buildFolder(Icons.folder, "label", () {}),
+                        buildFolder(Icons.folder, "label", () {}),
+                        buildFolder(Icons.folder, "label", () {}),
+                        buildFolder(Icons.folder, "label", () {}),
+                        buildFolder(Icons.folder, "label", () {}),
+                        buildFolder(Icons.folder, "label", () {}),
+                        buildFolder(Icons.folder, "label", () {}),
+                        buildFolder(Icons.folder, "label", () {}),
+                        buildFolder(Icons.folder, "label", () {}),
+                        buildFolder(Icons.folder, "label", () {}),
+                        buildFolder(Icons.folder, "label", () {}),
+                        buildFolder(Icons.folder, "label", () {}),
+                        buildFolder(Icons.folder, "label", () {}),
+                        buildFolder(Icons.folder, "label", () {}),
+                        buildFolder(Icons.folder, "label", () {}),
+                        buildFolder(Icons.folder, "label", () {}),
+                        buildFolder(Icons.folder, "label", () {}),
+                        buildFolder(Icons.folder, "label", () {}),
+                        buildFolder(Icons.folder, "label", () {}),
+                        buildFolder(Icons.folder, "label", () {}),
+                        buildFolder(Icons.folder, "label", () {}),
+                        buildFolder(Icons.folder, "label", () {}),
+                        buildFolder(Icons.folder, "label", () {}),
+                        buildFolder(Icons.folder, "label", () {}),
+                        buildFolder(Icons.folder, "label", () {}),
+                        buildFolder(Icons.folder, "label", () {}),
+                        buildFolder(Icons.folder, "label", () {}),
+                        buildFolder(Icons.folder, "label", () {}),
+                        buildFolder(Icons.folder, "label", () {}),
+                      ])))
         ],
       ),
     );
