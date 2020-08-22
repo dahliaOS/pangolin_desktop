@@ -170,7 +170,10 @@ class RootTerminalState extends State<RootTerminal>
             children: [
               new Center(
                 child: new Text(
-                  "!! an error has occured and the terminal was unable to access the shell. !!",
+                  "We were unable to access the shell at this time, but here is some information about the shell you may use to troubleshoot.
+                   Shell: BASH 
+                   Kernel: 5.6
+                   Flutter version: 1.20",
                   style: TextStyle(color: Colors.white),
                 ),
               ),
