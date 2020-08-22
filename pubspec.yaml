@@ -115,3 +115,5 @@ flutter:
   - lib/localization/languages/hr.json
   - lib/localization/languages/nl.json
   - lib/localization/languages/es.json
+  - lib/localization/languages/pt.json
+  - lib/localization/languages/id.json

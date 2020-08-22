@@ -181,6 +181,8 @@ class _PangolinState extends State<Pangolin> {
               Locale("hr"),
               Locale("nl"),
               Locale("es"),
+              Locale("pt"),
+              Locale("id"),
             ],
             localizationsDelegates: [
               Localization.delegate,
