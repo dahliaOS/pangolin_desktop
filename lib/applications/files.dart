@@ -16,6 +16,7 @@ limitations under the License.
 
 import 'dart:ui';
 
+import 'package:GeneratedApp/applications/containers.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -23,7 +24,7 @@ void main() {
 }
 
 class Files extends StatelessWidget {
-  final Widget Function() customBar = ({ //customBar in lib/window/window.dart
+ /* final Widget Function() customBar = ({ //customBar in lib/window/window.dart
   /// The function called to close the window.
   Function close,
   /// The function called to minimize the window.
@@ -34,24 +35,22 @@ class Files extends StatelessWidget {
   bool Function() maximizeState}) {
     return FilesBar(close: close, minimize: minimize, maximize: maximize);
   };
-  final Color customBackground = const Color(0xFFfafafa);
+  final Color customBackground = const Color(0xFFfafafa);*/
 
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
       title: 'Files',
       theme: new ThemeData(
-        primarySwatch: Colors.blue,
-        primaryColor: const Color(0xFF2196f3),
-        accentColor: const Color(0xFF2196f3),
-        canvasColor: const Color(0xFFfafafa),
+        primarySwatch: Colors.deepOrange,
+    
       ),
       home: new FilesHome(),
     );
   }
 }
 
-class FilesBar extends StatelessWidget {
+/*class FilesBar extends StatelessWidget {
   final Function() minimize;
   final Function() maximize;
   final Function() close;
@@ -108,7 +107,9 @@ class FilesBar extends StatelessWidget {
       )
     ));
   }
-}
+}*/
+
+
 
 class FilesHome extends StatefulWidget {
   FilesHome({Key key}) : super(key: key);
@@ -116,16 +117,22 @@ class FilesHome extends StatefulWidget {
   _FilesHomeState createState() => new _FilesHomeState();
 }
 
+ 
+
 class _FilesHomeState extends State<FilesHome> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
+     
       body: Column(children: [
-        Row(children: [
-          Container(width: 256, color: Color(0xffeeeeee)),
-          Expanded(child: Container(color: Color(0xfff3f3f3)))
-        ])
+       Material(
+         elevation: 5.0,
+child: new Container(height: 55,color: Colors.deepOrange[500],),
+
+       ),
       ]),
     );
   }
 }
+
+

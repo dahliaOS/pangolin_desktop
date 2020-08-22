@@ -86,7 +86,7 @@ Expanded tileSection(BuildContext context) {
               app: Files(),
               icon: 'lib/images/icons/v2/compiled/files.png',
               label: local.get("app_files"),
-              color: Colors.deepOrange,
+              color: Colors.deepOrange[800],
               callback: toggleCallback),
           AppLauncherDrawerButton(
               icon: 'lib/images/icons/v2/compiled/disks.png',

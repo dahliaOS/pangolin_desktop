@@ -375,7 +375,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     app: Files(),
                                     icon:
                                         'lib/images/icons/v2/compiled/files.png',
-                                    color: Colors.deepOrange,
+                                    color: Colors.deepOrange[800],
                                     callback: toggleCallback),
                                 AppLauncherPanelButton(
                                   app: Tasks(),
