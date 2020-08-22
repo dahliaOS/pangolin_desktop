@@ -133,7 +133,7 @@ class _PangolinState extends State<Pangolin> {
 
   @override
   void initState() {
-    Pangolin.settingsBox = Hive.box("settings");
+    Pangolin.settingsBox = Pangolin.settingsBox ?? Hive.box("settings");
     if (Pangolin.settingsBox.get("language").toString().length == 5) {
       Pangolin.settingsBox.delete("language");
     }
@@ -375,7 +375,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     app: Files(),
                                     icon:
                                         'lib/images/icons/v2/compiled/files.png',
-                                    color: Colors.deepOrange,
+                                    color: Colors.deepOrange[800],
                                     callback: toggleCallback),
                                 AppLauncherPanelButton(
                                   app: Tasks(),
