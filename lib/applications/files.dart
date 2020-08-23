@@ -127,7 +127,7 @@ class Folder extends StatelessWidget {
   Widget build(BuildContext context) {
     return viewTypeList
         ? Container(
-            margin: EdgeInsets.all(5),
+            //margin: EdgeInsets.all(5),
             child: Hover(
               opacity: 0.1,
               borderRadius: BorderRadius.circular(10),
@@ -153,7 +153,8 @@ class Folder extends StatelessWidget {
             ),
           )
         : Container(
-            margin: EdgeInsets.all(25),
+            constraints: BoxConstraints(minHeight: 50.0, minWidth: 50.0),
+            //margin: EdgeInsets.all(25),
             child: Hover(
               opacity: 0.1,
               borderRadius: BorderRadius.circular(10),
@@ -390,9 +391,10 @@ class _FilesHomeState extends State<FilesHome> {
                           padding: EdgeInsets.all(10.0),
                           children: children,
                         )
-                      : GridView.count(
-                          crossAxisCount: 10,
-                          padding: EdgeInsets.all(10.0),
+                      : GridView.extent(
+                          //crossAxisCount: 15,
+                          //padding: EdgeInsets.all(10.0),
+                          maxCrossAxisExtent: 100,
                           children: children)))
         ],
       ),
