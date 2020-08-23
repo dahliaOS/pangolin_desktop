@@ -214,8 +214,12 @@ class WindowState extends State<Window> {
                     child: Hover(
                       opacity: 0.8,
                       child: Container(
-                        width: _size.width + 20,
-                        height: _size.height + 20,
+                        width: (_windowMode == WindowMode.MAXIMIZE_MODE)
+                            ? _size.width
+                            : _size.width + 20,
+                        height: (_windowMode == WindowMode.MAXIMIZE_MODE)
+                            ? _size.height
+                            : _size.height + 20,
                         //color: Colors.blueAccent,
                       ),
                     ),
