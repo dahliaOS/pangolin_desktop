@@ -111,63 +111,75 @@ class Files extends StatelessWidget {
 
 bool viewTypeList = false;
 
-Container buildFolderGrid(IconData icon, String label, Function onClick) {
-  return Container(
-    margin: EdgeInsets.all(25),
-    child: Hover(
-      opacity: 0.1,
-      borderRadius: BorderRadius.circular(10),
-      child: Container(
-        width: double.infinity,
-        height: double.infinity,
-        child: Column(
-          //mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Icon(icon, color: Colors.deepOrange, size: 50.0),
-            Container(
-              margin: EdgeInsets.only(top: 5),
-              child: Text(
-                label,
-                style: TextStyle(color: Colors.grey[900]),
-                textAlign: TextAlign.center,
+class Folder extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final Function onClick;
+
+  const Folder({
+    Key key,
+    @required this.icon,
+    @required this.label,
+    @required this.onClick,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return viewTypeList
+        ? Container(
+            margin: EdgeInsets.all(5),
+            child: Hover(
+              opacity: 0.1,
+              borderRadius: BorderRadius.circular(10),
+              child: Row(
+                //mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0),
+                    child: Icon(icon, color: Colors.deepOrange, size: 50.0),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0),
+                    child: Text(
+                      label,
+                      style: TextStyle(color: Colors.grey[900]),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
-      ),
-    ),
-  );
-}
-
-Container buildFolderList(IconData icon, String label, Function onClick) {
-  return Container(
-    margin: EdgeInsets.all(5),
-    child: Hover(
-      opacity: 0.1,
-      borderRadius: BorderRadius.circular(10),
-      child: Row(
-        //mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 8.0),
-            child: Icon(icon, color: Colors.deepOrange, size: 50.0),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 8.0),
-            child: Text(
-              label,
-              style: TextStyle(color: Colors.grey[900]),
-              textAlign: TextAlign.center,
+          )
+        : Container(
+            margin: EdgeInsets.all(25),
+            child: Hover(
+              opacity: 0.1,
+              borderRadius: BorderRadius.circular(10),
+              child: Container(
+                width: double.infinity,
+                height: double.infinity,
+                child: Column(
+                  //mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Icon(icon, color: Colors.deepOrange, size: 50.0),
+                    Container(
+                      margin: EdgeInsets.only(top: 5),
+                      child: Text(
+                        label,
+                        style: TextStyle(color: Colors.grey[900]),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
-          ),
-        ],
-      ),
-    ),
-  );
+          );
+  }
 }
 
 class FilesHome extends StatefulWidget {
@@ -177,82 +189,41 @@ class FilesHome extends StatefulWidget {
 }
 
 class _FilesHomeState extends State<FilesHome> {
-  List<Widget> childrenGrid = [
-    buildFolderGrid(Icons.folder, "label", () {}),
-    buildFolderGrid(Icons.folder, "label", () {}),
-    buildFolderGrid(Icons.folder, "label", () {}),
-    buildFolderGrid(Icons.folder, "label", () {}),
-    buildFolderGrid(Icons.folder, "label", () {}),
-    buildFolderGrid(Icons.folder, "label", () {}),
-    buildFolderGrid(Icons.folder, "label", () {}),
-    buildFolderGrid(Icons.folder, "label", () {}),
-    buildFolderGrid(Icons.folder, "label", () {}),
-    buildFolderGrid(Icons.folder, "label", () {}),
-    buildFolderGrid(Icons.folder, "label", () {}),
-    buildFolderGrid(Icons.folder, "label", () {}),
-    buildFolderGrid(Icons.folder, "label", () {}),
-    buildFolderGrid(Icons.folder, "label", () {}),
-    buildFolderGrid(Icons.folder, "label", () {}),
-    buildFolderGrid(Icons.folder, "label", () {}),
-    buildFolderGrid(Icons.folder, "label", () {}),
-    buildFolderGrid(Icons.folder, "label", () {}),
-    buildFolderGrid(Icons.folder, "label", () {}),
-    buildFolderGrid(Icons.folder, "label", () {}),
-    buildFolderGrid(Icons.folder, "label", () {}),
-    buildFolderGrid(Icons.folder, "label", () {}),
-    buildFolderGrid(Icons.folder, "label", () {}),
-    buildFolderGrid(Icons.folder, "label", () {}),
-    buildFolderGrid(Icons.folder, "label", () {}),
-    buildFolderGrid(Icons.folder, "label", () {}),
-    buildFolderGrid(Icons.folder, "label", () {}),
-    buildFolderGrid(Icons.folder, "label", () {}),
-    buildFolderGrid(Icons.folder, "label", () {}),
-    buildFolderGrid(Icons.folder, "label", () {}),
-    buildFolderGrid(Icons.folder, "label", () {}),
-    buildFolderGrid(Icons.folder, "label", () {}),
-    buildFolderGrid(Icons.folder, "label", () {}),
-    buildFolderGrid(Icons.folder, "label", () {}),
-    buildFolderGrid(Icons.folder, "label", () {}),
-    buildFolderGrid(Icons.folder, "label", () {}),
-  ];
-
-  List<Widget> childrenList = [
-    buildFolderList(Icons.folder, "label", () {}),
-    buildFolderList(Icons.folder, "label", () {}),
-    buildFolderList(Icons.folder, "label", () {}),
-    buildFolderList(Icons.folder, "label", () {}),
-    buildFolderList(Icons.folder, "label", () {}),
-    buildFolderList(Icons.folder, "label", () {}),
-    buildFolderList(Icons.folder, "label", () {}),
-    buildFolderList(Icons.folder, "label", () {}),
-    buildFolderList(Icons.folder, "label", () {}),
-    buildFolderList(Icons.folder, "label", () {}),
-    buildFolderList(Icons.folder, "label", () {}),
-    buildFolderList(Icons.folder, "label", () {}),
-    buildFolderList(Icons.folder, "label", () {}),
-    buildFolderList(Icons.folder, "label", () {}),
-    buildFolderList(Icons.folder, "label", () {}),
-    buildFolderList(Icons.folder, "label", () {}),
-    buildFolderList(Icons.folder, "label", () {}),
-    buildFolderList(Icons.folder, "label", () {}),
-    buildFolderList(Icons.folder, "label", () {}),
-    buildFolderList(Icons.folder, "label", () {}),
-    buildFolderList(Icons.folder, "label", () {}),
-    buildFolderList(Icons.folder, "label", () {}),
-    buildFolderList(Icons.folder, "label", () {}),
-    buildFolderList(Icons.folder, "label", () {}),
-    buildFolderList(Icons.folder, "label", () {}),
-    buildFolderList(Icons.folder, "label", () {}),
-    buildFolderList(Icons.folder, "label", () {}),
-    buildFolderList(Icons.folder, "label", () {}),
-    buildFolderList(Icons.folder, "label", () {}),
-    buildFolderList(Icons.folder, "label", () {}),
-    buildFolderList(Icons.folder, "label", () {}),
-    buildFolderList(Icons.folder, "label", () {}),
-    buildFolderList(Icons.folder, "label", () {}),
-    buildFolderList(Icons.folder, "label", () {}),
-    buildFolderList(Icons.folder, "label", () {}),
-    buildFolderList(Icons.folder, "label", () {}),
+  List<Widget> children = [
+    Folder(icon: Icons.folder, label: "label", onClick: () {}),
+    Folder(icon: Icons.folder, label: "label", onClick: () {}),
+    Folder(icon: Icons.folder, label: "label", onClick: () {}),
+    Folder(icon: Icons.folder, label: "label", onClick: () {}),
+    Folder(icon: Icons.folder, label: "label", onClick: () {}),
+    Folder(icon: Icons.folder, label: "label", onClick: () {}),
+    Folder(icon: Icons.folder, label: "label", onClick: () {}),
+    Folder(icon: Icons.folder, label: "label", onClick: () {}),
+    Folder(icon: Icons.folder, label: "label", onClick: () {}),
+    Folder(icon: Icons.folder, label: "label", onClick: () {}),
+    Folder(icon: Icons.folder, label: "label", onClick: () {}),
+    Folder(icon: Icons.folder, label: "label", onClick: () {}),
+    Folder(icon: Icons.folder, label: "label", onClick: () {}),
+    Folder(icon: Icons.folder, label: "label", onClick: () {}),
+    Folder(icon: Icons.folder, label: "label", onClick: () {}),
+    Folder(icon: Icons.folder, label: "label", onClick: () {}),
+    Folder(icon: Icons.folder, label: "label", onClick: () {}),
+    Folder(icon: Icons.folder, label: "label", onClick: () {}),
+    Folder(icon: Icons.folder, label: "label", onClick: () {}),
+    Folder(icon: Icons.folder, label: "label", onClick: () {}),
+    Folder(icon: Icons.folder, label: "label", onClick: () {}),
+    Folder(icon: Icons.folder, label: "label", onClick: () {}),
+    Folder(icon: Icons.folder, label: "label", onClick: () {}),
+    Folder(icon: Icons.folder, label: "label", onClick: () {}),
+    Folder(icon: Icons.folder, label: "label", onClick: () {}),
+    Folder(icon: Icons.folder, label: "label", onClick: () {}),
+    Folder(icon: Icons.folder, label: "label", onClick: () {}),
+    Folder(icon: Icons.folder, label: "label", onClick: () {}),
+    Folder(icon: Icons.folder, label: "label", onClick: () {}),
+    Folder(icon: Icons.folder, label: "label", onClick: () {}),
+    Folder(icon: Icons.folder, label: "label", onClick: () {}),
+    Folder(icon: Icons.folder, label: "label", onClick: () {}),
+    Folder(icon: Icons.folder, label: "label", onClick: () {}),
+    Folder(icon: Icons.folder, label: "label", onClick: () {}),
   ];
 
   @override
@@ -417,12 +388,12 @@ class _FilesHomeState extends State<FilesHome> {
                   child: viewTypeList
                       ? ListView(
                           padding: EdgeInsets.all(10.0),
-                          children: childrenList,
+                          children: children,
                         )
                       : GridView.count(
                           crossAxisCount: 10,
                           padding: EdgeInsets.all(10.0),
-                          children: childrenGrid)))
+                          children: children)))
         ],
       ),
     );
