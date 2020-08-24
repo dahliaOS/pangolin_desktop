@@ -230,43 +230,7 @@ class _FilesHomeState extends State<FilesHome> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: AppBar(
-        title: Text('Files'),
-        actions: <Widget>[
-          IconButton(
-            tooltip: "Toggle View",
-            icon: Icon(
-              viewTypeList ? Icons.grid_on : Icons.list_rounded,
-              color: Colors.white,
-            ),
-            onPressed: () {
-              setState(() {
-                viewTypeList = !viewTypeList;
-              });
-            },
-          ),
-          IconButton(
-            tooltip: "Refresh",
-            icon: Icon(
-              Icons.refresh,
-              color: Colors.white,
-            ),
-            onPressed: () {
-              // do something
-            },
-          ),
-          IconButton(
-            tooltip: "Share",
-            icon: Icon(
-              Icons.share,
-              color: Colors.white,
-            ),
-            onPressed: () {
-              // do something
-            },
-          )
-        ],
-      ),
+      appBar: _FilesBar(),
       body: new Row(
         children: [
           new Container(
@@ -401,4 +365,28 @@ class _FilesHomeState extends State<FilesHome> {
       ),
     );
   }
+}
+
+class _FilesBar extends StatelessWidget implements PreferredSizeWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Theme.of(context).primaryColor,
+      child: Row(
+        children: [
+          Align(alignment: Alignment.centerLeft, child: Text("Files")),
+          Center(
+            child: Container(
+              color: Colors.black,
+              width: 1500,
+              height: 35,
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  @override
+  Size get preferredSize => Size.fromHeight(55);
 }
