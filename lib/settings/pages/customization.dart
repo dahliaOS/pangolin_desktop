@@ -206,8 +206,8 @@ class _CustomizationState extends State<Customization> {
                         )
                       ],
                     ),
-                    SizedBox(height: 20),
-                    Padding(
+                    SizedBox(height: 5),
+                    /*Padding(
                       padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
                       child: Text("Dark Mode",
                           style: TextStyle(
@@ -216,7 +216,7 @@ class _CustomizationState extends State<Customization> {
                               fontWeight: FontWeight.bold)),
                     ),
                     SizedBox(height: 5),
-                    /*SettingsTile(
+                    SettingsTile(
                       children: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
