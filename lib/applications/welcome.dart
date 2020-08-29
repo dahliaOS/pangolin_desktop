@@ -323,7 +323,7 @@ class BuildInfo extends StatelessWidget {
               style: TextStyle(fontSize: 14, color: Color(0xff000000))),
           Text('Kernel 5.7.19',
               style: TextStyle(fontSize: 14, color: Color(0xff000000))),
-          Text('Pangolin a0a2eb98c7dd97eefcb7b8a054a29a7f74e18e6a',
+          Text('Pangolin e19e26555115591bada8597f45e6a60d989068ad',
               style: TextStyle(fontSize: 14, color: Color(0xff000000))),
           RaisedButton(
               onPressed: () {
