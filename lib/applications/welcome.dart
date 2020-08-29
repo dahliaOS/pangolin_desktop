@@ -321,9 +321,9 @@ class BuildInfo extends StatelessWidget {
           ),
           Text('dahliaOS Linux-based 200830  PRE-RELEASE',
               style: TextStyle(fontSize: 14, color: Color(0xff000000))),
-          Text('Kernel 5.6.15',
+          Text('Kernel 5.7.19',
               style: TextStyle(fontSize: 14, color: Color(0xff000000))),
-          Text('Pangolin 30be69cb6f5419febc27a67557efa6d256be67a4',
+          Text('Pangolin a0a2eb98c7dd97eefcb7b8a054a29a7f74e18e6a',
               style: TextStyle(fontSize: 14, color: Color(0xff000000))),
           RaisedButton(
               onPressed: () {
