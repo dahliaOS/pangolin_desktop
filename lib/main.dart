@@ -21,7 +21,7 @@ import 'package:GeneratedApp/applications/editor.dart';
 import 'package:GeneratedApp/applications/welcome.dart';
 import 'package:GeneratedApp/applications/terminal/main.dart';
 import 'package:GeneratedApp/applications/monitor.dart';
-import 'package:GeneratedApp/applications/files.dart';
+import 'package:GeneratedApp/applications/files/main.dart';
 import 'package:GeneratedApp/localization/localization.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hive/hive.dart';
