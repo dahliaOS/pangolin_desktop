@@ -14,7 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:GeneratedApp/widgets/hover.dart';
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import '../model.dart';
 import 'model.dart';
@@ -24,27 +25,6 @@ typedef void WindowInteractionCallback();
 
 /// A window container
 class Window extends StatefulWidget {
-  /// The window's initial position.
-  final Offset initialPosition;
-
-  /// The window's initial size.
-  final Size initialSize;
-
-  /// Called when the user started interacting with this window.
-  final WindowInteractionCallback onWindowInteraction;
-
-  /// Called when the user clicks close button in this window.
-  final WindowInteractionCallback onWindowClose;
-
-  /// The window's child.
-  final dynamic child;
-
-  /// The window's theme color.
-  final Color color;
-
-  /// The window's custom bar, if there is one.
-  Widget customBar;
-
   /// Constructor.
   Window({
     Key key,
@@ -56,6 +36,27 @@ class Window extends StatefulWidget {
     this.color: Colors.blueAccent,
   }) : super(key: key);
 
+  /// The window's child.
+  final dynamic child;
+
+  /// The window's theme color.
+  final Color color;
+
+  /// The window's custom bar, if there is one.
+  Widget customBar;
+
+  /// The window's initial position.
+  final Offset initialPosition;
+
+  /// The window's initial size.
+  final Size initialSize;
+
+  /// Called when the user clicks close button in this window.
+  final WindowInteractionCallback onWindowClose;
+
+  /// Called when the user started interacting with this window.
+  final WindowInteractionCallback onWindowInteraction;
+
   @override
   WindowState createState() => WindowState();
 }
@@ -64,20 +65,9 @@ class Window extends StatefulWidget {
 enum WindowMode { NORMAL_MODE, MAXIMIZE_MODE, MINIMIZE_MODE }
 
 class WindowState extends State<Window> {
-  /// The window's position.
-  Offset _position;
-
-  /// The window's position before maximizing.
-  Offset _prePosition;
-
-  /// The window's size.
-  Size _size;
-
-  /// The window's size before maximizing.
-  Size _preSize;
-
-  /// The windows's current mode.
-  WindowMode _windowMode = WindowMode.NORMAL_MODE;
+  bool hoverClose = false;
+  bool hoverMaximize = false;
+  bool hoverMinimize = false;
 
   /// The window's child.
   dynamic _child;
@@ -85,17 +75,39 @@ class WindowState extends State<Window> {
   /// The window's color.
   Color _color;
 
+  /// Control is an illusion so let's make it a big one
+  FocusAttachment _focusAttachment;
+
+  /// Controls focus on this window.
+  final FocusNode _focusNode = new FocusNode();
+
   /// The window's minimum height.
   final double _minHeight = 100.0;
 
   /// The window's minimum width.
   final double _minWidth = 100.0;
 
-  /// Controls focus on this window.
-  final FocusNode _focusNode = new FocusNode();
+  /// The window's position.
+  Offset _position;
 
-  /// Control is an illusion so let's make it a big one
-  FocusAttachment _focusAttachment;
+  /// The window's position before maximizing.
+  Offset _prePosition;
+
+  /// The window's size before maximizing.
+  Size _preSize;
+
+  /// The window's size.
+  Size _size;
+
+  /// The windows's current mode.
+  WindowMode _windowMode = WindowMode.NORMAL_MODE;
+
+  @override
+  void dispose() {
+    _focusAttachment.detach();
+    _focusNode.dispose();
+    super.dispose();
+  }
 
   @override
   void initState() {
@@ -105,13 +117,6 @@ class WindowState extends State<Window> {
     _size = widget.initialSize;
     _child = widget.child;
     _color = widget.color;
-  }
-
-  @override
-  void dispose() {
-    _focusAttachment.detach();
-    _focusNode.dispose();
-    super.dispose();
   }
 
   /// Requests this window to be focused.
@@ -144,154 +149,6 @@ class WindowState extends State<Window> {
   void _closeWindow() {
     widget.onWindowClose?.call();
   }
-
-  bool hoverClose = false;
-  bool hoverMaximize = false;
-  bool hoverMinimize = false;
-
-  @override
-  Widget build(BuildContext context) =>
-      ScopedModelDescendant<WindowData>(builder: (
-        BuildContext context,
-        Widget child,
-        WindowData model,
-      ) {
-        // Make sure the focus tree is properly updated.
-        _focusAttachment.reparent();
-        /*if (model.tabs.length == 1 && model.tabs[0].id == _draggedTabId) {
-          // If the lone tab is being dragged, hide this window.
-          return new Container();
-        }
-        final TabData selectedTab = _getCurrentSelection(model);*/
-        Widget Function(
-            {
-
-            /// The function called to close the window.
-            Function close,
-
-            /// The function called to minimize the window.
-            Function minimize,
-
-            /// The function called to maximize or restore the window.
-            Function maximize,
-
-            /// The getter to determine whether or not the window is maximized.
-            bool Function() maximizeState}) customBar;
-        try {
-          customBar = widget.child.customBar;
-          widget.customBar = widget.child.customBar;
-        } catch (e) {}
-        try {
-          setState(() {
-            _color = widget.child.customBackground;
-          });
-        } catch (e) {}
-        return Positioned(
-          left: _position.dx,
-          top: _position.dy,
-          child: GestureDetector(
-            onTapDown: (_) => _registerInteraction(),
-            child:
-                /*new RawKeyboardListener(
-        focusNode: _focusNode,
-        onKey: (RawKeyEvent event) =>
-        _handleKeyEvent(event, model, selectedTab.id),
-        child: new*/
-                //check to see if there's a customBar property in the passed app class
-                RepaintBoundary(
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  GestureDetector(
-                    onPanUpdate: (DragUpdateDetails details) {
-                      setState(() {
-                        var _newSize = _size + details.delta;
-                        if (_newSize.width >= _minWidth &&
-                            _newSize.height >= _minHeight)
-                          _size += details.delta;
-                      });
-                    },
-                    child: Hover(
-                      opacity: 0.8,
-                      child: Container(
-                        width: (_windowMode == WindowMode.MAXIMIZE_MODE)
-                            ? _size.width
-                            : _size.width + 20,
-                        height: (_windowMode == WindowMode.MAXIMIZE_MODE)
-                            ? _size.height
-                            : _size.height + 20,
-                        //color: Colors.blueAccent,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    width: _size.width,
-                    height: _size.height,
-                    constraints: BoxConstraints(
-                        minWidth: _minWidth, minHeight: _minHeight), //
-                    decoration:
-                        BoxDecoration(boxShadow: kElevationToShadow[12]),
-                    child: Column(
-                      children: [
-                        GestureDetector(
-                          onPanUpdate: (DragUpdateDetails details) {
-                            setState(() {
-                              _position += details.delta;
-                              if (_windowMode == WindowMode.MAXIMIZE_MODE) {
-                                _windowMode = WindowMode.NORMAL_MODE;
-                                _size = _preSize;
-                              }
-                            });
-                          },
-                          onDoubleTap: () {
-                            _windowMode == WindowMode.NORMAL_MODE
-                                ? _maximizeWindow()
-                                : _restoreWindowFromMaximizeMode();
-                          },
-                          child: customBar != null
-                              ? customBar(
-                                  close: _closeWindow,
-                                  maximize: () =>
-                                      _windowMode == WindowMode.NORMAL_MODE
-                                          ? _maximizeWindow()
-                                          : _restoreWindowFromMaximizeMode(),
-                                  minimize: () => null, // for now
-                                  maximizeState: () =>
-                                      _windowMode == WindowMode.MAXIMIZE_MODE
-                                          ? true
-                                          : false)
-                              : Container(
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 4.0),
-                                  height: 35.0,
-                                  color: _color,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      minimizeButton(),
-                                      SizedBox(width: 3.0),
-                                      maximizeButton(),
-                                      SizedBox(width: 3.0),
-                                      closeButton()
-                                    ],
-                                  )),
-                        ),
-                        Expanded(
-                          child: ClipRRect(
-                            child: (_child is Widget)
-                                ? _child
-                                : Text("ERROR: Window is not a Widget!"),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        );
-      });
 
   MouseRegion closeButton() {
     return MouseRegion(
@@ -378,4 +235,150 @@ class WindowState extends State<Window> {
       ),
     );
   }
+
+  @override
+  Widget build(BuildContext context) =>
+      ScopedModelDescendant<WindowData>(builder: (
+        BuildContext context,
+        Widget child,
+        WindowData model,
+      ) {
+        // Make sure the focus tree is properly updated.
+        _focusAttachment.reparent();
+        /*if (model.tabs.length == 1 && model.tabs[0].id == _draggedTabId) {
+          // If the lone tab is being dragged, hide this window.
+          return new Container();
+        }
+        final TabData selectedTab = _getCurrentSelection(model);*/
+        Widget Function(
+            {
+
+            /// The function called to close the window.
+            Function close,
+
+            /// The function called to minimize the window.
+            Function minimize,
+
+            /// The function called to maximize or restore the window.
+            Function maximize,
+
+            /// The getter to determine whether or not the window is maximized.
+            bool Function() maximizeState}) customBar;
+        try {
+          customBar = widget.child.customBar;
+          widget.customBar = widget.child.customBar;
+        } catch (e) {}
+        try {
+          setState(() {
+            _color = widget.child.customBackground;
+          });
+        } catch (e) {}
+        return Positioned(
+          left: _position.dx,
+          top: _position.dy,
+          child: GestureDetector(
+            onTapDown: (_) => _registerInteraction(),
+            child: Container(
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.5),
+                    spreadRadius: 3,
+                    blurRadius: 15,
+                    offset: Offset(5, 5), // changes position of shadow
+                  ),
+                ],
+              ),
+              /*new RawKeyboardListener(
+        focusNode: _focusNode,
+        onKey: (RawKeyEvent event) =>
+        _handleKeyEvent(event, model, selectedTab.id),
+        child: new*/
+              //check to see if there's a customBar property in the passed app class
+              child: RepaintBoundary(
+                child: ClipRRect(
+                  // Add rounded corners to each window
+                  borderRadius: BorderRadius.circular(7.5),
+                  child: BackdropFilter(
+                    // give the transparent title bar some noiiice blur
+                    // note: this only works in conjunction with the Opacity() implemented below (find "// Title bar opacity for the blur:")
+                    filter: ImageFilter.blur(sigmaX: 8.0, sigmaY: 8.0),
+                    child: Container(
+                      width: _size.width,
+                      height: _size.height,
+                      constraints: BoxConstraints(
+                          minWidth: _minWidth, minHeight: _minHeight),
+                      child: Column(
+                        children: [
+                          GestureDetector(
+                            onPanUpdate: (DragUpdateDetails details) {
+                              setState(() {
+                                _position += details.delta;
+                                if (_windowMode == WindowMode.MAXIMIZE_MODE) {
+                                  _windowMode = WindowMode.NORMAL_MODE;
+                                  _size = _preSize;
+                                }
+                              });
+                            },
+                            onDoubleTap: () {
+                              _windowMode == WindowMode.NORMAL_MODE
+                                  ? _maximizeWindow()
+                                  : _restoreWindowFromMaximizeMode();
+                            },
+                            child: customBar != null
+                                ? customBar(
+                                    close: _closeWindow,
+                                    maximize: () =>
+                                        _windowMode == WindowMode.NORMAL_MODE
+                                            ? _maximizeWindow()
+                                            : _restoreWindowFromMaximizeMode(),
+                                    minimize: () => null, // for now
+                                    maximizeState: () =>
+                                        _windowMode == WindowMode.MAXIMIZE_MODE
+                                            ? true
+                                            : false)
+                                : Container(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 4.0),
+                                    height: 35.0,
+                                    // Title bar opacity for the blur:
+                                    color: _color.withOpacity(0.5),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        minimizeButton(),
+                                        SizedBox(width: 3.0),
+                                        maximizeButton(),
+                                        SizedBox(width: 3.0),
+                                        closeButton()
+                                      ],
+                                    )),
+                          ),
+                          Expanded(
+                            child: ClipRRect(
+                              child: GestureDetector(
+                                onPanUpdate: (DragUpdateDetails details) {
+                                  setState(() {
+                                    var _newSize = _size + details.delta;
+                                    if (_newSize.width >= _minWidth &&
+                                        _newSize.height >= _minHeight)
+                                      _size += details.delta;
+                                  });
+                                },
+                                child: (_child is Widget)
+                                    ? _child
+                                    : Text("ERROR: Window is not a Widget!"),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        );
+      });
 }
