@@ -17,6 +17,7 @@
     "app_themedemo": "Thema Demo",
     "app_welcome": "Welkom",
     "app_help": "Help",
+    "app_web": "Browser",
     "featurenotimplemented_title": "Functie niet geïmplementeerd",
     "featurenotimplemented_value": "Deze Functie is nu niet geïmplementeerd op je build van pangolin. ga naar https://reddit.com/r/dahliaos voor updates.",
     "launcher_card_information_title": "Informatie",
@@ -43,7 +44,7 @@
     "taskmanager_containers": "Containers",
     "taskmanager_info": "Selecteer een proces om statistieken te bekijken en functionaliteit te beheren.",
     "taskmanager_kill": "Doden",
-    "taskmanager_launch": "Lanceer",
+    "taskmanager_launch": "Open",
     "taskmanager_processes": "Processen",
     "taskmanager_resources": "Middelen",
     "taskmanager_selectedprocessplaceholder": "io.dahliaos.null"
