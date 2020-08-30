@@ -298,7 +298,9 @@ class WindowState extends State<Window> {
               child: RepaintBoundary(
                 child: ClipRRect(
                   // Add rounded corners to each window
-                  borderRadius: BorderRadius.circular(7.5),
+                  // removed - corners are rounded in maximized mode aswell. There is a commit for rounded window corners in Settings branch.
+                  // Will be re added when settings is merged into master
+                  //borderRadius: BorderRadius.circular(7.5),
                   child: BackdropFilter(
                     // give the transparent title bar some noiiice blur
                     // note: this only works in conjunction with the Opacity() implemented below (find "// Title bar opacity for the blur:")
