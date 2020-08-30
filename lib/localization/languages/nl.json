@@ -43,7 +43,7 @@
     "taskmanager_containers": "Containers",
     "taskmanager_info": "Selecteer een proces om statistieken te bekijken en functionaliteit te beheren.",
     "taskmanager_kill": "Doden",
-    "taskmanager_launch": "Lanceer",
+    "taskmanager_launch": "Open",
     "taskmanager_processes": "Processen",
     "taskmanager_resources": "Middelen",
     "taskmanager_selectedprocessplaceholder": "io.dahliaos.null"
