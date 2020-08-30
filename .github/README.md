@@ -22,6 +22,10 @@ Check the wiki: [/wiki/Build-Pangolin-Desktop](https://github.com/dahlia-os/pang
 
 If you're interested in contributing to the project, please refer to [CONTRIBUTE.md](./CONTRIBUTE.md)
 
+## Donate
+
+If you're interested in donating to the project, you can do so by clicking [here!](https://dahliaos.io/donate) or by clicking on the Sponsor button featured on this repo!
+
 ## Translate
 
 If you're interested in translating the project, please refer to [TRANSLATION.md](./TRANSLATION.md)
