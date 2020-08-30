@@ -18,6 +18,8 @@ import 'key_ring.dart';
 import 'package:flutter/widgets.dart';
 import '../widgets/system_overlay.dart';
 
+double _scaleFactor = 1.0;
+
 /// Hides all overlays except [except] if applicable.
 void hideOverlays({GlobalKey<SystemOverlayState> except}) {
   <GlobalKey<SystemOverlayState>>[
@@ -44,3 +46,7 @@ void toggleCallback(bool toggled) => setOverlayVisibility(
       overlay: KeyRing.launcherOverlayKey,
       visible: toggled,
     );
+
+double scale(double x) {
+  return x * _scaleFactor;
+}
