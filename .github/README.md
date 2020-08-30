@@ -24,7 +24,7 @@ If you're interested in contributing to the project, please refer to [CONTRIBUTE
 
 ## Donate
 
-If you're interested in donating to the project, you can do so by clicking [here!](https://dahliaos.io/donate) or by clicking on the Sponsor button featured on this repo!
+If you're interested in donating to the project, you can do so by clicking [here](https://dahliaos.io/donate) or by clicking on the Sponsor button featured on this repo!
 
 ## Translate
 
