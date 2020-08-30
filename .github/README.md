@@ -30,14 +30,6 @@ If you're interested in donating to the project, you can do so by clicking [here
 
 If you're interested in translating the project, please refer to [TRANSLATION.md](./TRANSLATION.md)
 
-## Important style guide
-
-All dahliaOS applications MUST have a central theme color, that is not #ff5722, or material-deeporange or similar, as that is reserved for the system. 
-
-Uploaders must upload a theme.txt in the root of their application, that contains the theme color, in preferably hexadecimal, but RGBA is acceptable as well. 
-
-Uncompliant applications will have their theme colors set to a random color.
-
 ## Contributors
 
 ### Translators
@@ -53,6 +45,14 @@ Uncompliant applications will have their theme colors set to a random color.
 | [HexaOneOfficial](https://github.com/HexaOneOfficial)                     | Dutch                |
 | [Horus125](https://github.com/Horus125)               | Polish                |
 | [allansrc](https://github.com/allansrc)               | Portugese                |
+
+## Important style guide
+
+All dahliaOS applications MUST have a central theme color, that is not #ff5722, or material-deeporange or similar, as that is reserved for the system. 
+
+Uploaders must upload a theme.txt in the root of their application, that contains the theme color, in preferably hexadecimal, but RGBA is acceptable as well. 
+
+Uncompliant applications will have their theme colors set to a random color.
 
 ## License
 
