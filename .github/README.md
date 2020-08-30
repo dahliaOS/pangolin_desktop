@@ -4,7 +4,9 @@
 ## About Pangolin
 
 Pangolin is a Desktop shell for dahliaOS, written in Flutter, runs on Linux and Zircon.
+
 Pangolin was named after a shelled animal like the armadillo [Armadillo UI](https://9to5google.com/2018/12/26/fuchsia-armadillo-ui-gone/). 
+
 Pangolin-Desktop is based on the deprecated Capybara shell, with a custom window management system built from the ground up.
 
 ![Pangolin](https://user-images.githubusercontent.com/61460660/89405582-1899a500-d71c-11ea-89a5-24b07fa07712.png)
@@ -24,5 +26,7 @@ If you're interested in contributing to the project, please refer to [TRANSLATIO
 
 ## Important style guide!
 All dahliaOS applications MUST have a central theme color, that is not #ff5722, or material-deeporange or similar, as that is reserved for the system. 
+
 Uploaders must upload a theme.txt in the root of their application, that contains the theme color, in preferably hexadecimal, but RGBA is acceptable as well. 
+
 Uncompliant applications will have their theme colors set to a random color.
