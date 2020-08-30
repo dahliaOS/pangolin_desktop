@@ -9,7 +9,7 @@ Pangolin was named after a shelled animal like the armadillo [Armadillo UI](http
 
 Pangolin-Desktop is based on the deprecated Capybara shell, with a custom window management system built from the ground up.
 
-You can check it online [here!](https://web.dahliaos.io)
+You can check it online [here](https://web.dahliaos.io)!
 
 ![Pangolin](https://user-images.githubusercontent.com/61460660/89405582-1899a500-d71c-11ea-89a5-24b07fa07712.png)
 > Pangolin Desktop
@@ -30,7 +30,7 @@ If you're interested in donating to the project, you can do so by clicking [here
 
 If you're interested in translating the project, please refer to [TRANSLATION.md](./TRANSLATION.md)
 
-## Important style guide!
+## Important style guide
 
 All dahliaOS applications MUST have a central theme color, that is not #ff5722, or material-deeporange or similar, as that is reserved for the system. 
 
