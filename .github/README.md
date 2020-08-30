@@ -49,4 +49,4 @@ Uncompliant applications will have their theme colors set to a random color.
 
 ## License
 
-This project is licensed under the [Apache 2.0 license](LICENSE.md)
+This project is licensed under the [Apache 2.0 license](/LICENSE.md)
