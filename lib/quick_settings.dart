@@ -205,11 +205,87 @@ class QuickSettingsState extends State<QuickSettings> {
             },
             color: const Color(0xFFffffff),
           ),
-
+//Navigator.of(context).pop();
           new IconButton(
             icon: Icon(Icons.settings, size: scale(24.0)),
             onPressed: () {
-              notImplemented(context);
+              WidgetsBinding.instance.addPostFrameCallback((_) async {
+                await showDialog<String>(
+                  context: context,
+                  builder: (BuildContext context) => new Scaffold(
+                    appBar: AppBar(
+                      elevation: 0,
+                      backgroundColor: Colors.black,
+                      title: new Text(
+                        "FILESYSTEM EXPANSION MODE",
+                        style: new TextStyle(fontSize: 15),
+                      ),
+                    ),
+                    body: Container(
+                      child: new Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            new Icon(Icons.memory,
+                                color: const Color(0xFFffffff), size: 75.0),
+                            new Container(
+                              padding: const EdgeInsets.only(top: 15),
+                              width: 450,
+                              child: new Text(
+                                "Filesystem expansion will allow the system to use the entire live disk as storage. Warning: Expanding the filesystem may cause a loss of data!",
+                                textAlign: TextAlign.center,
+                                style: new TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: "Roboto",
+                                  fontSize: 15,
+                                ),
+                              ),
+                            ),
+                            new Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                new Padding(
+                                  padding: EdgeInsets.all(10),
+                                  child: OutlineButton(
+                                    child: new Text("CANCEL"),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    color: Colors.white,
+                                    textColor: Colors.white,
+                                    borderSide: BorderSide(
+                                      color: Color(0xFFFFFFff),
+                                      //Color of the border
+                                      style: BorderStyle
+                                          .solid, //Style of the border
+                                      width: 2,
+                                    ),
+                                  ),
+                                ),
+                                new Padding(
+                                  padding: EdgeInsets.all(10),
+                                  child: MaterialButton(
+                                    child: new Text("CONTINUE"),
+                                    onPressed: () {},
+                                    color: Colors.white,
+                                    elevation: 0,
+                                  ),
+                                ),
+                              ],
+                            )
+                          ]),
+                      color: const Color(0xFF0a0a0a),
+                      padding: const EdgeInsets.all(0.0),
+                      alignment: Alignment.center,
+                      width: 1.7976931348623157e+308,
+                      height: 1.7976931348623157e+308,
+                    ),
+                  ),
+                );
+              });
             },
             color: const Color(0xFFffffff),
           ),

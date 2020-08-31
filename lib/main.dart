@@ -142,6 +142,7 @@ class _PangolinState extends State<Pangolin> {
     } else {
       _locale = Locale(Pangolin.settingsBox.get("language"));
     }
+
     super.initState();
   }
 

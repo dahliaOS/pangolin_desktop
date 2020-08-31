@@ -8,7 +8,7 @@
 import 'dart:io';
 //import 'dart:ui' hide Window;
 
-import 'package:GeneratedApp/applications/files.dart';
+import 'package:GeneratedApp/applications/filesOLD.dart';
 import 'package:GeneratedApp/applications/terminal/main.dart';
 import 'package:GeneratedApp/commons/key_ring.dart';
 // import 'package:GeneratedApp/commons/functions.dart';
@@ -56,7 +56,7 @@ Future<void> main() async {
   //await settingsInit();
   testWidgets('Mock box unit test', (WidgetTester tester) async {
     box = BoxMock<String>();
-    box.put("test_mockup","value");
+    box.put("test_mockup", "value");
     assert(box.get("test_mockup") == "value");
     Pangolin.settingsBox = box as BoxMock<String>;
   });
@@ -67,8 +67,11 @@ Future<void> main() async {
     await tester.pump();
     expect(find.byType(ErrorWidget), findsNothing); //no error widgets here
     print("Opening bar");
-    var gest = await tester.startGesture(tester.getCenter(find.byWidgetPredicate((widget) => widget is GestureDetector && widget.onTapCancel == () => true == true)));
-    await gest.moveBy(Offset(0,-50));
+    var gest = await tester.startGesture(tester.getCenter(
+        find.byWidgetPredicate((widget) =>
+            widget is GestureDetector &&
+            widget.onTapCancel == () => true == true)));
+    await gest.moveBy(Offset(0, -50));
     await gest.up();
     print("Testing Files");
     await tester.tap(find.byWidgetPredicate(
