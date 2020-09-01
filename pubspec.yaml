@@ -101,7 +101,6 @@ flutter:
   assets:
   - lib/application.json
   - lib/images/
-  - lib/images/settings/customization/
   - lib/images/people/
   - lib/images/Desktop/Dahlia/dahlia_material_background.jpg
   - lib/images/Desktop/Dahlia/forest.jpg

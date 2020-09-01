@@ -9,15 +9,12 @@ import 'package:provider/provider.dart';
 import '../../main.dart';
 
 class Customization extends StatefulWidget {
-  static int selectedWallpaper = HiveManager.get("wallpaper");
-
   @override
   _CustomizationState createState() => _CustomizationState();
 }
 
 class _CustomizationState extends State<Customization> {
   String _sliderText = HiveManager.get("launcherSize").toString();
-  int selectedTheme = HiveManager.get("theme");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,36 +36,6 @@ class _CustomizationState extends State<Customization> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                      child: Text("Theme",
-                          style: TextStyle(
-                              fontSize: 17,
-                              letterSpacing: 0.2,
-                              fontWeight: FontWeight.bold)),
-                    ),
-                    SettingsTile(children: <Widget>[
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          buildThemePreview(
-                              "Light",
-                              "lib/images/settings/customization/theme_preview_light.png",
-                              0),
-                          buildThemePreview(
-                              "Default",
-                              "lib/images/settings/customization/theme_preview_default.png",
-                              1),
-                          buildThemePreview(
-                              "Dark",
-                              "lib/images/settings/customization/theme_preview_dark.png",
-                              2),
-                        ],
-                      )
-                    ]),
-                    SizedBox(
-                      height: 20,
-                    ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
                       child: Text("Accent Color",
@@ -205,7 +172,7 @@ class _CustomizationState extends State<Customization> {
                       ],
                     ),
                     SizedBox(height: 5),
-                    /*Padding(
+                    Padding(
                       padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
                       child: Text("Dark Mode",
                           style: TextStyle(
@@ -310,11 +277,7 @@ class _CustomizationState extends State<Customization> {
                                     Text("Choose a Wallpaper"),
                                     FlatButton(
                                       onPressed: () {
-                                        showDialog(
-                                            context: context,
-                                            builder: (BuildContext context) {
-                                              return WallpaperChooser();
-                                            });
+                                        wallpaperChooser(context);
                                       },
                                       child: Text("Open Wallpaper Chooser"),
                                     )
@@ -385,39 +348,6 @@ class _CustomizationState extends State<Customization> {
     );
   }
 
-  Flexible buildThemePreview(String title, String asset, int index) {
-    return Flexible(
-      flex: (selectedTheme == index) ? 4 : 1,
-      child: GestureDetector(
-        onTap: () {
-          setState(() {
-            selectedTheme = index;
-            HiveManager.set("theme", index);
-          });
-        },
-        child: Column(
-          children: [
-            Card(
-              clipBehavior: Clip.antiAlias,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10)),
-              child: Image.asset(
-                asset,
-                scale: 1.7,
-              ),
-            ),
-            Text(
-              title,
-              style: TextStyle(
-                fontSize: 15,
-              ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-
   Color pickerColor = Color(0xff443a49);
   Color currentColor = Color(0xff443a49);
 
@@ -452,85 +382,34 @@ class _CustomizationState extends State<Customization> {
   }
 }
 
-class WallpaperChooser extends StatefulWidget {
-  const WallpaperChooser({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  _WallpaperChooserState createState() => _WallpaperChooserState();
-}
-
-class _WallpaperChooserState extends State<WallpaperChooser> {
-  int _index = HiveManager.get("wallpaper");
-  @override
-  Widget build(BuildContext context) {
-    return AlertDialog(
-      backgroundColor: Theme.of(context).canvasColor,
-      title: Text("Choose a Wallpaper"),
-      content: SizedBox(
-        width: MediaQuery.of(context).size.width - 200,
-        height: MediaQuery.of(context).size.height - 300,
-        child: GridView.builder(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 4, childAspectRatio: 16 / 9),
-          itemCount: Pangolin.wallpapers.length,
-          itemBuilder: (BuildContext context, int index) {
-            _index = index;
-            return Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      _index = index;
-                      Customization.selectedWallpaper = index;
-                    });
-                  },
-                  child: Stack(
-                    children: [
-                      Positioned.fill(
-                        child: Image.asset(
-                          Pangolin.wallpapers[index].toString(),
-                          fit: BoxFit.cover,
-                          scale: 1.0,
-                        ),
-                      ),
-                      (Customization.selectedWallpaper == index)
-                          ? Positioned(
-                              bottom: 5,
-                              right: 5,
-                              child: CircleAvatar(
-                                backgroundColor: Theme.of(context).accentColor,
-                                foregroundColor: Colors.white,
-                                child: Icon(Icons.check),
-                              ),
-                            )
-                          : SizedBox.shrink(),
-                    ],
-                  ),
-                ));
-          },
+void wallpaperChooser(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      // return object of type Dialog
+      return AlertDialog(
+        title: Center(child: new Text("Wallpaper")),
+        content: new Container(
+          width: HiveManager.magicNumber,
+          height: HiveManager.magicNumber,
+          color: Colors.black,
         ),
-      ),
-      actions: <Widget>[
-        // usually buttons at the bottom of the dialog
-        new FlatButton(
-          child: new Text("Close"),
-          onPressed: () {
-            Customization.selectedWallpaper = HiveManager.get("wallpaper");
-            Navigator.of(context).pop();
-          },
-        ),
-        new FlatButton(
-          child: new Text("Save"),
-          onPressed: () {
-            setState(() {
-              HiveManager.set("wallpaper", _index);
-            });
-            Navigator.of(context).pop();
-          },
-        ),
-      ],
-    );
-  }
+        actions: <Widget>[
+          // usually buttons at the bottom of the dialog
+          new FlatButton(
+            child: new Text("Close"),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+          new FlatButton(
+            child: new Text("Save"),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
 }

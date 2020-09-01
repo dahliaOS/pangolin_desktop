@@ -68,14 +68,14 @@ class Settings extends StatelessWidget {
         return MaterialApp(
           title: 'Settings',
           theme: notifier.darkTheme
-              ? Themes.dark(CustomizationNotifier().accent)
-              : Themes.light(CustomizationNotifier().accent),
+              ? Themes.dark(notifier.accent)
+              : Themes.light(notifier.accent),
           initialRoute: '/',
           routes: {
             // When navigating to the "/" route, build the FirstScreen widget.
             '/': (context) => SettingsPage(title: 'Settings'),
             // When navigating to the "/second" route, build the SecondScreen widget.
-            //'/second': (context) => SecondScreen(),
+            '/second': (context) => SecondScreen(),
           },
         );
       }),

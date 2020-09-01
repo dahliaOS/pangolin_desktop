@@ -28,8 +28,6 @@ class HiveManager {
     createEntryIfNotExisting("timeZoneName", "English - United States");
     createEntryIfNotExisting("launcherWidth", 1500);
     createEntryIfNotExisting("launcherSize", 5);
-    createEntryIfNotExisting("theme", 1);
-    createEntryIfNotExisting("wallpaper", 0);
   }
 
   static set(String key, dynamic value) {

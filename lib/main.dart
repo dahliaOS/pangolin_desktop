@@ -141,13 +141,12 @@ class Pangolin extends StatefulWidget {
   static Locale locale;
   static ThemeData theme;
 
-  //NEVER CHANGE THE ORDER!
   static List<String> wallpapers = [
     "lib/images/Desktop/Dahlia/forest.jpg",
     "lib/images/Desktop/Dahlia/Brick-Wall.jpg",
     "lib/images/Desktop/Dahlia/dahlia_material_background.jpg",
     "lib/images/Desktop/Dahlia/dahlia_material_background-1.jpg",
-    "lib/images/Desktop/Dahlia/mountain.jpg",
+    "lib/images/Desktop/Dahlia/Mountain.jpg",
     "lib/images/Desktop/Dahlia/Sunset.png",
   ];
 
@@ -359,9 +358,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
                         child: Container(
                           decoration: BoxDecoration(
-                              color: HiveManager.get("darkMode")
-                                  ? Colors.black.withAlpha(120)
-                                  : Colors.white.withAlpha(120)),
+                              color: Colors.black.withOpacity(0.75)),
                           child: QuickSettings(),
                         ),
                       ),
@@ -389,14 +386,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Container(
                     //color: Color.fromARGB(150, 0, 0, 0),
                     decoration: BoxDecoration(
-                      color: HiveManager.get("darkMode")
-                          ? Colors.grey[900].withAlpha(120)
-                          : Colors.grey[400].withAlpha(120),
+                      color: Color.fromARGB(150, 0, 0, 0),
                       //uncomment below to add radius to the launcher panel
                       //borderRadius: BorderRadius.circular(100),
                     ),
                     height: 45.0,
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 2.0, horizontal: 8.0),
                     child: CustomConditionWidget(
                       HiveManager.get("centerTaskbar"),
                       Row(

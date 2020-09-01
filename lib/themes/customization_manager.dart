@@ -73,16 +73,13 @@ class Themes {
 class CustomizationNotifier extends ChangeNotifier {
   static bool _darkTheme = HiveManager.get("darkMode");
   static bool _blur = HiveManager.get("blur");
-  static int _theme = HiveManager.get("theme");
 
   bool get darkTheme => _darkTheme;
   bool get blur => _blur;
-  int get theme => _theme;
   Color accent = Color(HiveManager.get("accentColorValue"));
 
   toggleThemeDarkMode(bool state) {
     _darkTheme = state;
-    state ? HiveManager.set("theme", 2) : HiveManager.set("theme", 1);
     HiveManager.set("darkMode", state);
     notifyListeners();
   }
