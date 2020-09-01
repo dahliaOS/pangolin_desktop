@@ -138,22 +138,20 @@ class _CustomizationState extends State<Customization> {
                                   });
                                 }, "Amber"),
                                 buildAcctenColorButton(
-                                    /*!CustomizationNotifier().darkTheme
+                                    !CustomizationNotifier().darkTheme
                                         ? Colors.black
-                                        :*/
-                                    Colors.white, () {
+                                        : Colors.white, () {
                                   setState(() {
-                                    /*!CustomizationNotifier().darkTheme
+                                    !CustomizationNotifier().darkTheme
                                         ? notifier
                                             .changeThemeColor(Colors.black)
                                         : notifier
-                                            .changeThemeColor(Colors.white);*/
+                                            .changeThemeColor(Colors.white);
                                   });
                                 },
-                                    /*!CustomizationNotifier().darkTheme
+                                    !CustomizationNotifier().darkTheme
                                         ? "Black"
-                                        :*/
-                                    "White"),
+                                        : "White"),
                                 GestureDetector(
                                   onTap: () {
                                     notImplemented(context);
@@ -225,17 +223,17 @@ class _CustomizationState extends State<Customization> {
                                 "Enable Dark Mode on the Desktop and all Apps"),
                             Consumer<CustomizationNotifier>(
                               builder: (context, notifier, child) => Switch(
-                                //value: notifier.darkTheme,
+                                value: notifier.darkTheme,
                                 onChanged: (bool state) {
                                   setState(() {
-                                    /*notifier.toggleThemeDarkMode(state);
+                                    notifier.toggleThemeDarkMode(state);
                                     if (notifier.darkTheme &&
                                         notifier.accent == Colors.black) {
                                       notifier.changeThemeColor(Colors.white);
                                     } else if (!notifier.darkTheme &&
                                         notifier.accent == Colors.white) {
                                       notifier.changeThemeColor(Colors.black);
-                                    }*/
+                                    }
                                     //HiveManager.set("darkMode", state);
                                     //Pangolin.restartApp(context);
                                   });
@@ -245,7 +243,7 @@ class _CustomizationState extends State<Customization> {
                           ],
                         )
                       ],
-                    ),*/
+                    ),
                     SizedBox(height: 20),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
@@ -390,42 +388,31 @@ class _CustomizationState extends State<Customization> {
   Flexible buildThemePreview(String title, String asset, int index) {
     return Flexible(
       flex: (selectedTheme == index) ? 4 : 1,
-      child: Consumer<CustomizationNotifier>(
-        builder: (context, notifier, child) => GestureDetector(
-          onTap: () {
-            setState(() {
-              selectedTheme = index;
-              if (index == 0) {
-                notifier.setTheme(PangolinTheme.light);
-              }
-              if (index == 1) {
-                notifier.setTheme(PangolinTheme.def);
-              }
-              if (index == 2) {
-                notifier.setTheme(PangolinTheme.dark);
-              }
-              HiveManager.set("theme", index);
-            });
-          },
-          child: Column(
-            children: [
-              Card(
-                clipBehavior: Clip.antiAlias,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)),
-                child: Image.asset(
-                  asset,
-                  scale: 1.7,
-                ),
+      child: GestureDetector(
+        onTap: () {
+          setState(() {
+            selectedTheme = index;
+            HiveManager.set("theme", index);
+          });
+        },
+        child: Column(
+          children: [
+            Card(
+              clipBehavior: Clip.antiAlias,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10)),
+              child: Image.asset(
+                asset,
+                scale: 1.7,
               ),
-              Text(
-                title,
-                style: TextStyle(
-                  fontSize: 15,
-                ),
-              )
-            ],
-          ),
+            ),
+            Text(
+              title,
+              style: TextStyle(
+                fontSize: 15,
+              ),
+            )
+          ],
         ),
       ),
     );

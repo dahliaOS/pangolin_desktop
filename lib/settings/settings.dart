@@ -67,9 +67,9 @@ class Settings extends StatelessWidget {
           builder: (context, CustomizationNotifier notifier, child) {
         return MaterialApp(
           title: 'Settings',
-          theme: notifier.theme,
-          //? Themes.dark(CustomizationNotifier().accent)
-          //: Themes.light(CustomizationNotifier().accent),
+          theme: notifier.darkTheme
+              ? Themes.dark(CustomizationNotifier().accent)
+              : Themes.light(CustomizationNotifier().accent),
           initialRoute: '/',
           routes: {
             // When navigating to the "/" route, build the FirstScreen widget.
