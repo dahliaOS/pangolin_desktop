@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:Pangolin/quick_settings.dart';
 import 'package:Pangolin/settings/hiveManager.dart';
 import 'package:Pangolin/themes/customization_manager.dart';
@@ -318,31 +320,81 @@ class _CustomizationState extends State<Customization> {
                   child: Card(
                     elevation: 0,
                     color: Colors.amber[500],
-                    child: new SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: new Row(
-                        children: [
-                          new Center(
-                              child: new Padding(
+                    child: new Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: Row(
+                            children: [
+                              new Padding(
                                   padding: EdgeInsets.all(8),
                                   child: Icon(
                                     Icons.warning,
                                     size: 25,
                                     color: Colors.grey[900],
-                                  ))),
-                          Center(
-                              child: new Padding(
+                                  )),
+                              new Padding(
                                   padding: EdgeInsets.all(8),
                                   child: new Text(
-                                    "WARNING: You are on a pre-release build of dahliaOS. Some settings don't work yet.",
+                                    "WARNING: You need to restart Pangolin to apply your changes.",
                                     style: new TextStyle(
                                       color: Colors.grey[900],
                                       fontSize: 14,
                                       fontFamily: "Roboto",
                                     ),
-                                  ))),
-                        ],
-                      ),
+                                  )),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 8.0),
+                          child: FlatButton(
+                            onPressed: () {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  // return object of type Dialog
+                                  return AlertDialog(
+                                    title: Center(
+                                        child: new Text(
+                                            "Are you sure you want to restart Pangolin?")),
+                                    content: new Container(
+                                      child: Text(
+                                          "The restart will only take a few seconds but your open windows will be closed and unsaved data will be lost"),
+                                    ),
+                                    actions: <Widget>[
+                                      // usually buttons at the bottom of the dialog
+                                      new FlatButton(
+                                        child: new Text("No"),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                      ),
+                                      new FlatButton(
+                                        child: new Text("Yes, Restart!"),
+                                        onPressed: () {
+                                          Process.run(
+                                              'bash', ['/dahlia/restart.sh']);
+                                        },
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            },
+                            child: Text(
+                              "Restart",
+                              style: new TextStyle(
+                                color: Colors.grey[900],
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14,
+                                fontFamily: "Roboto",
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   )))),
     );
