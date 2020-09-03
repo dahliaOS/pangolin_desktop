@@ -14,6 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'dart:ui';
+
 import 'package:GeneratedApp/widgets/hover.dart';
 import 'package:flutter/material.dart';
 import '../model.dart';
@@ -197,7 +199,6 @@ class WindowState extends State<Window> {
         onKey: (RawKeyEvent event) =>
         _handleKeyEvent(event, model, selectedTab.id),
         child: new*/
-                //check to see if there's a customBar property in the passed app class
                 RepaintBoundary(
               child: Stack(
                 alignment: Alignment.center,
@@ -220,70 +221,94 @@ class WindowState extends State<Window> {
                         height: (_windowMode == WindowMode.MAXIMIZE_MODE)
                             ? _size.height
                             : _size.height + 20,
-                        //color: Colors.blueAccent,
                       ),
                     ),
                   ),
                   Container(
-                    width: _size.width,
-                    height: _size.height,
-                    constraints: BoxConstraints(
-                        minWidth: _minWidth, minHeight: _minHeight), //
-                    decoration:
-                        BoxDecoration(boxShadow: kElevationToShadow[12]),
-                    child: Column(
-                      children: [
-                        GestureDetector(
-                          onPanUpdate: (DragUpdateDetails details) {
-                            setState(() {
-                              _position += details.delta;
-                              if (_windowMode == WindowMode.MAXIMIZE_MODE) {
-                                _windowMode = WindowMode.NORMAL_MODE;
-                                _size = _preSize;
-                              }
-                            });
-                          },
-                          onDoubleTap: () {
-                            _windowMode == WindowMode.NORMAL_MODE
-                                ? _maximizeWindow()
-                                : _restoreWindowFromMaximizeMode();
-                          },
-                          child: customBar != null
-                              ? customBar(
-                                  close: _closeWindow,
-                                  maximize: () =>
-                                      _windowMode == WindowMode.NORMAL_MODE
-                                          ? _maximizeWindow()
-                                          : _restoreWindowFromMaximizeMode(),
-                                  minimize: () => null, // for now
-                                  maximizeState: () =>
-                                      _windowMode == WindowMode.MAXIMIZE_MODE
-                                          ? true
-                                          : false)
-                              : Container(
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 4.0),
-                                  height: 35.0,
-                                  color: _color,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      minimizeButton(),
-                                      SizedBox(width: 3.0),
-                                      maximizeButton(),
-                                      SizedBox(width: 3.0),
-                                      closeButton()
-                                    ],
-                                  )),
-                        ),
-                        Expanded(
-                          child: ClipRRect(
-                            child: (_child is Widget)
-                                ? _child
-                                : Text("ERROR: Window is not a Widget!"),
+                    decoration: BoxDecoration(
+                      boxShadow: (_windowMode == WindowMode.NORMAL_MODE)
+                          // We only need a shadow if the window is in normal mode (ie, not maximised or minimised)
+                          ? [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.4),
+                                // spreadRadius: 0,
+                                blurRadius: 7.5,
+                                offset: Offset(3.75, 3.75),
+                              ),
+                            ]
+                          : null,
+                    ),
+                    // This `ClipRect` is necessary for the `BackdropFilter` to not blur everything behind this widget (including desktop and other windows)
+                    child: ClipRect(
+                      child: BackdropFilter(
+                        // give the transparent title bar some noiiice blur
+                        // note: this only works in conjunction with the `.withOpacity()` implemented below (find "// Title bar opacity for the blur:")
+                        filter: ImageFilter.blur(sigmaX: 8.0, sigmaY: 8.0),
+                        child: Container(
+                          width: _size.width,
+                          height: _size.height,
+                          constraints: BoxConstraints(
+                              minWidth: _minWidth, minHeight: _minHeight),
+                          child: Column(
+                            children: [
+                              GestureDetector(
+                                onPanUpdate: (DragUpdateDetails details) {
+                                  setState(() {
+                                    _position += details.delta;
+                                    if (_windowMode ==
+                                        WindowMode.MAXIMIZE_MODE) {
+                                      _windowMode = WindowMode.NORMAL_MODE;
+                                      _size = _preSize;
+                                    }
+                                  });
+                                },
+                                onDoubleTap: () {
+                                  _windowMode == WindowMode.NORMAL_MODE
+                                      ? _maximizeWindow()
+                                      : _restoreWindowFromMaximizeMode();
+                                },
+                                // Check to see if there's a customBar property in the passed app class
+                                child: customBar != null
+                                    ? customBar(
+                                        close: _closeWindow,
+                                        maximize: () => _windowMode ==
+                                                WindowMode.NORMAL_MODE
+                                            ? _maximizeWindow()
+                                            : _restoreWindowFromMaximizeMode(),
+                                        minimize: () => null, // for now
+                                        maximizeState: () => _windowMode ==
+                                                WindowMode.MAXIMIZE_MODE
+                                            ? true
+                                            : false)
+                                    : Container(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 4.0),
+                                        height: 35.0,
+                                        // Title bar opacity for the blur:
+                                        color: _color.withOpacity(0.5),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
+                                          children: [
+                                            minimizeButton(),
+                                            SizedBox(width: 3.0),
+                                            maximizeButton(),
+                                            SizedBox(width: 3.0),
+                                            closeButton()
+                                          ],
+                                        )),
+                              ),
+                              Expanded(
+                                child: ClipRRect(
+                                  child: (_child is Widget)
+                                      ? _child
+                                      : Text("ERROR: Window is not a Widget!"),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                      ],
+                      ),
                     ),
                   ),
                 ],
