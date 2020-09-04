@@ -126,5 +126,5 @@ Future<void> main() async {
     //@bleonard252: wait for Bash to be ready. if it errors, fail
     // I'll probably make more specific Terminal tests,
     // first that it opens, then how it reacts to different platforms
-  }); /* }); */
+  }, skip: true); /* }); */
 }
