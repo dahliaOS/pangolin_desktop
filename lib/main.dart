@@ -339,10 +339,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 animation: animation,
                 builder: (BuildContext context, Widget child) => FadeTransition(
                   opacity: _overlayOpacityTween.animate(animation),
-                  child: ScaleTransition(
-                    scale: _overlayScaleTween.animate(animation),
-                    alignment: FractionalOffset.bottomRight,
-                    child: child,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(15),
+                    child: Blur(
+                      child: ScaleTransition(
+                        scale: _overlayScaleTween.animate(animation),
+                        alignment: FractionalOffset.bottomRight,
+                        child: child,
+                      ),
+                    ),
                   ),
                 ),
                 child: ClipRRect(
