@@ -3,13 +3,10 @@
 
 ## About Pangolin
 
-Pangolin is a Desktop shell for dahliaOS, written in Flutter, runs on Linux and Zircon.
+Pangolin is a Desktop shell for dahliaOS, written in Flutter/Dart, and runs on Linux and Zircon. It was named after a shelled animal like the [Armadillo UI](https://9to5google.com/2018/12/26/fuchsia-armadillo-ui-gone/) that was removed near the end of 2018. Pangolin is a fork of Capybara, a UI started by Noah and the legacy of Capybara continues here.
 
-Pangolin was named after a shelled animal like the [Armadillo UI](https://9to5google.com/2018/12/26/fuchsia-armadillo-ui-gone/). 
 
-Pangolin Desktop is based on the deprecated Capybara shell, with a custom window management system built from the ground up.
-
-You can check it online [here](https://web.dahliaos.io)!
+You can test the online demo [here](https://web.dahliaos.io)!
 
 ![Pangolin](https://user-images.githubusercontent.com/61460660/89405582-1899a500-d71c-11ea-89a5-24b07fa07712.png)
 > Pangolin Desktop
