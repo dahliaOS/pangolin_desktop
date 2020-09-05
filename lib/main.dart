@@ -128,10 +128,6 @@ class Pangolin extends StatefulWidget {
   @override
   _PangolinState createState() => _PangolinState();
 
-  static void restartApp(BuildContext context) {
-    context.findAncestorStateOfType<_PangolinState>().restartApp();
-  }
-
   static void setLocale(BuildContext context, Locale locale) {
     _PangolinState state = context.findAncestorStateOfType<_PangolinState>();
     state.setLocale(locale);

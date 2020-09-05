@@ -173,7 +173,7 @@ class _CustomizationState extends State<Customization> {
                         )
                       ],
                     ),
-                    SizedBox(height: 5),
+                    SizedBox(height: 20),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
                       child: Text("Dark Mode",
@@ -234,7 +234,6 @@ class _CustomizationState extends State<Customization> {
                               onChanged: (bool state) {
                                 setState(() {
                                   HiveManager.set("centerTaskbar", state);
-                                  Pangolin.restartApp(context);
                                 });
                               },
                             )

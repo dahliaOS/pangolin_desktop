@@ -5,16 +5,15 @@ import 'package:provider/provider.dart';
 class Themes {
   //light
   static ThemeData light(Color accent) {
-    ThemeData(
+    return ThemeData(
         accentColor: accent,
         primaryColor: accent,
-        canvasColor: Color(0xff1B1B1D),
-        iconTheme: IconThemeData(color: Colors.white),
+        iconTheme: IconThemeData(color: Colors.black),
         textTheme: TextTheme(
-          headline5: TextStyle(color: Colors.white),
-          bodyText1: TextStyle(color: Colors.white),
-          bodyText2: TextStyle(color: Colors.white),
-          caption: TextStyle(color: Colors.white),
+          headline5: TextStyle(color: Colors.black),
+          bodyText1: TextStyle(color: Colors.black),
+          bodyText2: TextStyle(color: Colors.black),
+          caption: TextStyle(color: Colors.black),
         ),
         sliderTheme: SliderThemeData(
           activeTickMarkColor: accent,
@@ -24,7 +23,7 @@ class Themes {
           inactiveTickMarkColor: accent,
         ),
         toggleableActiveColor: accent,
-        cardColor: Colors.grey[900],
+        cardColor: Colors.grey[100],
         inputDecorationTheme: InputDecorationTheme(
           labelStyle: TextStyle(
             color: accent,
