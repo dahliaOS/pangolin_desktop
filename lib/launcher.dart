@@ -67,7 +67,7 @@ class LauncherState extends State<LauncherWidget> {
         primarySwatch: Colors.deepOrange,
         primaryColor: const Color(0xFFff5722),
         accentColor: const Color(0xFFff5722),
-        canvasColor: Colors.black.withOpacity(0.5),
+        canvasColor: Colors.black.withOpacity(0.1),
       ),
       home: new Stack(
         children: [
