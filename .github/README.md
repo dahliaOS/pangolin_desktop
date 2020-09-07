@@ -42,6 +42,8 @@ If you're interested in translating the project, please refer to [TRANSLATION.md
 | [HexaOneOfficial](https://github.com/HexaOneOfficial)                     | Dutch                |
 | [Horus125](https://github.com/Horus125)               | Polish                |
 | [allansrc](https://github.com/allansrc)               | Portugese                |
+| [Seplx](https://github.com/Seplx)               | Slovak                |
+| [aoaowangxiao](https://github.com/aoaowangxiao)               | Chinese                |
 
 ## Important style guide
 
