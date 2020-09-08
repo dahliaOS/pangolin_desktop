@@ -11,6 +11,7 @@ import 'package:provider/provider.dart';
 import '../../main.dart';
 
 class Customization extends StatefulWidget {
+  static int selectedWallpaper = HiveManager.get("wallpaper");
   @override
   _CustomizationState createState() => _CustomizationState();
 }
@@ -278,7 +279,11 @@ class _CustomizationState extends State<Customization> {
                                     Text("Choose a Wallpaper"),
                                     FlatButton(
                                       onPressed: () {
-                                        wallpaperChooser(context);
+                                        showDialog(
+                                            context: context,
+                                            builder: (BuildContext context) {
+                                              return WallpaperChooser();
+                                            });
                                       },
                                       child: Text("Open Wallpaper Chooser"),
                                     )
@@ -433,34 +438,84 @@ class _CustomizationState extends State<Customization> {
   }
 }
 
-void wallpaperChooser(BuildContext context) {
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      // return object of type Dialog
-      return AlertDialog(
-        title: Center(child: new Text("Wallpaper")),
-        content: new Container(
-          width: HiveManager.magicNumber,
-          height: HiveManager.magicNumber,
-          color: Colors.black,
+class WallpaperChooser extends StatefulWidget {
+  const WallpaperChooser({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  _WallpaperChooserState createState() => _WallpaperChooserState();
+}
+
+class _WallpaperChooserState extends State<WallpaperChooser> {
+  int _index = HiveManager.get("wallpaper");
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      backgroundColor: Theme.of(context).canvasColor,
+      title: Text("Choose a Wallpaper"),
+      content: SizedBox(
+        width: MediaQuery.of(context).size.width - 200,
+        height: MediaQuery.of(context).size.height - 300,
+        child: GridView.builder(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 4, childAspectRatio: 16 / 9),
+          itemCount: Pangolin.wallpapers.length,
+          itemBuilder: (BuildContext context, int index) {
+            _index = index;
+            return Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      _index = index;
+                      Customization.selectedWallpaper = index;
+                    });
+                  },
+                  child: Stack(
+                    children: [
+                      Positioned.fill(
+                        child: Image.asset(
+                          Pangolin.wallpapers[index].toString(),
+                          fit: BoxFit.cover,
+                          scale: 1.0,
+                        ),
+                      ),
+                      (Customization.selectedWallpaper == index)
+                          ? Positioned(
+                              bottom: 5,
+                              right: 5,
+                              child: CircleAvatar(
+                                backgroundColor: Theme.of(context).accentColor,
+                                foregroundColor: Colors.white,
+                                child: Icon(Icons.check),
+                              ),
+                            )
+                          : SizedBox.shrink(),
+                    ],
+                  ),
+                ));
+          },
         ),
-        actions: <Widget>[
-          // usually buttons at the bottom of the dialog
-          new FlatButton(
-            child: new Text("Close"),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-          new FlatButton(
-            child: new Text("Save"),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-        ],
-      );
-    },
-  );
+      ),
+      actions: <Widget>[
+        // usually buttons at the bottom of the dialog
+        new FlatButton(
+          child: new Text("Close"),
+          onPressed: () {
+            Customization.selectedWallpaper = HiveManager.get("wallpaper");
+            Navigator.of(context).pop();
+          },
+        ),
+        new FlatButton(
+          child: new Text("Save"),
+          onPressed: () {
+            HiveManager.set("wallpaper", Customization.selectedWallpaper);
+            print(HiveManager.get("wallpaper"));
+            Navigator.of(context).pop();
+          },
+        ),
+      ],
+    );
+  }
 }

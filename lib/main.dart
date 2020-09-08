@@ -142,7 +142,7 @@ class Pangolin extends StatefulWidget {
     "lib/images/Desktop/Dahlia/Brick-Wall.jpg",
     "lib/images/Desktop/Dahlia/dahlia_material_background.jpg",
     "lib/images/Desktop/Dahlia/dahlia_material_background-1.jpg",
-    "lib/images/Desktop/Dahlia/Mountain.jpg",
+    "lib/images/Desktop/Dahlia/mountain.jpg",
     "lib/images/Desktop/Dahlia/Sunset.png",
   ];
 
@@ -278,7 +278,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 image: AssetImage(HiveManager.get("randomWallpaper")
                     ? Pangolin
                         .wallpapers[_random.nextInt(Pangolin.wallpapers.length)]
-                    : "lib/images/Desktop/Dahlia/forest.jpg"),
+                    : Pangolin
+                        .wallpapers[HiveManager.get("wallpaper").toInt()]),
                 fit: BoxFit.cover,
               ),
             ),
