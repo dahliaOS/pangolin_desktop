@@ -293,18 +293,65 @@ class _CustomizationState extends State<Customization> {
                             )),
                       ],
                     ),
-                    Slider(
-                      onChanged: (double value) {
-                        setState(() {
-                          HiveManager.set("launcherSize", value);
-                          _sliderText = value.toString();
-                        });
-                      },
-                      value: HiveManager.get("launcherSize").toDouble(),
-                      label: _sliderText,
-                      divisions: 2,
-                      min: 5,
-                      max: 7,
+                    SizedBox(height: 20),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                      child: Text("Launcher",
+                          style: TextStyle(
+                              fontSize: 17,
+                              letterSpacing: 0.2,
+                              fontWeight: FontWeight.bold)),
+                    ),
+                    SizedBox(height: 5),
+                    SettingsTile(
+                      children: [
+                        Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text("Enable Wide Launcher Mode"),
+                                Switch(
+                                  value: HiveManager.get("launcherWideMode"),
+                                  onChanged: (bool state) {
+                                    setState(() {
+                                      HiveManager.set(
+                                          "launcherWideMode", state);
+                                    });
+                                  },
+                                )
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Text("Launcher columns"),
+                                Expanded(
+                                  child: Slider(
+                                    onChanged: (double value) {
+                                      setState(() {
+                                        HiveManager.set("launcherSize", value);
+                                        _sliderText = value
+                                            .toString()
+                                            .replaceAll(".0", "");
+                                      });
+                                    },
+                                    value: HiveManager.get("launcherSize")
+                                        .toDouble(),
+                                    label: _sliderText,
+                                    divisions: 2,
+                                    min: 5,
+                                    max: 7,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 12.0),
+                                  child: Text(_sliderText.replaceAll(".0", "")),
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
                   ],
                 ),

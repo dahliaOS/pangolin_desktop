@@ -39,7 +39,7 @@ Expanded tileSection(BuildContext context) {
   return Expanded(
     child: Container(
         constraints: BoxConstraints(
-            maxWidth: HiveManager.get("launcherWidth").toDouble()),
+            maxWidth: HiveManager.get("launcherWideMode") ? 1500 : 900),
         padding: EdgeInsets.all(10.0),
         child: GridView.count(
             crossAxisCount: HiveManager.get("launcherSize").toInt(),
