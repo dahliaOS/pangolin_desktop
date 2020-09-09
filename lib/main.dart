@@ -394,7 +394,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     height: 45.0,
                     padding: const EdgeInsets.symmetric(
-                        vertical: 2.0, horizontal: 8.0),
+                        vertical: 0.0, horizontal: 8.0),
                     child: CustomConditionWidget(
                       HiveManager.get("centerTaskbar"),
                       Row(
@@ -454,11 +454,14 @@ class _MyHomePageState extends State<MyHomePage> {
                                   ]),
                             ],
                           ),
-                          StatusTrayWidget(
-                            toggleKey: KeyRing.statusToggleKey,
-                            callback: (bool toggled) => setOverlayVisibility(
-                              overlay: KeyRing.statusOverlayKey,
-                              visible: toggled,
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 2.0),
+                            child: StatusTrayWidget(
+                              toggleKey: KeyRing.statusToggleKey,
+                              callback: (bool toggled) => setOverlayVisibility(
+                                overlay: KeyRing.statusOverlayKey,
+                                visible: toggled,
+                              ),
                             ),
                           ),
                         ],
@@ -513,11 +516,14 @@ class _MyHomePageState extends State<MyHomePage> {
                                         'lib/images/icons/v2/compiled/theme.png',
                                     callback: toggleCallback),
                               ]),
-                          StatusTrayWidget(
-                            toggleKey: KeyRing.statusToggleKey,
-                            callback: (bool toggled) => setOverlayVisibility(
-                              overlay: KeyRing.statusOverlayKey,
-                              visible: toggled,
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 2.0),
+                            child: StatusTrayWidget(
+                              toggleKey: KeyRing.statusToggleKey,
+                              callback: (bool toggled) => setOverlayVisibility(
+                                overlay: KeyRing.statusOverlayKey,
+                                visible: toggled,
+                              ),
                             ),
                           ),
                         ],

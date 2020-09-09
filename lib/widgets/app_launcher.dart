@@ -54,16 +54,16 @@ class AppLauncherButtonState extends State<AppLauncherButton> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        margin: (widget.type == AppLauncherButtonType.Drawer)
-            ? EdgeInsets.all(30.0)
-            : EdgeInsets.symmetric(horizontal: 4.0),
-        width: (widget.type == AppLauncherButtonType.Drawer) ? 64.0 : 45.0,
-        height: (widget.type == AppLauncherButtonType.Drawer) ? 64.0 : 45.0,
-        child: Hover(
-          borderRadius: (widget.type == AppLauncherButtonType.Drawer)
-              ? BorderRadius.circular(30)
-              : BorderRadius.circular(0),
+    return Hover(
+        borderRadius: (widget.type == AppLauncherButtonType.Drawer)
+            ? BorderRadius.circular(30)
+            : BorderRadius.circular(0),
+        child: Container(
+          margin: (widget.type == AppLauncherButtonType.Drawer)
+              ? EdgeInsets.all(30.0)
+              : EdgeInsets.symmetric(horizontal: 4.0),
+          width: (widget.type == AppLauncherButtonType.Drawer) ? 64.0 : 45.0,
+          height: (widget.type == AppLauncherButtonType.Drawer) ? 64.0 : 45.0,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.max,

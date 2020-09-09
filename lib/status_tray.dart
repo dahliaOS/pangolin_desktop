@@ -103,8 +103,9 @@ class StatusTrayWidgetState extends State<StatusTrayWidget> {
                         color: const Color(0xFFffffff), size: 20.0),
                     VerticalDivider(
                       thickness: 2,
-                      endIndent: 10,
-                      indent: 10,
+                      endIndent: 7,
+                      indent: 7,
+                      color: Colors.grey[600],
                     ),
                     Text(
                       _timeString,
