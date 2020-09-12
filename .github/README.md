@@ -6,12 +6,7 @@
     </h2>
 <br />
 
-<p align="center">
-  <img width="25%" src="https://github.com/dahlia-os/pangolin-desktop/workflows/CI/badge.svg" <img width="25%" src="https://github.com/dahlia-os/pangolin-desktop/workflows/Deploy/badge.svg" <img width="25%" src="https://gitlocalize.com/repo/5170/whole_project/badge.svg"
-</p>
-
-
-![](https://github.com/dahlia-os/pangolin-desktop/workflows/CI/badge.svg) ![](https://github.com/dahlia-os/pangolin-desktop/workflows/Deploy/badge.svg) ![gitlocalized ](https://gitlocalize.com/repo/5170/whole_project/badge.svg)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![](https://github.com/dahlia-os/pangolin-desktop/workflows/CI/badge.svg) ![](https://github.com/dahlia-os/pangolin-desktop/workflows/Deploy/badge.svg) ![gitlocalized ](https://gitlocalize.com/repo/5170/whole_project/badge.svg)
 
 <h3 align="center">
     <b>About Pangolin</b> 
