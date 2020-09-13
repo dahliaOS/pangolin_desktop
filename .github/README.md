@@ -61,8 +61,7 @@ If you're interested in translating the project, please refer to [TRANSLATION.md
     <b>Translators</b> 
     </h4>
 <br />
-<h4 align="center">
-    <b> 
+
 | Author                                                  | Language                 |
 | ------------------------------------------------------- | ------------------------ |
 | [SincerelyFaust](https://github.com/sincerelyfaust)               | Croatian           |
@@ -76,8 +75,6 @@ If you're interested in translating the project, please refer to [TRANSLATION.md
 | [allansrc](https://github.com/allansrc)               | Portugese                |
 | [Seplx](https://github.com/Seplx)               | Slovak                |
 | [aoaowangxiao](https://github.com/aoaowangxiao)               | Chinese                |
-  </b>
-  </h4>
 
 <h3 align="center">
     <b>Important style guide</b> 
