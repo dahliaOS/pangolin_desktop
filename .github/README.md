@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="25%" src="https://github.com/dahlia-os/documentation/blob/master/assets/images/logo/dahlialogo.png"
+  <img width="25%" src="https://imgur.com/3bQhlxr.png"
 </p>
 <h2 align="center">
     <b>Pangolin Desktop</b> 
@@ -13,8 +13,11 @@
     </h3>
 <br />
 
-Pangolin is a Desktop shell for dahliaOS, written in Flutter/Dart, and runs on Linux and Zircon. It was named after a shelled animal like the [Armadillo UI](https://9to5google.com/2018/12/26/fuchsia-armadillo-ui-gone/) that was removed near the end of 2018. Pangolin is a fork of Capybara, a UI started by Noah and the legacy of Capybara continues here.
+Pangolin is a Desktop shell for dahliaOS, written in Flutter/Dart, and runs on Linux and Zircon.
 
+It was named after a shelled animal like the [Armadillo UI](https://9to5google.com/2018/12/26/fuchsia-armadillo-ui-gone/) that was removed near the end of 2018.
+
+Pangolin is a fork of Capybara, a UI started by Noah and the legacy of Capybara continues here.
 
 You can test the online demo [here](https://web.dahliaos.io)!
 
@@ -58,7 +61,8 @@ If you're interested in translating the project, please refer to [TRANSLATION.md
     <b>Translators</b> 
     </h4>
 <br />
-
+<h4 align="center">
+    <b> 
 | Author                                                  | Language                 |
 | ------------------------------------------------------- | ------------------------ |
 | [SincerelyFaust](https://github.com/sincerelyfaust)               | Croatian           |
@@ -72,6 +76,8 @@ If you're interested in translating the project, please refer to [TRANSLATION.md
 | [allansrc](https://github.com/allansrc)               | Portugese                |
 | [Seplx](https://github.com/Seplx)               | Slovak                |
 | [aoaowangxiao](https://github.com/aoaowangxiao)               | Chinese                |
+  </b>
+  </h4>
 
 <h3 align="center">
     <b>Important style guide</b> 
@@ -91,7 +97,7 @@ Uncompliant applications will have their theme colors set to a random color.
     <b>&nbsp;</b>
 </h3>
 
-![logo](https://github.com/HexaOneOfficial/documentation/blob/master/assets/images/logo/logosmall.png)
+![logo](https://imgur.com/vroXAE8.png)
 
 Copyright @ 2019-2020 The dahliaOS Authors contact@dahliaos.io
 
