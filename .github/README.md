@@ -61,8 +61,8 @@ If you're interested in translating the project, please refer to [TRANSLATION.md
     <b>Translators</b> 
     </h4>
 <br />
-
-| Author                                                  | Language                 |
+<p align="center">
+<b>| Author                                                  | Language                 |
 | ------------------------------------------------------- | ------------------------ |
 | [SincerelyFaust](https://github.com/sincerelyfaust)               | Croatian           |
 | [nmcain](https://github.com/nmcain)           | English                  |
@@ -74,8 +74,8 @@ If you're interested in translating the project, please refer to [TRANSLATION.md
 | [Horus125](https://github.com/Horus125)               | Polish                |
 | [allansrc](https://github.com/allansrc)               | Portugese                |
 | [Seplx](https://github.com/Seplx)               | Slovak                |
-| [aoaowangxiao](https://github.com/aoaowangxiao)               | Chinese                |
-
+| [aoaowangxiao](https://github.com/aoaowangxiao)               | Chinese                |</b>
+</p>
 <h3 align="center">
     <b>Important style guide</b> 
     </h3>
