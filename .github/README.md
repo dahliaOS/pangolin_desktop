@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="25%" src="https://imgur.com/3bQhlxr.png"
+  <img width="25%" src="https://imgur.com/HsyzGeQ.png"
 </p>
 <h2 align="center">
     <b>Pangolin Desktop</b> 
@@ -94,7 +94,7 @@ Uncompliant applications will have their theme colors set to a random color.
     <b>&nbsp;</b>
 </h3>
 
-![logo](https://imgur.com/vroXAE8.png)
+![logo](https://imgur.com/DxbJZ2h.png)
 
 Copyright @ 2019-2020 The dahliaOS Authors contact@dahliaos.io
 
