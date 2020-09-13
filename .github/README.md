@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://imgur.com/v6UVK3W">
+  <img src="https://imgur.com/v6UVK3W.png">
 </p>
 
 # Pangolin Desktop
