@@ -51,6 +51,7 @@ If you're interested in translating the project, please refer to [TRANSLATION.md
 | [allansrc](https://github.com/allansrc)               | Portugese                |
 | [Seplx](https://github.com/Seplx)               | Slovak                |
 | [aoaowangxiao](https://github.com/aoaowangxiao)               | Chinese                |
+| [goktugvatandas](https://github.com/goktugvatandas)               | Turkish                |
 
 ## Important style guide
 
