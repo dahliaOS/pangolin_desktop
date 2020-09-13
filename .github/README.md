@@ -58,6 +58,8 @@ Uncompliant applications will have their theme colors set to a random color.
 
 ## License
 
+![dahliaOS](https://imgur.com/Y39ZrJO.png)
+
 Copyright @ 2019-2020 The dahliaOS Authors contact@dahliaos.io
 
 This project is licensed under the [Apache 2.0 license](/LICENSE)
