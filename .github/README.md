@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://imgur.com/v6UVK3W">
+</p>
+
 # Pangolin Desktop
 ![](https://github.com/dahlia-os/pangolin-desktop/workflows/CI/badge.svg) ![](https://github.com/dahlia-os/pangolin-desktop/workflows/Deploy/badge.svg) ![gitlocalized ](https://gitlocalize.com/repo/5170/whole_project/badge.svg)
 
