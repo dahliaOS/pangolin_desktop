@@ -534,6 +534,15 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
 
           // WallpaperPicker(),
+          IgnorePointer(
+            child: Container(
+              width: double.infinity,
+              height: double.infinity,
+              color: HiveManager.get("enableBlueLightFilter")
+                  ? Colors.deepOrange.withOpacity(0.2)
+                  : Colors.deepOrange.withOpacity(0.0),
+            ),
+          ),
         ],
       )),
     );
