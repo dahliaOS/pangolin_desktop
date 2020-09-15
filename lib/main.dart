@@ -58,6 +58,8 @@ import 'settings/settings.dart';
 import 'commons/key_ring.dart';
 import 'commons/functions.dart';
 
+import 'package:flutter/foundation.dart' show kIsWeb;
+
 /// Set this to disable certain things during testing.
 /// Use this sparingly, or better yet, not at all.
 bool isTesting = false;
@@ -275,11 +277,13 @@ class _MyHomePageState extends State<MyHomePage> {
           Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage(HiveManager.get("randomWallpaper")
-                    ? Pangolin
-                        .wallpapers[_random.nextInt(Pangolin.wallpapers.length)]
-                    : Pangolin
-                        .wallpapers[HiveManager.get("wallpaper").toInt()]),
+                image: AssetImage(kIsWeb
+                    ? Pangolin.wallpapers[4]
+                    : HiveManager.get("randomWallpaper")
+                        ? Pangolin.wallpapers[
+                            _random.nextInt(Pangolin.wallpapers.length)]
+                        : Pangolin
+                            .wallpapers[HiveManager.get("wallpaper").toInt()]),
                 fit: BoxFit.cover,
               ),
             ),

@@ -430,29 +430,27 @@ class _SearchState extends State<Search> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       new Expanded(
-                          child: AbsorbPointer(
-                        child: new TextField(
-                          style: new TextStyle(
-                            color: Colors.grey[900],
-                            fontSize: 15,
-                          ),
-                          maxLines: 1,
-                          decoration: new InputDecoration(
-                              hintStyle: TextStyle(
-                                color:
-                                    Theme.of(context).textTheme.bodyText1.color,
-                                fontSize: 15,
-                              ),
-                              icon: Icon(
-                                Icons.search,
-                                color:
-                                    Color(HiveManager.get("accentColorValue")),
-                              ),
-                              hintText: 'Search settings...',
-                              border: InputBorder.none),
-                          onSubmitted: null,
-                          controller: editingController,
+                          child: new TextField(
+                        autofocus: true,
+                        style: new TextStyle(
+                          color: Colors.grey[900],
+                          fontSize: 15,
                         ),
+                        maxLines: 1,
+                        decoration: new InputDecoration(
+                            hintStyle: TextStyle(
+                              color:
+                                  Theme.of(context).textTheme.bodyText1.color,
+                              fontSize: 15,
+                            ),
+                            icon: Icon(
+                              Icons.search,
+                              color: Color(HiveManager.get("accentColorValue")),
+                            ),
+                            hintText: 'Search settings...',
+                            border: InputBorder.none),
+                        onSubmitted: null,
+                        controller: editingController,
                       ))
                     ],
                   ),
