@@ -1,12 +1,9 @@
 /*
 Copyright 2019 The dahliaOS Authors
-
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
-
     http://www.apache.org/licenses/LICENSE-2.0
-
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -94,15 +91,15 @@ class QuickSettingsState extends State<QuickSettings> {
           Icon(
             icon,
             color: Colors.grey[900],
-            size: 25.0,
+            size: scale(25.0),
             semanticLabel: 'Power off',
           ),
           Container(
-            margin: EdgeInsets.only(top: 8),
+            margin: EdgeInsets.only(top: scale(8)),
             child: Text(
               label,
               style: TextStyle(
-                fontSize: 15.0,
+                fontSize: scale(15.0),
                 color: Colors.grey[900],
               ),
               textAlign: TextAlign.center,
@@ -117,13 +114,14 @@ class QuickSettingsState extends State<QuickSettings> {
   Widget build(BuildContext context) {
     Localization local = Localization.of(context);
     _getTime(context);
-    const biggerFont = TextStyle(
-      fontSize: 12.0,
+    var biggerFont = TextStyle(
+      fontSize: scale(12.0),
       fontWeight: FontWeight.w400,
       color: Colors.white,
     );
     Widget topSection = Container(
-      padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 5.0),
+      padding:
+          EdgeInsets.symmetric(horizontal: scale(12.0), vertical: scale(5.0)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -131,7 +129,7 @@ class QuickSettingsState extends State<QuickSettings> {
             child:*/
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              padding: EdgeInsets.symmetric(horizontal: scale(8.0)),
               child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
@@ -148,9 +146,9 @@ class QuickSettingsState extends State<QuickSettings> {
           //Spacer(),
           //),
           new IconButton(
-            icon: const Icon(
+            icon: Icon(
               Icons.power_settings_new,
-              size: 20,
+              size: scale(20),
             ),
             onPressed: () {
               showGeneralDialog(
@@ -163,8 +161,8 @@ class QuickSettingsState extends State<QuickSettings> {
                   return Align(
                     alignment: Alignment.center,
                     child: Container(
-                      height: 90,
-                      width: 400,
+                      height: scale(90),
+                      width: scale(400),
                       child: SizedBox.expand(
                         child: new Center(
                             child: new Row(
@@ -172,24 +170,28 @@ class QuickSettingsState extends State<QuickSettings> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Padding(
-                              padding: EdgeInsets.only(top: 20.0, right: 20),
+                              padding: EdgeInsets.only(
+                                  top: scale(20.0), right: scale(20)),
                               child: buildPowerItem(Icons.power_settings_new,
                                   'Power off', 'shutdown', '-h now'),
                             ),
                             Padding(
-                              padding: EdgeInsets.only(top: 20.0, right: 20),
+                              padding: EdgeInsets.only(
+                                  top: scale(20.0), right: scale(20)),
                               child: buildPowerItem(
                                   Icons.refresh, 'Restart', 'reboot', ''),
                             ),
                             Padding(
-                              padding: EdgeInsets.only(top: 20.0, right: 20),
+                              padding: EdgeInsets.only(
+                                  top: scale(20.0), right: scale(20)),
                               child: buildPowerItem(Icons.developer_mode,
                                   'Terminal', 'killall', 'pangolin_desktop'),
                             ),
                           ],
                         )),
                       ),
-                      margin: EdgeInsets.only(bottom: 75, left: 12, right: 12),
+                      margin: EdgeInsets.only(
+                          bottom: scale(75), left: scale(12), right: scale(12)),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(10),
@@ -209,9 +211,9 @@ class QuickSettingsState extends State<QuickSettings> {
           ),
 
           new IconButton(
-            icon: const Icon(
+            icon: Icon(
               Icons.settings,
-              size: 20,
+              size: scale(20),
             ),
             onPressed: () {
               Provider.of<WindowsData>(context, listen: false)
@@ -257,14 +259,14 @@ class QuickSettingsState extends State<QuickSettings> {
                       }),
                 ),
                 Container(
-                  width: 35,
+                  width: scale(35),
                   child: Center(
                     child: Text(
                       "${(brightness * 100).toInt().toString()}",
                       style: TextStyle(
                         color: Colors.white,
                         letterSpacing: 1.2,
-                        fontSize: 12.0,
+                        fontSize: scale(12.0),
                       ),
                     ),
                   ),
@@ -276,7 +278,7 @@ class QuickSettingsState extends State<QuickSettings> {
               children: <Widget>[
                 Icon(
                   Icons.volume_up,
-                  size: 20,
+                  size: scale(20),
                   color: Colors.white,
                 ),
                 Expanded(
@@ -291,14 +293,14 @@ class QuickSettingsState extends State<QuickSettings> {
                   ),
                 ),
                 Container(
-                  width: 35,
+                  width: scale(35),
                   child: Center(
                     child: Text(
                       "${(volume * 100).toInt().toString()}",
                       style: TextStyle(
                         color: Colors.white,
                         letterSpacing: 1.2,
-                        fontSize: 12.0,
+                        fontSize: scale(12.0),
                       ),
                     ),
                   ),
@@ -315,8 +317,8 @@ class QuickSettingsState extends State<QuickSettings> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SizedBox(
-            width: 50,
-            height: 50,
+            width: scale(50),
+            height: scale(50),
             child: FloatingActionButton(
               onPressed: onClick,
               elevation: 0.0,
@@ -324,11 +326,11 @@ class QuickSettingsState extends State<QuickSettings> {
               focusElevation: 0.0,
               highlightElevation: 0.0,
               hoverElevation: 0.0,
-              child: Icon(icon, color: Colors.white, size: 20.0),
+              child: Icon(icon, color: Colors.white, size: scale(20.0)),
             ),
           ),
           Container(
-            margin: EdgeInsets.only(top: 10),
+            margin: EdgeInsets.only(top: scale(10)),
             child: Text(
               label,
               style: biggerFont,
@@ -341,7 +343,7 @@ class QuickSettingsState extends State<QuickSettings> {
 
     Widget tileSection = Expanded(
       child: Container(
-          padding: EdgeInsets.all(10.0),
+          padding: EdgeInsets.all(scale(10.0)),
           child: GridView.count(
               physics: BouncingScrollPhysics(),
               crossAxisCount: 4,
@@ -418,9 +420,9 @@ class QuickSettingsState extends State<QuickSettings> {
       //original color was 29353a, migrated to 2D2D2D
       //padding: const EdgeInsets.all(10.0),
       //alignment: Alignment.centerLeft,
-      margin: EdgeInsets.all(15.0),
-      width: 320,
-      height: 500,
+      margin: EdgeInsets.all(scale(15.0)),
+      width: scale(320),
+      height: scale(500),
       child: Column(
         children: [topSection, sliderSection, tileSection],
       ),

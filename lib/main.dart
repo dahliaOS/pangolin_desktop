@@ -22,7 +22,6 @@ import 'package:Pangolin/applications/editor.dart';
 import 'package:Pangolin/applications/terminal/main.dart';
 import 'package:Pangolin/applications/welcome.dart';
 import 'package:Pangolin/applications/monitor.dart';
-import 'package:Pangolin/applications/files.dart';
 import 'package:Pangolin/localization/localization.dart';
 import 'package:Pangolin/settings/hiveManager.dart';
 import 'package:Pangolin/themes/customization_manager.dart';
@@ -33,6 +32,7 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:path_provider/path_provider.dart';
 
+import 'applications/files/main.dart';
 import 'quick_settings.dart';
 import 'window_space.dart';
 //import 'dart:async';
@@ -225,6 +225,8 @@ class _PangolinState extends State<Pangolin> {
                     Locale("hr"),
                     Locale("nl"),
                     Locale("es"),
+                    Locale("pt"),
+                    Locale("id"),
                   ],
                   localizationsDelegates: [
                     Localization.delegate,
@@ -513,7 +515,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     app: Files(),
                                     icon:
                                         'lib/images/icons/v2/compiled/files.png',
-                                    color: Colors.deepOrange,
+                                    color: Colors.deepOrange[800],
                                     callback: toggleCallback),
                                 AppLauncherButton(
                                   app: Tasks(),

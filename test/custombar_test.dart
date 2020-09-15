@@ -8,7 +8,7 @@
 import 'dart:io';
 //import 'dart:ui' hide Window;
 
-import 'package:Pangolin/applications/files.dart';
+import 'package:Pangolin/applications/files/main.dart';
 import 'package:Pangolin/applications/terminal/main.dart';
 // import 'package:Pangolin/commons/functions.dart';
 // import 'package:Pangolin/launcher_toggle.dart';
@@ -124,5 +124,5 @@ Future<void> main() async {
     //@bleonard252: wait for Bash to be ready. if it errors, fail
     // I'll probably make more specific Terminal tests,
     // first that it opens, then how it reacts to different platforms
-  }); /* }); */
+  }, skip: true); /* }); */
 }

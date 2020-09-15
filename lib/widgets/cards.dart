@@ -19,7 +19,7 @@ import 'package:Pangolin/settings/hiveManager.dart';
 import 'package:flutter/material.dart';
 import '../applications/calculator.dart';
 import '../applications/containers.dart';
-import '../applications/files.dart';
+import '../applications/files/main.dart';
 import '../applications/editor.dart';
 import '../applications/terminal/main.dart';
 import '../applications/browser/main.dart';

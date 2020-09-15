@@ -14,6 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'package:Pangolin/applications/files/hover.dart';
 import 'package:Pangolin/commons/functions.dart';
 import 'package:flutter/material.dart';
 import '../model.dart';
@@ -203,88 +204,94 @@ class WindowState extends State<Window> {
         child: new*/
                 //check to see if there's a customBar property in the passed app class
                 RepaintBoundary(
-              child: Container(
-                width: _size.width,
-                height: _size.height,
-                constraints: BoxConstraints(
-                    minWidth: _minWidth, minHeight: _minHeight), //
-                decoration: BoxDecoration(boxShadow: kElevationToShadow[12]),
-                child: Column(
-                  children: [
-                    GestureDetector(
-                      onPanUpdate: (DragUpdateDetails details) {
-                        setState(() {
-                          _position += details.delta;
-                          if (_windowMode == WindowMode.MAXIMIZE_MODE) {
-                            _windowMode = WindowMode.NORMAL_MODE;
-                            _size = _preSize;
-                          }
-                        });
-                      },
-                      onDoubleTap: () {
-                        _windowMode == WindowMode.NORMAL_MODE
-                            ? _maximizeWindow()
-                            : _restoreWindowFromMaximizeMode();
-                      },
-                      child: customBar != null
-                          ? customBar(
-                              close: _closeWindow,
-                              maximize: () =>
-                                  _windowMode == WindowMode.NORMAL_MODE
-                                      ? _maximizeWindow()
-                                      : _restoreWindowFromMaximizeMode(),
-                              minimize: () => null, // for now
-                              maximizeState: () =>
-                                  _windowMode == WindowMode.MAXIMIZE_MODE
-                                      ? true
-                                      : false)
-                          : Container(
-                              padding: EdgeInsets.symmetric(horizontal: 4.0),
-                              height: 40.0,
-                              decoration: BoxDecoration(
-                                borderRadius: !isMaximized
-                                    ? BorderRadius.only(
-                                        topLeft: Radius.circular(10),
-                                        topRight: Radius.circular(10))
-                                    : BorderRadius.circular(0),
-                                color: _color,
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  minimizeButton(),
-                                  SizedBox(width: 3.0),
-                                  maximizeButton(),
-                                  SizedBox(width: 3.0),
-                                  closeButton()
-                                ],
-                              )),
-                    ),
-                    Expanded(
-                      child: ClipRRect(
-                        borderRadius: !WindowState.isMaximized
-                            ? BorderRadius.only(
-                                bottomLeft: Radius.circular(10),
-                                bottomRight: Radius.circular(10))
-                            : BorderRadius.circular(0),
-                        child: GestureDetector(
-                          onPanUpdate: (DragUpdateDetails details) {
-                            setState(() {
-                              _windowMode = WindowMode.NORMAL_MODE;
-                              var _newSize = _size + details.delta;
-                              if (_newSize.width >= _minWidth &&
-                                  _newSize.height >= _minHeight)
-                                _size += details.delta;
-                            });
-                          },
-                          child: (_child is Widget)
-                              ? _child
-                              : Text("ERROR: Window is not a Widget!"),
-                        ),
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  GestureDetector(
+                    onPanUpdate: (DragUpdateDetails details) {
+                      setState(() {
+                        var _newSize = _size + details.delta;
+                        if (_newSize.width >= _minWidth &&
+                            _newSize.height >= _minHeight)
+                          _size += details.delta;
+                      });
+                    },
+                    child: Hover(
+                      opacity: 0.8,
+                      child: Container(
+                        width: (_windowMode == WindowMode.MAXIMIZE_MODE)
+                            ? _size.width
+                            : _size.width + 20,
+                        height: (_windowMode == WindowMode.MAXIMIZE_MODE)
+                            ? _size.height
+                            : _size.height + 20,
+                        //color: Colors.blueAccent,
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                  Container(
+                    width: _size.width,
+                    height: _size.height,
+                    constraints: BoxConstraints(
+                        minWidth: _minWidth, minHeight: _minHeight), //
+                    decoration:
+                        BoxDecoration(boxShadow: kElevationToShadow[12]),
+                    child: Column(
+                      children: [
+                        GestureDetector(
+                          onPanUpdate: (DragUpdateDetails details) {
+                            setState(() {
+                              _position += details.delta;
+                              if (_windowMode == WindowMode.MAXIMIZE_MODE) {
+                                _windowMode = WindowMode.NORMAL_MODE;
+                                _size = _preSize;
+                              }
+                            });
+                          },
+                          onDoubleTap: () {
+                            _windowMode == WindowMode.NORMAL_MODE
+                                ? _maximizeWindow()
+                                : _restoreWindowFromMaximizeMode();
+                          },
+                          child: customBar != null
+                              ? customBar(
+                                  close: _closeWindow,
+                                  maximize: () =>
+                                      _windowMode == WindowMode.NORMAL_MODE
+                                          ? _maximizeWindow()
+                                          : _restoreWindowFromMaximizeMode(),
+                                  minimize: () => null, // for now
+                                  maximizeState: () =>
+                                      _windowMode == WindowMode.MAXIMIZE_MODE
+                                          ? true
+                                          : false)
+                              : Container(
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 4.0),
+                                  height: 35.0,
+                                  color: _color,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      minimizeButton(),
+                                      SizedBox(width: 3.0),
+                                      maximizeButton(),
+                                      SizedBox(width: 3.0),
+                                      closeButton()
+                                    ],
+                                  )),
+                        ),
+                        Expanded(
+                          child: ClipRRect(
+                            child: (_child is Widget)
+                                ? _child
+                                : Text("ERROR: Window is not a Widget!"),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
