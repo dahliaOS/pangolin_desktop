@@ -15,6 +15,7 @@ limitations under the License.
 */
 
 import 'dart:ui';
+import 'package:Pangolin/settings/hiveManager.dart';
 import 'package:Pangolin/widgets/hover.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -29,6 +30,7 @@ class AppLauncherButton extends StatefulWidget {
   final double childWidth;
   final String label;
   final AppLauncherButtonType type;
+  final Color color;
   final ValueChanged<bool> _callback;
 
   AppLauncherButton(
@@ -40,6 +42,7 @@ class AppLauncherButton extends StatefulWidget {
       this.customBar = true,
       this.childHeight = 64.0,
       this.childWidth = 64.0,
+      this.color,
       callback})
       : _callback =
             callback; //This alien syntax must be syntactical glucose for a setter. Neato.
@@ -78,8 +81,11 @@ class AppLauncherButtonState extends State<AppLauncherButton> {
                     });
 
                     widget.appExists
-                        ? Provider.of<WindowsData>(context, listen: false)
-                            .add(child: widget.app, color: Colors.grey[900])
+                        ? Provider.of<WindowsData>(context, listen: false).add(
+                            child: widget.app,
+                            color: HiveManager.get("coloredTitlebar")
+                                ? widget.color
+                                : Colors.grey[900])
                         : showDialog(
                             context: context,
                             builder: (BuildContext context) {

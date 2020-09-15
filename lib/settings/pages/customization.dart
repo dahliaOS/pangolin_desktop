@@ -353,6 +353,38 @@ class _CustomizationState extends State<Customization> {
                         ),
                       ],
                     ),
+                    SizedBox(height: 20),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                      child: Text("Window Titlebars",
+                          style: TextStyle(
+                              fontSize: 17,
+                              letterSpacing: 0.2,
+                              fontWeight: FontWeight.bold)),
+                    ),
+                    SizedBox(height: 5),
+                    SettingsTile(
+                      children: [
+                        Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text("Enabled colored Titlebar"),
+                                Switch(
+                                  value: HiveManager.get("coloredTitlebar"),
+                                  onChanged: (bool state) {
+                                    setState(() {
+                                      HiveManager.set("coloredTitlebar", state);
+                                    });
+                                  },
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ),
