@@ -269,8 +269,15 @@ class WindowState extends State<Window> {
                                   decoration: BoxDecoration(
                                     color: _color,
                                     borderRadius: BorderRadius.only(
-                                        topLeft: Radius.circular(10),
-                                        topRight: Radius.circular(10)),
+                                        topLeft: Radius.circular((_windowMode ==
+                                                WindowMode.MAXIMIZE_MODE)
+                                            ? 0
+                                            : 10),
+                                        topRight: Radius.circular(
+                                            (_windowMode ==
+                                                    WindowMode.MAXIMIZE_MODE)
+                                                ? 0
+                                                : 10)),
                                   ),
                                   padding:
                                       EdgeInsets.symmetric(horizontal: 4.0),
@@ -289,8 +296,14 @@ class WindowState extends State<Window> {
                         Expanded(
                           child: ClipRRect(
                             borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(10),
-                                bottomRight: Radius.circular(10)),
+                                bottomLeft: Radius.circular(
+                                    (_windowMode == WindowMode.MAXIMIZE_MODE)
+                                        ? 0
+                                        : 10),
+                                bottomRight: Radius.circular(
+                                    (_windowMode == WindowMode.MAXIMIZE_MODE)
+                                        ? 0
+                                        : 10)),
                             child: (_child is Widget)
                                 ? _child
                                 : Text("ERROR: Window is not a Widget!"),
