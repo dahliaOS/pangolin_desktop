@@ -266,10 +266,15 @@ class WindowState extends State<Window> {
                                           ? true
                                           : false)
                               : Container(
+                                  decoration: BoxDecoration(
+                                    color: _color,
+                                    borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(10),
+                                        topRight: Radius.circular(10)),
+                                  ),
                                   padding:
                                       EdgeInsets.symmetric(horizontal: 4.0),
                                   height: 35.0,
-                                  color: _color,
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
@@ -283,6 +288,9 @@ class WindowState extends State<Window> {
                         ),
                         Expanded(
                           child: ClipRRect(
+                            borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(10),
+                                bottomRight: Radius.circular(10)),
                             child: (_child is Widget)
                                 ? _child
                                 : Text("ERROR: Window is not a Widget!"),
