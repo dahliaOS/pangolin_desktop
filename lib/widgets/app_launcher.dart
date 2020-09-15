@@ -57,82 +57,99 @@ class AppLauncherButtonState extends State<AppLauncherButton> {
 
   @override
   Widget build(BuildContext context) {
-    return Hover(
-        borderRadius: (widget.type == AppLauncherButtonType.Drawer)
-            ? BorderRadius.circular(30)
-            : BorderRadius.circular(0),
-        child: Container(
-          margin: (widget.type == AppLauncherButtonType.Drawer)
-              ? EdgeInsets.all(30.0)
-              : EdgeInsets.symmetric(horizontal: 4.0),
-          width: (widget.type == AppLauncherButtonType.Drawer) ? 64.0 : 45.0,
-          height: (widget.type == AppLauncherButtonType.Drawer) ? 64.0 : 45.0,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Opacity(
-                opacity: widget.appExists ? 1.0 : 0.4,
-                child: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      toggled = !_toggled;
-                      widget._callback?.call(_toggled);
-                    });
+    return Padding(
+      padding: (widget.type == AppLauncherButtonType.Drawer)
+          ? EdgeInsets.all(20.0)
+          : EdgeInsets.symmetric(horizontal: 4.0),
+      child: Container(
+        width: (widget.type == AppLauncherButtonType.Drawer) ? 150.0 : 45.0,
+        height: (widget.type == AppLauncherButtonType.Drawer) ? 150.0 : 45.0,
+        child: Hover(
+            borderRadius: (widget.type == AppLauncherButtonType.Drawer)
+                ? BorderRadius.circular(30)
+                : BorderRadius.circular(0),
+            child: Container(
+              margin: (widget.type == AppLauncherButtonType.Drawer)
+                  ? EdgeInsets.all(30.0)
+                  : EdgeInsets.symmetric(horizontal: 4.0),
+              width:
+                  (widget.type == AppLauncherButtonType.Drawer) ? 200.0 : 45.0,
+              height:
+                  (widget.type == AppLauncherButtonType.Drawer) ? 200.0 : 45.0,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Opacity(
+                    opacity: widget.appExists ? 1.0 : 0.4,
+                    child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          toggled = !_toggled;
+                          widget._callback?.call(_toggled);
+                        });
 
-                    widget.appExists
-                        ? Provider.of<WindowsData>(context, listen: false).add(
-                            child: widget.app,
-                            color: HiveManager.get("coloredTitlebar")
-                                ? widget.color
-                                : Colors.grey[900])
-                        : showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              // return object of type Dialog
-                              return AlertDialog(
-                                  title: new Text("Feature not implemented"),
-                                  content: new Text(
-                                      "This feature is currently not available on your build of Pangolin. Please see https://reddit.com/r/dahliaos to check for updates."),
-                                  actions: <Widget>[
-                                    // usually buttons at the bottom of the dialog
-                                    new FlatButton(
-                                        child: new Text("OK"),
-                                        onPressed: () {
-                                          Navigator.of(context).pop();
-                                        })
-                                  ]);
-                            });
-                  },
-                  child: Container(
-                    child: Image.asset(
-                      widget.icon,
-                      fit: BoxFit.contain,
-                      width: (widget.type == AppLauncherButtonType.Drawer)
-                          ? 64.0
-                          : 34.0,
-                      height: (widget.type == AppLauncherButtonType.Drawer)
-                          ? 64.0
-                          : 34.0,
+                        widget.appExists
+                            ? Provider.of<WindowsData>(context, listen: false)
+                                .add(
+                                    child: widget.app,
+                                    color: HiveManager.get("coloredTitlebar")
+                                        ? widget.color
+                                        : Colors.grey[900])
+                            : showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  // return object of type Dialog
+                                  return AlertDialog(
+                                      title:
+                                          new Text("Feature not implemented"),
+                                      content: new Text(
+                                          "This feature is currently not available on your build of Pangolin. Please see https://reddit.com/r/dahliaos to check for updates."),
+                                      actions: <Widget>[
+                                        // usually buttons at the bottom of the dialog
+                                        new FlatButton(
+                                            child: new Text("OK"),
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            })
+                                      ]);
+                                });
+                      },
+                      child: Container(
+                        child: Image.asset(
+                          widget.icon,
+                          fit: BoxFit.contain,
+                          width: (widget.type == AppLauncherButtonType.Drawer)
+                              ? 64.0
+                              : 34.0,
+                          height: (widget.type == AppLauncherButtonType.Drawer)
+                              ? 64.0
+                              : 34.0,
+                        ),
+                      ),
                     ),
                   ),
-                ),
+                  (widget.type == AppLauncherButtonType.Drawer)
+                      ? Padding(
+                          padding: const EdgeInsets.only(top: 8.0),
+                          child: Text(
+                            widget.label,
+                            style: TextStyle(
+                              fontSize: 15.0,
+                              fontWeight: FontWeight.w400,
+                              color: widget.appExists
+                                  ? Colors.white
+                                  : Colors.grey[400],
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        )
+                      : SizedBox.shrink(),
+                ],
               ),
-              (widget.type == AppLauncherButtonType.Drawer)
-                  ? Text(
-                      widget.label,
-                      style: TextStyle(
-                        fontSize: 15.0,
-                        fontWeight: FontWeight.w400,
-                        color:
-                            widget.appExists ? Colors.white : Colors.grey[700],
-                      ),
-                      textAlign: TextAlign.center,
-                    )
-                  : SizedBox.shrink(),
-            ],
-          ),
-        ));
+            )),
+      ),
+    );
   }
 
   set toggled(bool value) {
