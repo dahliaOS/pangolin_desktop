@@ -16,8 +16,9 @@ limitations under the License.
 
 import 'dart:ui';
 
-import 'package:GeneratedApp/widgets/hover.dart';
 import 'package:flutter/material.dart';
+
+import 'files/hover.dart';
 
 void main() {
   runApp(new Files());

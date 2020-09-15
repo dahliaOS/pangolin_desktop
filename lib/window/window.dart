@@ -14,7 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:GeneratedApp/widgets/hover.dart';
+import 'package:Pangolin/applications/files/hover.dart';
+import 'package:Pangolin/commons/functions.dart';
 import 'package:flutter/material.dart';
 import '../model.dart';
 import 'model.dart';
@@ -86,16 +87,18 @@ class WindowState extends State<Window> {
   Color _color;
 
   /// The window's minimum height.
-  final double _minHeight = 100.0;
+  final double _minHeight = 400.0;
 
   /// The window's minimum width.
-  final double _minWidth = 100.0;
+  final double _minWidth = 600.0;
 
   /// Controls focus on this window.
   final FocusNode _focusNode = new FocusNode();
 
   /// Control is an illusion so let's make it a big one
   FocusAttachment _focusAttachment;
+
+  static bool isMaximized = false;
 
   @override
   void initState() {
@@ -125,16 +128,18 @@ class WindowState extends State<Window> {
   void _maximizeWindow() {
     Size deviceSize = MediaQuery.of(context).size;
     setState(() {
+      isMaximized = true;
       _windowMode = WindowMode.MAXIMIZE_MODE;
       _prePosition = _position;
       _preSize = _size;
       _position = Offset(0, 0);
-      _size = Size(deviceSize.width, deviceSize.height - 50);
+      _size = Size(deviceSize.width, deviceSize.height - 45);
     });
   }
 
   void _restoreWindowFromMaximizeMode() {
     setState(() {
+      isMaximized = false;
       _windowMode = WindowMode.NORMAL_MODE;
       _size = _preSize;
       _position = _prePosition;
@@ -261,10 +266,15 @@ class WindowState extends State<Window> {
                                           ? true
                                           : false)
                               : Container(
+                                  decoration: BoxDecoration(
+                                    color: _color,
+                                    borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(10),
+                                        topRight: Radius.circular(10)),
+                                  ),
                                   padding:
                                       EdgeInsets.symmetric(horizontal: 4.0),
                                   height: 35.0,
-                                  color: _color,
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
@@ -278,6 +288,9 @@ class WindowState extends State<Window> {
                         ),
                         Expanded(
                           child: ClipRRect(
+                            borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(10),
+                                bottomRight: Radius.circular(10)),
                             child: (_child is Widget)
                                 ? _child
                                 : Text("ERROR: Window is not a Widget!"),
