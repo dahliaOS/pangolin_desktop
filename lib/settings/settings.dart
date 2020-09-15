@@ -75,7 +75,7 @@ class Settings extends StatelessWidget {
             // When navigating to the "/" route, build the FirstScreen widget.
             '/': (context) => SettingsPage(title: 'Settings'),
             // When navigating to the "/second" route, build the SecondScreen widget.
-            '/second': (context) => SecondScreen(),
+            '/search': (context) => Search(),
           },
         );
       }),
@@ -257,44 +257,56 @@ class _SettingsPageState extends State<SettingsPage> {
                             SizedBox(
                               height: 30,
                             ),
-                            Material(
-                              color: Theme.of(context).cardColor,
-                              borderRadius: const BorderRadius.all(
-                                  const Radius.circular(25)),
-                              //elevation: 5.0,
-                              child: new Container(
-                                width: 700,
-                                height: 45.0,
-                                margin: new EdgeInsets.only(left: 10, right: 5),
-                                child: new Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: <Widget>[
-                                    new Expanded(
-                                        child: new TextField(
-                                      style: new TextStyle(
-                                        color: Colors.grey[900],
-                                        fontSize: 15,
-                                      ),
-                                      maxLines: 1,
-                                      decoration: new InputDecoration(
-                                          hintStyle: TextStyle(
-                                            color: Theme.of(context)
-                                                .textTheme
-                                                .bodyText1
-                                                .color,
-                                            fontSize: 15,
+                            Hero(
+                              tag: "search",
+                              child: Material(
+                                color: Theme.of(context).cardColor,
+                                borderRadius: const BorderRadius.all(
+                                    const Radius.circular(25)),
+                                //elevation: 5.0,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.of(context).pushNamed("/search");
+                                  },
+                                  child: new Container(
+                                    width: 700,
+                                    height: 45.0,
+                                    margin:
+                                        new EdgeInsets.only(left: 10, right: 5),
+                                    child: new Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: <Widget>[
+                                        new Expanded(
+                                            child: AbsorbPointer(
+                                          child: new TextField(
+                                            style: new TextStyle(
+                                              color: Colors.grey[900],
+                                              fontSize: 15,
+                                            ),
+                                            maxLines: 1,
+                                            decoration: new InputDecoration(
+                                                hintStyle: TextStyle(
+                                                  color: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyText1
+                                                      .color,
+                                                  fontSize: 15,
+                                                ),
+                                                icon: Icon(
+                                                  Icons.search,
+                                                  color: Color(HiveManager.get(
+                                                      "accentColorValue")),
+                                                ),
+                                                hintText: 'Search settings...',
+                                                border: InputBorder.none),
+                                            onSubmitted: null,
+                                            controller: editingController,
                                           ),
-                                          icon: Icon(
-                                            Icons.search,
-                                            color: Color(HiveManager.get(
-                                                "accentColorValue")),
-                                          ),
-                                          hintText: 'Search settings...',
-                                          border: InputBorder.none),
-                                      onSubmitted: null,
-                                      controller: editingController,
-                                    ))
-                                  ],
+                                        ))
+                                      ],
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
@@ -387,4 +399,67 @@ setSelected(int index, List items) {
     items[_i].selected = false;
   }
   items[index].selected = true;
+}
+
+class Search extends StatefulWidget {
+  @override
+  _SearchState createState() => _SearchState();
+}
+
+class _SearchState extends State<Search> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        color: Colors.white,
+        child: Center(
+          child: Hero(
+            tag: "search",
+            child: Material(
+              color: Theme.of(context).cardColor,
+              borderRadius: const BorderRadius.all(const Radius.circular(25)),
+              //elevation: 5.0,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pop();
+                },
+                child: new Container(
+                  width: 700,
+                  height: 45.0,
+                  margin: new EdgeInsets.only(left: 10, right: 5),
+                  child: new Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      new Expanded(
+                          child: AbsorbPointer(
+                        child: new TextField(
+                          style: new TextStyle(
+                            color: Colors.grey[900],
+                            fontSize: 15,
+                          ),
+                          maxLines: 1,
+                          decoration: new InputDecoration(
+                              hintStyle: TextStyle(
+                                color:
+                                    Theme.of(context).textTheme.bodyText1.color,
+                                fontSize: 15,
+                              ),
+                              icon: Icon(
+                                Icons.search,
+                                color:
+                                    Color(HiveManager.get("accentColorValue")),
+                              ),
+                              hintText: 'Search settings...',
+                              border: InputBorder.none),
+                          onSubmitted: null,
+                          controller: editingController,
+                        ),
+                      ))
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ));
+  }
 }
