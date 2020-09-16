@@ -430,7 +430,9 @@ class _CustomizationState extends State<Customization> {
                               new Padding(
                                   padding: EdgeInsets.all(8),
                                   child: new Text(
-                                    "WARNING: You need to restart Pangolin to apply your changes.",
+                                    kIsWeb
+                                        ? "WARNING: Customization is not supported on Web Demos"
+                                        : "WARNING: You need to restart Pangolin to apply your changes.",
                                     style: new TextStyle(
                                       color: Colors.grey[900],
                                       fontSize: 14,
@@ -440,49 +442,52 @@ class _CustomizationState extends State<Customization> {
                             ],
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 8.0),
-                          child: FlatButton(
-                            onPressed: () {
-                              showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  // return object of type Dialog
-                                  return AlertDialog(
-                                    title: Center(
-                                        child: new Text(
-                                            "Are you sure you want to restart Pangolin?")),
-                                    content: new Container(
-                                      child: Text(
-                                          "The restart will only take a few seconds but your open windows will be closed and unsaved data will be lost"),
-                                    ),
-                                    actions: <Widget>[
-                                      // usually buttons at the bottom of the dialog
-                                      new FlatButton(
-                                        child: new Text("No"),
-                                        onPressed: () {
-                                          Navigator.of(context).pop();
-                                        },
+                        ConditionWidget(
+                          !kIsWeb,
+                          Padding(
+                            padding: const EdgeInsets.only(right: 8.0),
+                            child: FlatButton(
+                              onPressed: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    // return object of type Dialog
+                                    return AlertDialog(
+                                      title: Center(
+                                          child: new Text(
+                                              "Are you sure you want to restart Pangolin?")),
+                                      content: new Container(
+                                        child: Text(
+                                            "The restart will only take a few seconds but your open windows will be closed and unsaved data will be lost"),
                                       ),
-                                      new FlatButton(
-                                        child: new Text("Yes, Restart!"),
-                                        onPressed: () {
-                                          Process.run(
-                                              'bash', ['/dahlia/restart.sh']);
-                                        },
-                                      ),
-                                    ],
-                                  );
-                                },
-                              );
-                            },
-                            child: Text(
-                              "Restart",
-                              style: new TextStyle(
-                                color: Colors.grey[900],
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14,
-                                fontFamily: "Roboto",
+                                      actions: <Widget>[
+                                        // usually buttons at the bottom of the dialog
+                                        new FlatButton(
+                                          child: new Text("No"),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                        ),
+                                        new FlatButton(
+                                          child: new Text("Yes, Restart!"),
+                                          onPressed: () {
+                                            Process.run(
+                                                'bash', ['/dahlia/restart.sh']);
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                              child: Text(
+                                "Restart",
+                                style: new TextStyle(
+                                  color: Colors.grey[900],
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14,
+                                  fontFamily: "Roboto",
+                                ),
                               ),
                             ),
                           ),

@@ -4,7 +4,7 @@ Widget ConditionWidget(bool condition, Widget child) {
   if (condition == true) {
     return child;
   } else {
-    return Container(height: 0); //or any other widget but not null
+    return SizedBox.shrink(); //or any other widget but not null
   }
 }
 
