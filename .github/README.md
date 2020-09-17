@@ -1,17 +1,17 @@
-<p align="center">
-  <img src="https://imgur.com/v6UVK3W.png">
-</p>
-
-# Pangolin Desktop
+# Pangolin Desktop UI [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=dahliaOS%20is%20a%20modern,%20secure,%20lightweight%20and%20responsive%20operating%20system,%20combining%20the%20best%20of%20GNU/Linux%20and%20Fuchsia%20OS&url=https://dahliaos.io&via=realdahliaos&hashtags=dahliaos,linux,zircon,flutter,dart,fuchsia,opensource)
+![GitHub](https://img.shields.io/github/license/dahlia-os/pangolin-desktop?color=brightgreen)
+[![Donate](https://img.shields.io/badge/Donate-PayPal-brightgreen.svg)](https://paypal.me/officialdahliaos)
+![Discord](https://img.shields.io/discord/576141822145986590?color=brightgreen)
+![Website](https://img.shields.io/website?url=https%3A%2F%2Fweb.dahliaos.io)
 ![](https://github.com/dahlia-os/pangolin-desktop/workflows/CI/badge.svg) ![](https://github.com/dahlia-os/pangolin-desktop/workflows/Deploy/badge.svg) ![gitlocalized ](https://gitlocalize.com/repo/5170/whole_project/badge.svg)
 
-## About Pangolin
+## About Pangolin UI 
 
-Pangolin is a Desktop shell for dahliaOS, written in Flutter, runs on Linux and Zircon.
+Pangolin UI is a Desktop shell for dahliaOS, written in Flutter, runs on Linux and Zircon.
 
-Pangolin was named after a shelled animal like the [Armadillo UI](https://9to5google.com/2018/12/26/fuchsia-armadillo-ui-gone/). 
+Pangolin was named after a shelled animal like the [Armadillo UI](https://9to5google.com/2018/12/26/fuchsia-armadillo-ui-gone/)
 
-Pangolin Desktop is based on the deprecated Capybara shell, with a custom window management system built from the ground up.
+Pangolin Desktop is based on the deprecated Capybara shell, with a custom window management system built from the ground up
 
 You can check it online [here](https://web.dahliaos.io)!
 
@@ -21,6 +21,10 @@ You can check it online [here](https://web.dahliaos.io)!
 ## Build Pangolin Desktop
 
 Check the wiki: [/wiki/Build-Pangolin-Desktop](https://github.com/dahlia-os/pangolin-desktop/wiki/Build-Pangolin-Desktop)
+
+## Documentation
+
+You can find documentation for dahliaOS over [here!](https://github.com/dahlia-os/documentation)
 
 ## Contribute
 
@@ -63,7 +67,9 @@ Uncompliant applications will have their theme colors set to a random color.
 
 ## License
 
-![dahliaOS](https://imgur.com/Y39ZrJO.png)
+<p align="left">
+  <img width="25%" src="https://imgur.com/d7F8P3h.png"
+</p>
 
 Copyright @ 2019-2020 The dahliaOS Authors contact@dahliaos.io
 
