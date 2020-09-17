@@ -39,9 +39,23 @@ class _AboutState extends State<About> {
                     fontFamily: "Roboto"),
               )),
               SizedBox(height: 20),
-              Image(
-                image: AssetImage("lib/images/DahliaLogo.png"),
+              Container(
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.2),
+                      spreadRadius: 1,
+                      blurRadius: 100,
+                      offset: Offset(0, 0), // changes position of shadow
+                    ),
+                  ],
+                ),
                 height: 200,
+                width: 200,
+                child: Image(
+                  image: AssetImage("lib/images/dahlialogo.png"),
+                  fit: BoxFit.cover,
+                ),
               ),
               SizedBox(height: 10),
               Text(
@@ -58,7 +72,7 @@ class _AboutState extends State<About> {
                           fontWeight: FontWeight.bold)),
                 ),
                 SizedBox(height: 5),
-                SettingsTile(children: [Text("Version v200630.1")]),
+                SettingsTile(children: [Text("Version 200830")]),
                 SizedBox(height: 20),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
@@ -69,7 +83,7 @@ class _AboutState extends State<About> {
                           fontWeight: FontWeight.bold)),
                 ),
                 SizedBox(height: 5),
-                SettingsTile(children: [Text("Linux Kernel 5.6.15")]),
+                SettingsTile(children: [Text("Linux Kernel 5.7.19")]),
                 SizedBox(height: 20),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
@@ -80,7 +94,7 @@ class _AboutState extends State<About> {
                           fontWeight: FontWeight.bold)),
                 ),
                 SizedBox(height: 5),
-                SettingsTile(children: [Text("Version v200713.2")]),
+                SettingsTile(children: [Text("Version v200917")]),
                 SizedBox(height: 20),
               ]),
             ],
