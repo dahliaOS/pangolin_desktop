@@ -39,12 +39,13 @@ import 'package:Pangolin/applications/logging.dart';
 
 Expanded tileSection(BuildContext context) {
   Localization local = Localization.of(context);
+  int _size = HiveManager.get("launcherSize").toInt();
   return Expanded(
     child: Container(
         constraints: BoxConstraints(
             maxWidth: HiveManager.get("launcherWideMode") ? 1500 : 900),
         padding: EdgeInsets.all(10.0),
-        child: GridView.count(crossAxisCount: 5, children: [
+        child: GridView.count(crossAxisCount: _size, children: [
           AppLauncherButton(
             type: AppLauncherButtonType.Drawer,
             app: TerminalApp(),
