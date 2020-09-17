@@ -33,6 +33,7 @@ class HiveManager {
     createEntryIfNotExisting("languageName", "English - United States");
     createEntryIfNotExisting("randomWallpaper", false);
     createEntryIfNotExisting("wifi", true);
+    createEntryIfNotExisting("wallpaper", 0);
     createEntryIfNotExisting("bluetooth", false);
     createEntryIfNotExisting("showSeconds", false);
     createEntryIfNotExisting("keyboardLayout", "en_US");
