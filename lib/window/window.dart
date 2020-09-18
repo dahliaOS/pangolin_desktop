@@ -161,6 +161,30 @@ class WindowState extends State<Window> {
     });
   }
 
+  void _dockWindowUp() {
+    Size deviceSize = MediaQuery.of(context).size;
+    setState(() {
+      isMaximized = true;
+      _windowMode = WindowMode.MAXIMIZE_MODE;
+      _prePosition = _position;
+      _preSize = _size;
+      _position = Offset(0, 0);
+      _size = Size(deviceSize.width, deviceSize.height / 2);
+    });
+  }
+
+  void _dockWindowDown() {
+    Size deviceSize = MediaQuery.of(context).size;
+    setState(() {
+      isMaximized = true;
+      _windowMode = WindowMode.MAXIMIZE_MODE;
+      _prePosition = _position;
+      _preSize = _size;
+      _position = Offset(0, deviceSize.height / 2);
+      _size = Size(deviceSize.width, (deviceSize.height / 2) - 45);
+    });
+  }
+
   void _restoreWindowFromMaximizeMode() {
     setState(() {
       isMaximized = false;
@@ -328,6 +352,8 @@ class WindowState extends State<Window> {
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
+                                      upDownButton(),
+                                      SizedBox(width: 3.0),
                                       minimizeButton(),
                                       SizedBox(width: 3.0),
                                       maximizeButton(),
@@ -415,7 +441,57 @@ class WindowState extends State<Window> {
                   ? Colors.grey[600].withOpacity(0.3)
                   : Colors.grey[600].withOpacity(0.0),
             ),
-            child: Icon(Icons.crop_square, color: Colors.white, size: 20)),
+            child:
+                Icon(Icons.crop_square_sharp, color: Colors.white, size: 20)),
+      ),
+    );
+  }
+
+  MouseRegion upDownButton() {
+    return MouseRegion(
+      onEnter: (event) {
+        setState(() {
+          hoverMinimize = true;
+        });
+      },
+      onExit: (event) {
+        setState(() {
+          hoverMinimize = false;
+        });
+      },
+      child: GestureDetector(
+        onTap: () => _windowMode == WindowMode.NORMAL_MODE
+            ? _restoreWindowFromDock()
+            : _restoreWindowFromDock(),
+        /* onLongPress: () => _windowMode == WindowMode.NORMAL_MODE
+            ? _dockWindowRight()
+            : _restoreWindowFromMaximizeMode(),*/
+        onPanUpdate: (details) {
+          /*  if (details.delta.dx > 0)
+            //right drag
+            _dockWindowRight();
+          else
+            //left drag
+
+            _dockWindowLeft();*/
+
+          if (details.delta.dy > 0)
+            //upwards drag
+            _dockWindowDown();
+          else
+            //downwards drag
+            _dockWindowUp();
+        },
+        child: Container(
+            width: 30,
+            height: 30,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(30),
+              color: hoverMinimize
+                  ? Colors.grey[800].withOpacity(0.3)
+                  : Colors.grey[800].withOpacity(0.0),
+            ),
+            child: Icon(Icons.unfold_more, color: Colors.white, size: 20)),
       ),
     );
   }
@@ -447,6 +523,13 @@ class WindowState extends State<Window> {
             //left drag
 
             _dockWindowLeft();
+/*
+          if (details.delta.dy > 0)
+            //upwards drag
+            _dockWindowDown();
+          else
+            //downwards drag
+            _dockWindowUp();*/
         },
         child: Container(
             width: 30,
@@ -457,7 +540,9 @@ class WindowState extends State<Window> {
                   ? Colors.grey[800].withOpacity(0.3)
                   : Colors.grey[800].withOpacity(0.0),
             ),
-            child: Icon(Icons.minimize, color: Colors.white, size: 20)),
+            child: Transform.rotate(
+                angle: 90 * 3.14 / 180,
+                child: Icon(Icons.unfold_more, color: Colors.white, size: 20))),
       ),
     );
   }
