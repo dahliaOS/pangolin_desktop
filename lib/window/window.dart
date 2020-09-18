@@ -170,6 +170,25 @@ class WindowState extends State<Window> {
     });
   }
 
+  void _restoreWindowFromDock() {
+    Size deviceSize = MediaQuery.of(context).size;
+    setState(() {
+      isMaximized = false;
+      _windowMode = WindowMode.NORMAL_MODE;
+      _size = Size(deviceSize.width / 2, deviceSize.height / 2);
+      _position = _prePosition;
+    });
+  }
+
+  void _alertFunctional() {
+    setState(() {
+      isMaximized = false;
+      _windowMode = WindowMode.NORMAL_MODE;
+      _size = _preSize;
+      _position = _prePosition;
+    });
+  }
+
   void _closeWindow() {
     widget.onWindowClose?.call();
   }
@@ -415,11 +434,20 @@ class WindowState extends State<Window> {
       },
       child: GestureDetector(
         onTap: () => _windowMode == WindowMode.NORMAL_MODE
-            ? _dockWindowLeft()
-            : _restoreWindowFromMaximizeMode(),
-        onLongPress: () => _windowMode == WindowMode.NORMAL_MODE
+            ? _restoreWindowFromDock()
+            : _restoreWindowFromDock(),
+        /* onLongPress: () => _windowMode == WindowMode.NORMAL_MODE
             ? _dockWindowRight()
-            : _restoreWindowFromMaximizeMode(),
+            : _restoreWindowFromMaximizeMode(),*/
+        onPanUpdate: (details) {
+          if (details.delta.dx > 0)
+            //right drag
+            _dockWindowRight();
+          else
+            //left drag
+
+            _dockWindowLeft();
+        },
         child: Container(
             width: 30,
             height: 30,
