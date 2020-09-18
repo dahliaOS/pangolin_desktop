@@ -137,6 +137,30 @@ class WindowState extends State<Window> {
     });
   }
 
+  void _dockWindowLeft() {
+    Size deviceSize = MediaQuery.of(context).size;
+    setState(() {
+      isMaximized = true;
+      _windowMode = WindowMode.MAXIMIZE_MODE;
+      _prePosition = _position;
+      _preSize = _size;
+      _position = Offset(0, 0);
+      _size = Size(deviceSize.width / 2, deviceSize.height - 45);
+    });
+  }
+
+  void _dockWindowRight() {
+    Size deviceSize = MediaQuery.of(context).size;
+    setState(() {
+      isMaximized = true;
+      _windowMode = WindowMode.MAXIMIZE_MODE;
+      _prePosition = _position;
+      _preSize = _size;
+      _position = Offset(deviceSize.width / 2, 0);
+      _size = Size(deviceSize.width / 2, deviceSize.height - 45);
+    });
+  }
+
   void _restoreWindowFromMaximizeMode() {
     setState(() {
       isMaximized = false;
@@ -390,7 +414,12 @@ class WindowState extends State<Window> {
         });
       },
       child: GestureDetector(
-        onTap: () => () {},
+        onTap: () => _windowMode == WindowMode.NORMAL_MODE
+            ? _dockWindowLeft()
+            : _restoreWindowFromMaximizeMode(),
+        onLongPress: () => _windowMode == WindowMode.NORMAL_MODE
+            ? _dockWindowRight()
+            : _restoreWindowFromMaximizeMode(),
         child: Container(
             width: 30,
             height: 30,
