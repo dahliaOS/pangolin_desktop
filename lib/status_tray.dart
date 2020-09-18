@@ -83,7 +83,7 @@ class StatusTrayWidgetState extends State<StatusTrayWidget> {
               margin: EdgeInsets.symmetric(vertical: 4.0),
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               decoration: new BoxDecoration(
-                borderRadius: new BorderRadius.circular(50.0),
+                borderRadius: new BorderRadius.circular(5.0),
                 color: Colors.grey.withOpacity(
                     widget._backgroundOpacityTween.evaluate(animation)),
               ),
@@ -105,7 +105,7 @@ class StatusTrayWidgetState extends State<StatusTrayWidget> {
                       thickness: 2,
                       endIndent: 7,
                       indent: 7,
-                      color: Colors.grey[600],
+                      color: Colors.white,
                     ),
                     Text(
                       _timeString,

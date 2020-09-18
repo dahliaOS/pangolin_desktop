@@ -272,12 +272,12 @@ class WindowState extends State<Window> {
                                         topLeft: Radius.circular((_windowMode ==
                                                 WindowMode.MAXIMIZE_MODE)
                                             ? 0
-                                            : 10),
+                                            : 5),
                                         topRight: Radius.circular(
                                             (_windowMode ==
                                                     WindowMode.MAXIMIZE_MODE)
                                                 ? 0
-                                                : 10)),
+                                                : 5)),
                                   ),
                                   padding:
                                       EdgeInsets.symmetric(horizontal: 4.0),
@@ -299,11 +299,11 @@ class WindowState extends State<Window> {
                                 bottomLeft: Radius.circular(
                                     (_windowMode == WindowMode.MAXIMIZE_MODE)
                                         ? 0
-                                        : 10),
+                                        : 5),
                                 bottomRight: Radius.circular(
                                     (_windowMode == WindowMode.MAXIMIZE_MODE)
                                         ? 0
-                                        : 10)),
+                                        : 5)),
                             child: (_child is Widget)
                                 ? _child
                                 : Text("ERROR: Window is not a Widget!"),

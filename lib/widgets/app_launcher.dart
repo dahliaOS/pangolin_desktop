@@ -66,7 +66,7 @@ class AppLauncherButtonState extends State<AppLauncherButton> {
         height: (widget.type == AppLauncherButtonType.Drawer) ? 150.0 : 45.0,
         child: Hover(
             borderRadius: (widget.type == AppLauncherButtonType.Drawer)
-                ? BorderRadius.circular(30)
+                ? BorderRadius.circular(5)
                 : BorderRadius.circular(0),
             child: Container(
               margin: (widget.type == AppLauncherButtonType.Drawer)

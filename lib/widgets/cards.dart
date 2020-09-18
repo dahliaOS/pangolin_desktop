@@ -328,7 +328,7 @@ Card buildCard(IconData icon, String title, Color color, Color splash,
   return new Card(
     margin: EdgeInsets.symmetric(horizontal: 8.0),
     shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(15.0),
+      borderRadius: BorderRadius.circular(5.0),
     ),
     child: InkWell(
       splashColor: splash,

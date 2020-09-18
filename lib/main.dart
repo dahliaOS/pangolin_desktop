@@ -341,13 +341,13 @@ class _MyHomePageState extends State<MyHomePage> {
             key: KeyRing.statusOverlayKey,
             builder: (Animation<double> animation) => Positioned(
               right: 5.0,
-              bottom: 55.0,
+              bottom: 50.0,
               child: AnimatedBuilder(
                 animation: animation,
                 builder: (BuildContext context, Widget child) => FadeTransition(
                   opacity: _overlayOpacityTween.animate(animation),
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(15),
+                    borderRadius: BorderRadius.circular(5),
                     child: Blur(
                       child: ScaleTransition(
                         scale: _overlayScaleTween.animate(animation),
@@ -358,7 +358,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(15),
+                  borderRadius: BorderRadius.circular(5),
                   child: Blur(
                     borderRadius: BorderRadius.circular(5.0),
                     child: Stack(children: [
