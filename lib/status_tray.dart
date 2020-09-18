@@ -96,11 +96,11 @@ class StatusTrayWidgetState extends State<StatusTrayWidget> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     new Icon(Icons.signal_wifi_4_bar,
-                        color: const Color(0xFFffffff), size: 20.0),
+                        color: const Color(0xFFffffff), size: 18.0),
                     new Icon(Icons.bluetooth,
-                        color: const Color(0xFFffffff), size: 20.0),
+                        color: const Color(0xFFffffff), size: 18.0),
                     new Icon(Icons.battery_charging_full,
-                        color: const Color(0xFFffffff), size: 20.0),
+                        color: const Color(0xFFffffff), size: 18.0),
                     VerticalDivider(
                       thickness: 2,
                       endIndent: 7,
