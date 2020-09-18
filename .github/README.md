@@ -7,7 +7,7 @@
 
 ## About Pangolin UI 
 
-Pangolin UI is a Desktop shell for dahliaOS, written in Flutter, runs on Linux and Zircon.
+Pangolin UI is a Desktop shell for dahliaOS, written in Flutter, runs on Linux and Zircon
 
 Pangolin was named after a shelled animal like the [Armadillo UI](https://9to5google.com/2018/12/26/fuchsia-armadillo-ui-gone/)
 
