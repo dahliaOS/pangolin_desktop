@@ -104,7 +104,7 @@ class WindowState extends State<Window> {
   void initState() {
     super.initState();
     _focusAttachment = _focusNode.attach(context);
-    _position = widget.initialPosition;
+    _position = Offset(0, 0);
     _size = widget.initialSize;
     _child = widget.child;
     _color = widget.color;
