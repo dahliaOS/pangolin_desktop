@@ -219,7 +219,8 @@ class WindowState extends State<Window> {
 
   bool hoverClose = false;
   bool hoverMaximize = false;
-  bool hoverMinimize = false;
+  bool hoverLeftRight = false;
+  bool hoverUpDown = false;
 
   @override
   Widget build(BuildContext context) =>
@@ -354,7 +355,7 @@ class WindowState extends State<Window> {
                                     children: [
                                       upDownButton(),
                                       SizedBox(width: 3.0),
-                                      minimizeButton(),
+                                      leftRightButton(),
                                       SizedBox(width: 3.0),
                                       maximizeButton(),
                                       SizedBox(width: 3.0),
@@ -451,12 +452,12 @@ class WindowState extends State<Window> {
     return MouseRegion(
       onEnter: (event) {
         setState(() {
-          hoverMinimize = true;
+          hoverUpDown = true;
         });
       },
       onExit: (event) {
         setState(() {
-          hoverMinimize = false;
+          hoverUpDown = false;
         });
       },
       child: GestureDetector(
@@ -487,7 +488,7 @@ class WindowState extends State<Window> {
             height: 30,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
-              color: hoverMinimize
+              color: hoverUpDown
                   ? Colors.grey[800].withOpacity(0.3)
                   : Colors.grey[800].withOpacity(0.0),
             ),
@@ -496,16 +497,16 @@ class WindowState extends State<Window> {
     );
   }
 
-  MouseRegion minimizeButton() {
+  MouseRegion leftRightButton() {
     return MouseRegion(
       onEnter: (event) {
         setState(() {
-          hoverMinimize = true;
+          hoverLeftRight = true;
         });
       },
       onExit: (event) {
         setState(() {
-          hoverMinimize = false;
+          hoverLeftRight = false;
         });
       },
       child: GestureDetector(
@@ -536,7 +537,7 @@ class WindowState extends State<Window> {
             height: 30,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
-              color: hoverMinimize
+              color: hoverLeftRight
                   ? Colors.grey[800].withOpacity(0.3)
                   : Colors.grey[800].withOpacity(0.0),
             ),
