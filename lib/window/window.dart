@@ -439,8 +439,8 @@ class WindowState extends State<Window> {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
               color: hoverMaximize
-                  ? Colors.grey[600].withOpacity(0.3)
-                  : Colors.grey[600].withOpacity(0.0),
+                  ? Colors.grey[800].withOpacity(0.3)
+                  : Colors.grey[800].withOpacity(0.0),
             ),
             child:
                 Icon(Icons.crop_square_sharp, color: Colors.white, size: 20)),
