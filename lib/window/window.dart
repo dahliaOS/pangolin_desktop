@@ -461,9 +461,9 @@ class WindowState extends State<Window> {
         });
       },
       child: GestureDetector(
-        onTap: () => _windowMode == WindowMode.NORMAL_MODE
+        /*onTap: () => _windowMode == WindowMode.MAXIMIZE_MODE
             ? _restoreWindowFromDock()
-            : _restoreWindowFromDock(),
+            : _restoreWindowFromDock(),*/
         /* onLongPress: () => _windowMode == WindowMode.NORMAL_MODE
             ? _dockWindowRight()
             : _restoreWindowFromMaximizeMode(),*/
@@ -510,10 +510,10 @@ class WindowState extends State<Window> {
         });
       },
       child: GestureDetector(
-        onTap: () => _windowMode == WindowMode.NORMAL_MODE
+        /*onTap: () => _windowMode == WindowMode.MAXIMIZE_MODE
             ? _restoreWindowFromDock()
             : _restoreWindowFromDock(),
-        /* onLongPress: () => _windowMode == WindowMode.NORMAL_MODE
+        onLongPress: () => _windowMode == WindowMode.NORMAL_MODE
             ? _dockWindowRight()
             : _restoreWindowFromMaximizeMode(),*/
         onPanUpdate: (details) {
