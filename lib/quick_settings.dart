@@ -1,12 +1,9 @@
 /*
 Copyright 2019 The dahliaOS Authors
-
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
-
     http://www.apache.org/licenses/LICENSE-2.0
-
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -16,13 +13,17 @@ limitations under the License.
 
 import 'dart:ui';
 import 'dart:io';
-import 'package:GeneratedApp/localization/localization.dart';
+import 'package:Pangolin/commons/functions.dart';
+import 'package:Pangolin/localization/localization.dart';
+import 'package:Pangolin/settings/hiveManager.dart';
+import 'package:Pangolin/window/model.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'dart:async';
-import 'commons/functions.dart';
 import 'main.dart';
+import 'settings/settings.dart';
 import 'themes/dynamic_theme.dart';
 
 class QuickSettings extends StatefulWidget {
@@ -52,7 +53,9 @@ class QuickSettingsState extends State<QuickSettings> {
 
   void _getTime(BuildContext context) {
     final DateTime now = DateTime.now();
-    final String formattedTime = _formatDateTime(now, 'hh:mm');
+    final String formattedTime = HiveManager.get("showSeconds")
+        ? _formatDateTime(now, 'hh:mm:ss')
+        : _formatDateTime(now, 'hh:mm');
     final String formattedDate = _formatLocaleDate(now);
     setState(() {
       _timeString = formattedTime;
@@ -92,7 +95,7 @@ class QuickSettingsState extends State<QuickSettings> {
             semanticLabel: 'Power off',
           ),
           Container(
-            margin: EdgeInsets.only(top: 8),
+            margin: EdgeInsets.only(top: scale(8)),
             child: Text(
               label,
               style: TextStyle(
@@ -112,12 +115,13 @@ class QuickSettingsState extends State<QuickSettings> {
     Localization local = Localization.of(context);
     _getTime(context);
     var biggerFont = TextStyle(
-      fontSize: scale(15.0),
+      fontSize: scale(12.0),
       fontWeight: FontWeight.w400,
       color: Colors.white,
     );
     Widget topSection = Container(
-      padding: EdgeInsets.all(scale(10.0)),
+      padding:
+          EdgeInsets.symmetric(horizontal: scale(12.0), vertical: scale(5.0)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -144,7 +148,7 @@ class QuickSettingsState extends State<QuickSettings> {
           new IconButton(
             icon: Icon(
               Icons.power_settings_new,
-              size: scale(24.0),
+              size: scale(20),
             ),
             onPressed: () {
               showGeneralDialog(
@@ -205,87 +209,16 @@ class QuickSettingsState extends State<QuickSettings> {
             },
             color: const Color(0xFFffffff),
           ),
-//Navigator.of(context).pop();
+
           new IconButton(
-            icon: Icon(Icons.settings, size: scale(24.0)),
+            icon: Icon(
+              Icons.settings,
+              size: scale(20),
+            ),
             onPressed: () {
-              WidgetsBinding.instance.addPostFrameCallback((_) async {
-                await showDialog<String>(
-                  context: context,
-                  builder: (BuildContext context) => new Scaffold(
-                    appBar: AppBar(
-                      elevation: 0,
-                      backgroundColor: Colors.black,
-                      title: new Text(
-                        "FILESYSTEM EXPANSION MODE",
-                        style: new TextStyle(fontSize: 15),
-                      ),
-                    ),
-                    body: Container(
-                      child: new Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          mainAxisSize: MainAxisSize.max,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            new Icon(Icons.memory,
-                                color: const Color(0xFFffffff), size: 75.0),
-                            new Container(
-                              padding: const EdgeInsets.only(top: 15),
-                              width: 450,
-                              child: new Text(
-                                "Filesystem expansion will allow the system to use the entire live disk as storage. Warning: Expanding the filesystem may cause a loss of data!",
-                                textAlign: TextAlign.center,
-                                style: new TextStyle(
-                                  color: Colors.white,
-                                  fontFamily: "Roboto",
-                                  fontSize: 15,
-                                ),
-                              ),
-                            ),
-                            new Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              mainAxisSize: MainAxisSize.max,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                new Padding(
-                                  padding: EdgeInsets.all(10),
-                                  child: OutlineButton(
-                                    child: new Text("CANCEL"),
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                    color: Colors.white,
-                                    textColor: Colors.white,
-                                    borderSide: BorderSide(
-                                      color: Color(0xFFFFFFff),
-                                      //Color of the border
-                                      style: BorderStyle
-                                          .solid, //Style of the border
-                                      width: 2,
-                                    ),
-                                  ),
-                                ),
-                                new Padding(
-                                  padding: EdgeInsets.all(10),
-                                  child: MaterialButton(
-                                    child: new Text("CONTINUE"),
-                                    onPressed: () {},
-                                    color: Colors.white,
-                                    elevation: 0,
-                                  ),
-                                ),
-                              ],
-                            )
-                          ]),
-                      color: const Color(0xFF0a0a0a),
-                      padding: const EdgeInsets.all(0.0),
-                      alignment: Alignment.center,
-                      width: 1.7976931348623157e+308,
-                      height: 1.7976931348623157e+308,
-                    ),
-                  ),
-                );
-              });
+              Provider.of<WindowsData>(context, listen: false)
+                  .add(child: Settings(), color: Colors.grey[900]);
+              hideOverlays();
             },
             color: const Color(0xFFffffff),
           ),
@@ -304,7 +237,7 @@ class QuickSettingsState extends State<QuickSettings> {
     }
 
     Widget sliderSection = Container(
-        margin: EdgeInsets.fromLTRB(scale(25), 0, scale(25), scale(10)),
+        margin: EdgeInsets.fromLTRB(20, 0, 20, 10),
         child: Column(
           children: <Widget>[
             Row(
@@ -312,7 +245,7 @@ class QuickSettingsState extends State<QuickSettings> {
               children: <Widget>[
                 Icon(
                   Icons.brightness_6,
-                  size: scale(24.0),
+                  size: 20,
                   color: Colors.white,
                 ),
                 Expanded(
@@ -333,7 +266,7 @@ class QuickSettingsState extends State<QuickSettings> {
                       style: TextStyle(
                         color: Colors.white,
                         letterSpacing: 1.2,
-                        fontSize: scale(15.0),
+                        fontSize: scale(12.0),
                       ),
                     ),
                   ),
@@ -345,7 +278,7 @@ class QuickSettingsState extends State<QuickSettings> {
               children: <Widget>[
                 Icon(
                   Icons.volume_up,
-                  size: scale(24.0),
+                  size: scale(20),
                   color: Colors.white,
                 ),
                 Expanded(
@@ -367,7 +300,7 @@ class QuickSettingsState extends State<QuickSettings> {
                       style: TextStyle(
                         color: Colors.white,
                         letterSpacing: 1.2,
-                        fontSize: scale(15.0),
+                        fontSize: scale(12.0),
                       ),
                     ),
                   ),
@@ -383,20 +316,21 @@ class QuickSettingsState extends State<QuickSettings> {
         //mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Container(
-            width: scale(55),
-            height: scale(55),
-            child: FittedBox(
-              child: FloatingActionButton(
-                onPressed: onClick,
-                elevation: 0.0,
-                child: Icon(icon, color: Colors.white, size: scale(30.0)),
-              ),
+          SizedBox(
+            width: scale(50),
+            height: scale(50),
+            child: FloatingActionButton(
+              onPressed: onClick,
+              elevation: 0.0,
+              disabledElevation: 0.0,
+              focusElevation: 0.0,
+              highlightElevation: 0.0,
+              hoverElevation: 0.0,
+              child: Icon(icon, color: Colors.white, size: scale(20.0)),
             ),
           ),
           Container(
-            width: 50,
-            margin: EdgeInsets.only(top: 10),
+            margin: EdgeInsets.only(top: scale(10)),
             child: Text(
               label,
               style: biggerFont,
@@ -413,10 +347,13 @@ class QuickSettingsState extends State<QuickSettings> {
           child: GridView.count(
               physics: BouncingScrollPhysics(),
               crossAxisCount: 4,
-              childAspectRatio: 2.5 / 4,
+              childAspectRatio: 3 / 4,
               children: [
-                buildTile(
-                    Icons.network_wifi, local.get("qs_wifi"), changeColor),
+                buildTile(Icons.network_wifi, local.get("qs_wifi"), () {
+                  setState(() {
+                    HiveManager.set("wifi", false);
+                  });
+                }),
                 buildTile(Icons.palette, local.get("qs_theme"), changeColor),
                 buildTile(Icons.battery_full, '85%', changeColor),
                 buildTile(
@@ -466,14 +403,6 @@ class QuickSettingsState extends State<QuickSettings> {
                       Pangolin.settingsBox.put("language", "es");
                       break;
                     case "es":
-                      Pangolin.setLocale(context, Locale("pt"));
-                      Pangolin.settingsBox.put("language", "pt");
-                      break;
-                    case "pt":
-                      Pangolin.setLocale(context, Locale("id"));
-                      Pangolin.settingsBox.put("language", "id");
-                      break;
-                    case "id":
                       Pangolin.setLocale(context, Locale("en"));
                       Pangolin.settingsBox.put("language", "en");
                       break;
@@ -491,9 +420,9 @@ class QuickSettingsState extends State<QuickSettings> {
       //original color was 29353a, migrated to 2D2D2D
       //padding: const EdgeInsets.all(10.0),
       //alignment: Alignment.centerLeft,
-      margin: EdgeInsets.all(15.0),
-      width: scale(375),
-      height: scale(600),
+      margin: EdgeInsets.all(scale(15.0)),
+      width: scale(320),
+      height: scale(500),
       child: Column(
         children: [topSection, sliderSection, tileSection],
       ),

@@ -370,7 +370,7 @@ class Process extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 new Text(
-                  "io.dahliaos.null",
+                  "null",
                   style: new TextStyle(
                       fontSize: 15.0,
                       color: const Color(0xFF000000),
