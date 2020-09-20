@@ -57,6 +57,8 @@ If you're interested in translating the project, please refer to [TRANSLATION.md
 | [Seplx](https://github.com/Seplx)               | Slovak                |
 | [aoaowangxiao](https://github.com/aoaowangxiao)               | Chinese                |
 | [goktugvatandas](https://github.com/goktugvatandas)               | Turkish                |
+| [WaseemAlkurdi](https://github.com/WaseemAlkurdi)               | Arabic                |
+| [evolutionevotv](https://github.com/evolutionevotv)               | Polish                |
 
 ## Important style guide
 
