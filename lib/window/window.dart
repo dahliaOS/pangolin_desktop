@@ -15,7 +15,6 @@ limitations under the License.
 */
 
 import 'package:Pangolin/applications/files/hover.dart';
-import 'package:Pangolin/commons/functions.dart';
 import 'package:flutter/material.dart';
 import '../model.dart';
 import 'model.dart';
@@ -220,6 +219,7 @@ class WindowState extends State<Window> {
   bool hoverClose = false;
   bool hoverMaximize = false;
   bool hoverLeftRight = false;
+  bool hoverTest = false;
   bool hoverUpDown = false;
 
   @override
@@ -353,9 +353,7 @@ class WindowState extends State<Window> {
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
-                                      upDownButton(),
-                                      SizedBox(width: 3.0),
-                                      leftRightButton(),
+                                      minimizeButton(),
                                       SizedBox(width: 3.0),
                                       maximizeButton(),
                                       SizedBox(width: 3.0),
@@ -388,6 +386,8 @@ class WindowState extends State<Window> {
           ),
         );
       });
+
+  GlobalKey _maximizeKey = GlobalKey();
 
   MouseRegion closeButton() {
     return MouseRegion(
@@ -433,7 +433,28 @@ class WindowState extends State<Window> {
         onTap: () => _windowMode == WindowMode.NORMAL_MODE
             ? _maximizeWindow()
             : _restoreWindowFromMaximizeMode(),
+        onLongPressStart: (event) {
+          showOverlay(context);
+        },
+        onLongPressEnd: (event) {
+          switch (_tilingMode) {
+            case "up":
+              _dockWindowUp();
+              break;
+            case "down":
+              _dockWindowDown();
+              break;
+            case "left":
+              _dockWindowLeft();
+              break;
+            case "right":
+              _dockWindowRight();
+              break;
+          }
+          _overlayEntry.remove();
+        },
         child: Container(
+            key: _maximizeKey,
             width: 30,
             height: 30,
             decoration: BoxDecoration(
@@ -448,7 +469,7 @@ class WindowState extends State<Window> {
     );
   }
 
-  MouseRegion upDownButton() {
+  MouseRegion minimizeButton() {
     return MouseRegion(
       onEnter: (event) {
         setState(() {
@@ -461,28 +482,7 @@ class WindowState extends State<Window> {
         });
       },
       child: GestureDetector(
-        /*onTap: () => _windowMode == WindowMode.MAXIMIZE_MODE
-            ? _restoreWindowFromDock()
-            : _restoreWindowFromDock(),*/
-        /* onLongPress: () => _windowMode == WindowMode.NORMAL_MODE
-            ? _dockWindowRight()
-            : _restoreWindowFromMaximizeMode(),*/
-        onPanUpdate: (details) {
-          /*  if (details.delta.dx > 0)
-            //right drag
-            _dockWindowRight();
-          else
-            //left drag
-
-            _dockWindowLeft();*/
-
-          if (details.delta.dy > 0)
-            //upwards drag
-            _dockWindowDown();
-          else
-            //downwards drag
-            _dockWindowUp();
-        },
+        onTap: () {},
         child: Container(
             width: 30,
             height: 30,
@@ -492,59 +492,135 @@ class WindowState extends State<Window> {
                   ? Colors.grey[800].withOpacity(0.3)
                   : Colors.grey[800].withOpacity(0.0),
             ),
-            child: Icon(Icons.unfold_more, color: Colors.white, size: 20)),
+            child: Icon(Icons.minimize, color: Colors.white, size: 20)),
       ),
     );
   }
 
-  MouseRegion leftRightButton() {
-    return MouseRegion(
-      onEnter: (event) {
-        setState(() {
-          hoverLeftRight = true;
-        });
-      },
-      onExit: (event) {
-        setState(() {
-          hoverLeftRight = false;
-        });
-      },
-      child: GestureDetector(
-        /*onTap: () => _windowMode == WindowMode.MAXIMIZE_MODE
-            ? _restoreWindowFromDock()
-            : _restoreWindowFromDock(),
-        onLongPress: () => _windowMode == WindowMode.NORMAL_MODE
-            ? _dockWindowRight()
-            : _restoreWindowFromMaximizeMode(),*/
-        onPanUpdate: (details) {
-          if (details.delta.dx > 0)
-            //right drag
-            _dockWindowRight();
-          else
-            //left drag
+  String _tilingMode;
 
-            _dockWindowLeft();
-/*
-          if (details.delta.dy > 0)
-            //upwards drag
-            _dockWindowDown();
-          else
-            //downwards drag
-            _dockWindowUp();*/
-        },
-        child: Container(
-            width: 30,
-            height: 30,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30),
-              color: hoverLeftRight
-                  ? Colors.grey[800].withOpacity(0.3)
-                  : Colors.grey[800].withOpacity(0.0),
-            ),
-            child: Transform.rotate(
-                angle: 90 * 3.14 / 180,
-                child: Icon(Icons.unfold_more, color: Colors.white, size: 20))),
-      ),
-    );
+  OverlayEntry _overlayEntry;
+  showOverlay(BuildContext context) async {
+    OverlayState overlayState = Overlay.of(context);
+    _overlayEntry = OverlayEntry(
+        builder: (context) => Positioned(
+              child: Center(
+                child: Container(
+                  width: 110,
+                  height: 110,
+                  decoration: BoxDecoration(
+                      color: Colors.black.withOpacity(0.8),
+                      shape: BoxShape.circle),
+                  child: Stack(
+                    children: [
+                      Positioned(
+                          left: 35.0,
+                          child: MouseRegion(
+                            onEnter: (event) {
+                              setState(() {
+                                _tilingMode = "up";
+                              });
+                            },
+                            child: Hover(
+                              borderRadius: BorderRadius.circular(20),
+                              color: Colors.white,
+                              child: Container(
+                                  width: 40,
+                                  height: 40,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(30),
+                                  ),
+                                  child: Icon(Icons.arrow_upward,
+                                      color: Colors.white, size: 20)),
+                            ),
+                          )),
+                      Positioned(
+                          top: 35.0,
+                          child: MouseRegion(
+                            onEnter: (event) {
+                              setState(() {
+                                _tilingMode = "left";
+                              });
+                            },
+                            child: Hover(
+                              borderRadius: BorderRadius.circular(20),
+                              color: Colors.white,
+                              child: Container(
+                                  width: 40,
+                                  height: 40,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(30),
+                                  ),
+                                  child: Icon(Icons.arrow_back,
+                                      color: Colors.white, size: 20)),
+                            ),
+                          )),
+                      Positioned(
+                          left: 35.0,
+                          bottom: 0.0,
+                          child: MouseRegion(
+                            onEnter: (event) {
+                              setState(() {
+                                _tilingMode = "down";
+                              });
+                            },
+                            child: Hover(
+                              borderRadius: BorderRadius.circular(20),
+                              color: Colors.white,
+                              child: Container(
+                                  width: 40,
+                                  height: 40,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(30),
+                                  ),
+                                  child: Icon(Icons.arrow_downward,
+                                      color: Colors.white, size: 20)),
+                            ),
+                          )),
+                      Positioned(
+                          right: 0.0,
+                          top: 35.0,
+                          child: MouseRegion(
+                            onEnter: (event) {
+                              setState(() {
+                                _tilingMode = "right";
+                              });
+                            },
+                            child: Hover(
+                              borderRadius: BorderRadius.circular(20),
+                              color: Colors.white,
+                              child: Container(
+                                  width: 40,
+                                  height: 40,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(30),
+                                  ),
+                                  child: Icon(Icons.arrow_forward,
+                                      color: Colors.white, size: 20)),
+                            ),
+                          )),
+                    ],
+                  ),
+                ),
+              ),
+              top: getPositionY() - 40,
+              left: getPositionX() - 40,
+            ));
+
+    overlayState.insert(_overlayEntry);
+  }
+
+  getPositionX() {
+    final RenderBox renderBoxButton =
+        _maximizeKey.currentContext.findRenderObject();
+    final buttonPosition = renderBoxButton.localToGlobal(Offset.zero);
+    return buttonPosition.dx;
+  }
+
+  getPositionY() {
+    final RenderBox renderBoxButton =
+        _maximizeKey.currentContext.findRenderObject();
+    final buttonPosition = renderBoxButton.localToGlobal(Offset.zero);
+    return buttonPosition.dy;
   }
 }
