@@ -469,6 +469,8 @@ class WindowState extends State<Window> {
     );
   }
 
+  Offset oldPosition;
+
   MouseRegion minimizeButton() {
     return MouseRegion(
       onEnter: (event) {
@@ -482,7 +484,12 @@ class WindowState extends State<Window> {
         });
       },
       child: GestureDetector(
-        onTap: () {},
+        onTap: () {
+          setState(() {
+            oldPosition = _position;
+            _position = Offset(oldPosition.dx, 5000);
+          });
+        },
         child: Container(
             width: 30,
             height: 30,

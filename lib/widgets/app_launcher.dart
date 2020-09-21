@@ -116,6 +116,13 @@ class AppLauncherButtonState extends State<AppLauncherButton> {
                                       ]);
                                 });
                       },
+                      onLongPress: () {
+                        Provider.of<WindowsData>(context, listen: false)
+                            .windows
+                            .forEach((element) {
+                          print(element.id);
+                        });
+                      },
                       child: Container(
                         child: Image.asset(
                           widget.icon,
