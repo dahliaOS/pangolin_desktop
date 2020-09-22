@@ -14,6 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'dart:ffi';
 import 'dart:io';
 import 'dart:math';
 
@@ -111,6 +112,8 @@ List<AppLauncherButton> testLaunchers = [
       app: Settings(), icon: 'lib/images/icons/v2/compiled/settings.png'),
 ];
 
+typedef xopendisplay_function = Void Function(Int32 display);
+
 void main() async {
   //init hive
   WidgetsFlutterBinding.ensureInitialized();
@@ -120,6 +123,14 @@ void main() async {
   Pangolin.settingsBox = await Hive.openBox("settings");
   HiveManager.initializeHive();
   Pangolin.refreshTheme();
+
+  if(Platform.isLinux) {
+    final DynamicLibrary dylib = DynamicLibrary.open("libX11.so.6");
+    final void Function(int) xOpenDisplay = dylib
+        .lookup<NativeFunction<xopendisplay_function>>("XOpenDisplay")
+        .asFunction();
+    xOpenDisplay("0".codeUnits[0]);
+  }
 
   /// To keep app in Portrait Mode
   //SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeRight]);
