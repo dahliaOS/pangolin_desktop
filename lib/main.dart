@@ -138,6 +138,7 @@ class Pangolin extends StatefulWidget {
   static Box<dynamic> settingsBox;
   static Locale locale;
   static ThemeData theme;
+  static OverlayState overlayState;
 
   static List<String> wallpapers = [
     "lib/images/Desktop/Dahlia/forest.jpg",
@@ -269,6 +270,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     final customizationNotifier = context.watch<CustomizationNotifier>();
     final _random = new Random();
+    Pangolin.overlayState = Overlay.of(context);
     return ChangeNotifierProvider(
       create: (_) => CustomizationNotifier(),
       child: Scaffold(
