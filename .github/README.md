@@ -39,8 +39,6 @@ If you're interested in donating to the project, you can do so by clicking [here
 
 If you're interested in translating the project, please refer to [TRANSLATION.md](./TRANSLATION.md)
 
-## Contributors
-
 ### Translators
 
 | Author                                                  | Language                 |
@@ -59,6 +57,30 @@ If you're interested in translating the project, please refer to [TRANSLATION.md
 | [evolutionevotv](https://github.com/evolutionevotv)               | [Polish](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/localization/languages/pl.json)                |
 | [allansrc](https://github.com/allansrc)               | [Portugese](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/localization/languages/pt.json)                |
 | [goktugvatandas](https://github.com/goktugvatandas)               | [Turkish](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/localization/languages/tr.json)                |
+
+## Contributors
+
+<a href="https://github.com/nmcain" target="_blank"><img src="https://avatars1.githubusercontent.com/u/18690588?s=460&u=a2c173d2180e608e5047d30fa2454e86c45e750b&v=4"></a>
+<a href="https://github.com/larsb24" target="_blank"><img src="https://avatars0.githubusercontent.com/u/61460660?s=460&u=db7bb472f1561d05e157e7585e2e64881676c89d&v=4"></a>
+<a href="https://github.com/SincerelyFaust" target="_blank"><img src="https://avatars1.githubusercontent.com/u/44751736?s=460&u=1f6f2dc40ad22191b35551cb4e642756b4bb37ff&v=4"></a>
+<a href="https://github.com/bleonard252" target="_blank"><img src="https://avatars3.githubusercontent.com/u/15241530?s=460&u=58027f9147c0d107a206bc3ecffeca40da48393f&v=4"></a>
+<a href="https://github.com/EnderNightLord-ChromeBook" target="_blank"><img src="https://avatars3.githubusercontent.com/u/31677287?s=460&u=33d7f12519c5f5feefac3270d80af6cbc11bcff2&v=4"></a>
+<a href="https://github.com/Horus125" target="_blank"><img src="https://avatars2.githubusercontent.com/u/36901487?s=460&v=4"></a>
+<a href="https://github.com/HexaOneOfficial" target="_blank"><img src="https://avatars3.githubusercontent.com/u/58103738?s=460&u=6ccd7b5bf7fbfbb79172a78e51ce5844ab517a6c&v=4"></a>
+<a href="https://github.com/kanouharu" target="_blank"><img src="https://avatars3.githubusercontent.com/u/45436017?s=460&u=024501a93c91c049df9adfa9b6e841b74f157ea3&v=4"></a>
+<a href="https://github.com/puntillol59" target="_blank"><img src="https://avatars2.githubusercontent.com/u/62703475?s=460&u=5f2be3053160e23f1421cab3a2272a7b39ecb7b3&v=4"></a>
+<a href="https://github.com/nobody5050" target="_blank"><img src="https://avatars2.githubusercontent.com/u/32989720?s=460&u=fb8d90ba44e56008aaad1f133ce134a36ace6057&v=4"></a>
+<a href="https://github.com/Funeoz" target="_blank"><img src="https://avatars1.githubusercontent.com/u/31157012?s=460&u=a8797ee195d36604b3f9b77c1308f875399d7593&v=4"></a>
+<a href="https://github.com/xVanzh" target="_blank"><img src="https://avatars2.githubusercontent.com/u/69507494?s=460&u=52947e3cb3650eca4993663465c7e387aaa61d34&v=4"></a>
+<a href="https://github.com/predatorx7" target="_blank"><img src="https://avatars1.githubusercontent.com/u/33719927?s=460&u=e19e1e348df233cdb7ff8a4f68829865b49ef903&v=4"></a>
+<a href="https://github.com/mt-gitlocalize" target="_blank"><img src="https://avatars3.githubusercontent.com/u/34438160?s=460&v=4"></a>
+<a href="https://github.com/goktugvatandas" target="_blank"><img src="https://avatars1.githubusercontent.com/u/15263305?s=460&u=f84e654726d653039ad6436b6e99d4a47b415598&v=4"></a>
+<a href="https://github.com/febryardiansyah" target="_blank"><img src="https://avatars2.githubusercontent.com/u/33514300?s=460&u=4fba2cab4e7b04923a9f6b88adaa3dfa1183cdb9&v=4"></a>
+<a href="https://github.com/evolutionevotv" target="_blank"><img src="https://avatars0.githubusercontent.com/u/57808067?s=460&u=16eed8339323b9486e68cc75510e61675eab031b&v=4"></a>
+<a href="https://github.com/aoaowangxiao" target="_blank"><img src="https://avatars3.githubusercontent.com/u/5234247?s=460&u=4397cc897120f2ace4f12f8454ff7ea220aedaaa&v=4"></a>
+<a href="https://github.com/allansrc" target="_blank"><img src="https://avatars0.githubusercontent.com/u/35867294?s=460&u=f1192618f4b91e2ec3eab399de98157b8f234d7b&v=4"></a>
+<a href="https://github.com/Seplx" target="_blank"><img src="https://avatars2.githubusercontent.com/u/49388198?s=460&v=4"></a>
+<a href="https://github.com/Fristover" target="_blank"><img src="https://avatars3.githubusercontent.com/u/68985619?s=460&v=4"></a>
 
 ## Important style guide
 
