@@ -41,6 +41,8 @@ If you're interested in translating the project, please refer to [TRANSLATION.md
 
 ## Contributors
 
+You can find all of the contributors [here](https://github.com/dahlia-os/pangolin-desktop/graphs/contributors)!
+
 ### Translators
 
 | Author                                                  | Language                 |
