@@ -24,6 +24,7 @@ dependency_overrides:
 dev_dependencies:
   mockito:
   json_serializable: ^2.0.0
+  ffigen:
   flutter_test:
     sdk: flutter
 
@@ -122,3 +123,9 @@ flutter:
   - lib/localization/languages/tr.json
   - lib/localization/languages/zh.json
   - lib/localization/languages/ar.json
+
+ffigen:
+  output: 'lib/xlib_bindings.dart'
+  headers:
+    entry-points:
+      - 'libX11/**'

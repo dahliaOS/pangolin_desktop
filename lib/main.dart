@@ -15,6 +15,7 @@ limitations under the License.
 */
 
 import 'dart:ffi';
+import 'package:ffi/ffi.dart';
 import 'dart:io';
 import 'dart:math';
 
@@ -112,9 +113,62 @@ List<AppLauncherButton> testLaunchers = [
       app: Settings(), icon: 'lib/images/icons/v2/compiled/settings.png'),
 ];
 
-typedef xopendisplay_function = Void Function(Int32 display);
+class _XDisplay extends Struct {}
+
+typedef _c_XOpenDisplay = Pointer<_XDisplay> Function(
+    Pointer<Int8> arg0,
+    );
+
+typedef _dart_XOpenDisplay = Pointer<_XDisplay> Function(
+    Pointer<Int8> arg0,
+    );
+
+typedef _c_XDisplayWidth = Int32 Function(
+    Pointer<_XDisplay> arg0,
+    Int32 arg1,
+    );
+
+typedef _dart_XDisplayWidth = int Function(
+    Pointer<_XDisplay> arg0,
+    int arg1,
+    );
+
 
 void main() async {
+  if(Platform.isLinux) {
+    final DynamicLibrary dylib = DynamicLibrary.open("libX11.so.6");
+
+    _dart_XOpenDisplay _XOpenDisplay;
+    Pointer<_XDisplay> XOpenDisplay(
+        Pointer<Int8> arg0,
+        ) {
+      _XOpenDisplay ??= dylib
+          .lookupFunction<_c_XOpenDisplay, _dart_XOpenDisplay>('XOpenDisplay');
+      return _XOpenDisplay(
+        arg0,
+      );
+    }
+
+    _dart_XDisplayWidth _XDisplayWidth;
+    int XDisplayWidth(
+        Pointer<_XDisplay> arg0,
+        int arg1,
+        ) {
+      _XDisplayWidth ??= dylib
+          .lookupFunction<_c_XDisplayWidth, _dart_XDisplayWidth>('XDisplayWidth');
+      return _XDisplayWidth(
+        arg0,
+        arg1,
+      );
+    }
+
+    Pointer<Int8> displayNumber = allocate();
+    displayNumber.value = 1;
+    Pointer<_XDisplay> display = XOpenDisplay(displayNumber);
+    int width = XDisplayWidth(display, 0);
+    print("display info: "+width.toString());
+  }
+
   //init hive
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -123,14 +177,6 @@ void main() async {
   Pangolin.settingsBox = await Hive.openBox("settings");
   HiveManager.initializeHive();
   Pangolin.refreshTheme();
-
-  if(Platform.isLinux) {
-    final DynamicLibrary dylib = DynamicLibrary.open("libX11.so.6");
-    final void Function(int) xOpenDisplay = dylib
-        .lookup<NativeFunction<xopendisplay_function>>("XOpenDisplay")
-        .asFunction();
-    xOpenDisplay("0".codeUnits[0]);
-  }
 
   /// To keep app in Portrait Mode
   //SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeRight]);
