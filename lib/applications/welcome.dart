@@ -108,7 +108,7 @@ class FirstScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         shadowColor: const Color(0x00ffffff),
         title: Image.asset(
-          'lib/images/logo-color.png',
+          'lib/images/dahliaOS/Logos/compiled/dahliaOS_logo_with_text_drop_shadow.png',
           fit: BoxFit.fitHeight,
           width: 300,
           height: 32,
@@ -133,7 +133,7 @@ class FirstScreen extends StatelessWidget {
                   ),
                   /* new Image.asset(
                       
-       'lib/images/logo-color.png',
+       'lib/images/dahliaOS/Logos/compiled/dahliaOS_logo_with_text_drop_shadow.png',
         fit: BoxFit.fitHeight,
         
         width: 300,
@@ -315,7 +315,7 @@ class BuildInfo extends StatelessWidget {
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           new Image.asset(
-            'lib/images/logo-color.png',
+            'lib/images/dahliaOS/Logos/compiled/dahliaOS_logo_with_text_drop_shadow.png',
             fit: BoxFit.fitHeight,
             width: 300,
             height: 32,
@@ -471,7 +471,7 @@ class SocialMedia extends StatelessWidget {
                 children: [
                   /* new Image.asset(
                       
-       'lib/images/logo-color.png',
+       'lib/images/dahliaOS/Logos/compiled/dahliaOS_logo_with_text_drop_shadow.png',
         fit: BoxFit.fitHeight,
         
         width: 300,
@@ -479,7 +479,7 @@ class SocialMedia extends StatelessWidget {
       ),*/
 
                   socialItem(
-                    "lib/images/dahlia.png",
+                    "lib/images/dahliaOS/Logos/compiled/dahliaOS_logo_drop_shadow.png",
                     "Official Website",
                     "https://dahliaos.io",
                   ),
@@ -677,7 +677,7 @@ class Credits extends StatelessWidget {
                         "Fristover",
                       ),
                       person(
-                        "lib/images/dahlia.png",
+                        "lib/images/dahliaOS/Logos/compiled/dahliaOS_logo_drop_shadow.png",
                         "And... you!",
                         "Thanks for testing out this build!",
                       ),

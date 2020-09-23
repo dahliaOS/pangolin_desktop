@@ -1,4 +1,3 @@
-
 import 'dynamic_theme.dart';
 import 'theme_switcher_widgets.dart';
 import 'package:flutter/material.dart';

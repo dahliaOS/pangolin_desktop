@@ -131,7 +131,8 @@ Expanded tileSection(BuildContext context) {
           AppLauncherButton(
               type: AppLauncherButtonType.Drawer,
               app: Welcome(),
-              icon: 'lib/images/dahlia.png',
+              icon:
+                  'lib/images/dahliaOS/Logos/compiled/dahliaOS_logo_drop_shadow.png',
               label: local.get("app_welcome"),
               color: Colors.grey[900],
               callback: toggleCallback),

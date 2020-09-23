@@ -140,12 +140,11 @@ class Pangolin extends StatefulWidget {
   static ThemeData theme;
 
   static List<String> wallpapers = [
-    "lib/images/Desktop/Dahlia/forest.jpg",
-    "lib/images/Desktop/Dahlia/Brick-Wall.jpg",
-    "lib/images/Desktop/Dahlia/dahlia_material_background.jpg",
-    "lib/images/Desktop/Dahlia/dahlia_material_background-1.jpg",
-    "lib/images/Desktop/Dahlia/mountain.jpg",
-    "lib/images/Desktop/Dahlia/Sunset.png",
+    "lib/images/Desktop/Wallpapers/dahliaOS/dahliaOS_white_logo_pattern_wallpaper.png",
+    "lib/images/Desktop/Wallpapers/dahliaOS/dahliaOS_white_wallpaper.png",
+    "lib/images/Desktop/Wallpapers/dahliaOS/Gradient_logo_wallpaper.png",
+    "lib/images/Desktop/Wallpapers/dahliaOS/Three_bubbles_wallpaper.png",
+    "lib/images/Desktop/Wallpapers/Nature/mountain.jpg",
   ];
 
   static refreshTheme() {
