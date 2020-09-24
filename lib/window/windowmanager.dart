@@ -27,7 +27,8 @@ typedef nativeWMDetected = Pointer<Int32> Function(Pointer<XDisplay> display, Po
 
 class WindowManager {
   Pointer<XDisplay> _display;
-  int _root;
+  static Pointer<XDisplay> _staticDisplay;
+  int _root = 0;
   static bool _wmAlreadyLoaded;
 
   WindowManager(this._display) {
@@ -50,6 +51,8 @@ class WindowManager {
     return p;
   }
 
+  Isolate eventHandler;
+
   Future<void> run() async {
     _wmAlreadyLoaded = false;
     Pointer<NativeFunction<nativeWMDetected>> nativeWMDetectedFn = Pointer.fromFunction(onWMDetected);
@@ -61,21 +64,22 @@ class WindowManager {
     }
 
     ReceivePort receivePort = ReceivePort();
-    Isolate isolate = await Isolate.spawn(beginLoop, receivePort.sendPort);
+    _staticDisplay = _display;
+    eventHandler = await Isolate.spawn(beginLoop, receivePort.sendPort);
     receivePort.listen((message) {
-
+      print(message);
     });
   }
 
-  void beginLoop(SendPort sendPort) {
+  static void beginLoop(SendPort sendPort) {
     while(true) {
       int _event;
       Pointer<Int32> _mDisplayAddress;
       Pointer<Int32> _mEvent;
-      _mDisplayAddress.value = _display.address;
+      _mDisplayAddress.value = 1;
       _mEvent.value = _event;
       XNextEvent(_mDisplayAddress, _mEvent);
-      print(_event.toString());
+      sendPort.send(_event.toString());
     }
   }
 }
