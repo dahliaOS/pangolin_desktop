@@ -38,7 +38,7 @@ pub unsafe extern "C" fn init_window_manager() {
     });
 }
 
-mod window_manager {
+pub mod window_manager {
     use x11::xlib::*;
     use std::os::raw::c_int;
 
@@ -52,14 +52,17 @@ mod window_manager {
         loop {
             let mut x_event = XEvent { pad: [0; 24] };
             XNextEvent(display, &mut x_event);
-            let mut received: String = "PangolinX: Received Event #".to_owned();
-            received.push_str(x_event.type_.to_string().as_ref());
-            println!("{}",received);
-
             match x_event.type_ {
                 CreateNotify => {
-                    println!("{}","PangolinX: New Window Created!");
-                }
+                    let mut created: String = "PangolinX: A new window was created: #".to_owned();
+                    created.push_str(x_event.create_window.window.to_string().as_ref());
+                    println!("{}",created);
+                },
+                ConfigureRequest => {
+                    let mut configured: String = "PangolinX: Window re-configured: #".to_owned();
+                    configured.push_str(x_event.configure_request.window.to_string().as_ref());
+                    println!("{}",configured);
+                },
                 _ => {
                     let mut un_managed: String = "PangolinX: Un-managed event id#".to_owned();
                     un_managed.push_str(x_event.type_.to_string().as_ref());
