@@ -1,25 +1,14 @@
 import 'dart:ffi';
 import 'dart:io';
 import 'dart:isolate';
+import 'package:Pangolin/window/pangolinx_bindings.dart';
 import 'package:Pangolin/window/xlib_binding.dart';
 
 
-DynamicLibrary _dylib;
-
-typedef _c_init_window_manager = Pointer<Void> Function();
-typedef _dart_init_window_manager = Pointer<Void> Function();
-
-_dart_init_window_manager _init_window_manager;
-void _init() {
-  _dylib = DynamicLibrary.open("libpangolin_x.so");
-
-  _init_window_manager = _dylib.lookupFunction<_c_init_window_manager, _dart_init_window_manager>('init_window_manager');
-  _init_window_manager();
-}
-
 void initWindowManager() {
   if(!Platform.isLinux) return;
-  _init();
+  PangolinX pangolinX = PangolinX(DynamicLibrary.open("./lib/libpangolin_x.so"));
+  pangolinX.init_window_manager();
 }
 
 void initWindowManagerOld() {

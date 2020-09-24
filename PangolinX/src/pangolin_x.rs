@@ -1,4 +1,3 @@
-#[no_mangle]
 use std::ptr::{null};
 use x11::xlib::{
     Display,
@@ -10,7 +9,8 @@ use x11::xlib::{
     XScreenOfDisplay
 };
 
-pub unsafe extern fn init_window_manager() {
+#[no_mangle]
+pub unsafe extern "C" fn init_window_manager() {
     let display: *mut Display = XOpenDisplay(null());
     println!("Display Information:");
     let mut display_size: String = " * Size: ".to_owned();
@@ -23,7 +23,7 @@ pub unsafe extern fn init_window_manager() {
     total_screens.push_str(screens.to_string().as_ref());
     println!("{}",total_screens);
     while screens > 0 {
-        let screen: *mut Screen = XScreenOfDisplay(display, screens);
+        let screen: *mut Screen = XScreenOfDisplay(display, screens-1);
         let mut screen_title: String = "Screen #".to_owned();
         screen_title.push_str(screens.to_string().as_ref());
         screen_title.push_str(":");

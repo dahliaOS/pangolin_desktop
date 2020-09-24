@@ -125,7 +125,8 @@ flutter:
   - lib/localization/languages/ar.json
 
 ffigen:
-  output: 'lib/xlib_bindings.dart'
+  output: 'lib/window/pangolinx_bindings.dart'
+  name: 'PangolinX'
   headers:
     entry-points:
-      - 'libX11/**'
+      - 'PangolinX/**'

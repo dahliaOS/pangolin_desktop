@@ -6,7 +6,7 @@ edition = "2018"
 
 [lib]
 name = "pangolin_x"
-crate-type = ["dylib"]
+crate-type = ["cdylib"]
 
 [dependencies]
 x11 = "2.18.2"
