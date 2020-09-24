@@ -1,5 +1,6 @@
 import 'dart:ffi';
 import 'dart:io';
+import 'dart:isolate';
 import 'package:Pangolin/window/xlib_binding.dart';
 
 WindowManager windowManager;
@@ -46,7 +47,7 @@ class WindowManager {
     return p;
   }
 
-  void run() {
+  Future<void> run() async {
     _wmAlreadyLoaded = false;
     XSetErrorHandler(onWMDetected);
     XSelectInput(_display, _root, XCB_EVENT_MASK_SUBSTRUCTURE_REDIRECT | XCB_EVENT_MASK_SUBSTRUCTURE_NOTIFY);
@@ -55,6 +56,14 @@ class WindowManager {
       print(XDisplayString(_display).toString() + " was already running.");
     }
 
+    ReceivePort receivePort = ReceivePort();
+    Isolate isolate = await Isolate.spawn(beginLoop, receivePort.sendPort);
+    receivePort.listen((message) {
+
+    });
+  }
+
+  void beginLoop(SendPort sendPort) {
     while(true) {
       int _event;
       Pointer<Int32> _mDisplayAddress;
