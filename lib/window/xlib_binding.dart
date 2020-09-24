@@ -202,7 +202,7 @@ Function(
     Pointer<NativeFunction<XErrorHandler>> arg0,
     );
 
-typedef XErrorHandler = Int32 Function(
+typedef XErrorHandler = Pointer<Int32> Function(
     Pointer<XDisplay>,
     Pointer<XErrorEvent>,
     );

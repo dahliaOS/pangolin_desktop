@@ -1,6 +1,7 @@
 import 'dart:ffi';
 import 'dart:io';
 import 'dart:isolate';
+import 'package:ffi/ffi.dart' as ffi;
 import 'package:Pangolin/window/xlib_binding.dart';
 
 WindowManager windowManager;
@@ -22,7 +23,7 @@ void initWindowManager() {
   windowManager.run();
 }
 
-typedef nativeWMDetected = Int32 Function(Pointer<XDisplay> display, Pointer<XErrorEvent> errorEvent);
+typedef nativeWMDetected = Pointer<Int32> Function(Pointer<XDisplay> display, Pointer<XErrorEvent> errorEvent);
 
 class WindowManager {
   Pointer<XDisplay> _display;
