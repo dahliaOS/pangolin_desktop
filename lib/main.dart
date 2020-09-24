@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:Pangolin/window/psuedowindowmanager.dart' if(dart.ffi) 'package:Pangolin/window/windowmanager.dart';
+import 'package:Pangolin/window/psuedowindowmanager.dart' if(dart.library.ffi) 'package:Pangolin/window/windowmanager.dart';
 import 'dart:io';
 import 'dart:math';
 

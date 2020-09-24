@@ -18,6 +18,7 @@ void initWindowManager() {
     screens--;
   }
   windowManager = WindowManager(display); // Create a new constructor
+  windowManager.run();
 }
 
 class WindowManager {
@@ -36,11 +37,13 @@ class WindowManager {
     return 0;
   }
 
-  static int onWMDetected(Pointer<XDisplay> display, Pointer<XErrorEvent> errorEvent) {
+  static Pointer<Int32> onWMDetected(Pointer<XDisplay> display, Pointer<XErrorEvent> errorEvent) {
     if(errorEvent.ref.error_code == 10) {
       _wmAlreadyLoaded = true;
     }
-    return 0;
+    Pointer<Int32> p;
+    p.value = 0;
+    return p;
   }
 
   void run() {
