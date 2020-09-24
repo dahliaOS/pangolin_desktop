@@ -22,6 +22,8 @@ void initWindowManager() {
   windowManager.run();
 }
 
+typedef nativeWMDetected = Int32 Function(Pointer<XDisplay> display, Pointer<XErrorEvent> errorEvent);
+
 class WindowManager {
   Pointer<XDisplay> _display;
   int _root;
@@ -49,7 +51,8 @@ class WindowManager {
 
   Future<void> run() async {
     _wmAlreadyLoaded = false;
-    XSetErrorHandler(onWMDetected);
+    Pointer<NativeFunction<nativeWMDetected>> nativeWMDetectedFn = Pointer.fromFunction(onWMDetected);
+    XSetErrorHandler(nativeWMDetectedFn);
     XSelectInput(_display, _root, XCB_EVENT_MASK_SUBSTRUCTURE_REDIRECT | XCB_EVENT_MASK_SUBSTRUCTURE_NOTIFY);
     XSync(_display, 0);
     if(_wmAlreadyLoaded) {
