@@ -2,6 +2,9 @@ import 'dart:ffi';
 
 DynamicLibrary _dylib = DynamicLibrary.open("libX11.so.6");
 
+const int XCB_EVENT_MASK_SUBSTRUCTURE_NOTIFY = 524288;
+const int XCB_EVENT_MASK_SUBSTRUCTURE_REDIRECT = 1048576;
+
 class XDisplay extends Struct {}
 
 class Screen extends Struct {
@@ -107,6 +110,28 @@ class Visual extends Struct {
   int map_entries;
 }
 
+class XErrorEvent extends Struct {
+  @Int32()
+  int type;
+
+  Pointer<XDisplay> display;
+
+  @Uint64()
+  int resourceid;
+
+  @Uint64()
+  int serial;
+
+  @Uint8()
+  int error_code;
+
+  @Uint8()
+  int request_code;
+
+  @Uint8()
+  int minor_code;
+}
+
 class _XGC extends Struct {}
 
 typedef _typedefC_1 = Int32 Function(
@@ -157,6 +182,69 @@ typedef _c_XScreenOfDisplay = Pointer<Screen> Function(
 typedef _dart_XScreenOfDisplay = Pointer<Screen> Function(
     Pointer<XDisplay> arg0,
     int arg1,
+    );
+
+typedef _c_XDefaultRootWindow = Uint64 Function(
+    Pointer<XDisplay> arg0,
+    );
+
+typedef _dart_XDefaultRootWindow = int Function(
+    Pointer<XDisplay> arg0,
+    );
+
+typedef _c_XSetErrorHandler = Pointer<NativeFunction<XErrorHandler>>
+Function(
+    Pointer<NativeFunction<XErrorHandler>> arg0,
+    );
+
+typedef _dart_XSetErrorHandler = Pointer<NativeFunction<XErrorHandler>>
+Function(
+    Pointer<NativeFunction<XErrorHandler>> arg0,
+    );
+
+typedef XErrorHandler = Int32 Function(
+    Pointer<XDisplay>,
+    Pointer<XErrorEvent>,
+    );
+
+typedef _c_XSelectInput = Int32 Function(
+    Pointer<XDisplay> arg0,
+    Uint64 arg1,
+    Int64 arg2,
+    );
+
+typedef _dart_XSelectInput = int Function(
+    Pointer<XDisplay> arg0,
+    int arg1,
+    int arg2,
+    );
+
+typedef _c_XSync = Int32 Function(
+    Pointer<XDisplay> arg0,
+    Int32 arg1,
+    );
+
+typedef _dart_XSync = int Function(
+    Pointer<XDisplay> arg0,
+    int arg1,
+    );
+
+typedef _c_XDisplayString = Pointer<Int8> Function(
+    Pointer<XDisplay> arg0,
+    );
+
+typedef _dart_XDisplayString = Pointer<Int8> Function(
+    Pointer<XDisplay> arg0,
+    );
+
+typedef _c_XNextEvent = Int32 Function(
+    Pointer<Int32> dpy,
+    Pointer<Int32> event,
+    );
+
+typedef _dart_XNextEvent = int Function(
+    Pointer<Int32> dpy,
+    Pointer<Int32> event,
     );
 
 _dart_XOpenDisplay _XOpenDisplay;
@@ -218,5 +306,81 @@ Pointer<Screen> XScreenOfDisplay(
   return _XScreenOfDisplay(
     arg0,
     arg1,
+  );
+}
+
+_dart_XDefaultRootWindow _XDefaultRootWindow;
+int XDefaultRootWindow(
+    Pointer<XDisplay> arg0,
+    ) {
+  _XDefaultRootWindow ??=
+      _dylib.lookupFunction<_c_XDefaultRootWindow, _dart_XDefaultRootWindow>(
+          'XDefaultRootWindow');
+  return _XDefaultRootWindow(
+    arg0,
+  );
+}
+
+_dart_XSetErrorHandler _XSetErrorHandler;
+Pointer<NativeFunction<XErrorHandler>> XSetErrorHandler(
+    arg0,
+    ) {
+  _XSetErrorHandler ??=
+      _dylib.lookupFunction<_c_XSetErrorHandler, _dart_XSetErrorHandler>(
+          'XSetErrorHandler');
+  return _XSetErrorHandler(
+    arg0,
+  );
+}
+
+_dart_XSelectInput _XSelectInput;
+int XSelectInput(
+    Pointer<XDisplay> arg0,
+    int arg1,
+    int arg2,
+    ) {
+  _XSelectInput ??= _dylib
+      .lookupFunction<_c_XSelectInput, _dart_XSelectInput>('XSelectInput');
+  return _XSelectInput(
+    arg0,
+    arg1,
+    arg2,
+  );
+}
+
+_dart_XSync _XSync;
+int XSync(
+    Pointer<XDisplay> arg0,
+    int arg1,
+    ) {
+  _XSync ??= _dylib.lookupFunction<_c_XSync, _dart_XSync>('XSync');
+  return _XSync(
+    arg0,
+    arg1,
+  );
+}
+
+_dart_XDisplayString _XDisplayString;
+Pointer<Int8> XDisplayString(
+    Pointer<XDisplay> arg0,
+    ) {
+  _XDisplayString ??=
+      _dylib.lookupFunction<_c_XDisplayString, _dart_XDisplayString>(
+          'XDisplayString');
+  return _XDisplayString(
+    arg0,
+  );
+}
+
+_dart_XNextEvent _XNextEvent;
+int XNextEvent(
+    Pointer<Int32> dpy,
+    Pointer<Int32> event,
+    ) {
+  _XNextEvent ??=
+      _dylib.lookupFunction<_c_XNextEvent, _dart_XNextEvent>('XNextEvent');
+  return _XNextEvent(
+    dpy,
+    event,
   );
 }
