@@ -1,12 +1,28 @@
 import 'dart:ffi';
 import 'dart:io';
 import 'dart:isolate';
-import 'package:ffi/ffi.dart' as ffi;
 import 'package:Pangolin/window/xlib_binding.dart';
 
-WindowManager windowManager;
+
+DynamicLibrary _dylib;
+
+typedef _c_init_window_manager = Pointer<Void> Function();
+typedef _dart_init_window_manager = Pointer<Void> Function();
+
+_dart_init_window_manager _init_window_manager;
+void _init() {
+  _dylib = DynamicLibrary.open("libpangolin_x.so");
+
+  _init_window_manager = _dylib.lookupFunction<_c_init_window_manager, _dart_init_window_manager>('init_window_manager');
+  _init_window_manager();
+}
 
 void initWindowManager() {
+  if(!Platform.isLinux) return;
+  _init();
+}
+
+void initWindowManagerOld() {
   if(!Platform.isLinux) return;
   Pointer<XDisplay> display = XOpenDisplay(Pointer.fromAddress(0));
   print("Display Information: ");
@@ -20,10 +36,11 @@ void initWindowManager() {
     screens--;
   }
   windowManager = WindowManager(display); // Create a new constructor
-  windowManager.run();
+  //windowManager.run();
 }
 
 typedef nativeWMDetected = Pointer<Int32> Function(Pointer<XDisplay> display, Pointer<XErrorEvent> errorEvent);
+WindowManager windowManager;
 
 class WindowManager {
   Pointer<XDisplay> _display;

@@ -1,0 +1,12 @@
+[package]
+name = "PangolinX"
+version = "0.1.0"
+authors = ["xeu100 <me@xeu100.com>"]
+edition = "2018"
+
+[lib]
+name = "pangolin_x"
+crate-type = ["dylib"]
+
+[dependencies]
+x11 = "2.18.2"

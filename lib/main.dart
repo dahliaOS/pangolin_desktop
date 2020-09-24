@@ -114,6 +114,7 @@ List<AppLauncherButton> testLaunchers = [
 
 void main() async {
   if(!kIsWeb) {
+    print(Directory.current.path);
     initWindowManager(); // Ha ha, if you're using web, psuedowindowmanager takes over!
   }
 
