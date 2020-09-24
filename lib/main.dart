@@ -14,8 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'dart:ffi';
-import 'package:Pangolin/window/windowmanager.dart';
+import 'package:Pangolin/window/psuedowindowmanager.dart' if(dart.ffi) 'package:Pangolin/window/psuedowindowmanager.dart';
 import 'package:ffi/ffi.dart';
 import 'dart:io';
 import 'dart:math';
@@ -116,7 +115,7 @@ List<AppLauncherButton> testLaunchers = [
 
 void main() async {
   if(Platform.isLinux) {
-    initWindowManager();
+    initWindowManager(); // Ha ha, if you're using web, psuedowindowmanager takes over!
   }
 
   //init hive
