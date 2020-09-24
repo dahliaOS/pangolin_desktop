@@ -18,6 +18,7 @@ You can check it online [here](https://web.dahliaos.io)!
 ![Pangolin](https://user-images.githubusercontent.com/61460660/89405582-1899a500-d71c-11ea-89a5-24b07fa07712.png)
 > Pangolin Desktop
 
+
 ## Build Pangolin Desktop
 
 Check the wiki: [/wiki/Build-Pangolin-Desktop](https://github.com/dahlia-os/pangolin-desktop/wiki/Build-Pangolin-Desktop)
@@ -44,18 +45,20 @@ If you're interested in translating the project, please refer to [TRANSLATION.md
 
 | Author                                                  | Language                 |
 | ------------------------------------------------------- | ------------------------ |
-| [SincerelyFaust](https://github.com/sincerelyfaust)               | Croatian           |
-| [nmcain](https://github.com/nmcain)           | English                  |
-| [larsb24](https://github.com/larsb24)                   | German       |
-| [Funeoz](https://github.com/Funeoz) | French |
-| [Fristover](https://github.com/Fristover)             | Spanish                |
-| [febryardiansyah](https://github.com/febryardiansyah)                 | Indonesian       |
-| [HexaOneOfficial](https://github.com/HexaOneOfficial)                     | Dutch                |
-| [Horus125](https://github.com/Horus125)               | Polish                |
-| [allansrc](https://github.com/allansrc)               | Portugese                |
-| [Seplx](https://github.com/Seplx)               | Slovak                |
-| [aoaowangxiao](https://github.com/aoaowangxiao)               | Chinese                |
-| [goktugvatandas](https://github.com/goktugvatandas)               | Turkish                |
+| [WaseemAlkurdi](https://github.com/WaseemAlkurdi)               | [Arabic](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/localization/languages/ar.json)                |
+| [aoaowangxiao](https://github.com/aoaowangxiao)               | [Chinese](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/localization/languages/zh.json)                |
+| [SincerelyFaust](https://github.com/sincerelyfaust)               | [Croatian](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/localization/languages/hr.json)           |
+| [HexaOneOfficial](https://github.com/HexaOneOfficial)                     | [Dutch](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/localization/languages/nl.json)                |
+| [nmcain](https://github.com/nmcain)           | [English](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/localization/languages/en.json)                  |
+| [Funeoz](https://github.com/Funeoz) | [French](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/localization/languages/fr.json) |
+| [larsb24](https://github.com/larsb24)                   | [German](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/localization/languages/de.json)       |
+| [febryardiansyah](https://github.com/febryardiansyah)                 | [Indonesian](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/localization/languages/id.json)       |
+| [Seplx](https://github.com/Seplx)               | [Slovak](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/localization/languages/sk.json)                |
+| [Fristover](https://github.com/Fristover)             | [Spanish](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/localization/languages/es.json)                |
+| [Horus125](https://github.com/Horus125)               | [Polish](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/localization/languages/pl.json)                |
+| [evolutionevotv](https://github.com/evolutionevotv)               | [Polish](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/localization/languages/pl.json)                |
+| [allansrc](https://github.com/allansrc)               | [Portugese](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/localization/languages/pt.json)                |
+| [goktugvatandas](https://github.com/goktugvatandas)               | [Turkish](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/localization/languages/tr.json)                |
 
 ## Important style guide
 

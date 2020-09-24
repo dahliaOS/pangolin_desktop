@@ -173,7 +173,7 @@ class QuickSettingsState extends State<QuickSettings> {
                               padding: EdgeInsets.only(
                                   top: scale(20.0), right: scale(20)),
                               child: buildPowerItem(Icons.power_settings_new,
-                                  'Power off', 'shutdown', '-h now'),
+                                  'Power off', 'poweroff', '-f'),
                             ),
                             Padding(
                               padding: EdgeInsets.only(
@@ -405,6 +405,30 @@ class QuickSettingsState extends State<QuickSettings> {
                     case "es":
                       Pangolin.setLocale(context, Locale("en"));
                       Pangolin.settingsBox.put("language", "en");
+                      break;
+                    case "id":
+                      Pangolin.setLocale(context, Locale("id"));
+                      Pangolin.settingsBox.put("language", "id");
+                      break;
+                    case "pt":
+                      Pangolin.setLocale(context, Locale("pt"));
+                      Pangolin.settingsBox.put("language", "pt");
+                      break;
+                    case "sk":
+                      Pangolin.setLocale(context, Locale("sk"));
+                      Pangolin.settingsBox.put("language", "sk");
+                      break;
+                    case "tr":
+                      Pangolin.setLocale(context, Locale("tr"));
+                      Pangolin.settingsBox.put("language", "tr");
+                      break;
+                    case "zh":
+                      Pangolin.setLocale(context, Locale("zh"));
+                      Pangolin.settingsBox.put("language", "zh");
+                      break;
+                    case "ar":
+                      Pangolin.setLocale(context, Locale("ar"));
+                      Pangolin.settingsBox.put("language", "ar");
                       break;
                     default:
                       Pangolin.setLocale(context, Locale("en"));
