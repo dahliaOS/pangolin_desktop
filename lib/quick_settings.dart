@@ -42,7 +42,7 @@ class QuickSettingsState extends State<QuickSettings> {
   void initState() {
     super.initState();
     Pangolin.settingsBox = Hive.box("settings");
-    _timeString = _formatDateTime(DateTime.now(), 'hh:mm');
+    _timeString = _formatDateTime(DateTime.now(), 'h:mm');
     _dateString = _formatDateTime(DateTime.now(), 'E, d MMMM yyyy');
     if (!isTesting)
       Timer.periodic(
@@ -54,8 +54,8 @@ class QuickSettingsState extends State<QuickSettings> {
   void _getTime(BuildContext context) {
     final DateTime now = DateTime.now();
     final String formattedTime = HiveManager.get("showSeconds")
-        ? _formatDateTime(now, 'hh:mm:ss')
-        : _formatDateTime(now, 'hh:mm');
+        ? _formatDateTime(now, 'h:mm:ss')
+        : _formatDateTime(now, 'h:mm');
     final String formattedDate = _formatLocaleDate(now);
     setState(() {
       _timeString = formattedTime;
