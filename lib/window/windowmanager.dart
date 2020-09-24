@@ -1,9 +1,11 @@
 import 'dart:ffi';
+import 'dart:io';
 import 'package:Pangolin/window/xlib_binding.dart';
 
 WindowManager windowManager;
 
 void initWindowManager() {
+  if(!Platform.isLinux) return;
   Pointer<XDisplay> display = XOpenDisplay(Pointer.fromAddress(0));
   print("Display Information: ");
   print(" * Size: "+XDisplayWidth(display, 0).toString()+"x"+XDisplayHeight(display, 0).toString());

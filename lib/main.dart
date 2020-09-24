@@ -14,8 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:Pangolin/window/psuedowindowmanager.dart' if(dart.ffi) 'package:Pangolin/window/psuedowindowmanager.dart';
-import 'package:ffi/ffi.dart';
+import 'package:Pangolin/window/psuedowindowmanager.dart' if(dart.ffi) 'package:Pangolin/window/windowmanager.dart';
 import 'dart:io';
 import 'dart:math';
 
@@ -114,7 +113,7 @@ List<AppLauncherButton> testLaunchers = [
 ];
 
 void main() async {
-  if(Platform.isLinux) {
+  if(!kIsWeb) {
     initWindowManager(); // Ha ha, if you're using web, psuedowindowmanager takes over!
   }
 
