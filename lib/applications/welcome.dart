@@ -491,7 +491,7 @@ class SocialMedia extends StatelessWidget {
                   socialItem(
                     "lib/images/icons/v2/compiled/facebook.png",
                     "Facebook",
-                    "https://facebook.com/pg/officialdahliaos/",
+                    "https://facebook.com/officialdahliaos/",
                   ),
                   socialItem(
                     "lib/images/icons/v2/compiled/github.png",
