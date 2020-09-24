@@ -39,7 +39,7 @@ class WindowManager {
 
   WindowManager(this._display) {
     if(_display == Pointer.fromAddress(0)) {
-      print("Pangolin Window Service: Unable to connect to default X display");
+      print("PangolinX: Unable to connect to default X display");
       _root = XDefaultRootWindow(_display);
     }
   }
