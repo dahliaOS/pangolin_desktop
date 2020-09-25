@@ -41,15 +41,20 @@ pub unsafe extern "C" fn init_window_manager() {
 pub mod window_manager {
     use x11::xlib::*;
     use std::os::raw::c_int;
-    use std::borrow::BorrowMut;
-    use std::ptr::{null, null_mut};
+    use std::borrow::{BorrowMut};
+    use std::ptr::{null_mut};
+
+    static clients: [Window; 0] = [];
 
     #[no_mangle]
     pub unsafe extern "C" fn init(display:*mut Display) {
         println!("PangolinX: Beginning Window Manager Registration");
+        XGrabServer(display);
         XSetErrorHandler(Some(on_wm_detected));
         XSelectInput(display, XDefaultRootWindow(display), SubstructureRedirectMask | SubstructureNotifyMask);
         XSync(display, 0);
+
+
 
         loop {
             let mut x_event: XEvent = XEvent{ pad: [0; 24]};
@@ -65,13 +70,13 @@ pub mod window_manager {
                     let mut configured: String = "PangolinX: Window re-configured: #".to_owned();
                     configured.push_str(x_event.configure_request.window.to_string().as_ref());
                     println!("{}",configured);
-                    on_window_config(display, x_event.configure_request);;
+                    on_window_config(display, x_event.configure_request);
                 },
                 MapRequest => {
                     let mut mapped: String = "PangolinX: Window mapped: #".to_owned();
-                    mapped.push_str(x_event.configure_request.window.to_string().as_ref());
+                    mapped.push_str(x_event.map_request.window.to_string().as_ref());
                     println!("{}",mapped);
-                    on_window_map(display, x_event.map_request);;
+                    on_window_map(display, x_event.map_request);
                 },
                 DestroyNotify => {
                     let mut destroyed: String = "PangolinX: Window destroyed: #".to_owned();
@@ -131,12 +136,17 @@ pub mod window_manager {
         (*x_window_changes).width = event.width;
         (*x_window_changes).height = event.height;
         (*x_window_changes).border_width = 0;
-        (*x_window_changes).sibling = 0;
-        (*x_window_changes).stack_mode = 1;
+        (*x_window_changes).sibling = event.parent;
+        (*x_window_changes).stack_mode = event.type_;
         XConfigureWindow(display, event.window, 64, x_window_changes);
     }
 
-    unsafe extern "C" fn on_window_map(display:*mut Display, event:XMapRequestEvent) {
+    unsafe extern "C" fn on_window_map(display:*mut Display, mut event:XMapRequestEvent) {
+        frame(display, event.window.borrow_mut());
+        XMapWindow(display, event.window);
+    }
+
+    unsafe extern "C" fn frame(display:*mut Display, window:&mut Window) {
         let mut x_window_attributes: *mut XWindowAttributes = XWindowAttributes {
             x: 0,
             y: 0,
@@ -162,7 +172,7 @@ pub mod window_manager {
             override_redirect: 0,
             screen: null_mut()
         }.borrow_mut();
-        XGetWindowAttributes(display, event.window, x_window_attributes);
+        XGetWindowAttributes(display, *window, x_window_attributes);
         let frame: Window = XCreateSimpleWindow(
             display,
             XDefaultRootWindow(display),
@@ -175,9 +185,9 @@ pub mod window_manager {
             0x0000ff
         );
         XSelectInput(display, frame, SubstructureRedirectMask | SubstructureNotifyMask);
-        XAddToSaveSet(display, event.window);
-        XReparentWindow(display, event.window, frame, 0, 0);
+        XAddToSaveSet(display, *window);
+        XReparentWindow(display, *window, frame, 0, 0);
         XMapWindow(display, frame);
-        XMapWindow(display, event.window);
+        clients[window.to_owned()] = frame;
     }
 }
