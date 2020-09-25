@@ -9,6 +9,7 @@
 .history
 .svn/
 plan_c
+PangolinX/target/
 
 # IntelliJ related
 *.iml
