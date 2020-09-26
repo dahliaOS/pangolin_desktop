@@ -1,5 +1,6 @@
 {
   "app_containers": "Containers",
+  "app_authenticator": "Authenticator",
   "app_calculator": "Rekenmachine",
   "app_clock": "Klok",
   "app_disks": "Schijf",
@@ -25,7 +26,7 @@
   "launcher_card_kernel_title": "Kernel",
   "launcher_card_kernel_value": "Drivers Voor Geïntegreerd GPU Bijgewerkt",
   "launcher_card_music_title": "Muziek - Nu Aan Het Spelen",
-  "launcher_card_music_value": "Powerhouse of the Sell - The Revival",
+  "launcher_card_music_value": "Ludwig van Beethoven - Moonlight Sonata",
   "launcher_card_security_title": "Veiligheid",
   "launcher_card_security_value": "Bestandssysteem Is Versleuteld",
   "launcher_card_system_title": "Systeem",
