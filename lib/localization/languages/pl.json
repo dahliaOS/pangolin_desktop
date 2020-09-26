@@ -1,5 +1,6 @@
 {
   "app_containers": "Kontener",
+  "app_authenticator": "Authenticator",
   "app_calculator": "Kalkulator",
   "app_clock": "Zegar",
   "app_disks": "Dyski",
@@ -25,7 +26,7 @@
   "launcher_card_kernel_title": "Jądro",
   "launcher_card_kernel_value": "Sterowniki dla zintegrowanego GPU \nzostały zaktualizowane",
   "launcher_card_music_title": "Muzyka - Teraz Odtwarzane",
-  "launcher_card_music_value": "Young Multi - Pogba",
+  "launcher_card_music_value": "Ludwig van Beethoven - Moonlight Sonata",
   "launcher_card_security_title": "Ochrona",
   "launcher_card_security_value": "Blokada systemu plików jest włączona",
   "launcher_card_system_title": "System",
