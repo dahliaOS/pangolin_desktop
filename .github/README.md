@@ -73,7 +73,7 @@ Uncompliant applications will have their theme colors set to a random color.
 ## License
 
 <p align="left">
-  <img width="15%" src="./assets/images/logo/new/dahliaOS_logo_with_text_black.svg"
+  <img width="15%" src="https://github.com/dahlia-os/documentation/blob/master/assets/images/logo/new/dahliaOS_logo_with_text_black.svg"
 </p>
 
 Copyright @ 2019-2020 The dahliaOS Authors contact@dahliaos.io
