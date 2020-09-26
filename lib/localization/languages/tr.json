@@ -1,5 +1,6 @@
 {
   "app_containers": "Containers",
+  "app_authenticator": "Authenticator",
   "app_calculator": "Hesap Makinesi",
   "app_clock": "Saat",
   "app_disks": "Diskler",
@@ -25,7 +26,7 @@
   "launcher_card_kernel_title": "Kernel",
   "launcher_card_kernel_value": "Entegre GPU sürücleri güncellendi",
   "launcher_card_music_title": "Müzik - Şimdi Oynatılıyor",
-  "launcher_card_music_value": "Powerhouse of the Sell - The Revival",
+  "launcher_card_music_value": "Ludwig van Beethoven - Moonlight Sonata",
   "launcher_card_security_title": "Güvenlik",
   "launcher_card_security_value": "Dosya sistemi kilidi AÇIK",
   "launcher_card_system_title": "Sistem",
