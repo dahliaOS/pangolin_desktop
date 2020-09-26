@@ -17,6 +17,7 @@
   "app_themedemo": "تجربة الأنساق الشكليّة",
   "app_welcome": "حللتم أهلًا!",
   "app_help": "مساعدة",
+  "app_web": "المتصفّح",
   "featurenotimplemented_title": "لم تتمّ الميزة بعد",
   "featurenotimplemented_value": "هذه الميزة غير متوفرة حاليًا في نسختك. من Pangolin. يرجى الاطلاع على https://reddit.com/r/dahliaos للتحقق من وجود تحديثات.",
   "launcher_card_information_title": "معلومات",
@@ -46,6 +47,5 @@
   "taskmanager_launch": "بدء عمليّة",
   "taskmanager_processes": "العمليات",
   "taskmanager_resources": "المصادر",
-  "taskmanager_selectedprocessplaceholder": "io.dahliaos.null",
-  "app_web": "المتصفّح"
+  "taskmanager_selectedprocessplaceholder": "io.dahliaos.null"
 }
