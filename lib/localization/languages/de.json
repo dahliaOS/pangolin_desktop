@@ -17,6 +17,7 @@
   "app_themedemo": "Thema Vorschau",
   "app_welcome": "Willkommen",
   "app_help": "Hilfeseite",
+  "app_web": "Browser",
   "featurenotimplemented_title": "Funktion noch nicht Intigriert",
   "featurenotimplemented_value": "Diese Funktion ist in ihrer Version von Pangolin noch nicht verfügbar. Bitte siehe https://reddit.com/r/dahliaos für Aktualisierungen und weiter Informationen.",
   "launcher_card_information_title": "Information",
@@ -46,6 +47,5 @@
   "taskmanager_launch": "Ausführen",
   "taskmanager_processes": "Prozesse",
   "taskmanager_resources": "Ressourcen",
-  "taskmanager_selectedprocessplaceholder": "io.dahliaos.null",
-  "app_web": "Browser"
+  "taskmanager_selectedprocessplaceholder": "io.dahliaos.null"
 }
