@@ -17,6 +17,7 @@
   "app_themedemo": "Tema Demo",
   "app_welcome": "Bem-vindo",
   "app_help": "Ajuda",
+  "app_web": "Navegador",
   "featurenotimplemented_title": "Recurso não implementado",
   "featurenotimplemented_value": "Este recurso não está disponível na sua versão do Pangolin. favor consulte https://reddit.com/r/dahliaos para verificar se há atualizações.",
   "launcher_card_information_title": "informação",
@@ -46,6 +47,5 @@
   "taskmanager_launch": "Iniciar",
   "taskmanager_processes": "Processos",
   "taskmanager_resources": "Recursos",
-  "taskmanager_selectedprocessplaceholder": "io.dahliaos.null",
-  "app_web": "Navegador"
+  "taskmanager_selectedprocessplaceholder": "io.dahliaos.null"
 }
