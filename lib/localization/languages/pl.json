@@ -17,6 +17,7 @@
   "app_themedemo": "Motyw Demo",
   "app_welcome": "Witaj",
   "app_help": "Pomoc",
+  "app_web": "Przeglądarka Sieci",
   "featurenotimplemented_title": "Funkcja niezaimplementowana",
   "featurenotimplemented_value": "Ta funkcja nie jest obecnie dostępna w twojej wersji pulpitu Pangolin. Sprawdź dostępność aktualizacji na witrynie https://reddit.com/r/dahliaos.",
   "launcher_card_information_title": "Informacja",
@@ -46,6 +47,5 @@
   "taskmanager_launch": "Uruchom",
   "taskmanager_processes": "Procesy",
   "taskmanager_resources": "Zasoby",
-  "taskmanager_selectedprocessplaceholder": "io.dahliaos.null",
-  "app_web": "Przeglądarka Sieci"
+  "taskmanager_selectedprocessplaceholder": "io.dahliaos.null"
 }

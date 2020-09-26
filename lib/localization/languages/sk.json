@@ -17,6 +17,7 @@
   "app_themedemo": "Ukážka témy",
   "app_welcome": "Vitajte",
   "app_help": "Podpora",
+  "app_web": "Prehliadač",
   "featurenotimplemented_title": "Funkcia nie je podporovaná",
   "featurenotimplemented_value": "Táto funkcia nie je momentálne k dispozícii pre vašu zostavu Pangolin. Aktualizácie nájdete na https://reddit.com/r/dahliaos.",
   "launcher_card_information_title": "Informácie",
@@ -46,6 +47,5 @@
   "taskmanager_launch": "Spustiť",
   "taskmanager_processes": "Procesy",
   "taskmanager_resources": "Zdroje",
-  "taskmanager_selectedprocessplaceholder": "io.dahliaos.null",
-  "app_web": "Prehliadač"
+  "taskmanager_selectedprocessplaceholder": "io.dahliaos.null"
 }
