@@ -1,5 +1,5 @@
 {
-  "app_containers": "Containers",
+  "app_containers": "Container",
   "app_calculator": "Taschenrechner",
   "app_clock": "Uhr",
   "app_disks": "Festplattenverwaltung",
@@ -20,7 +20,7 @@
   "app_web": "Browser",
   "featurenotimplemented_title": "Funktion noch nicht Intigriert",
   "featurenotimplemented_value": "Diese Funktion ist in ihrer Version von Pangolin noch nicht verfügbar. Bitte siehe https://reddit.com/r/dahliaos für Aktualisierungen und weiter Informationen.",
-  "launcher_card_information_title": "Information",
+  "launcher_card_information_title": "Informationen",
   "launcher_card_information_value": "Warnung: Sie benutzen eine Entwicklungs-Build von dahliaOS welche noch nicht veröffentlicht wurde.",
   "launcher_card_kernel_title": "Kernel",
   "launcher_card_kernel_value": "Treiber für Intigrierte Grafikkarte aktualisiert",
