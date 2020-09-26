@@ -1,5 +1,6 @@
 {
   "app_containers": "حاويات",
+  "app_authenticator": "Authenticator",
   "app_calculator": "آلة حاسبة",
   "app_clock": "ساعة",
   "app_disks": "أقسام التخزين",
@@ -25,7 +26,7 @@
   "launcher_card_kernel_title": "نواة النّظام",
   "launcher_card_kernel_value": "تم تحديث برامج تعريف بطاقة الرسوميّات المدمجة",
   "launcher_card_music_title": "الموسيقى - قيد التشغيل الآن",
-  "launcher_card_music_value": "فيروز - أَعْطِنِي النَّايَ وغَنِّ",
+  "launcher_card_music_value": "Ludwig van Beethoven - Moonlight Sonata",
   "launcher_card_security_title": "الحماية",
   "launcher_card_security_value": "قفل نظام الملفات قيد التشغيل",
   "launcher_card_system_title": "النظام",
