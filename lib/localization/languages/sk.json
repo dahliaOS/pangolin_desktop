@@ -1,5 +1,6 @@
 {
   "app_containers": "Kontajnery",
+  "app_authenticator": "Authenticator",
   "app_calculator": "Kalkulačka",
   "app_clock": "Hodiny",
   "app_disks": "Disky",
@@ -25,7 +26,7 @@
   "launcher_card_kernel_title": "Jadro",
   "launcher_card_kernel_value": "Ovládače pre integrované GPU aktualizované",
   "launcher_card_music_title": "Hudba - Práve sa hrá",
-  "launcher_card_music_value": "Powerhouse of the Sell - The Revival",
+  "launcher_card_music_value": "Ludwig van Beethoven - Moonlight Sonata",
   "launcher_card_security_title": "Zabezpečenie",
   "launcher_card_security_value": "Zámok súborového systému je ZAPNUTÝ",
   "launcher_card_system_title": "Systém",
