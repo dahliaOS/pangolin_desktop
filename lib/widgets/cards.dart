@@ -21,6 +21,7 @@ import 'package:Pangolin/settings/hiveManager.dart';
 import 'package:flutter/material.dart';
 import '../applications/calculator.dart';
 import '../applications/containers.dart';
+import '../applications/authenticator/main.dart';
 import '../applications/files/main.dart';
 import '../applications/messages/main.dart';
 import '../applications/editor.dart';
@@ -82,6 +83,13 @@ Expanded tileSection(BuildContext context) {
               icon: 'lib/images/icons/v2/compiled/notes.png',
               label: local.get("app_notes"),
               color: Colors.amber[700],
+              callback: toggleCallback),
+          AppLauncherButton(
+              type: AppLauncherButtonType.Drawer,
+              app: AuthApp(),
+              icon: 'lib/images/icons/v2/compiled/authenticator.png',
+              label: local.get("app_authenticator"),
+              color: Colors.blueGrey[700],
               callback: toggleCallback),
           AppLauncherButton(
               type: AppLauncherButtonType.Drawer,

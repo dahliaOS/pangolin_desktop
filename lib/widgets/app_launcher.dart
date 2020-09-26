@@ -59,7 +59,7 @@ class AppLauncherButtonState extends State<AppLauncherButton> {
   Widget build(BuildContext context) {
     return Padding(
       padding: (widget.type == AppLauncherButtonType.Drawer)
-          ? EdgeInsets.all(20.0)
+          ? EdgeInsets.all(00.0)
           : EdgeInsets.symmetric(horizontal: 4.0),
       child: Container(
         width: (widget.type == AppLauncherButtonType.Drawer) ? 150.0 : 45.0,
