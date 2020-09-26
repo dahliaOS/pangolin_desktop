@@ -1,5 +1,6 @@
 {
   "app_containers": "容器",
+  "app_authenticator": "Authenticator",
   "app_calculator": "计算器",
   "app_clock": "时钟",
   "app_disks": "磁盘",
@@ -25,7 +26,7 @@
   "launcher_card_kernel_title": "内核",
   "launcher_card_kernel_value": "集成显卡驱动已更新",
   "launcher_card_music_title": "音乐 - 正在播放",
-  "launcher_card_music_value": "Powerhouse of the Sell - The Revival",
+  "launcher_card_music_value": "Ludwig van Beethoven - Moonlight Sonata",
   "launcher_card_security_title": "安全",
   "launcher_card_security_value": "文件系统已上锁",
   "launcher_card_system_title": "系统",
