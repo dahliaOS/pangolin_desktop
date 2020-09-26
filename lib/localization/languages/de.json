@@ -1,5 +1,6 @@
 {
   "app_containers": "Container",
+  "app_authenticator": "Authenticator",
   "app_calculator": "Taschenrechner",
   "app_clock": "Uhr",
   "app_disks": "Festplattenverwaltung",
@@ -25,7 +26,7 @@
   "launcher_card_kernel_title": "Kernel",
   "launcher_card_kernel_value": "Treiber für Intigrierte Grafikkarte aktualisiert",
   "launcher_card_music_title": "Musik - Spielt Gerade",
-  "launcher_card_music_value": "Powerhouse of the Sell - The Revival",
+  "launcher_card_music_value": "Ludwig van Beethoven - Moonlight Sonata",
   "launcher_card_security_title": "Sicherheit",
   "launcher_card_security_value": "Dateisystemsperre ist AN",
   "launcher_card_system_title": "System",

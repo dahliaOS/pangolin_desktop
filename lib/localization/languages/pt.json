@@ -1,5 +1,6 @@
 {
   "app_containers": "Conteines",
+  "app_authenticator": "Authenticator",
   "app_calculator": "Calculadora",
   "app_clock": "Relógio",
   "app_disks": "Discos",
@@ -25,7 +26,7 @@
   "launcher_card_kernel_title": "Kernel",
   "launcher_card_kernel_value": "Drivers para GPU integrado atualizados",
   "launcher_card_music_title": "Música - Reproduzindo",
-  "launcher_card_music_value": "Powerhouse of the Sell - The Revival",
+  "launcher_card_music_value": "Ludwig van Beethoven - Moonlight Sonata",
   "launcher_card_security_title": "Segurança",
   "launcher_card_security_value": "O bloqueio do sistema de arquivos está ATIVADO",
   "launcher_card_system_title": "Sistema",
