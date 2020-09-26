@@ -23,7 +23,7 @@ class WallpaperGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Image.asset(
-        'lib/images/icons/v2/compiled/wallpaper.png',
+        'assets/images/icons/v2/compiled/wallpaper.png',
         fit: BoxFit.fill,
         width: 50.0,
         height: 50.0,
@@ -41,7 +41,7 @@ class WallpaperIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Image.asset(
-        'lib/images/icons/v2/compiled/wallpaper.png',
+        'assets/images/icons/v2/compiled/wallpaper.png',
         fit: BoxFit.fill,
         width: 50.0,
         height: 50.0,
@@ -59,7 +59,7 @@ class CalculatorGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Image.asset(
-        '/lib/images/icons/v2/compiled/calculator.png',
+        '/assets/images/icons/v2/compiled/calculator.png',
         fit: BoxFit.fill,
         width: 50.0,
         height: 50.0,
@@ -77,7 +77,7 @@ class PhoneGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Image.asset(
-        'lib/images/icons/v2/compiled/phone.png',
+        'assets/images/icons/v2/compiled/phone.png',
         fit: BoxFit.fill,
         width: 50.0,
         height: 50.0,
@@ -95,7 +95,7 @@ class GmailGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Image.asset(
-        'lib/images/icons/v2/compiled/Gmail-icon.png',
+        'assets/images/icons/v2/compiled/Gmail-icon.png',
         fit: BoxFit.fill,
         width: 50.0,
         height: 50.0,
@@ -113,7 +113,7 @@ class MusicGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Image.asset(
-        'lib/images/icons/v2/compiled/music.png',
+        'assets/images/icons/v2/compiled/music.png',
         fit: BoxFit.fill,
         width: 50.0,
         height: 50.0,
@@ -131,7 +131,7 @@ class SettingsGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Image.asset(
-        'lib/images/icons/v2/compiled/settings.png',
+        'assets/images/icons/v2/compiled/settings.png',
         fit: BoxFit.fill,
         width: 50.0,
         height: 50.0,
@@ -149,7 +149,7 @@ class ClockGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Image.asset(
-        'lib/images/icons/v2/compiled/clock.png',
+        'assets/images/icons/v2/compiled/clock.png',
         fit: BoxFit.fill,
         width: 50.0,
         height: 50.0,
