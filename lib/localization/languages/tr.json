@@ -17,6 +17,7 @@
   "app_themedemo": "Tema Demo",
   "app_welcome": "Hoşgeldiniz",
   "app_help": "Yardım",
+  "app_web": "Tarayıcı",
   "featurenotimplemented_title": "Özellik daha hazır değil",
   "featurenotimplemented_value": "Bu özellik şu anda bu Pangolin sürümünde mevcut değil. Güncellemeleri kontrol etmek için lütfen https://reddit.com/r/dahliaos adresine bakın.",
   "launcher_card_information_title": "Bilgi",
@@ -46,6 +47,5 @@
   "taskmanager_launch": "Başlat",
   "taskmanager_processes": "İşlemler",
   "taskmanager_resources": "Kaynaklar",
-  "taskmanager_selectedprocessplaceholder": "io.dahliaos.null",
-  "app_web": "Tarayıcı"
+  "taskmanager_selectedprocessplaceholder": "io.dahliaos.null"
 }
