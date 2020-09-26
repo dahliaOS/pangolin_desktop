@@ -17,6 +17,7 @@
   "app_themedemo": "主题示例",
   "app_welcome": "欢迎",
   "app_help": "帮助",
+  "app_web": "浏览器",
   "featurenotimplemented_title": "功能尚未实现",
   "featurenotimplemented_value": "该功能在您当前版本的Pangolin上不可用。请访问 https://reddit.com/r/dahliaos 获取更新",
   "launcher_card_information_title": "信息",
@@ -46,6 +47,5 @@
   "taskmanager_launch": "启动",
   "taskmanager_processes": "进程",
   "taskmanager_resources": "资源",
-  "taskmanager_selectedprocessplaceholder": "io.dahliaos.null",
-  "app_web": "浏览器"
+  "taskmanager_selectedprocessplaceholder": "io.dahliaos.null"
 }

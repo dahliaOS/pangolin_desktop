@@ -17,6 +17,7 @@
   "app_themedemo": "Teme Demo",
   "app_welcome": "Dobrodošli",
   "app_help": "Pomoć",
+  "app_web": "Web preglednik",
   "featurenotimplemented_title": "Značajka nije implementirana",
   "featurenotimplemented_value": "Ova značajka trenutno nije dostupna u vašoj verziji Pangolina. Molimo posjetite https://reddit.com/r/dahliaos kako biste provjerili ima li novijih ažuriranja.",
   "launcher_card_information_title": "Informacije",
@@ -46,6 +47,5 @@
   "taskmanager_launch": "Pokreni",
   "taskmanager_processes": "Procesi",
   "taskmanager_resources": "Resursi",
-  "taskmanager_selectedprocessplaceholder": "io.dahliaos.null",
-  "app_web": "Web preglednik"
+  "taskmanager_selectedprocessplaceholder": "io.dahliaos.null"
 }

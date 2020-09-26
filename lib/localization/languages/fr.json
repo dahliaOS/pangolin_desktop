@@ -17,6 +17,7 @@
   "app_themedemo": "Démo du thème",
   "app_welcome": "Bienvenue",
   "app_help": "Aide système",
+  "app_web": "Navigateur Web",
   "featurenotimplemented_title": "Fonctionnalité non implémentée",
   "featurenotimplemented_value": "Cette fonctionnalité n'est actuellement pas disponible sur votre version de Pangolin. S'il vous plaît, consultez https://reddit.com/r/dahliaos pour vérifier si des mises à jour sont disponibles.",
   "launcher_card_information_title": "Information",
@@ -46,6 +47,5 @@
   "taskmanager_launch": "Lancer",
   "taskmanager_processes": "Processus",
   "taskmanager_resources": "Ressources",
-  "taskmanager_selectedprocessplaceholder": "io.dahliaos.null",
-  "app_web": "Navigateur Web"
+  "taskmanager_selectedprocessplaceholder": "io.dahliaos.null"
 }

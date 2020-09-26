@@ -17,6 +17,7 @@
   "app_themedemo": "Demo Tema",
   "app_welcome": "Selamat Datang",
   "app_help": "Bantuan",
+  "app_web": "Browser",
   "featurenotimplemented_title": "Fitur belum di implementasikan",
   "featurenotimplemented_value": "Fitur ini saat ini belum tersedia di build Pangolin Kamu. Silahkan periksa https://reddit.com/r/dahliaos untuk perkembangan lebih lanjut.",
   "launcher_card_information_title": "Informasi",
@@ -46,6 +47,5 @@
   "taskmanager_launch": "Launch",
   "taskmanager_processes": "Processes",
   "taskmanager_resources": "Resources",
-  "taskmanager_selectedprocessplaceholder": "io.dahliaos.null",
-  "app_web": "Browser"
+  "taskmanager_selectedprocessplaceholder": "io.dahliaos.null"
 }
