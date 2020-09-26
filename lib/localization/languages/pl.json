@@ -1,6 +1,5 @@
 {
   "app_containers": "Kontener",
-  "app_authenticator": "Authenticator",
   "app_calculator": "Kalkulator",
   "app_clock": "Zegar",
   "app_disks": "Dyski",
@@ -14,7 +13,6 @@
   "app_settings": "Ustawienia",
   "app_systemlogs": "Dzienniki systemowe",
   "app_taskmanager": "Menadżer zadań",
-  "app_terminal": "Terminal",
   "app_themedemo": "Motyw Demo",
   "app_welcome": "Witaj",
   "app_help": "Pomoc",
@@ -26,15 +24,12 @@
   "launcher_card_kernel_title": "Jądro",
   "launcher_card_kernel_value": "Sterowniki dla zintegrowanego GPU \nzostały zaktualizowane",
   "launcher_card_music_title": "Muzyka - Teraz Odtwarzane",
-  "launcher_card_music_value": "Ludwig van Beethoven - Moonlight Sonata",
   "launcher_card_security_title": "Ochrona",
   "launcher_card_security_value": "Blokada systemu plików jest włączona",
-  "launcher_card_system_title": "System",
   "launcher_card_system_value": "Witaj w dahliaOS!",
   "launcher_search": "Wyszukaj urządzenie, aplikacje, stronę...",
   "qs_airplanemode": "Tryb samolotowy",
   "qs_autorotate": "Autoobrót",
-  "qs_bluetooth": "Bluetooth",
   "qs_changelanguage": "pl",
   "qs_dnd": "Nie przeszkadzać",
   "qs_flashlight": "Latarka",
@@ -47,6 +42,5 @@
   "taskmanager_kill": "Zakończ",
   "taskmanager_launch": "Uruchom",
   "taskmanager_processes": "Procesy",
-  "taskmanager_resources": "Zasoby",
-  "taskmanager_selectedprocessplaceholder": "io.dahliaos.null"
+  "taskmanager_resources": "Zasoby"
 }
