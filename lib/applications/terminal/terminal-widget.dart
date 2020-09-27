@@ -211,7 +211,7 @@ class _TerminalState extends State<Terminal> {
     }
     ProcessResult result = Process.runSync('uname', ['-n']);
     var HostName = result.stdout;
-    var Shell = home + "@" + HostName + "~\$";
+    var Shell = home + "@" + HostName + ":~\$";
     var multiline = Shell;
     var singleline = multiline.replaceAll("\n", "");
 
