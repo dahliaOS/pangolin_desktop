@@ -16,20 +16,15 @@ limitations under the License.
 
 import 'package:flutter/material.dart';
 
-
 class LauncherWidget extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-
       body: Container(
         constraints: BoxConstraints.expand(),
         decoration: BoxDecoration(
           color: Color.fromARGB(255, 255, 255, 255),
         ),
-         
         child: Stack(
           fit: StackFit.expand,
           children: [
@@ -66,7 +61,7 @@ class LauncherWidget extends StatelessWidget {
                             constraints: BoxConstraints.expand(height: 75),
                             margin: EdgeInsets.only(left: 33, top: 20),
                             child: Image.asset(
-                              "lib/images/wallpaper.png",
+                              "assets/images/icons/v2/compiled/wallpaper.png",
                               fit: BoxFit.none,
                             ),
                           ),
@@ -116,7 +111,7 @@ class LauncherWidget extends StatelessWidget {
                                 Container(
                                   margin: EdgeInsets.only(top: 20, right: 32),
                                   child: Image.asset(
-                                    "lib/images/wallpaper.png",
+                                    "assets/images/icons/v2/compiled/wallpaper.png",
                                     fit: BoxFit.none,
                                   ),
                                 ),
@@ -160,7 +155,7 @@ class LauncherWidget extends StatelessWidget {
                                 Container(
                                   margin: EdgeInsets.only(top: 20, right: 22),
                                   child: Image.asset(
-                                    "lib/images/wallpaper.png",
+                                    "assets/images/icons/v2/compiled/wallpaper.png",
                                     fit: BoxFit.none,
                                   ),
                                 ),
@@ -198,7 +193,7 @@ class LauncherWidget extends StatelessWidget {
                         constraints: BoxConstraints.expand(height: 75),
                         margin: EdgeInsets.only(left: 24, top: 20),
                         child: Image.asset(
-                          "lib/images/wallpaper.png",
+                          "assets/images/icons/v2/compiled/wallpaper.png",
                           fit: BoxFit.none,
                         ),
                       ),
@@ -240,7 +235,7 @@ class LauncherWidget extends StatelessWidget {
                   constraints: BoxConstraints.expand(width: 75),
                   margin: EdgeInsets.only(top: 20),
                   child: Image.asset(
-                    "lib/images/wallpaper.png",
+                    "assets/images/icons/v2/compiled/wallpaper.png",
                     fit: BoxFit.none,
                   ),
                 ),

@@ -66,10 +66,10 @@ class StatusTrayWidgetState extends State<StatusTrayWidget> {
     return HiveManager.get("showSeconds")
         ? (HiveManager.get("enable24hTime")
             ? DateFormat.Hms().format(dateTime)
-            : DateFormat('hh:mm:ss').format(dateTime))
+            : DateFormat('h:mm:ss').format(dateTime))
         : (HiveManager.get("enable24hTime")
             ? DateFormat.Hm().format(dateTime)
-            : DateFormat('hh:mm').format(dateTime));
+            : DateFormat('h:mm').format(dateTime));
   }
 
   @override

@@ -108,7 +108,7 @@ class FirstScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         shadowColor: const Color(0x00ffffff),
         title: Image.asset(
-          'lib/images/logo-color.png',
+          'assets/images/dahliaOS/Logos/compiled/dahliaOS_logo_with_text_drop_shadow.png',
           fit: BoxFit.fitHeight,
           width: 300,
           height: 32,
@@ -133,38 +133,38 @@ class FirstScreen extends StatelessWidget {
                   ),
                   /* new Image.asset(
                       
-       'lib/images/logo-color.png',
+       'assets/images/dahliaOS/Logos/compiled/dahliaOS_logo_with_text_drop_shadow.png',
         fit: BoxFit.fitHeight,
         
         width: 300,
        height:32,
       ),*/
                   feature(
-                      "lib/images/icons/v2/compiled/welcome-info.png",
+                      "assets/images/icons/v2/compiled/welcome-info.png",
                       "Build Information",
                       "dahliaOS Linux-Based 200830 ...",
                       "/info",
                       context),
                   feature(
-                      "lib/images/icons/v2/compiled/messages.png",
+                      "assets/images/icons/v2/compiled/messages.png",
                       "Feedback",
                       "Have an issue or a suggestion?",
                       "/feedback",
                       context),
                   feature(
-                      "lib/images/icons/v2/compiled/social.png",
+                      "assets/images/icons/v2/compiled/social.png",
                       "Social media",
                       "Check us out on nearly every platform!",
                       "/social",
                       context),
                   feature(
-                      "lib/images/icons/v2/compiled/credits.png",
+                      "assets/images/icons/v2/compiled/credits.png",
                       "Credits",
                       "Here's everyone who helped make this happen!",
                       "/credits",
                       context),
                   feature(
-                      "lib/images/icons/v2/compiled/software-shared.png",
+                      "assets/images/icons/v2/compiled/software-shared.png",
                       "Software",
                       "View information about third-party software...",
                       "/software",
@@ -315,7 +315,7 @@ class BuildInfo extends StatelessWidget {
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           new Image.asset(
-            'lib/images/logo-color.png',
+            'assets/images/dahliaOS/Logos/compiled/dahliaOS_logo_with_text_drop_shadow.png',
             fit: BoxFit.fitHeight,
             width: 300,
             height: 32,
@@ -471,7 +471,7 @@ class SocialMedia extends StatelessWidget {
                 children: [
                   /* new Image.asset(
                       
-       'lib/images/logo-color.png',
+       'assets/images/dahliaOS/Logos/compiled/dahliaOS_logo_with_text_drop_shadow.png',
         fit: BoxFit.fitHeight,
         
         width: 300,
@@ -479,42 +479,42 @@ class SocialMedia extends StatelessWidget {
       ),*/
 
                   socialItem(
-                    "lib/images/dahlia.png",
+                    "assets/images/dahliaOS/Logos/compiled/dahliaOS_logo_drop_shadow.png",
                     "Official Website",
                     "https://dahliaos.io",
                   ),
                   socialItem(
-                    "lib/images/icons/v2/compiled/discord.png",
+                    "assets/images/icons/v2/compiled/discord.png",
                     "Discord",
                     "https://discord.gg/jwgS3t6",
                   ),
                   socialItem(
-                    "lib/images/icons/v2/compiled/facebook.png",
+                    "assets/images/icons/v2/compiled/facebook.png",
                     "Facebook",
-                    "https://facebook.com/pg/officialdahliaos/",
+                    "https://facebook.com/officialdahliaos/",
                   ),
                   socialItem(
-                    "lib/images/icons/v2/compiled/github.png",
+                    "assets/images/icons/v2/compiled/github.png",
                     "Github",
                     "https://github.com/dahlia-os",
                   ),
                   socialItem(
-                    "lib/images/icons/v2/compiled/instagram.png",
+                    "assets/images/icons/v2/compiled/instagram.png",
                     "Instagram",
                     "https://instagram.com/officialdahliaos/",
                   ),
                   socialItem(
-                    "lib/images/icons/v2/compiled/reddit.png",
+                    "assets/images/icons/v2/compiled/reddit.png",
                     "Reddit",
                     "https://reddit.com/r/dahliaos",
                   ),
                   socialItem(
-                    "lib/images/icons/v2/compiled/telegram.png",
+                    "assets/images/icons/v2/compiled/telegram.png",
                     "Telegram",
                     "https://t.me/dahliaos/",
                   ),
                   socialItem(
-                    "lib/images/icons/v2/compiled/twitter.png",
+                    "assets/images/icons/v2/compiled/twitter.png",
                     "Twitter",
                     "https://twitter.com/realdahliaos",
                   ),
@@ -607,77 +607,77 @@ class Credits extends StatelessWidget {
                     scrollDirection: Axis.vertical,
                     child: new Wrap(children: <Widget>[
                       person(
-                        "lib/images/people/bleonard.png",
+                        "assets/images/people/bleonard.png",
                         "Blake Leonard",
                         "bleonard252",
                       ),
                       person(
-                        "lib/images/people/noah.jpeg",
+                        "assets/images/people/noah.jpeg",
                         "Noah Cain",
                         "nmcain",
                       ),
                       person(
-                        "lib/images/people/camden.jpeg",
+                        "assets/images/people/camden.jpeg",
                         "Camden Bruce",
                         "EnderNightLord-ChromeBook",
                       ),
                       person(
-                        "lib/images/people/faust.png",
+                        "assets/images/people/faust.png",
                         "Marin Heđeš",
                         "SincerelyFaust",
                       ),
                       person(
-                        "lib/images/people/lars.jpeg",
+                        "assets/images/people/lars.jpeg",
                         "Lars",
                         "larsb24",
                       ),
                       person(
-                        "lib/images/people/horus.png",
+                        "assets/images/people/horus.png",
                         "Hackerman",
                         "Horus125",
                       ),
                       person(
-                        "lib/images/people/haru.jpeg",
+                        "assets/images/people/haru.jpeg",
                         "Kanou Haru",
                         "kanouharu",
                       ),
                       person(
-                        "lib/images/people/nobody.png",
+                        "assets/images/people/nobody.png",
                         "Nobody",
                         "nobody5050",
                       ),
                       person(
-                        "lib/images/people/subspace.png",
+                        "assets/images/people/subspace.png",
                         "Lucas Puntillo",
                         "puntillol59",
                       ),
                       person(
-                        "lib/images/people/hexa.png",
+                        "assets/images/people/hexa.png",
                         "Quinten",
                         "HexaOneOfficial",
                       ),
                       person(
-                        "lib/images/people/x7.jpeg",
+                        "assets/images/people/x7.jpeg",
                         "Syed Mushaheed",
                         "predatorx7",
                       ),
                       person(
-                        "lib/images/people/vanzh.png",
+                        "assets/images/people/vanzh.png",
                         "V.",
                         "xVanzh",
                       ),
                       person(
-                        "lib/images/people/funeoz.jpeg",
+                        "assets/images/people/funeoz.jpeg",
                         "Funeoz",
                         "Funeoz",
                       ),
                       person(
-                        "lib/images/people/fristover.png",
+                        "assets/images/people/fristover.png",
                         "Fristover",
                         "Fristover",
                       ),
                       person(
-                        "lib/images/dahlia.png",
+                        "assets/images/dahliaOS/Logos/compiled/dahliaOS_logo_drop_shadow.png",
                         "And... you!",
                         "Thanks for testing out this build!",
                       ),
