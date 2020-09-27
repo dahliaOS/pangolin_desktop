@@ -86,17 +86,14 @@ Expanded tileSection(BuildContext context) {
               callback: toggleCallback),
           AppLauncherButton(
               type: AppLauncherButtonType.Drawer,
-              icon: 'assets/images/icons/v2/compiled/note_mobile.png',
-
               app: AuthApp(),
-              icon: 'assets/images/nticator.png',
+              icon: 'assets/images/icons/v2/compiled/authenticator.png',
               label: local.get("app_authenticator"),
               color: Colors.blueGrey[700],
               callback: toggleCallback),
           AppLauncherButton(
               type: AppLauncherButtonType.Drawer,
               icon: 'assets/images/icons/v2/compiled/note_mobile.png',
-
               label: local.get("app_notesmobile"),
               appExists: false),
           AppLauncherButton(
