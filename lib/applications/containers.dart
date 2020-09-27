@@ -97,7 +97,7 @@ class FirstScreen extends StatelessWidget {
                           Padding(
                               padding: EdgeInsets.all(15.0),
                               child: Image.asset(
-                                  'lib/images/icons/v2/compiled/fuchsia.png',
+                                  'assets/images/icons/v2/compiled/fuchsia.png',
                                   width: 32.0,
                                   height: 32.0,
                                   fit: BoxFit.fill)),
@@ -226,7 +226,7 @@ class FirstScreen extends StatelessWidget {
                           Padding(
                               padding: EdgeInsets.all(15.0),
                               child: Image.asset(
-                                  'lib/images/icons/v2/compiled/debian.png',
+                                  'assets/images/icons/v2/compiled/debian.png',
                                   width: 32.0,
                                   height: 32.0,
                                   fit: BoxFit.fill)),
@@ -354,7 +354,7 @@ class FirstScreen extends StatelessWidget {
                           Padding(
                               padding: EdgeInsets.all(15.0),
                               child: Image.asset(
-                                  'lib/images/icons/v2/compiled/ubuntu.png',
+                                  'assets/images/icons/v2/compiled/ubuntu.png',
                                   width: 32.0,
                                   height: 32.0,
                                   fit: BoxFit.fill)),
@@ -482,7 +482,7 @@ class FirstScreen extends StatelessWidget {
                           Padding(
                               padding: EdgeInsets.all(15.0),
                               child: Image.asset(
-                                  'lib/images/icons/v2/compiled/android.png',
+                                  'assets/images/icons/v2/compiled/android.png',
                                   width: 32.0,
                                   height: 32.0,
                                   fit: BoxFit.fill)),
@@ -689,7 +689,7 @@ class SecondScreen extends StatelessWidget {
                           Padding(
                               padding: EdgeInsets.all(15.0),
                               child: Image.asset(
-                                  'lib/images/icons/v2/compiled/fuchsia.png',
+                                  'assets/images/icons/v2/compiled/fuchsia.png',
                                   width: 32.0,
                                   height: 32.0,
                                   fit: BoxFit.fill)),

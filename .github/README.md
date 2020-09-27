@@ -3,7 +3,7 @@
 [![Donate](https://img.shields.io/badge/Donate-PayPal-brightgreen.svg)](https://paypal.me/officialdahliaos)
 [![Discord](https://img.shields.io/discord/576141822145986590.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/7qVbJHR)
 ![Website](https://img.shields.io/website?url=https%3A%2F%2Fweb.dahliaos.io)
-![](https://github.com/dahlia-os/pangolin-desktop/workflows/CI/badge.svg) ![](https://github.com/dahlia-os/pangolin-desktop/workflows/Deploy/badge.svg)
+![](https://github.com/dahlia-os/pangolin-desktop/workflows/CI/badge.svg) ![](https://github.com/dahlia-os/pangolin-desktop/workflows/Deploy/badge.svg) [![Crowdin](https://badges.crowdin.net/e/1a53a75fb38f15843d4eb6d9b9e4215a/localized.svg)](https://translate.dahliaos.io/pangolin)
 
 ## About Pangolin UI 
 

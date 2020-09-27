@@ -100,15 +100,12 @@ flutter:
           style: italic
   assets:
   - lib/application.json
-  - lib/images/
-  - lib/images/people/
-  - lib/images/Desktop/Dahlia/dahlia_material_background.jpg
-  - lib/images/Desktop/Dahlia/forest.jpg
-  - lib/images/Desktop/Dahlia/
-  - lib/images/Desktop/Cityscapes/stairs.png
-  - lib/images/icons/v2/compiled/
-  - lib/images/logo-color.png
-  - lib/images/dahlia.png
+  - assets/images/
+  - assets/images/people/
+  - assets/images/Desktop/Wallpapers/dahliaOS/
+  - assets/images/Desktop/Wallpapers/Nature/
+  - assets/images/icons/v2/compiled/
+  - assets/images/dahliaOS/Logos/compiled/
   - lib/localization/languages/de.json
   - lib/localization/languages/en.json
   - lib/localization/languages/fr.json
