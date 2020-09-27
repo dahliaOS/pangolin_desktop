@@ -15,10 +15,9 @@ limitations under the License.
 */
 
 import 'dart:ui';
+import 'package:Pangolin/applications/welcome/welcome.dart';
 import 'searchbar.dart';
 import 'package:flutter/material.dart';
-import '../welcome.dart';
-
 
 void main() => runApp(BrowserApp());
 
@@ -44,57 +43,50 @@ class Desktop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(children: [
-      Container(height: 50, color: Color(0xffF7F7F7),
-               child: new Row(
+      Container(
+        height: 50,
+        color: Color(0xffF7F7F7),
+        child: new Row(
             mainAxisAlignment: MainAxisAlignment.start,
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               new IconButton(
                 icon: const Icon(Icons.arrow_back),
-                onPressed:(){},
+                onPressed: () {},
                 //iconSize: iconSize,
                 color: const Color(0xFF000000),
               ),
-    
               new IconButton(
                 icon: const Icon(Icons.arrow_forward),
-                onPressed:(){},
+                onPressed: () {},
                 //iconSize: iconSize,
                 color: const Color(0xFF000000),
               ),
-    
               new IconButton(
                 icon: const Icon(Icons.refresh),
-                onPressed:(){},
-              //  iconSize: iconSize,
+                onPressed: () {},
+                //  iconSize: iconSize,
                 color: const Color(0xFF000000),
               ),
-
-new SearchWidget(),
-
-new IconButton(
-
-  icon: const Icon(Icons.star_border),
-                onPressed:(){},
-              //  iconSize: iconSize,
+              new SearchWidget(),
+              new IconButton(
+                icon: const Icon(Icons.star_border),
+                onPressed: () {},
+                //  iconSize: iconSize,
                 color: const Color(0xFF000000),
               ),
-new IconButton(
+              new IconButton(
                 icon: const Icon(Icons.more_vert),
-                onPressed:(){},
-              //  iconSize: iconSize,
+                onPressed: () {},
+                //  iconSize: iconSize,
                 color: const Color(0xFF000000),
               ),
-
-            ]
-    
-          ),),
-      
+            ]),
+      ),
     ]);
   }
 }
-
 
 class Browser extends StatefulWidget {
   Browser({Key key}) : super(key: key);
@@ -102,8 +94,7 @@ class Browser extends StatefulWidget {
   BrowserState createState() => new BrowserState();
 }
 
-class BrowserState extends State<Browser>
-    with TickerProviderStateMixin {
+class BrowserState extends State<Browser> with TickerProviderStateMixin {
   List<Tab> tabs = [];
   TabController tabController;
   var count = 1;
@@ -142,8 +133,6 @@ class BrowserState extends State<Browser>
     });
   }
 
-  
-  
   @override
   void initState() {
     super.initState();
@@ -212,7 +201,7 @@ class BrowserState extends State<Browser>
                                 color: Color(0xFF222222),
                                 onPressed: newTab),
                           ),
-                         /* new Center(
+                          /* new Center(
                             child: new Container(height:20,width:1,color:Color(0xFF222222),)
                           ),
                           new Center(
@@ -234,7 +223,16 @@ class BrowserState extends State<Browser>
               ),
               TabBarView(
                 controller: tabController,
-                children: tabs.map((tab) => Column(children: [new Desktop(),new Expanded(child: new Welcome(),)],)).toList(),
+                children: tabs
+                    .map((tab) => Column(
+                          children: [
+                            new Desktop(),
+                            new Expanded(
+                              child: new Welcome(),
+                            )
+                          ],
+                        ))
+                    .toList(),
               ),
             ],
           )),
