@@ -1,10 +1,10 @@
 import 'dart:io';
 
-import 'package:Pangolin/launcher.dart';
-import 'package:Pangolin/launcher_toggle.dart';
+import 'package:Pangolin/desktop/launcher/launcher.dart';
+import 'package:Pangolin/desktop/launcher/launcher_toggle.dart';
 import 'package:Pangolin/main.dart';
-import 'package:Pangolin/quick_settings.dart';
-import 'package:Pangolin/status_tray.dart';
+import 'package:Pangolin/desktop/quicksettings/quick_settings.dart';
+import 'package:Pangolin/desktop/quicksettings/status_tray.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';

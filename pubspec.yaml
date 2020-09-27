@@ -99,23 +99,10 @@ flutter:
           weight: 900
           style: italic
   assets:
-  - lib/application.json
   - assets/images/
   - assets/images/people/
   - assets/images/Desktop/Wallpapers/dahliaOS/
   - assets/images/Desktop/Wallpapers/Nature/
   - assets/images/icons/v2/compiled/
   - assets/images/dahliaOS/Logos/compiled/
-  - lib/localization/languages/de.json
-  - lib/localization/languages/en.json
-  - lib/localization/languages/fr.json
-  - lib/localization/languages/pl.json
-  - lib/localization/languages/hr.json
-  - lib/localization/languages/nl.json
-  - lib/localization/languages/es.json
-  - lib/localization/languages/pt.json
-  - lib/localization/languages/id.json
-  - lib/localization/languages/sk.json
-  - lib/localization/languages/tr.json
-  - lib/localization/languages/zh.json
-  - lib/localization/languages/ar.json
+  - lib/utils/localization/languages/
