@@ -12,6 +12,7 @@ jobs:
     - run: flutter channel master
     - run: flutter config --enable-web
     - run: flutter build web
+    - run: git commit -a -m "You've found me!"
     - name: FTP-Deploy-Action
       uses: SamKirkland/FTP-Deploy-Action@3.1.1
       with:
