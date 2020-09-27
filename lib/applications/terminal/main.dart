@@ -30,7 +30,13 @@ class TerminalApp extends StatelessWidget {
         accentColor: const Color(0xFFff6507),
         canvasColor: const Color(0xFF303030),
       ),
-      home: new TerminalUI(),
+      initialRoute: '/',
+      routes: {
+        // When navigating to the "/" route, build the FirstScreen widget.
+        '/': (context) => TerminalUI(),
+        // When navigating to the "/second" route, build the SecondScreen widget.
+        '/second': (context) => SettingsScreen(),
+      },
     );
   }
 }
@@ -71,6 +77,15 @@ class TerminalUIState extends State<TerminalUI> with TickerProviderStateMixin {
       count++;
       tabController = TabController(length: tabs.length, vsync: this);
     });
+  }
+
+  void handleClick(String value) {
+    switch (value) {
+      case 'Logout':
+        break;
+      case 'Settings':
+        break;
+    }
   }
 
   void closeCurrentTab() {
@@ -149,22 +164,42 @@ class TerminalUIState extends State<TerminalUI> with TickerProviderStateMixin {
                         ),
                         new Center(
                           child: new IconButton(
-                              icon: Icon(Icons.play_arrow),
-                              color: Colors.white,
-                              onPressed: newTab),
+                            icon: Icon(Icons.settings),
+                            color: Colors.white,
+                            onPressed: () {
+                              // Navigate to the second screen using a named route.
+                              Navigator.pushNamed(context, '/second');
+                            },
+                          ),
                         ),
-                        new Center(
-                          child: new IconButton(
-                              icon: Icon(Icons.more_vert),
-                              color: Colors.white,
-                              onPressed: newTab),
-                        )
                       ],
                     )) // A trick to trigger TabBar rebuild.
                 )),
         body: TabBarView(
           controller: tabController,
           children: tabs.map((tab) => Terminal()).toList(),
+        ),
+      ),
+    );
+  }
+}
+
+class SettingsScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xFF282828),
+        title: Text("Settings"),
+      ),
+      body: Center(
+        child: RaisedButton(
+          onPressed: () {
+            // Navigate back to the first screen by popping the current route
+            // off the stack.
+            Navigator.pop(context);
+          },
+          child: Text('Go back!'),
         ),
       ),
     );
