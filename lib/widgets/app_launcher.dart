@@ -59,11 +59,11 @@ class AppLauncherButtonState extends State<AppLauncherButton> {
   Widget build(BuildContext context) {
     return Padding(
       padding: (widget.type == AppLauncherButtonType.Drawer)
-          ? EdgeInsets.all(00.0)
+          ? EdgeInsets.all(10.0)
           : EdgeInsets.symmetric(horizontal: 4.0),
       child: Container(
-        width: (widget.type == AppLauncherButtonType.Drawer) ? 150.0 : 45.0,
-        height: (widget.type == AppLauncherButtonType.Drawer) ? 150.0 : 45.0,
+        width: (widget.type == AppLauncherButtonType.Drawer) ? 175.0 : 45.0,
+        height: (widget.type == AppLauncherButtonType.Drawer) ? 175.0 : 45.0,
         child: Hover(
             color: Colors.white.withOpacity(0.2),
             borderRadius: (widget.type == AppLauncherButtonType.Drawer)

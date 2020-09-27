@@ -41,7 +41,6 @@ class HiveManager {
     createEntryIfNotExisting("timeZone", "en_US");
     createEntryIfNotExisting("timeZoneName", "English - United States");
     createEntryIfNotExisting("launcherWideMode", false);
-    createEntryIfNotExisting("launcherSize", 5);
     createEntryIfNotExisting("coloredTitlebar", true);
   }
 
