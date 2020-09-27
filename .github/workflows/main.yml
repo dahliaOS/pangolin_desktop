@@ -25,7 +25,7 @@ jobs:
   build_and_deploy_web:
     name: Build and Deploy Web
     runs-on: ubuntu-latest
-    if: github.event_name == "push"
+    if: github.event_name == 'push'
     steps:
     - uses: actions/checkout@v2.1.0
       with:
