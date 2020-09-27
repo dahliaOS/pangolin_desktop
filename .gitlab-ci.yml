@@ -103,7 +103,7 @@ build_linux:
     - git fetch github
     - git push --set-upstream github gh-pages
     
-pages: #or deploy_web
+.pages: #or deploy_web
   only:
     - master
   stage: deploy
