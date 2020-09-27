@@ -7,40 +7,6 @@ on:
   pull_request:
     branches: [ master ]
 jobs:
-  #build_android:
-    #name: Build APK
-    #runs-on: ubuntu-latest
-    #steps:
-    #- uses: actions/checkout@v2
-    #- uses: actions/setup-java@v1
-    #  with:
-    #    java-version: '12.x'
-    #- uses: subosito/flutter-action@v1
-      #with:
-        #channel: 'master' # beta, dev, alpha, default to: stable
-        # flutter-version: '1.12.x'
-    #- run: flutter pub get
-    #- run: flutter test
-    #- run: flutter build apk --debug --split-per-abi
-    #- name: Upload APK for build_android
-    #  uses: actions/upload-artifact@v2
-    #  with:
-    #    name: pangolin_apk
-    #    path: build/app/outputs/apk/debug/
-  build_web:
-    name: Build Web
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: subosito/flutter-action@v1
-      - run: flutter channel master
-      - run: flutter config --enable-web
-      - run: flutter build web
-      - name: Upload web build for build_web
-        uses: actions/upload-artifact@v2
-        with:
-          name: pangolin-web-preview
-          path: build/web
   build_linux:
     name: Build Linux
     runs-on: ubuntu-latest
@@ -56,5 +22,24 @@ jobs:
         with:
           name: pangolin-linux-builds
           path: build/linux/debug/pangolin_desktop
-      
-        
+  build_and_deploy_web:
+    name: Build and Deploy Web
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+    steps:
+    - uses: actions/checkout@v2.1.0
+      with:
+        fetch-depth: 2
+    - uses: subosito/flutter-action@v1
+    - run: flutter channel master
+    - run: flutter config --enable-web
+    - run: flutter build web
+    - name: Prepare to deploy
+      run: git config --global user.name "dahliaOS" && git commit -a -m "You've found me!"
+    - name: Deploy to FTP
+      uses: SamKirkland/FTP-Deploy-Action@3.1.1
+      with:
+        ftp-server: ${{secrets.FTP_HOST}}/public_html/web_build
+        ftp-username: ${{secrets.FTP_USERNAME}}
+        ftp-password: ${{secrets.FTP_PASSWORD}}
+        local-dir: build/web/
