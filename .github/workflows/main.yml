@@ -33,6 +33,7 @@ jobs:
         fetch-depth: 2
     - uses: subosito/flutter-action@v1
     - run: flutter channel master
+    - run: echo y | flutter version 1.22.0-12.1.pre
     - run: flutter config --enable-web
     - run: flutter build web
     - name: Prepare to deploy
