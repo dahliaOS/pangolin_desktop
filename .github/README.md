@@ -41,6 +41,8 @@ If you're interested in translating the project, please refer to [TRANSLATION.md
 
 ## Contributors
 
+You can find all of the contributors [here](https://github.com/dahlia-os/pangolin-desktop/graphs/contributors)!
+
 ### Translators
 
 | Author                                                  | Language                 |
@@ -71,7 +73,7 @@ Uncompliant applications will have their theme colors set to a random color.
 ## License
 
 <p align="left">
-  <img width="45%" src="https://imgur.com/d7F8P3h.png"
+  <img width="45%" src="https://github.com/dahlia-os/brand/blob/master/Logo%20PNGs/dahliaOS%20logo%20with%20text%20(drop%20shadow).png"
 </p>
 
 Copyright @ 2019-2020 The dahliaOS Authors contact@dahliaos.io

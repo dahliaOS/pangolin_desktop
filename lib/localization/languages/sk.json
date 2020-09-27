@@ -1,5 +1,6 @@
 {
   "app_containers": "Kontajnery",
+  "app_authenticator": "Authenticator",
   "app_calculator": "Kalkulačka",
   "app_clock": "Hodiny",
   "app_disks": "Disky",
@@ -17,6 +18,7 @@
   "app_themedemo": "Ukážka témy",
   "app_welcome": "Vitajte",
   "app_help": "Podpora",
+  "app_web": "Prehliadač",
   "featurenotimplemented_title": "Funkcia nie je podporovaná",
   "featurenotimplemented_value": "Táto funkcia nie je momentálne k dispozícii pre vašu zostavu Pangolin. Aktualizácie nájdete na https://reddit.com/r/dahliaos.",
   "launcher_card_information_title": "Informácie",
@@ -24,7 +26,7 @@
   "launcher_card_kernel_title": "Jadro",
   "launcher_card_kernel_value": "Ovládače pre integrované GPU aktualizované",
   "launcher_card_music_title": "Hudba - Práve sa hrá",
-  "launcher_card_music_value": "Powerhouse of the Sell - The Revival",
+  "launcher_card_music_value": "Ludwig van Beethoven - Moonlight Sonata",
   "launcher_card_security_title": "Zabezpečenie",
   "launcher_card_security_value": "Zámok súborového systému je ZAPNUTÝ",
   "launcher_card_system_title": "Systém",
@@ -46,6 +48,5 @@
   "taskmanager_launch": "Spustiť",
   "taskmanager_processes": "Procesy",
   "taskmanager_resources": "Zdroje",
-  "taskmanager_selectedprocessplaceholder": "io.dahliaos.null",
-  "app_web": "Prehliadač"
+  "taskmanager_selectedprocessplaceholder": "io.dahliaos.null"
 }

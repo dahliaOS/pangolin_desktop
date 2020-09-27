@@ -1,5 +1,6 @@
 {
   "app_containers": "حاويات",
+  "app_authenticator": "Authenticator",
   "app_calculator": "آلة حاسبة",
   "app_clock": "ساعة",
   "app_disks": "أقسام التخزين",
@@ -17,6 +18,7 @@
   "app_themedemo": "تجربة الأنساق الشكليّة",
   "app_welcome": "حللتم أهلًا!",
   "app_help": "مساعدة",
+  "app_web": "المتصفّح",
   "featurenotimplemented_title": "لم تتمّ الميزة بعد",
   "featurenotimplemented_value": "هذه الميزة غير متوفرة حاليًا في نسختك. من Pangolin. يرجى الاطلاع على https://reddit.com/r/dahliaos للتحقق من وجود تحديثات.",
   "launcher_card_information_title": "معلومات",
@@ -24,7 +26,7 @@
   "launcher_card_kernel_title": "نواة النّظام",
   "launcher_card_kernel_value": "تم تحديث برامج تعريف بطاقة الرسوميّات المدمجة",
   "launcher_card_music_title": "الموسيقى - قيد التشغيل الآن",
-  "launcher_card_music_value": "فيروز - أَعْطِنِي النَّايَ وغَنِّ",
+  "launcher_card_music_value": "Ludwig van Beethoven - Moonlight Sonata",
   "launcher_card_security_title": "الحماية",
   "launcher_card_security_value": "قفل نظام الملفات قيد التشغيل",
   "launcher_card_system_title": "النظام",
@@ -46,6 +48,5 @@
   "taskmanager_launch": "بدء عمليّة",
   "taskmanager_processes": "العمليات",
   "taskmanager_resources": "المصادر",
-  "taskmanager_selectedprocessplaceholder": "io.dahliaos.null",
-  "app_web": "المتصفّح"
+  "taskmanager_selectedprocessplaceholder": "io.dahliaos.null"
 }

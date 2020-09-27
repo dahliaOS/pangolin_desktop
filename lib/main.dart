@@ -492,12 +492,9 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
-                                new Positioned(
-                                  left: -10,
-                                  child: LauncherToggleWidget(
-                                    toggleKey: KeyRing.launcherToggleKey,
-                                    callback: toggleCallback,
-                                  ),
+                                LauncherToggleWidget(
+                                  toggleKey: KeyRing.launcherToggleKey,
+                                  callback: toggleCallback,
                                 ),
                                 AppLauncherButton(
                                   app: Calculator(),

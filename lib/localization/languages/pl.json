@@ -1,5 +1,6 @@
 {
   "app_containers": "Kontener",
+  "app_authenticator": "Authenticator",
   "app_calculator": "Kalkulator",
   "app_clock": "Zegar",
   "app_disks": "Dyski",
@@ -17,6 +18,7 @@
   "app_themedemo": "Motyw Demo",
   "app_welcome": "Witaj",
   "app_help": "Pomoc",
+  "app_web": "Przeglądarka Sieci",
   "featurenotimplemented_title": "Funkcja niezaimplementowana",
   "featurenotimplemented_value": "Ta funkcja nie jest obecnie dostępna w twojej wersji pulpitu Pangolin. Sprawdź dostępność aktualizacji na witrynie https://reddit.com/r/dahliaos.",
   "launcher_card_information_title": "Informacja",
@@ -24,7 +26,7 @@
   "launcher_card_kernel_title": "Jądro",
   "launcher_card_kernel_value": "Sterowniki dla zintegrowanego GPU \nzostały zaktualizowane",
   "launcher_card_music_title": "Muzyka - Teraz Odtwarzane",
-  "launcher_card_music_value": "Young Multi - Pogba",
+  "launcher_card_music_value": "Ludwig van Beethoven - Moonlight Sonata",
   "launcher_card_security_title": "Ochrona",
   "launcher_card_security_value": "Blokada systemu plików jest włączona",
   "launcher_card_system_title": "System",
@@ -46,6 +48,5 @@
   "taskmanager_launch": "Uruchom",
   "taskmanager_processes": "Procesy",
   "taskmanager_resources": "Zasoby",
-  "taskmanager_selectedprocessplaceholder": "io.dahliaos.null",
-  "app_web": "Przeglądarka Sieci"
+  "taskmanager_selectedprocessplaceholder": "io.dahliaos.null"
 }

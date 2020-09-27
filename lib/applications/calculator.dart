@@ -117,7 +117,10 @@ class _CalculatorHomeState extends State<CalculatorHome> {
     _onTextChanged();
   }
 
+int errorcount = 0;
+
   void _equals() {
+    String originalExp = _controller.text.toString();
     setState(() {
       try {
         var diff = "(".allMatches(_controller.text).length - ")".allMatches(_controller.text).length;
@@ -162,8 +165,15 @@ class _CalculatorHomeState extends State<CalculatorHome> {
             .toStringAsPrecision(13)
             .replaceAll(RegExp(r'0+$'), '')
             .replaceAll(RegExp(r'\.$'), '');
+        if (_controller.text == "NaN") _controller.text = "Impossible";
       } catch (e) {
-        _controller.text = 'error';
+        if (errorcount < 5 && originalExp == "error+123") _controller.text = 'Congratulations!';
+        else if (originalExp == "you little...π") {
+          _controller.text = 'warning';
+        }
+        else if (errorcount > 5) _controller.text = 'you little...';
+        else _controller.text = 'error';
+        errorcount++;
       }
     });
     _onTextChanged();
@@ -257,6 +267,7 @@ class _CalculatorHomeState extends State<CalculatorHome> {
                               flex: 4,
                               child: Material(
                                   color: _numColor,
+                                  borderRadius: BorderRadius.only(topRight: Radius.circular(8)),
                                   child: Column(
                                 children: [
                                   Expanded(

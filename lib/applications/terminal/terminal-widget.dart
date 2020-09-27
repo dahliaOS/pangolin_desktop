@@ -198,6 +198,26 @@ class _TerminalState extends State<Terminal> {
     return spans;
   }
 
+  String ps1() {
+    String os = Platform.operatingSystem;
+    String home = "";
+    Map<String, String> envVars = Platform.environment;
+    if (Platform.isMacOS) {
+      home = envVars['HOME'];
+    } else if (Platform.isLinux) {
+      home = envVars['HOME'];
+    } else if (Platform.isWindows) {
+      home = envVars['UserProfile'];
+    }
+    ProcessResult result = Process.runSync('uname', ['-n']);
+    var HostName = result.stdout;
+    var Shell = home + "@" + HostName + ":~\$";
+    var multiline = Shell;
+    var singleline = multiline.replaceAll("\n", "");
+
+    return singleline;
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -253,7 +273,7 @@ class _TerminalState extends State<Terminal> {
                           fontFamily: "Cousine",
                         ),
                         decoration: InputDecoration.collapsed(
-                          hintText: "\$",
+                          hintText: ps1(),
                           hintStyle: TextStyle(
                               fontWeight: FontWeight.w900,
                               color: const Color(0xFFf2f2f2)),

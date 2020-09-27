@@ -28,7 +28,7 @@ class HiveManager {
     createEntryIfNotExisting("blueLightFilterValue", 0.5);
     createEntryIfNotExisting("enableBlueLightFilter", false);
     createEntryIfNotExisting("enableAutoTime", true);
-    createEntryIfNotExisting("enable24hTime", true);
+    createEntryIfNotExisting("enable24hTime", false);
     createEntryIfNotExisting("settingsLanguageSelectorList", languages);
     createEntryIfNotExisting("languageName", "English - United States");
     createEntryIfNotExisting("randomWallpaper", false);
