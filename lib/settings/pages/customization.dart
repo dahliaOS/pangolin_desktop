@@ -31,7 +31,6 @@ class Customization extends StatefulWidget {
 }
 
 class _CustomizationState extends State<Customization> {
-  String _sliderText = HiveManager.get("launcherSize").toString();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -340,35 +339,6 @@ class _CustomizationState extends State<Customization> {
                                   )
                                 ],
                               ),
-                              Row(
-                                children: [
-                                  Text("Launcher columns"),
-                                  Expanded(
-                                    child: Slider(
-                                      onChanged: (double value) {
-                                        setState(() {
-                                          HiveManager.set(
-                                              "launcherSize", value);
-                                          _sliderText = value
-                                              .toString()
-                                              .replaceAll(".0", "");
-                                        });
-                                      },
-                                      value: HiveManager.get("launcherSize")
-                                          .toDouble(),
-                                      label: _sliderText,
-                                      divisions: 2,
-                                      min: 5,
-                                      max: 7,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 12.0),
-                                    child:
-                                        Text(_sliderText.replaceAll(".0", "")),
-                                  )
-                                ],
-                              ),
                             ],
                           ),
                         ],
@@ -385,24 +355,18 @@ class _CustomizationState extends State<Customization> {
                       SizedBox(height: 5),
                       SettingsTile(
                         children: [
-                          Column(
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text("Enabled colored Titlebar"),
-                                  Switch(
-                                    value: HiveManager.get("coloredTitlebar"),
-                                    onChanged: (bool state) {
-                                      setState(() {
-                                        HiveManager.set(
-                                            "coloredTitlebar", state);
-                                      });
-                                    },
-                                  )
-                                ],
-                              ),
+                              Text("Enabled colored Titlebar"),
+                              Switch(
+                                value: HiveManager.get("coloredTitlebar"),
+                                onChanged: (bool state) {
+                                  setState(() {
+                                    HiveManager.set("coloredTitlebar", state);
+                                  });
+                                },
+                              )
                             ],
                           ),
                         ],
