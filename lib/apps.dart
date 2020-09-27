@@ -20,15 +20,14 @@ import 'package:flutter/material.dart';
 
 class WallpaperGrid extends StatelessWidget {
   @override
-  Widget build (BuildContext context) {
+  Widget build(BuildContext context) {
     return Container(
       child: Image.asset(
-        'lib/images/wallpaper.png',
-        fit:BoxFit.fill,
+        'assets/images/icons/v2/compiled/wallpaper.png',
+        fit: BoxFit.fill,
         width: 50.0,
         height: 50.0,
       ),
-
       padding: const EdgeInsets.all(0.0),
       alignment: Alignment.center,
       width: 100.0,
@@ -39,15 +38,14 @@ class WallpaperGrid extends StatelessWidget {
 
 class WallpaperIcon extends StatelessWidget {
   @override
-  Widget build (BuildContext context) {
+  Widget build(BuildContext context) {
     return Container(
       child: Image.asset(
-        'lib/images/wallpaper.png',
-        fit:BoxFit.fill,
+        'assets/images/icons/v2/compiled/wallpaper.png',
+        fit: BoxFit.fill,
         width: 50.0,
         height: 50.0,
       ),
-
       padding: const EdgeInsets.all(0.0),
       alignment: Alignment.center,
       width: 100.0,
@@ -58,15 +56,14 @@ class WallpaperIcon extends StatelessWidget {
 
 class CalculatorGrid extends StatelessWidget {
   @override
-  Widget build (BuildContext context) {
+  Widget build(BuildContext context) {
     return Container(
       child: Image.asset(
-        'lib/images/calculator.png',
-        fit:BoxFit.fill,
+        '/assets/images/icons/v2/compiled/calculator.png',
+        fit: BoxFit.fill,
         width: 50.0,
         height: 50.0,
       ),
-
       padding: const EdgeInsets.all(0.0),
       alignment: Alignment.center,
       width: 100.0,
@@ -77,15 +74,14 @@ class CalculatorGrid extends StatelessWidget {
 
 class PhoneGrid extends StatelessWidget {
   @override
-  Widget build (BuildContext context) {
+  Widget build(BuildContext context) {
     return Container(
       child: Image.asset(
-        'lib/images/phone.png',
-        fit:BoxFit.fill,
+        'assets/images/icons/v2/compiled/phone.png',
+        fit: BoxFit.fill,
         width: 50.0,
         height: 50.0,
       ),
-
       padding: const EdgeInsets.all(0.0),
       alignment: Alignment.center,
       width: 100.0,
@@ -96,15 +92,14 @@ class PhoneGrid extends StatelessWidget {
 
 class GmailGrid extends StatelessWidget {
   @override
-  Widget build (BuildContext context) {
+  Widget build(BuildContext context) {
     return Container(
       child: Image.asset(
-        'lib/images/Gmail-icon.png',
-        fit:BoxFit.fill,
+        'assets/images/icons/v2/compiled/Gmail-icon.png',
+        fit: BoxFit.fill,
         width: 50.0,
         height: 50.0,
       ),
-
       padding: const EdgeInsets.all(0.0),
       alignment: Alignment.center,
       width: 100.0,
@@ -115,15 +110,14 @@ class GmailGrid extends StatelessWidget {
 
 class MusicGrid extends StatelessWidget {
   @override
-  Widget build (BuildContext context) {
+  Widget build(BuildContext context) {
     return Container(
       child: Image.asset(
-        'lib/images/music.png',
-        fit:BoxFit.fill,
+        'assets/images/icons/v2/compiled/music.png',
+        fit: BoxFit.fill,
         width: 50.0,
         height: 50.0,
       ),
-
       padding: const EdgeInsets.all(0.0),
       alignment: Alignment.center,
       width: 100.0,
@@ -134,15 +128,14 @@ class MusicGrid extends StatelessWidget {
 
 class SettingsGrid extends StatelessWidget {
   @override
-  Widget build (BuildContext context) {
+  Widget build(BuildContext context) {
     return Container(
       child: Image.asset(
-        'lib/images/settings.png',
-        fit:BoxFit.fill,
+        'assets/images/icons/v2/compiled/settings.png',
+        fit: BoxFit.fill,
         width: 50.0,
         height: 50.0,
       ),
-
       padding: const EdgeInsets.all(0.0),
       alignment: Alignment.center,
       width: 100.0,
@@ -153,15 +146,14 @@ class SettingsGrid extends StatelessWidget {
 
 class ClockGrid extends StatelessWidget {
   @override
-  Widget build (BuildContext context) {
+  Widget build(BuildContext context) {
     return Container(
       child: Image.asset(
-        'lib/images/clock.png',
-        fit:BoxFit.fill,
+        'assets/images/icons/v2/compiled/clock.png',
+        fit: BoxFit.fill,
         width: 50.0,
         height: 50.0,
       ),
-
       padding: const EdgeInsets.all(0.0),
       alignment: Alignment.center,
       width: 100.0,

@@ -86,10 +86,10 @@ class WindowState extends State<Window> {
   Color _color;
 
   /// The window's minimum height.
-  final double _minHeight = 400.0;
+  final double _minHeight = 300.0;
 
   /// The window's minimum width.
-  final double _minWidth = 600.0;
+  final double _minWidth = 300.0;
 
   /// Controls focus on this window.
   final FocusNode _focusNode = new FocusNode();
@@ -103,7 +103,7 @@ class WindowState extends State<Window> {
   void initState() {
     super.initState();
     _focusAttachment = _focusNode.attach(context);
-    _position = widget.initialPosition;
+    _position = Offset(0, 0);
     _size = widget.initialSize;
     _child = widget.child;
     _color = widget.color;

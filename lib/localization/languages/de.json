@@ -1,5 +1,6 @@
 {
-  "app_containers": "Containers",
+  "app_containers": "Container",
+  "app_authenticator": "Authenticator",
   "app_calculator": "Taschenrechner",
   "app_clock": "Uhr",
   "app_disks": "Festplattenverwaltung",
@@ -17,14 +18,15 @@
   "app_themedemo": "Thema Vorschau",
   "app_welcome": "Willkommen",
   "app_help": "Hilfeseite",
+  "app_web": "Browser",
   "featurenotimplemented_title": "Funktion noch nicht Intigriert",
   "featurenotimplemented_value": "Diese Funktion ist in ihrer Version von Pangolin noch nicht verfügbar. Bitte siehe https://reddit.com/r/dahliaos für Aktualisierungen und weiter Informationen.",
-  "launcher_card_information_title": "Information",
+  "launcher_card_information_title": "Informationen",
   "launcher_card_information_value": "Warnung: Sie benutzen eine Entwicklungs-Build von dahliaOS welche noch nicht veröffentlicht wurde.",
   "launcher_card_kernel_title": "Kernel",
   "launcher_card_kernel_value": "Treiber für Intigrierte Grafikkarte aktualisiert",
   "launcher_card_music_title": "Musik - Spielt Gerade",
-  "launcher_card_music_value": "Powerhouse of the Sell - The Revival",
+  "launcher_card_music_value": "Ludwig van Beethoven - Moonlight Sonata",
   "launcher_card_security_title": "Sicherheit",
   "launcher_card_security_value": "Dateisystemsperre ist AN",
   "launcher_card_system_title": "System",
@@ -46,6 +48,5 @@
   "taskmanager_launch": "Ausführen",
   "taskmanager_processes": "Prozesse",
   "taskmanager_resources": "Ressourcen",
-  "taskmanager_selectedprocessplaceholder": "io.dahliaos.null",
-  "app_web": "Browser"
+  "taskmanager_selectedprocessplaceholder": "io.dahliaos.null"
 }

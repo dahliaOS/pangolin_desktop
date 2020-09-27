@@ -3,7 +3,7 @@
 [![Donate](https://img.shields.io/badge/Donate-PayPal-brightgreen.svg)](https://paypal.me/officialdahliaos)
 [![Discord](https://img.shields.io/discord/576141822145986590.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/7qVbJHR)
 ![Website](https://img.shields.io/website?url=https%3A%2F%2Fweb.dahliaos.io)
-![](https://github.com/dahlia-os/pangolin-desktop/workflows/CI/badge.svg) ![](https://github.com/dahlia-os/pangolin-desktop/workflows/Deploy/badge.svg) ![gitlocalized ](https://gitlocalize.com/repo/5170/whole_project/badge.svg)
+![](https://github.com/dahlia-os/pangolin-desktop/workflows/CI/badge.svg) ![](https://github.com/dahlia-os/pangolin-desktop/workflows/Deploy/badge.svg) [![Crowdin](https://badges.crowdin.net/e/1a53a75fb38f15843d4eb6d9b9e4215a/localized.svg)](https://translate.dahliaos.io/pangolin)
 
 ## About Pangolin UI 
 
@@ -41,22 +41,26 @@ If you're interested in translating the project, please refer to [TRANSLATION.md
 
 ## Contributors
 
+You can find all of the contributors [here](https://github.com/dahlia-os/pangolin-desktop/graphs/contributors)!
+
 ### Translators
 
 | Author                                                  | Language                 |
 | ------------------------------------------------------- | ------------------------ |
-| [SincerelyFaust](https://github.com/sincerelyfaust)               | Croatian           |
-| [nmcain](https://github.com/nmcain)           | English                  |
-| [larsb24](https://github.com/larsb24)                   | German       |
-| [Funeoz](https://github.com/Funeoz) | French |
-| [Fristover](https://github.com/Fristover)             | Spanish                |
-| [febryardiansyah](https://github.com/febryardiansyah)                 | Indonesian       |
-| [HexaOneOfficial](https://github.com/HexaOneOfficial)                     | Dutch                |
-| [Horus125](https://github.com/Horus125)               | Polish                |
-| [allansrc](https://github.com/allansrc)               | Portugese                |
-| [Seplx](https://github.com/Seplx)               | Slovak                |
-| [aoaowangxiao](https://github.com/aoaowangxiao)               | Chinese                |
-| [goktugvatandas](https://github.com/goktugvatandas)               | Turkish                |
+| [WaseemAlkurdi](https://github.com/WaseemAlkurdi)               | [Arabic](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/localization/languages/ar.json)                |
+| [aoaowangxiao](https://github.com/aoaowangxiao)               | [Chinese](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/localization/languages/zh.json)                |
+| [SincerelyFaust](https://github.com/sincerelyfaust)               | [Croatian](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/localization/languages/hr.json)           |
+| [HexaOneOfficial](https://github.com/HexaOneOfficial)                     | [Dutch](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/localization/languages/nl.json)                |
+| [nmcain](https://github.com/nmcain)           | [English](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/localization/languages/en.json)                  |
+| [Funeoz](https://github.com/Funeoz) | [French](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/localization/languages/fr.json) |
+| [larsb24](https://github.com/larsb24)                   | [German](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/localization/languages/de.json)       |
+| [febryardiansyah](https://github.com/febryardiansyah)                 | [Indonesian](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/localization/languages/id.json)       |
+| [Seplx](https://github.com/Seplx)               | [Slovak](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/localization/languages/sk.json)                |
+| [Fristover](https://github.com/Fristover)             | [Spanish](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/localization/languages/es.json)                |
+| [Horus125](https://github.com/Horus125)               | [Polish](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/localization/languages/pl.json)                |
+| [evolutionevotv](https://github.com/evolutionevotv)               | [Polish](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/localization/languages/pl.json)                |
+| [allansrc](https://github.com/allansrc)               | [Portugese](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/localization/languages/pt.json)                |
+| [goktugvatandas](https://github.com/goktugvatandas)               | [Turkish](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/localization/languages/tr.json)                |
 
 ## Important style guide
 
@@ -69,7 +73,7 @@ Uncompliant applications will have their theme colors set to a random color.
 ## License
 
 <p align="left">
-  <img width="45%" src="https://imgur.com/d7F8P3h.png"
+  <img width="45%" src="https://github.com/dahlia-os/brand/blob/master/Logo%20PNGs/dahliaOS%20logo%20with%20text%20(drop%20shadow).png"
 </p>
 
 Copyright @ 2019-2020 The dahliaOS Authors contact@dahliaos.io

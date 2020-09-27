@@ -13,7 +13,7 @@
   "name": "Calculator",
   "theme": "0xFF4caf50",
   "version": "1.0",
-  "icon": "imahes/icons/v2/calculator.png",
+  "icon": "images/icons/v2/calculator.png",
   "language": "EN-US",
   "type": "math",
   "author": "horus @ dahlia",

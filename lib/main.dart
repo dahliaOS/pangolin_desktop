@@ -98,17 +98,18 @@ void _setOverlayVisibility({
 
 List<AppLauncherButton> testLaunchers = [
   AppLauncherButton(
-      app: Calculator(), icon: 'lib/images/icons/v2/compiled/calculator.png'),
+      app: Calculator(),
+      icon: 'assets/images/icons/v2/compiled/calculator.png'),
   AppLauncherButton(
-      app: TextEditorApp(), icon: 'lib/images/icons/v2/compiled/notes.png'),
+      app: TextEditorApp(), icon: 'assets/images/icons/v2/compiled/notes.png'),
   AppLauncherButton(
-      app: TerminalApp(), icon: 'lib/images/icons/v2/compiled/terminal.png'),
+      app: TerminalApp(), icon: 'assets/images/icons/v2/compiled/terminal.png'),
   AppLauncherButton(
-    icon: 'lib/images/icons/v2/compiled/files.png',
+    icon: 'assets/images/icons/v2/compiled/files.png',
     appExists: false,
   ),
   AppLauncherButton(
-      app: Settings(), icon: 'lib/images/icons/v2/compiled/settings.png'),
+      app: Settings(), icon: 'assets/images/icons/v2/compiled/settings.png'),
 ];
 
 void main() async {
@@ -140,12 +141,11 @@ class Pangolin extends StatefulWidget {
   static ThemeData theme;
 
   static List<String> wallpapers = [
-    "lib/images/Desktop/Dahlia/forest.jpg",
-    "lib/images/Desktop/Dahlia/Brick-Wall.jpg",
-    "lib/images/Desktop/Dahlia/dahlia_material_background.jpg",
-    "lib/images/Desktop/Dahlia/dahlia_material_background-1.jpg",
-    "lib/images/Desktop/Dahlia/mountain.jpg",
-    "lib/images/Desktop/Dahlia/Sunset.png",
+    "assets/images/Desktop/Wallpapers/dahliaOS/dahliaOS_white_logo_pattern_wallpaper.png",
+    "assets/images/Desktop/Wallpapers/dahliaOS/dahliaOS_white_wallpaper.png",
+    "assets/images/Desktop/Wallpapers/dahliaOS/Gradient_logo_wallpaper.png",
+    "assets/images/Desktop/Wallpapers/dahliaOS/Three_bubbles_wallpaper.png",
+    "assets/images/Desktop/Wallpapers/Nature/mountain.jpg",
   ];
 
   static refreshTheme() {
@@ -227,6 +227,10 @@ class _PangolinState extends State<Pangolin> {
                     Locale("es"),
                     Locale("pt"),
                     Locale("id"),
+                    Locale("sk"),
+                    Locale("tr"),
+                    Locale("zh"),
+                    Locale("ar"),
                   ],
                   localizationsDelegates: [
                     Localization.delegate,
@@ -423,45 +427,45 @@ class _MyHomePageState extends State<MyHomePage> {
                                     AppLauncherButton(
                                       app: Calculator(),
                                       icon:
-                                          'lib/images/icons/v2/compiled/calculator.png',
+                                          'assets/images/icons/v2/compiled/calculator.png',
                                       color: Colors.green,
                                       callback: toggleCallback,
                                     ),
                                     AppLauncherButton(
                                         app: TextEditorApp(),
                                         icon:
-                                            'lib/images/icons/v2/compiled/notes.png',
+                                            'assets/images/icons/v2/compiled/notes.png',
                                         color: Colors.amber[700],
                                         callback: toggleCallback),
                                     AppLauncherButton(
                                         app: TerminalApp(),
                                         icon:
-                                            'lib/images/icons/v2/compiled/terminal.png',
+                                            'assets/images/icons/v2/compiled/terminal.png',
                                         color: Colors.grey[900],
                                         callback: toggleCallback),
                                     AppLauncherButton(
                                         app: Files(),
                                         icon:
-                                            'lib/images/icons/v2/compiled/files.png',
+                                            'assets/images/icons/v2/compiled/files.png',
                                         color: Colors.deepOrange,
                                         callback: toggleCallback),
                                     AppLauncherButton(
                                       app: Tasks(),
                                       icon:
-                                          'lib/images/icons/v2/compiled/task.png',
+                                          'assets/images/icons/v2/compiled/task.png',
                                       color: Colors.cyan[900],
                                       callback: toggleCallback,
                                     ),
                                     AppLauncherButton(
                                         app: Settings(),
                                         icon:
-                                            'lib/images/icons/v2/compiled/settings.png',
+                                            'assets/images/icons/v2/compiled/settings.png',
                                         color: Colors.deepOrange[700],
                                         callback: toggleCallback),
                                     AppLauncherButton(
                                         app: HisApp(),
                                         icon:
-                                            'lib/images/icons/v2/compiled/theme.png',
+                                            'assets/images/icons/v2/compiled/theme.png',
                                         color: Colors.grey[900],
                                         callback: toggleCallback),
                                   ]),
@@ -488,54 +492,52 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
-                                new Positioned(
-                                  left: -10,
-                                  child: LauncherToggleWidget(
-                                    toggleKey: KeyRing.launcherToggleKey,
-                                    callback: toggleCallback,
-                                  ),
+                                LauncherToggleWidget(
+                                  toggleKey: KeyRing.launcherToggleKey,
+                                  callback: toggleCallback,
                                 ),
                                 AppLauncherButton(
                                   app: Calculator(),
                                   icon:
-                                      'lib/images/icons/v2/compiled/calculator.png',
+                                      'assets/images/icons/v2/compiled/calculator.png',
                                   color: Colors.green,
                                   callback: toggleCallback,
                                 ),
                                 AppLauncherButton(
                                     app: TextEditorApp(),
                                     icon:
-                                        'lib/images/icons/v2/compiled/notes.png',
+                                        'assets/images/icons/v2/compiled/notes.png',
                                     color: Colors.amber[700],
                                     callback: toggleCallback),
                                 AppLauncherButton(
                                     app: TerminalApp(),
                                     icon:
-                                        'lib/images/icons/v2/compiled/terminal.png',
+                                        'assets/images/icons/v2/compiled/terminal.png',
                                     color: Colors.grey[900],
                                     callback: toggleCallback),
                                 AppLauncherButton(
                                     app: Files(),
                                     icon:
-                                        'lib/images/icons/v2/compiled/files.png',
+                                        'assets/images/icons/v2/compiled/files.png',
                                     color: Colors.deepOrange[800],
                                     callback: toggleCallback),
                                 AppLauncherButton(
                                   app: Tasks(),
-                                  icon: 'lib/images/icons/v2/compiled/task.png',
+                                  icon:
+                                      'assets/images/icons/v2/compiled/task.png',
                                   color: Colors.cyan[900],
                                   callback: toggleCallback,
                                 ),
                                 AppLauncherButton(
                                     app: Settings(),
                                     icon:
-                                        'lib/images/icons/v2/compiled/settings.png',
+                                        'assets/images/icons/v2/compiled/settings.png',
                                     color: Colors.deepOrange[700],
                                     callback: toggleCallback),
                                 AppLauncherButton(
                                     app: HisApp(),
                                     icon:
-                                        'lib/images/icons/v2/compiled/theme.png',
+                                        'assets/images/icons/v2/compiled/theme.png',
                                     color: Colors.grey[900],
                                     callback: toggleCallback),
                               ]),
