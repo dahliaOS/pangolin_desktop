@@ -13,7 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import 'package:Pangolin/desktop/pangolin_desktop.dart';
+import 'package:Pangolin/desktop/desktop.dart';
 import 'package:Pangolin/utils/localization/localization.dart';
 import 'package:Pangolin/desktop/window/model.dart';
 import 'package:Pangolin/utils/hiveManager.dart';
