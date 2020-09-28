@@ -6,6 +6,7 @@ import 'package:Pangolin/applications/editor/editor.dart';
 import 'package:Pangolin/applications/terminal/main.dart';
 import 'package:Pangolin/applications/monitor/monitor.dart';
 import 'package:Pangolin/desktop/settings/settings.dart';
+import 'package:Pangolin/main.dart';
 import 'package:Pangolin/utils/others/key_ring.dart';
 import 'package:Pangolin/desktop/window/window_space.dart';
 import 'package:Pangolin/utils/hiveManager.dart';
@@ -43,6 +44,7 @@ class _DesktopState extends State<Desktop> {
   Widget build(BuildContext context) {
     final customizationNotifier = context.watch<CustomizationNotifier>();
     final _random = new Random();
+    Pangolin.overlayState = Overlay.of(context);
     return ChangeNotifierProvider(
       create: (_) => CustomizationNotifier(),
       child: Scaffold(

@@ -44,6 +44,8 @@ class Pangolin extends StatefulWidget {
   @override
   _PangolinState createState() => _PangolinState();
 
+  static OverlayState overlayState;
+
   static void setLocale(BuildContext context, Locale locale) {
     _PangolinState state = context.findAncestorStateOfType<_PangolinState>();
     state.setLocale(locale);

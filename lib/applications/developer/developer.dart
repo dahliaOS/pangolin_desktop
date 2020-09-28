@@ -14,6 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'package:Pangolin/widgets/notification.dart';
 import 'package:flutter/material.dart';
 import '../../main.dart';
 import 'dart:io';
@@ -53,42 +54,53 @@ class _DeveloperAppPageState extends State<DeveloperAppPage> {
           title: new Text('Developer Options (Linux)'),
         ),
         body: new Center(
-          child: Column(
-            children: [
-              Text(
-                  "Warning: These options are intended only for development purposes. If something goes seriously wrong when using these, hold down the power button for 5-10 seconds to force a shutdown."),
-              RaisedButton(
-                  onPressed: () {
-                    Process.run('reboot', [' ']);
-                  },
-                  child: Text('Reboot')),
-              RaisedButton(
-                  onPressed: () {
-                    Process.run('poweroff', ['-f']);
-                  },
-                  child: Text('Shutdown')),
-              RaisedButton(
-                  onPressed: () {
-                    Process.run('killall', ['pangolin_desktop']);
-                  },
-                  child: Text('Enter commandline mode')),
-              Text('DANGEROUS OPTIONS!!!!'),
-              RaisedButton(
-                  onPressed: () {
-                    Process.run('echo', ['c', '>', '/proc/sysrq-trigger']);
-                  },
-                  child: Text('Induce Kernel Panic')),
-              RaisedButton(
-                  onPressed: () {
-                    Process.run(':(){ :|:& };', ['']);
-                  },
-                  child: Text('Execute Fork Bomb')),
-              RaisedButton(
-                  onPressed: () {
-                    Pangolin.settingsBox.clear();
-                  },
-                  child: Text('Clear local Database')),
-            ],
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Text(
+                    "Warning: These options are intended only for development purposes. If something goes seriously wrong when using these, hold down the power button for 5-10 seconds to force a shutdown."),
+                RaisedButton(
+                    onPressed: () {
+                      Process.run('reboot', [' ']);
+                    },
+                    child: Text('Reboot')),
+                RaisedButton(
+                    onPressed: () {
+                      Process.run('poweroff', ['-f']);
+                    },
+                    child: Text('Shutdown')),
+                RaisedButton(
+                    onPressed: () {
+                      Process.run('killall', ['pangolin_desktop']);
+                    },
+                    child: Text('Enter commandline mode')),
+                Text('DANGEROUS OPTIONS!!!!'),
+                RaisedButton(
+                    onPressed: () {
+                      Process.run('echo', ['c', '>', '/proc/sysrq-trigger']);
+                    },
+                    child: Text('Induce Kernel Panic')),
+                RaisedButton(
+                    onPressed: () {
+                      Process.run(':(){ :|:& };', ['']);
+                    },
+                    child: Text('Execute Fork Bomb')),
+                RaisedButton(
+                    onPressed: () {
+                      Pangolin.settingsBox.clear();
+                    },
+                    child: Text('Clear local Database')),
+                RaisedButton(
+                    onPressed: () {
+                      DahliaNotification.showNotification(
+                          "System Update",
+                          "There is a new Update available \nPress to start Installation",
+                          Icons.notifications,
+                          () {});
+                    },
+                    child: Text('Show Test Notification')),
+              ],
+            ),
           ),
         ));
   }
