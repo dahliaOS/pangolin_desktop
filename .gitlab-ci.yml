@@ -3,6 +3,7 @@ default:
 
   before_script:
     - flutter channel master
+    - echo y | flutter version 1.22.0-12.1.pre
     - flutter upgrade
     - flutter config --enable-web
   
