@@ -84,7 +84,6 @@ class _PangolinState extends State<Pangolin> {
   @override
   Widget build(BuildContext context) {
     //Gets DahliaOS UI set up in a familiar way.
-    Pangolin.overlayState = Overlay.of(context);
     return ChangeNotifierProvider<WindowsData>(
       create: (context) => provisionalWindowData,
       child: ChangeNotifierProvider(
