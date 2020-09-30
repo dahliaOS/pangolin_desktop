@@ -16,7 +16,7 @@ Pangolin Desktop is based on the deprecated Capybara shell, with a custom window
 You can check it online [here](https://web.dahliaos.io)!
 
 ![Pangolin](https://user-images.githubusercontent.com/61460660/89405582-1899a500-d71c-11ea-89a5-24b07fa07712.png)
-> Pangolin Desktop
+> [latest rolling-release](https://github.com/dahlia-os/releases/releases/tag/200830-x86_64)
 
 
 ## Build Pangolin Desktop
