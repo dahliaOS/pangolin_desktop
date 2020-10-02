@@ -56,7 +56,7 @@ class _DesktopState extends State<Desktop> {
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(kIsWeb
-                    ? wallpapers[4]
+                    ? wallpapers[3]
                     : HiveManager.get("randomWallpaper")
                         ? wallpapers[_random.nextInt(wallpapers.length)]
                         : wallpapers[HiveManager.get("wallpaper").toInt()]),
