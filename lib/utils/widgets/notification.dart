@@ -15,7 +15,7 @@ limitations under the License.
 */
 import 'package:flutter/material.dart';
 
-import '../main.dart';
+import '../../main.dart';
 
 class DahliaNotification {
   static showNotification(
