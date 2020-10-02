@@ -16,10 +16,10 @@ dependencies:
   hive_flutter: ^0.3.0+2
   path_provider: ^1.6.11
   flutter_colorpicker: ^0.3.4
+  google_fonts: ^1.1.0
+  path: ^1.7.0
 #Useful in an ideal future but not now.  random_color: ^1.0.5
 
-dependency_overrides:
-  path: ^1.6.4
 
 dev_dependencies:
   mockito:
