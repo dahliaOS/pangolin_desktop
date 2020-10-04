@@ -18,6 +18,6 @@ String headingFeatureString =
     "dahliaOS Linux-Based " + totalVersionNumber + " ...";
 String longName = "dahliaOS Linux-Based " + totalVersionNumber + " PRE-RELEASE";
 String kernel = "Linux 5.7.19";
-String pangolinCommit = "Pangolin e19e26555115591bada8597f45e6a60d989068ad";
+String pangolinCommit = "Pangolin 968d8d83d40333a6e5d904e85177fa52ff121fe8";
 String fullPangolinVersion =
-    "Pangolin 201004; HASH: e19e26555115591bada8597f45e6a60d989068ad";
+    "Pangolin 201004; HASH: 968d8d83d40333a6e5d904e85177fa52ff121fe8";
