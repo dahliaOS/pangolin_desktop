@@ -57,12 +57,12 @@ class SysInfoCard extends StatelessWidget {
             child: new Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   new Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       mainAxisSize: MainAxisSize.max,
-                      crossAxisAlignment: CrossAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         new Icon(Icons.info, color: Colors.blue, size: 20.0),
                         new Text(
@@ -203,7 +203,7 @@ Card buildCard(IconData icon, String title, Color color, Color splash,
             child: new Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   new SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
@@ -223,14 +223,19 @@ Card buildCard(IconData icon, String title, Color color, Color splash,
                           )
                         ]),
                   ),
-                  new Text(
-                    text,
-                    style: new TextStyle(
-                        fontSize: 15.0,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w400,
-                        fontFamily: "Roboto"),
-                  )
+                  new Padding(
+                      padding: EdgeInsets.only(
+                        top: 2,
+                        left: 2,
+                      ),
+                      child: new Text(
+                        text,
+                        style: new TextStyle(
+                            fontSize: 15.0,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400,
+                            fontFamily: "Roboto"),
+                      ))
                 ]),
           ),
         ),
