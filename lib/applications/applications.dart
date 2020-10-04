@@ -40,7 +40,7 @@ Expanded tileSection(BuildContext context) {
         margin: EdgeInsets.symmetric(
             horizontal: HiveManager.get("launcherWideMode") ? 100 : 350),
         child: SingleChildScrollView(
-          child: Wrap(spacing: 75.0, children: [
+          child: Wrap(spacing: 18.0, children: [
             AppLauncherButton(
               type: AppLauncherButtonType.Drawer,
               app: TerminalApp(),

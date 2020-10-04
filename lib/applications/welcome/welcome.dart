@@ -16,7 +16,7 @@ limitations under the License.
 
 import 'dart:io';
 import 'dart:ui';
-
+import 'package:Pangolin/utils/globals.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -108,7 +108,7 @@ class FirstScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         shadowColor: const Color(0x00ffffff),
         title: Image.asset(
-          'assets/images/dahliaOS/Logos/compiled/dahliaOS_logo_with_text_drop_shadow.png',
+          'assets/images/dahliaOS/Logos/compiled/dahliaos-alt.png',
           fit: BoxFit.fitHeight,
           width: 300,
           height: 32,
@@ -142,7 +142,7 @@ class FirstScreen extends StatelessWidget {
                   feature(
                       "assets/images/icons/v2/compiled/welcome-info.png",
                       "Build Information",
-                      "dahliaOS Linux-Based 200830 ...",
+                      headingFeatureString,
                       "/info",
                       context),
                   feature(
@@ -315,16 +315,16 @@ class BuildInfo extends StatelessWidget {
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           new Image.asset(
-            'assets/images/dahliaOS/Logos/compiled/dahliaOS_logo_with_text_drop_shadow.png',
+            'assets/images/dahliaOS/Logos/compiled/dahliaos-alt.png',
             fit: BoxFit.fitHeight,
             width: 300,
             height: 32,
           ),
-          Text('dahliaOS Linux-based 200830  PRE-RELEASE',
+          Text(longName,
               style: TextStyle(fontSize: 14, color: Color(0xff000000))),
-          Text('Kernel 5.7.19',
+          Text(kernel,
               style: TextStyle(fontSize: 14, color: Color(0xff000000))),
-          Text('Pangolin e19e26555115591bada8597f45e6a60d989068ad',
+          Text(pangolinCommit,
               style: TextStyle(fontSize: 14, color: Color(0xff000000))),
           RaisedButton(
               onPressed: () {
