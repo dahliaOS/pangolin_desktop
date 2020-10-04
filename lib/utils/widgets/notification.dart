@@ -39,7 +39,7 @@ class DahliaNotification {
                         key: ValueKey(_overlayEntry),
                         child: Card(
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10)),
+                              borderRadius: BorderRadius.circular(5)),
                           elevation: 1.5,
                           child: Container(
                             child: Padding(

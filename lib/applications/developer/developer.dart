@@ -58,7 +58,7 @@ class _DeveloperAppPageState extends State<DeveloperAppPage> {
             child: Column(
               children: [
                 Text(
-                    "Warning: These options are intended only for development purposes. If something goes seriously wrong when using these, hold down the power button for 5-10 seconds to force a shutdown."),
+                    "Warning: These options are intended for development purposes only. If something goes seriously wrong when using these, hold down the power button for 5-10 seconds to force a shutdown."),
                 RaisedButton(
                     onPressed: () {
                       Process.run('reboot', [' ']);
