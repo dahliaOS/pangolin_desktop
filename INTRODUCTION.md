@@ -16,24 +16,45 @@ limitations under the License.
 
 -->
 
-# Table of contents
+<p align="center">
+  <img width="110%" src="https://github.com/dahlia-os/brand/blob/master/Pangolin%20Logo%20SVGs/Pangolin%20logo%20with%20text%20(black)%20on%20a%20white%20background.svg"
+</p>
 
-<p align="left">
-<a href="https://github.com/SincerelyFaust/pangolin-desktop/blob/master/INTRODUCTION.md">Introduction</a> -
+<p align="center">
+<a href="https://github.com/dahlia-os/pangolin-desktop">Pangolin</a> -
 <a href="https://dahliaos.io">Website</a> -
 <a href="https://discord.gg/7qVbJHR">Discord</a> -
 <a href="https://github.com/dahlia-os/releasess">Releases</a> -
 <a href="https://paypal.me/officialdahliaos">Donate</a> -
 <a href="https://github.com/dahlia-os/documentation">Documentation</a>
 
-# Pangolin Front-end tutorial
+# Introduction to pangolin-desktop repo
 
-In this file, we will document all Pangolin's front-end code and explain what it changes, what specific code it is and on what line it is!
+Hey there, we're glad you're checking this document out!
+In this file, we will document all of Pangolin's files and front-end code, explain what it changes, what specific code it is and on what line it is!
 The purpose of this is to introduce Flutter to newbies and to hopefully boost their learning!
 We will be updating this regurarly and we invite all Dart (and Flutter :D) developers to join our Discord where you can ask for help and learn!
 Discord: https://dahliaos.io/discord
 
-# Sections
+# Table of contents
+
+* Taskbar
+  * [Taskbar](link_to_file)
+  * Line xx to xx
+* Quick settings
+  * [Quick settings](link_to_file)
+  * Line xx to xx
+* Launcher
+  * [Launcher](link_to_file)
+  * Line xx to xx
+* Wallpaper
+  * [Wallpaper](link_to_file)
+  * Line xx to xx
+* Window manager
+  * [Window manager](link_to_file)
+  * Line xx to xx
+
+# Front-end code
 
 * Taskbar
   * [Taskbar](link_to_file)
