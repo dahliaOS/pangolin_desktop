@@ -21,7 +21,7 @@ limitations under the License.
 </p>
 
 <p align="center">
-<a href="https://github.com/dahlia-os/pangolin-desktop">Pangolin</a> -
+<a href="https://github.com/dahlia-os/pangolin-desktop">Pangolin repo</a> -
 <a href="https://dahliaos.io">Website</a> -
 <a href="https://discord.gg/7qVbJHR">Discord</a> -
 <a href="https://github.com/dahlia-os/releasess">Releases</a> -
@@ -29,12 +29,14 @@ limitations under the License.
 <a href="https://github.com/dahlia-os/documentation">Documentation</a>
 
 # Introduction to pangolin-desktop repo
+[![Discord](https://img.shields.io/discord/576141822145986590.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/7qVbJHR)
+[![Donate](https://img.shields.io/badge/Donate-PayPal-brightgreen.svg)](https://paypal.me/officialdahliaos)
 
-Hey there, we're glad you're checking this document out!
-In this file, we will document all of Pangolin's files and front-end code, explain what it changes, what specific code it is and on what line it is!
-The purpose of this is to introduce Flutter to newbies and to hopefully boost their learning!
-We will be updating this regurarly and we invite all Dart (and Flutter :D) developers to join our Discord where you can ask for help and learn!
-Discord: https://dahliaos.io/discord
+- Hey there, we're glad you're checking this document out!
+- In this file, we will document all of Pangolin's files and front-end code, explain what it changes, what specific code it is and on what line it is!
+- The purpose of this is to introduce Flutter to newbies and to hopefully boost their learning!
+- We will be updating this regurarly and we invite all Dart (and Flutter :D) developers to join our Discord where you can ask for help and learn!
+- Discord: https://dahliaos.io/discord
 
 # Table of contents
 
