@@ -29,12 +29,14 @@ limitations under the License.
 <a href="https://github.com/dahlia-os/documentation">Documentation</a>
 
 # Introduction to pangolin-desktop repo
-![GitHub Repo stars](https://img.shields.io/github/stars/dahlia-os/pangolin-desktop?color=brightgreen&style=social)
 
-- Hey there, we're glad you're checking this document out!
-- In this file, we will document all of Pangolin's files and front-end code, explain what it changes, what specific code it is and on what line it is!
-- The purpose of this is to introduce Flutter to newbies and to hopefully boost their learning!
-- We will be updating this regurarly and we invite all Dart (and Flutter :D) developers to join our Discord where you can ask for help and learn!
+Hey there, we're glad you're checking this document out!
+
+In this file, we will document all of Pangolin's files and front-end code, explain what it changes, what specific code it is and on what line it is!
+
+The purpose of this is to introduce Flutter to newbies and to hopefully boost their learning!
+
+We will be updating this regurarly and we invite all Dart (and Flutter :D) developers to join our Discord where you can ask for help and learn!
 - Discord: https://dahliaos.io/discord
 
 # Table of contents
