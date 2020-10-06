@@ -12,9 +12,9 @@
 
 # Pangolin Desktop UI [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=dahliaOS%20is%20a%20modern,%20secure,%20lightweight%20and%20responsive%20operating%20system,%20combining%20the%20best%20of%20GNU/Linux%20and%20Fuchsia%20OS&url=https://dahliaos.io&via=realdahliaos&hashtags=dahliaos,linux,zircon,flutter,dart,fuchsia,opensource)
 ![](https://github.com/dahlia-os/pangolin-desktop/workflows/CI/badge.svg) ![](https://github.com/dahlia-os/pangolin-desktop/workflows/Deploy/badge.svg)
+![Website](https://img.shields.io/website?url=https%3A%2F%2Fweb.dahliaos.io)
 ![GitHub](https://img.shields.io/github/license/dahlia-os/pangolin-desktop?color=brightgreen)
 [![Crowdin](https://badges.crowdin.net/e/1a53a75fb38f15843d4eb6d9b9e4215a/localized.svg)](https://translate.dahliaos.io/pangolin)
-![Website](https://img.shields.io/website?url=https%3A%2F%2Fweb.dahliaos.io)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-brightgreen.svg)](https://paypal.me/officialdahliaos)
 [![Discord](https://img.shields.io/discord/576141822145986590.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/7qVbJHR)
 
@@ -27,7 +27,13 @@
   <img width="100%" src="https://user-images.githubusercontent.com/18690588/95038583-587cfa00-0683-11eb-9d84-10e0cb001c0e.png"
 </p>
 
-> Pangolin Desktop
+> Pangolin Desktop Linux-based build 201004 showing Quick Settings
+
+<p align="center">
+  <img width="100%" src="https://user-images.githubusercontent.com/18690588/95038579-55820980-0683-11eb-8d82-58a08ce19dcd.png"
+</p>
+
+> Pangolin Desktop Linux-based build 201004 showing Settings application
 
 ## Build Pangolin Desktop
 
