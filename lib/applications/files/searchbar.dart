@@ -16,8 +16,21 @@ limitations under the License.
 
 import 'package:flutter/material.dart';
 
-class SearchWidget extends StatelessWidget implements PreferredSizeWidget {
+class SearchAppBar extends StatefulWidget implements PreferredSizeWidget {
+  List<Widget> actions = List<Widget>();
+  SearchAppBar({this.actions});
+
+  @override
+  _SearchAppBarState createState() => _SearchAppBarState();
+
+  @override
+  // TODO: implement preferredSize
+  Size get preferredSize => Size.fromHeight(65);
+}
+
+class _SearchAppBarState extends State<SearchAppBar> {
   final TextEditingController editingController = new TextEditingController();
+
   BuildContext _context;
 
   @override
@@ -30,39 +43,45 @@ class SearchWidget extends StatelessWidget implements PreferredSizeWidget {
       width: 700,
       height: 65,
       color: Colors.deepOrange,
-      child: new Material(
-        color: Colors.white.withOpacity(0.3),
-        borderRadius: const BorderRadius.all(const Radius.circular(5)),
-        elevation: 0.0,
-        child: new Container(
-          width: 700,
-          height: 100.0,
-          margin: new EdgeInsets.only(left: 16.0, right: 16.0),
-          child: new Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              new Expanded(
-                  child: new TextField(
-                style: new TextStyle(color: Colors.white),
-                maxLines: 1,
-                decoration: new InputDecoration(
-                    hintStyle: TextStyle(color: Colors.white),
-                    icon: Icon(
-                      Icons.search,
-                      color: const Color(0xFFffffff),
-                    ),
-                    hintText: 'Search messages...',
-                    border: InputBorder.none),
-                onSubmitted: null,
-                controller: editingController,
-              ))
-            ],
+      child: Row(
+        children: [
+          Expanded(
+            child: new Material(
+              color: Colors.white.withOpacity(0.3),
+              borderRadius: const BorderRadius.all(const Radius.circular(5)),
+              elevation: 0.0,
+              child: new Container(
+                width: 700,
+                height: 100.0,
+                margin: new EdgeInsets.only(left: 16.0, right: 16.0),
+                child: new Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    new Expanded(
+                        child: new TextField(
+                      style: new TextStyle(color: Colors.white),
+                      maxLines: 1,
+                      decoration: new InputDecoration(
+                          hintStyle: TextStyle(color: Colors.white),
+                          icon: Icon(
+                            Icons.search,
+                            color: const Color(0xFFffffff),
+                          ),
+                          hintText: 'Search Files and Folders',
+                          border: InputBorder.none),
+                      onSubmitted: null,
+                      controller: editingController,
+                    )),
+                  ],
+                ),
+              ),
+            ),
           ),
-        ),
+          Row(
+            children: widget.actions,
+          )
+        ],
       ),
     );
   }
-
-  @override
-  Size get preferredSize => Size.fromHeight(65);
 }
