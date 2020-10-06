@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-<a href="https://github.com/dahlia-os/pangolin-desktop/blob/master/INTRODUCTION.md">Introduction</a> -
+<a href="https://github.com/SincerelyFaust/pangolin-desktop/blob/master/INTRODUCTION.md">Introduction</a> -
 <a href="https://dahliaos.io">Website</a> -
 <a href="https://discord.gg/7qVbJHR">Discord</a> -
 <a href="https://github.com/dahlia-os/releasess">Releases</a> -
@@ -22,7 +22,9 @@
  - **Pangolin Desktop** is based on the deprecated Capybara shell, with a custom window management system built from the ground up
  - You can check it online [here](https://web.dahliaos.io)!
 
-![Pangolin](https://user-images.githubusercontent.com/18690588/95038583-587cfa00-0683-11eb-9d84-10e0cb001c0e.png)
+<p align="center">
+  <img width="50%" src="https://user-images.githubusercontent.com/18690588/95038583-587cfa00-0683-11eb-9d84-10e0cb001c0e.png"
+</p>
 > Pangolin Desktop
 
 ## Build Pangolin Desktop
