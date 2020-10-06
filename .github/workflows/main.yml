@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: subosito/flutter-action@v1
-      - run: flutter channel master
+      - run: flutter channel dev
       - run: flutter config --enable-linux-desktop
       - run: sudo apt update && sudo apt install cmake ninja-build clang libgtk-3-dev -y
       - run: flutter build linux --debug
@@ -31,7 +31,7 @@ jobs:
       with:
         fetch-depth: 2
     - uses: subosito/flutter-action@v1
-    - run: flutter channel master
+    - run: flutter channel dev
     - run: flutter config --enable-web
     - run: flutter build web
     - name: Prepare to deploy

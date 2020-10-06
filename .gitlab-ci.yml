@@ -2,7 +2,7 @@ default:
   image: cirrusci/flutter:stable
 
   before_script:
-    - flutter channel master
+    - flutter channel dev
     - flutter upgrade
     - flutter config --enable-web
   

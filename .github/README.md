@@ -15,7 +15,7 @@ Pangolin Desktop is based on the deprecated Capybara shell, with a custom window
 
 You can check it online [here](https://web.dahliaos.io)!
 
-![Pangolin](https://user-images.githubusercontent.com/61460660/89405582-1899a500-d71c-11ea-89a5-24b07fa07712.png)
+![Pangolin](https://user-images.githubusercontent.com/18690588/95038583-587cfa00-0683-11eb-9d84-10e0cb001c0e.png)
 > Pangolin Desktop
 
 
@@ -47,20 +47,20 @@ You can find all of the contributors [here](https://github.com/dahlia-os/pangoli
 
 | Author                                                  | Language                 |
 | ------------------------------------------------------- | ------------------------ |
-| [WaseemAlkurdi](https://github.com/WaseemAlkurdi)               | [Arabic](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/localization/languages/ar.json)                |
-| [aoaowangxiao](https://github.com/aoaowangxiao)               | [Chinese](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/localization/languages/zh.json)                |
-| [SincerelyFaust](https://github.com/sincerelyfaust)               | [Croatian](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/localization/languages/hr.json)           |
-| [HexaOneOfficial](https://github.com/HexaOneOfficial)                     | [Dutch](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/localization/languages/nl.json)                |
-| [nmcain](https://github.com/nmcain)           | [English](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/localization/languages/en.json)                  |
-| [Funeoz](https://github.com/Funeoz) | [French](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/localization/languages/fr.json) |
-| [larsb24](https://github.com/larsb24)                   | [German](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/localization/languages/de.json)       |
-| [febryardiansyah](https://github.com/febryardiansyah)                 | [Indonesian](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/localization/languages/id.json)       |
-| [Seplx](https://github.com/Seplx)               | [Slovak](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/localization/languages/sk.json)                |
-| [Fristover](https://github.com/Fristover)             | [Spanish](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/localization/languages/es.json)                |
-| [Horus125](https://github.com/Horus125)               | [Polish](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/localization/languages/pl.json)                |
-| [evolutionevotv](https://github.com/evolutionevotv)               | [Polish](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/localization/languages/pl.json)                |
-| [allansrc](https://github.com/allansrc)               | [Portugese](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/localization/languages/pt.json)                |
-| [goktugvatandas](https://github.com/goktugvatandas)               | [Turkish](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/localization/languages/tr.json)                |
+| [WaseemAlkurdi](https://github.com/WaseemAlkurdi)               | [Arabic](https://github.com/dahlia-os/pangolin-desktop/tree/master/lib/utils/localization/languages/ar.json)                |
+| [aoaowangxiao](https://github.com/aoaowangxiao)               | [Chinese](https://github.com/dahlia-os/pangolin-desktop/tree/master/lib/utils/localization/languages/zh.json)                |
+| [SincerelyFaust](https://github.com/sincerelyfaust)               | [Croatian](https://github.com/dahlia-os/pangolin-desktop/tree/master/lib/utils/localization/languages/hr.json)           |
+| [HexaOneOfficial](https://github.com/HexaOneOfficial)                     | [Dutch](https://github.com/dahlia-os/pangolin-desktop/tree/master/lib/utils/localization/languages/nl.json)                |
+| [nmcain](https://github.com/nmcain)           | [English](https://github.com/dahlia-os/pangolin-desktop/tree/master/lib/utils/localization/languages/en.json)                  |
+| [Funeoz](https://github.com/Funeoz) | [French](https://github.com/dahlia-os/pangolin-desktop/tree/master/lib/utils/localization/languages/fr.json) |
+| [larsb24](https://github.com/larsb24)                   | [German](https://github.com/dahlia-os/pangolin-desktop/tree/master/lib/utils/localization/languages/de.json)       |
+| [febryardiansyah](https://github.com/febryardiansyah)                 | [Indonesian](https://github.com/dahlia-os/pangolin-desktop/tree/master/lib/utils/localization/languages/id.json)       |
+| [Seplx](https://github.com/Seplx)               | [Slovak](https://github.com/dahlia-os/pangolin-desktop/tree/master/lib/utils/localization/languages/sk.json)                |
+| [Fristover](https://github.com/Fristover)             | [Spanish](https://github.com/dahlia-os/pangolin-desktop/tree/master/lib/utils/localization/languages/es.json)                |
+| [Horus125](https://github.com/Horus125)               | [Polish](https://github.com/dahlia-os/pangolin-desktop/tree/master/lib/utils/localization/languages/pl.json)                |
+| [evolutionevotv](https://github.com/evolutionevotv)               | [Polish](https://github.com/dahlia-os/pangolin-desktop/tree/master/lib/utils/localization/languages/pl.json)                |
+| [allansrc](https://github.com/allansrc)               | [Portugese](https://github.com/dahlia-os/pangolin-desktop/tree/master/lib/utils/localization/languages/pt.json)                |
+| [goktugvatandas](https://github.com/goktugvatandas)               | [Turkish](https://github.com/dahlia-os/pangolin-desktop/tree/master/lib/utils/localization/languages/tr.json)                |
 
 ## Important style guide
 
