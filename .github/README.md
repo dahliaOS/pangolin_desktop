@@ -1,3 +1,15 @@
+<p align="center">
+  <img width="75%" src="https://github.com/dahlia-os/brand/blob/master/Pangolin%20Logo%20SVGs/Pangolin%20logo%20with%20text%20(black).svg"
+</p>
+
+<p align="center">
+<a href="https://github.com/dahlia-os/pangolin-desktop/blob/master/INTRODUCTION.md">Introduction</a> -
+<a href="https://dahliaos.io">Website</a> -
+<a href="https://discord.gg/7qVbJHR">Discord</a> -
+<a href="https://github.com/dahlia-os/releasess">Releases</a> -
+<a href="https://paypal.me/officialdahliaos">Donate</a> -
+<a href="https://github.com/dahlia-os/documentation">Documentation</a>
+
 # Pangolin Desktop UI [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=dahliaOS%20is%20a%20modern,%20secure,%20lightweight%20and%20responsive%20operating%20system,%20combining%20the%20best%20of%20GNU/Linux%20and%20Fuchsia%20OS&url=https://dahliaos.io&via=realdahliaos&hashtags=dahliaos,linux,zircon,flutter,dart,fuchsia,opensource)
 ![GitHub](https://img.shields.io/github/license/dahlia-os/pangolin-desktop?color=brightgreen)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-brightgreen.svg)](https://paypal.me/officialdahliaos)
@@ -5,35 +17,21 @@
 ![Website](https://img.shields.io/website?url=https%3A%2F%2Fweb.dahliaos.io)
 ![](https://github.com/dahlia-os/pangolin-desktop/workflows/CI/badge.svg) ![](https://github.com/dahlia-os/pangolin-desktop/workflows/Deploy/badge.svg) [![Crowdin](https://badges.crowdin.net/e/1a53a75fb38f15843d4eb6d9b9e4215a/localized.svg)](https://translate.dahliaos.io/pangolin)
 
-## About Pangolin UI 
-
-Pangolin UI is a Desktop shell for dahliaOS, written in Flutter, runs on Linux and Zircon
-
-Pangolin was named after a shelled animal like the [Armadillo UI](https://9to5google.com/2018/12/26/fuchsia-armadillo-ui-gone/)
-
-Pangolin Desktop is based on the deprecated Capybara shell, with a custom window management system built from the ground up
-
-You can check it online [here](https://web.dahliaos.io)!
+ - **Pangolin UI** is a Desktop shell for dahliaOS, written in Flutter, runs on Linux and Zircon
+ - **Pangolin** was named after a shelled animal like the [Armadillo UI](https://9to5google.com/2018/12/26/fuchsia-armadillo-ui-gone/)
+ - **Pangolin Desktop** is based on the deprecated Capybara shell, with a custom window management system built from the ground up
+ - You can check it online [here](https://web.dahliaos.io)!
 
 ![Pangolin](https://user-images.githubusercontent.com/18690588/95038583-587cfa00-0683-11eb-9d84-10e0cb001c0e.png)
 > Pangolin Desktop
-
 
 ## Build Pangolin Desktop
 
 Check the wiki: [/wiki/Build-Pangolin-Desktop](https://github.com/dahlia-os/pangolin-desktop/wiki/Build-Pangolin-Desktop)
 
-## Documentation
-
-You can find documentation for dahliaOS over [here!](https://github.com/dahlia-os/documentation)
-
 ## Contribute
 
-If you're interested in contributing to the project, please refer to [CONTRIBUTING.md](./CONTRIBUTING.md)
-
-## Donate
-
-If you're interested in donating to the project, you can do so by clicking [here](https://dahliaos.io/donate) or by clicking on the Sponsor button featured on this repo!
+If you're wondering how to contribute to the project, please refer to the [CONTRIBUTING.md](./CONTRIBUTING.md) file!
 
 ## Translate
 
@@ -61,14 +59,6 @@ You can find all of the contributors [here](https://github.com/dahlia-os/pangoli
 | [evolutionevotv](https://github.com/evolutionevotv)               | [Polish](https://github.com/dahlia-os/pangolin-desktop/tree/master/lib/utils/localization/languages/pl.json)                |
 | [allansrc](https://github.com/allansrc)               | [Portugese](https://github.com/dahlia-os/pangolin-desktop/tree/master/lib/utils/localization/languages/pt.json)                |
 | [goktugvatandas](https://github.com/goktugvatandas)               | [Turkish](https://github.com/dahlia-os/pangolin-desktop/tree/master/lib/utils/localization/languages/tr.json)                |
-
-## Important style guide
-
-All dahliaOS applications MUST have a central theme color, that is not #ff5722, or material-deeporange or similar, as that is reserved for the system. 
-
-Uploaders must upload a theme.txt in the root of their application, that contains the theme color, in preferably hexadecimal, but RGBA is acceptable as well. 
-
-Uncompliant applications will have their theme colors set to a random color.
 
 ## License
 
