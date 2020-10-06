@@ -262,7 +262,11 @@ class SecondScreen extends StatelessWidget {
                         child: Center(
                             child: Icon(Icons.redo,
                                 size: 25, color: Color(0xff545454)))),
-                    Container(width: 1, height: 30, color: Color(0xff545454)),
+                    VerticalDivider(
+                      endIndent: 10,
+                      indent: 10,
+                      color: Colors.black,
+                    ),
                     Container(
                         width: 40,
                         height: 40,
@@ -299,7 +303,11 @@ class SecondScreen extends StatelessWidget {
                         child: Center(
                             child: Icon(Icons.code,
                                 size: 25, color: Color(0xff545454)))),
-                    Container(width: 1, height: 30, color: Color(0xff545454)),
+                    VerticalDivider(
+                      endIndent: 10,
+                      indent: 10,
+                      color: Colors.black,
+                    ),
                     Container(
                         width: 40,
                         height: 40,
@@ -378,7 +386,11 @@ class SecondScreen extends StatelessWidget {
                                 fontFamily: "Roboto"),
                           ),
                         )),
-                    Container(width: 1, height: 30, color: Color(0xff545454)),
+                    VerticalDivider(
+                      endIndent: 10,
+                      indent: 10,
+                      color: Colors.black,
+                    ),
                     Container(
                         width: 40,
                         height: 40,
@@ -391,7 +403,11 @@ class SecondScreen extends StatelessWidget {
                         child: Center(
                             child: Icon(Icons.format_list_numbered,
                                 size: 25, color: Color(0xff545454)))),
-                    Container(width: 1, height: 30, color: Color(0xff545454)),
+                    VerticalDivider(
+                      endIndent: 10,
+                      indent: 10,
+                      color: Colors.black,
+                    ),
                     Container(
                         width: 40,
                         height: 40,
