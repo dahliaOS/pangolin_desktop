@@ -29,8 +29,7 @@ limitations under the License.
 <a href="https://github.com/dahlia-os/documentation">Documentation</a>
 
 # Introduction to pangolin-desktop repo
-[![Discord](https://img.shields.io/discord/576141822145986590.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/7qVbJHR)
-[![Donate](https://img.shields.io/badge/Donate-PayPal-brightgreen.svg)](https://paypal.me/officialdahliaos)
+![GitHub Repo stars](https://img.shields.io/github/stars/dahlia-os/pangolin-desktop?color=brightgreen&style=social)
 
 - Hey there, we're glad you're checking this document out!
 - In this file, we will document all of Pangolin's files and front-end code, explain what it changes, what specific code it is and on what line it is!
