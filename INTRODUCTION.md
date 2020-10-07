@@ -17,7 +17,7 @@ limitations under the License.
 -->
 
 <p align="center">
-  <img width="110%" src="https://github.com/dahlia-os/brand/blob/master/Pangolin%20Logo%20SVGs/Pangolin%20logo%20with%20text%20(black)%20on%20a%20white%20background.svg"
+  <img width="120%" src="https://github.com/dahlia-os/brand/blob/master/Pangolin%20Logo%20SVGs/Pangolin%20logo%20with%20text%20(black)%20on%20a%20white%20background.svg"
 </p>
 
 <p align="center">
@@ -40,13 +40,29 @@ We will be updating this regurarly and we invite all Dart (and Flutter :D) devel
 
 # Table of contents
 
+* Folders
+  * [Localization](https://github.com/dahlia-os/pangolin-desktop/tree/master/lib/utils/localization)
+    * Contains everything regarded to localization (translations)
+  * [Applications](https://github.com/dahlia-os/pangolin-desktop/tree/master/lib/applications)
+    * Contains all dahliaOS applications
+  * [Settings](https://github.com/dahlia-os/pangolin-desktop/tree/master/lib/desktop/settings)
+    * Contains the Settings application
+  * [dahliaOS Logos](https://github.com/dahlia-os/pangolin-desktop/tree/master/assets/images/dahliaOS/Logos)
+    * Contains all dahliaOS logos (both PNGs and SVGs)
+  * [Wallpapers](https://github.com/dahlia-os/pangolin-desktop/tree/master/assets/images/Desktop/Wallpapers)
+    * Contains all wallpapers
+  * [Icons](https://github.com/dahlia-os/pangolin-desktop/tree/master/assets/images/icons/v2)
+    * Contains all icons (both PNGs and SVGs)
+
 * Files
-  * [First file](link_to_file)
-    * Contains xx
-  * [Second file](link_to_file)
-    * Contains xx
-  * [Third file](link_to_file)
-    * Contains xx
+  * [main.dart](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/main.dart)
+    * Contains translations and initializers
+  * [desktop.dart](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/desktop/desktop.dart)
+    * Contains the desktop framework with taskbar, window playground etc.
+  * [quick_settings.dart](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/desktop/quicksettings/quick_settings.dart)
+    * Contains the Quick settings framework
+  * [launcher.dart](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/desktop/launcher/launcher.dart)
+    * Contains the Launcher framework
 * Icons
   * [Application icons](https://github.com/dahlia-os/pangolin-desktop/tree/master/assets/images/icons/v2)
   * [UI icons](https://github.com/dahlia-os/pangolin-desktop/tree/master/assets/images/icons/v2)
