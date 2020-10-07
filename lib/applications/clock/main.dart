@@ -14,8 +14,10 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'dart:async';
 import 'dart:ui';
 
+import 'package:Pangolin/desktop/quicksettings/quick_settings.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -38,6 +40,7 @@ class Clock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return new MaterialApp(
       title: 'Clock',
       theme: new ThemeData(
@@ -45,13 +48,7 @@ class Clock extends StatelessWidget {
         primaryColor: Colors.blue[900],
         brightness: Brightness.dark
       ),
-      initialRoute: '/world',
-      routes: {
-        // When navigating to the "/" route, build the FirstScreen widget.
-        '/world': (context) => WorldClockTab(),
-        // When navigating to the "/second" route, build the SecondScreen widget.
-        '/alarm': (context) => AlarmsTab(),
-      },
+      home: ClockApp()
     );
   }
 }
@@ -68,18 +65,42 @@ class _ClockApp extends State<ClockApp> with TickerProviderStateMixin {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: TabBar(
-          controller: tcon,
-          tabs: [
-            Tab(
-              icon: Icon(Icons.access_time),
-              text: "Clock"
+        elevation: 0,
+        toolbarHeight: 75,
+        title: Row(
+          children: [
+            TabBar(
+              controller: tcon,
+              indicator: BoxDecoration(
+                color: Theme.of(context).canvasColor,
+                borderRadius: BorderRadius.only(topLeft: Radius.circular(8), topRight: Radius.circular(8)),
+              ),
+              isScrollable: true,
+              tabs: [
+                Tab(
+                  icon: Icon(Icons.access_time),
+                  text: "Clock",
+                ),
+                Tab(
+                  icon: Icon(Icons.alarm),
+                  text: "Alarms",
+                ),
+              ],
             ),
-            Tab(
-              icon: Icon(Icons.alarm),
-              text: "Alarm",
+            Expanded(child: Container()),
+            PopupMenuButton(
+              icon: Icon(Icons.more_vert),
+              itemBuilder: (context) => <PopupMenuEntry>[
+                PopupMenuItem(
+                  child: Text("Settings"),
+                  value: "settings"
+                )
+              ],
+              onSelected: (value) {
+                if (value == "settings") notImplemented(context);
+              },
             ),
-          ],
+          ]
         ),
       ),
       body: TabBarView(
@@ -93,14 +114,26 @@ class _ClockApp extends State<ClockApp> with TickerProviderStateMixin {
   }
 }
 
-class WorldClockTab extends StatelessWidget {
+class WorldClockTab extends StatefulWidget {
+  @override
+  _WorldClockTabState createState() => _WorldClockTabState();
+}
+
+class _WorldClockTabState extends State<WorldClockTab> {
+
+  DateTime _datetime = DateTime.now();
+  Timer _ctimer;
+
   @override
   Widget build(BuildContext context) {
-    var dt = DateTime.now();
+    if (_ctimer == null) _ctimer = Timer.periodic(Duration(seconds: 1), (me) {
+      _datetime = DateTime.now();
+      setState(() {});
+    });
     return Material(
       child: Center(
         child: Text(
-          "${dt.hour}:${dt.minute < 10 ? "0"+dt.minute.toString() : dt.minute}",
+          "${_datetime.hour}:${_datetime.minute < 10 ? "0"+_datetime.minute.toString() : _datetime.minute}:${_datetime.second < 10 ? "0"+_datetime.second.toString() : _datetime.second}",
           style: TextStyle(
             fontSize: 48,
             fontWeight: FontWeight.bold
@@ -116,14 +149,7 @@ class AlarmsTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       child: Center(
-        child: RaisedButton(
-          onPressed: () {
-            // Navigate back to the first screen by popping the current route
-            // off the stack.
-            Navigator.pop(context);
-          },
-          child: Text('Go back!'),
-        ),
+        child: Icon(Icons.timer_rounded)
       ),
     );
   }
