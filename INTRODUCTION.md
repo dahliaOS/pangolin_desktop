@@ -21,7 +21,7 @@ limitations under the License.
 </p>
 
 <p align="center">
-<a href="https://github.com/dahlia-os/pangolin-desktop">Pangolin repo</a> -
+<a href="https://github.com/dahlia-os/pangolin-desktop">Pangolin</a> -
 <a href="https://dahliaos.io">Website</a> -
 <a href="https://discord.gg/7qVbJHR">Discord</a> -
 <a href="https://github.com/dahlia-os/releases">Releases</a> -
