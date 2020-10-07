@@ -38,7 +38,7 @@ The purpose of this is to introduce Flutter to newbies and to hopefully boost th
 
 We will be updating this regurarly and we invite all Dart (and Flutter :D) developers to join our Discord where you can ask for help and learn!
 
-# Table of contents
+# Navigation
 
 * Folders
   * [Localization](https://github.com/dahlia-os/pangolin-desktop/tree/master/lib/utils/localization)
