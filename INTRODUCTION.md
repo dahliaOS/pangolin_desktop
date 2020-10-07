@@ -24,7 +24,7 @@ limitations under the License.
 <a href="https://github.com/dahlia-os/pangolin-desktop">Pangolin repo</a> -
 <a href="https://dahliaos.io">Website</a> -
 <a href="https://discord.gg/7qVbJHR">Discord</a> -
-<a href="https://github.com/dahlia-os/releasess">Releases</a> -
+<a href="https://github.com/dahlia-os/releases">Releases</a> -
 <a href="https://paypal.me/officialdahliaos">Donate</a> -
 <a href="https://github.com/dahlia-os/documentation">Documentation</a>
 
@@ -53,19 +53,19 @@ We will be updating this regurarly and we invite all Dart (and Flutter :D) devel
 # Front-end code
 
 * Taskbar
-  * [Taskbar](link_to_file)
+  * [Taskbar file](link_to_file)
   * Line xx to xx
 * Quick settings
-  * [Quick settings](link_to_file)
+  * [Quick settings file](link_to_file)
   * Line xx to xx
 * Launcher
-  * [Launcher](link_to_file)
+  * [Launcher file](link_to_file)
   * Line xx to xx
 * Wallpaper
-  * [Wallpaper](link_to_file)
+  * [Wallpaper file](link_to_file)
   * Line xx to xx
 * Window manager
-  * [Window manager](link_to_file)
+  * [Window manager file](link_to_file)
   * Line xx to xx
 
 ## Taskbar
