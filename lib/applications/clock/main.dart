@@ -16,6 +16,7 @@ limitations under the License.
 
 import 'dart:ui';
 
+import 'package:Pangolin/desktop/quicksettings/quick_settings.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -45,13 +46,7 @@ class Clock extends StatelessWidget {
         primaryColor: Colors.blue[900],
         brightness: Brightness.dark
       ),
-      initialRoute: '/world',
-      routes: {
-        // When navigating to the "/" route, build the FirstScreen widget.
-        '/world': (context) => WorldClockTab(),
-        // When navigating to the "/second" route, build the SecondScreen widget.
-        '/alarm': (context) => AlarmsTab(),
-      },
+      home: ClockApp()
     );
   }
 }
@@ -68,18 +63,42 @@ class _ClockApp extends State<ClockApp> with TickerProviderStateMixin {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: TabBar(
-          controller: tcon,
-          tabs: [
-            Tab(
-              icon: Icon(Icons.access_time),
-              text: "Clock"
+        elevation: 0,
+        toolbarHeight: 75,
+        title: Row(
+          children: [
+            TabBar(
+              controller: tcon,
+              indicator: BoxDecoration(
+                color: Theme.of(context).canvasColor,
+                borderRadius: BorderRadius.only(topLeft: Radius.circular(8), topRight: Radius.circular(8)),
+              ),
+              isScrollable: true,
+              tabs: [
+                Tab(
+                  icon: Icon(Icons.access_time),
+                  text: "Clock",
+                ),
+                Tab(
+                  icon: Icon(Icons.alarm),
+                  text: "Alarms",
+                ),
+              ],
             ),
-            Tab(
-              icon: Icon(Icons.alarm),
-              text: "Alarm",
+            Expanded(child: Container()),
+            PopupMenuButton(
+              icon: Icon(Icons.more_vert),
+              itemBuilder: (context) => <PopupMenuEntry>[
+                PopupMenuItem(
+                  child: Text("Settings"),
+                  value: "settings"
+                )
+              ],
+              onSelected: (value) {
+                if (value == "settings") notImplemented(context);
+              },
             ),
-          ],
+          ]
         ),
       ),
       body: TabBarView(
@@ -116,14 +135,7 @@ class AlarmsTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       child: Center(
-        child: RaisedButton(
-          onPressed: () {
-            // Navigate back to the first screen by popping the current route
-            // off the stack.
-            Navigator.pop(context);
-          },
-          child: Text('Go back!'),
-        ),
+        child: Icon(Icons.timer_rounded)
       ),
     );
   }
