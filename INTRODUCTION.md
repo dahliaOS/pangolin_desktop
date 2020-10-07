@@ -37,25 +37,18 @@ In this file, we will document all of Pangolin's files and front-end code, expla
 The purpose of this is to introduce Flutter to newbies and to hopefully boost their learning!
 
 We will be updating this regurarly and we invite all Dart (and Flutter :D) developers to join our Discord where you can ask for help and learn!
-- Discord: https://dahliaos.io/discord
 
 # Table of contents
 
-* Taskbar
-  * [Taskbar](link_to_file)
-  * Line xx to xx
-* Quick settings
-  * [Quick settings](link_to_file)
-  * Line xx to xx
-* Launcher
-  * [Launcher](link_to_file)
-  * Line xx to xx
-* Wallpaper
-  * [Wallpaper](link_to_file)
-  * Line xx to xx
-* Window manager
-  * [Window manager](link_to_file)
-  * Line xx to xx
+* Files
+  * First file
+  * Second file
+* [Front-end code](https://github.com/SincerelyFaust/pangolin-desktop/blob/master/INTRODUCTION.md#front-end-code)
+  * [Taskbar](https://github.com/SincerelyFaust/pangolin-desktop/blob/master/INTRODUCTION.md#taskbar)
+  * [Quick settings](https://github.com/SincerelyFaust/pangolin-desktop/blob/master/INTRODUCTION.md#quick-settings)
+  * [Launcher](https://github.com/SincerelyFaust/pangolin-desktop/blob/master/INTRODUCTION.md#launcher)
+  * [Wallpaper](https://github.com/SincerelyFaust/pangolin-desktop/blob/master/INTRODUCTION.md#wallpaper)
+  * [Window manager](https://github.com/SincerelyFaust/pangolin-desktop/blob/master/INTRODUCTION.md#window-manager)
 
 # Front-end code
 

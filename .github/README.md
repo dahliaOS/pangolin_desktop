@@ -14,8 +14,8 @@
 ![](https://github.com/dahlia-os/pangolin-desktop/workflows/CI/badge.svg) ![](https://github.com/dahlia-os/pangolin-desktop/workflows/Deploy/badge.svg)
 ![GitHub issues](https://img.shields.io/github/issues/dahlia-os/pangolin-desktop?color=brightgreen)
 ![Website](https://img.shields.io/website?url=https%3A%2F%2Fweb.dahliaos.io)
-![GitHub](https://img.shields.io/github/license/dahlia-os/pangolin-desktop?color=brightgreen)
 [![Crowdin](https://badges.crowdin.net/e/1a53a75fb38f15843d4eb6d9b9e4215a/localized.svg)](https://translate.dahliaos.io/pangolin)
+![GitHub](https://img.shields.io/github/license/dahlia-os/pangolin-desktop?color=brightgreen)
 
  - **Pangolin UI** is a Desktop shell for dahliaOS, written in Flutter, runs on Linux and Zircon
  - **Pangolin** was named after a shelled animal like the [Armadillo UI](https://9to5google.com/2018/12/26/fuchsia-armadillo-ui-gone/)
