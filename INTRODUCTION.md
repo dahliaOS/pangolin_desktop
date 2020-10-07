@@ -124,7 +124,7 @@ code_goes_here
 ## Quick settings
 
 <p align="left">
-  <img width="40%" src=".github/images/quicksettings.png"
+  <img width="30%" src=".github/images/quicksettings.png"
 </p>
 
 * Transparency
