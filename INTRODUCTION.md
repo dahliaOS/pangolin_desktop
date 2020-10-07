@@ -72,12 +72,12 @@ We will be updating this regurarly and we invite all Dart (and Flutter :D) devel
 * Wallpapers
   * [Pangolin wallpapers](https://github.com/dahlia-os/pangolin-desktop/tree/master/assets/images/Desktop/Wallpapers)
 
-* [Front-end code](https://github.com/SincerelyFaust/pangolin-desktop/blob/master/INTRODUCTION.md#front-end-code)
-  * [Taskbar](https://github.com/SincerelyFaust/pangolin-desktop/blob/master/INTRODUCTION.md#taskbar)
-  * [Quick settings](https://github.com/SincerelyFaust/pangolin-desktop/blob/master/INTRODUCTION.md#quick-settings)
-  * [Launcher](https://github.com/SincerelyFaust/pangolin-desktop/blob/master/INTRODUCTION.md#launcher)
-  * [Wallpaper](https://github.com/SincerelyFaust/pangolin-desktop/blob/master/INTRODUCTION.md#wallpaper)
-  * [Window manager](https://github.com/SincerelyFaust/pangolin-desktop/blob/master/INTRODUCTION.md#window-manager)
+* [Front-end code](https://github.com/dahlia-os/pangolin-desktop/blob/master/INTRODUCTION.md#front-end-code)
+  * [Taskbar](https://github.com/dahlia-os/pangolin-desktop/blob/master/INTRODUCTION.md#taskbar)
+  * [Quick settings](https://github.com/dahlia-os/pangolin-desktop/blob/master/INTRODUCTION.md#quick-settings)
+  * [Launcher](https://github.com/dahlia-os/pangolin-desktop/blob/master/INTRODUCTION.md#launcher)
+  * [Wallpaper](https://github.com/dahlia-os/pangolin-desktop/blob/master/INTRODUCTION.md#wallpaper)
+  * [Window manager](https://github.com/dahlia-os/pangolin-desktop/blob/master/INTRODUCTION.md#window-manager)
 
 # Front-end code
 
