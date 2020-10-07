@@ -53,6 +53,8 @@ We will be updating this regurarly and we invite all Dart (and Flutter :D) devel
     * Contains all wallpapers
   * [Icons](https://github.com/dahlia-os/pangolin-desktop/tree/master/assets/images/icons/v2)
     * Contains all icons (both PNGs and SVGs)
+  * [Widgets](https://github.com/dahlia-os/pangolin-desktop/tree/master/lib/utils/widgets)
+    * Contains all widgets
 
 * Files
   * [main.dart](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/main.dart)
@@ -80,19 +82,19 @@ We will be updating this regurarly and we invite all Dart (and Flutter :D) devel
 # Front-end code
 
 * Taskbar
-  * [Taskbar file](link_to_file)
+  * [Taskbar file](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/desktop/desktop.dart)
   * Line xx to xx
 * Quick settings
-  * [Quick settings file](link_to_file)
+  * [Quick settings file](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/desktop/quicksettings/quick_settings.dart)
   * Line xx to xx
 * Launcher
-  * [Launcher file](link_to_file)
+  * [Launcher file](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/desktop/launcher/launcher.dart)
   * Line xx to xx
 * Wallpaper
-  * [Wallpaper file](link_to_file)
+  * [Wallpaper file](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/desktop/desktop.dart)
   * Line xx to xx
 * Window manager
-  * [Window manager file](link_to_file)
+  * [Window manager folder](https://github.com/dahlia-os/pangolin-desktop/tree/master/lib/desktop/window)
   * Line xx to xx
 
 ## Taskbar
