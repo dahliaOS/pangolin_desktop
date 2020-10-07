@@ -100,7 +100,7 @@ We will be updating this regurarly and we invite all Dart (and Flutter :D) devel
 ## Taskbar
 
 <p align="left">
-  <img width="200%" src=".github/images/taskbar.png"
+  <img width="400%" src=".github/images/taskbar.png"
 </p>
 
 * Transparency
@@ -124,7 +124,7 @@ code_goes_here
 ## Quick settings
 
 <p align="left">
-  <img width="50%" src=".github/images/quicksettings.png"
+  <img width="40%" src=".github/images/quicksettings.png"
 </p>
 
 * Transparency
