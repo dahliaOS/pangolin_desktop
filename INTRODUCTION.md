@@ -48,8 +48,8 @@ We will be updating this regurarly and we invite all Dart (and Flutter :D) devel
   * [Third file](link_to_file)
     * Contains xx
 * Icons
-  * [Application icons](link_to_file)
-  * [System icons](https://github.com/dahlia-os/pangolin-desktop/tree/master/assets/images/icons/v2)
+  * [Application icons](https://github.com/dahlia-os/pangolin-desktop/tree/master/assets/images/icons/v2)
+  * [UI icons](https://github.com/dahlia-os/pangolin-desktop/tree/master/assets/images/icons/v2)
   * [dahliaOS logos](https://github.com/dahlia-os/pangolin-desktop/tree/master/assets/images/dahliaOS/Logos)
 * Wallpapers
   * [Pangolin wallpapers](https://github.com/dahlia-os/pangolin-desktop/tree/master/assets/images/Desktop/Wallpapers)
