@@ -28,7 +28,7 @@ limitations under the License.
 <a href="https://paypal.me/officialdahliaos">Donate</a> ●
 <a href="https://github.com/dahlia-os/documentation">Documentation</a>
 
-# Introduction to pangolin-desktop repo
+# Introduction to Pangolin
 
 Hey there, we're glad you're checking this document out!
 
@@ -161,7 +161,7 @@ code_goes_here
 code_goes_here
 ```
 
-* Change picture
+* Change wallpaper
 
 ```dart
 code_goes_here
