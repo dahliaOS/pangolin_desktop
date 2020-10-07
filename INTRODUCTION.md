@@ -42,7 +42,11 @@ We will be updating this regurarly and we invite all Dart (and Flutter :D) devel
 
 * Files
   * First file
+    * Contains xx
   * Second file
+    * Contains xx
+  * Third file
+    * Contains xx
 * [Front-end code](https://github.com/SincerelyFaust/pangolin-desktop/blob/master/INTRODUCTION.md#front-end-code)
   * [Taskbar](https://github.com/SincerelyFaust/pangolin-desktop/blob/master/INTRODUCTION.md#taskbar)
   * [Quick settings](https://github.com/SincerelyFaust/pangolin-desktop/blob/master/INTRODUCTION.md#quick-settings)
