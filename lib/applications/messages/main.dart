@@ -16,9 +16,9 @@ limitations under the License.
 
 import 'dart:ui';
 
-import 'searchbar.dart';
+import 'package:Pangolin/utils/widgets/hover.dart';
 
-import 'hover.dart';
+import 'searchbar.dart';
 import 'package:flutter/material.dart';
 
 void main() {
