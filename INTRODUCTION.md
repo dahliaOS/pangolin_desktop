@@ -99,7 +99,9 @@ We will be updating this regurarly and we invite all Dart (and Flutter :D) devel
 
 ## Taskbar
 
-![Taskbar screenshot](https://github.com/dahlia-os/pangolin-desktop/tree/master/.github/images/taskbar.png)
+<p align="left">
+  <img width="100%" src="https://github.com/dahlia-os/pangolin-desktop/tree/master/.github/images/taskbar.png"
+</p>
 
 * Transparency
 
@@ -121,7 +123,9 @@ code_goes_here
 
 ## Quick settings
 
-![Quick settings screenshot](https://github.com/dahlia-os/pangolin-desktop/tree/master/.github/images/quicksettings.png)
+<p align="left">
+  <img width="100%" src="https://github.com/dahlia-os/pangolin-desktop/tree/master/.github/images/quicksettings.png"
+</p>
 
 * Transparency
 
@@ -143,7 +147,9 @@ code_goes_here
 
 ## Launcher
 
-![Launcher screenshot](https://github.com/dahlia-os/pangolin-desktop/tree/master/.github/images/launcher.png)
+<p align="left">
+  <img width="100%" src="https://github.com/dahlia-os/pangolin-desktop/tree/master/.github/images/launcher.png"
+</p>
 
 * Transparency
 
@@ -165,7 +171,9 @@ code_goes_here
 
 ## Wallpaper
 
-![Wallpaper screenshot](https://github.com/dahlia-os/pangolin-desktop/tree/master/.github/images/wallpaper.png)
+<p align="left">
+  <img width="100%" src="https://github.com/dahlia-os/pangolin-desktop/tree/master/.github/images/wallpaper.png"
+</p>
 
 * Transparency
 
@@ -188,7 +196,9 @@ code_goes_here
 
 ## Window manager
 
-![Window manager screenshot](https://github.com/dahlia-os/pangolin-desktop/tree/master/.github/images/windowmanager.png)
+<p align="left">
+  <img width="100%" src="https://github.com/dahlia-os/pangolin-desktop/tree/master/.github/images/windowmanager.png"
+</p>
 
 * Transparency
 
