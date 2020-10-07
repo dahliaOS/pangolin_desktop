@@ -21,11 +21,11 @@ limitations under the License.
 </p>
 
 <p align="center">
-<a href="https://github.com/dahlia-os/pangolin-desktop">Pangolin</a> -
-<a href="https://dahliaos.io">Website</a> -
-<a href="https://discord.gg/7qVbJHR">Discord</a> -
-<a href="https://github.com/dahlia-os/releases">Releases</a> -
-<a href="https://paypal.me/officialdahliaos">Donate</a> -
+<a href="https://github.com/dahlia-os/pangolin-desktop">Pangolin</a> ●
+<a href="https://dahliaos.io">Website</a> ●
+<a href="https://discord.gg/7qVbJHR">Discord</a> ●
+<a href="https://github.com/dahlia-os/releases">Releases</a> ●
+<a href="https://paypal.me/officialdahliaos">Donate</a> ●
 <a href="https://github.com/dahlia-os/documentation">Documentation</a>
 
 # Introduction to pangolin-desktop repo
@@ -41,12 +41,19 @@ We will be updating this regurarly and we invite all Dart (and Flutter :D) devel
 # Table of contents
 
 * Files
-  * First file
+  * [First file](link_to_file)
     * Contains xx
-  * Second file
+  * [Second file](link_to_file)
     * Contains xx
-  * Third file
+  * [Third file](link_to_file)
     * Contains xx
+* Icons
+  * [Application icons](link_to_file)
+  * [System icons](link_to_file)
+  * [dahliaOS logos](link_to_file)
+* Wallpapers
+  * [Pangolin wallpapers](link_to_file)
+
 * [Front-end code](https://github.com/SincerelyFaust/pangolin-desktop/blob/master/INTRODUCTION.md#front-end-code)
   * [Taskbar](https://github.com/SincerelyFaust/pangolin-desktop/blob/master/INTRODUCTION.md#taskbar)
   * [Quick settings](https://github.com/SincerelyFaust/pangolin-desktop/blob/master/INTRODUCTION.md#quick-settings)
