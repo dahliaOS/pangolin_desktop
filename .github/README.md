@@ -36,7 +36,7 @@
 
 ## Build Pangolin Desktop
 
-If you're interested in building Pangolin, check the wiki: [/wiki/Build-Pangolin-Desktop](https://github.com/dahlia-os/pangolin-desktop/wiki/Build-Pangolin-Desktop)
+If you're interested in building Pangolin, you can refer to [Build Pangolin Desktop](https://github.com/dahlia-os/pangolin-desktop/wiki/Build-Pangolin-Desktop)
 
 ## Contribute
 
