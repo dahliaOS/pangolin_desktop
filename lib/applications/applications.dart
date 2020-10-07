@@ -14,6 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'package:Pangolin/applications/clock/main.dart';
 import 'package:Pangolin/utils/localization/localization.dart';
 import 'package:Pangolin/utils/hiveManager.dart';
 import 'package:flutter/material.dart';
@@ -142,7 +143,10 @@ Expanded tileSection(BuildContext context) {
                 type: AppLauncherButtonType.Drawer,
                 icon: 'assets/images/icons/v2/compiled/clock.png',
                 label: local.get("app_clock"),
-                appExists: false),
+                color: Colors.blue[900],
+                callback: toggleCallback,
+                app: Clock()
+            ),
             AppLauncherButton(
                 type: AppLauncherButtonType.Drawer,
                 icon: 'assets/images/icons/v2/compiled/messages.png',

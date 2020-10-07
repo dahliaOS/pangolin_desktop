@@ -42,47 +42,80 @@ class Clock extends StatelessWidget {
       title: 'Clock',
       theme: new ThemeData(
         platform: TargetPlatform.fuchsia,
-        primarySwatch: Colors.blue,
+        primaryColor: Colors.blue[900],
+        brightness: Brightness.dark
       ),
-      initialRoute: '/',
+      initialRoute: '/world',
       routes: {
         // When navigating to the "/" route, build the FirstScreen widget.
-        '/': (context) => FirstScreen(),
+        '/world': (context) => WorldClockTab(),
         // When navigating to the "/second" route, build the SecondScreen widget.
-        '/second': (context) => SecondScreen(),
+        '/alarm': (context) => AlarmsTab(),
       },
     );
   }
 }
 
-class FirstScreen extends StatelessWidget {
+class ClockApp extends StatefulWidget {
+  @override
+  _ClockApp createState() => _ClockApp();
+}
+
+class _ClockApp extends State<ClockApp> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
+    TabController tcon = TabController(length: 2, vsync: this);
     return Scaffold(
       appBar: AppBar(
-        title: Text('First Screen'),
-      ),
-      body: Center(
-        child: RaisedButton(
-          child: Text('Launch screen'),
-          onPressed: () {
-            // Navigate to the second screen using a named route.
-            Navigator.pushNamed(context, '/second');
-          },
+        centerTitle: true,
+        title: TabBar(
+          controller: tcon,
+          tabs: [
+            Tab(
+              icon: Icon(Icons.access_time),
+              text: "Clock"
+            ),
+            Tab(
+              icon: Icon(Icons.alarm),
+              text: "Alarm",
+            ),
+          ],
         ),
+      ),
+      body: TabBarView(
+        controller: tcon,
+        children: [
+          WorldClockTab(),
+          AlarmsTab()
+        ],
+      )
+    );
+  }
+}
+
+class WorldClockTab extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    var dt = DateTime.now();
+    return Material(
+      child: Center(
+        child: Text(
+          "${dt.hour}:${dt.minute < 10 ? "0"+dt.minute.toString() : dt.minute}",
+          style: TextStyle(
+            fontSize: 48,
+            fontWeight: FontWeight.bold
+          ),
+        )
       ),
     );
   }
 }
 
-class SecondScreen extends StatelessWidget {
+class AlarmsTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Second Screen"),
-      ),
-      body: Center(
+    return Material(
+      child: Center(
         child: RaisedButton(
           onPressed: () {
             // Navigate back to the first screen by popping the current route
