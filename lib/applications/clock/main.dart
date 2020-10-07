@@ -14,6 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'dart:async';
 import 'dart:ui';
 
 import 'package:Pangolin/desktop/quicksettings/quick_settings.dart';
@@ -39,6 +40,7 @@ class Clock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return new MaterialApp(
       title: 'Clock',
       theme: new ThemeData(
@@ -112,14 +114,26 @@ class _ClockApp extends State<ClockApp> with TickerProviderStateMixin {
   }
 }
 
-class WorldClockTab extends StatelessWidget {
+class WorldClockTab extends StatefulWidget {
+  @override
+  _WorldClockTabState createState() => _WorldClockTabState();
+}
+
+class _WorldClockTabState extends State<WorldClockTab> {
+
+  DateTime _datetime = DateTime.now();
+  Timer _ctimer;
+
   @override
   Widget build(BuildContext context) {
-    var dt = DateTime.now();
+    if (_ctimer == null) _ctimer = Timer.periodic(Duration(seconds: 1), (me) {
+      _datetime = DateTime.now();
+      setState(() {});
+    });
     return Material(
       child: Center(
         child: Text(
-          "${dt.hour}:${dt.minute < 10 ? "0"+dt.minute.toString() : dt.minute}",
+          "${_datetime.hour}:${_datetime.minute < 10 ? "0"+_datetime.minute.toString() : _datetime.minute}:${_datetime.second < 10 ? "0"+_datetime.second.toString() : _datetime.second}",
           style: TextStyle(
             fontSize: 48,
             fontWeight: FontWeight.bold
