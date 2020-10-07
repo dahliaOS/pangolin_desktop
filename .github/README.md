@@ -1,9 +1,9 @@
 <p align="center">
-  <img width="110%" src="https://github.com/dahlia-os/brand/blob/master/Pangolin%20Logo%20SVGs/Pangolin%20logo%20with%20text%20(black)%20on%20a%20white%20background.svg"
+  <img width="120%" src="https://github.com/dahlia-os/brand/blob/master/Pangolin%20Logo%20SVGs/Pangolin%20logo%20with%20text%20(black)%20on%20a%20white%20background.svg"
 </p>
 
 <p align="center">
-<a href="https://github.com/SincerelyFaust/pangolin-desktop/blob/master/INTRODUCTION.md">Introduction</a> ●
+<a href="https://github.com/dahlia-os/pangolin-desktop/blob/master/INTRODUCTION.md">Introduction</a> ●
 <a href="https://dahliaos.io">Website</a> ●
 <a href="https://discord.gg/7qVbJHR">Discord</a> ●
 <a href="https://github.com/dahlia-os/releases/releases">Releases</a> ●
@@ -42,7 +42,7 @@ If you're interested in building Pangolin, you can refer to [Build Pangolin Desk
 
 If you're wondering how to contribute to the project, please refer to [CONTRIBUTING.md](./CONTRIBUTING.md)
 
-However, if you need more guidance and an introduction to Pangolin's files and code, you can refer to [INTRODUCTION.md](https://github.com/SincerelyFaust/pangolin-desktop/blob/master/INTRODUCTION.md) where we've extensively covered the entire repo!
+However, if you need more guidance and an introduction to Pangolin's files and code, you can refer to [INTRODUCTION.md](https://github.com/dahlia-os/pangolin-desktop/blob/master/INTRODUCTION.md) where we've extensively covered the entire repo!
 
 ## Translate
 
