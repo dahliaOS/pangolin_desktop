@@ -48,5 +48,6 @@
   "taskmanager_launch": "Uruchom",
   "taskmanager_processes": "Procesy",
   "taskmanager_resources": "Zasoby",
-  "taskmanager_selectedprocessplaceholder": "io.dahliaos.null"
+  "taskmanager_selectedprocessplaceholder": "io.dahliaos.null",
+  "app_developeroptions": "Opcje deweloperskie"
 }
