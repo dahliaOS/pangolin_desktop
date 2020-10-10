@@ -38,6 +38,21 @@ The purpose of this is to introduce Flutter to newbies and to hopefully boost th
 
 We will be updating this regurarly and we invite all Dart (and Flutter :D) developers to join our Discord where you can ask for help and learn!
 
+# Table of contents
+
+* [Navigation](https://github.com/dahlia-os/pangolin-desktop/blob/master/INTRODUCTION.md#navigation)
+  * Documents where what is and what contains what (folders, files, icons, wallpapers etc.)
+* [Roadmap](https://github.com/dahlia-os/pangolin-desktop/blob/master/INTRODUCTION.md#roadmap)
+  * A list that contains all finished and unfinished tasks (to-do list)
+* [Front-end code](https://github.com/dahlia-os/pangolin-desktop/blob/master/INTRODUCTION.md#front-end-code)
+  * Snippets of front-end code used on Pangolin UI
+    * [Front-end code](https://github.com/dahlia-os/pangolin-desktop/blob/master/INTRODUCTION.md#front-end-code)
+    * [Taskbar](https://github.com/dahlia-os/pangolin-desktop/blob/master/INTRODUCTION.md#taskbar)
+    * [Quick settings](https://github.com/dahlia-os/pangolin-desktop/blob/master/INTRODUCTION.md#quick-settings)
+    * [Launcher](https://github.com/dahlia-os/pangolin-desktop/blob/master/INTRODUCTION.md#launcher)
+    * [Wallpaper](https://github.com/dahlia-os/pangolin-desktop/blob/master/INTRODUCTION.md#wallpaper)
+    * [Window manager](https://github.com/dahlia-os/pangolin-desktop/blob/master/INTRODUCTION.md#window-manager)
+
 # Navigation
 
 * Folders
@@ -52,13 +67,6 @@ We will be updating this regurarly and we invite all Dart (and Flutter :D) devel
   * [dahliaOS logos](https://github.com/dahlia-os/pangolin-desktop/tree/master/assets/images/dahliaOS/Logos)
 * Wallpapers
   * [Pangolin wallpapers](https://github.com/dahlia-os/pangolin-desktop/tree/master/assets/images/Desktop/Wallpapers)
-
-* [Front-end code](https://github.com/dahlia-os/pangolin-desktop/blob/master/INTRODUCTION.md#front-end-code)
-  * [Taskbar](https://github.com/dahlia-os/pangolin-desktop/blob/master/INTRODUCTION.md#taskbar)
-  * [Quick settings](https://github.com/dahlia-os/pangolin-desktop/blob/master/INTRODUCTION.md#quick-settings)
-  * [Launcher](https://github.com/dahlia-os/pangolin-desktop/blob/master/INTRODUCTION.md#launcher)
-  * [Wallpaper](https://github.com/dahlia-os/pangolin-desktop/blob/master/INTRODUCTION.md#wallpaper)
-  * [Window manager](https://github.com/dahlia-os/pangolin-desktop/blob/master/INTRODUCTION.md#window-manager)
 
 # Roadmap
 
