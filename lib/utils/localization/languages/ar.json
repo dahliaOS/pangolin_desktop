@@ -48,5 +48,6 @@
   "taskmanager_launch": "بدء عمليّة",
   "taskmanager_processes": "العمليات",
   "taskmanager_resources": "المصادر",
-  "taskmanager_selectedprocessplaceholder": "io.dahliaos.null"
+  "taskmanager_selectedprocessplaceholder": "io.dahliaos.null",
+  "app_developeroptions": "إعدادات المبرمجين"
 }

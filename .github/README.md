@@ -36,13 +36,13 @@
 
 ## Build Pangolin Desktop
 
-If you're interested in building Pangolin, you can refer to [Build Pangolin Desktop](https://github.com/dahlia-os/pangolin-desktop/wiki/Build-Pangolin-Desktop)
+If you're interested in building Pangolin, you can refer to [Building and Running Pangolin](https://github.com/dahlia-os/pangolin-desktop/wiki/Building-and-Running-Pangolin)
 
 ## Contribute
 
 If you're wondering how to contribute to the project, please refer to [CONTRIBUTING.md](./CONTRIBUTING.md)
 
-However, if you need more guidance and an introduction to Pangolin's files and code, you can refer to [INTRODUCTION.md](https://github.com/dahlia-os/pangolin-desktop/blob/master/INTRODUCTION.md) where we've extensively covered the entire repo!
+But if you need more guidance and an introduction to Pangolin's files and code, you can refer to [INTRODUCTION.md](https://github.com/dahlia-os/pangolin-desktop/blob/master/INTRODUCTION.md) where we've extensively covered the entire repo, we've also written a roadmap/to-do list there!
 
 ## Translate
 

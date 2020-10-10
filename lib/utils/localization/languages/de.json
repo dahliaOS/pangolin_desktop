@@ -7,7 +7,7 @@
   "app_files": "Dateien",
   "app_media": "Medien",
   "app_music": "Musik",
-  "app_notes": "Notizen",
+  "app_notes": "Texteditor",
   "app_notesmobile": "Notizen (mobile)",
   "app_messages": "Nachrichten",
   "app_rootterminal": "Root Terminal",
@@ -48,5 +48,6 @@
   "taskmanager_launch": "Ausführen",
   "taskmanager_processes": "Prozesse",
   "taskmanager_resources": "Ressourcen",
-  "taskmanager_selectedprocessplaceholder": "io.dahliaos.null"
+  "taskmanager_selectedprocessplaceholder": "io.dahliaos.null",
+  "app_developeroptions": "Entwickleroptionen"
 }
