@@ -46,7 +46,6 @@ We will be updating this regurarly and we invite all Dart (and Flutter :D) devel
   * A list that contains all finished and unfinished tasks (to-do list)
 * [Front-end code](https://github.com/dahlia-os/pangolin-desktop/blob/master/INTRODUCTION.md#front-end-code)
   * Snippets of front-end code used on Pangolin UI
-    * [Front-end code](https://github.com/dahlia-os/pangolin-desktop/blob/master/INTRODUCTION.md#front-end-code)
     * [Taskbar](https://github.com/dahlia-os/pangolin-desktop/blob/master/INTRODUCTION.md#taskbar)
     * [Quick settings](https://github.com/dahlia-os/pangolin-desktop/blob/master/INTRODUCTION.md#quick-settings)
     * [Launcher](https://github.com/dahlia-os/pangolin-desktop/blob/master/INTRODUCTION.md#launcher)
