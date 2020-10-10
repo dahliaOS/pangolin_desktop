@@ -46,11 +46,6 @@ We will be updating this regurarly and we invite all Dart (and Flutter :D) devel
   * A list that contains all finished and unfinished tasks (to-do list)
 * [Front-end code](https://github.com/dahlia-os/pangolin-desktop/blob/master/INTRODUCTION.md#front-end-code)
   * Snippets of front-end code used on Pangolin UI
-    * [Taskbar](https://github.com/dahlia-os/pangolin-desktop/blob/master/INTRODUCTION.md#taskbar)
-    * [Quick settings](https://github.com/dahlia-os/pangolin-desktop/blob/master/INTRODUCTION.md#quick-settings)
-    * [Launcher](https://github.com/dahlia-os/pangolin-desktop/blob/master/INTRODUCTION.md#launcher)
-    * [Wallpaper](https://github.com/dahlia-os/pangolin-desktop/blob/master/INTRODUCTION.md#wallpaper)
-    * [Window manager](https://github.com/dahlia-os/pangolin-desktop/blob/master/INTRODUCTION.md#window-manager)
 
 # Navigation
 
@@ -61,11 +56,11 @@ We will be updating this regurarly and we invite all Dart (and Flutter :D) devel
   * [file.dart](file_link)
     * Contains xx
 * Icons
-  * [Application icons](https://github.com/dahlia-os/pangolin-desktop/tree/master/assets/images/icons/v2)
-  * [UI icons](https://github.com/dahlia-os/pangolin-desktop/tree/master/assets/images/icons/v2)
-  * [dahliaOS logos](https://github.com/dahlia-os/pangolin-desktop/tree/master/assets/images/dahliaOS/Logos)
+  * [Application icons](file_link)
+  * [UI icons](file_link)
+  * [dahliaOS logos](hfile_link)
 * Wallpapers
-  * [Pangolin wallpapers](https://github.com/dahlia-os/pangolin-desktop/tree/master/assets/images/Desktop/Wallpapers)
+  * [Pangolin wallpapers](file_link)
 
 # Roadmap
 
@@ -75,20 +70,20 @@ We will be updating this regurarly and we invite all Dart (and Flutter :D) devel
 
 # Front-end code
 
-* Taskbar
-  * [Taskbar file](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/desktop/desktop.dart)
+* [Taskbar](https://github.com/dahlia-os/pangolin-desktop/blob/master/INTRODUCTION.md#taskbar)
+  * [Taskbar file](file_link)
   * Line xx to xx
-* Quick settings
-  * [Quick settings file](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/desktop/quicksettings/quick_settings.dart)
+* [Quick settings](https://github.com/dahlia-os/pangolin-desktop/blob/master/INTRODUCTION.md#quick-settings)
+  * [Quick settings file](file_link)
   * Line xx to xx
-* Launcher
-  * [Launcher file](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/desktop/launcher/launcher.dart)
+* [Launcher](https://github.com/dahlia-os/pangolin-desktop/blob/master/INTRODUCTION.md#launcher)
+  * [Launcher file](file_link)
   * Line xx to xx
-* Wallpaper
-  * [Wallpaper file](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/desktop/desktop.dart)
+* [Wallpaper](https://github.com/dahlia-os/pangolin-desktop/blob/master/INTRODUCTION.md#wallpaper)
+  * [Wallpaper file](file_link)
   * Line xx to xx
-* Window manager
-  * [Window manager folder](https://github.com/dahlia-os/pangolin-desktop/tree/master/lib/desktop/window)
+* [Window manager](https://github.com/dahlia-os/pangolin-desktop/blob/master/INTRODUCTION.md#window-manager)
+  * [Window manager file](file_link)
   * Line xx to xx
 
 ## Taskbar
