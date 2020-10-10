@@ -41,30 +41,11 @@ We will be updating this regurarly and we invite all Dart (and Flutter :D) devel
 # Navigation
 
 * Folders
-  * [Localization](https://github.com/dahlia-os/pangolin-desktop/tree/master/lib/utils/localization)
-    * Contains everything regarded to localization (translations)
-  * [Applications](https://github.com/dahlia-os/pangolin-desktop/tree/master/lib/applications)
-    * Contains all dahliaOS applications
-  * [Settings](https://github.com/dahlia-os/pangolin-desktop/tree/master/lib/desktop/settings)
-    * Contains the Settings application
-  * [dahliaOS Logos](https://github.com/dahlia-os/pangolin-desktop/tree/master/assets/images/dahliaOS/Logos)
-    * Contains all dahliaOS logos (both PNGs and SVGs)
-  * [Wallpapers](https://github.com/dahlia-os/pangolin-desktop/tree/master/assets/images/Desktop/Wallpapers)
-    * Contains all wallpapers
-  * [Icons](https://github.com/dahlia-os/pangolin-desktop/tree/master/assets/images/icons/v2)
-    * Contains all icons (both PNGs and SVGs)
-  * [Widgets](https://github.com/dahlia-os/pangolin-desktop/tree/master/lib/utils/widgets)
-    * Contains all widgets
-
+  * [Folder](folder_link)
+    * Contains xx
 * Files
-  * [main.dart](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/main.dart)
-    * Contains translations and initializers
-  * [desktop.dart](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/desktop/desktop.dart)
-    * Contains the desktop framework with taskbar, window playground etc.
-  * [quick_settings.dart](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/desktop/quicksettings/quick_settings.dart)
-    * Contains the Quick settings framework
-  * [launcher.dart](https://github.com/dahlia-os/pangolin-desktop/blob/master/lib/desktop/launcher/launcher.dart)
-    * Contains the Launcher framework
+  * [file.dart](file_link)
+    * Contains xx
 * Icons
   * [Application icons](https://github.com/dahlia-os/pangolin-desktop/tree/master/assets/images/icons/v2)
   * [UI icons](https://github.com/dahlia-os/pangolin-desktop/tree/master/assets/images/icons/v2)
@@ -78,6 +59,12 @@ We will be updating this regurarly and we invite all Dart (and Flutter :D) devel
   * [Launcher](https://github.com/dahlia-os/pangolin-desktop/blob/master/INTRODUCTION.md#launcher)
   * [Wallpaper](https://github.com/dahlia-os/pangolin-desktop/blob/master/INTRODUCTION.md#wallpaper)
   * [Window manager](https://github.com/dahlia-os/pangolin-desktop/blob/master/INTRODUCTION.md#window-manager)
+
+# Roadmap
+
+- [x] Task that has been done
+- [ ] Task that has to be done
+  - [ ] Sub-task for the main task
 
 # Front-end code
 
