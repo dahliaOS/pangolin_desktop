@@ -280,72 +280,67 @@ class Process extends StatelessWidget {
             scrollDirection: Axis.vertical,
             child: new Column(
               children: [
-                buildProcess('assets/images/icons/v2/compiled/calculator.png',
-                    'Calculator'),
                 buildProcess(
-                    'assets/images/icons/v2/compiled/disks.png', 'Disks'),
-                buildProcess(
-                    'assets/images/icons/v2/compiled/files.png', 'Files'),
-                buildProcess(
-                    'assets/images/icons/v2/compiled/logs.png', 'Logs'),
-                buildProcess('assets/images/icons/v2/compiled/note_mobile.png',
+                    'assets/Images/Icons/PNG/calculator.png', 'Calculator'),
+                buildProcess('assets/Images/Icons/PNG/disks.png', 'Disks'),
+                buildProcess('assets/Images/Icons/PNG/files.png', 'Files'),
+                buildProcess('assets/Images/Icons/PNG/logs.png', 'Logs'),
+                buildProcess('assets/Images/Icons/PNG/note_mobile.png',
                     'Notes (Mobile)'),
+                buildProcess('assets/Images/Icons/PNG/notes.png', 'Notes'),
                 buildProcess(
-                    'assets/images/icons/v2/compiled/notes.png', 'Notes'),
-                buildProcess('assets/images/icons/v2/compiled/root.png',
-                    'Root Terminal'),
+                    'assets/Images/Icons/PNG/root.png', 'Root Terminal'),
                 buildProcess(
-                    'assets/images/icons/v2/compiled/settings.png', 'Settings'),
+                    'assets/Images/Icons/PNG/settings.png', 'Settings'),
                 buildProcess(
-                    'assets/images/icons/v2/compiled/task.png', 'Task Manager'),
+                    'assets/Images/Icons/PNG/task.png', 'Task Manager'),
                 buildProcess(
-                    'assets/images/icons/v2/compiled/terminal.png', 'Terminal'),
+                    'assets/Images/Icons/PNG/terminal.png', 'Terminal'),
+                buildProcess('assets/Images/Icons/PNG/theme.png', 'Theme Demo'),
                 buildProcess(
-                    'assets/images/icons/v2/compiled/theme.png', 'Theme Demo'),
-                buildProcess('assets/images/icons/v2/compiled/android.png',
-                    'Android Subsystem'),
-                buildProcess('assets/images/icons/v2/compiled/android.png',
-                    'Android Subsystem'),
-                buildProcess('assets/images/icons/v2/compiled/android.png',
-                    'Android Subsystem'),
-                buildProcess('assets/images/icons/v2/compiled/android.png',
-                    'Android Subsystem'),
-                buildProcess('assets/images/icons/v2/compiled/android.png',
-                    'Android Subsystem'),
-                buildProcess('assets/images/icons/v2/compiled/android.png',
-                    'Android Subsystem'),
-                buildProcess('assets/images/icons/v2/compiled/android.png',
-                    'Android Subsystem'),
-                buildProcess('assets/images/icons/v2/compiled/android.png',
-                    'Android Subsystem'),
-                buildProcess('assets/images/icons/v2/compiled/android.png',
-                    'Android Subsystem'),
-                buildProcess('assets/images/icons/v2/compiled/android.png',
-                    'Android Subsystem'),
-                buildProcess('assets/images/icons/v2/compiled/android.png',
-                    'Android Subsystem'),
-                buildProcess('assets/images/icons/v2/compiled/android.png',
-                    'Android Subsystem'),
-                buildProcess('assets/images/icons/v2/compiled/android.png',
-                    'Android Subsystem'),
-                buildProcess('assets/images/icons/v2/compiled/android.png',
-                    'Android Subsystem'),
-                buildProcess('assets/images/icons/v2/compiled/android.png',
-                    'Android Subsystem'),
-                buildProcess('assets/images/icons/v2/compiled/android.png',
-                    'Android Subsystem'),
-                buildProcess('assets/images/icons/v2/compiled/android.png',
-                    'Android Subsystem'),
-                buildProcess('assets/images/icons/v2/compiled/android.png',
-                    'Android Subsystem'),
-                buildProcess('assets/images/icons/v2/compiled/android.png',
-                    'Android Subsystem'),
-                buildProcess('assets/images/icons/v2/compiled/android.png',
-                    'Android Subsystem'),
-                buildProcess('assets/images/icons/v2/compiled/android.png',
-                    'Android Subsystem'),
-                buildProcess('assets/images/icons/v2/compiled/android.png',
-                    'Android Subsystem'),
+                    'assets/Images/Icons/PNG/android.png', 'Android Subsystem'),
+                buildProcess(
+                    'assets/Images/Icons/PNG/android.png', 'Android Subsystem'),
+                buildProcess(
+                    'assets/Images/Icons/PNG/android.png', 'Android Subsystem'),
+                buildProcess(
+                    'assets/Images/Icons/PNG/android.png', 'Android Subsystem'),
+                buildProcess(
+                    'assets/Images/Icons/PNG/android.png', 'Android Subsystem'),
+                buildProcess(
+                    'assets/Images/Icons/PNG/android.png', 'Android Subsystem'),
+                buildProcess(
+                    'assets/Images/Icons/PNG/android.png', 'Android Subsystem'),
+                buildProcess(
+                    'assets/Images/Icons/PNG/android.png', 'Android Subsystem'),
+                buildProcess(
+                    'assets/Images/Icons/PNG/android.png', 'Android Subsystem'),
+                buildProcess(
+                    'assets/Images/Icons/PNG/android.png', 'Android Subsystem'),
+                buildProcess(
+                    'assets/Images/Icons/PNG/android.png', 'Android Subsystem'),
+                buildProcess(
+                    'assets/Images/Icons/PNG/android.png', 'Android Subsystem'),
+                buildProcess(
+                    'assets/Images/Icons/PNG/android.png', 'Android Subsystem'),
+                buildProcess(
+                    'assets/Images/Icons/PNG/android.png', 'Android Subsystem'),
+                buildProcess(
+                    'assets/Images/Icons/PNG/android.png', 'Android Subsystem'),
+                buildProcess(
+                    'assets/Images/Icons/PNG/android.png', 'Android Subsystem'),
+                buildProcess(
+                    'assets/Images/Icons/PNG/android.png', 'Android Subsystem'),
+                buildProcess(
+                    'assets/Images/Icons/PNG/android.png', 'Android Subsystem'),
+                buildProcess(
+                    'assets/Images/Icons/PNG/android.png', 'Android Subsystem'),
+                buildProcess(
+                    'assets/Images/Icons/PNG/android.png', 'Android Subsystem'),
+                buildProcess(
+                    'assets/Images/Icons/PNG/android.png', 'Android Subsystem'),
+                buildProcess(
+                    'assets/Images/Icons/PNG/android.png', 'Android Subsystem'),
               ],
             ),
           ),
@@ -359,7 +354,7 @@ class Process extends StatelessWidget {
             child: new Column(
               children: [
                 new Image.asset(
-                  'assets/images/icons/v2/compiled/grey-drag.png',
+                  'assets/Images/Icons/PNG/grey-drag.png',
                   fit: BoxFit.fill,
                   width: 64.0,
                   height: 64.0,

@@ -68,14 +68,17 @@ List<String> languages = [
   "Hrvatski - Hrvatska",
   "Nederlands - België",
   "Nederlands - Nederland",
+  "عربى - إيران",
+  "Bosanski - Bosna i Hercegovina",
+  "Português - Brasil",
 ];
 
 List<String> timeZones = [];
 
 List<String> wallpapers = [
-  "assets/images/Desktop/Wallpapers/dahliaOS/dahliaOS_white_logo_pattern_wallpaper.png",
-  "assets/images/Desktop/Wallpapers/dahliaOS/dahliaOS_white_wallpaper.png",
-  "assets/images/Desktop/Wallpapers/dahliaOS/Gradient_logo_wallpaper.png",
-  "assets/images/Desktop/Wallpapers/dahliaOS/Three_bubbles_wallpaper.png",
-  "assets/images/Desktop/Wallpapers/Nature/mountain.jpg",
+  "assets/Images/Wallpapers/dahliaOS/dahliaOS_white_logo_pattern_wallpaper.png",
+  "assets/Images/Wallpapers/dahliaOS/ahliaOS_white_wallpaper.png",
+  "assets/Images/Wallpapers/dahliaOS/Gradient_logo_wallpaper.png",
+  "assets/Images/Wallpapers/dahliaOS/Three_bubbles_wallpaper.png",
+  "assets/Images/Wallpapers/Nature/mountain.jpg",
 ];

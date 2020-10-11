@@ -390,37 +390,18 @@ class QuickSettingsState extends State<QuickSettings> {
                       Pangolin.settingsBox.put("language", "nl");
                       break;
                     case "nl":
-                      Pangolin.setLocale(context, Locale("es"));
-                      Pangolin.settingsBox.put("language", "es");
+                      Pangolin.setLocale(context, Locale("bs"));
+                      Pangolin.settingsBox.put("language", "bs");
                       break;
-                    case "es":
-                      Pangolin.setLocale(context, Locale("en"));
-                      Pangolin.settingsBox.put("language", "en");
-                      break;
-                    case "id":
-                      Pangolin.setLocale(context, Locale("id"));
-                      Pangolin.settingsBox.put("language", "id");
-                      break;
-                    case "pt":
+                    case "bs":
                       Pangolin.setLocale(context, Locale("pt"));
                       Pangolin.settingsBox.put("language", "pt");
                       break;
-                    case "sk":
-                      Pangolin.setLocale(context, Locale("sk"));
-                      Pangolin.settingsBox.put("language", "sk");
-                      break;
-                    case "tr":
-                      Pangolin.setLocale(context, Locale("tr"));
-                      Pangolin.settingsBox.put("language", "tr");
-                      break;
-                    case "zh":
-                      Pangolin.setLocale(context, Locale("zh"));
-                      Pangolin.settingsBox.put("language", "zh");
-                      break;
-                    case "ar":
+                    case "pt":
                       Pangolin.setLocale(context, Locale("ar"));
                       Pangolin.settingsBox.put("language", "ar");
                       break;
+                    case "ar":
                     default:
                       Pangolin.setLocale(context, Locale("en"));
                       Pangolin.settingsBox.put("language", "en");
