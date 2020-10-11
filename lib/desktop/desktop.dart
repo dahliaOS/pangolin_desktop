@@ -182,39 +182,38 @@ class _DesktopState extends State<Desktop> {
                                     AppLauncherButton(
                                       app: Calculator(),
                                       icon:
-                                          'assets/images/icons/v2/compiled/calculator.png',
+                                          'assets/Images/Icons/PNG/calculator.png',
                                       color: Colors.green,
                                       callback: toggleCallback,
                                     ),
                                     AppLauncherButton(
                                         app: TextEditorApp(),
                                         icon:
-                                            'assets/images/icons/v2/compiled/notes.png',
+                                            'assets/Images/Icons/PNG/notes.png',
                                         color: Colors.amber[700],
                                         callback: toggleCallback),
                                     AppLauncherButton(
                                         app: TerminalApp(),
                                         icon:
-                                            'assets/images/icons/v2/compiled/terminal.png',
+                                            'assets/Images/Icons/PNG/terminal.png',
                                         color: Colors.grey[900],
                                         callback: toggleCallback),
                                     AppLauncherButton(
                                         app: Files(),
                                         icon:
-                                            'assets/images/icons/v2/compiled/files.png',
+                                            'assets/Images/Icons/PNG/files.png',
                                         color: Colors.deepOrange,
                                         callback: toggleCallback),
                                     AppLauncherButton(
                                       app: Tasks(),
-                                      icon:
-                                          'assets/images/icons/v2/compiled/task.png',
+                                      icon: 'assets/Images/Icons/PNG/task.png',
                                       color: Colors.cyan[900],
                                       callback: toggleCallback,
                                     ),
                                     AppLauncherButton(
                                         app: Settings(),
                                         icon:
-                                            'assets/images/icons/v2/compiled/settings.png',
+                                            'assets/Images/Icons/PNG/settings.png',
                                         color: Colors.deepOrange[700],
                                         callback: toggleCallback),
                                   ]),
@@ -248,39 +247,36 @@ class _DesktopState extends State<Desktop> {
                                 AppLauncherButton(
                                   app: Calculator(),
                                   icon:
-                                      'assets/images/icons/v2/compiled/calculator.png',
+                                      'assets/Images/Icons/PNG/calculator.png',
                                   color: Colors.green,
                                   callback: toggleCallback,
                                 ),
                                 AppLauncherButton(
                                     app: TextEditorApp(),
-                                    icon:
-                                        'assets/images/icons/v2/compiled/notes.png',
+                                    icon: 'assets/Images/Icons/PNG/notes.png',
                                     color: Colors.amber[700],
                                     callback: toggleCallback),
                                 AppLauncherButton(
                                     app: TerminalApp(),
                                     icon:
-                                        'assets/images/icons/v2/compiled/terminal.png',
+                                        'assets/Images/Icons/PNG/terminal.png',
                                     color: Colors.grey[900],
                                     callback: toggleCallback),
                                 AppLauncherButton(
                                     app: Files(),
-                                    icon:
-                                        'assets/images/icons/v2/compiled/files.png',
+                                    icon: 'assets/Images/Icons/PNG/files.png',
                                     color: Colors.deepOrange[800],
                                     callback: toggleCallback),
                                 AppLauncherButton(
                                   app: Tasks(),
-                                  icon:
-                                      'assets/images/icons/v2/compiled/task.png',
+                                  icon: 'assets/Images/Icons/PNG/task.png',
                                   color: Colors.cyan[900],
                                   callback: toggleCallback,
                                 ),
                                 AppLauncherButton(
                                     app: Settings(),
                                     icon:
-                                        'assets/images/icons/v2/compiled/settings.png',
+                                        'assets/Images/Icons/PNG/settings.png',
                                     color: Colors.deepOrange[700],
                                     callback: toggleCallback),
                               ]),

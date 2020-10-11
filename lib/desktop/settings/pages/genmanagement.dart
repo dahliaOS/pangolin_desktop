@@ -292,6 +292,22 @@ void _setLanguage(String _selected, BuildContext context) {
       Pangolin.settingsBox.put("language", "nl_NL");
       Pangolin.settingsBox.put("languageName", "Nederlands - Nederland");
       break;
+    case "عربى - إيران":
+      Pangolin.setLocale(context, Locale("ar", "AR"));
+      Pangolin.settingsBox.put("language", "ar_AR");
+      Pangolin.settingsBox.put("languageName", "عربى - إيران");
+      break;
+    case "Bosanski - Bosna i Hercegovina":
+      Pangolin.setLocale(context, Locale("bs", "BS"));
+      Pangolin.settingsBox.put("language", "bs_BH");
+      Pangolin.settingsBox
+          .put("languageName", "Bosanski - Bosna i Hercegovina");
+      break;
+    case "Português - Brasil":
+      Pangolin.setLocale(context, Locale("pl", "PL"));
+      Pangolin.settingsBox.put("language", "pl_BR");
+      Pangolin.settingsBox.put("languageName", "Português - Brasil");
+      break;
   }
 }
 
@@ -332,6 +348,22 @@ void _setKeyboard(String _selected, BuildContext context) {
       Pangolin.settingsBox.put("keyboardLayout", "nl_NL");
       Pangolin.settingsBox.put("keyboardLayoutName", "Nederlands - Nederland");
       break;
+    case "عربى - إيران":
+      Pangolin.setLocale(context, Locale("ar", "AR"));
+      Pangolin.settingsBox.put("keyboardLayout", "ar_AR");
+      Pangolin.settingsBox.put("keyboardLayoutName", "عربى - إيران");
+      break;
+    case "Bosanski - Bosna i Hercegovina":
+      Pangolin.setLocale(context, Locale("bs", "BS"));
+      Pangolin.settingsBox.put("keyboardLayout", "bs_BH");
+      Pangolin.settingsBox
+          .put("keyboardLayoutName", "Bosanski - Bosna i Hercegovina");
+      break;
+    case "Português - Brasil":
+      Pangolin.setLocale(context, Locale("pl", "PL"));
+      Pangolin.settingsBox.put("keyboardLayout", "pl_BR");
+      Pangolin.settingsBox.put("keyboardLayoutName", "Português - Brasil");
+      break;
   }
 }
 
@@ -371,6 +403,22 @@ void _setTimezone(String _selected, BuildContext context) {
       Pangolin.setLocale(context, Locale("nl", "NL"));
       Pangolin.settingsBox.put("timeZone", "nl_NL");
       Pangolin.settingsBox.put("timeZoneName", "Nederlands - Nederland");
+      break;
+    case "عربى - إيران":
+      Pangolin.setLocale(context, Locale("ar", "AR"));
+      Pangolin.settingsBox.put("timeZone", "ar_AR");
+      Pangolin.settingsBox.put("timeZoneName", "عربى - إيران");
+      break;
+    case "Bosanski - Bosna i Hercegovina":
+      Pangolin.setLocale(context, Locale("bs", "BS"));
+      Pangolin.settingsBox.put("timeZone", "bs_BH");
+      Pangolin.settingsBox
+          .put("timeZoneName", "Bosanski - Bosna i Hercegovina");
+      break;
+    case "Português - Brasil":
+      Pangolin.setLocale(context, Locale("pl", "PL"));
+      Pangolin.settingsBox.put("timeZone", "pl_BR");
+      Pangolin.settingsBox.put("timeZoneName", "Português - Brasil");
       break;
   }
 }

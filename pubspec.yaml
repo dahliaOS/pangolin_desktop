@@ -99,10 +99,10 @@ flutter:
           weight: 900
           style: italic
   assets:
-  - assets/images/
-  - assets/images/people/
-  - assets/images/Desktop/Wallpapers/dahliaOS/
-  - assets/images/Desktop/Wallpapers/Nature/
-  - assets/images/icons/v2/compiled/
-  - assets/images/dahliaOS/Logos/compiled/
+  - assets/Images/
+  - assets/Images/Credits/Profile pictures/
+  - assets/Images/Wallpapers/dahliaOS/
+  - assets/Images/Wallpapers/Nature/
+  - assets/Images/Icons/PNG/
+  - assets/Images/Logos/dahliaOS/PNG/
   - lib/utils/localization/languages/
