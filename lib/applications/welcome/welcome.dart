@@ -482,37 +482,37 @@ class SocialMedia extends StatelessWidget {
                   socialItem(
                     "assets/Images/Icons/PNG/discord.png",
                     "Discord",
-                    "https://discord.gg/jwgS3t6",
+                    "https://dahliaos.io/discord",
                   ),
                   socialItem(
                     "assets/Images/Icons/PNG/facebook.png",
                     "Facebook",
-                    "https://facebook.com/officialdahliaos/",
+                    "https://dahliaos.io/facebook",
                   ),
                   socialItem(
                     "assets/Images/Icons/PNG/github.png",
                     "Github",
-                    "https://github.com/dahlia-os",
+                    "https://dahliaos.io/github",
                   ),
                   socialItem(
                     "assets/Images/Icons/PNG/instagram.png",
                     "Instagram",
-                    "https://instagram.com/officialdahliaos/",
+                    "https://dahliaos.io/instagram",
                   ),
                   socialItem(
                     "assets/Images/Icons/PNG/reddit.png",
                     "Reddit",
-                    "https://reddit.com/r/dahliaos",
+                    "https://dahliaos.io/reddit",
                   ),
                   socialItem(
                     "assets/Images/Icons/PNG/telegram.png",
                     "Telegram",
-                    "https://t.me/dahliaos/",
+                    "https://dahliaos.io/telegram",
                   ),
                   socialItem(
                     "assets/Images/Icons/PNG/twitter.png",
                     "Twitter",
-                    "https://twitter.com/realdahliaos",
+                    "https://dahliaos.io/twitter",
                   ),
 
                   /* RaisedButton(
