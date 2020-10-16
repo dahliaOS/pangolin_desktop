@@ -592,9 +592,9 @@ class Credits extends StatelessWidget {
             padding: new EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
             scrollDirection: Axis.vertical,
             child: new Column(children: <Widget>[
-              Text("Thank you to everyone who made this dream into reality!",
+              Text("Thank you to everyone who made this dream come true!",
                   style: TextStyle(fontSize: 14, color: Color(0xff000000))),
-              Text("Want to help out? Find us at github.com/dahlia-os",
+              Text("Want to help out? Find us at https://github.com/dahlia-os",
                   style: TextStyle(fontSize: 14, color: Color(0xff000000))),
               new Center(
                 child: new SingleChildScrollView(

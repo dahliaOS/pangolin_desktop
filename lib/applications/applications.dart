@@ -129,7 +129,7 @@ Expanded tileSection(BuildContext context) {
                 type: AppLauncherButtonType.Drawer,
                 app: DeveloperApp(),
                 icon: 'assets/Images/Icons/PNG/developer.png',
-                label: 'Developer Options',
+                label: local.get("app_developeroptions"),
                 color: Colors.red[700],
                 callback: toggleCallback),
             AppLauncherButton(

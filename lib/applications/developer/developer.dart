@@ -27,7 +27,7 @@ class DeveloperApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-      title: 'Generated App',
+      title: 'Developer Options',
       theme: new ThemeData(
         primarySwatch: Colors.red,
         primaryColor: const Color(0xFFf44336),
@@ -51,7 +51,7 @@ class _DeveloperAppPageState extends State<DeveloperAppPage> {
   Widget build(BuildContext context) {
     return new Scaffold(
         appBar: new AppBar(
-          title: new Text('Developer Options (Linux)'),
+          title: new Text('Developer options (Linux)'),
         ),
         body: new Center(
           child: SingleChildScrollView(
