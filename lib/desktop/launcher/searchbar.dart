@@ -17,9 +17,15 @@ limitations under the License.
 import 'package:flutter/material.dart';
 import 'package:Pangolin/utils/localization/localization.dart';
 
-class SearchWidget extends StatelessWidget{
+class SearchWidget extends StatefulWidget{
 
+  @override
+  _SearchWidgetState createState() => _SearchWidgetState();
+}
+
+class _SearchWidgetState extends State<SearchWidget> {
   final TextEditingController editingController = new TextEditingController();
+
   BuildContext _context;
 
   @override
