@@ -56,7 +56,7 @@ class _DisplayState extends State<Display> {
                     SizedBox(height: 5),
                     SettingsTile(
                       children: [
-                        Text("Set your Screen Brightness"),
+                        Text("Set your screen brightness"),
                         SizedBox(height: 5),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -84,7 +84,7 @@ class _DisplayState extends State<Display> {
                     SizedBox(height: 20),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                      child: Text("Blue Light Filter",
+                      child: Text("Blue light filter",
                           style: TextStyle(
                               fontSize: 17,
                               letterSpacing: 0.2,
@@ -99,7 +99,7 @@ class _DisplayState extends State<Display> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                    "Enable Blue Light Filter to protect your eyes"),
+                                    "Enable blue light filter to protect your eyes"),
                                 Switch(
                                   value:
                                       HiveManager.get("enableBlueLightFilter"),
@@ -129,7 +129,7 @@ class _DisplayState extends State<Display> {
                     AbsorbPointer(
                       child: SettingsTile(
                         children: [
-                          Text("Adjust your Screen Resolution"),
+                          Text("Adjust your screen resolution"),
                           SizedBox(height: 5),
                           Padding(
                             padding: const EdgeInsets.all(8.0),

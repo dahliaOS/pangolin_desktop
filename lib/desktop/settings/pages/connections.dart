@@ -29,9 +29,9 @@ class _ConnectionsState extends State<Connections> {
   @override
   void initState() {
     // TODO: implement initState
-    wifiList.add(new WifiItem("Wifi 1", true));
-    wifiList.add(new WifiItem("Wifi 2", false));
-    wifiList.add(new WifiItem("Wifi 3", false));
+    wifiList.add(new WifiItem("Wi-Fi 1", true));
+    wifiList.add(new WifiItem("Wi-Fi 2", false));
+    wifiList.add(new WifiItem("Wi-Fi 3", false));
     bluetoothList.add(new BluetoothItem("Some Random Bluetooth Device", false));
     bluetoothList.add(new BluetoothItem(
         "Another Bluetooth Device with a longer name to test if that causes errors",
@@ -63,7 +63,7 @@ class _ConnectionsState extends State<Connections> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                      child: Text("Wifi and Bluetooth",
+                      child: Text("Wi-Fi and Bluetooth",
                           style: TextStyle(
                               fontSize: 17,
                               letterSpacing: 0.2,
@@ -81,7 +81,7 @@ class _ConnectionsState extends State<Connections> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      "Enable Wifi",
+                                      "Enable Wi-Fi",
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold),
                                     ),
@@ -138,7 +138,7 @@ class _ConnectionsState extends State<Connections> {
                                             );
                                           }),
                                     ),
-                                    Text("Wifi is Disabled")),
+                                    Text("Wi-Fi is Disabled")),
                               ],
                             ),
                             SettingsTile(
@@ -208,7 +208,7 @@ class _ConnectionsState extends State<Connections> {
                                             );
                                           }),
                                     ),
-                                    Text("Bluetooth is Disabled")),
+                                    Text("Bluetooth is disabled")),
                               ],
                             ),
                           ],

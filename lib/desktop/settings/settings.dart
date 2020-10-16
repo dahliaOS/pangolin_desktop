@@ -179,9 +179,9 @@ class _SettingsPageState extends State<SettingsPage> {
 
   @override
   void initState() {
-    items.add(new TileItem("Connections", "Wifi, Bluetooth, other Connections",
+    items.add(new TileItem("Connections", "Wi-Fi, Bluetooth, other connections",
         Icons.wifi, true, Connections()));
-    items.add(new TileItem("Volume and Sounds", "Sound mode, Volume",
+    items.add(new TileItem("Volume and sounds", "Sound mode, volume",
         Icons.volume_up, false, Sound()));
     items.add(new TileItem("Display", "Brightness, Blue light filter",
         Icons.brightness_5, false, Display()));
@@ -191,17 +191,17 @@ class _SettingsPageState extends State<SettingsPage> {
         Icons.color_lens,
         false,
         Customization()));
-    items.add(new TileItem("Applications", "Manage Apps and Permissions",
+    items.add(new TileItem("Applications", "Manage Apps and permissions",
         Icons.apps, false, Applications()));
-    items.add(new TileItem("Security", "Settings for Security and Privacy",
+    items.add(new TileItem("Security", "Settings for security and privacy",
         Icons.security, false, Security()));
-    items.add(new TileItem("Accounts", "Manage and add Accounts", Icons.people,
+    items.add(new TileItem("Accounts", "Manage and add accounts", Icons.people,
         false, Accounts()));
     items.add(new TileItem(
         "Backup", "Backup and Restore", Icons.update, false, Backup()));
-    items.add(new TileItem("Advanced Features", "Coming Soon",
+    items.add(new TileItem("Advanced Features", "Coming soon!",
         Icons.add_circle_outline, false, AdvancedFeatures()));
-    items.add(new TileItem("General Management", "Language, Keyboard, Time",
+    items.add(new TileItem("General management", "Language, Keyboard, Time",
         Icons.language, false, GeneralManagement()));
     items.add(new TileItem("Updates", "Download, Changelog",
         Icons.system_update, false, Updates()));
@@ -445,7 +445,7 @@ class _SearchState extends State<Search> {
                               Icons.search,
                               color: Color(HiveManager.get("accentColorValue")),
                             ),
-                            hintText: 'Search settings...',
+                            hintText: 'Search settings',
                             border: InputBorder.none),
                         onSubmitted: null,
                         controller: editingController,

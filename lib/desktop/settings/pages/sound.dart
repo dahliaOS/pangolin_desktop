@@ -46,7 +46,7 @@ class _SoundState extends State<Sound> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                      child: Text("System Volume",
+                      child: Text("System volume",
                           style: TextStyle(
                               fontSize: 17,
                               letterSpacing: 0.2,
@@ -55,7 +55,7 @@ class _SoundState extends State<Sound> {
                     SizedBox(height: 5),
                     SettingsTile(
                       children: [
-                        Text("Set your System Volume"),
+                        Text("Set your system volume"),
                         SizedBox(height: 5),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -83,7 +83,7 @@ class _SoundState extends State<Sound> {
                     SizedBox(height: 20),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                      child: Text("Volume Levels",
+                      child: Text("Volume levels",
                           style: TextStyle(
                               fontSize: 17,
                               letterSpacing: 0.2,
@@ -92,7 +92,7 @@ class _SoundState extends State<Sound> {
                     SizedBox(height: 5),
                     SettingsTile(
                       children: [
-                        Text("Set individual Volume for each Application"),
+                        Text("Set individual volume for each application"),
                         SizedBox(height: 5),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -129,7 +129,7 @@ class _SoundState extends State<Sound> {
                     SizedBox(height: 5),
                     SettingsTile(
                       children: [
-                        Text("Select Output Device"),
+                        Text("Select output device"),
                         SizedBox(height: 5),
                         Container(
                           width: 1.7976931348623157e+308,

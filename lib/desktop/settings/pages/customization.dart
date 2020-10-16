@@ -54,7 +54,7 @@ class _CustomizationState extends State<Customization> {
                     children: [
                       Padding(
                         padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                        child: Text("Accent Color",
+                        child: Text("Accent color",
                             style: TextStyle(
                                 fontSize: 17,
                                 letterSpacing: 0.2,
@@ -63,7 +63,7 @@ class _CustomizationState extends State<Customization> {
                       SizedBox(height: 5),
                       SettingsTile(
                         children: [
-                          Text("Choose your accent Color"),
+                          Text("Choose your accent color"),
                           SizedBox(height: 5),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -173,7 +173,7 @@ class _CustomizationState extends State<Customization> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text("Enable Blur Effects on the Desktop"),
+                              Text("Enable blur effects on the desktop"),
                               Consumer<CustomizationNotifier>(
                                 builder: (context, notifier, child) => Switch(
                                   value: HiveManager.get("blur"),
@@ -191,7 +191,7 @@ class _CustomizationState extends State<Customization> {
                       SizedBox(height: 20),
                       Padding(
                         padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                        child: Text("Dark Mode",
+                        child: Text("Dark mode",
                             style: TextStyle(
                                 fontSize: 17,
                                 letterSpacing: 0.2,
@@ -204,7 +204,7 @@ class _CustomizationState extends State<Customization> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                  "Enable Dark Mode on the Desktop and all Apps"),
+                                  "Enable Dark mode on the desktop and all applications"),
                               Consumer<CustomizationNotifier>(
                                 builder: (context, notifier, child) => Switch(
                                   value: notifier.darkTheme,
@@ -241,7 +241,7 @@ class _CustomizationState extends State<Customization> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text("Center Taskbar Items"),
+                              Text("Center taskbar icons"),
                               Switch(
                                 value: HiveManager.get("centerTaskbar"),
                                 onChanged: (bool state) {
@@ -269,7 +269,7 @@ class _CustomizationState extends State<Customization> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text("Enable Random Wallpapers"),
+                              Text("Enable random wallpapers"),
                               Switch(
                                 value: HiveManager.get("randomWallpaper"),
                                 onChanged: (bool state) {
@@ -288,7 +288,7 @@ class _CustomizationState extends State<Customization> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Text("Choose a Wallpaper"),
+                                      Text("Choose a wallpaper"),
                                       FlatButton(
                                         onPressed: () {
                                           showDialog(
@@ -297,7 +297,7 @@ class _CustomizationState extends State<Customization> {
                                                 return WallpaperChooser();
                                               });
                                         },
-                                        child: Text("Open Wallpaper Chooser"),
+                                        child: Text("Wallpaper chooser"),
                                       )
                                     ],
                                   )
@@ -323,7 +323,7 @@ class _CustomizationState extends State<Customization> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text("Enable Wide Launcher Mode"),
+                                  Text("Enable Wide launcher mode"),
                                   Switch(
                                     value: HiveManager.get("launcherWideMode"),
                                     onChanged: (bool state) {
@@ -342,7 +342,7 @@ class _CustomizationState extends State<Customization> {
                       SizedBox(height: 20),
                       Padding(
                         padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                        child: Text("Window Titlebars",
+                        child: Text("Window titlebars",
                             style: TextStyle(
                                 fontSize: 17,
                                 letterSpacing: 0.2,
@@ -354,7 +354,7 @@ class _CustomizationState extends State<Customization> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text("Enabled colored Titlebar"),
+                              Text("Enabled colored titlebar"),
                               Switch(
                                 value: HiveManager.get("coloredTitlebar"),
                                 onChanged: (bool state) {
@@ -404,8 +404,8 @@ class _CustomizationState extends State<Customization> {
                                   padding: EdgeInsets.all(8),
                                   child: new Text(
                                     kIsWeb
-                                        ? "WARNING: Customization is not supported on Web Demos"
-                                        : "WARNING: You need to restart Pangolin to apply your changes.",
+                                        ? "WARNING: Customization is not supported on the web builds!"
+                                        : "WARNING: You need to restart Pangolin to apply your changes!",
                                     style: new TextStyle(
                                       color: Colors.grey[900],
                                       fontSize: 14,
@@ -431,7 +431,7 @@ class _CustomizationState extends State<Customization> {
                                               "Are you sure you want to restart Pangolin?")),
                                       content: new Container(
                                         child: Text(
-                                            "The restart will only take a few seconds but your open windows will be closed and unsaved data will be lost"),
+                                            "The restart will only take a few seconds but your open windows will be closed and any unsaved data will be lost"),
                                       ),
                                       actions: <Widget>[
                                         // usually buttons at the bottom of the dialog
@@ -442,7 +442,7 @@ class _CustomizationState extends State<Customization> {
                                           },
                                         ),
                                         new FlatButton(
-                                          child: new Text("Yes, Restart!"),
+                                          child: new Text("Yes"),
                                           onPressed: () {
                                             Process.run(
                                                 'bash', ['/dahlia/restart.sh']);

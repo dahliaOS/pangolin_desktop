@@ -38,7 +38,7 @@ class _GeneralManagementState extends State<GeneralManagement> {
             children: [
               Center(
                   child: Text(
-                "General Management",
+                "General management",
                 style: TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
@@ -99,7 +99,7 @@ class _GeneralManagementState extends State<GeneralManagement> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text("Automatic Time"),
+                            Text("Automatic time"),
                             Switch(
                               value: HiveManager.get("enableAutoTime"),
                               onChanged: (bool state) {
@@ -145,7 +145,7 @@ class _GeneralManagementState extends State<GeneralManagement> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text("Show Seconds"),
+                            Text("Show seconds"),
                             Switch(
                               value: HiveManager.get("showSeconds"),
                               onChanged: (bool state) {
@@ -159,7 +159,7 @@ class _GeneralManagementState extends State<GeneralManagement> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text("Enable 24 Hour Time"),
+                            Text("Enable 24-hour time"),
                             Switch(
                               value: HiveManager.get("enable24hTime"),
                               onChanged: (bool state) {
@@ -183,7 +183,7 @@ class _GeneralManagementState extends State<GeneralManagement> {
                     ),
                     SettingsTile(
                       children: [
-                        Text("Set Keyboard layout - WIP"),
+                        Text("Set keyboard layout (WIP)"),
                         SizedBox(height: 5),
                         Container(
                           width: 1.7976931348623157e+308,
@@ -240,7 +240,7 @@ class _GeneralManagementState extends State<GeneralManagement> {
                               child: new Padding(
                                   padding: EdgeInsets.all(8),
                                   child: new Text(
-                                    "WARNING: You are on a pre-release build of dahliaOS. Some settings don't work yet.",
+                                    "WARNING: You are on a pre-release build of dahliaOS, some settings don't work yet.",
                                     style: new TextStyle(
                                       color: Colors.grey[900],
                                       fontSize: 14,
