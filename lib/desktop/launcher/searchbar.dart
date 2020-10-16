@@ -15,7 +15,7 @@ limitations under the License.
 */
 
 import 'package:flutter/material.dart';
-
+import 'package:Pangolin/utils/localization/localization.dart';
 
 class SearchWidget extends StatelessWidget{
 
@@ -24,6 +24,7 @@ class SearchWidget extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
+    Localization local = Localization.of(context);
 
     _context = context;
 
@@ -49,7 +50,7 @@ class SearchWidget extends StatelessWidget{
                     decoration: new InputDecoration(
                       hintStyle: TextStyle(color: Colors.white),
                       icon: Icon(Icons.search, color: const Color(0xFFffffff),),
-                      hintText: 'Search your device, apps, web...',
+                      hintText: local.get("launcher_search"),
                       border: InputBorder.none
                     ),
                     onSubmitted: null,
