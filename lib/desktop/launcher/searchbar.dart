@@ -58,7 +58,7 @@ class _SearchWidgetState extends State<SearchWidget> {
                     decoration: new InputDecoration(
                       hintStyle: TextStyle(color: Colors.white),
                       icon: Icon(Icons.search, color: const Color(0xFFffffff),),
-                      hintText: "fix me",
+                      hintText: "come on",
                       border: InputBorder.none
                     ),
                     onSubmitted: null,
