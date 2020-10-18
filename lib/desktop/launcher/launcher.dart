@@ -84,7 +84,7 @@ class LauncherState extends State<LauncherWidget> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   new SearchWidget(
-                    local.get("launcher_search"),
+                    local.get("launcher_search")
                   ),
                   const SizedBox(height: 35),
                   new SingleChildScrollView(
