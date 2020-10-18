@@ -18,6 +18,8 @@ import 'package:flutter/material.dart';
 import 'package:Pangolin/utils/localization/localization.dart';
 
 class SearchWidget extends StatefulWidget{
+  SearchWidget(String s, {String hintText});
+
 
   @override
   _SearchWidgetState createState() => _SearchWidgetState();
@@ -56,7 +58,7 @@ class _SearchWidgetState extends State<SearchWidget> {
                     decoration: new InputDecoration(
                       hintStyle: TextStyle(color: Colors.white),
                       icon: Icon(Icons.search, color: const Color(0xFFffffff),),
-                      hintText: local.get("launcher_search"),
+                      hintText: "fix me",
                       border: InputBorder.none
                     ),
                     onSubmitted: null,
