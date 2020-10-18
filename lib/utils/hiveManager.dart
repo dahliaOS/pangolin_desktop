@@ -76,9 +76,9 @@ List<String> languages = [
 List<String> timeZones = [];
 
 List<String> wallpapers = [
-  "assets/Images/Wallpapers/dahliaOS/dahliaOS_white_logo_pattern_wallpaper.png",
-  "assets/Images/Wallpapers/dahliaOS/ahliaOS_white_wallpaper.png",
-  "assets/Images/Wallpapers/dahliaOS/Gradient_logo_wallpaper.png",
-  "assets/Images/Wallpapers/dahliaOS/Three_bubbles_wallpaper.png",
-  "assets/Images/Wallpapers/Nature/mountain.jpg",
+  "assets/images/wallpapers/dahliaOS/dahliaOS_white_logo_pattern_wallpaper.png",
+  "assets/images/wallpapers/dahliaOS/dahliaOS_white_wallpaper.png",
+  "assets/images/wallpapers/dahliaOS/Gradient_logo_wallpaper.png",
+  "assets/images/wallpapers/dahliaOS/Three_bubbles_wallpaper.png",
+  "assets/images/wallpapers/Nature/mountain.jpg",
 ];

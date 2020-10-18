@@ -61,7 +61,7 @@ class LauncherWidget extends StatelessWidget {
                             constraints: BoxConstraints.expand(height: 75),
                             margin: EdgeInsets.only(left: 33, top: 20),
                             child: Image.asset(
-                              "assets/Images/Icons/PNG/wallpaper.png",
+                              "assets/images/icons/PNG/wallpaper.png",
                               fit: BoxFit.none,
                             ),
                           ),
@@ -111,7 +111,7 @@ class LauncherWidget extends StatelessWidget {
                                 Container(
                                   margin: EdgeInsets.only(top: 20, right: 32),
                                   child: Image.asset(
-                                    "assets/Images/Icons/PNG/wallpaper.png",
+                                    "assets/images/icons/PNG/wallpaper.png",
                                     fit: BoxFit.none,
                                   ),
                                 ),
@@ -155,7 +155,7 @@ class LauncherWidget extends StatelessWidget {
                                 Container(
                                   margin: EdgeInsets.only(top: 20, right: 22),
                                   child: Image.asset(
-                                    "assets/Images/Icons/PNG/wallpaper.png",
+                                    "assets/images/icons/PNG/wallpaper.png",
                                     fit: BoxFit.none,
                                   ),
                                 ),
@@ -193,7 +193,7 @@ class LauncherWidget extends StatelessWidget {
                         constraints: BoxConstraints.expand(height: 75),
                         margin: EdgeInsets.only(left: 24, top: 20),
                         child: Image.asset(
-                          "assets/Images/Icons/PNG/wallpaper.png",
+                          "assets/images/icons/PNG/wallpaper.png",
                           fit: BoxFit.none,
                         ),
                       ),
@@ -235,7 +235,7 @@ class LauncherWidget extends StatelessWidget {
                   constraints: BoxConstraints.expand(width: 75),
                   margin: EdgeInsets.only(top: 20),
                   child: Image.asset(
-                    "assets/Images/Icons/PNG/wallpaper.png",
+                    "assets/images/icons/PNG/wallpaper.png",
                     fit: BoxFit.none,
                   ),
                 ),

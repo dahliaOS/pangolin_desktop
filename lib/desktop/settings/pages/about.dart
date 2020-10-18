@@ -54,7 +54,7 @@ class _AboutState extends State<About> {
                 width: 200,
                 child: Image(
                   image: AssetImage(
-                      "assets/Images/Logos/dahliaOS/PNG/dahliaOS_logo_drop_shadow.png"),
+                      "assets/images/logos/dahliaOS/PNG/dahliaOS_logo_drop_shadow.png"),
                   fit: BoxFit.cover,
                 ),
               ),
