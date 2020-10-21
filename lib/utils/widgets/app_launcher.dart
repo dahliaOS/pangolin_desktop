@@ -62,8 +62,8 @@ class AppLauncherButtonState extends State<AppLauncherButton> {
           ? EdgeInsets.all(10.0)
           : EdgeInsets.symmetric(horizontal: 4.0),
       child: Container(
-        width: (widget.type == AppLauncherButtonType.Drawer) ? 175.0 : 45.0,
-        height: (widget.type == AppLauncherButtonType.Drawer) ? 175.0 : 45.0,
+        width: (widget.type == AppLauncherButtonType.Drawer) ? 125.0 : 45.0,
+        height: (widget.type == AppLauncherButtonType.Drawer) ? 125.0 : 45.0,
         child: Hover(
             color: Colors.white.withOpacity(0.2),
             borderRadius: (widget.type == AppLauncherButtonType.Drawer)
@@ -71,7 +71,7 @@ class AppLauncherButtonState extends State<AppLauncherButton> {
                 : BorderRadius.circular(0),
             child: Container(
               margin: (widget.type == AppLauncherButtonType.Drawer)
-                  ? EdgeInsets.all(30.0)
+                  ? EdgeInsets.all(0.0)
                   : EdgeInsets.symmetric(horizontal: 4.0),
               width:
                   (widget.type == AppLauncherButtonType.Drawer) ? 200.0 : 45.0,
@@ -115,6 +115,13 @@ class AppLauncherButtonState extends State<AppLauncherButton> {
                                             })
                                       ]);
                                 });
+                      },
+                      onLongPress: () {
+                        Provider.of<WindowsData>(context, listen: false)
+                            .windows
+                            .forEach((element) {
+                          print(element.id);
+                        });
                       },
                       child: Container(
                         child: Image.asset(

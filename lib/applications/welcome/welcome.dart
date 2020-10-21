@@ -16,7 +16,7 @@ limitations under the License.
 
 import 'dart:io';
 import 'dart:ui';
-
+import 'package:Pangolin/utils/globals.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -108,7 +108,7 @@ class FirstScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         shadowColor: const Color(0x00ffffff),
         title: Image.asset(
-          'assets/images/dahliaOS/Logos/compiled/dahliaOS_logo_with_text_drop_shadow.png',
+          'assets/Images/Logos/dahliaOS/PNG/dahliaOS_logo_with_text_drop_shadow.png',
           fit: BoxFit.fitHeight,
           width: 300,
           height: 32,
@@ -133,38 +133,34 @@ class FirstScreen extends StatelessWidget {
                   ),
                   /* new Image.asset(
                       
-       'assets/images/dahliaOS/Logos/compiled/dahliaOS_logo_with_text_drop_shadow.png',
+       'assets/Images/Logos/dahliaOS/PNG/dahliaOS_logo_with_text_drop_shadow.png',
         fit: BoxFit.fitHeight,
         
         width: 300,
        height:32,
       ),*/
                   feature(
-                      "assets/images/icons/v2/compiled/welcome-info.png",
+                      "assets/Images/Icons/PNG/welcome-info.png",
                       "Build Information",
-                      "dahliaOS Linux-Based 200830 ...",
+                      headingFeatureString,
                       "/info",
                       context),
+                  feature("assets/Images/Icons/PNG/messages.png", "Feedback",
+                      "Have an issue or a suggestion?", "/feedback", context),
                   feature(
-                      "assets/images/icons/v2/compiled/messages.png",
-                      "Feedback",
-                      "Have an issue or a suggestion?",
-                      "/feedback",
-                      context),
-                  feature(
-                      "assets/images/icons/v2/compiled/social.png",
+                      "assets/Images/Icons/PNG/social.png",
                       "Social media",
                       "Check us out on nearly every platform!",
                       "/social",
                       context),
                   feature(
-                      "assets/images/icons/v2/compiled/credits.png",
+                      "assets/Images/Icons/PNG/credits.png",
                       "Credits",
                       "Here's everyone who helped make this happen!",
                       "/credits",
                       context),
                   feature(
-                      "assets/images/icons/v2/compiled/software-shared.png",
+                      "assets/Images/Icons/PNG/software-shared.png",
                       "Software",
                       "View information about third-party software...",
                       "/software",
@@ -315,16 +311,16 @@ class BuildInfo extends StatelessWidget {
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           new Image.asset(
-            'assets/images/dahliaOS/Logos/compiled/dahliaOS_logo_with_text_drop_shadow.png',
+            'assets/Images/Logos/dahliaOS/PNG/dahliaOS_logo_with_text_drop_shadow.png',
             fit: BoxFit.fitHeight,
             width: 300,
             height: 32,
           ),
-          Text('dahliaOS Linux-based 200830  PRE-RELEASE',
+          Text(longName,
               style: TextStyle(fontSize: 14, color: Color(0xff000000))),
-          Text('Kernel 5.7.19',
+          Text(kernel,
               style: TextStyle(fontSize: 14, color: Color(0xff000000))),
-          Text('Pangolin e19e26555115591bada8597f45e6a60d989068ad',
+          Text(pangolinCommit,
               style: TextStyle(fontSize: 14, color: Color(0xff000000))),
           RaisedButton(
               onPressed: () {
@@ -471,7 +467,7 @@ class SocialMedia extends StatelessWidget {
                 children: [
                   /* new Image.asset(
                       
-       'assets/images/dahliaOS/Logos/compiled/dahliaOS_logo_with_text_drop_shadow.png',
+       'assets/Images/Logos/dahliaOS/PNG/dahliaOS_logo_with_text_drop_shadow.png',
         fit: BoxFit.fitHeight,
         
         width: 300,
@@ -479,42 +475,42 @@ class SocialMedia extends StatelessWidget {
       ),*/
 
                   socialItem(
-                    "assets/images/dahliaOS/Logos/compiled/dahliaOS_logo_drop_shadow.png",
+                    "assets/Images/Logos/dahliaOS/PNG/dahliaOS_logo_drop_shadow.png",
                     "Official Website",
                     "https://dahliaos.io",
                   ),
                   socialItem(
-                    "assets/images/icons/v2/compiled/discord.png",
+                    "assets/Images/Icons/PNG/discord.png",
                     "Discord",
                     "https://discord.gg/jwgS3t6",
                   ),
                   socialItem(
-                    "assets/images/icons/v2/compiled/facebook.png",
+                    "assets/Images/Icons/PNG/facebook.png",
                     "Facebook",
                     "https://facebook.com/officialdahliaos/",
                   ),
                   socialItem(
-                    "assets/images/icons/v2/compiled/github.png",
+                    "assets/Images/Icons/PNG/github.png",
                     "Github",
                     "https://github.com/dahlia-os",
                   ),
                   socialItem(
-                    "assets/images/icons/v2/compiled/instagram.png",
+                    "assets/Images/Icons/PNG/instagram.png",
                     "Instagram",
                     "https://instagram.com/officialdahliaos/",
                   ),
                   socialItem(
-                    "assets/images/icons/v2/compiled/reddit.png",
+                    "assets/Images/Icons/PNG/reddit.png",
                     "Reddit",
                     "https://reddit.com/r/dahliaos",
                   ),
                   socialItem(
-                    "assets/images/icons/v2/compiled/telegram.png",
+                    "assets/Images/Icons/PNG/telegram.png",
                     "Telegram",
                     "https://t.me/dahliaos/",
                   ),
                   socialItem(
-                    "assets/images/icons/v2/compiled/twitter.png",
+                    "assets/Images/Icons/PNG/twitter.png",
                     "Twitter",
                     "https://twitter.com/realdahliaos",
                   ),
@@ -607,77 +603,77 @@ class Credits extends StatelessWidget {
                     scrollDirection: Axis.vertical,
                     child: new Wrap(children: <Widget>[
                       person(
-                        "assets/images/people/bleonard.png",
+                        "assets/Images/Credits/Profile pictures/bleonard.png",
                         "Blake Leonard",
                         "bleonard252",
                       ),
                       person(
-                        "assets/images/people/noah.jpeg",
+                        "assets/Images/Credits/Profile pictures/noah.jpeg",
                         "Noah Cain",
                         "nmcain",
                       ),
                       person(
-                        "assets/images/people/camden.jpeg",
+                        "assets/Images/Credits/Profile pictures/camden.jpeg",
                         "Camden Bruce",
                         "EnderNightLord-ChromeBook",
                       ),
                       person(
-                        "assets/images/people/faust.png",
+                        "assets/Images/Credits/Profile pictures/faust.png",
                         "Marin Heđeš",
                         "SincerelyFaust",
                       ),
                       person(
-                        "assets/images/people/lars.jpeg",
+                        "assets/Images/Credits/Profile pictures/lars.jpeg",
                         "Lars",
                         "larsb24",
                       ),
                       person(
-                        "assets/images/people/horus.png",
+                        "assets/Images/Credits/Profile pictures/horus.png",
                         "Hackerman",
                         "Horus125",
                       ),
                       person(
-                        "assets/images/people/haru.jpeg",
+                        "assets/Images/Credits/Profile pictures/haru.jpeg",
                         "Kanou Haru",
                         "kanouharu",
                       ),
                       person(
-                        "assets/images/people/nobody.png",
+                        "assets/Images/Credits/Profile pictures/nobody.png",
                         "Nobody",
                         "nobody5050",
                       ),
                       person(
-                        "assets/images/people/subspace.png",
+                        "assets/Images/Credits/Profile pictures/subspace.png",
                         "Lucas Puntillo",
                         "puntillol59",
                       ),
                       person(
-                        "assets/images/people/hexa.png",
+                        "assets/Images/Credits/Profile pictures/hexa.png",
                         "Quinten",
                         "HexaOneOfficial",
                       ),
                       person(
-                        "assets/images/people/x7.jpeg",
+                        "assets/Images/Credits/Profile pictures/x7.jpeg",
                         "Syed Mushaheed",
                         "predatorx7",
                       ),
                       person(
-                        "assets/images/people/vanzh.png",
+                        "assets/Images/Credits/Profile pictures/vanzh.png",
                         "V.",
                         "xVanzh",
                       ),
                       person(
-                        "assets/images/people/funeoz.jpeg",
+                        "assets/Images/Credits/Profile pictures/funeoz.jpeg",
                         "Funeoz",
                         "Funeoz",
                       ),
                       person(
-                        "assets/images/people/fristover.png",
+                        "assets/Images/Credits/Profile pictures/fristover.png",
                         "Fristover",
                         "Fristover",
                       ),
                       person(
-                        "assets/images/dahliaOS/Logos/compiled/dahliaOS_logo_drop_shadow.png",
+                        "assets/Images/Logos/dahliaOS/PNG/dahliaOS_logo_drop_shadow.png",
                         "And... you!",
                         "Thanks for testing out this build!",
                       ),

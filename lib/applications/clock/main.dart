@@ -14,8 +14,10 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'dart:async';
 import 'dart:ui';
 
+import 'package:Pangolin/desktop/quicksettings/quick_settings.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -38,59 +40,116 @@ class Clock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return new MaterialApp(
       title: 'Clock',
       theme: new ThemeData(
         platform: TargetPlatform.fuchsia,
-        primarySwatch: Colors.blue,
+        primaryColor: Colors.blue[900],
+        brightness: Brightness.dark
       ),
-      initialRoute: '/',
-      routes: {
-        // When navigating to the "/" route, build the FirstScreen widget.
-        '/': (context) => FirstScreen(),
-        // When navigating to the "/second" route, build the SecondScreen widget.
-        '/second': (context) => SecondScreen(),
-      },
+      home: ClockApp()
     );
   }
 }
 
-class FirstScreen extends StatelessWidget {
+class ClockApp extends StatefulWidget {
+  @override
+  _ClockApp createState() => _ClockApp();
+}
+
+class _ClockApp extends State<ClockApp> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
+    TabController tcon = TabController(length: 2, vsync: this);
     return Scaffold(
       appBar: AppBar(
-        title: Text('First Screen'),
-      ),
-      body: Center(
-        child: RaisedButton(
-          child: Text('Launch screen'),
-          onPressed: () {
-            // Navigate to the second screen using a named route.
-            Navigator.pushNamed(context, '/second');
-          },
+        centerTitle: true,
+        elevation: 0,
+        toolbarHeight: 75,
+        title: Row(
+          children: [
+            TabBar(
+              controller: tcon,
+              indicator: BoxDecoration(
+                color: Theme.of(context).canvasColor,
+                borderRadius: BorderRadius.only(topLeft: Radius.circular(8), topRight: Radius.circular(8)),
+              ),
+              isScrollable: true,
+              tabs: [
+                Tab(
+                  icon: Icon(Icons.access_time),
+                  text: "Clock",
+                ),
+                Tab(
+                  icon: Icon(Icons.alarm),
+                  text: "Alarms",
+                ),
+              ],
+            ),
+            Expanded(child: Container()),
+            PopupMenuButton(
+              icon: Icon(Icons.more_vert),
+              itemBuilder: (context) => <PopupMenuEntry>[
+                PopupMenuItem(
+                  child: Text("Settings"),
+                  value: "settings"
+                )
+              ],
+              onSelected: (value) {
+                if (value == "settings") notImplemented(context);
+              },
+            ),
+          ]
         ),
+      ),
+      body: TabBarView(
+        controller: tcon,
+        children: [
+          WorldClockTab(),
+          AlarmsTab()
+        ],
+      )
+    );
+  }
+}
+
+class WorldClockTab extends StatefulWidget {
+  @override
+  _WorldClockTabState createState() => _WorldClockTabState();
+}
+
+class _WorldClockTabState extends State<WorldClockTab> {
+
+  DateTime _datetime = DateTime.now();
+  Timer _ctimer;
+
+  @override
+  Widget build(BuildContext context) {
+    if (_ctimer == null) _ctimer = Timer.periodic(Duration(seconds: 1), (me) {
+      _datetime = DateTime.now();
+      setState(() {});
+    });
+    return Material(
+      child: Center(
+        child: Text(
+          "${_datetime.hour}:${_datetime.minute < 10 ? "0"+_datetime.minute.toString() : _datetime.minute}:${_datetime.second < 10 ? "0"+_datetime.second.toString() : _datetime.second}",
+          style: TextStyle(
+            fontSize: 48,
+            fontWeight: FontWeight.bold
+          ),
+        )
       ),
     );
   }
 }
 
-class SecondScreen extends StatelessWidget {
+class AlarmsTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Second Screen"),
-      ),
-      body: Center(
-        child: RaisedButton(
-          onPressed: () {
-            // Navigate back to the first screen by popping the current route
-            // off the stack.
-            Navigator.pop(context);
-          },
-          child: Text('Go back!'),
-        ),
+    return Material(
+      child: Center(
+        child: Icon(Icons.timer_rounded)
       ),
     );
   }

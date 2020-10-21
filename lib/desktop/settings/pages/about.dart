@@ -12,7 +12,7 @@ limitations under the License.
 */
 
 import 'dart:ui';
-
+import 'package:Pangolin/utils/globals.dart';
 import 'package:Pangolin/utils/widgets/settingsTile.dart';
 import 'package:flutter/material.dart';
 
@@ -54,7 +54,7 @@ class _AboutState extends State<About> {
                 width: 200,
                 child: Image(
                   image: AssetImage(
-                      "assets/images/dahliaOS/Logos/compiled/dahliaOS_logo_drop_shadow.png"),
+                      "assets/Images/Logos/dahliaOS/PNG/dahliaOS_logo_drop_shadow.png"),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -73,7 +73,7 @@ class _AboutState extends State<About> {
                           fontWeight: FontWeight.bold)),
                 ),
                 SizedBox(height: 5),
-                SettingsTile(children: [Text("Version 200830")]),
+                SettingsTile(children: [Text(longName)]),
                 SizedBox(height: 20),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
@@ -84,7 +84,7 @@ class _AboutState extends State<About> {
                           fontWeight: FontWeight.bold)),
                 ),
                 SizedBox(height: 5),
-                SettingsTile(children: [Text("Linux Kernel 5.7.19")]),
+                SettingsTile(children: [Text(kernel)]),
                 SizedBox(height: 20),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
@@ -95,7 +95,7 @@ class _AboutState extends State<About> {
                           fontWeight: FontWeight.bold)),
                 ),
                 SizedBox(height: 5),
-                SettingsTile(children: [Text("Version v200917")]),
+                SettingsTile(children: [Text(fullPangolinVersion)]),
                 SizedBox(height: 20),
               ]),
             ],

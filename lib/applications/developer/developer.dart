@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:Pangolin/widgets/notification.dart';
+import 'package:Pangolin/utils/widgets/notification.dart';
 import 'package:flutter/material.dart';
 import '../../main.dart';
 import 'dart:io';
@@ -58,7 +58,7 @@ class _DeveloperAppPageState extends State<DeveloperAppPage> {
             child: Column(
               children: [
                 Text(
-                    "Warning: These options are intended only for development purposes. If something goes seriously wrong when using these, hold down the power button for 5-10 seconds to force a shutdown."),
+                    "Warning: These options are intended for development purposes only. If something goes seriously wrong when using these, hold down the power button for 5-10 seconds to force a shutdown."),
                 RaisedButton(
                     onPressed: () {
                       Process.run('reboot', [' ']);

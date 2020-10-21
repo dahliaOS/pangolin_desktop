@@ -16,6 +16,7 @@ limitations under the License.
 
 import 'package:Pangolin/utils/localization/localization.dart';
 import 'package:Pangolin/utils/widgets/blur.dart';
+import 'package:Pangolin/applications/applications.dart';
 import 'package:Pangolin/utils/widgets/cards.dart';
 import 'package:flutter/material.dart';
 import 'searchbar.dart';

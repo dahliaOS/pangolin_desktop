@@ -199,7 +199,7 @@ class _SettingsPageState extends State<SettingsPage> {
         false, Accounts()));
     items.add(new TileItem(
         "Backup", "Backup and Restore", Icons.update, false, Backup()));
-    items.add(new TileItem("Advanced Features", "Comming",
+    items.add(new TileItem("Advanced Features", "Coming Soon",
         Icons.add_circle_outline, false, AdvancedFeatures()));
     items.add(new TileItem("General Management", "Language, Keyboard, Time",
         Icons.language, false, GeneralManagement()));
