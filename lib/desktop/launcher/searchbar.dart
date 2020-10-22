@@ -58,7 +58,7 @@ class _SearchWidgetState extends State<SearchWidget> {
                     decoration: new InputDecoration(
                       hintStyle: TextStyle(color: Colors.white),
                       icon: Icon(Icons.search, color: const Color(0xFFffffff),),
-                      hintText: local.get("launcher_search"),
+                      hintText: "Search your device, app, web...",
                       border: InputBorder.none
                     ),
                     onSubmitted: null,

@@ -29,7 +29,7 @@ class LauncherWidget extends StatefulWidget {
 
 MaterialButton buildTile(String icon, String label) {
   return MaterialButton(
-    onPressed: null //kanou pls help
+    onPressed: null
     ,
     child: Column(
       //mainAxisSize: MainAxisSize.min,

@@ -141,7 +141,6 @@ class _DesktopState extends State<Desktop> {
 
           // 5 - The bottom bar
           Positioned(
-            //change below values to 15 or something to give it a starlight-like look
             left: 0.0,
             right: 0.0,
             bottom: 0.0,
@@ -155,7 +154,7 @@ class _DesktopState extends State<Desktop> {
                     decoration: BoxDecoration(
                       color: Color.fromARGB(150, 0, 0, 0),
                       //uncomment below to add radius to the launcher panel
-                      //borderRadius: BorderRadius.circular(100),
+                      //borderRadius: BorderRadius.circular(2),
                     ),
                     height: 45.0,
                     padding: const EdgeInsets.symmetric(
