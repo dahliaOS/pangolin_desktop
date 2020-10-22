@@ -54,7 +54,7 @@ class _AboutState extends State<About> {
                 width: 200,
                 child: Image(
                   image: AssetImage(
-                      "assets/Images/Logos/dahliaOS/PNG/dahliaOS_logo_drop_shadow.png"),
+                      "assets/images/logos/dahliaOS/PNG/dahliaOS_logo_drop_shadow.png"),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -88,7 +88,7 @@ class _AboutState extends State<About> {
                 SizedBox(height: 20),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                  child: Text("Pangolin Version",
+                  child: Text("Pangolin version",
                       style: TextStyle(
                           fontSize: 17,
                           letterSpacing: 0.2,
@@ -129,7 +129,7 @@ class _AboutState extends State<About> {
                               child: new Padding(
                                   padding: EdgeInsets.all(8),
                                   child: new Text(
-                                    "WARNING: You are on a pre-release build of dahliaOS. Some settings don't work yet.",
+                                    "WARNING: You are on a pre-release build of dahliaOS, some settings don't work yet.",
                                     style: new TextStyle(
                                       color: Colors.grey[900],
                                       fontSize: 14,

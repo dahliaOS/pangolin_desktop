@@ -141,7 +141,6 @@ class _DesktopState extends State<Desktop> {
 
           // 5 - The bottom bar
           Positioned(
-            //change below values to 15 or something to give it a starlight-like look
             left: 0.0,
             right: 0.0,
             bottom: 0.0,
@@ -155,7 +154,7 @@ class _DesktopState extends State<Desktop> {
                     decoration: BoxDecoration(
                       color: Color.fromARGB(150, 0, 0, 0),
                       //uncomment below to add radius to the launcher panel
-                      //borderRadius: BorderRadius.circular(100),
+                      //borderRadius: BorderRadius.circular(2),
                     ),
                     height: 45.0,
                     padding: const EdgeInsets.symmetric(
@@ -182,38 +181,38 @@ class _DesktopState extends State<Desktop> {
                                     AppLauncherButton(
                                       app: Calculator(),
                                       icon:
-                                          'assets/Images/Icons/PNG/calculator.png',
+                                          'assets/images/icons/PNG/calculator.png',
                                       color: Colors.green,
                                       callback: toggleCallback,
                                     ),
                                     AppLauncherButton(
                                         app: TextEditorApp(),
                                         icon:
-                                            'assets/Images/Icons/PNG/notes.png',
+                                            'assets/images/icons/PNG/notes.png',
                                         color: Colors.amber[700],
                                         callback: toggleCallback),
                                     AppLauncherButton(
                                         app: TerminalApp(),
                                         icon:
-                                            'assets/Images/Icons/PNG/terminal.png',
+                                            'assets/images/icons/PNG/terminal.png',
                                         color: Colors.grey[900],
                                         callback: toggleCallback),
                                     AppLauncherButton(
                                         app: Files(),
                                         icon:
-                                            'assets/Images/Icons/PNG/files.png',
+                                            'assets/images/icons/PNG/files.png',
                                         color: Colors.deepOrange,
                                         callback: toggleCallback),
                                     AppLauncherButton(
                                       app: Tasks(),
-                                      icon: 'assets/Images/Icons/PNG/task.png',
+                                      icon: 'assets/images/icons/PNG/task.png',
                                       color: Colors.cyan[900],
                                       callback: toggleCallback,
                                     ),
                                     AppLauncherButton(
                                         app: Settings(),
                                         icon:
-                                            'assets/Images/Icons/PNG/settings.png',
+                                            'assets/images/icons/PNG/settings.png',
                                         color: Colors.deepOrange[700],
                                         callback: toggleCallback),
                                   ]),
@@ -247,36 +246,36 @@ class _DesktopState extends State<Desktop> {
                                 AppLauncherButton(
                                   app: Calculator(),
                                   icon:
-                                      'assets/Images/Icons/PNG/calculator.png',
+                                      'assets/images/icons/PNG/calculator.png',
                                   color: Colors.green,
                                   callback: toggleCallback,
                                 ),
                                 AppLauncherButton(
                                     app: TextEditorApp(),
-                                    icon: 'assets/Images/Icons/PNG/notes.png',
+                                    icon: 'assets/images/icons/PNG/notes.png',
                                     color: Colors.amber[700],
                                     callback: toggleCallback),
                                 AppLauncherButton(
                                     app: TerminalApp(),
                                     icon:
-                                        'assets/Images/Icons/PNG/terminal.png',
+                                        'assets/images/icons/PNG/terminal.png',
                                     color: Colors.grey[900],
                                     callback: toggleCallback),
                                 AppLauncherButton(
                                     app: Files(),
-                                    icon: 'assets/Images/Icons/PNG/files.png',
+                                    icon: 'assets/images/icons/PNG/files.png',
                                     color: Colors.deepOrange[800],
                                     callback: toggleCallback),
                                 AppLauncherButton(
                                   app: Tasks(),
-                                  icon: 'assets/Images/Icons/PNG/task.png',
+                                  icon: 'assets/images/icons/PNG/task.png',
                                   color: Colors.cyan[900],
                                   callback: toggleCallback,
                                 ),
                                 AppLauncherButton(
                                     app: Settings(),
                                     icon:
-                                        'assets/Images/Icons/PNG/settings.png',
+                                        'assets/images/icons/PNG/settings.png',
                                     color: Colors.deepOrange[700],
                                     callback: toggleCallback),
                               ]),

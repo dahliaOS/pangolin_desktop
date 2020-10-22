@@ -29,7 +29,7 @@ class LauncherWidget extends StatefulWidget {
 
 MaterialButton buildTile(String icon, String label) {
   return MaterialButton(
-    onPressed: null //kanou pls help
+    onPressed: null
     ,
     child: Column(
       //mainAxisSize: MainAxisSize.min,
@@ -83,7 +83,9 @@ class LauncherState extends State<LauncherWidget> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  new SearchWidget(),
+                  new SearchWidget(
+                    local.get("launcher_search")
+                  ),
                   const SizedBox(height: 35),
                   new SingleChildScrollView(
                       padding: new EdgeInsets.only(
