@@ -80,5 +80,6 @@ List<String> wallpapers = [
   "assets/images/wallpapers/dahliaOS/dahliaOS_white_wallpaper.png",
   "assets/images/wallpapers/dahliaOS/Gradient_logo_wallpaper.png",
   "assets/images/wallpapers/dahliaOS/Three_bubbles_wallpaper.png",
+  "assets/images/wallpapers/dahliaOS/Bubbles_wallpaper.png",
   "assets/images/wallpapers/Nature/mountain.jpg",
 ];
