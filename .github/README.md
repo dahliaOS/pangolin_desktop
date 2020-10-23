@@ -42,8 +42,6 @@ If you're interested in building Pangolin, you can refer to [Building and Runnin
 
 If you're wondering how to contribute to the project, please refer to [CONTRIBUTING.md](./CONTRIBUTING.md)
 
-But if you need more guidance and an introduction to Pangolin's files and code, you can refer to [INTRODUCTION.md](https://github.com/dahlia-os/pangolin-desktop/blob/master/INTRODUCTION.md) where we've extensively covered the entire repo, we've also written a roadmap/to-do list there!
-
 ## Translate
 
 If you're interested in translating the project, please refer to [TRANSLATION.md](./TRANSLATION.md)
