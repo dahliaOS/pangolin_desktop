@@ -203,7 +203,7 @@ class _SettingsPageState extends State<SettingsPage> {
         Icons.add_circle_outline, false, AdvancedFeatures()));
     items.add(new TileItem("General management", "Language, Keyboard, Time",
         Icons.language, false, GeneralManagement()));
-    items.add(new TileItem("Updates", "Download, Changelog",
+    items.add(new TileItem("Updates", "Download, Sources, Changelog",
         Icons.system_update, false, Updates()));
     items.add(new TileItem(
         "About Device", "Status, Information", Icons.laptop, false, About()));
@@ -346,8 +346,7 @@ class _SettingsPageState extends State<SettingsPage> {
                                         //setSelected(i, items);
                                       });
                                       contoller.animateToPage(i,
-                                          duration:
-                                              Duration(milliseconds: 1000),
+                                          duration: Duration(milliseconds: 500),
                                           curve: Curves.decelerate);
                                     }),
                               );
