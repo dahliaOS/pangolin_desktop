@@ -12,6 +12,7 @@ limitations under the License.
 */
 
 import 'package:flutter/material.dart';
+import 'package:Pangolin/utils/widgets/settingsTile.dart';
 
 class Updates extends StatefulWidget {
   @override
@@ -26,6 +27,9 @@ class _UpdatesState extends State<Updates> {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 40),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
                   padding: EdgeInsets.only(left: 25),
@@ -35,7 +39,31 @@ class _UpdatesState extends State<Updates> {
                         fontSize: 30,
                         fontWeight: FontWeight.w300,
                         fontFamily: "Roboto"),
-                  ))
+                  )),
+              new Padding(
+                  padding: EdgeInsets.only(left: 20, right: 20),
+                  child: Column(
+                    children: [
+                      SizedBox(height: 5),
+                      SettingsTile(
+                        children: [
+                          Text("Check for Updates"),
+                          SizedBox(height: 5),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Expanded(
+                                  child: new Text("Hi!"),
+                                )
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ], //end of column
+                  )),
             ],
           ),
         ),
