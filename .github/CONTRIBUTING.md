@@ -19,7 +19,7 @@ To make sure the contributions go as smooth as possible, here's a few tips!
 
 ## Code of Conduct
 
-dahliaOS' Code of Conduct can be found [here](CODE_OF_CONDUCT.md)!
+dahliaOS' Code of Conduct can be found [here](master/CODE_OF_CONDUCT.md)!
 
 This project and everyone participating in it is governed by dahliaOS' Code of Conduct and noone is exempt.
 
