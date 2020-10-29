@@ -59,7 +59,6 @@ class Settings extends StatelessWidget {
             '/': (context) => SettingsPage(title: 'Settings'),
             // When navigating to the "/second" route, build the SecondScreen widget.
             '/search': (context) => Search(),
-            '/test': (context) => Test(),
           },
         );
       }),
