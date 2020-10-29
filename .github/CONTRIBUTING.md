@@ -76,7 +76,7 @@ Before submitting a feature request, here are a few tips for you:
 * **Write a clear and descriptive title for the request**
 * **Explain how the project could benefit of your request**
 
-### How do I submit a feature reuqest?
+### How do I submit a feature request?
 
 * **GitHub**:
   * Go to the Issues section
