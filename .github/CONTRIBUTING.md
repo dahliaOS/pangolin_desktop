@@ -25,17 +25,17 @@ This project and everyone participating in it is governed by dahliaOS' Code of C
 
 By participating, you are expected to respect and value thsis code. 
 
-If you notice any unacceptable behaviour, you can report it to mailto:contact+integrity@dahliaos.io
+If you notice any unacceptable behaviour, you can report it to contact+integrity@dahliaos.io
 
 ## How can I contribute?
 
-Here we've explained we've explained how you can contribute to our project on GitHub but there are also many other ways to help us outside of GitHub, f you'd like to find even more ways to help us, you're always free to join our Discord and ask the devs!!
+Here we've explained we've explained how you can contribute to our project on GitHub but there are also many other ways to help us outside of GitHub, if you'd like to find even more ways to help us, you're always free to join our Discord and ask the devs!!
 
 **Some repositories also have Projects which contain either a to-do list or a roadmap!**
 
 ## Reporting bugs
 
-If you've experience a bug and you'd like to report it, we highly recommend that you read [Before submitting a bug report](#before-submitting-a-bug-report), [How do I submit a good bug report?](#how-do-i-submit-a-good-bug-report) and that you use our [Issue template](./ISSUE_TEMPLATE/bug_report.md)
+If you've experience a bug and you'd like to report it, we highly recommend that you read [Before submitting a bug report](#before-submitting-a-bug-report), [How do I submit a good bug report?](#how-do-i-submit-a-good-bug-report) and that you use our Issue template
 
 There are 2 ways you can report a bug, either in our Discord by opening a ticket or by creating a GitHub Issue
 
@@ -62,7 +62,7 @@ And the most important of all, make sure to fulfill all fields in our Bug report
 
 ## Feature request
 
-If you'd like to see something added to our OS, we highly recommend you read [Before submitting a feature request](#before-submitting-a-feature-request), [How do I submit a feature request?](#how-do-i-submit-a-feature-request) and use our [Feature request template](./ISSUE_TEMPLATE/feature_request.md)
+If you'd like to see something added to our OS, we highly recommend you read [Before submitting a feature request](#before-submitting-a-feature-request), [How do I submit a feature request?](#how-do-i-submit-a-feature-request) and use our Feature request template
 
 There are 2 ways you can submit a feature request, either by make a suggestion in our Discord or by creating a Feature request on GitHub
 
