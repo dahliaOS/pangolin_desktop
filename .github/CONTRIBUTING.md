@@ -24,7 +24,7 @@ dahliaOS' Code of Conduct can be found [here](../CODE_OF_CONDUCT.md)!
 
 This project and everyone participating in it is governed by dahliaOS' Code of Conduct and noone is exempt.
 
-By participating, you are expected to respect and value thsis code. 
+By participating, you are expected to respect and value this code. 
 
 If you notice any unacceptable behaviour, you can report it to contact+integrity@dahliaos.io
 
