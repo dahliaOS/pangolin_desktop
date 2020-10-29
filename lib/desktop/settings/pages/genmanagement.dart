@@ -59,6 +59,7 @@ class _GeneralManagementState extends State<GeneralManagement> {
                     ),
                     SizedBox(height: 5),
                     SettingsTile(
+                      margin: EdgeInsets.symmetric(horizontal: 16.0),
                       children: [
                         Text("Language"),
                         SizedBox(height: 5),
@@ -94,21 +95,17 @@ class _GeneralManagementState extends State<GeneralManagement> {
                               letterSpacing: 0.2,
                               fontWeight: FontWeight.bold)),
                     ),
+                    SizedBox(height: 5),
                     SettingsTile(
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text("Automatic time"),
-                            Switch(
-                              value: HiveManager.get("enableAutoTime"),
-                              onChanged: (bool state) {
-                                setState(() {
-                                  HiveManager.set("enableAutoTime", state);
-                                });
-                              },
-                            )
-                          ],
+                        SwitchListTile(
+                          value: HiveManager.get("enableAutoTime"),
+                          title: Text("Automatic time"),
+                          onChanged: (bool state) {
+                            setState(() {
+                              HiveManager.set("enableAutoTime", state);
+                            });
+                          },
                         ),
                         ConditionWidget(
                             !(HiveManager.get("enableAutoTime")),
@@ -142,33 +139,23 @@ class _GeneralManagementState extends State<GeneralManagement> {
                                 SizedBox(height: 5),
                               ],
                             )),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text("Show seconds"),
-                            Switch(
-                              value: HiveManager.get("showSeconds"),
-                              onChanged: (bool state) {
-                                setState(() {
-                                  HiveManager.set("showSeconds", state);
-                                });
-                              },
-                            )
-                          ],
+                        SwitchListTile(
+                          value: HiveManager.get("showSeconds"),
+                          title: Text("Show seconds"),
+                          onChanged: (bool state) {
+                            setState(() {
+                              HiveManager.set("showSeconds", state);
+                            });
+                          },
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text("Enable 24-hour time"),
-                            Switch(
-                              value: HiveManager.get("enable24hTime"),
-                              onChanged: (bool state) {
-                                setState(() {
-                                  HiveManager.set("enable24hTime", state);
-                                });
-                              },
-                            )
-                          ],
+                        SwitchListTile(
+                          value: HiveManager.get("enable24hTime"),
+                          title: Text("Enable 24-hour time"),
+                          onChanged: (bool state) {
+                            setState(() {
+                              HiveManager.set("enable24hTime", state);
+                            });
+                          },
                         ),
                       ],
                     ),
@@ -181,7 +168,9 @@ class _GeneralManagementState extends State<GeneralManagement> {
                               letterSpacing: 0.2,
                               fontWeight: FontWeight.bold)),
                     ),
+                    SizedBox(height: 5),
                     SettingsTile(
+                      margin: EdgeInsets.symmetric(horizontal: 16.0),
                       children: [
                         Text("Set keyboard layout (WIP)"),
                         SizedBox(height: 5),
