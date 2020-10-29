@@ -20,6 +20,7 @@ import 'package:Pangolin/desktop/settings/pages/connections.dart';
 import 'package:Pangolin/desktop/settings/pages/customization.dart';
 import 'package:Pangolin/desktop/settings/pages/display.dart';
 import 'package:Pangolin/desktop/settings/pages/genmanagement.dart';
+import 'package:Pangolin/desktop/settings/pages/grid.dart';
 import 'package:Pangolin/desktop/settings/pages/security.dart';
 import 'package:Pangolin/desktop/settings/pages/sound.dart';
 import 'package:Pangolin/desktop/settings/pages/updates.dart';
@@ -41,22 +42,6 @@ void main() {
 int selected;
 
 class Settings extends StatelessWidget {
-  /*final Widget Function() customBar = (
-      { //customBar in lib/window/window.dart
-      /// The function called to close the window.
-      Function close,
-
-      /// The function called to minimize the window.
-      Function minimize,
-
-      /// The function called to maximize or restore the window.
-      Function maximize,
-
-      /// The getter to determine whether or not the window is maximized.
-      bool Function() maximizeState}) {
-    return SettingsBar(close: close, minimize: minimize, maximize: maximize);
-  };
-  final Color customBackground = const Color(0xFFfafafa);*/
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -74,58 +59,13 @@ class Settings extends StatelessWidget {
             '/': (context) => SettingsPage(title: 'Settings'),
             // When navigating to the "/second" route, build the SecondScreen widget.
             '/search': (context) => Search(),
+            '/test': (context) => Test(),
           },
         );
       }),
     );
   }
 }
-
-/*class SettingsBar extends StatelessWidget {
-  final Function() minimize;
-  final Function() maximize;
-  final Function() close;
-
-  SettingsBar({Key key, this.minimize, this.maximize, this.close});
-
-  @override
-  Widget build(BuildContext context) {
-    return ClipRRect(
-        child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
-            child: Container(
-                height: 35,
-                color: Color(0xffeeeeee),
-                child: Row(children: [
-                  Center(
-                    child: Container(),
-                  ),
-                  Expanded(
-                    child: new Text(' '),
-                  ),
-                  Row(children: [
-                    new IconButton(
-                      icon: const Icon(Icons.minimize),
-                      onPressed: minimize,
-                      iconSize: 18.0,
-                      color: const Color(0xFF000000),
-                    ),
-                    new IconButton(
-                      icon: const Icon(Icons.crop_square),
-                      onPressed: maximize,
-                      iconSize: 18.0,
-                      color: const Color(0xFF000000),
-                    ),
-                    new IconButton(
-                      icon: const Icon(Icons.close),
-                      onPressed: close,
-                      iconSize: 18.0,
-                      color: const Color(0xFF000000),
-                    ),
-                  ])
-                ]))));
-  }
-}*/
 
 Widget buildSettings(
     IconData icon, String title, Color color, context, Function onTap) {
@@ -213,6 +153,12 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).pushNamed("/test");
+        },
+        child: Icon(Icons.list),
+      ),
       //appBar: AppBar(title: Text(widget.title)),
       body: Column(
         children: <Widget>[
