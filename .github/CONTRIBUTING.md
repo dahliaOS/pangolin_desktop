@@ -16,6 +16,7 @@ To make sure the contributions go as smooth as possible, here's a few tips!
     - [How do I submit a feature request?](#how-do-i-submit-a-feature-request)
   - [First code contribution](#first-code-contribution)
   - [What do I do after I submitted a PR?](#what-do-i-do-after-i-submitted-a-pr)
+  - [Design contributions](#design-contributions)
 
 ## Code of Conduct
 
@@ -93,3 +94,18 @@ If you're new to the project, you can look at repositories' Issues section and t
 ## What do I do after I submitted a PR?
 
 We kindly ask everyone who has submitted a pull request to be patient and that's really all, we notice every singe new pull request so don't worry about it being ignored, it won't be forgotten!
+
+## Design contributions
+
+Apart from code contributions, we also accept any kind of design contributions!
+
+**Here are a few repos where you can contribute designs**:
+
+* [Wallpapers](https://github.com/dahlia-os/wallpapers)
+  * Here you can contribute your own wallpapers, make sure to read the instructions!
+* [Icons](https://github.com/dahlia-os/icons)
+  * Here you can contribute either modified version of existing icons or new ones!
+* [Brand](https://github.com/dahlia-os/brand)
+  * Here you can contribute new logos or modified current one for our project!
+
+We also love seeing UI concepts and such designs, you can share any kind of designs in our Discord, feel free to! :D
