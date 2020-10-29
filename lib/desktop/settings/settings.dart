@@ -392,9 +392,9 @@ class TileItem {
 }
 
 setSelected(int index, List items) {
-  for (int _i = 0; _i < items.length; _i++) {
-    items[_i].selected = false;
-  }
+  items.forEach((element) {
+    items.remove(element);
+  });
   items[index].selected = true;
 }
 
