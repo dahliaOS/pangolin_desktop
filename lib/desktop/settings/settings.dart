@@ -339,7 +339,7 @@ class TileItem {
 
 setSelected(int index, List items) {
   items.forEach((element) {
-    items.remove(element);
+    element.selected = false;
   });
   items[index].selected = true;
 }
