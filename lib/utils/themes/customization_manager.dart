@@ -29,7 +29,6 @@ class Themes {
           ),
         ),
         tabBarTheme: TabBarTheme(labelColor: Colors.black12),
-        textSelectionHandleColor: accent,
         brightness: Brightness.light,
         platform: TargetPlatform.android);
   }
@@ -39,7 +38,7 @@ class Themes {
     return ThemeData(
         accentColor: accent,
         primaryColor: accent,
-        canvasColor: Color(0xff1B1B1D),
+        canvasColor: Color(0xff111111),
         iconTheme: IconThemeData(color: Colors.white),
         textTheme: TextTheme(
           headline5: TextStyle(color: Colors.white),
@@ -55,14 +54,13 @@ class Themes {
           inactiveTickMarkColor: accent,
         ),
         toggleableActiveColor: accent,
-        cardColor: Colors.grey[900],
+        cardColor: Color(0xff1B1B1D),
         inputDecorationTheme: InputDecorationTheme(
           labelStyle: TextStyle(
             color: accent,
           ),
         ),
         tabBarTheme: TabBarTheme(labelColor: Colors.black12),
-        textSelectionHandleColor: accent,
         brightness: Brightness.dark,
         platform: TargetPlatform.android);
   }
