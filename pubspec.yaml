@@ -100,7 +100,6 @@ flutter:
           style: italic
   assets:
   - assets/images/
-  - assets/images/logos/pangolin/pangolinlogo.png
   - assets/images/credits/Profile pictures/
   - assets/images/wallpapers/dahliaOS/
   - assets/images/wallpapers/Nature/
