@@ -93,27 +93,16 @@ class _DisplayState extends State<Display> {
                     SizedBox(height: 5),
                     SettingsTile(
                       children: [
-                        Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                    "Enable blue light filter to protect your eyes"),
-                                Switch(
-                                  value:
-                                      HiveManager.get("enableBlueLightFilter"),
-                                  onChanged: (bool state) {
-                                    setState(() {
-                                      HiveManager.set(
-                                          "enableBlueLightFilter", state);
-                                    });
-                                  },
-                                )
-                              ],
-                            ),
-                          ],
-                        )
+                        SwitchListTile(
+                          onChanged: (bool value) {
+                            setState(() {
+                              HiveManager.set("enableBlueLightFilter", value);
+                            });
+                          },
+                          value: HiveManager.get("enableBlueLightFilter"),
+                          title: Text(
+                              "Enable blue light filter to protect your eyes"),
+                        ),
                       ],
                     ),
                     SizedBox(height: 20),
