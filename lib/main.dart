@@ -12,7 +12,9 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+
 */
+import 'package:Pangolin/utils/widgets/splash.dart';
 import 'package:flutter/services.dart';
 
 import 'package:Pangolin/desktop/desktop.dart';
@@ -24,6 +26,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:path/path.dart';
 import 'dart:ui';
 import 'package:provider/provider.dart';
 
@@ -39,6 +42,8 @@ void main() async {
   await Hive.initFlutter();
   Pangolin.settingsBox = await Hive.openBox("settings");
   HiveManager.initializeHive();
+  runApp(Splash());
+  await Future.delayed(Duration(seconds: 1));
   runApp(Pangolin());
 }
 

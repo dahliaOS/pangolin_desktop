@@ -12,6 +12,7 @@ limitations under the License.
 */
 
 import 'package:flutter/material.dart';
+import 'package:Pangolin/utils/widgets/settingsTile.dart';
 
 class Updates extends StatefulWidget {
   @override
@@ -26,57 +27,47 @@ class _UpdatesState extends State<Updates> {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 40),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Center(
+              Padding(
+                  padding: EdgeInsets.only(left: 25),
                   child: Text(
-                "Updates",
-                style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: "Roboto"),
-              ))
+                    "Updates",
+                    style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.w300,
+                        fontFamily: "Roboto"),
+                  )),
+              new Padding(
+                  padding: EdgeInsets.only(left: 20, right: 20),
+                  child: Column(
+                    children: [
+                      SizedBox(height: 5),
+                      SettingsTile(
+                        children: [
+                          Text("Check for Updates"),
+                          SizedBox(height: 5),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Expanded(
+                                  child: new Text("Hi!"),
+                                )
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ], //end of column
+                  )),
             ],
           ),
         ),
       ),
-      bottomNavigationBar: BottomAppBar(
-          elevation: 0.0,
-          color: Color(0x00ffffff),
-          child: new SizedBox(
-              height: 50,
-              width: 15,
-              child: new Padding(
-                  padding: EdgeInsets.all(0),
-                  child: Card(
-                    elevation: 0,
-                    color: Colors.amber[500],
-                    child: new SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: new Row(
-                        children: [
-                          new Center(
-                              child: new Padding(
-                                  padding: EdgeInsets.all(8),
-                                  child: Icon(
-                                    Icons.warning,
-                                    size: 25,
-                                    color: Colors.grey[900],
-                                  ))),
-                          Center(
-                              child: new Padding(
-                                  padding: EdgeInsets.all(8),
-                                  child: new Text(
-                                    "WARNING: You are on a pre-release build of dahliaOS. Some settings don't work yet.",
-                                    style: new TextStyle(
-                                      color: Colors.grey[900],
-                                      fontSize: 14,
-                                      fontFamily: "Roboto",
-                                    ),
-                                  ))),
-                        ],
-                      ),
-                    ),
-                  )))),
     );
   }
 }

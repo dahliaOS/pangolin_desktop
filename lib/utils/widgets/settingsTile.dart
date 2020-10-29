@@ -25,8 +25,13 @@ class SettingsTile extends StatelessWidget {
       builder: (context, notifier, child) => SizedBox(
         width: 1.7976931348623157e+308,
         child: Card(
+          elevation: 0,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10.0),
+            borderRadius: BorderRadius.circular(5.0),
+            side: BorderSide(
+              color: Colors.grey.withOpacity(0.2),
+              width: 1,
+            ),
           ),
           color: Theme.of(context).cardColor,
           child: Padding(
