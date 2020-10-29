@@ -27,7 +27,7 @@ class SettingsTile extends StatelessWidget {
         child: Card(
           elevation: 0,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(5.0),
+            borderRadius: BorderRadius.circular(10.0),
             side: BorderSide(
               color: Colors.grey.withOpacity(0.2),
               width: 1,

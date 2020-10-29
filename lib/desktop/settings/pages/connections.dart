@@ -74,26 +74,16 @@ class _ConnectionsState extends State<Connections> {
                       children: [
                         Wrap(
                           children: [
-                            SettingsTile(
+                            Column(
                               children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      "Enable Wi-Fi",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    Switch(
-                                      value: HiveManager.get("wifi"),
-                                      onChanged: (bool state) {
-                                        setState(() {
-                                          HiveManager.set("wifi", state);
-                                        });
-                                      },
-                                    )
-                                  ],
+                                SwitchListTile(
+                                  onChanged: (bool value) {
+                                    setState(() {
+                                      HiveManager.set("wifi", value);
+                                    });
+                                  },
+                                  value: HiveManager.get("wifi"),
+                                  title: Text("Enable Wi-Fi"),
                                 ),
                                 CustomConditionWidget(
                                     HiveManager.get("wifi"),
@@ -109,10 +99,7 @@ class _ConnectionsState extends State<Connections> {
                                                 color: wifiList[i].connected
                                                     ? Color(HiveManager.get(
                                                         "accentColorValue"))
-                                                    : (HiveManager.get(
-                                                            "darkMode")
-                                                        ? Colors.white
-                                                        : Colors.grey),
+                                                    : Colors.grey,
                                               ),
                                               title: Text(
                                                 wifiList[i].name,
@@ -138,29 +125,20 @@ class _ConnectionsState extends State<Connections> {
                                             );
                                           }),
                                     ),
-                                    Text("Wi-Fi is Disabled")),
+                                    SizedBox.shrink()),
                               ],
                             ),
-                            SettingsTile(
+                            Divider(),
+                            Column(
                               children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      "Enable Bluetooth",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    Switch(
-                                      value: HiveManager.get("bluetooth"),
-                                      onChanged: (bool state) {
-                                        setState(() {
-                                          HiveManager.set("bluetooth", state);
-                                        });
-                                      },
-                                    )
-                                  ],
+                                SwitchListTile(
+                                  onChanged: (bool value) {
+                                    setState(() {
+                                      HiveManager.set("bluetooth", value);
+                                    });
+                                  },
+                                  value: HiveManager.get("bluetooth"),
+                                  title: Text("Enable Bluetooth"),
                                 ),
                                 CustomConditionWidget(
                                     HiveManager.get("bluetooth"),
@@ -177,13 +155,11 @@ class _ConnectionsState extends State<Connections> {
                                                     bluetoothList[i].connected
                                                         ? Color(HiveManager.get(
                                                             "accentColorValue"))
-                                                        : (HiveManager.get(
-                                                                "darkMode")
-                                                            ? Colors.white
-                                                            : Colors.grey),
+                                                        : Colors.grey,
                                               ),
                                               title: Text(
                                                 bluetoothList[i].name,
+                                                overflow: TextOverflow.ellipsis,
                                                 style: TextStyle(
                                                   color: bluetoothList[i]
                                                           .connected
@@ -208,7 +184,7 @@ class _ConnectionsState extends State<Connections> {
                                             );
                                           }),
                                     ),
-                                    Text("Bluetooth is disabled")),
+                                    SizedBox.shrink()),
                               ],
                             ),
                           ],
