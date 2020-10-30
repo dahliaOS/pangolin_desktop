@@ -674,8 +674,13 @@ class Credits extends StatelessWidget {
                       ),
                       person(
                         "assets/images/credits/Profile pictures/allansrc.jpeg",
+                        "Allan Ramos",
                         "Allansrc",
-                        "Allansrc",
+                      ),
+                      person(
+                        "assets/images/credits/Profile pictures/xeu100.png",
+                        "xeu100",
+                        "xeu100",
                       ),
                       person(
                         "assets/images/credits/Profile pictures/Seplx.png",
@@ -689,17 +694,17 @@ class Credits extends StatelessWidget {
                       ),
                       person(
                         "assets/images/credits/Profile pictures/evolutionevotv.png",
-                        "evolutionevotv",
+                        "evoDesign",
                         "evolutionevotv",
                       ),
                       person(
                         "assets/images/credits/Profile pictures/febryardiansyah.jpeg",
-                        "febryardiansyah",
+                        "Febry Ardiansyah",
                         "febryardiansyah",
                       ),
                       person(
                         "assets/images/credits/Profile pictures/goktugvatandas.jpeg",
-                        "goktugvatandas",
+                        "Göktuğ Vatandaş",
                         "goktugvatandas",
                       ),
                       person(
