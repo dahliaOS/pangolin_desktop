@@ -673,6 +673,36 @@ class Credits extends StatelessWidget {
                         "Fristover",
                       ),
                       person(
+                        "assets/images/credits/Profile pictures/allansrc.jpeg",
+                        "Allansrc",
+                        "Allansrc",
+                      ),
+                      person(
+                        "assets/images/credits/Profile pictures/Seplx.png",
+                        "Seplx",
+                        "Seplx",
+                      ),
+                      person(
+                        "assets/images/credits/Profile pictures/aoaowangxiao.jpeg",
+                        "aoaowangxiao",
+                        "aoaowangxiao",
+                      ),
+                      person(
+                        "assets/images/credits/Profile pictures/evolutionevotv.png",
+                        "evolutionevotv",
+                        "evolutionevotv",
+                      ),
+                      person(
+                        "assets/images/credits/Profile pictures/febryardiansyah.jpeg",
+                        "febryardiansyah",
+                        "febryardiansyah",
+                      ),
+                      person(
+                        "assets/images/credits/Profile pictures/goktugvatandas.jpeg",
+                        "goktugvatandas",
+                        "goktugvatandas",
+                      ),
+                      person(
                         "assets/images/logos/dahliaOS/PNG/dahliaOS_logo_drop_shadow.png",
                         "And... you!",
                         "Thanks for testing out this build!",
