@@ -63,7 +63,11 @@ class _CustomizationState extends State<Customization> {
                       SizedBox(height: 5),
                       SettingsTile(
                         children: [
-                          Text("Choose your accent color"),
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 15.0),
+                            child: Text("Choose your accent color"),
+                          ),
                           SizedBox(height: 5),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -170,21 +174,17 @@ class _CustomizationState extends State<Customization> {
                       SizedBox(height: 5),
                       SettingsTile(
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text("Enable blur effects on the desktop"),
-                              Consumer<CustomizationNotifier>(
-                                builder: (context, notifier, child) => Switch(
-                                  value: HiveManager.get("blur"),
-                                  onChanged: (bool state) {
-                                    setState(() {
-                                      notifier.toggleBlur(state);
-                                    });
-                                  },
-                                ),
-                              )
-                            ],
+                          Consumer<CustomizationNotifier>(
+                            builder: (context, notifier, child) =>
+                                SwitchListTile(
+                              value: HiveManager.get("blur"),
+                              title: Text("Enable blur effects on the desktop"),
+                              onChanged: (bool state) {
+                                setState(() {
+                                  notifier.toggleBlur(state);
+                                });
+                              },
+                            ),
                           )
                         ],
                       ),
@@ -200,29 +200,25 @@ class _CustomizationState extends State<Customization> {
                       SizedBox(height: 5),
                       SettingsTile(
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
+                          Consumer<CustomizationNotifier>(
+                            builder: (context, notifier, child) =>
+                                SwitchListTile(
+                              value: notifier.darkTheme,
+                              title: Text(
                                   "Enable Dark mode on the desktop and all applications"),
-                              Consumer<CustomizationNotifier>(
-                                builder: (context, notifier, child) => Switch(
-                                  value: notifier.darkTheme,
-                                  onChanged: (bool state) {
-                                    setState(() {
-                                      notifier.toggleThemeDarkMode(state);
-                                      if (notifier.darkTheme &&
-                                          notifier.accent == Colors.black) {
-                                        notifier.changeThemeColor(Colors.white);
-                                      } else if (!notifier.darkTheme &&
-                                          notifier.accent == Colors.white) {
-                                        notifier.changeThemeColor(Colors.black);
-                                      }
-                                    });
-                                  },
-                                ),
-                              )
-                            ],
+                              onChanged: (bool state) {
+                                setState(() {
+                                  notifier.toggleThemeDarkMode(state);
+                                  if (notifier.darkTheme &&
+                                      notifier.accent == Colors.black) {
+                                    notifier.changeThemeColor(Colors.white);
+                                  } else if (!notifier.darkTheme &&
+                                      notifier.accent == Colors.white) {
+                                    notifier.changeThemeColor(Colors.black);
+                                  }
+                                });
+                              },
+                            ),
                           )
                         ],
                       ),
@@ -238,19 +234,14 @@ class _CustomizationState extends State<Customization> {
                       SizedBox(height: 5),
                       SettingsTile(
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text("Center taskbar icons"),
-                              Switch(
-                                value: HiveManager.get("centerTaskbar"),
-                                onChanged: (bool state) {
-                                  setState(() {
-                                    HiveManager.set("centerTaskbar", state);
-                                  });
-                                },
-                              )
-                            ],
+                          SwitchListTile(
+                            value: HiveManager.get("centerTaskbar"),
+                            title: Text("Center taskbar icons"),
+                            onChanged: (bool state) {
+                              setState(() {
+                                HiveManager.set("centerTaskbar", state);
+                              });
+                            },
                           )
                         ],
                       ),
@@ -266,40 +257,40 @@ class _CustomizationState extends State<Customization> {
                       SizedBox(height: 5),
                       SettingsTile(
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text("Enable random wallpapers"),
-                              Switch(
-                                value: HiveManager.get("randomWallpaper"),
-                                onChanged: (bool state) {
-                                  setState(() {
-                                    HiveManager.set("randomWallpaper", state);
-                                  });
-                                },
-                              )
-                            ],
+                          SwitchListTile(
+                            value: HiveManager.get("randomWallpaper"),
+                            title: Text("Enable random wallpapers"),
+                            onChanged: (bool state) {
+                              setState(() {
+                                HiveManager.set("randomWallpaper", state);
+                              });
+                            },
                           ),
                           ConditionWidget(
                               !HiveManager.get("randomWallpaper"),
                               Column(
                                 children: [
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text("Choose a wallpaper"),
-                                      FlatButton(
-                                        onPressed: () {
-                                          showDialog(
-                                              context: context,
-                                              builder: (BuildContext context) {
-                                                return WallpaperChooser();
-                                              });
-                                        },
-                                        child: Text("Wallpaper chooser"),
-                                      )
-                                    ],
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 15.0),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text("Choose a wallpaper"),
+                                        FlatButton(
+                                          onPressed: () {
+                                            showDialog(
+                                                context: context,
+                                                builder:
+                                                    (BuildContext context) {
+                                                  return WallpaperChooser();
+                                                });
+                                          },
+                                          child: Text("Wallpaper chooser"),
+                                        )
+                                      ],
+                                    ),
                                   )
                                 ],
                               )),
@@ -319,21 +310,14 @@ class _CustomizationState extends State<Customization> {
                         children: [
                           Column(
                             children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text("Enable Wide launcher mode"),
-                                  Switch(
-                                    value: HiveManager.get("launcherWideMode"),
-                                    onChanged: (bool state) {
-                                      setState(() {
-                                        HiveManager.set(
-                                            "launcherWideMode", state);
-                                      });
-                                    },
-                                  )
-                                ],
+                              SwitchListTile(
+                                value: HiveManager.get("launcherWideMode"),
+                                title: Text("Enable Wide launcher mode"),
+                                onChanged: (bool state) {
+                                  setState(() {
+                                    HiveManager.set("launcherWideMode", state);
+                                  });
+                                },
                               ),
                             ],
                           ),
@@ -351,19 +335,14 @@ class _CustomizationState extends State<Customization> {
                       SizedBox(height: 5),
                       SettingsTile(
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text("Enabled colored titlebar"),
-                              Switch(
-                                value: HiveManager.get("coloredTitlebar"),
-                                onChanged: (bool state) {
-                                  setState(() {
-                                    HiveManager.set("coloredTitlebar", state);
-                                  });
-                                },
-                              )
-                            ],
+                          SwitchListTile(
+                            value: HiveManager.get("coloredTitlebar"),
+                            title: Text("Enabled colored titlebar"),
+                            onChanged: (bool state) {
+                              setState(() {
+                                HiveManager.set("coloredTitlebar", state);
+                              });
+                            },
                           ),
                         ],
                       ),

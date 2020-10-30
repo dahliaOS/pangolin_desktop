@@ -20,6 +20,7 @@ import 'package:Pangolin/desktop/settings/pages/connections.dart';
 import 'package:Pangolin/desktop/settings/pages/customization.dart';
 import 'package:Pangolin/desktop/settings/pages/display.dart';
 import 'package:Pangolin/desktop/settings/pages/genmanagement.dart';
+import 'package:Pangolin/desktop/settings/pages/grid.dart';
 import 'package:Pangolin/desktop/settings/pages/security.dart';
 import 'package:Pangolin/desktop/settings/pages/sound.dart';
 import 'package:Pangolin/desktop/settings/pages/updates.dart';
@@ -41,22 +42,8 @@ void main() {
 int selected;
 
 class Settings extends StatelessWidget {
-  /*final Widget Function() customBar = (
-      { //customBar in lib/window/window.dart
-      /// The function called to close the window.
-      Function close,
-
-      /// The function called to minimize the window.
-      Function minimize,
-
-      /// The function called to maximize or restore the window.
-      Function maximize,
-
-      /// The getter to determine whether or not the window is maximized.
-      bool Function() maximizeState}) {
-    return SettingsBar(close: close, minimize: minimize, maximize: maximize);
-  };
-  final Color customBackground = const Color(0xFFfafafa);*/
+  static List<TileItem> items = new List<TileItem>();
+  static PageController contoller = PageController();
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -74,58 +61,13 @@ class Settings extends StatelessWidget {
             '/': (context) => SettingsPage(title: 'Settings'),
             // When navigating to the "/second" route, build the SecondScreen widget.
             '/search': (context) => Search(),
+            '/test': (context) => Test(),
           },
         );
       }),
     );
   }
 }
-
-/*class SettingsBar extends StatelessWidget {
-  final Function() minimize;
-  final Function() maximize;
-  final Function() close;
-
-  SettingsBar({Key key, this.minimize, this.maximize, this.close});
-
-  @override
-  Widget build(BuildContext context) {
-    return ClipRRect(
-        child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
-            child: Container(
-                height: 35,
-                color: Color(0xffeeeeee),
-                child: Row(children: [
-                  Center(
-                    child: Container(),
-                  ),
-                  Expanded(
-                    child: new Text(' '),
-                  ),
-                  Row(children: [
-                    new IconButton(
-                      icon: const Icon(Icons.minimize),
-                      onPressed: minimize,
-                      iconSize: 18.0,
-                      color: const Color(0xFF000000),
-                    ),
-                    new IconButton(
-                      icon: const Icon(Icons.crop_square),
-                      onPressed: maximize,
-                      iconSize: 18.0,
-                      color: const Color(0xFF000000),
-                    ),
-                    new IconButton(
-                      icon: const Icon(Icons.close),
-                      onPressed: close,
-                      iconSize: 18.0,
-                      color: const Color(0xFF000000),
-                    ),
-                  ])
-                ]))));
-  }
-}*/
 
 Widget buildSettings(
     IconData icon, String title, Color color, context, Function onTap) {
@@ -163,7 +105,6 @@ Container buildSettingsHeader(String title) {
 }
 
 final TextEditingController editingController = new TextEditingController();
-PageController contoller = PageController();
 
 class SettingsPage extends StatefulWidget {
   final String title;
@@ -175,37 +116,47 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  List<TileItem> items = new List<TileItem>();
-
   @override
   void initState() {
-    items.add(new TileItem("Connections", "Wi-Fi, Bluetooth, other connections",
-        Icons.wifi, true, Connections()));
-    items.add(new TileItem("Volume and sounds", "Sound mode, volume",
+    Settings.items.add(new TileItem(
+        "Connections",
+        "Wi-Fi, Bluetooth, other connections",
+        Icons.wifi,
+        true,
+        Connections()));
+    Settings.items.add(new TileItem("Volume and sounds", "Sound mode, volume",
         Icons.volume_up, false, Sound()));
-    items.add(new TileItem("Display", "Brightness, Blue light filter",
+    Settings.items.add(new TileItem("Display", "Brightness, Blue light filter",
         Icons.brightness_5, false, Display()));
-    items.add(new TileItem(
+    Settings.items.add(new TileItem(
         "Customization",
         "Customize the look and feel of Pangolin",
         Icons.color_lens,
         false,
         Customization()));
-    items.add(new TileItem("Applications", "Manage Apps and permissions",
-        Icons.apps, false, Applications()));
-    items.add(new TileItem("Security", "Settings for security and privacy",
-        Icons.security, false, Security()));
-    items.add(new TileItem("Accounts", "Manage and add accounts", Icons.people,
-        false, Accounts()));
-    items.add(new TileItem(
+    Settings.items.add(new TileItem("Applications",
+        "Manage Apps and permissions", Icons.apps, false, Applications()));
+    Settings.items.add(new TileItem(
+        "Security",
+        "Settings for security and privacy",
+        Icons.security,
+        false,
+        Security()));
+    Settings.items.add(new TileItem("Accounts", "Manage and add accounts",
+        Icons.people, false, Accounts()));
+    Settings.items.add(new TileItem(
         "Backup", "Backup and Restore", Icons.update, false, Backup()));
-    items.add(new TileItem("Advanced Features", "Coming soon!",
+    Settings.items.add(new TileItem("Advanced Features", "Coming soon!",
         Icons.add_circle_outline, false, AdvancedFeatures()));
-    items.add(new TileItem("General management", "Language, Keyboard, Time",
-        Icons.language, false, GeneralManagement()));
-    items.add(new TileItem("Updates", "Download, Sources, Changelog",
+    Settings.items.add(new TileItem(
+        "General management",
+        "Language, Keyboard, Time",
+        Icons.language,
+        false,
+        GeneralManagement()));
+    Settings.items.add(new TileItem("Updates", "Download, Sources, Changelog",
         Icons.system_update, false, Updates()));
-    items.add(new TileItem(
+    Settings.items.add(new TileItem(
         "About Device", "Status, Information", Icons.laptop, false, About()));
     super.initState();
   }
@@ -213,6 +164,12 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).pushNamed("/test");
+        },
+        child: Icon(Icons.grid_on_outlined),
+      ),
       //appBar: AppBar(title: Text(widget.title)),
       body: Column(
         children: <Widget>[
@@ -316,12 +273,12 @@ class _SettingsPageState extends State<SettingsPage> {
                           padding:
                               EdgeInsets.symmetric(horizontal: 10, vertical: 0),
                           child: ListView.builder(
-                            itemCount: items.length,
+                            itemCount: Settings.items.length,
                             itemBuilder: (BuildContext context, int i) {
                               return Container(
                                 margin: EdgeInsets.all(5),
                                 decoration: BoxDecoration(
-                                    color: items[i].selected == true
+                                    color: Settings.items[i].selected == true
                                         ? Color(HiveManager.get(
                                                 "accentColorValue"))
                                             .withOpacity(0.2)
@@ -331,21 +288,21 @@ class _SettingsPageState extends State<SettingsPage> {
                                     borderRadius: BorderRadius.circular(10)),
                                 child: ListTile(
                                     dense: true,
-                                    title: Text(items[i].title,
+                                    title: Text(Settings.items[i].title,
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodyText1),
-                                    subtitle: Text(items[i].subtitle),
+                                    subtitle: Text(Settings.items[i].subtitle),
                                     leading: Icon(
-                                      items[i].icon,
+                                      Settings.items[i].icon,
                                       color: Color(
                                           HiveManager.get("accentColorValue")),
                                     ),
                                     onTap: () {
                                       setState(() {
-                                        //setSelected(i, items);
+                                        //setSelected(i, Settings.items);
                                       });
-                                      contoller.animateToPage(i,
+                                      Settings.contoller.animateToPage(i,
                                           duration: Duration(milliseconds: 500),
                                           curve: Curves.decelerate);
                                     }),
@@ -363,15 +320,15 @@ class _SettingsPageState extends State<SettingsPage> {
                         scrollDirection: Axis.vertical,
                         pageSnapping: false,
                         physics: NeverScrollableScrollPhysics(),
-                        controller: contoller,
+                        controller: Settings.contoller,
                         onPageChanged: (index) {
                           setState(() {
-                            setSelected(index, items);
+                            setSelected(index, Settings.items);
                           });
                         },
-                        itemCount: items.length,
+                        itemCount: Settings.items.length,
                         itemBuilder: (context, index) {
-                          return items[index].page;
+                          return Settings.items[index].page;
                         })),
               ],
             ),
@@ -392,9 +349,9 @@ class TileItem {
 }
 
 setSelected(int index, List items) {
-  for (int _i = 0; _i < items.length; _i++) {
-    items[_i].selected = false;
-  }
+  items.forEach((element) {
+    element.selected = false;
+  });
   items[index].selected = true;
 }
 

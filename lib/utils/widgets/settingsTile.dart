@@ -17,7 +17,9 @@ import 'package:provider/provider.dart';
 
 class SettingsTile extends StatelessWidget {
   final List<Widget> children;
-  const SettingsTile({Key key, @required this.children}) : super(key: key);
+  final EdgeInsetsGeometry margin;
+  const SettingsTile({Key key, @required this.children, this.margin})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -36,9 +38,12 @@ class SettingsTile extends StatelessWidget {
           color: Theme.of(context).cardColor,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: this.children,
+            child: Container(
+              margin: this.margin,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: this.children,
+              ),
             ),
           ),
         ),
