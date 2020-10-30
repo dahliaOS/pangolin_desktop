@@ -70,7 +70,7 @@ class _LocalizationDelegate extends LocalizationsDelegate<Localization> {
 
   @override
   bool isSupported(Locale locale) {
-    return ["en", "de", "fr", "pl", "hr", "nl", "pt", "bs", "ar"]
+    return ["ar", "bs", "hr", "nl", "en", "fr", "de", "pl", "pt", "sv"]
         .contains(locale.languageCode);
   }
 

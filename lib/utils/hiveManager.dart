@@ -61,16 +61,17 @@ createEntryIfNotExisting(String key, dynamic value) {
 }
 
 List<String> languages = [
-  "English - United States",
-  "Deutsch - Deutschland",
-  "Français - France",
-  "Polski - Polska",
+  "عربى - إيران",
+  "Bosanski - Bosna i Hercegovina",
   "Hrvatski - Hrvatska",
   "Nederlands - België",
   "Nederlands - Nederland",
-  "عربى - إيران",
-  "Bosanski - Bosna i Hercegovina",
+  "English - United States",
+  "Français - France",
+  "Deutsch - Deutschland",
+  "Polski - Polska",
   "Português - Brasil",
+  "Svenska - Sverige",
 ];
 
 List<String> timeZones = [];
