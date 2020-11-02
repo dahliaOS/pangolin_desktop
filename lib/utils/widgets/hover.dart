@@ -12,17 +12,20 @@ limitations under the License.
 */
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 class Hover extends StatefulWidget {
   final Widget child;
   final Color color;
   final BorderRadius borderRadius;
+  final SystemMouseCursor cursor;
   final double opacity;
   const Hover({
     @required this.child,
     this.color,
     this.borderRadius,
     this.opacity,
+    this.cursor,
     Key key,
   }) : super(key: key);
 
@@ -45,6 +48,7 @@ class _HoverState extends State<Hover> {
       ),
       child: Center(
         child: MouseRegion(
+            cursor: widget.cursor,
             onEnter: (event) {
               setState(() {
                 _hover = true;
