@@ -20,6 +20,7 @@ import 'package:Pangolin/utils/hiveManager.dart';
 import 'package:Pangolin/utils/widgets/hover.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter/rendering.dart';
 
 class AppLauncherButton extends StatefulWidget {
   final Widget app;
@@ -65,6 +66,7 @@ class AppLauncherButtonState extends State<AppLauncherButton> {
         width: (widget.type == AppLauncherButtonType.Drawer) ? 125.0 : 45.0,
         height: (widget.type == AppLauncherButtonType.Drawer) ? 125.0 : 45.0,
         child: Hover(
+            cursor: SystemMouseCursors.click,
             color: Colors.white.withOpacity(0.2),
             borderRadius: (widget.type == AppLauncherButtonType.Drawer)
                 ? BorderRadius.circular(5)
