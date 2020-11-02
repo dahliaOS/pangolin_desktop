@@ -61,6 +61,18 @@ We have a few short tips for you on how to properly submit a bug so the develope
 
 And the most important of all, make sure to fulfill all fields in our Bug report template!
 
+### How do I submit a bug report?
+
+* **GitHub**:
+  * Go to the Issues section
+  * Click **New issue**
+  * Select the **Bug report** template
+  * Fill in the fields
+* **Discord**:
+  * Go to the #bug-report channel
+  * Open a ticket and copy the form
+  * Paste and fill in the form
+
 ## Feature request
 
 If you'd like to see something added to our OS, we highly recommend you read [Before submitting a feature request](#before-submitting-a-feature-request), [How do I submit a feature request?](#how-do-i-submit-a-feature-request) and use our Feature request template
