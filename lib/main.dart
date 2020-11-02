@@ -14,7 +14,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 */
-import 'package:flutter/services.dart';
 
 import 'package:Pangolin/desktop/desktop.dart';
 import 'package:Pangolin/utils/localization/localization.dart';
