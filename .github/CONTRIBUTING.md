@@ -47,9 +47,9 @@ Before submitting a bug report, there are a few things you need to take in consi
 * Do a bit of research and check if a similar bug has already been reported
   * If it has been reported already, add a comment to the existing one instead of submitting a new one
 
-### How do I submit a good bug report?
+### How do I write a good bug report?
 
-We have a few short tips for you on how to properly submit a bug so the developers can understand it better!
+We have a few short tips for you on how to properly write a bug report so the developers can understand it better!
 
 * **Use a clear and descriptive title for the issue**
 * **Describe the steps to reproduce the bug**
