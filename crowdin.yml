@@ -1,3 +1,3 @@
 files:
   - source: /lib/utils/localization/languages/en.json
-    translation: /lib/utils/localization/languages/%two_letters_code%.json
+    translation: /lib/utils/localization/languages/%locale_with_underscore%.json
