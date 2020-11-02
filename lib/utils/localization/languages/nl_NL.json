@@ -48,5 +48,6 @@
   "taskmanager_launch": "Open",
   "taskmanager_processes": "Processen",
   "taskmanager_resources": "Middelen",
-  "taskmanager_selectedprocessplaceholder": "io.dahliaos.null"
+  "taskmanager_selectedprocessplaceholder": "io.dahliaos.null",
+  "app_developeroptions": "Opties voor ontwikkelaars"
 }

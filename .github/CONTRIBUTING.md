@@ -10,7 +10,8 @@ To make sure the contributions go as smooth as possible, here's a few tips!
 - [How can I contribute?](#how-can-i-contribute)
   - [Reporting bugs](#reporting-bugs)
     - [Before submitting a bug report](#before-submitting-a-bug-report)
-    - [How do I submit a good bug report?](#how-do-i-submit-a-good-bug-report)
+    - [How do I write a good bug report?](#how-do-i-write-a-good-bug-report)
+    - [How do I submit a bug report?](#how-do-i-submit-a-bug-report)
   - [Feature request](#feature-request)
     - [Before submitting a feature request](#before-submitting-a-feature-request)
     - [How do I submit a feature request?](#how-do-i-submit-a-feature-request)
@@ -47,9 +48,9 @@ Before submitting a bug report, there are a few things you need to take in consi
 * Do a bit of research and check if a similar bug has already been reported
   * If it has been reported already, add a comment to the existing one instead of submitting a new one
 
-### How do I submit a good bug report?
+### How do I write a good bug report?
 
-We have a few short tips for you on how to properly submit a bug so the developers can understand it better!
+We have a few short tips for you on how to properly write a bug report so the developers can understand it better!
 
 * **Use a clear and descriptive title for the issue**
 * **Describe the steps to reproduce the bug**
@@ -60,6 +61,18 @@ We have a few short tips for you on how to properly submit a bug so the develope
 * **Write what version of dahliaOS you were using**
 
 And the most important of all, make sure to fulfill all fields in our Bug report template!
+
+### How do I submit a bug report?
+
+* **GitHub**:
+  * Go to the Issues section
+  * Click **New issue**
+  * Select the **Bug report** template
+  * Fill in the fields
+* **Discord**:
+  * Go to the #bug-report channel
+  * Open a ticket and copy the form
+  * Paste and fill in the form
 
 ## Feature request
 
