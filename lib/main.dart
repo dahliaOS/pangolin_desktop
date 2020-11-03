@@ -25,7 +25,6 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'package:provider/provider.dart';
-import 'package:Pangolin/utils/system.dart';
 
 /// Set this to disable certain things during testing.
 /// Use this sparingly, or better yet, not at all.
@@ -42,7 +41,7 @@ void main() async {
   Pangolin.settingsBox = await Hive.openBox("settings");
   HiveManager.initializeHive();
   //loadConfig();
- // defaultTheme = await getSystemTheme();
+  // defaultTheme = await getSystemTheme();
   runApp(Pangolin());
 }
 
