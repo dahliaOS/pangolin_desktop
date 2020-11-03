@@ -66,13 +66,18 @@ class _PangolinState extends State<Pangolin> {
   void initState() {
     getLangFromHive() {
       Pangolin.settingsBox = Hive.box("settings");
-      if (Pangolin.settingsBox.get("language").toString().length == 5) {
+      if (Pangolin.settingsBox.get("language").length < 5) {
         Pangolin.settingsBox.delete("language");
       }
       if (Pangolin.settingsBox.get("language") == null) {
-        Pangolin.locale = Locale("en");
+        print("no locale");
+        Pangolin.locale = Locale("en", "US");
+        Pangolin.settingsBox.put("language", "en_US");
       } else {
-        Pangolin.locale = Locale(Pangolin.settingsBox.get("language"));
+        List<String> _selLangFromHive =
+            Pangolin.settingsBox.get("language").toString().split("_");
+        print(_selLangFromHive);
+        Pangolin.locale = Locale(_selLangFromHive[0], _selLangFromHive[1]);
       }
     }
 
@@ -102,18 +107,18 @@ class _PangolinState extends State<Pangolin> {
                   : Themes.light(CustomizationNotifier().accent),
               home: Desktop(title: 'Pangolin Desktop'),
               supportedLocales: [
-                Locale("ar"),
-                Locale("bs"),
-                Locale("hr"),
-                Locale("nl"),
-                Locale("en"),
-                Locale("fr"),
-                Locale("de"),
-                Locale("pl"),
-                Locale("pt"),
-                Locale("ru"),
-                Locale("sv"),
-                Locale("uk"),
+                Locale("ar", "SA"),
+                Locale("bs", "BA"),
+                Locale("hr", "HR"),
+                Locale("nl", "NL"),
+                Locale("en", "US"),
+                Locale("fr", "FR"),
+                Locale("de", "DE"),
+                Locale("pl", "PL"),
+                Locale("pt", "BR"),
+                Locale("ru", "RU"),
+                Locale("sv", "SE"),
+                Locale("uk", "UA"),
               ],
               localizationsDelegates: [
                 Localization.delegate,
