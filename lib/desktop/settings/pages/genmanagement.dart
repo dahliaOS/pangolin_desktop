@@ -262,11 +262,6 @@ void _setLanguage(String _selected, BuildContext context) {
       Pangolin.settingsBox.put("language", "hr_HR");
       Pangolin.settingsBox.put("languageName", "Hrvatski - Hrvatska");
       break;
-    case "Nederlands - België":
-      Pangolin.setLocale(context, Locale("nl", "BE"));
-      Pangolin.settingsBox.put("language", "nl_BE");
-      Pangolin.settingsBox.put("languageName", "Nederlands - België");
-      break;
     case "Nederlands - Nederland":
       Pangolin.setLocale(context, Locale("nl", "NL"));
       Pangolin.settingsBox.put("language", "nl_NL");
@@ -293,22 +288,22 @@ void _setLanguage(String _selected, BuildContext context) {
       Pangolin.settingsBox.put("languageName", "Polski - Polska");
       break;
     case "Português - Brasil":
-      Pangolin.setLocale(context, Locale("pt", "PT"));
+      Pangolin.setLocale(context, Locale("pt", "BR"));
       Pangolin.settingsBox.put("language", "pt_BR");
       Pangolin.settingsBox.put("languageName", "Português - Brasil");
       break;
     case "русский - Россия":
-      Pangolin.setLocale(context, Locale("ru", "ru"));
+      Pangolin.setLocale(context, Locale("ru", "RU"));
       Pangolin.settingsBox.put("language", "ru_RU");
       Pangolin.settingsBox.put("languageName", "русский - Россия");
       break;
     case "Svenska - Sverige":
-      Pangolin.setLocale(context, Locale("sv", "SV"));
-      Pangolin.settingsBox.put("language", "sv_SV");
+      Pangolin.setLocale(context, Locale("sv", "SE"));
+      Pangolin.settingsBox.put("language", "sv_SE");
       Pangolin.settingsBox.put("languageName", "Português - Brasil");
       break;
     case "Український - Україна":
-      Pangolin.setLocale(context, Locale("uk", "uk"));
+      Pangolin.setLocale(context, Locale("uk", "UA"));
       Pangolin.settingsBox.put("language", "uk_UA");
       Pangolin.settingsBox.put("languageName", "Український - Україна");
       break;
@@ -332,11 +327,6 @@ void _setKeyboard(String _selected, BuildContext context) {
       Pangolin.setLocale(context, Locale("hr", "HR"));
       Pangolin.settingsBox.put("keyboardLayout", "hr_HR");
       Pangolin.settingsBox.put("keyboardLayoutName", "Hrvatski - Hrvatska");
-      break;
-    case "Nederlands - België":
-      Pangolin.setLocale(context, Locale("nl", "BE"));
-      Pangolin.settingsBox.put("keyboardLayout", "nl_BE");
-      Pangolin.settingsBox.put("keyboardLayoutName", "Nederlands - België");
       break;
     case "Nederlands - Nederland":
       Pangolin.setLocale(context, Locale("nl", "NL"));
@@ -364,22 +354,22 @@ void _setKeyboard(String _selected, BuildContext context) {
       Pangolin.settingsBox.put("keyboardLayoutName", "Polski - Polska");
       break;
     case "Português - Brasil":
-      Pangolin.setLocale(context, Locale("pt", "PT"));
+      Pangolin.setLocale(context, Locale("pt", "BR"));
       Pangolin.settingsBox.put("keyboardLayout", "pt_BR");
       Pangolin.settingsBox.put("keyboardLayoutName", "Português - Brasil");
       break;
     case "русский - Россия":
-      Pangolin.setLocale(context, Locale("ru", "ru"));
+      Pangolin.setLocale(context, Locale("ru", "RU"));
       Pangolin.settingsBox.put("keyboardLayout", "ru_RU");
       Pangolin.settingsBox.put("keyboardLayoutName", "русский - Россия");
       break;
     case "Svenska - Sverige":
-      Pangolin.setLocale(context, Locale("sv", "SV"));
-      Pangolin.settingsBox.put("keyboardLayout", "sv_SV");
+      Pangolin.setLocale(context, Locale("sv", "SE"));
+      Pangolin.settingsBox.put("keyboardLayout", "sv_SE");
       Pangolin.settingsBox.put("keyboardLayoutName", "Português - Brasil");
       break;
     case "Український - Україна":
-      Pangolin.setLocale(context, Locale("uk", "uk"));
+      Pangolin.setLocale(context, Locale("uk", "UA"));
       Pangolin.settingsBox.put("keyboardLayout", "uk_UA");
       Pangolin.settingsBox.put("keyboardLayoutName", "Український - Україна");
       break;
@@ -404,11 +394,6 @@ void _setTimezone(String _selected, BuildContext context) {
       Pangolin.settingsBox.put("timeZone", "hr_HR");
       Pangolin.settingsBox.put("timeZoneName", "Hrvatski - Hrvatska");
       break;
-    case "Nederlands - België":
-      Pangolin.setLocale(context, Locale("nl", "BE"));
-      Pangolin.settingsBox.put("timeZone", "nl_BE");
-      Pangolin.settingsBox.put("timeZoneName", "Nederlands - België");
-      break;
     case "Nederlands - Nederland":
       Pangolin.setLocale(context, Locale("nl", "NL"));
       Pangolin.settingsBox.put("timeZone", "nl_NL");
@@ -431,26 +416,26 @@ void _setTimezone(String _selected, BuildContext context) {
       break;
     case "Polski - Polska":
       Pangolin.setLocale(context, Locale("pl", "PL"));
-      Pangolin.settingsBox.put("keyboardLayout", "pl_PL");
-      Pangolin.settingsBox.put("keyboardLayoutName", "Polski - Polska");
+      Pangolin.settingsBox.put("timeZone", "pl_PL");
+      Pangolin.settingsBox.put("timeZoneName", "Polski - Polska");
       break;
     case "Português - Brasil":
-      Pangolin.setLocale(context, Locale("pt", "PT"));
+      Pangolin.setLocale(context, Locale("pt", "BR"));
       Pangolin.settingsBox.put("timeZone", "pt_BR");
       Pangolin.settingsBox.put("timeZoneName", "Português - Brasil");
       break;
     case "русский - Россия":
-      Pangolin.setLocale(context, Locale("ru", "ru"));
+      Pangolin.setLocale(context, Locale("ru", "RU"));
       Pangolin.settingsBox.put("timeZone", "ru_RU");
       Pangolin.settingsBox.put("timeZoneName", "русский - Россия");
       break;
     case "Svenska - Sverige":
-      Pangolin.setLocale(context, Locale("sv", "SV"));
-      Pangolin.settingsBox.put("timeZone", "sv_SV");
+      Pangolin.setLocale(context, Locale("sv", "SE"));
+      Pangolin.settingsBox.put("timeZone", "sv_SE");
       Pangolin.settingsBox.put("timeZoneName", "Português - Brasil");
       break;
     case "Український - Україна":
-      Pangolin.setLocale(context, Locale("uk", "uk"));
+      Pangolin.setLocale(context, Locale("uk", "UA"));
       Pangolin.settingsBox.put("timeZone", "uk_UA");
       Pangolin.settingsBox.put("timeZoneName", "Український - Україна");
       break;
