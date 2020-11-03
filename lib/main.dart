@@ -41,8 +41,8 @@ void main() async {
   await Hive.initFlutter();
   Pangolin.settingsBox = await Hive.openBox("settings");
   HiveManager.initializeHive();
-  loadConfig();
-  defaultTheme = await getSystemTheme();
+  //loadConfig();
+ // defaultTheme = await getSystemTheme();
   runApp(Pangolin());
 }
 
