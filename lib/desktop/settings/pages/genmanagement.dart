@@ -297,10 +297,20 @@ void _setLanguage(String _selected, BuildContext context) {
       Pangolin.settingsBox.put("language", "pt_BR");
       Pangolin.settingsBox.put("languageName", "Português - Brasil");
       break;
+    case "русский - Россия":
+      Pangolin.setLocale(context, Locale("ru", "ru"));
+      Pangolin.settingsBox.put("language", "ru_RU");
+      Pangolin.settingsBox.put("languageName", "русский - Россия");
+      break;
     case "Svenska - Sverige":
       Pangolin.setLocale(context, Locale("sv", "SV"));
       Pangolin.settingsBox.put("language", "sv_SV");
       Pangolin.settingsBox.put("languageName", "Português - Brasil");
+      break;
+    case "Український - Україна":
+      Pangolin.setLocale(context, Locale("uk", "uk"));
+      Pangolin.settingsBox.put("language", "uk_UA");
+      Pangolin.settingsBox.put("languageName", "Український - Україна");
       break;
   }
 }
@@ -358,10 +368,20 @@ void _setKeyboard(String _selected, BuildContext context) {
       Pangolin.settingsBox.put("keyboardLayout", "pt_BR");
       Pangolin.settingsBox.put("keyboardLayoutName", "Português - Brasil");
       break;
+    case "русский - Россия":
+      Pangolin.setLocale(context, Locale("ru", "ru"));
+      Pangolin.settingsBox.put("keyboardLayout", "ru_RU");
+      Pangolin.settingsBox.put("keyboardLayoutName", "русский - Россия");
+      break;
     case "Svenska - Sverige":
       Pangolin.setLocale(context, Locale("sv", "SV"));
       Pangolin.settingsBox.put("keyboardLayout", "sv_SV");
       Pangolin.settingsBox.put("keyboardLayoutName", "Português - Brasil");
+      break;
+    case "Український - Україна":
+      Pangolin.setLocale(context, Locale("uk", "uk"));
+      Pangolin.settingsBox.put("keyboardLayout", "uk_UA");
+      Pangolin.settingsBox.put("keyboardLayoutName", "Український - Україна");
       break;
   }
 }
@@ -419,10 +439,20 @@ void _setTimezone(String _selected, BuildContext context) {
       Pangolin.settingsBox.put("timeZone", "pt_BR");
       Pangolin.settingsBox.put("timeZoneName", "Português - Brasil");
       break;
+    case "русский - Россия":
+      Pangolin.setLocale(context, Locale("ru", "ru"));
+      Pangolin.settingsBox.put("timeZone", "ru_RU");
+      Pangolin.settingsBox.put("timeZoneName", "русский - Россия");
+      break;
     case "Svenska - Sverige":
       Pangolin.setLocale(context, Locale("sv", "SV"));
       Pangolin.settingsBox.put("timeZone", "sv_SV");
       Pangolin.settingsBox.put("timeZoneName", "Português - Brasil");
+      break;
+    case "Український - Україна":
+      Pangolin.setLocale(context, Locale("uk", "uk"));
+      Pangolin.settingsBox.put("timeZone", "uk_UA");
+      Pangolin.settingsBox.put("timeZoneName", "Український - Україна");
       break;
   }
 }

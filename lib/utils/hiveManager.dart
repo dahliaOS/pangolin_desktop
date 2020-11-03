@@ -71,7 +71,9 @@ List<String> languages = [
   "Deutsch - Deutschland",
   "Polski - Polska",
   "Português - Brasil",
+  "русский - Россия",
   "Svenska - Sverige",
+  "Український - Україна",
 ];
 
 List<String> timeZones = [];
