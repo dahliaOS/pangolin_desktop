@@ -23,8 +23,6 @@ import 'searchbar.dart';
 
 import 'package:flutter/material.dart';
 
-import 'package:path/path.dart' as p;
-
 void main() {
   runApp(new Files());
 }
@@ -59,64 +57,67 @@ class Folder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return viewTypeList
-        ? Container(
-            //margin: EdgeInsets.all(5),
-            child: Hover(
-              opacity: 0.1,
-              borderRadius: BorderRadius.circular(10),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  //mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      child: Icon(icon, color: Colors.deepOrange, size: 40.0),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      child: Text(
-                        label,
-                        style: TextStyle(color: Colors.grey[900]),
-                        textAlign: TextAlign.center,
+    return GestureDetector(
+      onDoubleTap: onClick,
+      child: viewTypeList
+          ? Container(
+              //margin: EdgeInsets.all(5),
+              child: Hover(
+                opacity: 0.1,
+                borderRadius: BorderRadius.circular(10),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    //mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: Icon(icon, color: Colors.deepOrange, size: 40.0),
                       ),
-                    ),
-                  ],
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: Text(
+                          label,
+                          style: TextStyle(color: Colors.grey[900]),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            )
+          : Container(
+              constraints: BoxConstraints(minHeight: 50.0, minWidth: 50.0),
+              //margin: EdgeInsets.all(25),
+              child: Hover(
+                opacity: 0.1,
+                borderRadius: BorderRadius.circular(10),
+                child: Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  child: Column(
+                    //mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Icon(icon, color: Colors.deepOrange, size: 50.0),
+                      Container(
+                        margin: EdgeInsets.only(top: 5),
+                        child: Text(
+                          label,
+                          style: TextStyle(color: Colors.grey[900]),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
-          )
-        : Container(
-            constraints: BoxConstraints(minHeight: 50.0, minWidth: 50.0),
-            //margin: EdgeInsets.all(25),
-            child: Hover(
-              opacity: 0.1,
-              borderRadius: BorderRadius.circular(10),
-              child: Container(
-                width: double.infinity,
-                height: double.infinity,
-                child: Column(
-                  //mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Icon(icon, color: Colors.deepOrange, size: 50.0),
-                    Container(
-                      margin: EdgeInsets.only(top: 5),
-                      child: Text(
-                        label,
-                        style: TextStyle(color: Colors.grey[900]),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          );
+    );
   }
 }
 
@@ -127,19 +128,22 @@ class FilesHome extends StatefulWidget {
 }
 
 class _FilesHomeState extends State<FilesHome> {
-  List<String> foldersandfiles = List<String>();
+  List<FileSystemEntity> foldersandfiles = List<FileSystemEntity>();
 
   @override
   void initState() {
-    Directory dir = Directory(".");
-    dir.list(recursive: false).forEach((f) {
-      foldersandfiles.add(f.uri.toString());
-    });
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    Directory dir = Directory(".");
+    dir.list(recursive: false).forEach((element) {
+      setState(() {
+        foldersandfiles.add(element);
+      });
+    });
+    ScrollController _controller = ScrollController();
     return new Scaffold(
       appBar: SearchAppBar(
         actions: [
@@ -277,19 +281,46 @@ class _FilesHomeState extends State<FilesHome> {
                   //constraints: BoxConstraints(maxWidth: 900),
                   padding: EdgeInsets.all(10.0),
                   child: viewTypeList
-                      ? ListView.builder(
-                          itemCount: foldersandfiles.length,
-                          itemBuilder: (context, index) {
-                            return Folder(
-                                icon: foldersandfiles[index]
-                                        .toString()
-                                        .endsWith("/")
-                                    ? Icons.folder
-                                    : Icons.file_copy,
-                                label: foldersandfiles[index].toString(),
-                                onClick: () {});
-                          },
-                          padding: EdgeInsets.all(10.0),
+                      ? Scrollbar(
+                          isAlwaysShown: true,
+                          controller: _controller,
+                          thickness: 15,
+                          radius: Radius.circular(2),
+                          child: ListView.builder(
+                            controller: _controller,
+                            itemCount: foldersandfiles.length,
+                            itemBuilder: (context, index) {
+                              return Folder(
+                                  icon: foldersandfiles[index]
+                                          .toString()
+                                          .startsWith("Directory")
+                                      ? Icons.folder
+                                      : Icons.file_copy,
+                                  label: foldersandfiles[index]
+                                      .toString()
+                                      .replaceAll("File:", "")
+                                      .replaceAll("Directory:", "")
+                                      .replaceAll("'./", "")
+                                      .replaceFirst(".", "")
+                                      .replaceFirst("'", ""),
+                                  onClick: () {
+                                    setState(() {
+                                      dir = Directory(
+                                          foldersandfiles[index].path);
+                                    });
+                                    dir
+                                        .list(recursive: false)
+                                        .forEach((element) {
+                                      setState(() {
+                                        foldersandfiles.add(element);
+                                      });
+                                    });
+                                    print(foldersandfiles[index].path);
+                                    print(foldersandfiles);
+                                  });
+                            },
+                            padding: EdgeInsets.all(10.0),
+                          ),
                         )
                       : GridView.builder(
                           itemCount: foldersandfiles.length,
@@ -300,7 +331,13 @@ class _FilesHomeState extends State<FilesHome> {
                                         .endsWith("/")
                                     ? Icons.folder
                                     : Icons.file_copy,
-                                label: foldersandfiles[index].toString(),
+                                label: foldersandfiles[index]
+                                    .toString()
+                                    .replaceAll("File:", "")
+                                    .replaceAll("Directory:", "")
+                                    .replaceAll("'./", "")
+                                    .replaceFirst(".", "")
+                                    .replaceFirst("'", ""),
                                 onClick: () {});
                           },
                           gridDelegate:
