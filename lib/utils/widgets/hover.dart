@@ -25,7 +25,7 @@ class Hover extends StatefulWidget {
     this.color,
     this.borderRadius,
     this.opacity,
-    this.cursor,
+    this.cursor = SystemMouseCursors.click,
     Key key,
   }) : super(key: key);
 
