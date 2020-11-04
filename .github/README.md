@@ -22,13 +22,13 @@
  - You can check it online [here](https://web.dahliaos.io)!
 
 <p align="center">
-  <img width="100%" src="assets/images/screen/screen1.svg"
+  <img width="100%" src="../assets/images/screen/screen1.svg"
 </p>
 
 > Pangolin Desktop Linux-based build 201004 showing Quick Settings
 
 <p align="center">
-  <img width="100%" src="assets/images/screen/screen2.svg"
+  <img width="100%" src="../assets/images/screen/screen2.svg"
 </p>
 
 > Pangolin Desktop Linux-based build 201004 showing Settings application
