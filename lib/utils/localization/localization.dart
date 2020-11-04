@@ -86,6 +86,7 @@ class _LocalizationDelegate extends LocalizationsDelegate<Localization> {
       "en",
       "fr",
       "de",
+      "id",
       "pl",
       "pt",
       "ru",

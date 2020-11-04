@@ -386,6 +386,10 @@ class QuickSettingsState extends State<QuickSettings> {
                       Pangolin.settingsBox.put("language", "de_DE");
                       break;
                     case "de_DE":
+                     Pangolin.setLocale(context, Locale("id", "ID"));
+                      Pangolin.settingsBox.put("language", "id_ID");
+                      break;
+                    case "id_ID":
                       Pangolin.setLocale(context, Locale("pl", "PL"));
                       Pangolin.settingsBox.put("language", "pl_PL");
                       break;

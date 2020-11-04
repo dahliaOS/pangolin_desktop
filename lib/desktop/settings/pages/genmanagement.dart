@@ -282,6 +282,11 @@ void _setLanguage(String _selected, BuildContext context) {
       Pangolin.settingsBox.put("language", "de_DE");
       Pangolin.settingsBox.put("languageName", "Deutsch - Deutschland");
       break;
+    case "bahasa Indonesia - Indonesia":
+      Pangolin.setLocale(context, Locale("id", "ID"));
+      Pangolin.settingsBox.put("language", "id_ID");
+      Pangolin.settingsBox.put("languageName", "Polski - Polska");
+      break;
     case "Polski - Polska":
       Pangolin.setLocale(context, Locale("pl", "PL"));
       Pangolin.settingsBox.put("language", "pl_PL");
@@ -348,6 +353,11 @@ void _setKeyboard(String _selected, BuildContext context) {
       Pangolin.settingsBox.put("keyboardLayout", "de_DE");
       Pangolin.settingsBox.put("keyboardLayoutName", "Deutsch - Deutschland");
       break;
+    case "bahasa Indonesia - Indonesia":
+      Pangolin.setLocale(context, Locale("id", "ID"));
+      Pangolin.settingsBox.put("keyboardLayout", "id_ID");
+      Pangolin.settingsBox.put("keyboardLayoutName", "Polski - Polska");
+      break;
     case "Polski - Polska":
       Pangolin.setLocale(context, Locale("pl", "PL"));
       Pangolin.settingsBox.put("keyboardLayout", "pl_PL");
@@ -413,6 +423,11 @@ void _setTimezone(String _selected, BuildContext context) {
       Pangolin.setLocale(context, Locale("de", "DE"));
       Pangolin.settingsBox.put("timeZone", "de_DE");
       Pangolin.settingsBox.put("timeZoneName", "Deutsch - Deutschland");
+      break;
+    case "bahasa Indonesia - Indonesia":
+      Pangolin.setLocale(context, Locale("id", "ID"));
+      Pangolin.settingsBox.put("timeZone", "id_ID");
+      Pangolin.settingsBox.put("timeZoneName", "Polski - Polska");
       break;
     case "Polski - Polska":
       Pangolin.setLocale(context, Locale("pl", "PL"));

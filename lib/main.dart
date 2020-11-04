@@ -66,7 +66,7 @@ class _PangolinState extends State<Pangolin> {
   void initState() {
     getLangFromHive() {
       Pangolin.settingsBox = Hive.box("settings");
-      if (Pangolin.settingsBox.get("language").length < 5) {
+      if (Pangolin.settingsBox.get("language").toString().length < 5) {
         Pangolin.settingsBox.delete("language");
       }
       if (Pangolin.settingsBox.get("language") == null) {
@@ -114,6 +114,7 @@ class _PangolinState extends State<Pangolin> {
                 Locale("en", "US"),
                 Locale("fr", "FR"),
                 Locale("de", "DE"),
+                Locale("id", "ID"),
                 Locale("pl", "PL"),
                 Locale("pt", "BR"),
                 Locale("ru", "RU"),
