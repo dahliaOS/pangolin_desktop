@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_containers">Behållare</string>
+    <string name="app_authenticator">Autentiserare</string>
+    <string name="app_calculator">Kalkylator</string>
+    <string name="app_clock">Klocka</string>
+    <string name="app_disks">Diskar</string>
+    <string name="app_files">Filer</string>
+    <string name="app_media">Media</string>
+    <string name="app_music">Musik</string>
+    <string name="app_notes">Textredigerare</string>
+    <string name="app_notesmobile">Anteckningar (mobil)</string>
+    <string name="app_messages">Meddelanden</string>
+    <string name="app_rootterminal">Root terminal</string>
+    <string name="app_settings">Inställningar</string>
+    <string name="app_systemlogs">System loggar</string>
+    <string name="app_taskmanager">Aktivitetshanteraren</string>
+    <string name="app_terminal">Terminal</string>
+    <string name="app_themedemo">Tema demo</string>
+    <string name="app_welcome">Välkommen</string>
+    <string name="app_help">Hjälp</string>
+    <string name="app_web">Webbläsare</string>
+    <string name="app_developeroptions">Utvecklaralternativ</string>
+    <string name="featurenotimplemented_title">Funktionen har inte implementerats</string>
+    <string name="featurenotimplemented_value">Denna funktion är för närvarande inte tillgänglig på din version av Pangolin, se https://reddit.com/r/dahliaos för att söka efter uppdateringar.</string>
+    <string name="launcher_card_information_title">Information</string>
+    <string name="launcher_card_information_value">Varning: Du är på en pre-release utvecklingsbygge! För ditt skydd har detta bygge luftats.</string>
+    <string name="launcher_card_kernel_title">Kärna</string>
+    <string name="launcher_card_kernel_value">Drivrutiner för integrerad GPU uppdaterade</string>
+    <string name="launcher_card_music_title">Musik - Nu spelas</string>
+    <string name="launcher_card_music_value">Ludwig van Beethoven - Moonlight Sonata</string>
+    <string name="launcher_card_security_title">Säkerhet</string>
+    <string name="launcher_card_security_value">Filsystemets lås är på</string>
+    <string name="launcher_card_system_title">Systemet</string>
+    <string name="launcher_card_system_value">Välkommen till dahliaOS!</string>
+    <string name="launcher_search">Sök i din enhet, appar, webb...</string>
+    <string name="qs_airplanemode">Flygplansläge</string>
+    <string name="qs_autorotate">Rotera automatiskt</string>
+    <string name="qs_bluetooth">Bluetooth</string>
+    <string name="qs_changelanguage">Svenska</string>
+    <string name="qs_dnd">Stör ej</string>
+    <string name="qs_flashlight">Ficklampa</string>
+    <string name="qs_invertcolors">Invertera färger</string>
+    <string name="qs_theme">Tema</string>
+    <string name="qs_wifi">Wi-Fi</string>
+</resources>
