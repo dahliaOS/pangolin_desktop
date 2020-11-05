@@ -26,9 +26,9 @@
     <string name="launcher_card_information_title">Информация</string>
     <string name="launcher_card_information_value">Внимание: Вы используете предварительную версию для разработчиков! В целях безопасности она была запущена в песочнице.</string>
     <string name="launcher_card_kernel_title">Ядро</string>
-    <string name="launcher_card_kernel_value">Драйвера для встроенной видеокарты обновлены</string>
+    <string name="launcher_card_kernel_value">Драйверы для встроенной видеокарты обновлены</string>
     <string name="launcher_card_music_title">Музыка - Сейчас играет</string>
-    <string name="launcher_card_music_value">ФАСЕ - БУРГЕР</string>
+    <string name="launcher_card_music_value">ФЕЙС - БУРГЕР</string>
     <string name="launcher_card_security_title">Безопасность</string>
     <string name="launcher_card_security_value">Блокировка файловой системы включена</string>
     <string name="launcher_card_system_title">Система</string>
