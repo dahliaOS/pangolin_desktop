@@ -39,7 +39,7 @@ If you're interested in building Pangolin, you can refer to [Building and Runnin
 
 ## Contribute
 
-If you're wondering how to contribute to the project, please refer to [CONTRIBUTING.md](./CONTRIBUTING.md)
+If you're wondering how to contribute to the project, please refer to [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## Translate
 
@@ -57,4 +57,4 @@ If your language is not added, let us know and we'll add it!
 
 Copyright @ 2019-2020 The dahliaOS Authors contact@dahliaos.io
 
-This project is licensed under the [Apache 2.0 license](/LICENSE)
+This project is licensed under the [Apache 2.0 license](LICENSE)
