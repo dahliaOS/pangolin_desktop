@@ -33,12 +33,12 @@ class Localization {
     String jsonStringValues;
     try {
       jsonStringValues = await rootBundle.loadString(
-          "lib/utils/localization/languages/${locale.languageCode}_${locale.countryCode}.json");
+          "assets/locales/${locale.languageCode}_${locale.countryCode}.json");
     } catch (e) {
       print(e);
       jsonStringValues = await rootBundle
-          .loadString("lib/utils/localization/languages/en_US.json");
-      print("Using backup json for localization");
+          .loadString("assets/locales/en_US.json");
+      print("Using backup JSON for localization");
     }
 
     Map<String, dynamic> mappedJson = json.decode(jsonStringValues);
@@ -49,7 +49,7 @@ class Localization {
 
   Future loadBackup() async {
     String jsonStringValues = await rootBundle
-        .loadString("lib/utils/localization/languages/en_US.json");
+        .loadString("assets/locales/en_US.json");
 
     Map<String, dynamic> mappedJson = json.decode(jsonStringValues);
 

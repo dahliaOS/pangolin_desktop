@@ -70,7 +70,7 @@ class _PangolinState extends State<Pangolin> {
         Pangolin.settingsBox.delete("language");
       }
       if (Pangolin.settingsBox.get("language") == null) {
-        print("no locale");
+        print("No locale found");
         Pangolin.locale = Locale("en", "US");
         Pangolin.settingsBox.put("language", "en_US");
       } else {
