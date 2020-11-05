@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_containers">Containers</string>
     <string name="app_authenticator">Authenticator</string>
@@ -42,12 +43,4 @@
     <string name="qs_invertcolors">Invert colors</string>
     <string name="qs_theme">Theme</string>
     <string name="qs_wifi">Wi-Fi</string>
-    <string name="taskmanager_about">About</string>
-    <string name="taskmanager_containers">Containers</string>
-    <string name="taskmanager_info">Select a process to view stats and manage functionality</string>
-    <string name="taskmanager_kill">Kill</string>
-    <string name="taskmanager_launch">Launch</string>
-    <string name="taskmanager_processes">Processes</string>
-    <string name="taskmanager_resources">Resources</string>
-    <string name="taskmanager_selectedprocessplaceholder">io.dahliaos.null</string>
 </resources>
