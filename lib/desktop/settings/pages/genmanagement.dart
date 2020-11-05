@@ -247,8 +247,8 @@ class _GeneralManagementState extends State<GeneralManagement> {
 void _setLanguage(String _selected, BuildContext context) {
   switch (_selected) {
     case "عربى - إيران":
-      Pangolin.setLocale(context, Locale("ar", "AR"));
-      Pangolin.settingsBox.put("language", "ar_AR");
+      Pangolin.setLocale(context, Locale("ar", "SA"));
+      Pangolin.settingsBox.put("language", "ar_SA");
       Pangolin.settingsBox.put("languageName", "عربى - إيران");
       break;
     case "Bosanski - Bosna i Hercegovina":
@@ -318,8 +318,8 @@ void _setLanguage(String _selected, BuildContext context) {
 void _setKeyboard(String _selected, BuildContext context) {
   switch (_selected) {
     case "عربى - إيران":
-      Pangolin.setLocale(context, Locale("ar", "AR"));
-      Pangolin.settingsBox.put("keyboardLayout", "ar_AR");
+      Pangolin.setLocale(context, Locale("ar", "SA"));
+      Pangolin.settingsBox.put("keyboardLayout", "ar_SA");
       Pangolin.settingsBox.put("keyboardLayoutName", "عربى - إيران");
       break;
     case "Bosanski - Bosna i Hercegovina":
@@ -389,8 +389,8 @@ void _setKeyboard(String _selected, BuildContext context) {
 void _setTimezone(String _selected, BuildContext context) {
   switch (_selected) {
     case "عربى - إيران":
-      Pangolin.setLocale(context, Locale("ar", "AR"));
-      Pangolin.settingsBox.put("timeZone", "ar_AR");
+      Pangolin.setLocale(context, Locale("ar", "SA"));
+      Pangolin.settingsBox.put("timeZone", "ar_SA");
       Pangolin.settingsBox.put("timeZoneName", "عربى - إيران");
       break;
     case "Bosanski - Bosna i Hercegovina":
