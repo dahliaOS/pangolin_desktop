@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_containers">Kontener</string>
+    <string name="app_authenticator">Uwierzytelnianie</string>
+    <string name="app_calculator">Kalkulator</string>
+    <string name="app_clock">Zegar</string>
+    <string name="app_disks">Dyski</string>
+    <string name="app_files">Pliki</string>
+    <string name="app_media">Multimedia</string>
+    <string name="app_music">Muzyka</string>
+    <string name="app_notes">Edytor tekstu</string>
+    <string name="app_notesmobile">Notatki (mobilne)</string>
+    <string name="app_messages">Wiadomości</string>
+    <string name="app_rootterminal">Root Terminal</string>
+    <string name="app_settings">Ustawienia</string>
+    <string name="app_systemlogs">Dzienniki systemowe</string>
+    <string name="app_taskmanager">Menadżer zadań</string>
+    <string name="app_terminal">Terminal</string>
+    <string name="app_themedemo">Motyw Demo</string>
+    <string name="app_welcome">Witaj</string>
+    <string name="app_help">Pomoc</string>
+    <string name="app_web">Przeglądarka Sieci</string>
+    <string name="app_developeroptions">Opcje deweloperskie</string>
+    <string name="featurenotimplemented_title">Funkcja niezaimplementowana</string>
+    <string name="featurenotimplemented_value">Ta funkcja nie jest obecnie dostępna w twojej wersji pulpitu Pangolin. Sprawdź dostępność aktualizacji na witrynie https://reddit.com/r/dahliaos.</string>
+    <string name="launcher_card_information_title">Informacja</string>
+    <string name="launcher_card_information_value">Uwaga: Jesteś na przedpremierowej wersji pulpitu Pangolin. Dla twojego bezpieczeństwa system ma wyłączone funkcje sieciowe</string>
+    <string name="launcher_card_kernel_title">Jądro</string>
+    <string name="launcher_card_kernel_value">Sterowniki dla zintegrowanego GPU 
+zostały zaktualizowane</string>
+    <string name="launcher_card_music_title">Muzyka - Teraz Odtwarzane</string>
+    <string name="launcher_card_music_value">Ludwig van Beethoven - Sonata Księżycowa</string>
+    <string name="launcher_card_security_title">Ochrona</string>
+    <string name="launcher_card_security_value">Blokada systemu plików jest włączona</string>
+    <string name="launcher_card_system_title">System</string>
+    <string name="launcher_card_system_value">Witaj w dahliaOS!</string>
+    <string name="launcher_search">Wyszukaj urządzenie, aplikacje, stronę...</string>
+    <string name="qs_airplanemode">Tryb samolotowy</string>
+    <string name="qs_autorotate">Auto obrót</string>
+    <string name="qs_bluetooth">Bluetooth</string>
+    <string name="qs_changelanguage">Polski</string>
+    <string name="qs_dnd">Nie przeszkadzać</string>
+    <string name="qs_flashlight">Latarka</string>
+    <string name="qs_invertcolors">Odwróć kolory</string>
+    <string name="qs_theme">Motyw</string>
+    <string name="qs_wifi">Wi-Fi</string>
+</resources>
