@@ -1,3 +1,3 @@
 files:
-  - source: /lib/utils/localization/languages/en-US/
-    translation: /lib/utils/localization/languages/%locale%/%original_file_name%
+  - source: /assets/locales/en-US/
+    translation: /assets/locales/%locale%/%original_file_name%
