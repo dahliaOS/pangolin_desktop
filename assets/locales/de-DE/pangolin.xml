@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_containers">Container</string>
+    <string name="app_authenticator">Authenticator</string>
+    <string name="app_calculator">Taschenrechner</string>
+    <string name="app_clock">Uhr</string>
+    <string name="app_disks">Festplattenverwaltung</string>
+    <string name="app_files">Dateien</string>
+    <string name="app_media">Medien</string>
+    <string name="app_music">Musik</string>
+    <string name="app_notes">Texteditor</string>
+    <string name="app_notesmobile">Notizen (mobile)</string>
+    <string name="app_messages">Nachrichten</string>
+    <string name="app_rootterminal">Root Terminal</string>
+    <string name="app_settings">Einstellungen</string>
+    <string name="app_systemlogs">Systemprotokoll</string>
+    <string name="app_taskmanager">Task Manager</string>
+    <string name="app_terminal">Terminal</string>
+    <string name="app_themedemo">Thema Vorschau</string>
+    <string name="app_welcome">Willkommen</string>
+    <string name="app_help">Hilfe</string>
+    <string name="app_web">Browser</string>
+    <string name="app_developeroptions">Entwickleroptionen</string>
+    <string name="featurenotimplemented_title">Funktion noch nicht Intigriert</string>
+    <string name="featurenotimplemented_value">Diese Funktion ist in ihrer Version von Pangolin noch nicht verfügbar. Bitte siehe https://reddit.com/r/dahliaos für Aktualisierungen und weiter Informationen.</string>
+    <string name="launcher_card_information_title">Informationen</string>
+    <string name="launcher_card_information_value">Warnung: Sie benutzen eine Entwicklungs-Build von dahliaOS welche noch nicht veröffentlicht wurde.</string>
+    <string name="launcher_card_kernel_title">Kernel</string>
+    <string name="launcher_card_kernel_value">Treiber für Intigrierte Grafikkarte aktualisiert</string>
+    <string name="launcher_card_music_title">Musik - Spielt Gerade</string>
+    <string name="launcher_card_music_value">Gzuz - Was hast du gedacht</string>
+    <string name="launcher_card_security_title">Sicherheit</string>
+    <string name="launcher_card_security_value">Dateisystemsperre ist AN</string>
+    <string name="launcher_card_system_title">System</string>
+    <string name="launcher_card_system_value">Willkommen bei dahliaOS!</string>
+    <string name="launcher_search">Suche Dateien, Apps, Internet...</string>
+    <string name="qs_airplanemode">Flugmodus</string>
+    <string name="qs_autorotate">Automatisch drehen</string>
+    <string name="qs_bluetooth">Bluetooth</string>
+    <string name="qs_changelanguage">Deutsch</string>
+    <string name="qs_dnd">Nicht stören</string>
+    <string name="qs_flashlight">Taschenlampe</string>
+    <string name="qs_invertcolors">Farben umkehren</string>
+    <string name="qs_theme">Thema</string>
+    <string name="qs_wifi">Wi-Fi</string>
+</resources>
