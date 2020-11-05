@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_containers">Contenedores</string>
+    <string name="app_authenticator">Autenticador</string>
+    <string name="app_calculator">Calculadora</string>
+    <string name="app_clock">Reloj</string>
+    <string name="app_disks">Discos</string>
+    <string name="app_files">Archivos</string>
+    <string name="app_media">Multimedia</string>
+    <string name="app_music">Música</string>
+    <string name="app_notes">Editor de texto</string>
+    <string name="app_notesmobile">Notas (móvil)</string>
+    <string name="app_messages">Mensajes</string>
+    <string name="app_rootterminal">Terminal Root</string>
+    <string name="app_settings">Configuración</string>
+    <string name="app_systemlogs">Registros del Sistema</string>
+    <string name="app_taskmanager">Administrador de Tareas</string>
+    <string name="app_terminal">Terminal</string>
+    <string name="app_themedemo">Demostración de temas</string>
+    <string name="app_welcome">Bienvenida</string>
+    <string name="app_help">Ayuda</string>
+    <string name="app_web">Navegador web</string>
+    <string name="app_developeroptions">Opciones de desarrollo</string>
+    <string name="featurenotimplemented_title">Función no implementada</string>
+    <string name="featurenotimplemented_value">Esta característica no se encuentra disponible actualmente en su versión de Pangolin. Por favor ingrese a https://reddit.com/r/dahliaos para comprobar actualizaciones.</string>
+    <string name="launcher_card_information_title">Información</string>
+    <string name="launcher_card_information_value">Advertencia: Estás usando una versión de pre-lanzamiento. Para tu protección, esta versión puede tener problemas.</string>
+    <string name="launcher_card_kernel_title">Kernel</string>
+    <string name="launcher_card_kernel_value">Controladores actualizados para GPU Integradas</string>
+    <string name="launcher_card_music_title">Música - Reproduciendo ahora</string>
+    <string name="launcher_card_music_value">Lil Pump - Boss</string>
+    <string name="launcher_card_security_title">Seguridad</string>
+    <string name="launcher_card_security_value">El bloqueo del Sistema de Archivos está ENCENDIDO</string>
+    <string name="launcher_card_system_title">Sistema</string>
+    <string name="launcher_card_system_value">¡Bienvenido a dahliaOS!</string>
+    <string name="launcher_search">Busca tu dispositivo, aplicaciones, web...</string>
+    <string name="qs_airplanemode">Modo avión</string>
+    <string name="qs_autorotate">Rotación Automática</string>
+    <string name="qs_bluetooth">Bluetooth</string>
+    <string name="qs_changelanguage">Inglés</string>
+    <string name="qs_dnd">No molestar</string>
+    <string name="qs_flashlight">Linterna</string>
+    <string name="qs_invertcolors">Invertir colores</string>
+    <string name="qs_theme">Tema</string>
+    <string name="qs_wifi">Wi-Fi</string>
+</resources>
