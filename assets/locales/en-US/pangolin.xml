@@ -7,7 +7,7 @@
     <string name="app_files">Files</string>
     <string name="app_media">Media</string>
     <string name="app_music">Music</string>
-    <string name="app_notes">Notes</string>
+    <string name="app_notes">Text editor</string>
     <string name="app_notesmobile">Notes (mobile)</string>
     <string name="app_messages">Messages</string>
     <string name="app_rootterminal">Root terminal</string>
@@ -38,10 +38,11 @@
     <string name="qs_bluetooth">Bluetooth</string>
     <string name="qs_changelanguage">English</string>
     <string name="qs_dnd">Do not disturb</string>
-    <string name="qs_flashlight">Flashlight/string>
+    <string name="qs_flashlight">Flashlight</string>
     <string name="qs_invertcolors">Invert colors</string>
     <string name="qs_theme">Theme</string>
     <string name="qs_wifi">Wi-Fi</string>
+    <string name="taskmanager_about">About</string>
     <string name="taskmanager_containers">Containers</string>
     <string name="taskmanager_info">Select a process to view stats and manage functionality</string>
     <string name="taskmanager_kill">Kill</string>
