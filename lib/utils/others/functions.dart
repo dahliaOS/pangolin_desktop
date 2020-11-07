@@ -19,7 +19,7 @@ import 'package:Pangolin/utils/widgets/system_overlay.dart';
 import 'key_ring.dart';
 import 'package:flutter/widgets.dart';
 
-double _scaleFactor = 1.0;
+double _scaleFactor = 1.1;
 
 /// Hides all overlays except [except] if applicable.
 void hideOverlays({GlobalKey<SystemOverlayState> except}) {
