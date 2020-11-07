@@ -55,13 +55,13 @@ class Settings extends StatelessWidget {
           theme: notifier.darkTheme
               ? Themes.dark(notifier.accent)
               : Themes.light(notifier.accent),
-          initialRoute: '/',
+          initialRoute: '/settingshome',
           routes: {
             // When navigating to the "/" route, build the FirstScreen widget.
             '/': (context) => SettingsPage(title: 'Settings'),
             // When navigating to the "/second" route, build the SecondScreen widget.
             '/search': (context) => Search(),
-            '/test': (context) => Test(),
+            '/settingshome': (context) => Test(),
           },
         );
       }),
@@ -118,6 +118,7 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   @override
   void initState() {
+    Settings.items = new List();
     Settings.items.add(new TileItem(
         "Connections",
         "Wi-Fi, Bluetooth, other connections",
@@ -164,177 +165,209 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.of(context).pushNamed("/test");
-        },
-        child: Icon(Icons.grid_on_outlined),
-      ),
-      //appBar: AppBar(title: Text(widget.title)),
-      body: Column(
-        children: <Widget>[
-          Expanded(
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                Container(
-                  width: 350,
-                  child: Column(
-                    children: [
-                      DrawerHeader(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 25, horizontal: 20),
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Icon(
-                                    Icons.settings,
-                                    color: Color(
-                                        HiveManager.get("accentColorValue")),
-                                  ),
-                                  SizedBox(
-                                    width: 20,
-                                  ),
-                                  Text(
-                                    "Settings",
-                                    style: TextStyle(
-                                      fontSize: 25,
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     Navigator.of(context).pushNamed("/settingshome");
+      //   },
+      //   child: Icon(Icons.grid_on_outlined),
+      // ),
+      // appBar: AppBar(title: Text(widget.title)),
+      body: LayoutBuilder(builder: (context, constraints) {
+        return Column(
+          children: <Widget>[
+            Expanded(
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  Container(
+                    width: constraints.maxWidth > 768 ? 300 : 90,
+                    child: Column(
+                      children: [
+                        DrawerHeader(
+                          padding: EdgeInsets.symmetric(
+                              vertical: 25, horizontal: 20),
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    InkWell(
+                                      borderRadius: BorderRadius.circular(25.0),
+                                      onTap: () {
+                                        Future.delayed(Duration.zero, () {
+                                          Navigator.of(context)
+                                              .pushNamed("/settingshome");
+                                        });
+                                      },
+                                      child: Container(
+                                        padding: EdgeInsets.all(4),
+                                        child: Icon(
+                                          Icons.menu,
+                                          color: Color(HiveManager.get(
+                                              "accentColorValue")),
+                                        ),
+                                      ),
                                     ),
-                                  )
-                                ],
-                              ),
-                            ),
-                            SizedBox(
-                              height: 30,
-                            ),
-                            Hero(
-                              tag: "search",
-                              child: Material(
-                                color: Theme.of(context).cardColor,
-                                borderRadius: const BorderRadius.all(
-                                    const Radius.circular(25)),
-                                //elevation: 5.0,
-                                child: GestureDetector(
-                                  onTap: () {
-                                    Navigator.of(context).pushNamed("/search");
-                                  },
-                                  child: new Container(
-                                    width: 700,
-                                    height: 45.0,
-                                    margin:
-                                        new EdgeInsets.only(left: 10, right: 5),
-                                    child: new Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: <Widget>[
-                                        new Expanded(
-                                            child: AbsorbPointer(
-                                          child: new TextField(
-                                            style: new TextStyle(
-                                              color: Colors.grey[900],
-                                              fontSize: 15,
+                                    Visibility(
+                                        visible: constraints.maxWidth > 768,
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 20),
+                                          child: Text(
+                                            "Settings",
+                                            style: TextStyle(
+                                              fontSize: 25,
                                             ),
-                                            maxLines: 1,
-                                            decoration: new InputDecoration(
-                                                hintStyle: TextStyle(
-                                                  color: Theme.of(context)
-                                                      .textTheme
-                                                      .bodyText1
-                                                      .color,
-                                                  fontSize: 15,
-                                                ),
-                                                icon: Icon(
-                                                  Icons.search,
-                                                  color: Color(HiveManager.get(
-                                                      "accentColorValue")),
-                                                ),
-                                                hintText: 'Search settings...',
-                                                border: InputBorder.none),
-                                            onSubmitted: null,
-                                            controller: editingController,
                                           ),
-                                        ))
-                                      ],
+                                        )),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                height: 30,
+                              ),
+                              Hero(
+                                tag: "search",
+                                child: Material(
+                                  color: Theme.of(context).cardColor,
+                                  borderRadius: const BorderRadius.all(
+                                      const Radius.circular(25)),
+                                  //elevation: 5.0,
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      Navigator.of(context)
+                                          .pushNamed("/search");
+                                    },
+                                    child: new Container(
+                                      width: 700,
+                                      height: 45.0,
+                                      margin: new EdgeInsets.only(
+                                          left: 10, right: 5),
+                                      child: new Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: <Widget>[
+                                          new Expanded(
+                                              child: AbsorbPointer(
+                                            child: new TextField(
+                                              style: new TextStyle(
+                                                color: Colors.grey[900],
+                                                fontSize: 15,
+                                              ),
+                                              maxLines: 1,
+                                              decoration: new InputDecoration(
+                                                  hintStyle: TextStyle(
+                                                    color: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyText1
+                                                        .color,
+                                                    fontSize: 15,
+                                                  ),
+                                                  icon: Icon(
+                                                    Icons.search,
+                                                    color: Color(HiveManager.get(
+                                                        "accentColorValue")),
+                                                  ),
+                                                  hintText:
+                                                      constraints.maxWidth > 768
+                                                          ? 'Search settings...'
+                                                          : "",
+                                                  border: InputBorder.none),
+                                              onSubmitted: null,
+                                              controller: editingController,
+                                            ),
+                                          ))
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 10, vertical: 0),
-                          child: ListView.builder(
-                            itemCount: Settings.items.length,
-                            itemBuilder: (BuildContext context, int i) {
-                              return Container(
-                                margin: EdgeInsets.all(5),
-                                decoration: BoxDecoration(
-                                    color: Settings.items[i].selected == true
-                                        ? Color(HiveManager.get(
-                                                "accentColorValue"))
-                                            .withOpacity(0.2)
-                                        : Color(HiveManager.get(
-                                                "accentColorValue"))
-                                            .withOpacity(0.0),
-                                    borderRadius: BorderRadius.circular(10)),
-                                child: ListTile(
-                                    dense: true,
-                                    title: Text(Settings.items[i].title,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyText1),
-                                    subtitle: Text(Settings.items[i].subtitle),
-                                    leading: Icon(
-                                      Settings.items[i].icon,
-                                      color: Color(
-                                          HiveManager.get("accentColorValue")),
-                                    ),
-                                    onTap: () {
-                                      setState(() {
-                                        //setSelected(i, Settings.items);
-                                      });
-                                      Settings.contoller.animateToPage(i,
-                                          duration: Duration(milliseconds: 500),
-                                          curve: Curves.decelerate);
-                                    }),
-                              );
-                            },
+                            ],
                           ),
                         ),
-                      ),
-                    ],
+                        Expanded(
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 0),
+                            child: ListView.builder(
+                              itemCount: Settings.items.length,
+                              itemBuilder: (BuildContext context, int i) {
+                                return Container(
+                                  margin: EdgeInsets.all(6),
+                                  decoration: BoxDecoration(
+                                      color: Settings.items[i].selected == true
+                                          ? Color(HiveManager.get(
+                                                  "accentColorValue"))
+                                              .withOpacity(0.2)
+                                          : Color(HiveManager.get(
+                                                  "accentColorValue"))
+                                              .withOpacity(0.0),
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: ListTile(
+                                      dense: true,
+                                      title: Visibility(
+                                        visible: constraints.maxWidth > 768
+                                            ? true
+                                            : false,
+                                        child: Text(Settings.items[i].title,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyText1),
+                                      ),
+                                      subtitle: Visibility(
+                                          visible: constraints.maxWidth > 768
+                                              ? true
+                                              : false,
+                                          child:
+                                              Text(Settings.items[i].subtitle)),
+                                      leading: Icon(
+                                        Settings.items[i].icon,
+                                        color: Color(HiveManager.get(
+                                            "accentColorValue")),
+                                      ),
+                                      onTap: () {
+                                        setState(() {
+                                          //setSelected(i, Settings.items);
+                                        });
+                                        Settings.contoller.animateToPage(i,
+                                            duration:
+                                                Duration(milliseconds: 500),
+                                            curve: Curves.decelerate);
+                                      }),
+                                );
+                              },
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                VerticalDivider(),
-                Expanded(
-                    child: PageView.builder(
-                        scrollDirection: Axis.vertical,
-                        pageSnapping: false,
-                        physics: NeverScrollableScrollPhysics(),
-                        controller: Settings.contoller,
-                        onPageChanged: (index) {
-                          setState(() {
-                            setSelected(index, Settings.items);
-                          });
-                        },
-                        itemCount: Settings.items.length,
-                        itemBuilder: (context, index) {
-                          return Settings.items[index].page;
-                        })),
-              ],
+                  VerticalDivider(),
+                  Expanded(
+                      child: PageView.builder(
+                          scrollDirection: Axis.vertical,
+                          pageSnapping: false,
+                          physics: NeverScrollableScrollPhysics(),
+                          controller: Settings.contoller,
+                          onPageChanged: (index) {
+                            setState(() {
+                              setSelected(index, Settings.items);
+                            });
+                          },
+                          itemCount: Settings.items.length,
+                          itemBuilder: (context, index) {
+                            return Settings.items[index].page;
+                          })),
+                ],
+              ),
             ),
-          ),
-        ],
-      ),
+          ],
+        );
+      }),
     );
   }
 }
@@ -383,6 +416,17 @@ class _SearchState extends State<Search> {
                   child: new Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
+                      InkWell(
+                        onTap: () {
+                          Future.delayed(Duration.zero, () {
+                            Navigator.of(context).pop();
+                          });
+                        },
+                        child: Icon(
+                          Icons.arrow_back,
+                          color: Color(HiveManager.get("accentColorValue")),
+                        ),
+                      ),
                       new Expanded(
                           child: new TextField(
                         autofocus: true,
