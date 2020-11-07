@@ -11,7 +11,7 @@
     <string name="app_notes">टेक्स्ट संपादक</string>
     <string name="app_notesmobile">नोट्स (मोबाइल)</string>
     <string name="app_messages">संदेश</string>
-    <string name="app_rootterminal">फाइल</string>
+    <string name="app_rootterminal">रुट टर्मिनल</string>
     <string name="app_settings">सेटिंग्स</string>
     <string name="app_systemlogs">सिस्टम लॉग</string>
     <string name="app_taskmanager">कार्य प्रबंधक</string>
@@ -24,10 +24,10 @@
     <string name="featurenotimplemented_title">सुविधा लागू नहीं की गई</string>
     <string name="featurenotimplemented_value">यह उपकरण काम नहीं कर रहा है, कृपया https://reddit.com/r/dahliaos के साथ जुड़े रहे।</string>
     <string name="launcher_card_information_title">जानकारी</string>
-    <string name="launcher_card_information_value">चेतावनी: आप एक पूर्व-रिलीज़ विकास बिल्ड पर हैं! आपकी सुरक्षा के लिए, इस बिल्ड को एयरगैप किया गया है।</string>
+    <string name="launcher_card_information_value">चेतावनी: आप एक पूर्व-रिलीज़ बिल्ड पर हैं! आपकी सुरक्षा के लिए, इस बिल्ड को एयरगैप किया गया है।</string>
     <string name="launcher_card_kernel_title">कर्नेल</string>
     <string name="launcher_card_kernel_value">Integrated GPU के Drivers अपडेट कर दिए गए है।</string>
-    <string name="launcher_card_music_title">संगीत - अब बज रहा है</string>
+    <string name="launcher_card_music_title">संगीत - अभी बज रहा है</string>
     <string name="launcher_card_music_value">लील पंप - बॉस</string>
     <string name="launcher_card_security_title">सुरक्षा</string>
     <string name="launcher_card_security_value">फाइलसिस्टम लॉक ऑन है</string>
