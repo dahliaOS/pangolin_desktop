@@ -24,6 +24,7 @@ import 'package:provider/provider.dart';
 import 'dart:async';
 import 'package:Pangolin/main.dart';
 import 'package:Pangolin/desktop/settings/settings.dart';
+import 'package:Pangolin/utils/others/wifi.dart';
 
 class QuickSettings extends StatefulWidget {
   @override
@@ -344,6 +345,7 @@ class QuickSettingsState extends State<QuickSettings> {
                   setState(() {
                     HiveManager.set("wifi", false);
                   });
+                  connectInternet(context);
                 }),
                 buildTile(Icons.palette, local.get("qs_theme"), changeColor),
                 buildTile(Icons.battery_full, '85%', changeColor),
@@ -386,7 +388,7 @@ class QuickSettingsState extends State<QuickSettings> {
                       Pangolin.settingsBox.put("language", "de_DE");
                       break;
                     case "de_DE":
-                     Pangolin.setLocale(context, Locale("id", "ID"));
+                      Pangolin.setLocale(context, Locale("id", "ID"));
                       Pangolin.settingsBox.put("language", "id_ID");
                       break;
                     case "id_ID":
