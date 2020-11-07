@@ -109,4 +109,4 @@ flutter:
   - assets/images/wallpapers/Nature/
   - assets/images/icons/PNG/
   - assets/images/logos/dahliaOS/PNG/
-  - lib/utils/localization/languages/
+  - assets/locales/

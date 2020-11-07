@@ -35,11 +35,26 @@ import 'package:Pangolin/applications/logging/logging.dart';
 
 Expanded tileSection(BuildContext context) {
   Localization local = Localization.of(context);
+
+  double _width() {
+    double width = MediaQuery.of(context).size.width;
+    if (width >= 1920) {
+      return HiveManager.get("launcherWideMode") ? 100 : 350;
+    } else if (width >= 1500 && width < 1920) {
+      return HiveManager.get("launcherWideMode") ? 80 : 250;
+    } else if (width >= 1200 && width < 1500) {
+      return HiveManager.get("launcherWideMode") ? 50 : 100;
+    } else if (width < 1200) {
+      return HiveManager.get("launcherWideMode") ? 20 : 50;
+    } else if (width < 600) {
+      return HiveManager.get("launcherWideMode") ? 10 : 20;
+    }
+  }
+
   return Expanded(
     child: Container(
         padding: EdgeInsets.all(15.0),
-        margin: EdgeInsets.symmetric(
-            horizontal: HiveManager.get("launcherWideMode") ? 100 : 350),
+        margin: EdgeInsets.symmetric(horizontal: _width()),
         child: SingleChildScrollView(
           child: Wrap(spacing: 18.0, children: [
             AppLauncherButton(

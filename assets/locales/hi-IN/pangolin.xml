@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_containers">कंटेनर</string>
+    <string name="app_authenticator">प्रमाणक</string>
+    <string name="app_calculator">कैलकुलेटर</string>
+    <string name="app_clock">घड़ी</string>
+    <string name="app_disks">फ्लैशलाइट</string>
+    <string name="app_files">फाइल्स</string>
+    <string name="app_media">मीडिया</string>
+    <string name="app_music">म्यूजिक</string>
+    <string name="app_notes">टेक्स्ट संपादक</string>
+    <string name="app_notesmobile">नोट्स (मोबाइल)</string>
+    <string name="app_messages">संदेश</string>
+    <string name="app_rootterminal">रुट टर्मिनल</string>
+    <string name="app_settings">सेटिंग्स</string>
+    <string name="app_systemlogs">सिस्टम लॉग</string>
+    <string name="app_taskmanager">कार्य प्रबंधक</string>
+    <string name="app_terminal">टर्मिनल</string>
+    <string name="app_themedemo">थीम डेमो</string>
+    <string name="app_welcome">आपका स्वागत है</string>
+    <string name="app_help">सहायता</string>
+    <string name="app_web">वेब ब्राउज़र</string>
+    <string name="app_developeroptions">डेवलपर के लिए सेटिंग और उपकरण</string>
+    <string name="featurenotimplemented_title">सुविधा लागू नहीं की गई</string>
+    <string name="featurenotimplemented_value">यह उपकरण काम नहीं कर रहा है, कृपया https://reddit.com/r/dahliaos के साथ जुड़े रहे।</string>
+    <string name="launcher_card_information_title">जानकारी</string>
+    <string name="launcher_card_information_value">चेतावनी: आप एक पूर्व-रिलीज़ बिल्ड पर हैं! आपकी सुरक्षा के लिए, इस बिल्ड को एयरगैप किया गया है।</string>
+    <string name="launcher_card_kernel_title">कर्नेल</string>
+    <string name="launcher_card_kernel_value">Integrated GPU के Drivers अपडेट कर दिए गए है।</string>
+    <string name="launcher_card_music_title">संगीत - अभी बज रहा है</string>
+    <string name="launcher_card_music_value">लील पंप - बॉस</string>
+    <string name="launcher_card_security_title">सुरक्षा</string>
+    <string name="launcher_card_security_value">फाइलसिस्टम लॉक ऑन है</string>
+    <string name="launcher_card_system_title">सिस्टम</string>
+    <string name="launcher_card_system_value">dahliaOS में आपका स्वागत है!</string>
+    <string name="launcher_search">अपने डिवाइस से खोजें</string>
+    <string name="qs_airplanemode">हवाई जहाज मोड</string>
+    <string name="qs_autorotate">ऑटो रोटेशन</string>
+    <string name="qs_bluetooth">ब्लूटूथ</string>
+    <string name="qs_changelanguage">हिंदी</string>
+    <string name="qs_dnd">परेशान न करें</string>
+    <string name="qs_flashlight">फ्लैशलाइट</string>
+    <string name="qs_invertcolors">उलटे रंग</string>
+    <string name="qs_theme">थीम</string>
+    <string name="qs_wifi">Wi-Fi</string>
+</resources>

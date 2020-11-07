@@ -69,6 +69,7 @@ List<String> languages = [
   "English - United States",
   "Français - France",
   "Deutsch - Deutschland",
+  "bahasa Indonesia - Indonesia",
   "Polski - Polska",
   "Português - Brasil",
   "русский - Россия",
