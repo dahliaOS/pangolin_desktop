@@ -333,10 +333,7 @@ class _SettingsPageState extends State<SettingsPage> {
                                         setState(() {
                                           //setSelected(i, Settings.items);
                                         });
-                                        Settings.contoller.animateToPage(i,
-                                            duration:
-                                                Duration(milliseconds: 500),
-                                            curve: Curves.decelerate);
+                                        Settings.contoller.jumpToPage(i);
                                       }),
                                 );
                               },
