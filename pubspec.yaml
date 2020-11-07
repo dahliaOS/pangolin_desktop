@@ -18,6 +18,10 @@ dependencies:
   flutter_colorpicker: ^0.3.4
   google_fonts: ^1.1.0
   path: ^1.7.0
+  process_run:
+  open_file:
+  filesize:
+  xdg_directories:
 #Useful in an ideal future but not now.  random_color: ^1.0.5
 
 
