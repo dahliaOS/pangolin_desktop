@@ -12,24 +12,37 @@ limitations under the License.
 */
 import 'package:flutter/material.dart';
 
-void connectInternet(BuildContext context) {
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      // return object of type Dialog
-      return AlertDialog(
-        title: new Text("Internet Connection"),
-        content: new Text("Connect to the internet to continue"),
-        actions: <Widget>[
-          // usually buttons at the bottom of the dialog
-          new FlatButton(
-            child: new Text("OK"),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-        ],
-      );
-    },
-  );
+void main() {
+  runApp(new WirelessApp());
+}
+
+class WirelessApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new MaterialApp(
+      title: 'Generated App',
+      theme: new ThemeData(
+        primarySwatch: Colors.deepOrange,
+        canvasColor: const Color(0xFFffffff),
+      ),
+      home: new WirelessHomePage(),
+    );
+  }
+}
+
+class WirelessHomePage extends StatefulWidget {
+  WirelessHomePage({Key key}) : super(key: key);
+  @override
+  _WirelessHomePageState createState() => new _WirelessHomePageState();
+}
+
+class _WirelessHomePageState extends State<WirelessHomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      appBar: new AppBar(
+        title: new Text('App Name'),
+      ),
+    );
+  }
 }

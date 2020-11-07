@@ -345,7 +345,9 @@ class QuickSettingsState extends State<QuickSettings> {
                   setState(() {
                     HiveManager.set("wifi", false);
                   });
-                  connectInternet(context);
+                  Provider.of<WindowsData>(context, listen: false)
+                      .add(child: WirelessApp(), color: Colors.deepOrange[700]);
+                  hideOverlays();
                 }),
                 buildTile(Icons.palette, local.get("qs_theme"), changeColor),
                 buildTile(Icons.battery_full, '85%', changeColor),
