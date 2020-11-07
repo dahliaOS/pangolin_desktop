@@ -3,14 +3,14 @@ import 'package:Pangolin/utils/hiveManager.dart';
 import 'package:Pangolin/utils/widgets/hover.dart';
 import 'package:flutter/material.dart';
 
-class Test extends StatefulWidget {
-  const Test({Key key}) : super(key: key);
+class SettingsHome extends StatefulWidget {
+  const SettingsHome({Key key}) : super(key: key);
 
   @override
-  _TestState createState() => _TestState();
+  _SettingsHomeState createState() => _SettingsHomeState();
 }
 
-class _TestState extends State<Test> {
+class _SettingsHomeState extends State<SettingsHome> {
   @override
   Widget build(BuildContext context) {
     return Container(
