@@ -37,12 +37,43 @@ class WirelessHomePage extends StatefulWidget {
 }
 
 class _WirelessHomePageState extends State<WirelessHomePage> {
+  /// This is the private State class that goes with MyStatefulWidget
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: new AppBar(
-        title: new Text('App Name'),
+        body: Form(
+      key: _formKey,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          TextFormField(
+            decoration: const InputDecoration(
+              hintText: 'SSID',
+            ),
+            validator: (value) {
+              if (value.isEmpty) {
+                return 'Please enter the network\'s SSID';
+              }
+              return null;
+            },
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            child: ElevatedButton(
+              onPressed: () {
+                // Validate will return true if the form is valid, or false if
+                // the form is invalid.
+                if (_formKey.currentState.validate()) {
+                  // Process data.
+                }
+              },
+              child: Text('Submit'),
+            ),
+          ),
+        ],
       ),
-    );
+    ));
   }
 }
