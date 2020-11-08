@@ -205,7 +205,7 @@ class _SettingsPageState extends State<SettingsPage> {
                                       child: Container(
                                         padding: EdgeInsets.all(4),
                                         child: Icon(
-                                          Icons.menu,
+                                          Icons.arrow_back,
                                           color: Color(HiveManager.get(
                                               "accentColorValue")),
                                         ),
