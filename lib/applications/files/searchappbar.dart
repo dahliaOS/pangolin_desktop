@@ -25,7 +25,7 @@ class SearchAppBar extends StatefulWidget implements PreferredSizeWidget {
 
   @override
   // TODO: implement preferredSize
-  Size get preferredSize => Size.fromHeight(65);
+  Size get preferredSize => Size.fromHeight(55);
 }
 
 class _SearchAppBarState extends State<SearchAppBar> {
@@ -41,36 +41,39 @@ class _SearchAppBarState extends State<SearchAppBar> {
       padding: new EdgeInsets.only(left: 5.0, right: 5.0, top: 8.0, bottom: 8),
       //margin: new EdgeInsets.only(top: 15.0),
       width: 700,
-      height: 65,
+      height: 55,
       color: Colors.deepOrange,
       child: Row(
         children: [
           Expanded(
             child: new Material(
-              color: Colors.white.withOpacity(0.3),
+              color: Colors.black.withOpacity(0.3),
               borderRadius: const BorderRadius.all(const Radius.circular(5)),
               elevation: 0.0,
               child: new Container(
-                width: 700,
-                height: 100.0,
-                margin: new EdgeInsets.only(left: 16.0, right: 16.0),
+                width: 1000,
+                //height: 120.0,
+                //margin: new EdgeInsets.only(left: 16.0, right: 16.0),
                 child: new Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     new Expanded(
-                        child: new TextField(
-                      style: new TextStyle(color: Colors.white),
-                      maxLines: 1,
-                      decoration: new InputDecoration(
-                          hintStyle: TextStyle(color: Colors.white),
-                          icon: Icon(
-                            Icons.search,
-                            color: const Color(0xFFffffff),
-                          ),
-                          hintText: 'Search Files and Folders',
-                          border: InputBorder.none),
-                      onSubmitted: null,
-                      controller: editingController,
+                        child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: new TextField(
+                        style: new TextStyle(color: Colors.white),
+                        maxLines: 1,
+                        decoration: new InputDecoration(
+                            hintStyle: TextStyle(color: Colors.white),
+                            icon: Icon(
+                              Icons.search,
+                              color: const Color(0xFFffffff),
+                            ),
+                            hintText: 'Search Files and Folders',
+                            border: InputBorder.none),
+                        onSubmitted: null,
+                        controller: editingController,
+                      ),
                     )),
                   ],
                 ),
