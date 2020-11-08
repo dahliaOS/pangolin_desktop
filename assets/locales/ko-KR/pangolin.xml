@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_containers">컨테이너</string>
+    <string name="app_authenticator">인증자</string>
+    <string name="app_calculator">계산기</string>
+    <string name="app_clock">시계</string>
+    <string name="app_disks">디스크</string>
+    <string name="app_files">파일</string>
+    <string name="app_media">미디어</string>
+    <string name="app_music">음악</string>
+    <string name="app_notes">텍스트 편집기</string>
+    <string name="app_notesmobile">노트 (모바일)</string>
+    <string name="app_messages">메시지</string>
+    <string name="app_rootterminal">루트 터미널</string>
+    <string name="app_settings">설정</string>
+    <string name="app_systemlogs">시스템 로그</string>
+    <string name="app_taskmanager">작업 관리자</string>
+    <string name="app_terminal">터미널</string>
+    <string name="app_themedemo">테마 데모</string>
+    <string name="app_welcome">환영합니다</string>
+    <string name="app_help">도움말</string>
+    <string name="app_web">웹 브라우저</string>
+    <string name="app_developeroptions">개발자 옵션</string>
+    <string name="featurenotimplemented_title">기능이 구현되지 않음</string>
+    <string name="featurenotimplemented_value">이 기능은 현재 Pangolin 빌드에 존재하지 않습니다. https://reddit.com/r/dahliaos 을(를) 방문하여 업데이트를 확인해 주세요.</string>
+    <string name="launcher_card_information_title">정보</string>
+    <string name="launcher_card_information_value">경고: 현재 개발자용 pre-release 빌드를 사용중입니다. 보안을 위해, 이 빌드는 네트워크로부터 격리되었습니다.</string>
+    <string name="launcher_card_kernel_title">커널</string>
+    <string name="launcher_card_kernel_value">통합 GPU용 드라이버 업데이트</string>
+    <string name="launcher_card_music_title">음악 - 현재 재생중</string>
+    <string name="launcher_card_music_value">Lil Pump - Boss</string>
+    <string name="launcher_card_security_title">보안</string>
+    <string name="launcher_card_security_value">파일 시스템 잠금이 활성화됨</string>
+    <string name="launcher_card_system_title">시스템</string>
+    <string name="launcher_card_system_value">dahliaOS에 온 것을 환영합니다!</string>
+    <string name="launcher_search">앱, 웹 등 검색...</string>
+    <string name="qs_airplanemode">비행기 모드</string>
+    <string name="qs_autorotate">자동 회전</string>
+    <string name="qs_bluetooth">블루투스</string>
+    <string name="qs_changelanguage">한국어</string>
+    <string name="qs_dnd">방해 금지</string>
+    <string name="qs_flashlight">손전등</string>
+    <string name="qs_invertcolors">색상 반전</string>
+    <string name="qs_theme">테마</string>
+    <string name="qs_wifi">Wi-Fi</string>
+</resources>
