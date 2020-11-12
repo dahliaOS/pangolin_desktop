@@ -41,6 +41,12 @@ If you're interested in building Pangolin, you can refer to [Building and Runnin
 
 If you're wondering how to contribute to the project, please refer to [CONTRIBUTING.md](./CONTRIBUTING.md)
 
+### Contributors
+
+<a href="https://github.com/dahlia-os/pangolin-desktop/graphs/contributors">
+  <img src="https://contributors-img.web.app/image?repo=dahlia-os/pangolin-desktop" />
+</a>
+
 ## Translate
 
 If you're interested in translating Pangolin, please click [this link](https://translate.dahliaos.io/pangolin)!
