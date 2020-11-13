@@ -150,7 +150,6 @@ class _DesktopState extends State<Desktop> {
               child: Blur(
                 blurRadius: customizationNotifier.blur ? 5.0 : 0.0,
                 child: Container(
-                    //color: Color.fromARGB(150, 0, 0, 0),
                     decoration: BoxDecoration(
                       color: Color.fromARGB(150, 0, 0, 0),
                       //uncomment below to add radius to the launcher panel
