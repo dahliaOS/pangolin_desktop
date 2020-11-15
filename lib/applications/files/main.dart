@@ -387,6 +387,7 @@ class _FilesHomeState extends State<FilesHome> {
                                                 .format(
                                               item.stat.modified,
                                             ),
+                                            overflow: TextOverflow.ellipsis,
                                           ),
                                         ),
                                         DataCell(
@@ -396,6 +397,7 @@ class _FilesHomeState extends State<FilesHome> {
                                                         .toString() +
                                                     " items"
                                                 : filesize(item.stat.size),
+                                            overflow: TextOverflow.ellipsis,
                                           ),
                                         ),
                                         DataCell(
@@ -403,6 +405,7 @@ class _FilesHomeState extends State<FilesHome> {
                                             item.isDirectory
                                                 ? "Directory"
                                                 : "File",
+                                            overflow: TextOverflow.ellipsis,
                                           ),
                                         ),
                                       ],
