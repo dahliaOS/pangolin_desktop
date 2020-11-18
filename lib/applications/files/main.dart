@@ -14,31 +14,22 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'dart:io';
 import 'dart:ui';
+
+import 'package:Pangolin/utils/widgets/hover.dart';
 
 import 'searchbar.dart';
 
-import 'hover.dart';
 import 'package:flutter/material.dart';
+
+import 'package:path/path.dart' as p;
 
 void main() {
   runApp(new Files());
 }
 
 class Files extends StatelessWidget {
-  /* final Widget Function() customBar = ({ //customBar in lib/window/window.dart
-  /// The function called to close the window.
-  Function close,
-  /// The function called to minimize the window.
-  Function minimize,
-  /// The function called to maximize or restore the window.
-  Function maximize,
-  /// The getter to determine whether or not the window is maximized.
-  bool Function() maximizeState}) {
-    return FilesBar(close: close, minimize: minimize, maximize: maximize);
-  };
-  final Color customBackground = const Color(0xFFfafafa);*/
-
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
@@ -51,65 +42,6 @@ class Files extends StatelessWidget {
     );
   }
 }
-
-/*class FilesBar extends StatelessWidget {
-  final Function() minimize;
-  final Function() maximize;
-  final Function() close;
-
-  FilesBar({
-    Key key,
-    this.minimize,
-    this.maximize,
-    this.close
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return ClipRRect(child: BackdropFilter(
-      filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
-      child: Container(
-        height: 50,
-        color: Color(0x7fffffff),
-        child: Row(children: [
-          Center(
-            child: Padding(
-              padding: EdgeInsets.all(15),
-                child: Text('Files',
-                  style:
-                    TextStyle(fontSize: 18, color: Color(0xff000000)
-                  )
-                )
-            )
-          ),
-          Expanded(
-            child: new Text('test'),
-          ),
-          Row(children: [
-            new IconButton(
-              icon: const Icon(Icons.minimize),
-              onPressed: minimize,
-              iconSize: 18.0,
-              color: const Color(0xFF000000),
-            ),
-            new IconButton(
-              icon: const Icon(Icons.crop_square),
-              onPressed: maximize,
-              iconSize: 18.0,
-              color: const Color(0xFF000000),
-            ),
-            new IconButton(
-              icon: const Icon(Icons.close),
-              onPressed: close,
-              iconSize: 18.0,
-              color: const Color(0xFF000000),
-            ),
-          ])
-        ])
-      )
-    ));
-  }
-}*/
 
 bool viewTypeList = false;
 
@@ -133,24 +65,27 @@ class Folder extends StatelessWidget {
             child: Hover(
               opacity: 0.1,
               borderRadius: BorderRadius.circular(10),
-              child: Row(
-                //mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
-                    child: Icon(icon, color: Colors.deepOrange, size: 50.0),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
-                    child: Text(
-                      label,
-                      style: TextStyle(color: Colors.grey[900]),
-                      textAlign: TextAlign.center,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  //mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: Icon(icon, color: Colors.deepOrange, size: 40.0),
                     ),
-                  ),
-                ],
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: Text(
+                        label,
+                        style: TextStyle(color: Colors.grey[900]),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           )
@@ -192,47 +127,35 @@ class FilesHome extends StatefulWidget {
 }
 
 class _FilesHomeState extends State<FilesHome> {
-  List<Widget> children = [
-    Folder(icon: Icons.folder, label: "label", onClick: () {}),
-    Folder(icon: Icons.folder, label: "label", onClick: () {}),
-    Folder(icon: Icons.folder, label: "label", onClick: () {}),
-    Folder(icon: Icons.folder, label: "label", onClick: () {}),
-    Folder(icon: Icons.folder, label: "label", onClick: () {}),
-    Folder(icon: Icons.folder, label: "label", onClick: () {}),
-    Folder(icon: Icons.folder, label: "label", onClick: () {}),
-    Folder(icon: Icons.folder, label: "label", onClick: () {}),
-    Folder(icon: Icons.folder, label: "label", onClick: () {}),
-    Folder(icon: Icons.folder, label: "label", onClick: () {}),
-    Folder(icon: Icons.folder, label: "label", onClick: () {}),
-    Folder(icon: Icons.folder, label: "label", onClick: () {}),
-    Folder(icon: Icons.folder, label: "label", onClick: () {}),
-    Folder(icon: Icons.folder, label: "label", onClick: () {}),
-    Folder(icon: Icons.folder, label: "label", onClick: () {}),
-    Folder(icon: Icons.folder, label: "label", onClick: () {}),
-    Folder(icon: Icons.folder, label: "label", onClick: () {}),
-    Folder(icon: Icons.folder, label: "label", onClick: () {}),
-    Folder(icon: Icons.folder, label: "label", onClick: () {}),
-    Folder(icon: Icons.folder, label: "label", onClick: () {}),
-    Folder(icon: Icons.folder, label: "label", onClick: () {}),
-    Folder(icon: Icons.folder, label: "label", onClick: () {}),
-    Folder(icon: Icons.folder, label: "label", onClick: () {}),
-    Folder(icon: Icons.folder, label: "label", onClick: () {}),
-    Folder(icon: Icons.folder, label: "label", onClick: () {}),
-    Folder(icon: Icons.folder, label: "label", onClick: () {}),
-    Folder(icon: Icons.folder, label: "label", onClick: () {}),
-    Folder(icon: Icons.folder, label: "label", onClick: () {}),
-    Folder(icon: Icons.folder, label: "label", onClick: () {}),
-    Folder(icon: Icons.folder, label: "label", onClick: () {}),
-    Folder(icon: Icons.folder, label: "label", onClick: () {}),
-    Folder(icon: Icons.folder, label: "label", onClick: () {}),
-    Folder(icon: Icons.folder, label: "label", onClick: () {}),
-    Folder(icon: Icons.folder, label: "label", onClick: () {}),
-  ];
+  List<String> foldersandfiles = List<String>();
+
+  @override
+  void initState() {
+    Directory dir = Directory(".");
+    dir.list(recursive: false).forEach((f) {
+      foldersandfiles.add(f.uri.toString());
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: SearchWidget(),
+      appBar: SearchAppBar(
+        actions: [
+          IconButton(
+            icon: Icon(
+              viewTypeList ? Icons.grid_on : Icons.list_rounded,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              setState(() {
+                viewTypeList = !viewTypeList;
+              });
+            },
+          ),
+        ],
+      ),
       body: new Row(
         children: [
           new Container(
@@ -354,15 +277,40 @@ class _FilesHomeState extends State<FilesHome> {
                   //constraints: BoxConstraints(maxWidth: 900),
                   padding: EdgeInsets.all(10.0),
                   child: viewTypeList
-                      ? ListView(
+                      ? ListView.builder(
+                          itemCount: foldersandfiles.length,
+                          itemBuilder: (context, index) {
+                            return Folder(
+                                icon: foldersandfiles[index]
+                                        .toString()
+                                        .endsWith("/")
+                                    ? Icons.folder
+                                    : Icons.file_copy,
+                                label: foldersandfiles[index].toString(),
+                                onClick: () {});
+                          },
                           padding: EdgeInsets.all(10.0),
-                          children: children,
                         )
-                      : GridView.extent(
+                      : GridView.builder(
+                          itemCount: foldersandfiles.length,
+                          itemBuilder: (context, index) {
+                            return Folder(
+                                icon: foldersandfiles[index]
+                                        .toString()
+                                        .endsWith("/")
+                                    ? Icons.folder
+                                    : Icons.file_copy,
+                                label: foldersandfiles[index].toString(),
+                                onClick: () {});
+                          },
+                          gridDelegate:
+                              SliverGridDelegateWithMaxCrossAxisExtent(
+                                  maxCrossAxisExtent: 100),
                           //crossAxisCount: 15,
                           //padding: EdgeInsets.all(10.0),
-                          maxCrossAxisExtent: 100,
-                          children: children)))
+                          //maxCrossAxisExtent: 100,
+                          //children: children
+                        )))
         ],
       ),
     );

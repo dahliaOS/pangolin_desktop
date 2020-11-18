@@ -2,7 +2,7 @@ default:
   image: cirrusci/flutter:stable
 
   before_script:
-    - flutter channel master
+    - flutter channel dev
     - flutter upgrade
     - flutter config --enable-web
   
@@ -20,7 +20,7 @@ stages:
 # - install
   - build
     # this should be used multiple times, i.e. for Android and Web builds
-  - test
+#  - test
     # this could be used at some point
   - deploy 
     # this will be used for web and releases
@@ -73,11 +73,11 @@ build_linux:
     expose_as: 'Linux Builds'
     paths: ['build/linux/debug/pangolin_desktop']
 
-test_flutter:
-  <<: *runchecks
-  stage: test
-  script:
-    - flutter test
+#test_flutter:
+#  <<: *runchecks
+#  stage: test
+#  script:
+#    - flutter test
 
 .deploy_ghpages:
   <<: *runchecks
@@ -103,7 +103,7 @@ test_flutter:
     - git fetch github
     - git push --set-upstream github gh-pages
     
-pages: #or deploy_web
+.pages: #or deploy_web
   only:
     - master
   stage: deploy

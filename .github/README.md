@@ -1,60 +1,59 @@
-# Pangolin Desktop
-![](https://github.com/dahlia-os/pangolin-desktop/workflows/CI/badge.svg) ![](https://github.com/dahlia-os/pangolin-desktop/workflows/Deploy/badge.svg) ![gitlocalized ](https://gitlocalize.com/repo/5170/whole_project/badge.svg)
+<p align="center">
+  <img width="120%" src="https://github.com/dahlia-os/brand/blob/master/Pangolin%20Logo%20SVGs/Pangolin%20logo%20with%20text%20(black)%20on%20a%20white%20background.svg"
+</p>
 
-## About Pangolin
+<p align="center">
+<a href="https://dahliaos.io">Website</a> ●
+<a href="https://discord.gg/7qVbJHR">Discord</a> ●
+<a href="https://github.com/dahlia-os/releases/releases">Releases</a> ●
+<a href="https://paypal.me/officialdahliaos">Donate</a> ●
+<a href="https://github.com/dahlia-os/documentation">Documentation</a>
 
-Pangolin is a Desktop shell for dahliaOS, written in Flutter, runs on Linux and Zircon.
+# Pangolin Desktop UI [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=dahliaOS%20is%20a%20modern,%20secure,%20lightweight%20and%20responsive%20operating%20system,%20combining%20the%20best%20of%20GNU/Linux%20and%20Fuchsia%20OS&url=https://dahliaos.io&via=realdahliaos&hashtags=dahliaos,linux,zircon,flutter,dart,fuchsia,opensource)
+![](https://github.com/dahlia-os/pangolin-desktop/workflows/CI/badge.svg) ![](https://github.com/dahlia-os/pangolin-desktop/workflows/Deploy/badge.svg)
+![GitHub issues](https://img.shields.io/github/issues/dahlia-os/pangolin-desktop?color=brightgreen)
+![Website](https://img.shields.io/website?url=https%3A%2F%2Fweb.dahliaos.io)
+[![Crowdin](https://badges.crowdin.net/e/1a53a75fb38f15843d4eb6d9b9e4215a/localized.svg)](https://translate.dahliaos.io/pangolin)
+![GitHub](https://img.shields.io/github/license/dahlia-os/pangolin-desktop?color=brightgreen)
 
-Pangolin was named after a shelled animal like the [Armadillo UI](https://9to5google.com/2018/12/26/fuchsia-armadillo-ui-gone/). 
+ - **Pangolin UI** is a Desktop shell for dahliaOS, written in Flutter, runs on Linux and Zircon
+ - **Pangolin** was named after a shelled animal like the [Armadillo UI](https://9to5google.com/2018/12/26/fuchsia-armadillo-ui-gone/)
+ - **Pangolin Desktop** is based on the deprecated Capybara shell, with a custom window management system built from the ground up
+ - You can check it online [here](https://web.dahliaos.io)!
 
-Pangolin Desktop is based on the deprecated Capybara shell, with a custom window management system built from the ground up.
+<p align="center">
+  <img width="100%" src="https://user-images.githubusercontent.com/18690588/95038583-587cfa00-0683-11eb-9d84-10e0cb001c0e.png"
+</p>
 
-You can check it online [here](https://web.dahliaos.io)!
+> Pangolin Desktop Linux-based build 201004 showing Quick Settings
 
-![Pangolin](https://user-images.githubusercontent.com/61460660/89405582-1899a500-d71c-11ea-89a5-24b07fa07712.png)
-> Pangolin Desktop
+<p align="center">
+  <img width="100%" src="https://user-images.githubusercontent.com/18690588/95038579-55820980-0683-11eb-8d82-58a08ce19dcd.png"
+</p>
+
+> Pangolin Desktop Linux-based build 201004 showing Settings application
 
 ## Build Pangolin Desktop
 
-Check the wiki: [/wiki/Build-Pangolin-Desktop](https://github.com/dahlia-os/pangolin-desktop/wiki/Build-Pangolin-Desktop)
+If you're interested in building Pangolin, you can refer to [Building and Running Pangolin](https://github.com/dahlia-os/pangolin-desktop/wiki/Building-and-Running-Pangolin)
 
 ## Contribute
 
-If you're interested in contributing to the project, please refer to [CONTRIBUTING.md](./CONTRIBUTING.md)
-
-## Donate
-
-If you're interested in donating to the project, you can do so by clicking [here](https://dahliaos.io/donate) or by clicking on the Sponsor button featured on this repo!
+If you're wondering how to contribute to the project, please refer to [CONTRIBUTING.md](../CONTRIBUTING.md)
 
 ## Translate
 
-If you're interested in translating the project, please refer to [TRANSLATION.md](./TRANSLATION.md)
+If you're interested in translating Pangolin, please click [this link](https://translate.dahliaos.io/pangolin)!
 
-## Contributors
+The link above points to Crowdin which we use for translations so please use that for submitting translations!
 
-### Translators
-
-| Author                                                  | Language                 |
-| ------------------------------------------------------- | ------------------------ |
-| [SincerelyFaust](https://github.com/sincerelyfaust)               | Croatian           |
-| [nmcain](https://github.com/nmcain)           | English                  |
-| [larsb24](https://github.com/larsb24)                   | German       |
-| [Funeoz](https://github.com/Funeoz) | French |
-| [Fristover](https://github.com/Fristover)             | Spanish                |
-| [febryardiansyah](https://github.com/febryardiansyah)                 | Indonesian       |
-| [HexaOneOfficial](https://github.com/HexaOneOfficial)                     | Dutch                |
-| [Horus125](https://github.com/Horus125)               | Polish                |
-| [allansrc](https://github.com/allansrc)               | Portugese                |
-
-## Important style guide
-
-All dahliaOS applications MUST have a central theme color, that is not #ff5722, or material-deeporange or similar, as that is reserved for the system. 
-
-Uploaders must upload a theme.txt in the root of their application, that contains the theme color, in preferably hexadecimal, but RGBA is acceptable as well. 
-
-Uncompliant applications will have their theme colors set to a random color.
+If your language is not added, let us know and we'll add it!
 
 ## License
+
+<p align="left">
+  <img width="40%" src="https://github.com/dahlia-os/brand/blob/master/Logo%20PNGs/dahliaOS%20logo%20with%20text%20(drop%20shadow).png"
+</p>
 
 Copyright @ 2019-2020 The dahliaOS Authors contact@dahliaos.io
 
