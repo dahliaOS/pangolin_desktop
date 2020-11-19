@@ -17,15 +17,12 @@ limitations under the License.
 import 'package:Pangolin/desktop/desktop.dart';
 import 'package:Pangolin/internal/locales/generated_asset_loader.g.dart';
 import 'package:Pangolin/internal/locales/locales.g.dart';
-import 'package:Pangolin/utils/localization/localization.dart';
 import 'package:Pangolin/desktop/window/model.dart';
 import 'package:Pangolin/utils/hiveManager.dart';
 import 'package:Pangolin/utils/themes/customization_manager.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:path/path.dart';
 import 'dart:ui';
 import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -119,30 +116,7 @@ class _PangolinState extends State<Pangolin> {
                   ? Themes.dark(CustomizationNotifier().accent)
                   : Themes.light(CustomizationNotifier().accent),
               home: Desktop(title: 'Pangolin Desktop'),
-              // supportedLocales: Locales.supported,
-              // [
-              //   Locale("ar", "SA"),
-              //   Locale("bs", "BA"),
-              //   Locale("hr", "HR"),
-              //   Locale("nl", "NL"),
-              //   Locale("en", "US"),
-              //   Locale("fr", "FR"),
-              //   Locale("de", "DE"),
-              //   Locale("id", "ID"),
-              //   Locale("pl", "PL"),
-              //   Locale("pt", "BR"),
-              //   Locale("ru", "RU"),
-              //   Locale("sv", "SE"),
-              //   Locale("uk", "UA"),
-              // ],
               localizationsDelegates: context.localizationDelegates,
-              // [
-              // Localization.delegate,
-              // GlobalMaterialLocalizations.delegate,
-              // GlobalWidgetsLocalizations.delegate,
-              // GlobalCupertinoLocalizations.delegate,
-              // ],
-              // locale: Pangolin.locale,
               locale: context.locale,
             );
           },
