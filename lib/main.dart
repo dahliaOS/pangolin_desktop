@@ -65,6 +65,7 @@ class Pangolin extends StatefulWidget {
   static OverlayState overlayState;
 
   static void setLocale(BuildContext context, Locale locale) {
+    EasyLocalization.of(context).locale = locale;
     _PangolinState state = context.findAncestorStateOfType<_PangolinState>();
     state.setLocale(locale);
   }
@@ -105,7 +106,6 @@ class _PangolinState extends State<Pangolin> {
 
   @override
   Widget build(BuildContext context) {
-    setState(() => context.locale = Pangolin.locale);
     //Gets DahliaOS UI set up in a familiar way.
     return ChangeNotifierProvider<WindowsData>(
       create: (context) => provisionalWindowData,
