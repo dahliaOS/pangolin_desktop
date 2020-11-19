@@ -105,6 +105,7 @@ class _PangolinState extends State<Pangolin> {
 
   @override
   Widget build(BuildContext context) {
+    setState(() => context.locale = Pangolin.locale);
     //Gets DahliaOS UI set up in a familiar way.
     return ChangeNotifierProvider<WindowsData>(
       create: (context) => provisionalWindowData,
@@ -142,7 +143,7 @@ class _PangolinState extends State<Pangolin> {
               // GlobalCupertinoLocalizations.delegate,
               // ],
               // locale: Pangolin.locale,
-              locale: context.fallbackLocale,
+              locale: context.locale,
             );
           },
         ),
