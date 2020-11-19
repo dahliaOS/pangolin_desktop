@@ -15,6 +15,8 @@ limitations under the License.
 */
 
 import 'package:Pangolin/desktop/desktop.dart';
+import 'package:Pangolin/internal/locales/generated_asset_loader.g.dart';
+import 'package:Pangolin/internal/locales/locales.g.dart';
 import 'package:Pangolin/utils/localization/localization.dart';
 import 'package:Pangolin/desktop/window/model.dart';
 import 'package:Pangolin/utils/hiveManager.dart';
@@ -25,6 +27,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'package:provider/provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 /// Set this to disable certain things during testing.
 /// Use this sparingly, or better yet, not at all.
@@ -74,8 +77,7 @@ class _PangolinState extends State<Pangolin> {
         Pangolin.locale = Locale("en", "US");
         Pangolin.settingsBox.put("language", "en_US");
       } else {
-        List<String> _selLangFromHive =
-            Pangolin.settingsBox.get("language").toString().split("_");
+        List<String> _selLangFromHive = Pangolin.settingsBox.get("language").toString().split("_");
         print(_selLangFromHive);
         Pangolin.locale = Locale(_selLangFromHive[0], _selLangFromHive[1]);
       }
@@ -105,7 +107,16 @@ class _PangolinState extends State<Pangolin> {
               theme: notifier.darkTheme
                   ? Themes.dark(CustomizationNotifier().accent)
                   : Themes.light(CustomizationNotifier().accent),
-              home: Desktop(title: 'Pangolin Desktop'),
+              home: EasyLocalization(
+                supportedLocales: Locales.supported,
+                fallbackLocale: Locale("en", "US"),
+                assetLoader: GeneratedAssetLoader(),
+                path: "assets/locales",
+                preloaderColor: notifier.darkTheme
+                    ? Themes.dark(CustomizationNotifier().accent).accentColor
+                    : Themes.light(CustomizationNotifier().accent).accentColor,
+                child: Desktop(title: 'Pangolin Desktop'),
+              ),
               supportedLocales: [
                 Locale("ar", "SA"),
                 Locale("bs", "BA"),
