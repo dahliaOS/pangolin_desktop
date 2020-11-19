@@ -13,6 +13,7 @@ limitations under the License.
 
 import 'dart:ui';
 import 'dart:io';
+import 'package:Pangolin/internal/locales/locale_strings.g.dart';
 import 'package:Pangolin/utils/others/functions.dart';
 import 'package:Pangolin/utils/localization/localization.dart';
 import 'package:Pangolin/desktop/window/model.dart';
@@ -45,17 +46,15 @@ class QuickSettingsState extends State<QuickSettings> {
     _timeString = _formatDateTime(DateTime.now(), 'h:mm');
     _dateString = _formatDateTime(DateTime.now(), 'E, d MMMM yyyy');
     if (!isTesting)
-      Timer.periodic(
-          Duration(milliseconds: 100), (Timer t) => _getTime(context));
+      Timer.periodic(Duration(milliseconds: 100), (Timer t) => _getTime(context));
     else
       print("WARNING: Clock was disabled due to testing flag!");
   }
 
   void _getTime(BuildContext context) {
     final DateTime now = DateTime.now();
-    final String formattedTime = HiveManager.get("showSeconds")
-        ? _formatDateTime(now, 'h:mm:ss')
-        : _formatDateTime(now, 'h:mm');
+    final String formattedTime =
+        HiveManager.get("showSeconds") ? _formatDateTime(now, 'h:mm:ss') : _formatDateTime(now, 'h:mm');
     final String formattedDate = _formatLocaleDate(now);
     setState(() {
       _timeString = formattedTime;
@@ -70,12 +69,10 @@ class QuickSettingsState extends State<QuickSettings> {
 
   //Format date using language
   String _formatLocaleDate(DateTime dateTime) {
-    return DateFormat.yMMMMd(Localizations.localeOf(context).languageCode)
-        .format(dateTime);
+    return DateFormat.yMMMMd(Localizations.localeOf(context).languageCode).format(dateTime);
   }
 
-  MaterialButton buildPowerItem(
-      IconData icon, String label, String function, String subARG) {
+  MaterialButton buildPowerItem(IconData icon, String label, String function, String subARG) {
     return MaterialButton(
       onPressed: () {
         Process.run(
@@ -112,7 +109,7 @@ class QuickSettingsState extends State<QuickSettings> {
 
   @override
   Widget build(BuildContext context) {
-    Localization local = Localization.of(context);
+    // Localization local = Localization.of(context);
     _getTime(context);
     var biggerFont = TextStyle(
       fontSize: scale(12.0),
@@ -120,8 +117,7 @@ class QuickSettingsState extends State<QuickSettings> {
       color: Colors.white,
     );
     Widget topSection = Container(
-      padding:
-          EdgeInsets.symmetric(horizontal: scale(12.0), vertical: scale(5.0)),
+      padding: EdgeInsets.symmetric(horizontal: scale(12.0), vertical: scale(5.0)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -170,28 +166,21 @@ class QuickSettingsState extends State<QuickSettings> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Padding(
-                              padding: EdgeInsets.only(
-                                  top: scale(20.0), right: scale(20)),
-                              child: buildPowerItem(Icons.power_settings_new,
-                                  'Power off', 'poweroff', '-f'),
+                              padding: EdgeInsets.only(top: scale(20.0), right: scale(20)),
+                              child: buildPowerItem(Icons.power_settings_new, 'Power off', 'poweroff', '-f'),
                             ),
                             Padding(
-                              padding: EdgeInsets.only(
-                                  top: scale(20.0), right: scale(20)),
-                              child: buildPowerItem(
-                                  Icons.refresh, 'Restart', 'reboot', ''),
+                              padding: EdgeInsets.only(top: scale(20.0), right: scale(20)),
+                              child: buildPowerItem(Icons.refresh, 'Restart', 'reboot', ''),
                             ),
                             Padding(
-                              padding: EdgeInsets.only(
-                                  top: scale(20.0), right: scale(20)),
-                              child: buildPowerItem(Icons.developer_mode,
-                                  'Terminal', 'killall', 'pangolin_desktop'),
+                              padding: EdgeInsets.only(top: scale(20.0), right: scale(20)),
+                              child: buildPowerItem(Icons.developer_mode, 'Terminal', 'killall', 'pangolin_desktop'),
                             ),
                           ],
                         )),
                       ),
-                      margin: EdgeInsets.only(
-                          bottom: scale(75), left: scale(12), right: scale(12)),
+                      margin: EdgeInsets.only(bottom: scale(75), left: scale(12), right: scale(12)),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(10),
@@ -216,8 +205,7 @@ class QuickSettingsState extends State<QuickSettings> {
               size: scale(20),
             ),
             onPressed: () {
-              Provider.of<WindowsData>(context, listen: false)
-                  .add(child: Settings(), color: Colors.grey[900]);
+              Provider.of<WindowsData>(context, listen: false).add(child: Settings(), color: Colors.grey[900]);
               hideOverlays();
             },
             color: const Color(0xFFffffff),
@@ -336,91 +324,81 @@ class QuickSettingsState extends State<QuickSettings> {
     Widget tileSection = Expanded(
       child: Container(
           padding: EdgeInsets.all(scale(10.0)),
-          child: GridView.count(
-              physics: BouncingScrollPhysics(),
-              crossAxisCount: 4,
-              childAspectRatio: 3 / 4,
-              children: [
-                buildTile(Icons.network_wifi, local.get("qs_wifi"), () {
-                  setState(() {
-                    HiveManager.set("wifi", false);
-                  });
-                  Provider.of<WindowsData>(context, listen: false)
-                      .add(child: WirelessApp(), color: Colors.deepOrange[700]);
-                  hideOverlays();
-                }),
-                buildTile(Icons.palette, local.get("qs_theme"), changeColor),
-                buildTile(Icons.battery_full, '85%', changeColor),
-                buildTile(
-                    Icons.do_not_disturb_off, local.get("qs_dnd"), changeColor),
-                buildTile(Icons.lightbulb_outline, local.get("qs_flashlight"),
-                    changeColor),
-                buildTile(Icons.screen_lock_rotation,
-                    local.get("qs_autorotate"), changeColor),
-                buildTile(
-                    Icons.bluetooth, local.get("qs_bluetooth"), changeColor),
-                buildTile(Icons.airplanemode_inactive,
-                    local.get("qs_airplanemode"), changeColor),
-                buildTile(Icons.invert_colors_off, local.get("qs_invertcolors"),
-                    changeColor),
-                buildTile(Icons.language, local.get("qs_changelanguage"), () {
-                  switch (Localizations.localeOf(context).toString()) {
-                    case "en_US":
-                      Pangolin.setLocale(context, Locale("ar", "SA"));
-                      Pangolin.settingsBox.put("language", "ar_SA");
-                      break;
-                    case "ar_SA":
-                      Pangolin.setLocale(context, Locale("bs", "BA"));
-                      Pangolin.settingsBox.put("language", "bs_BA");
-                      break;
-                    case "bs_BA":
-                      Pangolin.setLocale(context, Locale("hr", "HR"));
-                      Pangolin.settingsBox.put("language", "hr_HR");
-                      break;
-                    case "hr_HR":
-                      Pangolin.setLocale(context, Locale("nl", "NL"));
-                      Pangolin.settingsBox.put("language", "nl_NL");
-                      break;
-                    case "nl_NL":
-                      Pangolin.setLocale(context, Locale("fr", "FR"));
-                      Pangolin.settingsBox.put("language", "fr_FR");
-                      break;
-                    case "fr_FR":
-                      Pangolin.setLocale(context, Locale("de", "DE"));
-                      Pangolin.settingsBox.put("language", "de_DE");
-                      break;
-                    case "de_DE":
-                      Pangolin.setLocale(context, Locale("id", "ID"));
-                      Pangolin.settingsBox.put("language", "id_ID");
-                      break;
-                    case "id_ID":
-                      Pangolin.setLocale(context, Locale("pl", "PL"));
-                      Pangolin.settingsBox.put("language", "pl_PL");
-                      break;
-                    case "pl_PL":
-                      Pangolin.setLocale(context, Locale("pt", "BR"));
-                      Pangolin.settingsBox.put("language", "pt_BR");
-                      break;
-                    case "pt_BR":
-                      Pangolin.setLocale(context, Locale("ru", "RU"));
-                      Pangolin.settingsBox.put("language", "ru_RU");
-                      break;
-                    case "ru_RU":
-                      Pangolin.setLocale(context, Locale("sv", "SE"));
-                      Pangolin.settingsBox.put("language", "sv_SE");
-                      break;
-                    case "sv_SE":
-                      Pangolin.setLocale(context, Locale("uk", "UA"));
-                      Pangolin.settingsBox.put("language", "uk_UA");
-                      break;
-                    case "uk_UA":
-                    default:
-                      Pangolin.setLocale(context, Locale("en", "US"));
-                      Pangolin.settingsBox.put("language", "en_US");
-                      break;
-                  }
-                }),
-              ])),
+          child:
+              GridView.count(physics: BouncingScrollPhysics(), crossAxisCount: 4, childAspectRatio: 3 / 4, children: [
+            buildTile(Icons.network_wifi, LocaleStrings.pangolin.qsWifi, () {
+              setState(() {
+                HiveManager.set("wifi", false);
+              });
+              Provider.of<WindowsData>(context, listen: false).add(child: WirelessApp(), color: Colors.deepOrange[700]);
+              hideOverlays();
+            }),
+            buildTile(Icons.palette, LocaleStrings.pangolin.qsTheme, changeColor),
+            buildTile(Icons.battery_full, '85%', changeColor),
+            buildTile(Icons.do_not_disturb_off, LocaleStrings.pangolin.qsDnd, changeColor),
+            buildTile(Icons.lightbulb_outline, LocaleStrings.pangolin.qsFlashlight, changeColor),
+            buildTile(Icons.screen_lock_rotation, LocaleStrings.pangolin.qsAutorotate, changeColor),
+            buildTile(Icons.bluetooth, LocaleStrings.pangolin.qsBluetooth, changeColor),
+            buildTile(Icons.airplanemode_inactive, LocaleStrings.pangolin.qsAirplanemode, changeColor),
+            buildTile(Icons.invert_colors_off, LocaleStrings.pangolin.qsInvertcolors, changeColor),
+            buildTile(Icons.language, LocaleStrings.pangolin.qsChangelanguage, () {
+              switch (Localizations.localeOf(context).toString()) {
+                case "en_US":
+                  Pangolin.setLocale(context, Locale("ar", "SA"));
+                  Pangolin.settingsBox.put("language", "ar_SA");
+                  break;
+                case "ar_SA":
+                  Pangolin.setLocale(context, Locale("bs", "BA"));
+                  Pangolin.settingsBox.put("language", "bs_BA");
+                  break;
+                case "bs_BA":
+                  Pangolin.setLocale(context, Locale("hr", "HR"));
+                  Pangolin.settingsBox.put("language", "hr_HR");
+                  break;
+                case "hr_HR":
+                  Pangolin.setLocale(context, Locale("nl", "NL"));
+                  Pangolin.settingsBox.put("language", "nl_NL");
+                  break;
+                case "nl_NL":
+                  Pangolin.setLocale(context, Locale("fr", "FR"));
+                  Pangolin.settingsBox.put("language", "fr_FR");
+                  break;
+                case "fr_FR":
+                  Pangolin.setLocale(context, Locale("de", "DE"));
+                  Pangolin.settingsBox.put("language", "de_DE");
+                  break;
+                case "de_DE":
+                  Pangolin.setLocale(context, Locale("id", "ID"));
+                  Pangolin.settingsBox.put("language", "id_ID");
+                  break;
+                case "id_ID":
+                  Pangolin.setLocale(context, Locale("pl", "PL"));
+                  Pangolin.settingsBox.put("language", "pl_PL");
+                  break;
+                case "pl_PL":
+                  Pangolin.setLocale(context, Locale("pt", "BR"));
+                  Pangolin.settingsBox.put("language", "pt_BR");
+                  break;
+                case "pt_BR":
+                  Pangolin.setLocale(context, Locale("ru", "RU"));
+                  Pangolin.settingsBox.put("language", "ru_RU");
+                  break;
+                case "ru_RU":
+                  Pangolin.setLocale(context, Locale("sv", "SE"));
+                  Pangolin.settingsBox.put("language", "sv_SE");
+                  break;
+                case "sv_SE":
+                  Pangolin.setLocale(context, Locale("uk", "UA"));
+                  Pangolin.settingsBox.put("language", "uk_UA");
+                  break;
+                case "uk_UA":
+                default:
+                  Pangolin.setLocale(context, Locale("en", "US"));
+                  Pangolin.settingsBox.put("language", "en_US");
+                  break;
+              }
+            }),
+          ])),
     );
 
     return Container(
@@ -444,10 +422,8 @@ void notImplemented(BuildContext context) {
     builder: (BuildContext context) {
       // return object of type Dialog
       return AlertDialog(
-        title: new Text(
-            Localization.of(context).get("featurenotimplemented_title")),
-        content: new Text(
-            Localization.of(context).get("featurenotimplemented_value")),
+        title: new Text(Localization.of(context).get("featurenotimplemented_title")),
+        content: new Text(Localization.of(context).get("featurenotimplemented_value")),
         actions: <Widget>[
           // usually buttons at the bottom of the dialog
           new FlatButton(
