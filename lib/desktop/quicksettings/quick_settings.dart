@@ -71,8 +71,8 @@ class QuickSettingsState extends State<QuickSettings> {
 
   //Format date using language
   String _formatLocaleDate(DateTime dateTime) {
-    return DateFormat.yMMMMd(Localizations.localeOf(context).languageCode)
-        .format(dateTime);
+    print(Pangolin.locale.languageCode);
+    return DateFormat.yMMMMd(Pangolin.locale.languageCode).format(dateTime);
   }
 
   MaterialButton buildPowerItem(
