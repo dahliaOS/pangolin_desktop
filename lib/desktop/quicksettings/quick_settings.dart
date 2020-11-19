@@ -18,6 +18,7 @@ import 'package:Pangolin/utils/others/functions.dart';
 import 'package:Pangolin/utils/localization/localization.dart';
 import 'package:Pangolin/desktop/window/model.dart';
 import 'package:Pangolin/utils/hiveManager.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
@@ -347,50 +348,62 @@ class QuickSettingsState extends State<QuickSettings> {
                 case "US":
                   Pangolin.setLocale(context, Locale("ar", "SA"));
                   Pangolin.settingsBox.put("language", "ar_SA");
+
                   break;
                 case "SA":
                   Pangolin.setLocale(context, Locale("bs", "BA"));
                   Pangolin.settingsBox.put("language", "bs_BA");
+
                   break;
                 case "BA":
                   Pangolin.setLocale(context, Locale("hr", "HR"));
                   Pangolin.settingsBox.put("language", "hr_HR");
+
                   break;
                 case "HR":
                   Pangolin.setLocale(context, Locale("nl", "NL"));
                   Pangolin.settingsBox.put("language", "nl_NL");
+
                   break;
                 case "NL":
                   Pangolin.setLocale(context, Locale("fr", "FR"));
                   Pangolin.settingsBox.put("language", "fr_FR");
+
                   break;
                 case "FR":
                   Pangolin.setLocale(context, Locale("de", "DE"));
                   Pangolin.settingsBox.put("language", "de_DE");
+
                   break;
                 case "DE":
                   Pangolin.setLocale(context, Locale("id", "ID"));
                   Pangolin.settingsBox.put("language", "id_ID");
+
                   break;
                 case "ID":
                   Pangolin.setLocale(context, Locale("pl", "PL"));
                   Pangolin.settingsBox.put("language", "pl_PL");
+
                   break;
                 case "PL":
                   Pangolin.setLocale(context, Locale("pt", "BR"));
                   Pangolin.settingsBox.put("language", "pt_BR");
+
                   break;
                 case "BR":
                   Pangolin.setLocale(context, Locale("ru", "RU"));
                   Pangolin.settingsBox.put("language", "ru_RU");
+
                   break;
                 case "RU":
                   Pangolin.setLocale(context, Locale("sv", "SE"));
                   Pangolin.settingsBox.put("language", "sv_SE");
+
                   break;
                 case "SE":
                   Pangolin.setLocale(context, Locale("uk", "UA"));
                   Pangolin.settingsBox.put("language", "uk_UA");
+
                   break;
                 case "UA":
                 default:
@@ -398,6 +411,7 @@ class QuickSettingsState extends State<QuickSettings> {
                   Pangolin.settingsBox.put("language", "en_US");
                   break;
               }
+              setState(() {});
             }),
           ])),
     );
