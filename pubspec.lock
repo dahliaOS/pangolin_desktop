@@ -232,12 +232,12 @@ packages:
     source: hosted
     version: "3.1.4"
   intl:
-    dependency: "direct overridden"
+    dependency: "direct main"
     description:
       name: intl
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.17.0-nullsafety.2"
+    version: "0.16.1"
   js:
     dependency: transitive
     description:
