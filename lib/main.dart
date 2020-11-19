@@ -25,6 +25,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:path/path.dart';
 import 'dart:ui';
 import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -45,7 +46,16 @@ void main() async {
   HiveManager.initializeHive();
   //loadConfig();
   // defaultTheme = await getSystemTheme();
-  runApp(Pangolin());
+  runApp(
+    EasyLocalization(
+      supportedLocales: Locales.supported,
+      fallbackLocale: Locale("en", "US"),
+      assetLoader: GeneratedAssetLoader(),
+      path: "assets/locales",
+      preloaderColor: null,
+      child: Pangolin(),
+    ),
+  );
 }
 
 class Pangolin extends StatefulWidget {
@@ -95,6 +105,7 @@ class _PangolinState extends State<Pangolin> {
 
   @override
   Widget build(BuildContext context) {
+    setState(() => context.locale = Pangolin.locale);
     //Gets DahliaOS UI set up in a familiar way.
     return ChangeNotifierProvider<WindowsData>(
       create: (context) => provisionalWindowData,
@@ -107,38 +118,32 @@ class _PangolinState extends State<Pangolin> {
               theme: notifier.darkTheme
                   ? Themes.dark(CustomizationNotifier().accent)
                   : Themes.light(CustomizationNotifier().accent),
-              home: EasyLocalization(
-                supportedLocales: Locales.supported,
-                fallbackLocale: Locale("en", "US"),
-                assetLoader: GeneratedAssetLoader(),
-                path: "assets/locales",
-                preloaderColor: notifier.darkTheme
-                    ? Themes.dark(CustomizationNotifier().accent).accentColor
-                    : Themes.light(CustomizationNotifier().accent).accentColor,
-                child: Desktop(title: 'Pangolin Desktop'),
-              ),
-              supportedLocales: [
-                Locale("ar", "SA"),
-                Locale("bs", "BA"),
-                Locale("hr", "HR"),
-                Locale("nl", "NL"),
-                Locale("en", "US"),
-                Locale("fr", "FR"),
-                Locale("de", "DE"),
-                Locale("id", "ID"),
-                Locale("pl", "PL"),
-                Locale("pt", "BR"),
-                Locale("ru", "RU"),
-                Locale("sv", "SE"),
-                Locale("uk", "UA"),
-              ],
-              localizationsDelegates: [
-                Localization.delegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-              ],
-              locale: Pangolin.locale,
+              home: Desktop(title: 'Pangolin Desktop'),
+              // supportedLocales: Locales.supported,
+              // [
+              //   Locale("ar", "SA"),
+              //   Locale("bs", "BA"),
+              //   Locale("hr", "HR"),
+              //   Locale("nl", "NL"),
+              //   Locale("en", "US"),
+              //   Locale("fr", "FR"),
+              //   Locale("de", "DE"),
+              //   Locale("id", "ID"),
+              //   Locale("pl", "PL"),
+              //   Locale("pt", "BR"),
+              //   Locale("ru", "RU"),
+              //   Locale("sv", "SE"),
+              //   Locale("uk", "UA"),
+              // ],
+              localizationsDelegates: context.localizationDelegates,
+              // [
+              // Localization.delegate,
+              // GlobalMaterialLocalizations.delegate,
+              // GlobalWidgetsLocalizations.delegate,
+              // GlobalCupertinoLocalizations.delegate,
+              // ],
+              // locale: Pangolin.locale,
+              locale: context.locale,
             );
           },
         ),

@@ -109,7 +109,6 @@ class QuickSettingsState extends State<QuickSettings> {
 
   @override
   Widget build(BuildContext context) {
-    // Localization local = Localization.of(context);
     _getTime(context);
     var biggerFont = TextStyle(
       fontSize: scale(12.0),
@@ -342,56 +341,58 @@ class QuickSettingsState extends State<QuickSettings> {
             buildTile(Icons.airplanemode_inactive, LocaleStrings.pangolin.qsAirplanemode, changeColor),
             buildTile(Icons.invert_colors_off, LocaleStrings.pangolin.qsInvertcolors, changeColor),
             buildTile(Icons.language, LocaleStrings.pangolin.qsChangelanguage, () {
-              switch (Localizations.localeOf(context).toString()) {
-                case "en_US":
+              // String sVar = Localizations.localeOf(context).toString();
+              String sVar = Pangolin.locale.countryCode;
+              switch (sVar) {
+                case "US":
                   Pangolin.setLocale(context, Locale("ar", "SA"));
                   Pangolin.settingsBox.put("language", "ar_SA");
                   break;
-                case "ar_SA":
+                case "SA":
                   Pangolin.setLocale(context, Locale("bs", "BA"));
                   Pangolin.settingsBox.put("language", "bs_BA");
                   break;
-                case "bs_BA":
+                case "BA":
                   Pangolin.setLocale(context, Locale("hr", "HR"));
                   Pangolin.settingsBox.put("language", "hr_HR");
                   break;
-                case "hr_HR":
+                case "HR":
                   Pangolin.setLocale(context, Locale("nl", "NL"));
                   Pangolin.settingsBox.put("language", "nl_NL");
                   break;
-                case "nl_NL":
+                case "NL":
                   Pangolin.setLocale(context, Locale("fr", "FR"));
                   Pangolin.settingsBox.put("language", "fr_FR");
                   break;
-                case "fr_FR":
+                case "FR":
                   Pangolin.setLocale(context, Locale("de", "DE"));
                   Pangolin.settingsBox.put("language", "de_DE");
                   break;
-                case "de_DE":
+                case "DE":
                   Pangolin.setLocale(context, Locale("id", "ID"));
                   Pangolin.settingsBox.put("language", "id_ID");
                   break;
-                case "id_ID":
+                case "ID":
                   Pangolin.setLocale(context, Locale("pl", "PL"));
                   Pangolin.settingsBox.put("language", "pl_PL");
                   break;
-                case "pl_PL":
+                case "PL":
                   Pangolin.setLocale(context, Locale("pt", "BR"));
                   Pangolin.settingsBox.put("language", "pt_BR");
                   break;
-                case "pt_BR":
+                case "BR":
                   Pangolin.setLocale(context, Locale("ru", "RU"));
                   Pangolin.settingsBox.put("language", "ru_RU");
                   break;
-                case "ru_RU":
+                case "RU":
                   Pangolin.setLocale(context, Locale("sv", "SE"));
                   Pangolin.settingsBox.put("language", "sv_SE");
                   break;
-                case "sv_SE":
+                case "SE":
                   Pangolin.setLocale(context, Locale("uk", "UA"));
                   Pangolin.settingsBox.put("language", "uk_UA");
                   break;
-                case "uk_UA":
+                case "UA":
                 default:
                   Pangolin.setLocale(context, Locale("en", "US"));
                   Pangolin.settingsBox.put("language", "en_US");
