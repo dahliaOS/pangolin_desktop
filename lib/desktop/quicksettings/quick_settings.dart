@@ -15,7 +15,6 @@ import 'dart:ui';
 import 'dart:io';
 import 'package:Pangolin/internal/locales/locale_strings.g.dart';
 import 'package:Pangolin/utils/others/functions.dart';
-import 'package:Pangolin/utils/localization/localization.dart';
 import 'package:Pangolin/desktop/window/model.dart';
 import 'package:Pangolin/utils/hiveManager.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -369,9 +368,7 @@ class QuickSettingsState extends State<QuickSettings> {
                 buildTile(
                     Icons.language, LocaleStrings.pangolin.qsChangelanguage,
                     () {
-                  // String sVar = Localizations.localeOf(context).toString();
-                  String sVar = Pangolin.locale.countryCode;
-                  switch (sVar) {
+                  switch (Pangolin.locale.countryCode) {
                     case "US":
                       Pangolin.setLocale(context, Locale("ar", "SA"));
                       Pangolin.settingsBox.put("language", "ar_SA");
