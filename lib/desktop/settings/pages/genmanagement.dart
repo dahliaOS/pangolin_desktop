@@ -11,6 +11,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'package:Pangolin/internal/locales/locales.g.dart';
 import 'package:Pangolin/utils/hiveManager.dart';
 import 'package:Pangolin/main.dart';
 import 'package:Pangolin/utils/widgets/conditionWidget.dart';
@@ -23,10 +24,14 @@ class GeneralManagement extends StatefulWidget {
   _GeneralManagementState createState() => _GeneralManagementState();
 }
 
-String _selectedLanguage = Pangolin.settingsBox.get("languageName");
+// String _selectedLanguage = Pangolin.settingsBox.get("languageName");
 
 class _GeneralManagementState extends State<GeneralManagement> {
-  List<String> languages = HiveManager.get("settingsLanguageSelectorList");
+  List<Locale> localesLanguages = Locales.supported;
+  String showLanguage(value) {
+    final local = value.replaceAll("_", "-");
+    return Locales.data['$local']['pangolin.qs_changelanguage'];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,19 +74,16 @@ class _GeneralManagementState extends State<GeneralManagement> {
                           child: DropdownButton<String>(
                             icon: Icon(null),
                             hint: Text("Language"),
-                            value: _selectedLanguage,
-                            items: languages.map((String value) {
+                            value: '${context.locale}',
+                            // items: languages.map((String value) {
+                            items: localesLanguages.map((value) {
                               return DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(value),
+                                value: '$value',
+                                child: Text(showLanguage('$value')),
                               );
                             }).toList(),
                             onChanged: (_) {
                               _setLanguage(_, context);
-                              setState(() {
-                                _selectedLanguage =
-                                    Pangolin.settingsBox.get("languageName");
-                              });
                             },
                           ),
                         ),
@@ -130,7 +132,7 @@ class _GeneralManagementState extends State<GeneralManagement> {
                                       );
                                     }).toList(),
                                     onChanged: (_) {
-                                      _setLanguage(_, context);
+                                      _setKeyboard(_, context);
                                       setState(() {
                                         _setTimezone(_, context);
                                       });
@@ -246,61 +248,9 @@ class _GeneralManagementState extends State<GeneralManagement> {
 }
 
 void _setLanguage(String _selected, BuildContext context) {
-  switch (_selected) {
-    case "عربى - إيران":
-      EasyLocalization.of(context).locale = Locale("ar", "SA");
-      Pangolin.settingsBox.put("languageName", "عربى - إيران");
-      break;
-    case "Bosanski - Bosna i Hercegovina":
-      EasyLocalization.of(context).locale = Locale("bs", "BA");
-      Pangolin.settingsBox
-          .put("languageName", "Bosanski - Bosna i Hercegovina");
-      break;
-    case "Hrvatski - Hrvatska":
-      EasyLocalization.of(context).locale = Locale("hr", "HR");
-      Pangolin.settingsBox.put("languageName", "Hrvatski - Hrvatska");
-      break;
-    case "Nederlands - Nederland":
-      EasyLocalization.of(context).locale = Locale("nl", "NL");
-      Pangolin.settingsBox.put("languageName", "Nederlands - Nederland");
-      break;
-    case "English - United States":
-      EasyLocalization.of(context).locale = Locale("en", "US");
-      Pangolin.settingsBox.put("languageName", "English - United States");
-      break;
-    case "Français - France":
-      EasyLocalization.of(context).locale = Locale("fr", "FR");
-      Pangolin.settingsBox.put("languageName", "Français - France");
-      break;
-    case "Deutsch - Deutschland":
-      EasyLocalization.of(context).locale = Locale("de", "DE");
-      Pangolin.settingsBox.put("languageName", "Deutsch - Deutschland");
-      break;
-    case "bahasa Indonesia - Indonesia":
-      EasyLocalization.of(context).locale = Locale("id", "ID");
-      Pangolin.settingsBox.put("languageName", "bahasa Indonesia - Indonesia");
-      break;
-    case "Polski - Polska":
-      EasyLocalization.of(context).locale = Locale("pl", "PL");
-      Pangolin.settingsBox.put("languageName", "Polski - Polska");
-      break;
-    case "Português - Brasil":
-      EasyLocalization.of(context).locale = Locale("pt", "BR");
-      Pangolin.settingsBox.put("languageName", "Português - Brasil");
-      break;
-    case "русский - Россия":
-      EasyLocalization.of(context).locale = Locale("ru", "RU");
-      Pangolin.settingsBox.put("languageName", "русский - Россия");
-      break;
-    case "Svenska - Sverige":
-      EasyLocalization.of(context).locale = Locale("sv", "SE");
-      Pangolin.settingsBox.put("languageName", "Svenska - Sverige");
-      break;
-    case "Український - Україна":
-      EasyLocalization.of(context).locale = Locale("uk", "UA");
-      Pangolin.settingsBox.put("languageName", "Український - Україна");
-      break;
-  }
+  Locale locale = Locale(_selected.split('_').first, _selected.split('_').last);
+  int index = Locales.supported.indexOf(locale);
+  context.locale = Locales.supported[index];
 }
 
 void _setKeyboard(String _selected, BuildContext context) {
