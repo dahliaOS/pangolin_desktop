@@ -249,68 +249,55 @@ void _setLanguage(String _selected, BuildContext context) {
   switch (_selected) {
     case "عربى - إيران":
       EasyLocalization.of(context).locale = Locale("ar", "SA");
-      Pangolin.settingsBox.put("language", "ar_SA");
       Pangolin.settingsBox.put("languageName", "عربى - إيران");
       break;
     case "Bosanski - Bosna i Hercegovina":
       EasyLocalization.of(context).locale = Locale("bs", "BA");
-      Pangolin.settingsBox.put("language", "bs_BA");
       Pangolin.settingsBox
           .put("languageName", "Bosanski - Bosna i Hercegovina");
       break;
     case "Hrvatski - Hrvatska":
       EasyLocalization.of(context).locale = Locale("hr", "HR");
-      Pangolin.settingsBox.put("language", "hr_HR");
       Pangolin.settingsBox.put("languageName", "Hrvatski - Hrvatska");
       break;
     case "Nederlands - Nederland":
       EasyLocalization.of(context).locale = Locale("nl", "NL");
-      Pangolin.settingsBox.put("language", "nl_NL");
       Pangolin.settingsBox.put("languageName", "Nederlands - Nederland");
       break;
     case "English - United States":
       EasyLocalization.of(context).locale = Locale("en", "US");
-      Pangolin.settingsBox.put("language", "en_US");
       Pangolin.settingsBox.put("languageName", "English - United States");
       break;
     case "Français - France":
       EasyLocalization.of(context).locale = Locale("fr", "FR");
-      Pangolin.settingsBox.put("language", "fr_FR");
       Pangolin.settingsBox.put("languageName", "Français - France");
       break;
     case "Deutsch - Deutschland":
       EasyLocalization.of(context).locale = Locale("de", "DE");
-      Pangolin.settingsBox.put("language", "de_DE");
       Pangolin.settingsBox.put("languageName", "Deutsch - Deutschland");
       break;
     case "bahasa Indonesia - Indonesia":
       EasyLocalization.of(context).locale = Locale("id", "ID");
-      Pangolin.settingsBox.put("language", "id_ID");
       Pangolin.settingsBox.put("languageName", "bahasa Indonesia - Indonesia");
       break;
     case "Polski - Polska":
       EasyLocalization.of(context).locale = Locale("pl", "PL");
-      Pangolin.settingsBox.put("language", "pl_PL");
       Pangolin.settingsBox.put("languageName", "Polski - Polska");
       break;
     case "Português - Brasil":
       EasyLocalization.of(context).locale = Locale("pt", "BR");
-      Pangolin.settingsBox.put("language", "pt_BR");
       Pangolin.settingsBox.put("languageName", "Português - Brasil");
       break;
     case "русский - Россия":
       EasyLocalization.of(context).locale = Locale("ru", "RU");
-      Pangolin.settingsBox.put("language", "ru_RU");
       Pangolin.settingsBox.put("languageName", "русский - Россия");
       break;
     case "Svenska - Sverige":
       EasyLocalization.of(context).locale = Locale("sv", "SE");
-      Pangolin.settingsBox.put("language", "sv_SE");
       Pangolin.settingsBox.put("languageName", "Svenska - Sverige");
       break;
     case "Український - Україна":
       EasyLocalization.of(context).locale = Locale("uk", "UA");
-      Pangolin.settingsBox.put("language", "uk_UA");
       Pangolin.settingsBox.put("languageName", "Український - Україна");
       break;
   }
