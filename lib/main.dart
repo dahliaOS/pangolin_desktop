@@ -68,7 +68,7 @@ class Pangolin extends StatefulWidget {
   }
 
   static Box<dynamic> settingsBox;
-  static Locale locale;
+  // static Locale locale;
   static ThemeData theme;
 }
 
@@ -80,15 +80,6 @@ class _PangolinState extends State<Pangolin> {
       if (Pangolin.settingsBox.get("language").toString().length < 5) {
         Pangolin.settingsBox.delete("language");
       }
-      if (Pangolin.settingsBox.get("language") == null) {
-        print("No locale found");
-        Pangolin.locale = Locale("en", "US");
-        Pangolin.settingsBox.put("language", "en_US");
-      } else {
-        List<String> _selLangFromHive = Pangolin.settingsBox.get("language").toString().split("_");
-        print(_selLangFromHive);
-        Pangolin.locale = Locale(_selLangFromHive[0], _selLangFromHive[1]);
-      }
     }
 
     getLangFromHive();
@@ -96,9 +87,7 @@ class _PangolinState extends State<Pangolin> {
   }
 
   void setLocale(Locale locale) {
-    setState(() {
-      Pangolin.locale = locale;
-    });
+    context.locale = locale;
   }
 
   @override
