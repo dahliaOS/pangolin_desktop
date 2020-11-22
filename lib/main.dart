@@ -62,7 +62,7 @@ class Pangolin extends StatefulWidget {
   static OverlayState overlayState;
 
   static Box<dynamic> settingsBox;
-  // static Locale locale;
+
   static ThemeData theme;
 }
 
