@@ -15,11 +15,9 @@ limitations under the License.
 */
 
 import 'package:flutter/material.dart';
-import 'package:Pangolin/utils/localization/localization.dart';
 
-class SearchWidget extends StatefulWidget{
+class SearchWidget extends StatefulWidget {
   SearchWidget(String s, {String hintText});
-
 
   @override
   _SearchWidgetState createState() => _SearchWidgetState();
@@ -32,39 +30,37 @@ class _SearchWidgetState extends State<SearchWidget> {
 
   @override
   Widget build(BuildContext context) {
-    Localization local = Localization.of(context);
-
     _context = context;
 
     return new Container(
-        
-      padding: new EdgeInsets.only(left: 10.0,right: 10.0,top: 10.0),
+      padding: new EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
       margin: new EdgeInsets.only(top: 15.0),
       child: new Material(
-          color: Colors.white.withOpacity(0.5),
+        color: Colors.white.withOpacity(0.5),
         borderRadius: const BorderRadius.all(const Radius.circular(25)),
         elevation: 2.0,
         child: new Container(
-            width:700,
+          width: 700,
           height: 50.0,
-          margin: new EdgeInsets.only(left: 16.0,right: 16.0),
+          margin: new EdgeInsets.only(left: 16.0, right: 16.0),
           child: new Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               new Expanded(
                   child: new TextField(
-                    style: new TextStyle(color: Colors.white),
-                    maxLines: 1,
-                    decoration: new InputDecoration(
-                      hintStyle: TextStyle(color: Colors.white),
-                      icon: Icon(Icons.search, color: const Color(0xFFffffff),),
-                      hintText: "Search your device, app, web...",
-                      border: InputBorder.none
+                style: new TextStyle(color: Colors.white),
+                maxLines: 1,
+                decoration: new InputDecoration(
+                    hintStyle: TextStyle(color: Colors.white),
+                    icon: Icon(
+                      Icons.search,
+                      color: const Color(0xFFffffff),
                     ),
-                    onSubmitted: null,
-                    controller: editingController,
-                  )
-              )
+                    hintText: "Search your device, app, web...",
+                    border: InputBorder.none),
+                onSubmitted: null,
+                controller: editingController,
+              ))
             ],
           ),
         ),
