@@ -369,19 +369,11 @@ class QuickSettingsState extends State<QuickSettings> {
                 buildTile(
                     Icons.language, LocaleStrings.pangolin.qsChangelanguage,
                     () {
-                  int newLocale = 0;
-                  // final currentLanguage = context.locale.countryCode;
-                  for (var locale in Locales.supported) {
-                    if (locale == context.locale) {
-                      final languageIndex =
-                          (newLocale + 1 < Locales.supported.length)
-                              ? newLocale + 1
-                              : 0;
-                      context.locale = Locales.supported[languageIndex];
-                      Pangolin.settingsBox.put("language", "${context.locale}");
-                      return;
-                    }
-                    newLocale++;
+                  int index = Locales.supported.indexOf(context.locale);
+                  if (index + 1 < Locales.supported.length) {
+                    context.locale = Locales.supported[index + 1];
+                  } else {
+                    context.locale = Locales.supported[0];
                   }
                 }),
               ])),
