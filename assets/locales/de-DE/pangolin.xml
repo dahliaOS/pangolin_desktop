@@ -14,7 +14,7 @@
     <string name="app_rootterminal">Root terminal</string>
     <string name="app_settings">Einstellungen</string>
     <string name="app_systemlogs">Systemprotokoll</string>
-    <string name="app_taskmanager">Task manager</string>
+    <string name="app_taskmanager">Task Manager</string>
     <string name="app_terminal">Terminal</string>
     <string name="app_themedemo">Thema Vorschau</string>
     <string name="app_welcome">Willkommen</string>
@@ -33,7 +33,7 @@
     <string name="launcher_card_security_value">Dateisystemsperre ist AN</string>
     <string name="launcher_card_system_title">System</string>
     <string name="launcher_card_system_value">Willkommen bei dahliaOS!</string>
-    <string name="launcher_search">Suche dateien, apps, internet...</string>
+    <string name="launcher_search">Suche Dateien, Apps, Internet...</string>
     <string name="qs_airplanemode">Flugmodus</string>
     <string name="qs_autorotate">Automatisch drehen</string>
     <string name="qs_bluetooth">Bluetooth</string>
@@ -42,5 +42,5 @@
     <string name="qs_flashlight">Taschenlampe</string>
     <string name="qs_invertcolors">Farben umkehren</string>
     <string name="qs_theme">Thema</string>
-    <string name="qs_wifi">Wi-Fi</string>
+    <string name="qs_wifi">WLAN</string>
 </resources>
