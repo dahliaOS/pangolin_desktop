@@ -1,0 +1,15 @@
+name: Locale Generator
+on:
+  push:
+    paths:
+      - '**.xml'
+     branches: [ master ]
+jobs:
+  locale_gen:
+    name: Generate Locales
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: cedx/setup-dart@v2
+      - run: dart bin/locale_gen.dart assets/locales lib/internal/locales
+      - run: git config --global user.name "dahliaOS" && git commit -am "Generated Locales" && git push
