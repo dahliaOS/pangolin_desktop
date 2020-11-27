@@ -28,7 +28,7 @@
     <string name="launcher_card_kernel_title">Kernel</string>
     <string name="launcher_card_kernel_value">Treiber für Intigrierte Grafikkarte aktualisiert</string>
     <string name="launcher_card_music_title">Musik - Spielt Gerade</string>
-    <string name="launcher_card_music_value">Gzuz - Was hast du gedacht</string>
+    <string name="launcher_card_music_value">test</string>
     <string name="launcher_card_security_title">Sicherheit</string>
     <string name="launcher_card_security_value">Dateisystemsperre ist AN</string>
     <string name="launcher_card_system_title">System</string>
