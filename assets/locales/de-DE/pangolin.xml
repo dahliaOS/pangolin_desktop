@@ -23,7 +23,7 @@
     <string name="app_developeroptions">Entwickleroptionen</string>
     <string name="featurenotimplemented_title">Funktion noch nicht Intigriert</string>
     <string name="featurenotimplemented_value">Diese Funktion ist in ihrer Version von Pangolin noch nicht verfügbar. Bitte siehe https://reddit.com/r/dahliaos für Aktualisierungen und weiter Informationen.</string>
-    <string name="launcher_card_information_title">Informationen</string>
+    <string name="launcher_card_information_title">Informationen -  test</string>
     <string name="launcher_card_information_value">Warnung: Sie benutzen eine Entwicklungs-Build von dahliaOS welche noch nicht veröffentlicht wurde.</string>
     <string name="launcher_card_kernel_title">Kernel</string>
     <string name="launcher_card_kernel_value">Treiber für Intigrierte Grafikkarte aktualisiert</string>
