@@ -10,6 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: cedx/setup-dart@v2
+      - uses: subosito/flutter-action@v1
       - run: dart bin/locale_gen.dart assets/locales lib/internal/locales
       - run: git config --global user.name "dahliaOS" && git commit -am "Generated Locales" && git push
