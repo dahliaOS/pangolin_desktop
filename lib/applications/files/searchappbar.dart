@@ -38,7 +38,7 @@ class _SearchAppBarState extends State<SearchAppBar> {
     _context = context;
 
     return new Container(
-      padding: new EdgeInsets.only(left: 5.0, right: 5.0, top: 8.0, bottom: 8),
+      //padding: new EdgeInsets.only(left: 5.0, right: 5.0, top: 8.0, bottom: 8),
       //margin: new EdgeInsets.only(top: 15.0),
       width: 700,
       height: 55,
@@ -46,36 +46,40 @@ class _SearchAppBarState extends State<SearchAppBar> {
       child: Row(
         children: [
           Expanded(
-            child: new Material(
-              color: Colors.black.withOpacity(0.3),
-              borderRadius: const BorderRadius.all(const Radius.circular(5)),
-              elevation: 0.0,
-              child: new Container(
-                width: 1000,
-                //height: 120.0,
-                //margin: new EdgeInsets.only(left: 16.0, right: 16.0),
-                child: new Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    new Expanded(
-                        child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: new TextField(
-                        style: new TextStyle(color: Colors.white),
-                        maxLines: 1,
-                        decoration: new InputDecoration(
-                            hintStyle: TextStyle(color: Colors.white),
-                            icon: Icon(
-                              Icons.search,
-                              color: const Color(0xFFffffff),
-                            ),
-                            hintText: 'Search Files and Folders',
-                            border: InputBorder.none),
-                        onSubmitted: null,
-                        controller: editingController,
-                      ),
-                    )),
-                  ],
+            child: Padding(
+              padding: const EdgeInsets.only(top: 8, bottom: 8),
+              child: new Material(
+                color: Colors.black.withOpacity(0.3),
+                borderRadius: const BorderRadius.all(const Radius.circular(5)),
+                elevation: 0.0,
+                child: new Container(
+                  width: 1000,
+                  //height: 120.0,
+                  margin: new EdgeInsets.only(left: 16.0, right: 16.0),
+                  child: new Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      new Expanded(
+                          child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: new TextField(
+                          style: new TextStyle(color: Colors.white),
+                          maxLines: 1,
+                          decoration: new InputDecoration(
+                              contentPadding: EdgeInsets.only(bottom: 8),
+                              hintStyle: TextStyle(color: Colors.white),
+                              icon: Icon(
+                                Icons.search,
+                                color: const Color(0xFFffffff),
+                              ),
+                              hintText: 'Search Files and Folders',
+                              border: InputBorder.none),
+                          onSubmitted: (result) {},
+                          controller: editingController,
+                        ),
+                      )),
+                    ],
+                  ),
                 ),
               ),
             ),
