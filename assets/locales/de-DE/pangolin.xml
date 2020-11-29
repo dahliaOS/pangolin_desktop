@@ -2,7 +2,7 @@
 <resources>
     <string name="app_containers">Container</string>
     <string name="app_authenticator">Authenticator</string>
-    <string name="app_calculator">Taschenrechner</string>
+    <string name="app_calculator">Rechner</string>
     <string name="app_clock">Uhr</string>
     <string name="app_disks">Festplattenverwaltung</string>
     <string name="app_files">Dateien</string>
@@ -11,7 +11,7 @@
     <string name="app_notes">Texteditor</string>
     <string name="app_notesmobile">Notizen (mobile)</string>
     <string name="app_messages">Nachrichten</string>
-    <string name="app_rootterminal">Root Terminal</string>
+    <string name="app_rootterminal">Root terminal</string>
     <string name="app_settings">Einstellungen</string>
     <string name="app_systemlogs">Systemprotokoll</string>
     <string name="app_taskmanager">Task Manager</string>
@@ -28,7 +28,7 @@
     <string name="launcher_card_kernel_title">Kernel</string>
     <string name="launcher_card_kernel_value">Treiber für Intigrierte Grafikkarte aktualisiert</string>
     <string name="launcher_card_music_title">Musik - Spielt Gerade</string>
-    <string name="launcher_card_music_value">Gzuz - Was hast du gedacht</string>
+    <string name="launcher_card_music_value">Eminem - Without Me</string>
     <string name="launcher_card_security_title">Sicherheit</string>
     <string name="launcher_card_security_value">Dateisystemsperre ist AN</string>
     <string name="launcher_card_system_title">System</string>
@@ -42,5 +42,5 @@
     <string name="qs_flashlight">Taschenlampe</string>
     <string name="qs_invertcolors">Farben umkehren</string>
     <string name="qs_theme">Thema</string>
-    <string name="qs_wifi">Wi-Fi</string>
+    <string name="qs_wifi">WLAN</string>
 </resources>
