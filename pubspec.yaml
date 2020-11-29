@@ -2,7 +2,7 @@ name: Pangolin
 description: A Desktop Environment Written in Flutter.
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: '>=2.3.0 <3.0.0'
 
 dependencies:
   intl:
@@ -18,6 +18,10 @@ dependencies:
   flutter_colorpicker: ^0.3.4
   google_fonts: ^1.1.0
   path: ^1.7.0
+  process_run:
+  open_file:
+  filesize:
+  xdg_directories:
   animations:
   recase:
   easy_localization: ^2.3.2
