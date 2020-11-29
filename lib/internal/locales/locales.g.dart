@@ -13,6 +13,7 @@ class Locales {
     Locale("hi", "IN"),
     Locale("hr", "HR"),
     Locale("id", "ID"),
+    Locale("it", "IT"),
     Locale("ko", "KR"),
     Locale("nl", "NL"),
     Locale("pa", "IN"),
@@ -23,6 +24,7 @@ class Locales {
     Locale("sv", "SE"),
     Locale("tr", "TR"),
     Locale("uk", "UA"),
+    Locale("zh", "CN"),
   ];
 
   static Map<String, Map<String, String>> get data => {
@@ -35,6 +37,7 @@ class Locales {
     _$LocaleHiIN().locale: _$LocaleHiIN().data,
     _$LocaleHrHR().locale: _$LocaleHrHR().data,
     _$LocaleIdID().locale: _$LocaleIdID().data,
+    _$LocaleItIT().locale: _$LocaleItIT().data,
     _$LocaleKoKR().locale: _$LocaleKoKR().data,
     _$LocaleNlNL().locale: _$LocaleNlNL().data,
     _$LocalePaIN().locale: _$LocalePaIN().data,
@@ -45,6 +48,7 @@ class Locales {
     _$LocaleSvSE().locale: _$LocaleSvSE().data,
     _$LocaleTrTR().locale: _$LocaleTrTR().data,
     _$LocaleUkUA().locale: _$LocaleUkUA().data,
+    _$LocaleZhCN().locale: _$LocaleZhCN().data,
   };
 }
 
@@ -167,7 +171,7 @@ class _$LocaleDeDE extends _$LocaleBase {
   Map<String, String> get data => {
     "pangolin.app_containers": "Container",
     "pangolin.app_authenticator": "Authenticator",
-    "pangolin.app_calculator": "Taschenrechner",
+    "pangolin.app_calculator": "Rechner",
     "pangolin.app_clock": "Uhr",
     "pangolin.app_disks": "Festplattenverwaltung",
     "pangolin.app_files": "Dateien",
@@ -176,7 +180,7 @@ class _$LocaleDeDE extends _$LocaleBase {
     "pangolin.app_notes": "Texteditor",
     "pangolin.app_notesmobile": "Notizen (mobile)",
     "pangolin.app_messages": "Nachrichten",
-    "pangolin.app_rootterminal": "Root Terminal",
+    "pangolin.app_rootterminal": "Root terminal",
     "pangolin.app_settings": "Einstellungen",
     "pangolin.app_systemlogs": "Systemprotokoll",
     "pangolin.app_taskmanager": "Task Manager",
@@ -188,12 +192,12 @@ class _$LocaleDeDE extends _$LocaleBase {
     "pangolin.app_developeroptions": "Entwickleroptionen",
     "pangolin.featurenotimplemented_title": "Funktion noch nicht Intigriert",
     "pangolin.featurenotimplemented_value": "Diese Funktion ist in ihrer Version von Pangolin noch nicht verfügbar. Bitte siehe https://reddit.com/r/dahliaos für Aktualisierungen und weiter Informationen.",
-    "pangolin.launcher_card_information_title": "Informationen",
+    "pangolin.launcher_card_information_title": "Informationen -  test",
     "pangolin.launcher_card_information_value": "Warnung: Sie benutzen eine Entwicklungs-Build von dahliaOS welche noch nicht veröffentlicht wurde.",
     "pangolin.launcher_card_kernel_title": "Kernel",
     "pangolin.launcher_card_kernel_value": "Treiber für Intigrierte Grafikkarte aktualisiert",
     "pangolin.launcher_card_music_title": "Musik - Spielt Gerade",
-    "pangolin.launcher_card_music_value": "Gzuz - Was hast du gedacht",
+    "pangolin.launcher_card_music_value": "Eminem - Without Me",
     "pangolin.launcher_card_security_title": "Sicherheit",
     "pangolin.launcher_card_security_value": "Dateisystemsperre ist AN",
     "pangolin.launcher_card_system_title": "System",
@@ -207,7 +211,7 @@ class _$LocaleDeDE extends _$LocaleBase {
     "pangolin.qs_flashlight": "Taschenlampe",
     "pangolin.qs_invertcolors": "Farben umkehren",
     "pangolin.qs_theme": "Thema",
-    "pangolin.qs_wifi": "Wi-Fi",
+    "pangolin.qs_wifi": "WLAN",
   };
 }
 
@@ -524,6 +528,59 @@ class _$LocaleIdID extends _$LocaleBase {
     "pangolin.qs_dnd": "Jangan ganggu",
     "pangolin.qs_flashlight": "Senter",
     "pangolin.qs_invertcolors": "Balikkan warna",
+    "pangolin.qs_theme": "Tema",
+    "pangolin.qs_wifi": "Wi-Fi",
+  };
+}
+
+
+class _$LocaleItIT extends _$LocaleBase {
+  @override
+  String get locale => "it-IT";
+
+  @override
+  Map<String, String> get data => {
+    "pangolin.app_containers": "Container",
+    "pangolin.app_authenticator": "Autenticatore",
+    "pangolin.app_calculator": "Calcolatrice",
+    "pangolin.app_clock": "Orologio",
+    "pangolin.app_disks": "Dischi",
+    "pangolin.app_files": "File",
+    "pangolin.app_media": "Multimedia",
+    "pangolin.app_music": "Musica",
+    "pangolin.app_notes": "Editor di testo",
+    "pangolin.app_notesmobile": "Appunti (mobile)",
+    "pangolin.app_messages": "Messaggi",
+    "pangolin.app_rootterminal": "Terminale root",
+    "pangolin.app_settings": "Impostazioni",
+    "pangolin.app_systemlogs": "Log di sistema",
+    "pangolin.app_taskmanager": "Task manager",
+    "pangolin.app_terminal": "Terminale",
+    "pangolin.app_themedemo": "Demo del tema",
+    "pangolin.app_welcome": "Benvenuto",
+    "pangolin.app_help": "Aiuto",
+    "pangolin.app_web": "Browser web",
+    "pangolin.app_developeroptions": "Opzioni sviluppatore",
+    "pangolin.featurenotimplemented_title": "Funzionalità non implementata",
+    "pangolin.featurenotimplemented_value": "Questa funzione non è attualmente disponibile nella tua versione di Pangolin, per favore consulta https://reddit.com/r/dahliaos per controllare la disponibilità di aggiornamenti.",
+    "pangolin.launcher_card_information_title": "Informazioni",
+    "pangolin.launcher_card_information_value": "Attenzione: Stai usando una versione di sviluppo in anteprima! Per la tua protezione, questa versione è stata isolata dal network.",
+    "pangolin.launcher_card_kernel_title": "Kernel",
+    "pangolin.launcher_card_kernel_value": "Driver per GPU integrata aggiornati",
+    "pangolin.launcher_card_music_title": "Musica - riproduzione in corso",
+    "pangolin.launcher_card_music_value": "Lil Pump - Boss",
+    "pangolin.launcher_card_security_title": "Sicurezza",
+    "pangolin.launcher_card_security_value": "Blocco del file system attivo",
+    "pangolin.launcher_card_system_title": "Sistema",
+    "pangolin.launcher_card_system_value": "Benvenuti a dahliaOS!",
+    "pangolin.launcher_search": "Cerca sul tuo dispositivo, app, web...",
+    "pangolin.qs_airplanemode": "Modalità aereo",
+    "pangolin.qs_autorotate": "Rotazione automatica",
+    "pangolin.qs_bluetooth": "Bluetooth",
+    "pangolin.qs_changelanguage": "Italiano",
+    "pangolin.qs_dnd": "Non disturbare",
+    "pangolin.qs_flashlight": "Torcia",
+    "pangolin.qs_invertcolors": "Inverti colori",
     "pangolin.qs_theme": "Tema",
     "pangolin.qs_wifi": "Wi-Fi",
   };
@@ -1055,6 +1112,59 @@ class _$LocaleUkUA extends _$LocaleBase {
     "pangolin.qs_flashlight": "Ліхтарик",
     "pangolin.qs_invertcolors": "Інвертувати кольори",
     "pangolin.qs_theme": "Тема оформлення",
+    "pangolin.qs_wifi": "Wi-Fi",
+  };
+}
+
+
+class _$LocaleZhCN extends _$LocaleBase {
+  @override
+  String get locale => "zh-CN";
+
+  @override
+  Map<String, String> get data => {
+    "pangolin.app_containers": "容器",
+    "pangolin.app_authenticator": "身份验证器",
+    "pangolin.app_calculator": "计算机",
+    "pangolin.app_clock": "时钟",
+    "pangolin.app_disks": "磁盘",
+    "pangolin.app_files": "文件",
+    "pangolin.app_media": "媒体库",
+    "pangolin.app_music": "音乐",
+    "pangolin.app_notes": "文本编辑器",
+    "pangolin.app_notesmobile": "笔记(移动端)",
+    "pangolin.app_messages": "信息",
+    "pangolin.app_rootterminal": "超级终端",
+    "pangolin.app_settings": "设定",
+    "pangolin.app_systemlogs": "系统日志",
+    "pangolin.app_taskmanager": "任务管理器",
+    "pangolin.app_terminal": "终端",
+    "pangolin.app_themedemo": "主题演示",
+    "pangolin.app_welcome": "欢迎",
+    "pangolin.app_help": "帮助",
+    "pangolin.app_web": "浏览器",
+    "pangolin.app_developeroptions": "开发人员选项",
+    "pangolin.featurenotimplemented_title": "尚未实现的功能",
+    "pangolin.featurenotimplemented_value": "该功能在您当前版本的Pangolin上不可用，请访问 https://reddit.com/r/dahliaos 查看更新。",
+    "pangolin.launcher_card_information_title": "信息",
+    "pangolin.launcher_card_information_value": "警告: 您正在使用开发版本！为了保护您的资料安全，本版本已经被网闸保护。",
+    "pangolin.launcher_card_kernel_title": "内核",
+    "pangolin.launcher_card_kernel_value": "集成显卡驱动已更新",
+    "pangolin.launcher_card_music_title": "音乐 - 正在播放",
+    "pangolin.launcher_card_music_value": "Lil Pump - Boss",
+    "pangolin.launcher_card_security_title": "安全",
+    "pangolin.launcher_card_security_value": "文件系统已上锁",
+    "pangolin.launcher_card_system_title": "系统",
+    "pangolin.launcher_card_system_value": "欢迎使用 dahliaOS!",
+    "pangolin.launcher_search": "搜索您的设备，应用或网络",
+    "pangolin.qs_airplanemode": "飞航模式",
+    "pangolin.qs_autorotate": "自动旋转",
+    "pangolin.qs_bluetooth": "蓝牙",
+    "pangolin.qs_changelanguage": "中文",
+    "pangolin.qs_dnd": "勿扰模式",
+    "pangolin.qs_flashlight": "闪光灯",
+    "pangolin.qs_invertcolors": "颜色反转",
+    "pangolin.qs_theme": "主题",
     "pangolin.qs_wifi": "Wi-Fi",
   };
 }
