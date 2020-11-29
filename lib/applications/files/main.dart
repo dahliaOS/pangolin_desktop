@@ -173,30 +173,28 @@ class _FilesHomeState extends State<FilesHome> {
                 ..insert(
                   0,
                   Container(
-                    constraints: BoxConstraints(maxHeight: 55),
+                    height: 55,
                     color: Colors.deepOrange,
-                    padding: EdgeInsets.all(18.5),
+                    padding: EdgeInsets.symmetric(horizontal: 18.5),
                     alignment: Alignment.centerLeft,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Container(
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.folder_open_outlined,
-                                color: Colors.white,
-                              ),
-                              SizedBox(
-                                width: 8,
-                              ),
-                              Text(
-                                "Files",
-                                style: TextStyle(
-                                    fontSize: 24, color: Colors.white),
-                              ),
-                            ],
-                          ),
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.folder_open_outlined,
+                              color: Colors.white,
+                            ),
+                            SizedBox(
+                              width: 8,
+                            ),
+                            Text(
+                              "Files",
+                              style:
+                                  TextStyle(fontSize: 24, color: Colors.white),
+                            ),
+                          ],
                         ),
                         Container(
                           child: Row(
