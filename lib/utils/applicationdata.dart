@@ -142,12 +142,12 @@ void initializeApps() {
       appExists: true));
 
   //Developer Options
-  applicationsData.add(ApplicationData(
-      appName: LocaleStrings.pangolin.appDeveloperoptions,
-      icon: "developer",
-      app: DeveloperApp(),
-      color: Colors.red[700],
-      appExists: true));
+    applicationsData.add(ApplicationData(
+        appName: LocaleStrings.pangolin.appDeveloperoptions,
+        icon: "developer",
+        app: DeveloperApp(),
+        color: Colors.red[700],
+        appExists: true));
 
   //Web
   applicationsData.add(ApplicationData(

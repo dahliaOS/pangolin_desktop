@@ -13,6 +13,7 @@ limitations under the License.
 
 import 'dart:ui';
 import 'package:Pangolin/utils/globals.dart';
+import 'package:Pangolin/utils/hiveManager.dart';
 import 'package:Pangolin/utils/widgets/settingsTile.dart';
 import 'package:Pangolin/utils/widgets/settingsheader.dart';
 import 'package:flutter/material.dart';
@@ -71,6 +72,18 @@ class _AboutState extends State<About> {
                 SettingsTile(children: [Text(kernel)]),
                 SettingsHeader(heading: "Pangolin Version"),
                 SettingsTile(children: [Text(fullPangolinVersion)]),
+                SettingsHeader(heading: "Developer Options"),
+                SettingsTile(children: [
+                  SwitchListTile(
+                    title: Text("Enable Developer Options"),
+                    onChanged: (bool value) {
+                      setState(() {
+                        HiveManager.set("developeroptions", value);
+                      });
+                    },
+                    value: HiveManager.get("developeroptions"),
+                  )
+                ]),
               ]),
             ],
           ),
