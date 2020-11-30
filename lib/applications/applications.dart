@@ -14,25 +14,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:Pangolin/applications/clock/main.dart';
-import 'package:Pangolin/internal/locales/locale_strings.g.dart';
 import 'package:Pangolin/utils/applicationdata.dart';
 import 'package:Pangolin/utils/hiveManager.dart';
 import 'package:flutter/material.dart';
-import 'package:Pangolin/applications/calculator/calculator.dart';
-import 'package:Pangolin/applications/containers/containers.dart';
-import 'package:Pangolin/applications/files/main.dart';
-import 'package:Pangolin/applications/editor/editor.dart';
-import 'package:Pangolin/applications/terminal/main.dart';
-import 'package:Pangolin/applications/browser/main.dart';
-import 'package:Pangolin/applications/terminal/root/main.dart';
-import 'package:Pangolin/applications/developer/developer.dart';
-import 'package:Pangolin/desktop/settings/settings.dart';
-import 'package:Pangolin/applications/monitor/monitor.dart';
 import 'package:Pangolin/utils/widgets/app_launcher.dart';
-import 'package:Pangolin/applications/welcome/welcome.dart';
 import 'package:Pangolin/utils/others/functions.dart';
-import 'package:Pangolin/applications/logging/logging.dart';
 
 Expanded tileSection(BuildContext context) {
   double _width() {
@@ -48,6 +34,7 @@ Expanded tileSection(BuildContext context) {
     } else if (width < 600) {
       return HiveManager.get("launcherWideMode") ? 10 : 20;
     }
+    return HiveManager.get("launcherWideMode") ? 10 : 20;
   }
 
   return Expanded(
