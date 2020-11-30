@@ -35,15 +35,15 @@ class AppLauncherButton extends StatefulWidget {
   final ValueChanged<bool> _callback;
 
   AppLauncherButton(
-      {this.app,
+      {@required this.app,
       @required this.icon,
-      this.label,
+      @required this.label,
       this.type = AppLauncherButtonType.TaskBar,
       this.appExists = true,
       this.customBar = true,
       this.childHeight = 64.0,
       this.childWidth = 64.0,
-      this.color,
+      @required this.color,
       callback})
       : _callback =
             callback; //This alien syntax must be syntactical glucose for a setter. Neato.

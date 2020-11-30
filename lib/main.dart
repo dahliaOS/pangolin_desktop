@@ -18,6 +18,7 @@ import 'package:Pangolin/desktop/desktop.dart';
 import 'package:Pangolin/internal/locales/generated_asset_loader.g.dart';
 import 'package:Pangolin/internal/locales/locales.g.dart';
 import 'package:Pangolin/desktop/window/model.dart';
+import 'package:Pangolin/utils/applicationdata.dart';
 import 'package:Pangolin/utils/hiveManager.dart';
 import 'package:Pangolin/utils/themes/customization_manager.dart';
 import 'package:hive/hive.dart';
@@ -67,6 +68,12 @@ class Pangolin extends StatefulWidget {
 }
 
 class _PangolinState extends State<Pangolin> {
+  @override
+  void initState() {
+    initializeApps();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     //Gets DahliaOS UI set up in a familiar way.

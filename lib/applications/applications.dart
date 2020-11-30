@@ -16,6 +16,7 @@ limitations under the License.
 
 import 'package:Pangolin/applications/clock/main.dart';
 import 'package:Pangolin/internal/locales/locale_strings.g.dart';
+import 'package:Pangolin/utils/applicationdata.dart';
 import 'package:Pangolin/utils/hiveManager.dart';
 import 'package:flutter/material.dart';
 import 'package:Pangolin/applications/calculator/calculator.dart';
@@ -54,148 +55,19 @@ Expanded tileSection(BuildContext context) {
         padding: EdgeInsets.all(15.0),
         margin: EdgeInsets.symmetric(horizontal: _width()),
         child: SingleChildScrollView(
-          child: Wrap(spacing: 18.0, children: [
-            AppLauncherButton(
-              type: AppLauncherButtonType.Drawer,
-              app: TerminalApp(),
-              icon: 'assets/images/icons/PNG/terminal.png',
-              label: LocaleStrings.pangolin.appTerminal,
-              color: Colors.grey[900],
-              callback: toggleCallback,
-            ),
-            AppLauncherButton(
-              type: AppLauncherButtonType.Drawer,
-              app: Tasks(),
-              icon: 'assets/images/icons/PNG/task.png',
-              label: LocaleStrings.pangolin.appTaskmanager,
-              color: Colors.cyan[900],
-              callback: toggleCallback,
-            ),
-            AppLauncherButton(
-              type: AppLauncherButtonType.Drawer,
-              app: Settings(),
-              icon: 'assets/images/icons/PNG/settings.png',
-              label: LocaleStrings.pangolin.appSettings,
-              color: Colors.deepOrange[700],
-              callback: toggleCallback,
-            ),
-            AppLauncherButton(
-              type: AppLauncherButtonType.Drawer,
-              app: RootTerminalApp(),
-              icon: 'assets/images/icons/PNG/root.png',
-              label: LocaleStrings.pangolin.appRootterminal,
-              color: Colors.red[700],
-              callback: toggleCallback,
-            ),
-            AppLauncherButton(
-              type: AppLauncherButtonType.Drawer,
-              app: TextEditorApp(),
-              icon: 'assets/images/icons/PNG/notes.png',
-              label: LocaleStrings.pangolin.appNotes,
-              color: Colors.amber[700],
-              callback: toggleCallback,
-            ),
-            AppLauncherButton(
-              type: AppLauncherButtonType.Drawer,
-              icon: 'assets/images/icons/PNG/note_mobile.png',
-              label: LocaleStrings.pangolin.appNotesmobile,
-              appExists: false,
-            ),
-            AppLauncherButton(
-              type: AppLauncherButtonType.Drawer,
-              app: Logs(),
-              icon: 'assets/images/icons/PNG/logs.png',
-              label: LocaleStrings.pangolin.appSystemlogs,
-              color: Colors.red[700],
-              callback: toggleCallback,
-            ),
-            AppLauncherButton(
-              type: AppLauncherButtonType.Drawer,
-              app: Files(),
-              icon: 'assets/images/icons/PNG/files.png',
-              label: LocaleStrings.pangolin.appFiles,
-              color: Colors.deepOrange[800],
-              callback: toggleCallback,
-            ),
-            AppLauncherButton(
-              type: AppLauncherButtonType.Drawer,
-              icon: 'assets/images/icons/PNG/disks.png',
-              label: LocaleStrings.pangolin.appDisks,
-              appExists: false,
-            ),
-            AppLauncherButton(
-              type: AppLauncherButtonType.Drawer,
-              app: Calculator(),
-              icon: 'assets/images/icons/PNG/calculator.png',
-              label: LocaleStrings.pangolin.appCalculator,
-              color: Colors.green,
-              callback: toggleCallback,
-            ),
-            AppLauncherButton(
-              type: AppLauncherButtonType.Drawer,
-              app: Containers(),
-              icon: 'assets/images/icons/PNG/containers.png',
-              label: LocaleStrings.pangolin.appContainers,
-              color: Colors.blue[800],
-              callback: toggleCallback,
-            ),
-            AppLauncherButton(
-              type: AppLauncherButtonType.Drawer,
-              app: Welcome(),
-              icon: 'assets/images/logos/dahliaOS/PNG/dahliaOS_logo_drop_shadow.png',
-              label: LocaleStrings.pangolin.appWelcome,
-              color: Colors.grey[900],
-              callback: toggleCallback,
-            ),
-            AppLauncherButton(
-              type: AppLauncherButtonType.Drawer,
-              app: DeveloperApp(),
-              icon: 'assets/images/icons/PNG/developer.png',
-              label: LocaleStrings.pangolin.appDeveloperoptions,
-              color: Colors.red[700],
-              callback: toggleCallback,
-            ),
-            AppLauncherButton(
-              type: AppLauncherButtonType.Drawer,
-              app: BrowserApp(),
-              icon: 'assets/images/icons/PNG/web.png',
-              label: LocaleStrings.pangolin.appWeb,
-              color: Colors.grey[500],
-              callback: toggleCallback,
-            ),
-            AppLauncherButton(
-              type: AppLauncherButtonType.Drawer,
-              icon: 'assets/images/icons/PNG/clock.png',
-              label: LocaleStrings.pangolin.appClock,
-              color: Colors.blue[900],
-              callback: toggleCallback,
-              app: Clock(),
-            ),
-            AppLauncherButton(
-              type: AppLauncherButtonType.Drawer,
-              icon: 'assets/images/icons/PNG/messages.png',
-              label: LocaleStrings.pangolin.appMessages,
-              appExists: false,
-            ),
-            AppLauncherButton(
-              type: AppLauncherButtonType.Drawer,
-              icon: 'assets/images/icons/PNG/music.png',
-              label: LocaleStrings.pangolin.appMusic,
-              appExists: false,
-            ),
-            AppLauncherButton(
-              type: AppLauncherButtonType.Drawer,
-              icon: 'assets/images/icons/PNG/photos.png',
-              label: LocaleStrings.pangolin.appMedia,
-              appExists: false,
-            ),
-            AppLauncherButton(
-              type: AppLauncherButtonType.Drawer,
-              icon: 'assets/images/icons/PNG/help.png',
-              label: LocaleStrings.pangolin.appHelp,
-              appExists: false,
-            ),
-          ]),
+          child: Wrap(
+              spacing: 18.0,
+              children: applicationsData
+                  .map<Widget>((e) => AppLauncherButton(
+                        icon: "assets/images/icons/PNG/" + e.icon + ".png",
+                        app: e.app,
+                        label: e.appName,
+                        appExists: true,
+                        callback: toggleCallback,
+                        color: Colors.deepOrange[700],
+                        type: AppLauncherButtonType.Drawer,
+                      ))
+                  .toList()),
         )),
   );
 }
