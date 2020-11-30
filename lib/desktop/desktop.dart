@@ -37,7 +37,8 @@ class Desktop extends StatefulWidget {
 
 class _DesktopState extends State<Desktop> {
   final Tween<double> _overlayScaleTween = Tween<double>(begin: 0.9, end: 1.0);
-  final Tween<double> _overlayOpacityTween = Tween<double>(begin: 0.0, end: 1.0);
+  final Tween<double> _overlayOpacityTween =
+      Tween<double>(begin: 0.0, end: 1.0);
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +76,8 @@ class _DesktopState extends State<Desktop> {
                 builder: (BuildContext context, Widget child) => FadeTransition(
                   opacity: _overlayOpacityTween.animate(animation),
                   child: SlideTransition(
-                    position: Tween(begin: Offset(0, 1), end: Offset(0, 0)).animate(animation),
+                    position: Tween(begin: Offset(0, 1), end: Offset(0, 0))
+                        .animate(animation),
                     child: child,
                   ),
                 ),
@@ -156,7 +158,8 @@ class _DesktopState extends State<Desktop> {
                       //borderRadius: BorderRadius.circular(2),
                     ),
                     height: 45.0,
-                    padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 8.0),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 0.0, horizontal: 8.0),
                     child: CustomConditionWidget(
                       HiveManager.get("centerTaskbar"),
                       Row(
@@ -171,29 +174,34 @@ class _DesktopState extends State<Desktop> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
                               Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   mainAxisSize: MainAxisSize.max,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
                                     AppLauncherButton(
                                       app: Calculator(),
-                                      icon: 'assets/images/icons/PNG/calculator.png',
+                                      icon:
+                                          'assets/images/icons/PNG/calculator.png',
                                       color: Colors.green,
                                       callback: toggleCallback,
                                     ),
                                     AppLauncherButton(
                                         app: TextEditorApp(),
-                                        icon: 'assets/images/icons/PNG/notes.png',
+                                        icon:
+                                            'assets/images/icons/PNG/notes.png',
                                         color: Colors.amber[700],
                                         callback: toggleCallback),
                                     AppLauncherButton(
                                         app: TerminalApp(),
-                                        icon: 'assets/images/icons/PNG/terminal.png',
+                                        icon:
+                                            'assets/images/icons/PNG/terminal.png',
                                         color: Colors.grey[900],
                                         callback: toggleCallback),
                                     AppLauncherButton(
                                         app: Files(),
-                                        icon: 'assets/images/icons/PNG/files.png',
+                                        icon:
+                                            'assets/images/icons/PNG/files.png',
                                         color: Colors.deepOrange,
                                         callback: toggleCallback),
                                     AppLauncherButton(
@@ -204,7 +212,8 @@ class _DesktopState extends State<Desktop> {
                                     ),
                                     AppLauncherButton(
                                         app: Settings(),
-                                        icon: 'assets/images/icons/PNG/settings.png',
+                                        icon:
+                                            'assets/images/icons/PNG/settings.png',
                                         color: Colors.deepOrange[700],
                                         callback: toggleCallback),
                                   ]),
@@ -237,7 +246,8 @@ class _DesktopState extends State<Desktop> {
                                 ),
                                 AppLauncherButton(
                                   app: Calculator(),
-                                  icon: 'assets/images/icons/PNG/calculator.png',
+                                  icon:
+                                      'assets/images/icons/PNG/calculator.png',
                                   color: Colors.green,
                                   callback: toggleCallback,
                                 ),
@@ -248,7 +258,8 @@ class _DesktopState extends State<Desktop> {
                                     callback: toggleCallback),
                                 AppLauncherButton(
                                     app: TerminalApp(),
-                                    icon: 'assets/images/icons/PNG/terminal.png',
+                                    icon:
+                                        'assets/images/icons/PNG/terminal.png',
                                     color: Colors.grey[900],
                                     callback: toggleCallback),
                                 AppLauncherButton(
@@ -264,7 +275,8 @@ class _DesktopState extends State<Desktop> {
                                 ),
                                 AppLauncherButton(
                                     app: Settings(),
-                                    icon: 'assets/images/icons/PNG/settings.png',
+                                    icon:
+                                        'assets/images/icons/PNG/settings.png',
                                     color: Colors.deepOrange[700],
                                     callback: toggleCallback),
                               ]),

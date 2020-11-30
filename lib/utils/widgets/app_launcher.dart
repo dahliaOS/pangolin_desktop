@@ -37,7 +37,7 @@ class AppLauncherButton extends StatefulWidget {
   AppLauncherButton(
       {@required this.app,
       @required this.icon,
-      @required this.label,
+      this.label,
       this.type = AppLauncherButtonType.TaskBar,
       this.appExists = true,
       this.customBar = true,
