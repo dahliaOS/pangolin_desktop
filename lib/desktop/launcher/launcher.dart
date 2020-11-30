@@ -16,7 +16,7 @@ limitations under the License.
 
 import 'package:Pangolin/internal/locales/locale_strings.g.dart';
 import 'package:Pangolin/utils/widgets/blur.dart';
-import 'package:Pangolin/applications/applications.dart';
+import 'package:Pangolin/desktop/launcher/applications.dart';
 import 'package:Pangolin/utils/widgets/cards.dart';
 import 'package:flutter/material.dart';
 import 'searchbar.dart';
@@ -71,7 +71,8 @@ class LauncherState extends State<LauncherWidget> {
         children: [
           new Blur(
             child: new Container(
-              decoration: new BoxDecoration(color: Colors.black.withOpacity(0.5)),
+              decoration:
+                  new BoxDecoration(color: Colors.black.withOpacity(0.5)),
             ),
           ),
           new Scaffold(
@@ -82,7 +83,8 @@ class LauncherState extends State<LauncherWidget> {
                   new SearchWidget(LocaleStrings.pangolin.launcherSearch),
                   const SizedBox(height: 35),
                   new SingleChildScrollView(
-                      padding: new EdgeInsets.only(left: 10.0, right: 10.0, top: 5.0),
+                      padding: new EdgeInsets.only(
+                          left: 10.0, right: 10.0, top: 5.0),
                       scrollDirection: Axis.horizontal,
                       child: new Row(children: <Widget>[
                         buildCard(
