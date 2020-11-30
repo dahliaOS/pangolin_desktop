@@ -16,6 +16,7 @@ import 'package:Pangolin/utils/hiveManager.dart';
 import 'package:Pangolin/main.dart';
 import 'package:Pangolin/utils/widgets/conditionWidget.dart';
 import 'package:Pangolin/utils/widgets/settingsTile.dart';
+import 'package:Pangolin/utils/widgets/settingsheader.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
@@ -55,15 +56,7 @@ class _GeneralManagementState extends State<GeneralManagement> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                      child: Text("Language and Region",
-                          style: TextStyle(
-                              fontSize: 17,
-                              letterSpacing: 0.2,
-                              fontWeight: FontWeight.bold)),
-                    ),
-                    SizedBox(height: 5),
+                    SettingsHeader(heading: "Language and Region"),
                     SettingsTile(
                       margin: EdgeInsets.symmetric(horizontal: 16.0),
                       children: [
@@ -89,16 +82,7 @@ class _GeneralManagementState extends State<GeneralManagement> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 20),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                      child: Text("Time",
-                          style: TextStyle(
-                              fontSize: 17,
-                              letterSpacing: 0.2,
-                              fontWeight: FontWeight.bold)),
-                    ),
-                    SizedBox(height: 5),
+                    SettingsHeader(heading: "Time"),
                     SettingsTile(
                       children: [
                         SwitchListTile(
@@ -162,16 +146,7 @@ class _GeneralManagementState extends State<GeneralManagement> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 20),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                      child: Text("Keyboard",
-                          style: TextStyle(
-                              fontSize: 17,
-                              letterSpacing: 0.2,
-                              fontWeight: FontWeight.bold)),
-                    ),
-                    SizedBox(height: 5),
+                    SettingsHeader(heading: "Keyboard"),
                     SettingsTile(
                       margin: EdgeInsets.symmetric(horizontal: 16.0),
                       children: [

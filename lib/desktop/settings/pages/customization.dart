@@ -18,6 +18,7 @@ import 'package:Pangolin/utils/hiveManager.dart';
 import 'package:Pangolin/utils/themes/customization_manager.dart';
 import 'package:Pangolin/utils/widgets/conditionWidget.dart';
 import 'package:Pangolin/utils/widgets/settingsTile.dart';
+import 'package:Pangolin/utils/widgets/settingsheader.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
@@ -52,15 +53,7 @@ class _CustomizationState extends State<Customization> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                        child: Text("Accent color",
-                            style: TextStyle(
-                                fontSize: 17,
-                                letterSpacing: 0.2,
-                                fontWeight: FontWeight.bold)),
-                      ),
-                      SizedBox(height: 5),
+                      SettingsHeader(heading: "Accent Color"),
                       SettingsTile(
                         children: [
                           Padding(
@@ -162,16 +155,7 @@ class _CustomizationState extends State<Customization> {
                           )
                         ],
                       ),
-                      SizedBox(height: 20),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                        child: Text("Blur",
-                            style: TextStyle(
-                                fontSize: 17,
-                                letterSpacing: 0.2,
-                                fontWeight: FontWeight.bold)),
-                      ),
-                      SizedBox(height: 5),
+                      SettingsHeader(heading: "Blur"),
                       SettingsTile(
                         children: [
                           Consumer<CustomizationNotifier>(
@@ -188,16 +172,7 @@ class _CustomizationState extends State<Customization> {
                           )
                         ],
                       ),
-                      SizedBox(height: 20),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                        child: Text("Dark mode",
-                            style: TextStyle(
-                                fontSize: 17,
-                                letterSpacing: 0.2,
-                                fontWeight: FontWeight.bold)),
-                      ),
-                      SizedBox(height: 5),
+                      SettingsHeader(heading: "Dark Mode"),
                       SettingsTile(
                         children: [
                           Consumer<CustomizationNotifier>(
@@ -222,16 +197,7 @@ class _CustomizationState extends State<Customization> {
                           )
                         ],
                       ),
-                      SizedBox(height: 20),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                        child: Text("Taskbar",
-                            style: TextStyle(
-                                fontSize: 17,
-                                letterSpacing: 0.2,
-                                fontWeight: FontWeight.bold)),
-                      ),
-                      SizedBox(height: 5),
+                      SettingsHeader(heading: "Taskbar"),
                       SettingsTile(
                         children: [
                           SwitchListTile(
@@ -245,16 +211,7 @@ class _CustomizationState extends State<Customization> {
                           )
                         ],
                       ),
-                      SizedBox(height: 20),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                        child: Text("Wallpaper",
-                            style: TextStyle(
-                                fontSize: 17,
-                                letterSpacing: 0.2,
-                                fontWeight: FontWeight.bold)),
-                      ),
-                      SizedBox(height: 5),
+                      SettingsHeader(heading: "Wallpaper"),
                       SettingsTile(
                         children: [
                           SwitchListTile(
@@ -296,16 +253,7 @@ class _CustomizationState extends State<Customization> {
                               )),
                         ],
                       ),
-                      SizedBox(height: 20),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                        child: Text("Launcher",
-                            style: TextStyle(
-                                fontSize: 17,
-                                letterSpacing: 0.2,
-                                fontWeight: FontWeight.bold)),
-                      ),
-                      SizedBox(height: 5),
+                      SettingsHeader(heading: "Launcher"),
                       SettingsTile(
                         children: [
                           Column(
@@ -323,16 +271,7 @@ class _CustomizationState extends State<Customization> {
                           ),
                         ],
                       ),
-                      SizedBox(height: 20),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                        child: Text("Window titlebars",
-                            style: TextStyle(
-                                fontSize: 17,
-                                letterSpacing: 0.2,
-                                fontWeight: FontWeight.bold)),
-                      ),
-                      SizedBox(height: 5),
+                      SettingsHeader(heading: "Window titlebars"),
                       SettingsTile(
                         children: [
                           SwitchListTile(
