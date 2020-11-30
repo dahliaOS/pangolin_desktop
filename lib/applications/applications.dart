@@ -62,9 +62,9 @@ Expanded tileSection(BuildContext context) {
                         icon: "assets/images/icons/PNG/" + e.icon + ".png",
                         app: e.app,
                         label: e.appName,
-                        appExists: true,
+                        appExists: e.appExists,
                         callback: toggleCallback,
-                        color: Colors.deepOrange[700],
+                        color: e.color,
                         type: AppLauncherButtonType.Drawer,
                       ))
                   .toList()),
