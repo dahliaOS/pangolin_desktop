@@ -69,12 +69,6 @@ class Pangolin extends StatefulWidget {
 
 class _PangolinState extends State<Pangolin> {
   @override
-  void initState() {
-    initializeApps();
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     //Gets DahliaOS UI set up in a familiar way.
     return ChangeNotifierProvider<WindowsData>(

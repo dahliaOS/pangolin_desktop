@@ -25,6 +25,7 @@ import 'package:Pangolin/applications/terminal/root/main.dart';
 import 'package:Pangolin/applications/welcome/welcome.dart';
 import 'package:Pangolin/desktop/settings/settings.dart';
 import 'package:Pangolin/internal/locales/locale_strings.g.dart';
+import 'package:Pangolin/utils/hiveManager.dart';
 import 'package:Pangolin/utils/widgets/app_launcher.dart';
 import 'package:flutter/material.dart';
 
@@ -47,6 +48,9 @@ class ApplicationData {
 List<ApplicationData> applicationsData = List<ApplicationData>();
 List<AppLauncherButton> applications = List<AppLauncherButton>();
 void initializeApps() {
+  //clear ApplicationData
+  applicationsData.clear();
+
   //Add ApplicationData
 
   //Terminal
@@ -142,12 +146,14 @@ void initializeApps() {
       appExists: true));
 
   //Developer Options
+  if (HiveManager.get("developeroptions") == true) {
     applicationsData.add(ApplicationData(
         appName: LocaleStrings.pangolin.appDeveloperoptions,
         icon: "developer",
         app: DeveloperApp(),
         color: Colors.red[700],
         appExists: true));
+  }
 
   //Web
   applicationsData.add(ApplicationData(
