@@ -261,9 +261,8 @@ class _FilesHomeState extends State<FilesHome> {
                                       controller: _textcontroller,
                                       focusNode: _focusNode,
                                       onSubmitted: (text) {
-                                        Directory dir =
-                                            Directory(_currentDir + "/$text");
-                                        dir.create(recursive: false);
+                                        Directory(_currentDir + "/$text")
+                                            .create(recursive: false);
                                         Navigator.of(context).pop();
                                         _textcontroller.clear();
                                         setState(() {});
