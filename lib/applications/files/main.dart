@@ -32,6 +32,9 @@ void main() {
 }
 
 final _folderProvider = FolderProvider();
+String _currentDir;
+TextEditingController _textcontroller = TextEditingController();
+FocusNode _focusNode = FocusNode();
 
 class Files extends StatelessWidget {
   @override
@@ -51,9 +54,8 @@ class FilesHome extends StatefulWidget {
 
 class _FilesHomeState extends State<FilesHome> {
   List<SideDestination> sideDestinations = [];
-  String currentDir;
   RelativeRect rect;
-  ScrollController controller = ScrollController();
+  ScrollController _controller = ScrollController();
 
   bool ascending = true;
   int columnIndex = 0;
@@ -68,7 +70,7 @@ class _FilesHomeState extends State<FilesHome> {
         ),
       );
     });
-    currentDir = _folderProvider.directories[0].key;
+    _currentDir = _folderProvider.directories[0].key;
     super.initState();
   }
 
@@ -148,7 +150,7 @@ class _FilesHomeState extends State<FilesHome> {
                       horizontal: 5.0, vertical: 2.0),
                   child: Material(
                     borderRadius: BorderRadius.circular(10),
-                    color: currentDir == sideDestinations[index].path
+                    color: _currentDir == sideDestinations[index].path
                         ? Theme.of(context).accentColor
                         : null,
                     child: ListTile(
@@ -160,7 +162,7 @@ class _FilesHomeState extends State<FilesHome> {
                         style: TextStyle(color: Colors.white),
                       ),
                       onTap: () => setState(
-                          () => currentDir = sideDestinations[index].path),
+                          () => _currentDir = sideDestinations[index].path),
                     ),
                   ),
                 ),
@@ -208,9 +210,9 @@ class _FilesHomeState extends State<FilesHome> {
                                 ),
                                 onPressed: () {
                                   setState(() {
-                                    List<String> backDir = currentDir.split("/")
-                                      ..removeLast();
-                                    currentDir = backDir.join("/");
+                                    List<String> backDir =
+                                        _currentDir.split("/")..removeLast();
+                                    _currentDir = backDir.join("/");
                                   });
                                 },
                               ),
@@ -246,6 +248,64 @@ class _FilesHomeState extends State<FilesHome> {
                       children: [
                         IconButton(
                           icon: Icon(
+                            Icons.create_new_folder_outlined,
+                            color: Colors.white,
+                          ),
+                          onPressed: () {
+                            showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return AlertDialog(
+                                    title: Text("Create new Folder"),
+                                    content: TextField(
+                                      controller: _textcontroller,
+                                      focusNode: _focusNode,
+                                      onSubmitted: (text) {
+                                        Directory dir =
+                                            Directory(_currentDir + "/$text");
+                                        dir.create(recursive: false);
+                                        Navigator.of(context).pop();
+                                        _textcontroller.clear();
+                                        setState(() {});
+                                      },
+                                      decoration: InputDecoration(
+                                          border: OutlineInputBorder(),
+                                          hintText: "Folder Name"),
+                                    ),
+                                    actions: <Widget>[
+                                      FlatButton(
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(12.0),
+                                          child: Text("Cancel"),
+                                        ),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                      ),
+                                      Container(
+                                        child: FlatButton(
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(12.0),
+                                            child: Text("Create Folder"),
+                                          ),
+                                          onPressed: () {
+                                            Directory dir = Directory(
+                                                _currentDir +
+                                                    "/${_textcontroller.text}");
+                                            dir.create(recursive: false);
+                                            Navigator.of(context).pop();
+                                            _textcontroller.clear();
+                                            setState(() {});
+                                          },
+                                        ),
+                                      ),
+                                    ],
+                                  );
+                                });
+                          },
+                        ),
+                        IconButton(
+                          icon: Icon(
                             Icons.list_alt_rounded,
                             color: Colors.white,
                           ),
@@ -264,7 +324,7 @@ class _FilesHomeState extends State<FilesHome> {
                 ],
               ),
               body: FutureBuilder<List<EntityInfo>>(
-                future: getInfoForDir(Directory(currentDir)),
+                future: getInfoForDir(Directory(_currentDir)),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.done) {
                     if (snapshot.data.isNotEmpty) {
@@ -276,7 +336,7 @@ class _FilesHomeState extends State<FilesHome> {
                           radiusWhileDragging: Radius.circular(10),
                           thicknessWhileDragging: 20,
                           thickness: 10,
-                          controller: controller,
+                          controller: _controller,
                           isAlwaysShown: true,
                           child: SingleChildScrollView(
                             child: DataTable(
@@ -333,7 +393,7 @@ class _FilesHomeState extends State<FilesHome> {
                                       onSelectChanged: (_) async {
                                         if (item.isDirectory) {
                                           setState(
-                                              () => currentDir = item.path);
+                                              () => _currentDir = item.path);
                                         } else {
                                           final result =
                                               await OpenFile.open(item.path);
