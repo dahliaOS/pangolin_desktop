@@ -18,6 +18,7 @@ import 'package:Pangolin/applications/containers/containers.dart';
 import 'package:Pangolin/applications/developer/developer.dart';
 import 'package:Pangolin/applications/editor/editor.dart';
 import 'package:Pangolin/applications/files/main.dart';
+import 'package:Pangolin/applications/graft/main.dart';
 import 'package:Pangolin/applications/logging/logging.dart';
 import 'package:Pangolin/applications/monitor/monitor.dart';
 import 'package:Pangolin/applications/terminal/main.dart';
@@ -133,8 +134,8 @@ void initializeApps() {
   applicationsData.add(ApplicationData(
       appName: LocaleStrings.pangolin.appContainers,
       icon: "containers",
-      app: Containers(),
-      color: Colors.blue[800],
+      app: Graft(),
+      color: Colors.blue[600],
       appExists: true));
 
   //Welcome
