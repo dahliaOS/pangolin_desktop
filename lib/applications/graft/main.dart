@@ -1,5 +1,8 @@
 import 'dart:ui';
 
+import 'package:Pangolin/applications/graft/log.dart';
+import 'package:Pangolin/applications/graft/management.dart';
+import 'package:Pangolin/applications/graft/resources.dart';
 import 'package:flutter/material.dart';
 
 main() {
@@ -12,6 +15,8 @@ class Graft extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: GraftHome(),
+      theme: ThemeData(
+          accentColor: Colors.blue[700], primaryColor: Colors.blue[600]),
     );
   }
 }
@@ -46,7 +51,7 @@ class GraftHome extends StatelessWidget {
             ),
             Expanded(
               child: Container(
-                //color: Colors.blue,
+                //color: Theme.of(context).accentColor,
                 child: GraftDetails(),
               ),
             )
@@ -82,9 +87,9 @@ class _GraftSideBarState extends State<GraftSideBar> {
                     .copyWith(fontWeight: FontWeight.w500, fontSize: 18),
               ),
               FlatButton(
-                color: Colors.blue.withOpacity(0.2),
+                color: Theme.of(context).accentColor.withOpacity(0.2),
                 onPressed: () {},
-                textColor: Colors.blue,
+                textColor: Theme.of(context).accentColor,
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(4, 6, 14, 6),
                   child: Row(
@@ -223,66 +228,27 @@ class _GraftDetailsState extends State<GraftDetails> {
               ),
               Text(
                 "Fedora Workstation 33",
-                style: TextStyle(fontSize: 35, fontWeight: FontWeight.w300),
+                style: TextStyle(fontSize: 35, fontWeight: FontWeight.w400),
               )
             ],
           ),
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Row(
-              children: [
-                Column(
-                  children: [
-                    Text("Management"),
-                    Row(
-                      children: [
-                        FlatButton(
-                          color: Colors.blue,
-                          onPressed: () {},
-                          textColor: Colors.white,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 10, vertical: 10),
-                            child: Text("Start"),
-                          ),
-                        ),
-                        FlatButton(
-                          color: Colors.blue,
-                          onPressed: () {},
-                          textColor: Colors.white,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 10, vertical: 10),
-                            child: Text("Restart"),
-                          ),
-                        ),
-                        FlatButton(
-                          color: Colors.red,
-                          onPressed: () {},
-                          textColor: Colors.white,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 10, vertical: 10),
-                            child: Text("Erase"),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Text("System"),
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.memory,
-                          size: 32,
-                          color: Colors.blue[600],
-                        ),
-                      ],
-                    ),
-                  ],
-                )
-              ],
+          Row(
+            children: [
+              GraftManagement(),
+              GraftResouces(),
+            ],
+          ),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              "Management",
+              style: TextStyle(letterSpacing: 1.0),
             ),
-          )
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          GraftKMGS(),
         ],
       ),
     );
