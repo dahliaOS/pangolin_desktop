@@ -24,11 +24,10 @@
     <string name="featurenotimplemented_title">기능이 구현되지 않음</string>
     <string name="featurenotimplemented_value">이 기능은 현재 Pangolin 빌드에 존재하지 않습니다. https://reddit.com/r/dahliaos 을(를) 방문하여 업데이트를 확인해 주세요.</string>
     <string name="launcher_card_information_title">정보</string>
-    <string name="launcher_card_information_value">경고: 현재 개발자용 pre-release 빌드를 사용중입니다. 보안을 위해, 이 빌드는 네트워크로부터 격리되었습니다.</string>
     <string name="launcher_card_kernel_title">커널</string>
     <string name="launcher_card_kernel_value">통합 GPU용 드라이버 업데이트</string>
     <string name="launcher_card_music_title">음악 - 현재 재생중</string>
-    <string name="launcher_card_music_value">Lil Pump - Boss</string>
+    <string name="launcher_card_music_value">Vance Joy - Georgia</string>
     <string name="launcher_card_security_title">보안</string>
     <string name="launcher_card_security_value">파일 시스템 잠금이 활성화됨</string>
     <string name="launcher_card_system_title">시스템</string>
