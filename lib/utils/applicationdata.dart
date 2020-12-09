@@ -14,7 +14,6 @@ limitations under the License.
 import 'package:Pangolin/applications/browser/main.dart';
 import 'package:Pangolin/applications/calculator/calculator.dart';
 import 'package:Pangolin/applications/clock/main.dart';
-import 'package:Pangolin/applications/containers/containers.dart';
 import 'package:Pangolin/applications/developer/developer.dart';
 import 'package:Pangolin/applications/editor/editor.dart';
 import 'package:Pangolin/applications/files/main.dart';
