@@ -14,6 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'package:Pangolin/utils/applicationdata.dart';
 import 'package:Pangolin/utils/widgets/system_overlay.dart';
 
 import 'key_ring.dart';
@@ -43,10 +44,13 @@ void setOverlayVisibility({
   overlay.currentState.visible = visible;
 }
 
-void toggleCallback(bool toggled) => setOverlayVisibility(
-      overlay: KeyRing.launcherOverlayKey,
-      visible: toggled,
-    );
+void toggleCallback(bool toggled) {
+  initializeApps();
+  setOverlayVisibility(
+    overlay: KeyRing.launcherOverlayKey,
+    visible: toggled,
+  );
+}
 
 double scale(double x) {
   return x * _scaleFactor;

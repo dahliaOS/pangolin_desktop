@@ -12,6 +12,7 @@ limitations under the License.
 */
 
 import 'package:Pangolin/utils/widgets/settingsTile.dart';
+import 'package:Pangolin/utils/widgets/settingsheader.dart';
 import 'package:flutter/material.dart';
 
 import '../../../utils/hiveManager.dart';
@@ -44,15 +45,7 @@ class _SoundState extends State<Sound> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                      child: Text("System volume",
-                          style: TextStyle(
-                              fontSize: 17,
-                              letterSpacing: 0.2,
-                              fontWeight: FontWeight.bold)),
-                    ),
-                    SizedBox(height: 5),
+                    SettingsHeader(heading: "System volume"),
                     SettingsTile(
                       children: [
                         Text("Set your system volume"),
@@ -80,16 +73,7 @@ class _SoundState extends State<Sound> {
                         )
                       ],
                     ),
-                    SizedBox(height: 20),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                      child: Text("Volume levels",
-                          style: TextStyle(
-                              fontSize: 17,
-                              letterSpacing: 0.2,
-                              fontWeight: FontWeight.bold)),
-                    ),
-                    SizedBox(height: 5),
+                    SettingsHeader(heading: "Volume levels"),
                     SettingsTile(
                       children: [
                         Text("Set individual volume for each application"),
@@ -117,16 +101,7 @@ class _SoundState extends State<Sound> {
                         )
                       ],
                     ),
-                    SizedBox(height: 20),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                      child: Text("Output",
-                          style: TextStyle(
-                              fontSize: 17,
-                              letterSpacing: 0.2,
-                              fontWeight: FontWeight.bold)),
-                    ),
-                    SizedBox(height: 5),
+                    SettingsHeader(heading: "Output"),
                     SettingsTile(
                       children: [
                         Text("Select output device"),

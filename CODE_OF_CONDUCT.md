@@ -32,7 +32,7 @@ they are doing - politely bringing their behavior to their attention is
 encouraged.
 
 If you are uncomfortable speaking up, or feel that your concerns are not being
-duly considered, you can email the Project Integrity team at contact+integrity@dahliaos.io to request involvement from a moderator. All
+duly considered, you can email the Project Integrity team at integrity@dahliaos.io to request involvement from a moderator. All
 concerns shared with community managers will be kept confidential, but you may
 also submit an anonymous report [here](dahlia-os.github.io/anon).
 Please note that without a way to contact you, an anonymous report may be

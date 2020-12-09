@@ -34,8 +34,6 @@ jobs:
     - run: flutter channel dev
     - run: flutter config --enable-web
     - run: flutter build web
-    - name: Prepare to deploy
-      run: git config --global user.name "dahliaOS" && git commit -a -m "You've found me!"
     - name: Deploy to FTP
       uses: SamKirkland/FTP-Deploy-Action@3.1.1
       with:

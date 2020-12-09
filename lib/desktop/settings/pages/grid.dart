@@ -21,6 +21,7 @@ class _SettingsHomeState extends State<SettingsHome> {
         child: Center(
           child: SingleChildScrollView(
             child: Wrap(
+              alignment: WrapAlignment.center,
               spacing: 20,
               direction: Axis.horizontal,
               children: [

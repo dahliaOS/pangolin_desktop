@@ -72,7 +72,6 @@ class QuickSettingsState extends State<QuickSettings> {
 
   //Format date using language
   String _formatLocaleDate(DateTime dateTime) {
-    print(context.locale.languageCode);
     return DateFormat.yMMMMd(context.locale.languageCode).format(dateTime);
   }
 

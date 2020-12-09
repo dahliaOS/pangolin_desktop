@@ -11,7 +11,7 @@
     <string name="app_notes">Uređivač teksta</string>
     <string name="app_notesmobile">Bilješke (Mobilno)</string>
     <string name="app_messages">Poruke</string>
-    <string name="app_rootterminal">Root terminal</string>
+    <string name="app_rootterminal">Root Terminal</string>
     <string name="app_settings">Postavke</string>
     <string name="app_systemlogs">Zapisnici sustava</string>
     <string name="app_taskmanager">Upravitelj zadataka</string>
@@ -24,7 +24,6 @@
     <string name="featurenotimplemented_title">Značajka nije implementirana</string>
     <string name="featurenotimplemented_value">Ova značajka trenutno nije dostupna u vašoj verziji Pangolina. Molimo posjetite https://reddit.com/r/dahliaos kako biste provjerili ima li novijih ažuriranja.</string>
     <string name="launcher_card_information_title">Informacije</string>
-    <string name="launcher_card_information_value">Upozorenje! Trenutno koristite predrazvojnu verziju! Za vašu sigurnost, ova verzija nema direktnu vezu na internet!</string>
     <string name="launcher_card_kernel_title">Jezgra</string>
     <string name="launcher_card_kernel_value">Upravljački programi za integrirane grafičke kartice su ažurirani</string>
     <string name="launcher_card_music_title">Glazba - Sada svira</string>
