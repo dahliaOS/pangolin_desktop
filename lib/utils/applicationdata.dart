@@ -45,6 +45,7 @@ class ApplicationData {
       @required this.appExists});
 }
 
+List<ApplicationData> applicationsDataSearched = List<ApplicationData>();
 List<ApplicationData> applicationsData = List<ApplicationData>();
 List<AppLauncherButton> applications = List<AppLauncherButton>();
 void initializeApps() {
@@ -192,4 +193,11 @@ void initializeApps() {
   //Help
   applicationsData.add(ApplicationData(
       appName: LocaleStrings.pangolin.appHelp, icon: "help", appExists: false));
+}
+
+searchForApplicationChangeNotify({String term}) async {
+  applicationsDataSearched.clear();
+  applicationsDataSearched.addAll(applicationsData.where((appDataParam) =>
+      appDataParam.appName.toLowerCase().contains(term.toLowerCase())));
+  print(applicationsDataSearched.length);
 }

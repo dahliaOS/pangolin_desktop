@@ -44,17 +44,29 @@ Expanded tileSection(BuildContext context) {
         child: SingleChildScrollView(
           child: Wrap(
               spacing: 18.0,
-              children: applicationsData
-                  .map<Widget>((e) => AppLauncherButton(
-                        icon: "assets/images/icons/PNG/" + e.icon + ".png",
-                        app: e.app,
-                        label: e.appName,
-                        appExists: e.appExists,
-                        callback: toggleCallback,
-                        color: e.color,
-                        type: AppLauncherButtonType.Drawer,
-                      ))
-                  .toList()),
+              children: applicationsDataSearched.isEmpty
+                  ? applicationsData
+                      .map<Widget>((e) => AppLauncherButton(
+                            icon: "assets/images/icons/PNG/" + e.icon + ".png",
+                            app: e.app,
+                            label: e.appName,
+                            appExists: e.appExists,
+                            callback: toggleCallback,
+                            color: e.color,
+                            type: AppLauncherButtonType.Drawer,
+                          ))
+                      .toList()
+                  : applicationsDataSearched
+                      .map<Widget>((e) => AppLauncherButton(
+                            icon: "assets/images/icons/PNG/" + e.icon + ".png",
+                            app: e.app,
+                            label: e.appName,
+                            appExists: e.appExists,
+                            callback: toggleCallback,
+                            color: e.color,
+                            type: AppLauncherButtonType.Drawer,
+                          ))
+                      .toList()),
         )),
   );
 }
