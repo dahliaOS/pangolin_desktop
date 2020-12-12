@@ -17,7 +17,8 @@ limitations under the License.
 import 'package:flutter/material.dart';
 
 class SearchWidget extends StatefulWidget {
-  SearchWidget(String s, {String hintText});
+  final Function onSearch;
+  SearchWidget(String s, {String hintText, this.onSearch});
 
   @override
   _SearchWidgetState createState() => _SearchWidgetState();
@@ -59,6 +60,7 @@ class _SearchWidgetState extends State<SearchWidget> {
                     hintText: "Search your device, app, web...",
                     border: InputBorder.none),
                 onSubmitted: null,
+                onChanged: (_) => widget.onSearch(_),
                 controller: editingController,
               ))
             ],

@@ -15,6 +15,7 @@ limitations under the License.
 */
 
 import 'package:Pangolin/internal/locales/locale_strings.g.dart';
+import 'package:Pangolin/utils/applicationdata.dart';
 import 'package:Pangolin/utils/others/functions.dart';
 import 'package:Pangolin/utils/others/key_ring.dart';
 import 'package:Pangolin/utils/widgets/blur.dart';
@@ -60,6 +61,11 @@ MaterialButton buildTile(String icon, String label) {
 }
 
 class LauncherState extends State<LauncherWidget> {
+  getApps(String term) async {
+    await searchForApplicationChangeNotify(term: term);
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -87,7 +93,8 @@ class LauncherState extends State<LauncherWidget> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    new SearchWidget(LocaleStrings.pangolin.launcherSearch),
+                    new SearchWidget(LocaleStrings.pangolin.launcherSearch,
+                        onSearch: getApps),
                     const SizedBox(height: 35),
                     new SingleChildScrollView(
                         padding: new EdgeInsets.only(
