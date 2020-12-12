@@ -78,6 +78,7 @@ class _DisplayState extends State<Display> {
                     SettingsTile(
                       children: [
                         SwitchListTile(
+                          secondary: Icon(Icons.remove_red_eye_outlined),
                           onChanged: (bool value) {
                             setState(() {
                               HiveManager.set("enableBlueLightFilter", value);

@@ -75,6 +75,7 @@ class _AboutState extends State<About> {
                 SettingsHeader(heading: "Developer Options"),
                 SettingsTile(children: [
                   SwitchListTile(
+                    secondary: Icon(Icons.developer_mode_outlined),
                     title: Text("Enable Developer Options"),
                     onChanged: (bool value) {
                       setState(() {

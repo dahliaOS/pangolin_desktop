@@ -161,6 +161,7 @@ class _CustomizationState extends State<Customization> {
                           Consumer<CustomizationNotifier>(
                             builder: (context, notifier, child) =>
                                 SwitchListTile(
+                              secondary: Icon(Icons.blur_on_outlined),
                               value: HiveManager.get("blur"),
                               title: Text("Enable blur effects on the desktop"),
                               onChanged: (bool state) {
@@ -178,6 +179,7 @@ class _CustomizationState extends State<Customization> {
                           Consumer<CustomizationNotifier>(
                             builder: (context, notifier, child) =>
                                 SwitchListTile(
+                              secondary: Icon(Icons.brightness_4_outlined),
                               value: notifier.darkTheme,
                               title: Text(
                                   "Enable Dark mode on the desktop and all applications"),
@@ -201,6 +203,7 @@ class _CustomizationState extends State<Customization> {
                       SettingsTile(
                         children: [
                           SwitchListTile(
+                            secondary: Icon(Icons.view_array),
                             value: HiveManager.get("centerTaskbar"),
                             title: Text("Center taskbar icons"),
                             onChanged: (bool state) {
@@ -215,6 +218,7 @@ class _CustomizationState extends State<Customization> {
                       SettingsTile(
                         children: [
                           SwitchListTile(
+                            secondary: Icon(Icons.replay),
                             value: HiveManager.get("randomWallpaper"),
                             title: Text("Enable random wallpapers"),
                             onChanged: (bool state) {
@@ -259,6 +263,7 @@ class _CustomizationState extends State<Customization> {
                           Column(
                             children: [
                               SwitchListTile(
+                                secondary: Icon(Icons.view_comfortable),
                                 value: HiveManager.get("launcherWideMode"),
                                 title: Text("Enable Wide launcher mode"),
                                 onChanged: (bool state) {
@@ -275,6 +280,9 @@ class _CustomizationState extends State<Customization> {
                       SettingsTile(
                         children: [
                           SwitchListTile(
+                            secondary: RotatedBox(
+                                quarterTurns: 2,
+                                child: Icon(Icons.video_label)),
                             value: HiveManager.get("coloredTitlebar"),
                             title: Text("Enabled colored titlebar"),
                             onChanged: (bool state) {

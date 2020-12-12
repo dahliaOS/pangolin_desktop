@@ -11,6 +11,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'dart:ui';
+
 import 'package:Pangolin/internal/locales/locales.g.dart';
 import 'package:Pangolin/utils/hiveManager.dart';
 import 'package:Pangolin/main.dart';
@@ -86,6 +88,7 @@ class _GeneralManagementState extends State<GeneralManagement> {
                     SettingsTile(
                       children: [
                         SwitchListTile(
+                          secondary: Icon(Icons.timelapse),
                           value: HiveManager.get("enableAutoTime"),
                           title: Text("Automatic time"),
                           onChanged: (bool state) {
@@ -127,6 +130,10 @@ class _GeneralManagementState extends State<GeneralManagement> {
                               ],
                             )),
                         SwitchListTile(
+                          secondary: Text(
+                            " :53",
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
                           value: HiveManager.get("showSeconds"),
                           title: Text("Show seconds"),
                           onChanged: (bool state) {
@@ -136,6 +143,10 @@ class _GeneralManagementState extends State<GeneralManagement> {
                           },
                         ),
                         SwitchListTile(
+                          secondary: Text(
+                            "14:00",
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
                           value: HiveManager.get("enable24hTime"),
                           title: Text("Enable 24-hour time"),
                           onChanged: (bool state) {
