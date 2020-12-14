@@ -16,6 +16,7 @@ import 'dart:ui';
 
 import 'package:Pangolin/utils/hiveManager.dart';
 import 'package:Pangolin/utils/widgets/settingsTile.dart';
+import 'package:Pangolin/utils/widgets/settingsheader.dart';
 import 'package:flutter/material.dart';
 
 class Display extends StatefulWidget {
@@ -45,15 +46,7 @@ class _DisplayState extends State<Display> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                      child: Text("Screen",
-                          style: TextStyle(
-                              fontSize: 17,
-                              letterSpacing: 0.2,
-                              fontWeight: FontWeight.bold)),
-                    ),
-                    SizedBox(height: 5),
+                    SettingsHeader(heading: "Screen"),
                     SettingsTile(
                       children: [
                         Text("Set your screen brightness"),
@@ -81,19 +74,11 @@ class _DisplayState extends State<Display> {
                         )
                       ],
                     ),
-                    SizedBox(height: 20),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                      child: Text("Blue light filter",
-                          style: TextStyle(
-                              fontSize: 17,
-                              letterSpacing: 0.2,
-                              fontWeight: FontWeight.bold)),
-                    ),
-                    SizedBox(height: 5),
+                    SettingsHeader(heading: "Blue light fighters"),
                     SettingsTile(
                       children: [
                         SwitchListTile(
+                          secondary: Icon(Icons.remove_red_eye_outlined),
                           onChanged: (bool value) {
                             setState(() {
                               HiveManager.set("enableBlueLightFilter", value);
@@ -105,16 +90,7 @@ class _DisplayState extends State<Display> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 20),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                      child: Text("Resolution",
-                          style: TextStyle(
-                              fontSize: 17,
-                              letterSpacing: 0.2,
-                              fontWeight: FontWeight.bold)),
-                    ),
-                    SizedBox(height: 5),
+                    SettingsHeader(heading: "Resolution"),
                     AbsorbPointer(
                       child: SettingsTile(
                         children: [

@@ -113,6 +113,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.9"
+  easy_localization:
+    dependency: "direct main"
+    description:
+      name: easy_localization
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.3.4-nullsafety.1"
   expressions:
     dependency: "direct main"
     description:
@@ -140,7 +147,14 @@ packages:
       name: file
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.2.1"
+    version: "6.0.0-nullsafety.4"
+  filesize:
+    dependency: "direct main"
+    description:
+      name: filesize
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.4"
   flutter:
     dependency: transitive
     description: flutter
@@ -230,7 +244,14 @@ packages:
       name: intl
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.16.1"
+    version: "0.17.0-nullsafety.2"
+  io:
+    dependency: transitive
+    description:
+      name: io
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.4"
   js:
     dependency: transitive
     description:
@@ -308,6 +329,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.1"
+  open_file:
+    dependency: "direct main"
+    description:
+      name: open_file
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.3"
   package_config:
     dependency: transitive
     description:
@@ -377,7 +405,7 @@ packages:
       name: platform
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.2.1"
+    version: "3.0.0-nullsafety.4"
   plugin_platform_interface:
     dependency: transitive
     description:
@@ -391,7 +419,14 @@ packages:
       name: process
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.13"
+    version: "4.0.0-nullsafety.4"
+  process_run:
+    dependency: "direct main"
+    description:
+      name: process_run
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.11.2+5"
   provider:
     dependency: "direct main"
     description:
@@ -420,6 +455,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.5"
+  recase:
+    dependency: "direct main"
+    description:
+      name: recase
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.1"
   shared_preferences:
     dependency: "direct main"
     description:
@@ -502,6 +544,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0-nullsafety.3"
+  synchronized:
+    dependency: transitive
+    description:
+      name: synchronized
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.2.0+2"
   term_glyph:
     dependency: transitive
     description:
@@ -545,12 +594,19 @@ packages:
     source: hosted
     version: "1.7.3"
   xdg_directories:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: xdg_directories
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.2"
+  xml:
+    dependency: "direct main"
+    description:
+      name: xml
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.5.1"
   yaml:
     dependency: transitive
     description:

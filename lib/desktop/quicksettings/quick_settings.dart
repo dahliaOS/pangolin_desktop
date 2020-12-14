@@ -13,10 +13,12 @@ limitations under the License.
 
 import 'dart:ui';
 import 'dart:io';
+import 'package:Pangolin/internal/locales/locale_strings.g.dart';
+import 'package:Pangolin/internal/locales/locales.g.dart';
 import 'package:Pangolin/utils/others/functions.dart';
-import 'package:Pangolin/utils/localization/localization.dart';
 import 'package:Pangolin/desktop/window/model.dart';
 import 'package:Pangolin/utils/hiveManager.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
@@ -70,8 +72,7 @@ class QuickSettingsState extends State<QuickSettings> {
 
   //Format date using language
   String _formatLocaleDate(DateTime dateTime) {
-    return DateFormat.yMMMMd(Localizations.localeOf(context).languageCode)
-        .format(dateTime);
+    return DateFormat.yMMMMd(context.locale.languageCode).format(dateTime);
   }
 
   MaterialButton buildPowerItem(
@@ -112,7 +113,6 @@ class QuickSettingsState extends State<QuickSettings> {
 
   @override
   Widget build(BuildContext context) {
-    Localization local = Localization.of(context);
     _getTime(context);
     var biggerFont = TextStyle(
       fontSize: scale(12.0),
@@ -341,7 +341,8 @@ class QuickSettingsState extends State<QuickSettings> {
               crossAxisCount: 4,
               childAspectRatio: 3 / 4,
               children: [
-                buildTile(Icons.network_wifi, local.get("qs_wifi"), () {
+                buildTile(Icons.network_wifi, LocaleStrings.pangolin.qsWifi,
+                    () {
                   setState(() {
                     HiveManager.set("wifi", false);
                   });
@@ -349,75 +350,29 @@ class QuickSettingsState extends State<QuickSettings> {
                       .add(child: WirelessApp(), color: Colors.deepOrange[700]);
                   hideOverlays();
                 }),
-                buildTile(Icons.palette, local.get("qs_theme"), changeColor),
+                buildTile(
+                    Icons.palette, LocaleStrings.pangolin.qsTheme, changeColor),
                 buildTile(Icons.battery_full, '85%', changeColor),
-                buildTile(
-                    Icons.do_not_disturb_off, local.get("qs_dnd"), changeColor),
-                buildTile(Icons.lightbulb_outline, local.get("qs_flashlight"),
-                    changeColor),
+                buildTile(Icons.do_not_disturb_off,
+                    LocaleStrings.pangolin.qsDnd, changeColor),
+                buildTile(Icons.lightbulb_outline,
+                    LocaleStrings.pangolin.qsFlashlight, changeColor),
                 buildTile(Icons.screen_lock_rotation,
-                    local.get("qs_autorotate"), changeColor),
-                buildTile(
-                    Icons.bluetooth, local.get("qs_bluetooth"), changeColor),
-                buildTile(Icons.airplanemode_inactive,
-                    local.get("qs_airplanemode"), changeColor),
-                buildTile(Icons.invert_colors_off, local.get("qs_invertcolors"),
+                    LocaleStrings.pangolin.qsAutorotate, changeColor),
+                buildTile(Icons.bluetooth, LocaleStrings.pangolin.qsBluetooth,
                     changeColor),
-                buildTile(Icons.language, local.get("qs_changelanguage"), () {
-                  switch (Localizations.localeOf(context).toString()) {
-                    case "en_US":
-                      Pangolin.setLocale(context, Locale("ar", "SA"));
-                      Pangolin.settingsBox.put("language", "ar_SA");
-                      break;
-                    case "ar_SA":
-                      Pangolin.setLocale(context, Locale("bs", "BA"));
-                      Pangolin.settingsBox.put("language", "bs_BA");
-                      break;
-                    case "bs_BA":
-                      Pangolin.setLocale(context, Locale("hr", "HR"));
-                      Pangolin.settingsBox.put("language", "hr_HR");
-                      break;
-                    case "hr_HR":
-                      Pangolin.setLocale(context, Locale("nl", "NL"));
-                      Pangolin.settingsBox.put("language", "nl_NL");
-                      break;
-                    case "nl_NL":
-                      Pangolin.setLocale(context, Locale("fr", "FR"));
-                      Pangolin.settingsBox.put("language", "fr_FR");
-                      break;
-                    case "fr_FR":
-                      Pangolin.setLocale(context, Locale("de", "DE"));
-                      Pangolin.settingsBox.put("language", "de_DE");
-                      break;
-                    case "de_DE":
-                      Pangolin.setLocale(context, Locale("id", "ID"));
-                      Pangolin.settingsBox.put("language", "id_ID");
-                      break;
-                    case "id_ID":
-                      Pangolin.setLocale(context, Locale("pl", "PL"));
-                      Pangolin.settingsBox.put("language", "pl_PL");
-                      break;
-                    case "pl_PL":
-                      Pangolin.setLocale(context, Locale("pt", "BR"));
-                      Pangolin.settingsBox.put("language", "pt_BR");
-                      break;
-                    case "pt_BR":
-                      Pangolin.setLocale(context, Locale("ru", "RU"));
-                      Pangolin.settingsBox.put("language", "ru_RU");
-                      break;
-                    case "ru_RU":
-                      Pangolin.setLocale(context, Locale("sv", "SE"));
-                      Pangolin.settingsBox.put("language", "sv_SE");
-                      break;
-                    case "sv_SE":
-                      Pangolin.setLocale(context, Locale("uk", "UA"));
-                      Pangolin.settingsBox.put("language", "uk_UA");
-                      break;
-                    case "uk_UA":
-                    default:
-                      Pangolin.setLocale(context, Locale("en", "US"));
-                      Pangolin.settingsBox.put("language", "en_US");
-                      break;
+                buildTile(Icons.airplanemode_inactive,
+                    LocaleStrings.pangolin.qsAirplanemode, changeColor),
+                buildTile(Icons.invert_colors_off,
+                    LocaleStrings.pangolin.qsInvertcolors, changeColor),
+                buildTile(
+                    Icons.language, LocaleStrings.pangolin.qsChangelanguage,
+                    () {
+                  int index = Locales.supported.indexOf(context.locale);
+                  if (index + 1 < Locales.supported.length) {
+                    context.locale = Locales.supported[index + 1];
+                  } else {
+                    context.locale = Locales.supported[0];
                   }
                 }),
               ])),
@@ -444,10 +399,8 @@ void notImplemented(BuildContext context) {
     builder: (BuildContext context) {
       // return object of type Dialog
       return AlertDialog(
-        title: new Text(
-            Localization.of(context).get("featurenotimplemented_title")),
-        content: new Text(
-            Localization.of(context).get("featurenotimplemented_value")),
+        title: new Text(LocaleStrings.pangolin.featurenotimplementedTitle),
+        content: new Text(LocaleStrings.pangolin.featurenotimplementedValue),
         actions: <Widget>[
           // usually buttons at the bottom of the dialog
           new FlatButton(

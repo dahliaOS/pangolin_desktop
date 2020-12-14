@@ -16,6 +16,7 @@ import 'dart:ui';
 import 'package:Pangolin/utils/hiveManager.dart';
 import 'package:Pangolin/utils/widgets/conditionWidget.dart';
 import 'package:Pangolin/utils/widgets/settingsTile.dart';
+import 'package:Pangolin/utils/widgets/settingsheader.dart';
 import 'package:flutter/material.dart';
 
 class Connections extends StatefulWidget {
@@ -61,15 +62,7 @@ class _ConnectionsState extends State<Connections> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                      child: Text("Wi-Fi and Bluetooth",
-                          style: TextStyle(
-                              fontSize: 17,
-                              letterSpacing: 0.2,
-                              fontWeight: FontWeight.bold)),
-                    ),
-                    SizedBox(height: 5),
+                    SettingsHeader(heading: "Wi-Fi and Bluetooth"),
                     SettingsTile(
                       children: [
                         Wrap(
@@ -77,6 +70,7 @@ class _ConnectionsState extends State<Connections> {
                             Column(
                               children: [
                                 SwitchListTile(
+                                  secondary: Icon(Icons.wifi),
                                   onChanged: (bool value) {
                                     setState(() {
                                       HiveManager.set("wifi", value);
@@ -132,6 +126,7 @@ class _ConnectionsState extends State<Connections> {
                             Column(
                               children: [
                                 SwitchListTile(
+                                  secondary: Icon(Icons.bluetooth),
                                   onChanged: (bool value) {
                                     setState(() {
                                       HiveManager.set("bluetooth", value);

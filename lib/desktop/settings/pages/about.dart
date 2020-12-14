@@ -13,7 +13,9 @@ limitations under the License.
 
 import 'dart:ui';
 import 'package:Pangolin/utils/globals.dart';
+import 'package:Pangolin/utils/hiveManager.dart';
 import 'package:Pangolin/utils/widgets/settingsTile.dart';
+import 'package:Pangolin/utils/widgets/settingsheader.dart';
 import 'package:flutter/material.dart';
 
 class About extends StatefulWidget {
@@ -64,39 +66,25 @@ class _AboutState extends State<About> {
                 style: TextStyle(fontSize: 35),
               ),
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                  child: Text("Version",
-                      style: TextStyle(
-                          fontSize: 17,
-                          letterSpacing: 0.2,
-                          fontWeight: FontWeight.bold)),
-                ),
-                SizedBox(height: 5),
+                SettingsHeader(heading: "Version"),
                 SettingsTile(children: [Text(longName)]),
-                SizedBox(height: 20),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                  child: Text("Kernel",
-                      style: TextStyle(
-                          fontSize: 17,
-                          letterSpacing: 0.2,
-                          fontWeight: FontWeight.bold)),
-                ),
-                SizedBox(height: 5),
+                SettingsHeader(heading: "Kernel"),
                 SettingsTile(children: [Text(kernel)]),
-                SizedBox(height: 20),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                  child: Text("Pangolin version",
-                      style: TextStyle(
-                          fontSize: 17,
-                          letterSpacing: 0.2,
-                          fontWeight: FontWeight.bold)),
-                ),
-                SizedBox(height: 5),
+                SettingsHeader(heading: "Pangolin Version"),
                 SettingsTile(children: [Text(fullPangolinVersion)]),
-                SizedBox(height: 20),
+                SettingsHeader(heading: "Developer Options"),
+                SettingsTile(children: [
+                  SwitchListTile(
+                    secondary: Icon(Icons.developer_mode_outlined),
+                    title: Text("Enable Developer Options"),
+                    onChanged: (bool value) {
+                      setState(() {
+                        HiveManager.set("developeroptions", value);
+                      });
+                    },
+                    value: HiveManager.get("developeroptions"),
+                  )
+                ]),
               ]),
             ],
           ),

@@ -125,7 +125,8 @@ class _DesktopState extends State<Desktop> {
                         filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
                         child: Container(
                           decoration: BoxDecoration(
-                              color: Colors.black.withOpacity(0.75)),
+                            color: Colors.black.withOpacity(0.75),
+                          ),
                           child: QuickSettings(),
                         ),
                       ),
