@@ -371,7 +371,7 @@ class _CustomizationState extends State<Customization> {
                                           child: new Text("Yes"),
                                           onPressed: () {
                                             Process.run(
-                                                'bash', ['/dahlia/restart.sh']);
+                                                'bash', ['pkill X']);
                                           },
                                         ),
                                       ],
