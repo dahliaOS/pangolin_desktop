@@ -1,4 +1,4 @@
-name: Linux build
+name: Build Linux
 on:
   push:
     paths-ignore:
