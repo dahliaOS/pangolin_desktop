@@ -18,12 +18,14 @@ jobs:
     - uses: subosito/flutter-action@v1
     - run: flutter channel dev
     - name: Clone existing files
-      run: git clone "${{ secrets.GIT_WEB_REMOTE }}" build/web
+      run: git clone "${{ secrets.GIT_WEB_REMOTE }}" build/webout && rm -r build/web/*
     - run: flutter config --enable-web
     - run: flutter build web
     - name: Deploy
       run: |
-        cd build/web
+        cd build/webout
+        rm -r *
+        cp ../web/* .
         git config --global user.name dahliaOS-WebBuild
         git config --global user.email build@web.dahliaos.io
         git add -A
