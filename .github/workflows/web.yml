@@ -25,7 +25,7 @@ jobs:
       run: |
         cd build/webout
         rm -r *
-        cp ../web/* .
+        cp -r ../web/* .
         git config --global user.name dahliaOS-WebBuild
         git config --global user.email build@web.dahliaos.io
         git add -A
