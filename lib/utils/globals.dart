@@ -13,11 +13,11 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-String totalVersionNumber = "201004";
+String totalVersionNumber = "201215";
 String headingFeatureString =
     "dahliaOS Linux-Based " + totalVersionNumber + " ...";
 String longName = "dahliaOS Linux-Based " + totalVersionNumber + " PRE-RELEASE";
-String kernel = "Linux 5.7.19";
-String pangolinCommit = "Pangolin 5ca4834741a636d7557cb472819bbf8196db8ddc";
+String kernel = "5.10";
+String pangolinCommit = "Pangolin 3612f55b92a61abab4ca0adc64108161de3c104f";
 String fullPangolinVersion =
-    "Pangolin 201215; HASH: 5ca4834741a636d7557cb472819bbf8196db8ddc";
+    "Pangolin 201202; HASH: 3612f55b92a61abab4ca0adc64108161de3c104f";
