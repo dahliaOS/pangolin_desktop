@@ -8,7 +8,7 @@ on:
     branches: [ master ]
 jobs:
   build_and_deploy_web:
-    name: Build and Deploy Web
+    name: Build and deploy web
     runs-on: ubuntu-latest
     if: github.event_name == 'push'
     steps:
