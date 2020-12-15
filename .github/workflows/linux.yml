@@ -2,7 +2,8 @@ name: Build Linux
 on:
   push:
     paths-ignore:
-      - '*.md'
+      - '**.md'
+      - '**.xml'
     branches: [ master ]
   pull_request:
     branches: [ master ]
