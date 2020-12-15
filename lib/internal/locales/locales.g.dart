@@ -263,7 +263,6 @@ class _$LocaleEnUS extends _$LocaleBase {
     "pangolin.qs_invertcolors": "Invert colors",
     "pangolin.qs_theme": "Theme",
     "pangolin.qs_wifi": "Wi-Fi",
-    "pangolin.qs_teststring1": "Whoops!",
   };
 }
 
