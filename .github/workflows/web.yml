@@ -21,6 +21,8 @@ jobs:
     - name: Clone existing files
       run: git clone "${{ secrets.GIT_WEB_REMOTE }}" build/webout
     - run: flutter config --enable-web
+    - run: dart bin/locale_gen.dart assets/locales lib/internal/locales
+      name: Generate Localization
     - run: flutter build web
     - name: Deploy
       run: |
@@ -32,3 +34,5 @@ jobs:
         git add -A
         git commit -m "Update $(date)"
         git push --set-upstream origin master --force
+    - run: git config --global user.name "dahliaOS" && git commit -am "Generated Locales" && git push
+      name: Push Localization
