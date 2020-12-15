@@ -17,9 +17,11 @@ jobs:
       - run: flutter channel dev
       - run: flutter config --enable-linux-desktop
       - run: sudo apt update && sudo apt install cmake ninja-build clang libgtk-3-dev -y
-      - run: flutter build linux --debug
+      - name: Get dependencies
+        run: flutter pub get
       - name: Generate Localization
         run: dart bin/locale_gen.dart assets/locales lib/internal/locales
+      - run: flutter build linux --debug
       - run: git config --global user.name "dahliaOS" && git commit -am "Generated Locales" && git push
         name: Push Localization
       - name: Upload linux build for build_linux
