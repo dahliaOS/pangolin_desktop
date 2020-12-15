@@ -15,5 +15,6 @@ jobs:
       - run: sudo sh -c 'wget -qO- https://storage.googleapis.com/download.dartlang.org/linux/debian/dart_stable.list > /etc/apt/sources.list.d/dart_stable.list'
       - run: sudo apt-get update -y
       - run: sudo apt-get install dart -y
+      - run: dart pub get
       - run: dart bin/locale_gen.dart assets/locales lib/internal/locales
       - run: git config --global user.name "dahliaOS" && git commit -am "Generated Locales" && git push
