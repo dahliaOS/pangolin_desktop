@@ -2,8 +2,7 @@ name: Locale Generator
 on:
   push:
     paths:
-      #- '**.xml'
-      - "**.xml.void"
+      - '**.xml'
     branches: [ master ]
 jobs:
   locale_gen:
