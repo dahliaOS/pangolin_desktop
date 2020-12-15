@@ -28,4 +28,4 @@ jobs:
         git add .
         git commit -m "Update $(date)"
         git remote add origin "${{ secrets.GIT_WEB_REMOTE }}"
-        git push --set-upstream origin master
+        git push --set-upstream origin master --force
