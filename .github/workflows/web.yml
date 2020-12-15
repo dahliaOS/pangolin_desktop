@@ -17,15 +17,13 @@ jobs:
         fetch-depth: 2
     - uses: subosito/flutter-action@v1
     - run: flutter channel dev
+    - name: Clone existing files
+      run: git clone "${{ secrets.GIT_WEB_REMOTE }}" build/web
     - run: flutter config --enable-web
     - run: flutter build web
-    - name: Prepare to deploy
-      run: git config --global user.name "dahliaOS" && git commit -a -m "You've found me!"
     - name: Deploy
       run: |
         cd build/web
-        git init .
         git add .
         git commit -m "Update $(date)"
-        git remote add origin "${{ secrets.GIT_WEB_REMOTE }}"
         git push --set-upstream origin master --force
