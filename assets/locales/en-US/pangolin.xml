@@ -41,4 +41,5 @@
     <string name="qs_invertcolors">Invert colors</string>
     <string name="qs_theme">Theme</string>
     <string name="qs_wifi">Wi-Fi</string>
+    <string name="qs_teststring1">Added a new string but pretend it's not here</string>
 </resources>
