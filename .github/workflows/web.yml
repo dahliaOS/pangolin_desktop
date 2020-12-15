@@ -24,6 +24,8 @@ jobs:
     - name: Deploy
       run: |
         cd build/web
-        git add .
+        git config --global user.name dahliaOS-WebBuild
+        git config --global user.email build@web.dahliaos.io
+        git add -A
         git commit -m "Update $(date)"
         git push --set-upstream origin master --force
