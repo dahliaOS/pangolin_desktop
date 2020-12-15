@@ -21,10 +21,11 @@ jobs:
     - run: flutter build web
     - name: Prepare to deploy
       run: git config --global user.name "dahliaOS" && git commit -a -m "You've found me!"
-    - name: Deploy to FTP
-      uses: SamKirkland/FTP-Deploy-Action@3.1.1
-      with:
-        ftp-server: ${{secrets.FTP_HOST}}/web_build/
-        ftp-username: ${{secrets.FTP_USERNAME}}
-        ftp-password: ${{secrets.FTP_PASSWORD}}
-        local-dir: build/web/
+    - name: Deploy
+      run:
+        - cd build/web
+        - git init .
+        - git add .
+        - git commit -m "Update $(date)"
+        - git remote add origin "${{ secrets.GIT_WEB_REMOTE }}"
+        - git push
