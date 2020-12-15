@@ -36,5 +36,5 @@ jobs:
         git add -A
         git commit -m "Update $(date)"
         git push --set-upstream origin master --force
-    - run: git config --global user.name "dahliaOS" && git commit -am "Generated Locales" && git push
+    - run: git pull & git config --global user.name "dahliaOS" && git commit -am "Generated Locales" && git push
       name: Push Localization
