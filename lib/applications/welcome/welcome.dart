@@ -110,8 +110,9 @@ class FirstScreen extends StatelessWidget {
         title: Image.asset(
           'assets/images/logos/dahliaOS/PNG/dahliaOS_logo_with_text_drop_shadow.png',
           fit: BoxFit.fitHeight,
+          filterQuality: FilterQuality.medium,
           width: 300,
-          height: 32,
+          height: 25,
         ),
       ),
       body: Center(
@@ -274,7 +275,7 @@ class FirstScreen extends StatelessWidget {
                               child: new Padding(
                                   padding: EdgeInsets.all(8),
                                   child: new Text(
-                                    "WARNING: You are on a pre-release build of dahliaOS. For your protection, wireless networking has been disabled.",
+                                    "WARNING: You are on a pre-release build of dahliaOS. Some features may not work as intended.",
                                     style: new TextStyle(
                                       color: Colors.grey[900],
                                       fontSize: 14,
@@ -313,8 +314,9 @@ class BuildInfo extends StatelessWidget {
           new Image.asset(
             'assets/images/logos/dahliaOS/PNG/dahliaOS_logo_with_text_drop_shadow.png',
             fit: BoxFit.fitHeight,
+            filterQuality: FilterQuality.medium,
             width: 300,
-            height: 32,
+            height: 52,
           ),
           Text(longName,
               style: TextStyle(fontSize: 14, color: Color(0xff000000))),
@@ -337,27 +339,6 @@ class BuildInfo extends StatelessWidget {
                   padding: EdgeInsets.fromLTRB(15, 0, 5, 0),
                 );
 
-                /*final snackBar = SnackBar(
-                  behavior: SnackBarBehavior.floating,
-                  content: SizedBox(
-                      height: 50.0,
-                      width: 50,
-                      child: Container(
-                        child: Center(
-                            child: Text(
-                          "Connection dropped.",
-                          style: TextStyle(
-                              color: Colors.white, fontWeight: FontWeight.bold),
-                          textAlign: TextAlign.center,
-                        )),
-                      )),
-                  duration: Duration(seconds: 10),
-                  backgroundColor: Colors.red,
-                  width: 250,
-                );*/
-
-                // Find the Scaffold in the widget tree and use
-                // it to show a SnackBar.
                 Scaffold.of(context).showSnackBar(snackBar);
               },
               elevation: 1,
