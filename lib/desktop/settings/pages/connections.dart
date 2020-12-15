@@ -18,6 +18,7 @@ import 'package:Pangolin/utils/widgets/conditionWidget.dart';
 import 'package:Pangolin/utils/widgets/settingsTile.dart';
 import 'package:Pangolin/utils/widgets/settingsheader.dart';
 import 'package:flutter/material.dart';
+import 'package:Pangolin/utils/others/wifi.dart';
 
 class Connections extends StatefulWidget {
   @override
@@ -70,7 +71,6 @@ class _ConnectionsState extends State<Connections> {
                             Column(
                               children: [
                                 SwitchListTile(
-                                  secondary: Icon(Icons.wifi),
                                   onChanged: (bool value) {
                                     setState(() {
                                       HiveManager.set("wifi", value);
@@ -82,8 +82,9 @@ class _ConnectionsState extends State<Connections> {
                                 CustomConditionWidget(
                                     HiveManager.get("wifi"),
                                     Container(
-                                      height: 300,
-                                      child: ListView.builder(
+                                        height: 300,
+                                        child:
+                                            /* ListView.builder(
                                           itemCount: wifiList.length,
                                           itemBuilder:
                                               (BuildContext context, int i) {
@@ -117,8 +118,8 @@ class _ConnectionsState extends State<Connections> {
                                                 });
                                               },
                                             );
-                                          }),
-                                    ),
+                                          }),*/
+                                            new WirelessApp()),
                                     SizedBox.shrink()),
                               ],
                             ),
@@ -126,7 +127,6 @@ class _ConnectionsState extends State<Connections> {
                             Column(
                               children: [
                                 SwitchListTile(
-                                  secondary: Icon(Icons.bluetooth),
                                   onChanged: (bool value) {
                                     setState(() {
                                       HiveManager.set("bluetooth", value);
@@ -220,7 +220,7 @@ class _ConnectionsState extends State<Connections> {
                               child: new Padding(
                                   padding: EdgeInsets.all(8),
                                   child: new Text(
-                                    "WARNING: You are on a pre-release build of dahliaOS. Wireless networking and Bluetooth have been disabled.",
+                                    "WARNING: You are on a pre-release build of dahliaOS. Some features may not work as intended.",
                                     style: new TextStyle(
                                       color: Colors.grey[900],
                                       fontSize: 14,

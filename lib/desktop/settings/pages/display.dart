@@ -260,8 +260,9 @@ class _DisplayState extends State<Display> {
                                       new FlatButton(
                                         child: new Text("Yes, Restart!"),
                                         onPressed: () {
-                                          Process.run(
-                                              'bash', ['/dahlia/restart.sh']);
+                                          Process.start(
+                                              'bash', ['/dahlia/restart.sh'],
+                                              mode: ProcessStartMode.detached);
                                         },
                                       ),
                                     ],

@@ -370,8 +370,10 @@ class _CustomizationState extends State<Customization> {
                                         new FlatButton(
                                           child: new Text("Yes"),
                                           onPressed: () {
-                                            Process.run(
-                                                'bash', ['/dahlia/restart.sh']);
+                                            Process.start(
+                                                'bash', ['/dahlia/restart.sh'],
+                                                mode:
+                                                    ProcessStartMode.detached);
                                           },
                                         ),
                                       ],
