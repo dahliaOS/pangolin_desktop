@@ -1,4 +1,4 @@
-name: Build and deploy web
+name: Build and Deploy Web
 on:
   push:
     paths-ignore:
@@ -8,7 +8,7 @@ on:
     branches: [ master ]
 jobs:
   build_and_deploy_web:
-    name: Build and deploy web
+    name: Build and Deploy Web
     runs-on: ubuntu-latest
     if: github.event_name == 'push'
     steps:
