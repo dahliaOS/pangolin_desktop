@@ -63,10 +63,13 @@ build_web:
 build_linux:
   <<: *runchecks
   stage: build
-  script:
+  before_script:
+    - flutter channel dev
+    - flutter upgrade
     - flutter config --enable-linux-desktop
     - sudo apt update
     - sudo apt install cmake ninja-build clang libgtk-3-dev -y
+  script:
     - flutter build linux --debug
   artifacts:
     name: 'pangolin-linux-builds'
