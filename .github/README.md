@@ -11,7 +11,7 @@
 
 # Pangolin Desktop UI [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=dahliaOS%20is%20a%20modern,%20secure,%20lightweight%20and%20responsive%20operating%20system,%20combining%20the%20best%20of%20GNU/Linux%20and%20Fuchsia%20OS&url=https://dahliaos.io&via=realdahliaos&hashtags=dahliaos,linux,zircon,flutter,dart,fuchsia,opensource)
 ![Build Linux](https://github.com/dahlia-os/pangolin-desktop/workflows/Build%20Linux/badge.svg)
-![Build and deploy web](https://github.com/dahlia-os/pangolin-desktop/workflows/Build%20and%20deploy%20web/badge.svg)
+![Build and Deploy Web](https://github.com/dahlia-os/pangolin-desktop/workflows/Build%20and%20Deploy%20Web/badge.svg)
 ![GitHub issues](https://img.shields.io/github/issues/dahlia-os/pangolin-desktop?color=brightgreen)
 ![Website](https://img.shields.io/website?url=https%3A%2F%2Fweb.dahliaos.io)
 [![Crowdin](https://badges.crowdin.net/e/1a53a75fb38f15843d4eb6d9b9e4215a/localized.svg)](https://translate.dahliaos.io/pangolin)
