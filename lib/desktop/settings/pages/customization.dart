@@ -39,15 +39,19 @@ class _CustomizationState extends State<Customization> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 40),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Center(
+                Padding(
+                    padding: EdgeInsets.only(left: 25),
                     child: Text(
-                  "Customization",
-                  style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: "Roboto"),
-                )),
+                      "Customization",
+                      style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.w300,
+                          fontFamily: "Roboto"),
+                    )),
                 Padding(
                   padding: const EdgeInsets.all(30.0),
                   child: Column(
