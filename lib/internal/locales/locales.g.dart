@@ -328,7 +328,6 @@ class _$LocaleFrFR extends _$LocaleBase {
 
   @override
   Map<String, String> get data => {
-    "pangolin.app_containers": "Conteneurs",
     "pangolin.app_authenticator": "Authentificateur",
     "pangolin.app_calculator": "Calculatrice",
     "pangolin.app_clock": "Horloge",
@@ -336,23 +335,22 @@ class _$LocaleFrFR extends _$LocaleBase {
     "pangolin.app_files": "Fichiers",
     "pangolin.app_media": "Médias",
     "pangolin.app_music": "Musique",
-    "pangolin.app_notes": "Notes",
-    "pangolin.app_notesmobile": "Notes (mobile)",
+    "pangolin.app_notes": "Éditeur de Texte",
+    "pangolin.app_notesmobile": "Notes (Mobile)",
     "pangolin.app_messages": "Messages",
-    "pangolin.app_rootterminal": "Terminal root",
+    "pangolin.app_rootterminal": "Terminal super-utilisateur",
     "pangolin.app_settings": "Paramètres",
-    "pangolin.app_systemlogs": "Journal du système",
+    "pangolin.app_systemlogs": "Journaux système",
     "pangolin.app_taskmanager": "Gestionnaire de tâches",
     "pangolin.app_terminal": "Terminal",
-    "pangolin.app_themedemo": "Démo du thème",
+    "pangolin.app_themedemo": "Démo de thème",
     "pangolin.app_welcome": "Bienvenue",
     "pangolin.app_help": "Aide système",
     "pangolin.app_web": "Navigateur Web",
-    "pangolin.app_developeroptions": "Options développeur",
+    "pangolin.app_developeroptions": "Options développeurs",
     "pangolin.featurenotimplemented_title": "Fonctionnalité non implémentée",
     "pangolin.featurenotimplemented_value": "Cette fonctionnalité n'est actuellement pas disponible sur votre version de Pangolin. S'il vous plaît, consultez https://reddit.com/r/dahliaos pour vérifier si des mises à jour sont disponibles.",
     "pangolin.launcher_card_information_title": "Information",
-    "pangolin.launcher_card_information_value": "Avertissement : Vous êtes sur une version de développement en pré-version. Pour votre protection, cette version a été air-gappée.",
     "pangolin.launcher_card_kernel_title": "Noyau",
     "pangolin.launcher_card_kernel_value": "Pilotes pour le GPU intégré mis à jour",
     "pangolin.launcher_card_music_title": "Musique - En cours de lecture",
@@ -371,6 +369,8 @@ class _$LocaleFrFR extends _$LocaleBase {
     "pangolin.qs_invertcolors": "Inverser les couleurs",
     "pangolin.qs_theme": "Thème",
     "pangolin.qs_wifi": "Wi-Fi",
+    "pangolin.app_containers": "Graft",
+    "pangolin.launcher_card_information_value": "Il fait froid dehors, prends un manteau !",
   };
 }
 
