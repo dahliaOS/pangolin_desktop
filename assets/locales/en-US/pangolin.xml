@@ -41,6 +41,6 @@
     <string name="qs_invertcolors">Invert colors</string>
     <string name="qs_theme">Theme</string>
     <string name="qs_wifi">Wi-Fi</string>
-    <string name="app_containers" comment="Do not translate this string">Graft</string>
+    <string name="app_containers" comment="Do not actually translate this string, just write &quot;Graft&quot; as the translation">Graft</string>
     <string name="launcher_card_information_value">It\'s cold outside, grab a coat!</string>
 </resources>
