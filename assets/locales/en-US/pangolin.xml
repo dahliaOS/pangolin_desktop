@@ -41,4 +41,6 @@
     <string name="qs_invertcolors">Invert colors</string>
     <string name="qs_theme">Theme</string>
     <string name="qs_wifi">Wi-Fi</string>
+    <string name="graft" comment="app_containers">Graft</string>
+    <string name="it-s-snowing-outside-grab-a-coat" comment="launcher_card_information_value">It\'s snowing outside, grab a coat!</string>
 </resources>
