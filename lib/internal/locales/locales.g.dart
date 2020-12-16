@@ -27,6 +27,7 @@ class Locales {
     Locale("tr", "TR"),
     Locale("uk", "UA"),
     Locale("zh", "CN"),
+    Locale("zh", "TW"),
   ];
 
   static Map<String, Map<String, String>> get data => {
@@ -53,6 +54,7 @@ class Locales {
     _$LocaleTrTR().locale: _$LocaleTrTR().data,
     _$LocaleUkUA().locale: _$LocaleUkUA().data,
     _$LocaleZhCN().locale: _$LocaleZhCN().data,
+    _$LocaleZhTW().locale: _$LocaleZhTW().data,
   };
 }
 
@@ -1253,6 +1255,57 @@ class _$LocaleZhCN extends _$LocaleBase {
     "pangolin.qs_flashlight": "闪光灯",
     "pangolin.qs_invertcolors": "颜色反转",
     "pangolin.qs_theme": "主题",
+    "pangolin.qs_wifi": "Wi-Fi",
+  };
+}
+
+
+class _$LocaleZhTW extends _$LocaleBase {
+  @override
+  String get locale => "zh-TW";
+
+  @override
+  Map<String, String> get data => {
+    "pangolin.app_authenticator": "認證者",
+    "pangolin.app_calculator": "計算器",
+    "pangolin.app_clock": "時鐘",
+    "pangolin.app_disks": "磁碟",
+    "pangolin.app_files": "檔案",
+    "pangolin.app_media": "媒體",
+    "pangolin.app_music": "音樂",
+    "pangolin.app_notes": "文字編輯器",
+    "pangolin.app_notesmobile": "筆記（手機版）",
+    "pangolin.app_messages": "訊息",
+    "pangolin.app_rootterminal": "終端機（Root權限）",
+    "pangolin.app_settings": "設置",
+    "pangolin.app_systemlogs": "系統日誌",
+    "pangolin.app_taskmanager": "任務管理器",
+    "pangolin.app_terminal": "終端機",
+    "pangolin.app_themedemo": "佈景主題Demo",
+    "pangolin.app_welcome": "歡迎",
+    "pangolin.app_help": "救命",
+    "pangolin.app_web": "網頁瀏覽器",
+    "pangolin.app_developeroptions": "開發人員選項",
+    "pangolin.featurenotimplemented_title": "功能尚未實作",
+    "pangolin.featurenotimplemented_value": "此功能在您目前的Pangolin版本無法使用，請至https://reddit.com/r/dahliaos查看更新。",
+    "pangolin.launcher_card_information_title": "信息",
+    "pangolin.launcher_card_kernel_title": "核心",
+    "pangolin.launcher_card_kernel_value": "內建顯示卡的驅動程式已更新",
+    "pangolin.launcher_card_music_title": "音樂－播放中",
+    "pangolin.launcher_card_music_value": "Vance Joy - Georgia",
+    "pangolin.launcher_card_security_title": "安全",
+    "pangolin.launcher_card_security_value": "檔案系統鎖目前為：開啟",
+    "pangolin.launcher_card_system_title": "系統",
+    "pangolin.launcher_card_system_value": "歡迎來到dahliaOS！",
+    "pangolin.launcher_search": "搜尋您的裝置、應用程式、網頁⋯",
+    "pangolin.qs_airplanemode": "飛航模式",
+    "pangolin.qs_autorotate": "自動旋轉",
+    "pangolin.qs_bluetooth": "藍芽",
+    "pangolin.qs_changelanguage": "繁體中文",
+    "pangolin.qs_dnd": "勿擾模式",
+    "pangolin.qs_flashlight": "手電筒",
+    "pangolin.qs_invertcolors": "反相顏色",
+    "pangolin.qs_theme": "佈景主題",
     "pangolin.qs_wifi": "Wi-Fi",
   };
 }
