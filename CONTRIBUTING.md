@@ -27,7 +27,7 @@ This project and everyone participating in it is governed by dahliaOS' Code of C
 
 By participating, you are expected to respect and value this code. 
 
-If you notice any unacceptable behaviour, you can report it to contact+integrity@dahliaos.io
+If you notice any unacceptable behaviour, you can report it to integrity@dahliaos.io
 
 ## How can I contribute?
 
