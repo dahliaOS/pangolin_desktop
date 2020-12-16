@@ -1109,7 +1109,6 @@ class _$LocaleTrTR extends _$LocaleBase {
 
   @override
   Map<String, String> get data => {
-    "pangolin.app_containers": "Kapsayıcılar",
     "pangolin.app_authenticator": "Kimlik Doğrulayıcı",
     "pangolin.app_calculator": "Hesap Makinesi",
     "pangolin.app_clock": "Saat",
@@ -1118,7 +1117,7 @@ class _$LocaleTrTR extends _$LocaleBase {
     "pangolin.app_media": "Ortam",
     "pangolin.app_music": "Müzik",
     "pangolin.app_notes": "Metin Düzenleyici",
-    "pangolin.app_notesmobile": "Notlar (taşınabilir)",
+    "pangolin.app_notesmobile": "Notlar (Taşınabilir)",
     "pangolin.app_messages": "İletiler",
     "pangolin.app_rootterminal": "Kök Uçbirim",
     "pangolin.app_settings": "Ayarlar",
@@ -1133,11 +1132,10 @@ class _$LocaleTrTR extends _$LocaleBase {
     "pangolin.featurenotimplemented_title": "Özellik henüz mevcut değil",
     "pangolin.featurenotimplemented_value": "Bu özellik şu anda kullandığınız yapıda mevcut değil, gelişmeler için lütfen https://reddit.com/r/dahliaos adresine bakın.",
     "pangolin.launcher_card_information_title": "Bilgi",
-    "pangolin.launcher_card_information_value": "Uyarı: Geliştiricilere yönelik bir sınama yapısı kullanıyorsunuz. Güvenliğiniz için bu yapı dış bağlantılara kapatılmıştır.",
     "pangolin.launcher_card_kernel_title": "Çekirdek",
     "pangolin.launcher_card_kernel_value": "Dahili GPU sürücüleri güncellendi",
     "pangolin.launcher_card_music_title": "Müzik - Şimdi oynatılıyor",
-    "pangolin.launcher_card_music_value": "Lil Pump - Boss",
+    "pangolin.launcher_card_music_value": "Vance Joy - Georgia",
     "pangolin.launcher_card_security_title": "Güvenlik",
     "pangolin.launcher_card_security_value": "Dosya sistemi kilidi AÇIK",
     "pangolin.launcher_card_system_title": "Sistem",
