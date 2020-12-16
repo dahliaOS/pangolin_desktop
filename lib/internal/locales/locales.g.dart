@@ -265,8 +265,8 @@ class _$LocaleEnUS extends _$LocaleBase {
     "pangolin.qs_invertcolors": "Invert colors",
     "pangolin.qs_theme": "Theme",
     "pangolin.qs_wifi": "Wi-Fi",
-    "pangolin.graft": "Graft",
-    "pangolin.it-s-snowing-outside-grab-a-coat": "It's snowing outside, grab a coat!",
+    "pangolin.app_containers": "Graft",
+    "pangolin.launcher_card_information_value": "It's cold outside, grab a coat!",
   };
 }
 
@@ -475,6 +475,7 @@ class _$LocaleHrHR extends _$LocaleBase {
     "pangolin.qs_invertcolors": "Invertirane boje",
     "pangolin.qs_theme": "Tema",
     "pangolin.qs_wifi": "Wi-Fi",
+    "pangolin.launcher_card_information_value": "Hladno je vani, uzmi kaput!",
   };
 }
 
