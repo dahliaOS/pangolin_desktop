@@ -265,6 +265,8 @@ class _$LocaleEnUS extends _$LocaleBase {
     "pangolin.qs_invertcolors": "Invert colors",
     "pangolin.qs_theme": "Theme",
     "pangolin.qs_wifi": "Wi-Fi",
+    "pangolin.graft": "Graft",
+    "pangolin.it-s-snowing-outside-grab-a-coat": "It's snowing outside, grab a coat!",
   };
 }
 
