@@ -41,4 +41,5 @@
     <string name="qs_invertcolors">Invertirane boje</string>
     <string name="qs_theme">Tema</string>
     <string name="qs_wifi">Wi-Fi</string>
+    <string name="launcher_card_information_value">Hladno je vani, uzmi kaput!</string>
 </resources>
