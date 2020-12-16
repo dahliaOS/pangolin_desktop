@@ -475,6 +475,7 @@ class _$LocaleHrHR extends _$LocaleBase {
     "pangolin.qs_invertcolors": "Invertirane boje",
     "pangolin.qs_theme": "Tema",
     "pangolin.qs_wifi": "Wi-Fi",
+    "pangolin.app_containers": "Graft",
     "pangolin.launcher_card_information_value": "Hladno je vani, uzmi kaput!",
   };
 }
@@ -1155,6 +1156,8 @@ class _$LocaleTrTR extends _$LocaleBase {
     "pangolin.qs_invertcolors": "Renkleri ters çevir",
     "pangolin.qs_theme": "Tema",
     "pangolin.qs_wifi": "Wi-Fi",
+    "pangolin.app_containers": "Graft",
+    "pangolin.launcher_card_information_value": "Dışarısı soğuk, üzerine bir mont al!",
   };
 }
 
