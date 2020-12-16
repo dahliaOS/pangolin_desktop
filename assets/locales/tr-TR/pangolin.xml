@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_containers">Kapsayıcılar</string>
     <string name="app_authenticator">Kimlik Doğrulayıcı</string>
     <string name="app_calculator">Hesap Makinesi</string>
     <string name="app_clock">Saat</string>
@@ -9,7 +8,7 @@
     <string name="app_media">Ortam</string>
     <string name="app_music">Müzik</string>
     <string name="app_notes">Metin Düzenleyici</string>
-    <string name="app_notesmobile">Notlar (taşınabilir)</string>
+    <string name="app_notesmobile">Notlar (Taşınabilir)</string>
     <string name="app_messages">İletiler</string>
     <string name="app_rootterminal">Kök Uçbirim</string>
     <string name="app_settings">Ayarlar</string>
@@ -24,11 +23,10 @@
     <string name="featurenotimplemented_title">Özellik henüz mevcut değil</string>
     <string name="featurenotimplemented_value">Bu özellik şu anda kullandığınız yapıda mevcut değil, gelişmeler için lütfen https://reddit.com/r/dahliaos adresine bakın.</string>
     <string name="launcher_card_information_title">Bilgi</string>
-    <string name="launcher_card_information_value">Uyarı: Geliştiricilere yönelik bir sınama yapısı kullanıyorsunuz. Güvenliğiniz için bu yapı dış bağlantılara kapatılmıştır.</string>
     <string name="launcher_card_kernel_title">Çekirdek</string>
     <string name="launcher_card_kernel_value">Dahili GPU sürücüleri güncellendi</string>
     <string name="launcher_card_music_title">Müzik - Şimdi oynatılıyor</string>
-    <string name="launcher_card_music_value">Lil Pump - Boss</string>
+    <string name="launcher_card_music_value">Vance Joy - Georgia</string>
     <string name="launcher_card_security_title">Güvenlik</string>
     <string name="launcher_card_security_value">Dosya sistemi kilidi AÇIK</string>
     <string name="launcher_card_system_title">Sistem</string>
