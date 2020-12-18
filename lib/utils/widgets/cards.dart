@@ -14,7 +14,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:Pangolin/utils/localization/localization.dart';
 import 'package:Pangolin/utils/hiveManager.dart';
 import 'package:flutter/material.dart';
 

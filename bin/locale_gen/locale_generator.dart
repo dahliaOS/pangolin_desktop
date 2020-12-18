@@ -22,6 +22,7 @@ class LocaleGenerator {
 
     for (var element in folders) {
       if (element is Directory) {
+        print(element);
         final locale = getNameFromPath(element.path);
         locales.add(locale);
         paths.add(element);
@@ -38,6 +39,7 @@ class LocaleGenerator {
     localesBuffer.writeln();
     localesBuffer.writeln("  static List<Locale> get supported => [");
     locales.forEach((e) {
+      //print(e);
       final splittedLocale = e.split("-");
       localesBuffer.writeln(
           '    Locale("${splittedLocale[0]}", "${splittedLocale[1]}"),');
@@ -66,7 +68,11 @@ class LocaleGenerator {
 }
 
 String getNameFromPath(String path) {
-  return path.split("/").last;
+  if (Platform.isWindows) {
+    return path.split("\\").last;
+  } else {
+    return path.split("/").last;
+  }
 }
 
 String getClassNameFromLocale(String locale) {
