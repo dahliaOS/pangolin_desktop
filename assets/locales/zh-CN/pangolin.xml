@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_containers">容器</string>
     <string name="app_authenticator">身份验证器</string>
     <string name="app_calculator">计算机</string>
     <string name="app_clock">时钟</string>
@@ -11,7 +10,7 @@
     <string name="app_notes">文本编辑器</string>
     <string name="app_notesmobile">笔记(移动端)</string>
     <string name="app_messages">信息</string>
-    <string name="app_rootterminal">超级终端</string>
+    <string name="app_rootterminal">根用户终端</string>
     <string name="app_settings">设定</string>
     <string name="app_systemlogs">系统日志</string>
     <string name="app_taskmanager">任务管理器</string>
@@ -19,16 +18,15 @@
     <string name="app_themedemo">主题演示</string>
     <string name="app_welcome">欢迎</string>
     <string name="app_help">帮助</string>
-    <string name="app_web">浏览器</string>
+    <string name="app_web">网页浏览器</string>
     <string name="app_developeroptions">开发人员选项</string>
     <string name="featurenotimplemented_title">尚未实现的功能</string>
     <string name="featurenotimplemented_value">该功能在您当前版本的Pangolin上不可用，请访问 https://reddit.com/r/dahliaos 查看更新。</string>
     <string name="launcher_card_information_title">信息</string>
-    <string name="launcher_card_information_value">警告: 您正在使用开发版本！为了保护您的资料安全，本版本已经被网闸保护。</string>
     <string name="launcher_card_kernel_title">内核</string>
     <string name="launcher_card_kernel_value">集成显卡驱动已更新</string>
     <string name="launcher_card_music_title">音乐 - 正在播放</string>
-    <string name="launcher_card_music_value">Lil Pump - Boss</string>
+    <string name="launcher_card_music_value">Vance Joy - Georgia</string>
     <string name="launcher_card_security_title">安全</string>
     <string name="launcher_card_security_value">文件系统已上锁</string>
     <string name="launcher_card_system_title">系统</string>

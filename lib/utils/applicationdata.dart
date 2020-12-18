@@ -132,15 +132,15 @@ void initializeApps() {
   //Tasks
   applicationsData.add(ApplicationData(
       appName: LocaleStrings.pangolin.appContainers,
-      icon: "containers",
+      icon: "graft",
       app: Graft(),
-      color: Colors.blue[600],
+      color: Colors.blue[700],
       appExists: true));
 
   //Welcome
   applicationsData.add(ApplicationData(
       appName: LocaleStrings.pangolin.appWelcome,
-      icon: "welcome",
+      icon: "welcome-info",
       app: Welcome(),
       color: Colors.grey[900],
       appExists: true));

@@ -10,8 +10,9 @@
 <a href="https://github.com/dahlia-os/documentation">Documentation</a>
 
 # Pangolin Desktop UI [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=dahliaOS%20is%20a%20modern,%20secure,%20lightweight%20and%20responsive%20operating%20system,%20combining%20the%20best%20of%20GNU/Linux%20and%20Fuchsia%20OS&url=https://dahliaos.io&via=realdahliaos&hashtags=dahliaos,linux,zircon,flutter,dart,fuchsia,opensource)
-![](https://github.com/dahlia-os/pangolin-desktop/workflows/CI/badge.svg) ![](https://github.com/dahlia-os/pangolin-desktop/workflows/Deploy/badge.svg)
-![GitHub issues](https://img.shields.io/github/issues/dahlia-os/pangolin-desktop?color=brightgreen)
+![Build Linux](https://github.com/dahlia-os/pangolin-desktop/workflows/Build%20Linux/badge.svg)
+![Build and Deploy Web](https://github.com/dahlia-os/pangolin-desktop/workflows/Build%20and%20Deploy%20Web/badge.svg)
+![Locale Generator](https://github.com/dahlia-os/pangolin-desktop/workflows/Locale%20Generator/badge.svg)
 ![Website](https://img.shields.io/website?url=https%3A%2F%2Fweb.dahliaos.io)
 [![Crowdin](https://badges.crowdin.net/e/1a53a75fb38f15843d4eb6d9b9e4215a/localized.svg)](https://translate.dahliaos.io/pangolin)
 ![GitHub](https://img.shields.io/github/license/dahlia-os/pangolin-desktop?color=brightgreen)
@@ -55,6 +56,6 @@ If your language is not added, let us know and we'll add it!
   <img width="40%" src="https://github.com/dahlia-os/brand/blob/master/Logo%20PNGs/dahliaOS%20logo%20with%20text%20(drop%20shadow).png"
 </p>
 
-Copyright @ 2019-2020 The dahliaOS Authors contact@dahliaos.io
+Copyright @ 2019-2020 - The dahliaOS Authors - contact@dahliaos.io
 
 This project is licensed under the [Apache 2.0 license](/LICENSE)

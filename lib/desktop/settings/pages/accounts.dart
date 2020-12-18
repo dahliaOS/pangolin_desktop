@@ -26,15 +26,19 @@ class _AccountsState extends State<Accounts> {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 40),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Center(
+              Padding(
+                  padding: EdgeInsets.only(left: 25),
                   child: Text(
-                "Accounts",
-                style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: "Roboto"),
-              ))
+                    "Accounts",
+                    style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.w300,
+                        fontFamily: "Roboto"),
+                  )),
             ],
           ),
         ),

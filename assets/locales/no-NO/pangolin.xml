@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_containers">Kontainer</string>
     <string name="app_authenticator">Autentisering</string>
     <string name="app_calculator">Kalkulator</string>
     <string name="app_clock">Klokke</string>

@@ -1,0 +1,41 @@
+name: Build and Deploy Web
+on:
+  push:
+    paths-ignore:
+      - '**.md'
+      - '**.xml'
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+jobs:
+  build_and_deploy_web:
+    name: Build and Deploy Web
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+    steps:
+    - uses: actions/checkout@v2.1.0
+      name: Checkout repository
+      with:
+        fetch-depth: 2
+    - uses: subosito/flutter-action@v1
+      name: Set up Flutter
+    - run: flutter channel dev
+      name: Switch Flutter channel
+    - name: Clone existing built files (for deployment)
+      run: git clone "${{ secrets.GIT_WEB_REMOTE }}" build/webout
+    - run: flutter config --enable-web
+      name: Enable web support
+    - name: Get dependencies
+      run: flutter pub get
+    - run: flutter build web
+      name: Build Pangolin for web
+    - name: Deploy
+      run: |
+        cd build/webout
+        rm -r *
+        cp -r ../web/* .
+        git config --global user.name dahliaOS-WebBuild
+        git config --global user.email build@web.dahliaos.io
+        git add -A
+        git commit -m "Update $(date)"
+        git push --set-upstream origin master --force

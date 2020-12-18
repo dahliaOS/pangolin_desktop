@@ -41,7 +41,7 @@ class HiveManager {
     createEntryIfNotExisting("timeZoneName", "English - United States");
     createEntryIfNotExisting("launcherWideMode", false);
     createEntryIfNotExisting("coloredTitlebar", true);
-    createEntryIfNotExisting("developeroptions", false);
+    createEntryIfNotExisting("developeroptions", true);
   }
 
   static set(String key, dynamic value) {
@@ -86,5 +86,6 @@ List<String> wallpapers = [
   "assets/images/wallpapers/dahliaOS/Gradient_logo_wallpaper.png",
   "assets/images/wallpapers/dahliaOS/Three_bubbles_wallpaper.png",
   "assets/images/wallpapers/dahliaOS/Bubbles_wallpaper.png",
+  "assets/images/wallpapers/dahliaOS/Mountains_wallpaper.png",
   "assets/images/wallpapers/Nature/mountain.jpg",
 ];
