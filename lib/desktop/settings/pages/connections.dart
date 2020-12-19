@@ -123,7 +123,8 @@ class _ConnectionsState extends State<Connections> {
                                               },
                                             );
                                           }),*/
-                                            new WirelessApp()),
+                                            new ClipRect(
+                                                child: new WirelessApp())),
                                     SizedBox.shrink()),
                               ],
                             ),
