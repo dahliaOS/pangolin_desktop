@@ -2,7 +2,7 @@
 
 First of all, we appreciate you considering contributing to the dahliaOS project!
 
-To make sure the contributions go as smooth as possible, here's a few tips!
+To make sure your contributions go as smooth as possible, here's a few tips!
 
 ## Table of contents
 
@@ -15,13 +15,20 @@ To make sure the contributions go as smooth as possible, here's a few tips!
   - [Feature request](#feature-request)
     - [Before submitting a feature request](#before-submitting-a-feature-request)
     - [How do I submit a feature request?](#how-do-i-submit-a-feature-request)
-  - [First code contribution](#first-code-contribution)
-  - [What do I do after I submitted a PR?](#what-do-i-do-after-i-submitted-a-pr)
+  - [Translations](#translations)
+    - [Before making a translation](#before-making-a-translation)
+    - [How to translate](#how-to-translate)
+  - [Code contributions](#code-contributions)
+    - [First code contribution](#first-code-contribution)
   - [Design contributions](#design-contributions)
+- [Pull requests](#pull-requests)
+  - [How to make a proper pull request](#how-to-make-a-proper-pull-request)
+  - [What do I do after I submitted a PR?](#what-do-i-do-after-i-submitted-a-pr)
+- [License](#license)
 
 ## Code of Conduct
 
-dahliaOS' Code of Conduct can be found [here](../CODE_OF_CONDUCT.md)!
+dahliaOS' Code of Conduct can be found [here](CODE_OF_CONDUCT.md)!
 
 This project and everyone participating in it is governed by dahliaOS' Code of Conduct and noone is exempt.
 
@@ -31,7 +38,16 @@ If you notice any unacceptable behaviour, you can report it to integrity@dahliao
 
 ## How can I contribute?
 
-Here we've explained we've explained how you can contribute to our project on GitHub but there are also many other ways to help us outside of GitHub, if you'd like to find even more ways to help us, you're always free to join our Discord and ask the devs!!
+Here we've explained we've explained how you can contribute to our project on GitHub but there are also many other ways to help us outside of GitHub, if you'd like to find even more ways to help us, you're always free to join our Discord and ask our team!
+
+You can contribute to the project by:
+
+* Reporting a bug
+* Proposing new features
+* Translating to your native language
+* Submitting a fix
+* Discussing the current state of code
+* Becoming a maintainer
 
 **Some repositories also have Projects which contain either a to-do list or a roadmap!**
 
@@ -100,13 +116,53 @@ Before submitting a feature request, here are a few tips for you:
   * Go to the #bot-commands channel
   * Type !suggestion [suggestion]
 
-## First code contribution
+## Translations
+
+We aim to provide our software in as many languages as possible so everyone could experience it in their own native language!
+
+For submitting translations, we use Crowdin so please do not edit the files found in the repositories!
+
+If you're interesting in translating our project, click [this link](https://translate.dahliaos.io)!
+
+If your language is not added, let us know and we'll add it!
+
+### Before making a translation
+
+Before making a translation, please make sure that:
+
+* **You're fluent in the language you're translating to**
+* **You pay close attention to grammar**
+* **You read the context (comments) some strings have**
+* **You use the same punctuation as the source strings**
+
+### How to translate
+
+1. Make a Crowdin account (if you already don't have one)
+2. Join our workspace
+3. Pick a project to translate (Pangolin, one of the applications etc.)
+4. Apply translations to the available strings
+
+## Code contributions
+
+To make sure that the code you want to contribute is up to our standards, here we've written a few do's and don'ts!
+
+**Do:**
+
+* Choose expressive variable, function and class names, make it as obvious as possible what the code is doing
+* The first line of the commit message should have the format "Category: Brief description of what's being changed". The "category" can be a subdirectory, but also something like "POSIX compliance" or "ClassName"
+* Split your changes into separate commits
+* Write your commit messages in proper English, with care and punctuation
+
+**Don't:**
+
+* Submit code that's incompatible with the project licence (Apache 2.0)
+* Touch anything outside the stated scope of the PR
+* Use weasel-words like "refactor" or "fix" to avoid explaining what's being changed
+* Include commented-out code
+
+### First code contribution
 
 If you're new to the project, you can look at repositories' Issues section and the issues labeled with the "good first issue" label are perfect for your first code contribution!
-
-## What do I do after I submitted a PR?
-
-We kindly ask everyone who has submitted a pull request to be patient and that's really all, we notice every singe new pull request so don't worry about it being ignored, it won't be forgotten!
 
 ## Design contributions
 
@@ -114,11 +170,36 @@ Apart from code contributions, we also accept any kind of design contributions!
 
 **Here are a few repos where you can contribute designs**:
 
-* [Wallpapers](https://github.com/dahlia-os/wallpapers)
+* [Wallpapers](https://github.com/dahliaos/wallpapers)
   * Here you can contribute your own wallpapers, make sure to read the instructions!
-* [Icons](https://github.com/dahlia-os/icons)
+* [Icons](https://github.com/dahliaos/icons)
   * Here you can contribute either modified version of existing icons or new ones!
-* [Brand](https://github.com/dahlia-os/brand)
+* [Brand](https://github.com/dahliaos/brand)
   * Here you can contribute new logos or modified current one for our project!
 
-We also love seeing UI concepts and such designs, you can share any kind of designs in our Discord, feel free to! :D
+We also love seeing UI concepts and such designs, you can share any kind of designs in our Discord, feel free to!
+
+## Pull requests
+
+PRs to our repositories are always welcome and can be a quick way to get your fix or improvement slated for the next release. In general, PRs should:
+
+* Fix an existing issue **OR** add a new feature
+* Be accompanied by a complete Pull Request template (loaded automatically when a PR is created)
+
+For changes that address core functionality or would require breaking changes (e.g. a major release), it's best to open an Issue to discuss your proposal first. This is not required but can save time creating and reviewing changes.
+
+### How to make a proper pull request
+
+1. Fork the repository to your own Github account
+2. Clone the project to your machine
+3. Make your changes
+4. Push changes to your fork
+5. Open a PR in our repository and follow the PR template so that we can efficiently review the changes
+
+### What do I do after I submitted a PR?
+
+We kindly ask everyone who has submitted a pull request to be patient and that's really all, we notice every singe new pull request so don't worry about it being ignored
+
+## License
+
+By contributing, you agree that your contributions will be licensed under the [Apache 2.0](LICENSE) license
