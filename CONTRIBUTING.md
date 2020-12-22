@@ -2,7 +2,7 @@
 
 First of all, we appreciate you considering contributing to the dahliaOS project!
 
-To make sure the contributions go as smooth as possible, here's a few tips!
+To make sure your contributions go as smooth as possible, here's a few tips!
 
 ## Table of contents
 
@@ -120,7 +120,7 @@ Before submitting a feature request, here are a few tips for you:
 
 We aim to provide our software in as many languages as possible so everyone could experience it in their own native language!
 
-For submitting translations, we use Crowdin so please do not edit the files found in the repositories
+For submitting translations, we use Crowdin so please do not edit the files found in the repositories!
 
 If you're interesting in translating our project, click [this link](https://translate.dahliaos.io)!
 
