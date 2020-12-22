@@ -25,6 +25,7 @@ Please tick the relevant option by putting an X inside the bracket
 
 ## Checklist:
 
+- [ ] My code follows the guidelines of this project
 - [ ] I have performed a self-review of my own code
 - [ ] I have commented my code, particularly in hard-to-understand areas
 - [ ] I have made corresponding changes to the documentation
