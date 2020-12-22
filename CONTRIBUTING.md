@@ -18,7 +18,7 @@ To make sure the contributions go as smooth as possible, here's a few tips!
   - [Translations](#translations)
     - [Before making a translation](#before-making-a-translation)
     - [How to translate](#how-to-translate)
-  - [Code submissions](#code-submissions)
+  - [Code contributions](#code-contributions)
     - [First code contribution](#first-code-contribution)
   - [Design contributions](#design-contributions)
 - [Pull requests](#pull-requests)
@@ -142,9 +142,9 @@ Before making a translation, please make sure that:
 3. Pick a project to translate (Pangolin, one of the applications etc.)
 4. Apply translations to the available strings
 
-## Code submissions
+## Code contributions
 
-To make sure that the code you submit is up to our standards, here we've written a few do's and don'ts!
+To make sure that the code you want to contribute is up to our standards, here we've written a few do's and don'ts!
 
 **Do:**
 
