@@ -9,6 +9,7 @@ class Locales {
     Locale("en", "US"),
     Locale("fr", "FR"),
     Locale("hr", "HR"),
+    Locale("id", "ID"),
     Locale("ja", "JP"),
     Locale("nl", "NL"),
     Locale("pt", "BR"),
@@ -23,6 +24,7 @@ class Locales {
     _$LocaleEnUS().locale: _$LocaleEnUS().data,
     _$LocaleFrFR().locale: _$LocaleFrFR().data,
     _$LocaleHrHR().locale: _$LocaleHrHR().data,
+    _$LocaleIdID().locale: _$LocaleIdID().data,
     _$LocaleJaJP().locale: _$LocaleJaJP().data,
     _$LocaleNlNL().locale: _$LocaleNlNL().data,
     _$LocalePtBR().locale: _$LocalePtBR().data,
@@ -298,6 +300,59 @@ class _$LocaleHrHR extends _$LocaleBase {
     "pangolin.qs_wifi": "Wi-Fi",
     "pangolin.app_containers": "Graft",
     "pangolin.launcher_card_information_value": "Hladno je vani, uzmi kaput!",
+  };
+}
+
+
+class _$LocaleIdID extends _$LocaleBase {
+  @override
+  String get locale => "id-ID";
+
+  @override
+  Map<String, String> get data => {
+    "pangolin.app_authenticator": "Otentikator",
+    "pangolin.app_calculator": "Kalkulator",
+    "pangolin.app_clock": "Jam",
+    "pangolin.app_disks": "Penyimpanan",
+    "pangolin.app_files": "Berkas",
+    "pangolin.app_media": "Media",
+    "pangolin.app_music": "Musik",
+    "pangolin.app_notes": "Editor teks",
+    "pangolin.app_notesmobile": "Catatan (mobile)",
+    "pangolin.app_messages": "Pesan",
+    "pangolin.app_rootterminal": "Root terminal",
+    "pangolin.app_settings": "Pengaturan",
+    "pangolin.app_systemlogs": "Log sistem",
+    "pangolin.app_taskmanager": "Task Manager",
+    "pangolin.app_terminal": "Terminal",
+    "pangolin.app_themedemo": "Demo Tema",
+    "pangolin.app_welcome": "Selamat Datang",
+    "pangolin.app_help": "Bantuan",
+    "pangolin.app_web": "Browser",
+    "pangolin.app_developeroptions": "Opsi pengembang",
+    "pangolin.featurenotimplemented_title": "Fitur belum di implementasikan",
+    "pangolin.featurenotimplemented_value": "Fitur ini saat ini belum tersedia di build Pangolin Kamu. Silahkan periksa https://reddit.com/r/dahliaos untuk perkembangan lebih lanjut.",
+    "pangolin.launcher_card_information_title": "Informasi",
+    "pangolin.launcher_card_kernel_title": "Kernel",
+    "pangolin.launcher_card_kernel_value": "Driver untuk GPU Terintegrasi diperbarui",
+    "pangolin.launcher_card_music_title": "Musik - Sekarang diputar",
+    "pangolin.launcher_card_music_value": "Vance Joy - Georgia",
+    "pangolin.launcher_card_security_title": "Keamanan",
+    "pangolin.launcher_card_security_value": "Kunci sistem file AKTIF",
+    "pangolin.launcher_card_system_title": "Sistem",
+    "pangolin.launcher_card_system_value": "Selamat datang di dahliaOS!",
+    "pangolin.launcher_search": "Cari perangkat Anda, aplikasi, web...",
+    "pangolin.qs_airplanemode": "Mode pesawat",
+    "pangolin.qs_autorotate": "Rotasi otomatis",
+    "pangolin.qs_bluetooth": "Bluetooth",
+    "pangolin.qs_changelanguage": "bahasa Indonesia",
+    "pangolin.qs_dnd": "Jangan ganggu",
+    "pangolin.qs_flashlight": "Senter",
+    "pangolin.qs_invertcolors": "Balikkan warna",
+    "pangolin.qs_theme": "Tema",
+    "pangolin.qs_wifi": "Wi-Fi",
+    "pangolin.app_containers": "Graft",
+    "pangolin.launcher_card_information_value": "Di luar dingin, ambil mantel!",
   };
 }
 
