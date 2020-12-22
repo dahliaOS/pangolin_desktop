@@ -51,20 +51,20 @@ You can contribute to the project by:
 
 **Some repositories also have Projects which contain either a to-do list or a roadmap!**
 
-### Reporting bugs
+## Reporting bugs
 
 If you've experience a bug and you'd like to report it, we highly recommend that you read [Before submitting a bug report](#before-submitting-a-bug-report), [How do I submit a good bug report?](#how-do-i-submit-a-good-bug-report) and that you use our Issue template
 
 There are 2 ways you can report a bug, either in our Discord by opening a ticket or by creating a GitHub Issue
 
-#### Before submitting a bug report
+### Before submitting a bug report
 
 Before submitting a bug report, there are a few things you need to take in consideration:
 
 * Do a bit of research and check if a similar bug has already been reported
   * If it has been reported already, add a comment to the existing one instead of submitting a new one
 
-#### How do I write a good bug report?
+### How do I write a good bug report?
 
 We have a few short tips for you on how to properly write a bug report so the developers can understand it better!
 
@@ -78,7 +78,7 @@ We have a few short tips for you on how to properly write a bug report so the de
 
 And the most important of all, make sure to fulfill all fields in our Bug report template!
 
-#### How do I submit a bug report?
+### How do I submit a bug report?
 
 * **GitHub**:
   * Go to the Issues section
@@ -90,13 +90,13 @@ And the most important of all, make sure to fulfill all fields in our Bug report
   * Open a ticket and copy the form
   * Paste and fill in the form
 
-### Feature request
+## Feature request
 
 If you'd like to see something added to our OS, we highly recommend you read [Before submitting a feature request](#before-submitting-a-feature-request), [How do I submit a feature request?](#how-do-i-submit-a-feature-request) and use our Feature request template
 
 There are 2 ways you can submit a feature request, either by make a suggestion in our Discord or by creating a Feature request on GitHub
 
-#### Before submitting a feature request
+### Before submitting a feature request
 
 Before submitting a feature request, here are a few tips for you:
 
@@ -105,7 +105,7 @@ Before submitting a feature request, here are a few tips for you:
 * **Write a clear and descriptive title for the request**
 * **Explain how the project could benefit of your request**
 
-#### How do I submit a feature request?
+### How do I submit a feature request?
 
 * **GitHub**:
   * Go to the Issues section
@@ -116,7 +116,7 @@ Before submitting a feature request, here are a few tips for you:
   * Go to the #bot-commands channel
   * Type !suggestion [suggestion]
 
-### Translations
+## Translations
 
 We aim to provide our software in as many languages as possible so everyone could experience it in their own native language!
 
@@ -126,7 +126,7 @@ If you're interesting in translating our project, click [this link](https://tran
 
 If your language is not added, let us know and we'll add it!
 
-#### Before making a translation
+### Before making a translation
 
 Before making a translation, please make sure that:
 
@@ -135,14 +135,14 @@ Before making a translation, please make sure that:
 * **You read the context (comments) some strings have**
 * **You use the same punctuation as the source strings**
 
-#### How to translate
+### How to translate
 
 1. Make a Crowdin account (if you already don't have one)
 2. Join our workspace
 3. Pick a project to translate (Pangolin, one of the applications etc.)
 4. Apply translations to the available strings
 
-### Code submissions
+## Code submissions
 
 To make sure that the code you submit is up to our standards, here we've written a few do's and don'ts!
 
@@ -160,11 +160,11 @@ To make sure that the code you submit is up to our standards, here we've written
 * Use weasel-words like "refactor" or "fix" to avoid explaining what's being changed
 * Include commented-out code
 
-#### First code contribution
+### First code contribution
 
 If you're new to the project, you can look at repositories' Issues section and the issues labeled with the "good first issue" label are perfect for your first code contribution!
 
-### Design contributions
+## Design contributions
 
 Apart from code contributions, we also accept any kind of design contributions!
 
