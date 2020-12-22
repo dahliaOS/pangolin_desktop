@@ -25,11 +25,11 @@ Please tick the relevant option by putting an X inside the bracket
 
 ## Checklist:
 
-- [ ] My code follows the style guidelines of this project
 - [ ] I have performed a self-review of my own code
 - [ ] I have commented my code, particularly in hard-to-understand areas
 - [ ] I have made corresponding changes to the documentation
-- [ ] My changes generate no new warnings and all current GitHub actions pass
+- [ ] My changes generate no new warnings
+- [ ] All current GitHub actions pass
 - [ ] Any dependent changes have been merged and published in downstream modules
 - [ ] I have checked my code and corrected any misspellings
 - [ ] I have read the [CONTRIBUTING](../CONTRIBUTING.md) document
