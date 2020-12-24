@@ -11,6 +11,7 @@ class Locales {
     Locale("hr", "HR"),
     Locale("id", "ID"),
     Locale("ja", "JP"),
+    Locale("ko", "KR"),
     Locale("nl", "NL"),
     Locale("pt", "BR"),
     Locale("pt", "PT"),
@@ -26,6 +27,7 @@ class Locales {
     _$LocaleHrHR().locale: _$LocaleHrHR().data,
     _$LocaleIdID().locale: _$LocaleIdID().data,
     _$LocaleJaJP().locale: _$LocaleJaJP().data,
+    _$LocaleKoKR().locale: _$LocaleKoKR().data,
     _$LocaleNlNL().locale: _$LocaleNlNL().data,
     _$LocalePtBR().locale: _$LocalePtBR().data,
     _$LocalePtPT().locale: _$LocalePtPT().data,
@@ -406,6 +408,59 @@ class _$LocaleJaJP extends _$LocaleBase {
     "pangolin.qs_wifi": "Wi-Fi",
     "pangolin.app_containers": "Graft",
     "pangolin.launcher_card_information_value": "外は寒いので、コートを着ましょう。",
+  };
+}
+
+
+class _$LocaleKoKR extends _$LocaleBase {
+  @override
+  String get locale => "ko-KR";
+
+  @override
+  Map<String, String> get data => {
+    "pangolin.app_authenticator": "인증자",
+    "pangolin.app_calculator": "계산기",
+    "pangolin.app_clock": "시계",
+    "pangolin.app_disks": "디스크",
+    "pangolin.app_files": "파일",
+    "pangolin.app_media": "미디어",
+    "pangolin.app_music": "음악",
+    "pangolin.app_notes": "텍스트 편집기",
+    "pangolin.app_notesmobile": "노트 (모바일)",
+    "pangolin.app_messages": "메시지",
+    "pangolin.app_rootterminal": "루트 터미널",
+    "pangolin.app_settings": "설정",
+    "pangolin.app_systemlogs": "시스템 로그",
+    "pangolin.app_taskmanager": "작업 관리자",
+    "pangolin.app_terminal": "터미널",
+    "pangolin.app_themedemo": "테마 데모",
+    "pangolin.app_welcome": "환영합니다",
+    "pangolin.app_help": "도움말",
+    "pangolin.app_web": "웹 브라우저",
+    "pangolin.app_developeroptions": "개발자 옵션",
+    "pangolin.featurenotimplemented_title": "기능이 구현되지 않음",
+    "pangolin.featurenotimplemented_value": "이 기능은 현재 Pangolin 빌드에 존재하지 않습니다. https://reddit.com/r/dahliaos 을(를) 방문하여 업데이트를 확인해 주세요.",
+    "pangolin.launcher_card_information_title": "정보",
+    "pangolin.launcher_card_kernel_title": "커널",
+    "pangolin.launcher_card_kernel_value": "통합 GPU용 드라이버 업데이트",
+    "pangolin.launcher_card_music_title": "음악 - 현재 재생중",
+    "pangolin.launcher_card_music_value": "Vance Joy - Georgia",
+    "pangolin.launcher_card_security_title": "보안",
+    "pangolin.launcher_card_security_value": "파일 시스템 잠금이 활성화됨",
+    "pangolin.launcher_card_system_title": "시스템",
+    "pangolin.launcher_card_system_value": "dahliaOS에 온 것을 환영합니다!",
+    "pangolin.launcher_search": "앱, 웹 등 검색...",
+    "pangolin.qs_airplanemode": "비행기 모드",
+    "pangolin.qs_autorotate": "자동 회전",
+    "pangolin.qs_bluetooth": "블루투스",
+    "pangolin.qs_changelanguage": "한국어",
+    "pangolin.qs_dnd": "방해 금지",
+    "pangolin.qs_flashlight": "손전등",
+    "pangolin.qs_invertcolors": "색상 반전",
+    "pangolin.qs_theme": "테마",
+    "pangolin.qs_wifi": "Wi-Fi",
+    "pangolin.app_containers": "Graft",
+    "pangolin.launcher_card_information_value": "날씨가 춥습니다, 옷 단단히 껴입으세요!",
   };
 }
 
