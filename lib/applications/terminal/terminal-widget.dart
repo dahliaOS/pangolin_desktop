@@ -16,7 +16,7 @@ import 'dart:io';
 import 'dart:convert';
 import 'rgb.dart';
 
-class TerminalFrame extends StatelessWidget {
+class TerminalApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(

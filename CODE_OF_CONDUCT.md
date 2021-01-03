@@ -49,6 +49,7 @@ conduct.
 
  * Harassing comments
  * Intimidation
+ * Arguing over subjective preference, e.g. text editors, nationality, religion, etc.
  * Encouraging a person to engage in self-harm.
  * Sustained disruption or derailing of threads, channels, lists, etc.
  * Offensive or violent comments, jokes or otherwise
@@ -77,7 +78,7 @@ immediately; failure to do so will result in an escalation of consequences.
 
 ## Acknowledgements
 
-This Code of Conduct is based on the Chromium Project Code of Conduct.
+This Code of Conduct is adapted from the Chromium Project Code of Conduct.
 
 ## License
 
