@@ -23,6 +23,7 @@ import 'package:Pangolin/applications/monitor/monitor.dart';
 import 'package:Pangolin/applications/terminal/main.dart';
 import 'package:Pangolin/applications/terminal/root/main.dart';
 import 'package:Pangolin/applications/welcome/welcome.dart';
+import 'package:Pangolin/applications/demo/main.dart';
 import 'package:Pangolin/desktop/settings/settings.dart';
 import 'package:Pangolin/internal/locales/locale_strings.g.dart';
 import 'package:Pangolin/utils/hiveManager.dart';
@@ -188,6 +189,14 @@ void initializeApps() {
       appName: LocaleStrings.pangolin.appMedia,
       icon: "photos",
       appExists: false));
+
+  //Theme Demo
+  applicationsData.add(ApplicationData(
+      appName: "Theme Demo",
+      icon: "theme",
+      app: ThemeDemoApp(),
+      color: Colors.blue[700],
+      appExists: true));
 
   //Help
   applicationsData.add(ApplicationData(
