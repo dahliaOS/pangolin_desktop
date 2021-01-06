@@ -159,9 +159,31 @@ class _TasksState extends State<TasksPage> {
 */
 
 import 'package:flutter/material.dart';
+import 'package:Pangolin/main.dart';
 
 void main() {
   runApp(new Tasks());
+}
+
+extension CustomColorScheme on ColorScheme {
+  Color get titleText => brightness == Brightness.light
+      ? const Color(0xFF000000)
+      : const Color(0xFFffffff);
+  Color get foregroundText => brightness == Brightness.light
+      ? const Color(0xFF222222)
+      : const Color(0xFFffffff);
+  Color get barColor => brightness == Brightness.light
+      ? Color(0xff00838f)
+      : const Color(0xFF222222);
+  Color get cardColor => brightness == Brightness.light
+      ? const Color(0xFFffffff)
+      : const Color(0xFF303030);
+  Color get activeColor => brightness == Brightness.light
+      ? const Color(0xFFffffff)
+      : const Color(0xFF303030);
+  Color get body2 => brightness == Brightness.light
+      ? const Color(0xFFeeeeee)
+      : const Color(0xFF333333);
 }
 
 class Tasks extends StatelessWidget {
@@ -170,9 +192,16 @@ class Tasks extends StatelessWidget {
     return new MaterialApp(
       title: 'Task Manager',
       theme: new ThemeData(
+        brightness: Brightness.light,
         primarySwatch: Colors.cyan,
-        canvasColor: const Color(0xFFfffffff),
       ),
+      darkTheme: new ThemeData(
+        brightness: Brightness.dark,
+        primarySwatch: Colors.cyan,
+      ),
+      themeMode: Pangolin.settingsBox.get("darkMode")
+          ? ThemeMode.dark
+          : ThemeMode.light,
       home: new TasksPage(),
     );
   }
@@ -193,17 +222,17 @@ class _TasksState extends State<TasksPage> {
           appBar: PreferredSize(
             preferredSize: Size.fromHeight(52.0), // here the desired height
             child: AppBar(
-              backgroundColor: Color(0xff00838f),
+              backgroundColor: Theme.of(context).colorScheme.barColor,
               elevation: 0,
               bottom: TabBar(
-                  labelColor: Color(0xFF222222),
+                  labelColor: Theme.of(context).colorScheme.foregroundText,
                   unselectedLabelColor: Colors.white,
                   indicatorSize: TabBarIndicatorSize.label,
                   indicator: BoxDecoration(
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(5),
                           topRight: Radius.circular(5)),
-                      color: Colors.white),
+                      color: Theme.of(context).colorScheme.activeColor),
                   tabs: [
                     Tab(
                       child: Align(
@@ -235,7 +264,7 @@ class _TasksState extends State<TasksPage> {
   }
 }
 
-Container buildProcess(String icon, String name) {
+Container buildProcess(context, String icon, String name) {
   return new Container(
     padding: const EdgeInsets.only(
       top: 25,
@@ -259,7 +288,7 @@ Container buildProcess(String icon, String name) {
               name,
               style: new TextStyle(
                   fontSize: 15.0,
-                  color: const Color(0xFF000000),
+                  color: Theme.of(context).colorScheme.foregroundText,
                   fontFamily: "Roboto"),
             ),
           ),
@@ -274,73 +303,78 @@ class Process extends StatelessWidget {
         body: Row(children: [
       Expanded(
         child: Container(
-          color: Color(0xffeeeeee),
+          color: Theme.of(context).colorScheme.body2,
           margin: EdgeInsets.all(10),
           child: new SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: new Column(
               children: [
+                buildProcess(context, 'assets/images/icons/PNG/calculator.png',
+                    'Calculator'),
                 buildProcess(
-                    'assets/images/icons/PNG/calculator.png', 'Calculator'),
-                buildProcess('assets/images/icons/PNG/disks.png', 'Disks'),
-                buildProcess('assets/images/icons/PNG/files.png', 'Files'),
-                buildProcess('assets/images/icons/PNG/logs.png', 'Logs'),
-                buildProcess('assets/images/icons/PNG/note_mobile.png',
+                    context, 'assets/images/icons/PNG/disks.png', 'Disks'),
+                buildProcess(
+                    context, 'assets/images/icons/PNG/files.png', 'Files'),
+                buildProcess(
+                    context, 'assets/images/icons/PNG/logs.png', 'Logs'),
+                buildProcess(context, 'assets/images/icons/PNG/note_mobile.png',
                     'Notes (Mobile)'),
-                buildProcess('assets/images/icons/PNG/notes.png', 'Notes'),
                 buildProcess(
-                    'assets/images/icons/PNG/root.png', 'Root Terminal'),
+                    context, 'assets/images/icons/PNG/notes.png', 'Notes'),
+                buildProcess(context, 'assets/images/icons/PNG/root.png',
+                    'Root Terminal'),
+                buildProcess(context, 'assets/images/icons/PNG/settings.png',
+                    'Settings'),
+                buildProcess(context, 'assets/images/icons/PNG/task.png',
+                    'Task Manager'),
+                buildProcess(context, 'assets/images/icons/PNG/terminal.png',
+                    'Terminal'),
                 buildProcess(
-                    'assets/images/icons/PNG/settings.png', 'Settings'),
-                buildProcess(
-                    'assets/images/icons/PNG/task.png', 'Task Manager'),
-                buildProcess(
-                    'assets/images/icons/PNG/terminal.png', 'Terminal'),
-                buildProcess('assets/images/icons/PNG/theme.png', 'Theme Demo'),
-                buildProcess(
-                    'assets/images/icons/PNG/android.png', 'Android Subsystem'),
-                buildProcess(
-                    'assets/images/icons/PNG/android.png', 'Android Subsystem'),
-                buildProcess(
-                    'assets/images/icons/PNG/android.png', 'Android Subsystem'),
-                buildProcess(
-                    'assets/images/icons/PNG/android.png', 'Android Subsystem'),
-                buildProcess(
-                    'assets/images/icons/PNG/android.png', 'Android Subsystem'),
-                buildProcess(
-                    'assets/images/icons/PNG/android.png', 'Android Subsystem'),
-                buildProcess(
-                    'assets/images/icons/PNG/android.png', 'Android Subsystem'),
-                buildProcess(
-                    'assets/images/icons/PNG/android.png', 'Android Subsystem'),
-                buildProcess(
-                    'assets/images/icons/PNG/android.png', 'Android Subsystem'),
-                buildProcess(
-                    'assets/images/icons/PNG/android.png', 'Android Subsystem'),
-                buildProcess(
-                    'assets/images/icons/PNG/android.png', 'Android Subsystem'),
-                buildProcess(
-                    'assets/images/icons/PNG/android.png', 'Android Subsystem'),
-                buildProcess(
-                    'assets/images/icons/PNG/android.png', 'Android Subsystem'),
-                buildProcess(
-                    'assets/images/icons/PNG/android.png', 'Android Subsystem'),
-                buildProcess(
-                    'assets/images/icons/PNG/android.png', 'Android Subsystem'),
-                buildProcess(
-                    'assets/images/icons/PNG/android.png', 'Android Subsystem'),
-                buildProcess(
-                    'assets/images/icons/PNG/android.png', 'Android Subsystem'),
-                buildProcess(
-                    'assets/images/icons/PNG/android.png', 'Android Subsystem'),
-                buildProcess(
-                    'assets/images/icons/PNG/android.png', 'Android Subsystem'),
-                buildProcess(
-                    'assets/images/icons/PNG/android.png', 'Android Subsystem'),
-                buildProcess(
-                    'assets/images/icons/PNG/android.png', 'Android Subsystem'),
-                buildProcess(
-                    'assets/images/icons/PNG/android.png', 'Android Subsystem'),
+                    context, 'assets/images/icons/PNG/theme.png', 'Theme Demo'),
+                buildProcess(context, 'assets/images/icons/PNG/android.png',
+                    'Android Subsystem'),
+                buildProcess(context, 'assets/images/icons/PNG/android.png',
+                    'Android Subsystem'),
+                buildProcess(context, 'assets/images/icons/PNG/android.png',
+                    'Android Subsystem'),
+                buildProcess(context, 'assets/images/icons/PNG/android.png',
+                    'Android Subsystem'),
+                buildProcess(context, 'assets/images/icons/PNG/android.png',
+                    'Android Subsystem'),
+                buildProcess(context, 'assets/images/icons/PNG/android.png',
+                    'Android Subsystem'),
+                buildProcess(context, 'assets/images/icons/PNG/android.png',
+                    'Android Subsystem'),
+                buildProcess(context, 'assets/images/icons/PNG/android.png',
+                    'Android Subsystem'),
+                buildProcess(context, 'assets/images/icons/PNG/android.png',
+                    'Android Subsystem'),
+                buildProcess(context, 'assets/images/icons/PNG/android.png',
+                    'Android Subsystem'),
+                buildProcess(context, 'assets/images/icons/PNG/android.png',
+                    'Android Subsystem'),
+                buildProcess(context, 'assets/images/icons/PNG/android.png',
+                    'Android Subsystem'),
+                buildProcess(context, 'assets/images/icons/PNG/android.png',
+                    'Android Subsystem'),
+                buildProcess(context, 'assets/images/icons/PNG/android.png',
+                    'Android Subsystem'),
+                buildProcess(context, 'assets/images/icons/PNG/android.png',
+                    'Android Subsystem'),
+                buildProcess(context, 'assets/images/icons/PNG/android.png',
+                    'Android Subsystem'),
+                buildProcess(context, 'assets/images/icons/PNG/android.png',
+                    'Android Subsystem'),
+                buildProcess(context, 'assets/images/icons/PNG/android.png',
+                    'Android Subsystem'),
+                buildProcess(context, 'assets/images/icons/PNG/android.png',
+                    'Android Subsystem'),
+                buildProcess(context, 'assets/images/icons/PNG/android.png',
+                    'Android Subsystem'),
+                buildProcess(context, 'assets/images/icons/PNG/android.png',
+                    'Android Subsystem'),
+                buildProcess(context, 'assets/images/icons/PNG/android.png',
+                    'Android Subsystem'),
               ],
             ),
           ),
@@ -364,7 +398,7 @@ class Process extends StatelessWidget {
                   "Select a process to view stats and manage functionality.",
                   style: new TextStyle(
                       fontSize: 15.0,
-                      color: const Color(0xFF000000),
+                      color: Theme.of(context).colorScheme.foregroundText,
                       fontFamily: "Roboto"),
                   textAlign: TextAlign.center,
                 ),
@@ -372,14 +406,14 @@ class Process extends StatelessWidget {
                   "null",
                   style: new TextStyle(
                       fontSize: 15.0,
-                      color: const Color(0xFF000000),
+                      color: Theme.of(context).colorScheme.foregroundText,
                       fontFamily: "Roboto"),
                 ),
                 new Text(
                   "null",
                   style: new TextStyle(
                       fontSize: 15.0,
-                      color: const Color(0xFF000000),
+                      color: Theme.of(context).colorScheme.foregroundText,
                       fontFamily: "Roboto"),
                 ),
                 new RaisedButton(
