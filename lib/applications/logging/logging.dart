@@ -12,6 +12,7 @@ limitations under the License.
 */
 
 import 'package:flutter/material.dart';
+import 'package:Pangolin/main.dart';
 
 void main() {
   runApp(new Logs());
@@ -23,8 +24,16 @@ class Logs extends StatelessWidget {
     return new MaterialApp(
       title: 'System Logs',
       theme: new ThemeData(
+        brightness: Brightness.light,
         primarySwatch: Colors.red,
       ),
+      darkTheme: new ThemeData(
+        brightness: Brightness.dark,
+        primarySwatch: Colors.red,
+      ),
+      themeMode: Pangolin.settingsBox.get("darkMode")
+          ? ThemeMode.dark
+          : ThemeMode.light,
       home: new LogsPage(),
     );
   }
