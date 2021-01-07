@@ -107,24 +107,36 @@ class _LogsPageState extends State<LogsPage> {
 String dmesg() {
   ProcessResult result = Process.runSync('dmesg', ['-k']);
   var verString = result.stdout;
+  if (verString == null) {
+    return "ERROR: Couldn't get the dmesg of the system";
+  }
   return verString;
 }
 
 String xorg() {
   ProcessResult result = Process.runSync('cat', ['/var/log/Xorg.0.log']);
   var verString = result.stdout;
+  if (verString == null) {
+    return "ERROR: Couldn't find the display logs";
+  }
   return verString;
 }
 
 String message() {
   ProcessResult result = Process.runSync('cat', ['/var/log/messages']);
   var verString = result.stdout;
+  if (verString == null) {
+    return "ERROR: Couldn't get the system messages";
+  }
   return verString;
 }
 
 String fs() {
   ProcessResult result = Process.runSync('df', ['-h']);
   var verString = result.stdout;
+  if (verString == null) {
+    return "ERROR: Couldn't get the active filesystems";
+  }
   return verString;
 }
 
