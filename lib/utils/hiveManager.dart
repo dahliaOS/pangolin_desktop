@@ -42,6 +42,7 @@ class HiveManager {
     createEntryIfNotExisting("launcherWideMode", false);
     createEntryIfNotExisting("coloredTitlebar", true);
     createEntryIfNotExisting("developeroptions", true);
+    createEntryIfNotExisting("showIntentCardsInLauncher", true);
   }
 
   static set(String key, dynamic value) {

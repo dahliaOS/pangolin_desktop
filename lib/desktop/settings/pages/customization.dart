@@ -269,10 +269,24 @@ class _CustomizationState extends State<Customization> {
                               SwitchListTile(
                                 secondary: Icon(Icons.view_comfortable),
                                 value: HiveManager.get("launcherWideMode"),
-                                title: Text("Enable Wide launcher mode"),
+                                title: Text(
+                                    "Span applications across the full width of the launcher"),
                                 onChanged: (bool state) {
                                   setState(() {
                                     HiveManager.set("launcherWideMode", state);
+                                  });
+                                },
+                              ),
+                              SwitchListTile(
+                                secondary: Icon(Icons.widgets),
+                                value: HiveManager.get(
+                                    "showIntentCardsInLauncher"),
+                                title:
+                                    Text("Show Intent Cards in the launcher"),
+                                onChanged: (bool state) {
+                                  setState(() {
+                                    HiveManager.set(
+                                        "showIntentCardsInLauncher", state);
                                   });
                                 },
                               ),

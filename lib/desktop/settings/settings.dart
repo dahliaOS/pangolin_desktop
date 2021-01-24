@@ -62,7 +62,7 @@ class Settings extends StatelessWidget {
     ),
     TileItem(
       "Customization",
-      "Customize the look and feel of Pangolin",
+      "Customize the look and feel of dahliaOS",
       Icons.color_lens,
       Customization(),
     ),

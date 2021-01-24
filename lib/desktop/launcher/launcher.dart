@@ -23,6 +23,7 @@ import 'package:Pangolin/desktop/launcher/applications.dart';
 import 'package:Pangolin/utils/widgets/cards.dart';
 import 'package:Pangolin/main.dart';
 import 'package:flutter/material.dart';
+import 'package:Pangolin/utils/hiveManager.dart';
 import 'searchbar.dart';
 import 'dart:ui';
 
@@ -102,53 +103,59 @@ class LauncherState extends State<LauncherWidget> {
                   children: <Widget>[
                     new SearchWidget(LocaleStrings.pangolin.launcherSearch),
                     const SizedBox(height: 35),
-                    new SingleChildScrollView(
-                        padding: new EdgeInsets.only(
-                            left: 10.0, right: 10.0, top: 5.0),
-                        scrollDirection: Axis.horizontal,
-                        child: new Row(children: <Widget>[
-                          buildCard(
-                            Icons.brightness_low,
-                            LocaleStrings.pangolin.launcherCardSystemTitle,
-                            Colors.deepOrange,
-                            Colors.deepOrange.withAlpha(30),
-                            LocaleStrings.pangolin.launcherCardSystemValue,
-                            context,
-                          ),
-                          buildCard(
-                            Icons.lightbulb_outline,
-                            //TODO: LOCALIZE THIS STRING
-                            "Tips",
-                            Colors.blue,
-                            Colors.blue.withAlpha(30),
-                            systemInfoTip(),
-                            context,
-                          ),
-                          buildCard(
-                            Icons.music_note,
-                            LocaleStrings.pangolin.launcherCardMusicTitle,
-                            Colors.lightGreen,
-                            Colors.lightGreen.withAlpha(30),
-                            LocaleStrings.pangolin.launcherCardMusicValue,
-                            context,
-                          ),
-                          buildCard(
-                            Icons.lock,
-                            LocaleStrings.pangolin.launcherCardSecurityTitle,
-                            Colors.red,
-                            Colors.red.withAlpha(30),
-                            LocaleStrings.pangolin.launcherCardSecurityValue,
-                            context,
-                          ),
-                          buildCard(
-                            Icons.memory,
-                            LocaleStrings.pangolin.launcherCardKernelTitle,
-                            Colors.pink,
-                            Colors.pink.withAlpha(30),
-                            LocaleStrings.pangolin.launcherCardKernelValue,
-                            context,
-                          ),
-                        ])),
+                    Visibility(
+                      child: new SingleChildScrollView(
+                          padding: new EdgeInsets.only(
+                              left: 10.0, right: 10.0, top: 5.0),
+                          scrollDirection: Axis.horizontal,
+                          child: new Row(children: <Widget>[
+                            buildCard(
+                              Icons.brightness_low,
+                              LocaleStrings.pangolin.launcherCardSystemTitle,
+                              Colors.deepOrange,
+                              Colors.deepOrange.withAlpha(30),
+                              LocaleStrings.pangolin.launcherCardSystemValue,
+                              context,
+                            ),
+                            buildCard(
+                              Icons.lightbulb_outline,
+                              //TODO: LOCALIZE THIS STRING
+                              "Tips",
+                              Colors.blue,
+                              Colors.blue.withAlpha(30),
+                              systemInfoTip(),
+                              context,
+                            ),
+                            buildCard(
+                              Icons.music_note,
+                              LocaleStrings.pangolin.launcherCardMusicTitle,
+                              Colors.lightGreen,
+                              Colors.lightGreen.withAlpha(30),
+                              LocaleStrings.pangolin.launcherCardMusicValue,
+                              context,
+                            ),
+                            buildCard(
+                              Icons.lock,
+                              LocaleStrings.pangolin.launcherCardSecurityTitle,
+                              Colors.red,
+                              Colors.red.withAlpha(30),
+                              LocaleStrings.pangolin.launcherCardSecurityValue,
+                              context,
+                            ),
+                            buildCard(
+                              Icons.memory,
+                              LocaleStrings.pangolin.launcherCardKernelTitle,
+                              Colors.pink,
+                              Colors.pink.withAlpha(30),
+                              LocaleStrings.pangolin.launcherCardKernelValue,
+                              context,
+                            ),
+                          ])),
+                      visible:
+                          Pangolin.settingsBox.get("showIntentCardsInLauncher")
+                              ? true
+                              : false,
+                    ),
                     tileSection(context),
                   ],
                 ),
