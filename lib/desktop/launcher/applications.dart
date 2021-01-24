@@ -16,6 +16,7 @@ limitations under the License.
 
 import 'package:Pangolin/utils/applicationdata.dart';
 import 'package:Pangolin/utils/hiveManager.dart';
+import 'package:Pangolin/main.dart';
 import 'package:flutter/material.dart';
 import 'package:Pangolin/utils/widgets/app_launcher.dart';
 import 'package:Pangolin/utils/others/functions.dart';
