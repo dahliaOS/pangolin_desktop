@@ -350,8 +350,18 @@ class QuickSettingsState extends State<QuickSettings> {
                       .add(child: WirelessApp(), color: Colors.deepOrange[700]);
                   hideOverlays();
                 }),
-                buildTile(
-                    Icons.palette, LocaleStrings.pangolin.qsTheme, changeColor),
+                buildTile(Icons.palette, LocaleStrings.pangolin.qsTheme, () {
+                  setState(() {
+                    /* if (HiveManager.get("darkMode") == false) {
+                      HiveManager.set("darkMode", true);
+                      print("setting dark mode");
+                    }
+                    if (HiveManager.get("darkMode") == true) {
+                      HiveManager.set("darkMode", false);
+                      print("setting light mode");
+                    }*/
+                  });
+                }),
                 buildTile(Icons.battery_full, '85%', changeColor),
                 buildTile(Icons.do_not_disturb_off,
                     LocaleStrings.pangolin.qsDnd, changeColor),
