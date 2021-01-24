@@ -21,6 +21,7 @@ import 'package:Pangolin/utils/others/key_ring.dart';
 import 'package:Pangolin/utils/widgets/blur.dart';
 import 'package:Pangolin/desktop/launcher/applications.dart';
 import 'package:Pangolin/utils/widgets/cards.dart';
+import 'package:Pangolin/main.dart';
 import 'package:flutter/material.dart';
 import 'searchbar.dart';
 import 'dart:ui';
@@ -65,11 +66,22 @@ class LauncherState extends State<LauncherWidget> {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
+        brightness: Brightness.light,
         primarySwatch: Colors.deepOrange,
         primaryColor: const Color(0xFFff5722),
         accentColor: const Color(0xFFff5722),
         canvasColor: Colors.black.withOpacity(0.1),
       ),
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
+        primarySwatch: Colors.deepOrange,
+        primaryColor: const Color(0xFFff5722),
+        accentColor: const Color(0xFFff5722),
+        canvasColor: Colors.black.withOpacity(0.1),
+      ),
+      themeMode: Pangolin.settingsBox.get("darkMode")
+          ? ThemeMode.dark
+          : ThemeMode.light,
       home: GestureDetector(
         onTap: () {
           setOverlayVisibility(
