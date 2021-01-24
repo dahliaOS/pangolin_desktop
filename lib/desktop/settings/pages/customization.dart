@@ -185,8 +185,8 @@ class _CustomizationState extends State<Customization> {
                                 SwitchListTile(
                               secondary: Icon(Icons.brightness_4_outlined),
                               value: notifier.darkTheme,
-                              title: Text(
-                                  "Enable Dark mode on the desktop and all applications"),
+                              title:
+                                  Text("Enable Dark mode on all applications"),
                               onChanged: (bool state) {
                                 setState(() {
                                   notifier.toggleThemeDarkMode(state);
