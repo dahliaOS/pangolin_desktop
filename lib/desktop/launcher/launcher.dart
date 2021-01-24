@@ -71,14 +71,18 @@ class LauncherState extends State<LauncherWidget> {
         primarySwatch: Colors.deepOrange,
         primaryColor: const Color(0xFFff5722),
         accentColor: const Color(0xFFff5722),
-        canvasColor: Colors.black.withOpacity(0.1),
+        canvasColor: Pangolin.settingsBox.get("desktopDarkMode")
+            ? Colors.black.withOpacity(0.5)
+            : Colors.white.withOpacity(0.5),
       ),
       darkTheme: ThemeData(
         brightness: Brightness.dark,
         primarySwatch: Colors.deepOrange,
         primaryColor: const Color(0xFFff5722),
         accentColor: const Color(0xFFff5722),
-        canvasColor: Colors.black.withOpacity(0.1),
+        canvasColor: Pangolin.settingsBox.get("desktopDarkMode")
+            ? Colors.black.withOpacity(0.5)
+            : Colors.white.withOpacity(0.5),
       ),
       themeMode: Pangolin.settingsBox.get("darkMode")
           ? ThemeMode.dark
