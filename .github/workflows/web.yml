@@ -19,7 +19,7 @@ jobs:
         fetch-depth: 2
     - uses: subosito/flutter-action@v1
       name: Set up Flutter
-    - run: flutter channel dev
+    - run: flutter channel beta
       name: Switch Flutter channel
     - name: Clone existing built files (for deployment)
       run: git clone "${{ secrets.GIT_WEB_REMOTE }}" build/webout
@@ -27,7 +27,7 @@ jobs:
       name: Enable web support
     - name: Get dependencies
       run: flutter pub get
-    - run: flutter build web
+    - run: flutter build web --no-sound-null-safety
       name: Build Pangolin for web
     - name: Deploy
       run: |
