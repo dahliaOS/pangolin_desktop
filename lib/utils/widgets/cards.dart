@@ -87,7 +87,9 @@ Card buildCard(IconData icon, String title, Color color, Color splash,
                         text,
                         style: new TextStyle(
                             fontSize: 15.0,
-                            color: Colors.black,
+                            color: Pangolin.settingsBox.get("darkMode")
+                                ? Colors.white
+                                : Colors.black,
                             fontWeight: FontWeight.w400,
                             fontFamily: "Roboto"),
                       ))
