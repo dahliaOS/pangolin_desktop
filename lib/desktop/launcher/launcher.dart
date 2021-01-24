@@ -16,6 +16,7 @@ limitations under the License.
 
 import 'package:Pangolin/internal/locales/locale_strings.g.dart';
 import 'package:Pangolin/utils/others/functions.dart';
+import 'package:Pangolin/utils/others/tips.dart';
 import 'package:Pangolin/utils/others/key_ring.dart';
 import 'package:Pangolin/utils/widgets/blur.dart';
 import 'package:Pangolin/desktop/launcher/applications.dart';
@@ -103,11 +104,12 @@ class LauncherState extends State<LauncherWidget> {
                             context,
                           ),
                           buildCard(
-                            Icons.info,
-                            LocaleStrings.pangolin.launcherCardInformationTitle,
+                            Icons.lightbulb_outline,
+                            //TODO: LOCALIZE THIS STRING
+                            "Tips",
                             Colors.blue,
                             Colors.blue.withAlpha(30),
-                            LocaleStrings.pangolin.launcherCardInformationValue,
+                            systemInfoTip(),
                             context,
                           ),
                           buildCard(
