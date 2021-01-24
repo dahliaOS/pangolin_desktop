@@ -43,6 +43,7 @@ class HiveManager {
     createEntryIfNotExisting("coloredTitlebar", true);
     createEntryIfNotExisting("developeroptions", true);
     createEntryIfNotExisting("showIntentCardsInLauncher", true);
+    createEntryIfNotExisting("desktopDarkMode", true);
   }
 
   static set(String key, dynamic value) {

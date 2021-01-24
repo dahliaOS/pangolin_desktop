@@ -200,7 +200,17 @@ class _CustomizationState extends State<Customization> {
                                 });
                               },
                             ),
-                          )
+                          ),
+                          SwitchListTile(
+                            secondary: Icon(Icons.call_to_action_outlined),
+                            value: HiveManager.get("desktopDarkMode"),
+                            title: Text("Enable dark mode on the desktop"),
+                            onChanged: (bool state) {
+                              setState(() {
+                                HiveManager.set("desktopDarkMode", state);
+                              });
+                            },
+                          ),
                         ],
                       ),
                       SettingsHeader(heading: "Taskbar"),
