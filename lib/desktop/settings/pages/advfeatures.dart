@@ -12,6 +12,15 @@ limitations under the License.
 */
 
 import 'package:flutter/material.dart';
+import 'package:Pangolin/desktop/quicksettings/quick_settings.dart';
+import 'package:Pangolin/utils/hiveManager.dart';
+import 'package:Pangolin/utils/themes/customization_manager.dart';
+import 'package:Pangolin/utils/widgets/conditionWidget.dart';
+import 'package:Pangolin/utils/widgets/settingsTile.dart';
+import 'package:Pangolin/utils/widgets/settingsheader.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 class AdvancedFeatures extends StatefulWidget {
   @override
@@ -33,12 +42,37 @@ class _AdvancedFeaturesState extends State<AdvancedFeatures> {
               Padding(
                   padding: EdgeInsets.only(left: 25),
                   child: Text(
-                    "Advanced Features",
+                    "Developer Options",
                     style: TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.w300,
                         fontFamily: "Roboto"),
                   )),
+              Padding(
+                  padding: const EdgeInsets.all(30.0),
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SettingsHeader(heading: "User Shells"),
+                        SettingsTile(
+                          children: [
+                            Consumer<CustomizationNotifier>(
+                              builder: (context, notifier, child) =>
+                                  SwitchListTile(
+                                secondary: Icon(Icons.desktop_windows),
+                                value: HiveManager.get("blur"),
+                                title:
+                                    Text("Enable blur effects on the desktop"),
+                                onChanged: (bool state) {
+                                  setState(() {
+                                    notifier.toggleBlur(state);
+                                  });
+                                },
+                              ),
+                            )
+                          ],
+                        ),
+                      ])),
             ],
           ),
         ),
@@ -53,7 +87,7 @@ class _AdvancedFeaturesState extends State<AdvancedFeatures> {
                   padding: EdgeInsets.all(0),
                   child: Card(
                     elevation: 0,
-                    color: Colors.amber[500],
+                    color: Colors.red[500],
                     child: new SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: new Row(
@@ -64,15 +98,15 @@ class _AdvancedFeaturesState extends State<AdvancedFeatures> {
                                   child: Icon(
                                     Icons.warning,
                                     size: 25,
-                                    color: Colors.grey[900],
+                                    color: Colors.white,
                                   ))),
                           Center(
                               child: new Padding(
                                   padding: EdgeInsets.all(8),
                                   child: new Text(
-                                    "WARNING: You are on a pre-release build of dahliaOS. Some settings don't work yet.",
+                                    "WARNING: ADVANCED OPTIONS AHEAD! By using these options, you could lose system data or compromise your security or privacy. ",
                                     style: new TextStyle(
-                                      color: Colors.grey[900],
+                                      color: Colors.white,
                                       fontSize: 14,
                                       fontFamily: "Roboto",
                                     ),
