@@ -73,14 +73,14 @@ class ConnectionCenter extends StatelessWidget {
     final _wm = context.watch<WindowHierarchyState>();
     return Positioned(
       bottom: _wm.insets.bottom + 20,
-      left: sidePadding(context, 400),
-      right: sidePadding(context, 400),
+      left: sidePadding(context, 500),
+      right: sidePadding(context, 500),
       child: BoxContainer(
         useSystemOpacity: true,
         color: Theme.of(context).cardColor,
         customBorderRadius: BorderRadius.circular(10),
-        width: 400,
-        height: 320,
+        width: 500,
+        height: 328,
         //margin: EdgeInsets.only(bottom: wmKey.currentState!.insets.bottom + 20),
         child: SizedBox(
           height: 48,
@@ -120,8 +120,8 @@ class ConnectionCenter extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 320 - 48,
-                width: 540,
+                height: 280,
+                width: 500,
                 child: GridView.count(
                   physics: BouncingScrollPhysics(),
                   padding: EdgeInsets.all(24),
