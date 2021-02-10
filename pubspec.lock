@@ -106,10 +106,10 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "8f08071f499e3e7bc650d370c9e364047580a8b2"
+      resolved-ref: "91c9cd6ece2ef96a648567fc9f2a139f83318c6c"
       url: "https://github.com/dahliaOS/backend.git"
     source: git
-    version: "0.0.1"
+    version: "0.0.1+1"
   easy_localization:
     dependency: "direct main"
     description:
@@ -407,7 +407,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "1d9cb70f2ce600857a66d360e478a5a6460b783a"
+      resolved-ref: "3f3685140e22ad57f07b6cbcc7bdb0b1647b84c3"
       url: "https://github.com/dahliaOS/utopia.git"
     source: git
     version: "1.0.0+1"
