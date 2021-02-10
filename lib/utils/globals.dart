@@ -26,7 +26,7 @@ String pangolinCommit = "Pangolin - reborn";
 String fullPangolinVersion = "$pangolinCommit";
 
 double sidePadding(BuildContext context, double size) =>
-    context.watch<WindowHierarchyState>().wmRect.width / 2 - 540 / 2;
+    context.watch<WindowHierarchyState>().wmRect.width / 2 - size / 2;
 
 List<String> languages = [
   "عربى - إيران",
