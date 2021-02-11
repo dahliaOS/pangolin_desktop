@@ -242,10 +242,9 @@ class ModelFinder<T extends Model> {
   /// [Widget]s who call [of] with a [rebuildOnChange] of true will be rebuilt
   /// whenever there's a change to the returned model.
   T of(BuildContext context, {bool rebuildOnChange: false}) {
-    final Type type = new _InheritedModel<T>.forRuntimeType().runtimeType;
     Widget widget = rebuildOnChange
-        ? context.inheritFromWidgetOfExactType(type)
-        : context.ancestorWidgetOfExactType(type);
+        ? context.dependOnInheritedWidgetOfExactType<_InheritedModel<T>>()
+        : context.getElementForInheritedWidgetOfExactType<_InheritedModel<T>>()?.widget;
     return (widget is _InheritedModel<T>) ? widget.model : null;
   }
 }
