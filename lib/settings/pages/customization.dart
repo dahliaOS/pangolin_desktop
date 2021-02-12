@@ -183,7 +183,45 @@ class _CustomizationState extends State<Customization> {
                         ),
                       ],
                     ),
-                    SettingsHeader(heading: "Taskbar"),
+                    SettingsHeader(heading: "Font"),
+                    SettingsTile(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 12.0, vertical: 8.0),
+                          child: Text(
+                            "Choose system font family",
+                            style: TextStyle(fontSize: 17),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: DropdownButton<String>(
+                            onChanged: (value) {
+                              _data.fontFamily = value.toString();
+                            },
+                            isExpanded: true,
+                            items: [
+                              DropdownMenuItem(
+                                child: Text("Roboto"),
+                                value: "Roboto",
+                              ),
+                              DropdownMenuItem(
+                                child: Text("DM Sans"),
+                                value: "DM-Sans",
+                              ),
+                              DropdownMenuItem(
+                                child: Text("Lato"),
+                                value: "Lato",
+                              ),
+                            ],
+                            value: _data.fontFamily,
+                          ),
+                        )
+                      ],
+                    ),
+
+                    /*SettingsHeader(heading: "Taskbar"),
                     SettingsTile(
                       children: [
                         SwitchListTile(
@@ -290,7 +328,7 @@ class _CustomizationState extends State<Customization> {
                           },
                         ),
                       ],
-                    ),
+                    ), */
                   ],
                 ),
               ),
