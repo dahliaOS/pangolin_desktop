@@ -11,7 +11,8 @@ ThemeData theme(BuildContext context) {
       canvasColor: _data.darkMode ? Color(0xff111111) : Colors.white,
       primaryColor: Color(_data.accentColor),
       primaryColorDark: Color(_data.accentColor),
-      cardColor: _data.darkMode ? Color(0xff212121) : Colors.white,
+      cardColor: _data.darkMode ? Color(0xff0c0c0c) : Colors.grey[200],
+      scaffoldBackgroundColor: _data.darkMode ? Colors.black : Colors.white,
       inputDecorationTheme: InputDecorationTheme(
         labelStyle: TextStyle(
           color: Color(_data.accentColor),
