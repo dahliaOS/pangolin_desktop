@@ -76,7 +76,7 @@ class ConnectionCenter extends StatelessWidget {
       right: sidePadding(context, 500),
       child: BoxContainer(
         useSystemOpacity: true,
-        color: Theme.of(context).cardColor,
+        color: Theme.of(context).scaffoldBackgroundColor,
         customBorderRadius: BorderRadius.circular(10),
         width: 500,
         height: 328,
@@ -87,7 +87,7 @@ class ConnectionCenter extends StatelessWidget {
             children: [
               BoxContainer(
                 padding: EdgeInsets.symmetric(horizontal: 16),
-                color: Theme.of(context).cardColor,
+                color: Theme.of(context).scaffoldBackgroundColor,
                 useSystemOpacity: true,
                 height: 48,
                 child: Row(

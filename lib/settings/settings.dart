@@ -209,7 +209,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: <Widget>[
                         BoxContainer(
-                          color: Theme.of(context).cardColor,
+                          color: Theme.of(context).scaffoldBackgroundColor,
                           useSystemOpacity: true,
                           width: constraints.maxWidth > 768 ? 300 : 90,
                           child: Column(
