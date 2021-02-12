@@ -1,7 +1,6 @@
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:pangolin/settings/settings.dart';
 import 'package:pangolin/utils/globals.dart';
 import 'package:pangolin/utils/wm_api.dart';
 import 'package:pangolin/widgets/qs_button.dart';
@@ -157,7 +156,7 @@ class ConnectionCenter extends StatelessWidget {
                       icon: Icons.screen_share,
                     ),
                     QuickSettingsButton(
-                      color: Colors.grey,
+                      color: Colors.grey[850],
                       title: "Airplane\nMode",
                       icon: Icons.airplanemode_active,
                     ),
