@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:pangolin/utils/app_list.dart';
-import 'package:pangolin/utils/globals.dart';
 import 'package:pangolin/utils/wm_api.dart';
-import 'package:provider/provider.dart';
 import 'package:utopia_wm/wm.dart';
 
 class LauncherButton extends StatelessWidget {

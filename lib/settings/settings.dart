@@ -111,7 +111,6 @@ class Settings extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _data = context.watch<PreferenceProvider>();
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(

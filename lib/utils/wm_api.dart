@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pangolin/utils/app_list.dart';
-import 'package:flutter/material.dart';
 import 'package:pangolin/widgets/error_window.dart';
 import 'package:utopia_wm/wm.dart';
 import 'package:provider/provider.dart';
