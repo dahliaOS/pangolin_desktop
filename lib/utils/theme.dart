@@ -21,6 +21,7 @@ ThemeData theme(BuildContext context) {
       toggleableActiveColor: Color(_data.accentColor),
       platform: TargetPlatform.android,
       sliderTheme: SliderThemeData(
+          overlayColor: Color(_data.accentColor).withOpacity(0.1),
           thumbColor: Color(_data.accentColor),
           activeTrackColor: Color(_data.accentColor),
           inactiveTrackColor: Color(_data.accentColor).withOpacity(0.5),
