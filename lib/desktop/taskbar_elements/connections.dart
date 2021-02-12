@@ -75,6 +75,16 @@ class ConnectionCenter extends StatelessWidget {
       left: sidePadding(context, 500),
       right: sidePadding(context, 500),
       child: BoxContainer(
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.5),
+              blurRadius: 10.0,
+              spreadRadius: 0.0,
+              offset: Offset(2.0, 2.0), // shadow direction: bottom right
+            )
+          ],
+        ),
         useSystemOpacity: true,
         color: Theme.of(context).scaffoldBackgroundColor,
         customBorderRadius: BorderRadius.circular(10),
