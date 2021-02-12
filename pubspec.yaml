@@ -47,6 +47,28 @@ flutter:
     - family:  PangolinCustomIcons
       fonts:
        - asset: fonts/PangolinCustomIcons.ttf
+    - family:  DM-Sans
+      fonts:
+       - asset: fonts/dm-sans/DMSans-Bold.ttf
+       - asset: fonts/dm-sans/DMSans-BoldItalic.ttf
+       - asset: fonts/dm-sans/DMSans-Italic.ttf
+       - asset: fonts/dm-sans/DMSans-Medium.ttf
+       - asset: fonts/dm-sans/DMSans-MediumItalic.ttf
+       - asset: fonts/dm-sans/DMSans-Regular.ttf
+    - family:  Lato
+      fonts:
+       - asset: fonts/lato/Lato-Black.ttf
+       - asset: fonts/lato/Lato-BlackItalic.ttf
+       - asset: fonts/lato/Lato-Bold.ttf
+       - asset: fonts/lato/Lato-BoldItalic.ttf
+       - asset: fonts/lato/Lato-Italic.ttf
+       - asset: fonts/lato/Lato-Medium.ttf
+       - asset: fonts/lato/Lato-MediumItalic.ttf
+       - asset: fonts/lato/Lato-Regular.ttf
+       - asset: fonts/lato/Lato-Light.ttf
+       - asset: fonts/lato/Lato-LightItalic.ttf
+       - asset: fonts/lato/Lato-Thin.ttf
+       - asset: fonts/lato/Lato-Italic.ttf
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
