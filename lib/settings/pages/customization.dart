@@ -106,6 +106,47 @@ class _CustomizationState extends State<Customization> {
                         ),
                       ],
                     ),
+                    SettingsHeader(heading: "Opacity"),
+                    SettingsTile(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 12.0, vertical: 8.0),
+                          child: Text(
+                            "Change system opacity",
+                            style: TextStyle(fontSize: 17),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                          child: Row(
+                            children: [
+                              Icon(Icons.adjust_rounded),
+                              Expanded(
+                                child: Slider(
+                                  onChanged: (double value) {
+                                    _data.themeOpacity = value;
+                                  },
+                                  value: _data.themeOpacity,
+                                  divisions: 10,
+                                ),
+                              ),
+                              Text((_data.themeOpacity * 100)
+                                      .toString()
+                                      .substring(
+                                          0,
+                                          (_data.themeOpacity
+                                                  .toString()
+                                                  .startsWith("100")
+                                              ? 2
+                                              : 3))
+                                      .replaceAll(".", "") +
+                                  " %"),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                     SettingsHeader(heading: "Taskbar"),
                     SettingsTile(
                       children: [
