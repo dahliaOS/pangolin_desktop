@@ -6,17 +6,19 @@ class Searchbar extends StatelessWidget {
   final Widget? leading, trailing;
   final String? hint;
   final TextEditingController? controller;
+  final BorderRadius? borderRadius;
   final FocusNode? focusNode;
   const Searchbar(
       {required this.leading,
       required this.trailing,
       required this.hint,
       required this.controller,
+      this.borderRadius,
       this.focusNode});
   @override
   Widget build(BuildContext context) {
     return BoxContainer(
-      customBorderRadius: BorderRadius.circular(8),
+      customBorderRadius: borderRadius ?? BorderRadius.circular(8),
       color: Theme.of(context).cardColor,
       useSystemOpacity: true,
       width: 800,
