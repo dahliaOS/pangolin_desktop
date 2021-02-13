@@ -407,7 +407,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "3f3685140e22ad57f07b6cbcc7bdb0b1647b84c3"
+      resolved-ref: "2ec1f1cb87de323992f5a2a1e8445bf1dfda5ba8"
       url: "https://github.com/dahliaOS/utopia.git"
     source: git
     version: "1.0.0+1"
