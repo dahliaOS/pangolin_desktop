@@ -77,6 +77,7 @@ class OverviewOverlay extends StatelessWidget {
                               padding: const EdgeInsets.all(12.0),
                               child: FloatingActionButton.extended(
                                 onPressed: () {},
+                                hoverColor: Colors.white,
                                 label: Text("New Desktop"),
                                 icon: Icon(Icons.add),
                                 foregroundColor: Colors.black,
