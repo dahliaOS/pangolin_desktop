@@ -20,8 +20,10 @@ class SearchButton extends StatelessWidget {
           hoverColor: Theme.of(context).cardColor.withOpacity(0.5),
           mouseCursor: SystemMouseCursors.click,
           onTap: () {
-            WmAPI(context).pushOverlayEntry(
-                DismissibleOverlayEntry(uniqueId: "search", content: Search()));
+            WmAPI(context).pushOverlayEntry(DismissibleOverlayEntry(
+                uniqueId: "search",
+                content: Search(),
+                duration: Duration(milliseconds: 200)));
           },
           child: Padding(
             padding: EdgeInsets.all(12),
@@ -36,6 +38,8 @@ class SearchButton extends StatelessWidget {
 class Search extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final _focusNode = FocusNode();
+    _focusNode.requestFocus();
     return Builder(builder: (context) {
       final _ac = context.watch<DismissibleOverlayEntry>().animation;
       return AnimatedBuilder(
@@ -75,6 +79,7 @@ class Search extends StatelessWidget {
                               useSystemOpacity: true,
                               height: 52,
                               child: Searchbar(
+                                focusNode: _focusNode,
                                 controller: TextEditingController(),
                                 hint: '"Search Device, Apps and Web',
                                 leading: Icon(Icons.search),
