@@ -8,13 +8,15 @@ class Searchbar extends StatelessWidget {
   final TextEditingController? controller;
   final BorderRadius? borderRadius;
   final FocusNode? focusNode;
+  final void Function(String)? onTextChanged;
   const Searchbar(
       {required this.leading,
       required this.trailing,
       required this.hint,
       required this.controller,
       this.borderRadius,
-      this.focusNode});
+      this.focusNode,
+      this.onTextChanged});
   @override
   Widget build(BuildContext context) {
     return BoxContainer(
@@ -39,6 +41,7 @@ class Searchbar extends StatelessWidget {
               )),
           Expanded(
             child: TextField(
+              onChanged: onTextChanged,
               focusNode: focusNode,
               controller: controller,
               textAlign: TextAlign.center,
