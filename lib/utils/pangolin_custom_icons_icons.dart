@@ -11,7 +11,7 @@
 ///      fonts:
 ///       - asset: fonts/PangolinCustomIcons.ttf
 ///
-/// 
+///
 ///
 import 'package:flutter/widgets.dart';
 
@@ -21,5 +21,6 @@ class PangolinCustomIcons {
   static const _kFontFam = 'PangolinCustomIcons';
   static const String? _kFontPkg = null;
 
-  static const IconData action_center = IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData action_center =
+      IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }
