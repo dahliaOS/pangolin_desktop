@@ -131,7 +131,7 @@ class _LauncherOverlayState extends State<LauncherOverlay> {
               Expanded(
                 child: Padding(
                   padding: EdgeInsets.symmetric(
-                    horizontal: horizontalWidgetPaddingMultiplier * 100,
+                    horizontal: horizontalWidgetPaddingMultiplier * 200,
                   ),
                   child: LauncherAppsGrid(applications: applications),
                 ),

@@ -28,7 +28,7 @@ class LauncherChipsRow extends StatelessWidget {
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
         children: [
-          // TODO: make actual launcher chips?
+          // TODO: make actual launcher chips? YES
           Chip(label: Text("test")),
           Padding(padding: EdgeInsets.only(left: 5)),
           Chip(label: Text("test")),
