@@ -14,42 +14,36 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
-import 'package:pangolin/utils/app_list.dart';
+import 'package:pangolin/desktop/taskbar_elements/search.dart';
 import 'package:pangolin/utils/wm_api.dart';
+import 'package:pangolin/widgets/searchbar.dart';
 import 'package:provider/provider.dart';
 import 'package:utopia_wm/wm.dart';
 
-class AppLauncherButton extends StatelessWidget {
-  final String packageName;
-  const AppLauncherButton(this.packageName);
+class LauncherSearchBar extends StatelessWidget {
+  const LauncherSearchBar({
+    Key? key,
+    required this.horizontalWidgetPaddingMultiplier,
+  }) : super(key: key);
+
+  final double horizontalWidgetPaddingMultiplier;
+
   @override
   Widget build(BuildContext context) {
-    final Application application = getApp(packageName) ?? fallbackApp;
-    return InkWell(
-      borderRadius: BorderRadius.circular(12),
-      hoverColor: Colors.transparent,
-      onTap: () {
+    return Searchbar(
+      onTextChanged: (change) {
         WmAPI.of(context).popOverlayEntry(
             Provider.of<DismissibleOverlayEntry>(context, listen: false));
-        WmAPI.of(context).openApp(packageName);
+        WmAPI.of(context).pushOverlayEntry(
+            DismissibleOverlayEntry(uniqueId: "search", content: Search()));
       },
-      focusColor: Colors.white,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            // color: Colors.yellow,
-            child: Image.asset(
-              "assets/icons/${application.iconName}.png",
-            ),
-          ),
-          Text(
-            application.name ?? "",
-            style: TextStyle(fontSize: 17, color: Colors.white),
-          )
-        ],
+      leading: Icon(Icons.search),
+      trailing: Icon(Icons.menu),
+      hint: "Search Device, Apps and Web",
+      controller: TextEditingController(),
+      borderRadius: BorderRadius.circular(
+        8 * horizontalWidgetPaddingMultiplier,
       ),
     );
   }
