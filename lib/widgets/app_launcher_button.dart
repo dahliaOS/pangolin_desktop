@@ -26,7 +26,7 @@ class AppLauncherButton extends StatelessWidget {
   const AppLauncherButton(this.packageName);
   @override
   Widget build(BuildContext context) {
-    final Application application = getApp(packageName) ?? fallbackApp;
+    final Application application = getApp(packageName);
     return Container(
       margin: EdgeInsets.all(24),
       child: Material(

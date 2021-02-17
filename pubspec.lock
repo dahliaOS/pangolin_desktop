@@ -50,7 +50,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "74ccf990aa6b55a719beadd0eaa103347573cad3"
+      resolved-ref: "3c9d8323fdb9de355b312e78531b2383789cd4a5"
       url: "https://github.com/dahliaOS/calculator.git"
     source: git
     version: "1.0.0+1"
@@ -115,7 +115,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "3b4e282d7c9c2ef614c7b9b9b2d707e7b1edb5b1"
+      resolved-ref: "6890f427f8f878a0200f7cebce60e86fc64e56bb"
       url: "https://github.com/dahliaOS/backend.git"
     source: git
     version: "0.0.1+1"

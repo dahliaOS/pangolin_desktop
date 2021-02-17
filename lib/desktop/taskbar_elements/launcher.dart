@@ -134,8 +134,8 @@ class _LauncherOverlayState extends State<LauncherOverlay> {
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 7),
                   itemBuilder: (BuildContext context, int index) {
-                    var keys = applications.keys.toList();
-                    return AppLauncherButton(keys[index]);
+                    return AppLauncherButton(applications[index].packageName ??
+                        "io.dahlia.calculator");
                   },
                   //crossAxisCount: 7,
                   /* children: [

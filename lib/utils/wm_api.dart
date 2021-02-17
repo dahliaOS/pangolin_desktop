@@ -45,19 +45,11 @@ class WmAPI {
   }
 
   void openApp(String packageName) {
-    if (applications.containsKey(packageName)) {
-      pushWindowEntry(WindowEntry.withDefaultToolbar(
-        content: applications[packageName]!.app ?? ErrorWindow(),
-        initialSize: Size(1280, 720),
-        icon: AssetImage(
-            "assets/icons/${applications[packageName]!.iconName}.png"),
-        title: applications[packageName]!.name,
-      ));
-    } else {
-      pushWindowEntry(WindowEntry.withDefaultToolbar(
-          content: ErrorWindow(),
-          title: "Error",
-          initialSize: Size(1280, 720)));
-    }
+    pushWindowEntry(WindowEntry.withDefaultToolbar(
+      content: getApp(packageName).app ?? ErrorWindow(),
+      initialSize: Size(1280, 720),
+      icon: AssetImage("assets/icons/${getApp(packageName).iconName}.png"),
+      title: getApp(packageName).name,
+    ));
   }
 }
