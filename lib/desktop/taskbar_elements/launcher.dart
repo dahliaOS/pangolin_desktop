@@ -17,11 +17,11 @@ limitations under the License.
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:pangolin/desktop/taskbar_elements/search.dart';
+import 'package:pangolin/desktop/taskbar_elements/launcher_apps_grid.dart';
+import 'package:pangolin/desktop/taskbar_elements/launcher_chips_row.dart';
+import 'package:pangolin/desktop/taskbar_elements/launcher_search_bar.dart';
 import 'package:pangolin/utils/app_list.dart';
 import 'package:pangolin/utils/wm_api.dart';
-import 'package:pangolin/widgets/app_launcher_button.dart';
-import 'package:pangolin/widgets/searchbar.dart';
 import 'package:provider/provider.dart';
 import 'package:utopia_wm/wm.dart';
 
@@ -75,6 +75,8 @@ class LauncherButton extends StatelessWidget {
 }
 
 class LauncherOverlay extends StatefulWidget {
+  final minWidth = 512;
+
   @override
   _LauncherOverlayState createState() => _LauncherOverlayState();
 }
@@ -82,6 +84,21 @@ class LauncherOverlay extends StatefulWidget {
 class _LauncherOverlayState extends State<LauncherOverlay> {
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    // Calculate horizontal padding moultiplier based off of window width
+    double horizontalWidgetPaddingMultiplier;
+    if (width < widget.minWidth) {
+      // should have 0 horizontal padding if width smaller than `widget.minWidth`, so multiplier = 0
+      horizontalWidgetPaddingMultiplier = 0;
+    } else if (width < 1000) {
+      // between `widget.minWidth` and 1000, so set to the result of a function that calculates smooth transition for multiplier
+      // check https://www.desmos.com/calculator/lv1liilllb for a graph of this transition
+      horizontalWidgetPaddingMultiplier =
+          (width - widget.minWidth) / (1000 - widget.minWidth);
+    } else {
+      horizontalWidgetPaddingMultiplier = 1;
+    }
+
     return Positioned(
       top: 0,
       bottom: 48,
@@ -97,55 +114,27 @@ class _LauncherOverlayState extends State<LauncherOverlay> {
           useBlur: true,
           color: Colors.black.withOpacity(0.5),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Searchbar(
-                  onTextChanged: (change) {
-                    WmAPI.of(context).popOverlayEntry(
-                        Provider.of<DismissibleOverlayEntry>(context,
-                            listen: false));
-                    WmAPI.of(context).pushOverlayEntry(DismissibleOverlayEntry(
-                        uniqueId: "search", content: Search()));
-                  },
-                  leading: Icon(Icons.search),
-                  trailing: Icon(Icons.menu),
-                  hint: "Search Device, Apps and Web",
-                  controller: TextEditingController()),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Chip(label: Text("test")),
-                  Chip(label: Text("test")),
-                  Chip(label: Text("test")),
-                  Chip(label: Text("test")),
-                  Chip(label: Text("test")),
-                  Chip(label: Text("test")),
-                  Chip(label: Text("test")),
-                  Chip(label: Text("test")),
-                  Chip(label: Text("test")),
-                ],
-              ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 2 / 3,
-                height: MediaQuery.of(context).size.height * 2 / 3,
-                child: GridView.builder(
-                  itemCount: applications.length,
-                  physics: BouncingScrollPhysics(),
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 7),
-                  itemBuilder: (BuildContext context, int index) {
-                    var keys = applications.keys.toList();
-                    return AppLauncherButton(keys[index]);
-                  },
-                  //crossAxisCount: 7,
-                  /* children: [
-                    for(var app in applications) {}
-                    AppLauncherButton("io.dahlia.calculator"),
-                  ], */
+              Container(
+                padding: EdgeInsets.only(top: 50),
+                child: LauncherSearchBar(
+                  horizontalWidgetPaddingMultiplier:
+                      horizontalWidgetPaddingMultiplier,
                 ),
               ),
-              SizedBox(
-                height: 12,
+              Container(
+                // The row of chips 'test test test test' lol
+                margin: const EdgeInsets.only(top: 33 + (1 / 3)),
+                child: LauncherChipsRow(),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: horizontalWidgetPaddingMultiplier * 100,
+                  ),
+                  child: LauncherAppsGrid(applications: applications),
+                ),
               ),
             ],
           ),
