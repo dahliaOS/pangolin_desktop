@@ -17,11 +17,11 @@ limitations under the License.
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:pangolin/desktop/taskbar_elements/launcher_apps_grid.dart';
-import 'package:pangolin/desktop/taskbar_elements/launcher_chips_row.dart';
-import 'package:pangolin/desktop/taskbar_elements/launcher_search_bar.dart';
+import 'package:pangolin/desktop/taskbar_elements/search.dart';
 import 'package:pangolin/utils/app_list.dart';
 import 'package:pangolin/utils/wm_api.dart';
+import 'package:pangolin/widgets/app_launcher_button.dart';
+import 'package:pangolin/widgets/searchbar.dart';
 import 'package:provider/provider.dart';
 import 'package:utopia_wm/wm.dart';
 
@@ -84,6 +84,53 @@ class LauncherOverlay extends StatefulWidget {
 class _LauncherOverlayState extends State<LauncherOverlay> {
   @override
   Widget build(BuildContext context) {
+    List<String> launcherCategories = [
+      "All Applications",
+      "Internet",
+      "Media",
+      "Gaming",
+      "Development",
+      "Office",
+      "System"
+    ];
+    final _applications = applications;
+    List<Application> _internet = List.empty(growable: true);
+    List<Application> _media = List.empty(growable: true);
+    List<Application> _gaming = List.empty(growable: true);
+    List<Application> _development = List.empty(growable: true);
+    List<Application> _office = List.empty(growable: true);
+    List<Application> _system = List.empty(growable: true);
+    _applications.forEach((element) {
+      if (element.category == ApplicationCategory.INTERNET) {
+        _internet.add(element);
+      }
+      if (element.category == ApplicationCategory.MEDIA) {
+        _media.add(element);
+      }
+      if (element.category == ApplicationCategory.GAMING) {
+        _gaming.add(element);
+      }
+      if (element.category == ApplicationCategory.DEVELOPMENT) {
+        _development.add(element);
+      }
+      if (element.category == ApplicationCategory.OFFICE) {
+        _office.add(element);
+      }
+      if (element.category == ApplicationCategory.SYSTEM) {
+        _system.add(element);
+      }
+    });
+    List<List> pages = [
+      _applications,
+      _internet,
+      _media,
+      _gaming,
+      _development,
+      _office,
+      _system
+    ];
+    final _controller = PageController();
+
     double width = MediaQuery.of(context).size.width;
     // Calculate horizontal padding moultiplier based off of window width
     double horizontalWidgetPaddingMultiplier;
@@ -117,23 +164,78 @@ class _LauncherOverlayState extends State<LauncherOverlay> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Container(
-                padding: EdgeInsets.only(top: 50),
-                child: LauncherSearchBar(
-                  horizontalWidgetPaddingMultiplier:
-                      horizontalWidgetPaddingMultiplier,
-                ),
-              ),
+                  padding: EdgeInsets.only(top: 50),
+                  child: Searchbar(
+                    onTextChanged: (change) {
+                      WmAPI.of(context).popOverlayEntry(
+                          Provider.of<DismissibleOverlayEntry>(context,
+                              listen: false));
+                      WmAPI.of(context).pushOverlayEntry(
+                          DismissibleOverlayEntry(
+                              uniqueId: "search", content: Search()));
+                    },
+                    leading: Icon(Icons.search),
+                    trailing: Icon(Icons.menu),
+                    hint: "Search Device, Apps and Web",
+                    controller: TextEditingController(),
+                    borderRadius: BorderRadius.circular(
+                      8 * horizontalWidgetPaddingMultiplier,
+                    ),
+                  )),
               Container(
+                //color: Colors.white,
                 // The row of chips 'test test test test' lol
                 margin: const EdgeInsets.only(top: 33 + (1 / 3)),
-                child: LauncherChipsRow(),
+                child: Container(
+                  // have to give explicit size, as the child ListView can't calculate its Y height
+                  height: 46,
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemCount: launcherCategories.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: InkWell(
+                          child: Chip(label: Text(launcherCategories[index])),
+                          onTap: () {
+                            _controller.jumpToPage(index);
+                          },
+                          mouseCursor: SystemMouseCursors.click,
+                        ),
+                      );
+                    },
+                  ),
+                ),
               ),
               Expanded(
                 child: Padding(
                   padding: EdgeInsets.symmetric(
                     horizontal: horizontalWidgetPaddingMultiplier * 200,
                   ),
-                  child: LauncherAppsGrid(applications: applications),
+                  child: PageView.builder(
+                      physics: BouncingScrollPhysics(),
+                      controller: _controller,
+                      itemCount: pages.length,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, pvindex) {
+                        final page = pages[pvindex];
+                        return GridView.builder(
+                          physics: BouncingScrollPhysics(),
+                          itemCount: pages[pvindex].length,
+                          gridDelegate:
+                              SliverGridDelegateWithMaxCrossAxisExtent(
+                            // Flutter automatically calculates the optimal number of horizontal
+                            // items with a MaxCrossAxisExtent in the app launcher grid
+                            maxCrossAxisExtent: 175,
+                            mainAxisSpacing: 0,
+                            crossAxisSpacing: 0,
+                          ),
+                          itemBuilder: (BuildContext context, int index) {
+                            return AppLauncherButton(page[index].packageName!);
+                          },
+                        );
+                      }),
                 ),
               ),
             ],
