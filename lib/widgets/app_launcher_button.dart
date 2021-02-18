@@ -27,37 +27,40 @@ class AppLauncherButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Application application = getApp(packageName);
-    return Material(
-      // Material widget to allow a HoverColor for each app
-      color: Colors.transparent,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: InkWell(
-          borderRadius: BorderRadius.circular(12),
-          hoverColor: Theme.of(context).cardColor.withOpacity(0.5),
-          focusColor: Colors.white,
-          onTap: () {
-            WmAPI.of(context).popOverlayEntry(
-                Provider.of<DismissibleOverlayEntry>(context, listen: false));
-            WmAPI.of(context).openApp(packageName);
-          },
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                // color: Colors.yellow,
-                child: Image.asset(
-                  "assets/icons/${application.iconName}.png",
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Material(
+        // Material widget to allow a HoverColor for each app
+        color: Colors.transparent,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: InkWell(
+            borderRadius: BorderRadius.circular(12),
+            hoverColor: Theme.of(context).cardColor.withOpacity(0.5),
+            focusColor: Colors.white,
+            onTap: () {
+              WmAPI.of(context).popOverlayEntry(
+                  Provider.of<DismissibleOverlayEntry>(context, listen: false));
+              WmAPI.of(context).openApp(packageName);
+            },
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  // color: Colors.yellow,
+                  child: Image.asset(
+                    "assets/icons/${application.iconName}.png",
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: 8,
-              ),
-              Text(
-                application.name ?? "",
-                style: TextStyle(fontSize: 17, color: Colors.white),
-              )
-            ],
+                SizedBox(
+                  height: 8,
+                ),
+                Text(
+                  application.name ?? "",
+                  style: TextStyle(fontSize: 17, color: Colors.white),
+                )
+              ],
+            ),
           ),
         ),
       ),
