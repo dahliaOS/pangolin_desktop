@@ -199,7 +199,9 @@ class _LauncherOverlayState extends State<LauncherOverlay> {
                         child: InkWell(
                           child: Chip(label: Text(launcherCategories[index])),
                           onTap: () {
-                            _controller.jumpToPage(index);
+                            _controller.animateToPage(index,
+                                duration: Duration(milliseconds: 300),
+                                curve: Curves.easeInOut);
                           },
                           mouseCursor: SystemMouseCursors.click,
                         ),
@@ -214,7 +216,7 @@ class _LauncherOverlayState extends State<LauncherOverlay> {
                     horizontal: horizontalWidgetPaddingMultiplier * 200,
                   ),
                   child: PageView.builder(
-                      physics: BouncingScrollPhysics(),
+                      physics: NeverScrollableScrollPhysics(),
                       controller: _controller,
                       itemCount: pages.length,
                       scrollDirection: Axis.horizontal,
