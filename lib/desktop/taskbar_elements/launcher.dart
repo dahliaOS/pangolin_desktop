@@ -240,6 +240,51 @@ class _LauncherOverlayState extends State<LauncherOverlay> {
                       }),
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.all(50.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    //TODO Power overlay
+                    InkWell(
+                      onTap: () {},
+                      mouseCursor: SystemMouseCursors.click,
+                      child: Icon(
+                        Icons.power_settings_new,
+                        size: 32,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 16,
+                    ),
+                    InkWell(
+                      onTap: () {},
+                      mouseCursor: SystemMouseCursors.click,
+                      child: Icon(
+                        Icons.person,
+                        size: 32,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 16,
+                    ),
+                    InkWell(
+                      onTap: () {
+                        WmAPI.of(context).popOverlayEntry(
+                            Provider.of<DismissibleOverlayEntry>(context,
+                                listen: false));
+                        WmAPI.of(context).openApp("io.dahlia.settings");
+                        setState(() {});
+                      },
+                      mouseCursor: SystemMouseCursors.click,
+                      child: Icon(
+                        Icons.settings_outlined,
+                        size: 32,
+                      ),
+                    ),
+                  ],
+                ),
+              )
             ],
           ),
         ),
