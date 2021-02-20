@@ -16,7 +16,7 @@ jobs:
         name: Checkout repository
       - uses: subosito/flutter-action@v1
         name: Set up Flutter
-      - run: flutter channel beta
+      - run: flutter channel dev
         name: Switch Flutter channel
       - run: flutter config --enable-linux-desktop
         name: Enable linux support
