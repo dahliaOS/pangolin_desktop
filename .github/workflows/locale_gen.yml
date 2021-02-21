@@ -19,5 +19,5 @@ jobs:
         name: Get dependencies
       - run: dart bin/locale_gen.dart assets/locales lib/internal/locales
         name: Generate translations
-      - run: git commit -am "Generated Locales" && git push
+      - run: git config --global user.name "dahliaOS" && git config --global user.email contact@dahliaos.io && git commit -am "Generated Locales" && git push
         name: Push translations
