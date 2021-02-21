@@ -265,7 +265,7 @@ class _LauncherOverlayState extends State<LauncherOverlay> {
                   Padding(
                     padding: const EdgeInsets.all(50.0),
                     child: BoxContainer(
-                      width: 32 * 3 + 16 * 4,
+                      width: 28 * 3 + 16 * 4,
                       height: 32 + 16,
                       color: Colors.white,
                       useSystemOpacity: true,
@@ -279,7 +279,7 @@ class _LauncherOverlayState extends State<LauncherOverlay> {
                             mouseCursor: SystemMouseCursors.click,
                             child: Icon(
                               Icons.power_settings_new,
-                              size: 32,
+                              size: 28,
                             ),
                           ),
                           SizedBox(
@@ -290,7 +290,7 @@ class _LauncherOverlayState extends State<LauncherOverlay> {
                             mouseCursor: SystemMouseCursors.click,
                             child: Icon(
                               Icons.person,
-                              size: 32,
+                              size: 28,
                             ),
                           ),
                           SizedBox(
@@ -307,7 +307,7 @@ class _LauncherOverlayState extends State<LauncherOverlay> {
                             mouseCursor: SystemMouseCursors.click,
                             child: Icon(
                               Icons.settings_outlined,
-                              size: 32,
+                              size: 28,
                             ),
                           ),
                         ],
