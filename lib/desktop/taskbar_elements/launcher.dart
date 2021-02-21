@@ -18,6 +18,7 @@ import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:pangolin/desktop/taskbar_elements/search.dart';
+import 'package:pangolin/desktop/wallpaper.dart';
 import 'package:pangolin/utils/app_list.dart';
 import 'package:pangolin/utils/wm_api.dart';
 import 'package:pangolin/widgets/app_launcher_button.dart';
@@ -82,6 +83,7 @@ class LauncherOverlay extends StatefulWidget {
 }
 
 class _LauncherOverlayState extends State<LauncherOverlay> {
+  var _selected = 0;
   @override
   Widget build(BuildContext context) {
     List<String> launcherCategories = [
@@ -157,136 +159,165 @@ class _LauncherOverlayState extends State<LauncherOverlay> {
               Provider.of<DismissibleOverlayEntry>(context, listen: false));
           setState(() {});
         },
-        child: BoxContainer(
-          useBlur: true,
-          color: Colors.black.withOpacity(0.5),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Container(
-                  padding: EdgeInsets.only(top: 50),
-                  child: Searchbar(
-                    onTextChanged: (change) {
-                      WmAPI.of(context).popOverlayEntry(
-                          Provider.of<DismissibleOverlayEntry>(context,
-                              listen: false));
-                      WmAPI.of(context).pushOverlayEntry(
-                          DismissibleOverlayEntry(
-                              uniqueId: "search", content: Search()));
-                    },
-                    leading: Icon(Icons.search),
-                    trailing: Icon(Icons.menu),
-                    hint: "Search Device, Apps and Web",
-                    controller: TextEditingController(),
-                    borderRadius: BorderRadius.circular(
-                      8 * horizontalWidgetPaddingMultiplier,
-                    ),
-                  )),
-              Container(
-                //color: Colors.white,
-                // The row of chips 'test test test test' lol
-                margin: const EdgeInsets.only(top: 33 + (1 / 3)),
-                child: Container(
-                  // have to give explicit size, as the child ListView can't calculate its Y height
-                  height: 46,
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    itemCount: launcherCategories.length,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: InkWell(
-                          child: Chip(label: Text(launcherCategories[index])),
-                          onTap: () {
-                            _controller.animateToPage(index,
-                                duration: Duration(milliseconds: 300),
-                                curve: Curves.easeInOut);
-                          },
-                          mouseCursor: SystemMouseCursors.click,
+        child: Stack(
+          children: [
+            Wallpaper(),
+            BoxContainer(
+              useBlur: true,
+              color: Colors.black.withOpacity(0.5),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(
+                      padding: EdgeInsets.only(top: 50),
+                      child: Searchbar(
+                        onTextChanged: (change) {
+                          WmAPI.of(context).popOverlayEntry(
+                              Provider.of<DismissibleOverlayEntry>(context,
+                                  listen: false));
+                          WmAPI.of(context).pushOverlayEntry(
+                              DismissibleOverlayEntry(
+                                  uniqueId: "search", content: Search()));
+                        },
+                        leading: Icon(Icons.search),
+                        trailing: Icon(Icons.menu),
+                        hint: "Search Device, Apps and Web",
+                        controller: TextEditingController(),
+                        borderRadius: BorderRadius.circular(
+                          8 * horizontalWidgetPaddingMultiplier,
                         ),
-                      );
-                    },
+                      )),
+                  Container(
+                    //color: Colors.white,
+                    // The row of chips 'test test test test' lol
+                    margin: const EdgeInsets.only(top: 33 + (1 / 3)),
+                    child: BoxContainer(
+                      customBorderRadius: BorderRadius.circular(8),
+                      color: Colors.white,
+                      useSystemOpacity: true,
+                      // have to give explicit size, as the child ListView can't calculate its Y height
+                      height: 38,
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        itemCount: launcherCategories.length,
+                        itemBuilder: (context, index) {
+                          return BoxContainer(
+                            useBlur: false,
+                            useSystemOpacity: _selected == index,
+                            customBorderRadius: BorderRadius.circular(8),
+                            color: _selected == index
+                                ? Colors.white
+                                : Colors.transparent,
+                            child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 8.0, horizontal: 18),
+                                child: Center(
+                                  child: InkWell(
+                                    child: Text(launcherCategories[index]),
+                                    onTap: () {
+                                      setState(() {
+                                        _selected = index;
+                                      });
+                                      _controller.animateToPage(index,
+                                          duration: Duration(milliseconds: 300),
+                                          curve: Curves.easeInOut);
+                                    },
+                                    mouseCursor: SystemMouseCursors.click,
+                                  ),
+                                )),
+                          );
+                        },
+                      ),
+                    ),
                   ),
-                ),
-              ),
-              Expanded(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: horizontalWidgetPaddingMultiplier * 200,
+                  Expanded(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: horizontalWidgetPaddingMultiplier * 200,
+                      ),
+                      child: PageView.builder(
+                          physics: NeverScrollableScrollPhysics(),
+                          controller: _controller,
+                          itemCount: pages.length,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, pvindex) {
+                            final page = pages[pvindex];
+                            return GridView.builder(
+                              physics: BouncingScrollPhysics(),
+                              itemCount: pages[pvindex].length,
+                              gridDelegate:
+                                  SliverGridDelegateWithMaxCrossAxisExtent(
+                                // Flutter automatically calculates the optimal number of horizontal
+                                // items with a MaxCrossAxisExtent in the app launcher grid
+                                maxCrossAxisExtent: 175,
+                                mainAxisSpacing: 0,
+                                crossAxisSpacing: 0,
+                              ),
+                              itemBuilder: (BuildContext context, int index) {
+                                return AppLauncherButton(
+                                    page[index].packageName!);
+                              },
+                            );
+                          }),
+                    ),
                   ),
-                  child: PageView.builder(
-                      physics: NeverScrollableScrollPhysics(),
-                      controller: _controller,
-                      itemCount: pages.length,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, pvindex) {
-                        final page = pages[pvindex];
-                        return GridView.builder(
-                          physics: BouncingScrollPhysics(),
-                          itemCount: pages[pvindex].length,
-                          gridDelegate:
-                              SliverGridDelegateWithMaxCrossAxisExtent(
-                            // Flutter automatically calculates the optimal number of horizontal
-                            // items with a MaxCrossAxisExtent in the app launcher grid
-                            maxCrossAxisExtent: 175,
-                            mainAxisSpacing: 0,
-                            crossAxisSpacing: 0,
+                  Padding(
+                    padding: const EdgeInsets.all(50.0),
+                    child: BoxContainer(
+                      width: 32 * 3 + 16 * 4,
+                      height: 32 + 16,
+                      color: Colors.white,
+                      useSystemOpacity: true,
+                      customBorderRadius: BorderRadius.circular(8),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          //TODO Power overlay
+                          InkWell(
+                            onTap: () {},
+                            mouseCursor: SystemMouseCursors.click,
+                            child: Icon(
+                              Icons.power_settings_new,
+                              size: 32,
+                            ),
                           ),
-                          itemBuilder: (BuildContext context, int index) {
-                            return AppLauncherButton(page[index].packageName!);
-                          },
-                        );
-                      }),
-                ),
+                          SizedBox(
+                            width: 16,
+                          ),
+                          InkWell(
+                            onTap: () {},
+                            mouseCursor: SystemMouseCursors.click,
+                            child: Icon(
+                              Icons.person,
+                              size: 32,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 16,
+                          ),
+                          InkWell(
+                            onTap: () {
+                              WmAPI.of(context).popOverlayEntry(
+                                  Provider.of<DismissibleOverlayEntry>(context,
+                                      listen: false));
+                              WmAPI.of(context).openApp("io.dahlia.settings");
+                              setState(() {});
+                            },
+                            mouseCursor: SystemMouseCursors.click,
+                            child: Icon(
+                              Icons.settings_outlined,
+                              size: 32,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
+                ],
               ),
-              Padding(
-                padding: const EdgeInsets.all(50.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    //TODO Power overlay
-                    InkWell(
-                      onTap: () {},
-                      mouseCursor: SystemMouseCursors.click,
-                      child: Icon(
-                        Icons.power_settings_new,
-                        size: 32,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 16,
-                    ),
-                    InkWell(
-                      onTap: () {},
-                      mouseCursor: SystemMouseCursors.click,
-                      child: Icon(
-                        Icons.person,
-                        size: 32,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 16,
-                    ),
-                    InkWell(
-                      onTap: () {
-                        WmAPI.of(context).popOverlayEntry(
-                            Provider.of<DismissibleOverlayEntry>(context,
-                                listen: false));
-                        WmAPI.of(context).openApp("io.dahlia.settings");
-                        setState(() {});
-                      },
-                      mouseCursor: SystemMouseCursors.click,
-                      child: Icon(
-                        Icons.settings_outlined,
-                        size: 32,
-                      ),
-                    ),
-                  ],
-                ),
-              )
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
