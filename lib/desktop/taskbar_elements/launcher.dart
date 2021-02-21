@@ -193,7 +193,7 @@ class _LauncherOverlayState extends State<LauncherOverlay> {
                   Container(
                     //color: Colors.white,
                     // The row of chips 'test test test test' lol
-                    margin: const EdgeInsets.only(top: 33 + (1 / 3)),
+                    margin: const EdgeInsets.only(top: 33 + (1 / 3), bottom: 8),
                     child: BoxContainer(
                       customBorderRadius: BorderRadius.circular(8),
                       color: Colors.white,
