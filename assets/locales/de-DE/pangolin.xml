@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_authenticator">Authenticator</string>
+    <string name="app_authenticator">Authentikator</string>
     <string name="app_calculator">Rechner</string>
     <string name="app_clock">Uhr</string>
     <string name="app_disks">Festplattenverwaltung</string>
