@@ -175,9 +175,12 @@ class _LauncherOverlayState extends State<LauncherOverlay> {
                           WmAPI.of(context).popOverlayEntry(
                               Provider.of<DismissibleOverlayEntry>(context,
                                   listen: false));
-                          WmAPI.of(context).pushOverlayEntry(
-                              DismissibleOverlayEntry(
-                                  uniqueId: "search", content: Search()));
+                          WmAPI.of(context)
+                              .pushOverlayEntry(DismissibleOverlayEntry(
+                                  uniqueId: "search",
+                                  content: Search(
+                                    text: change,
+                                  )));
                         },
                         leading: Icon(Icons.search),
                         trailing: Icon(Icons.menu),

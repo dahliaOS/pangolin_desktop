@@ -52,8 +52,11 @@ class SearchButton extends StatelessWidget {
 }
 
 class Search extends StatelessWidget {
+  final String text;
+  const Search({this.text = ""});
   @override
   Widget build(BuildContext context) {
+    final _controller = TextEditingController(text: text);
     final _focusNode = FocusNode();
     _focusNode.requestFocus();
     return Builder(builder: (context) {
@@ -96,7 +99,7 @@ class Search extends StatelessWidget {
                               height: 52,
                               child: Searchbar(
                                 focusNode: _focusNode,
-                                controller: TextEditingController(),
+                                controller: _controller,
                                 hint: '"Search Device, Apps and Web',
                                 leading: Icon(Icons.search),
                                 trailing: Icon(Icons.more_vert_rounded),

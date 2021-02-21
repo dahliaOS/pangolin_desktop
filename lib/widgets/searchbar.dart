@@ -21,6 +21,7 @@ import 'package:flutter/rendering.dart';
 class Searchbar extends StatelessWidget {
   final Widget? leading, trailing;
   final String? hint;
+  final String text;
   final TextEditingController? controller;
   final BorderRadius? borderRadius;
   final FocusNode? focusNode;
@@ -32,6 +33,7 @@ class Searchbar extends StatelessWidget {
       required this.controller,
       this.borderRadius,
       this.focusNode,
+      this.text = "",
       this.onTextChanged});
   @override
   Widget build(BuildContext context) {
