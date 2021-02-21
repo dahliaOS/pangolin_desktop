@@ -209,21 +209,21 @@ class _LauncherOverlayState extends State<LauncherOverlay> {
                             color: _selected == index
                                 ? Colors.white
                                 : Colors.transparent,
-                            child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 8.0, horizontal: 18),
-                                child: Center(
-                                  child: InkWell(
+                            child: InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    _selected = index;
+                                  });
+                                  _controller.animateToPage(index,
+                                      duration: Duration(milliseconds: 300),
+                                      curve: Curves.easeInOut);
+                                },
+                                mouseCursor: SystemMouseCursors.click,
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 8.0, horizontal: 18),
+                                  child: Center(
                                     child: Text(launcherCategories[index]),
-                                    onTap: () {
-                                      setState(() {
-                                        _selected = index;
-                                      });
-                                      _controller.animateToPage(index,
-                                          duration: Duration(milliseconds: 300),
-                                          curve: Curves.easeInOut);
-                                    },
-                                    mouseCursor: SystemMouseCursors.click,
                                   ),
                                 )),
                           );
