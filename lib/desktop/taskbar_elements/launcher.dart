@@ -34,7 +34,9 @@ class LauncherButton extends StatelessWidget {
           mouseCursor: SystemMouseCursors.click,
           onTap: () {
             WmAPI.of(context).pushOverlayEntry(DismissibleOverlayEntry(
-                uniqueId: "launcher", content: LauncherOverlay()));
+              uniqueId: "launcher",
+              content: LauncherOverlay(),
+            ));
           },
           child: Padding(
             padding: EdgeInsets.all(12),

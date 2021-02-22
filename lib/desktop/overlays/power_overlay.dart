@@ -39,8 +39,7 @@ class PowerOverlay extends StatelessWidget {
             ],
           ),
           customBorderRadius: BorderRadius.circular(8),
-          color: Colors.white,
-          useSystemOpacity: true,
+          color: Theme.of(context).cardColor.withOpacity(0.9),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.stretch,

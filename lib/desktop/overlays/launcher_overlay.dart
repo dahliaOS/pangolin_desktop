@@ -228,16 +228,21 @@ class _LauncherOverlayState extends State<LauncherOverlay> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          //TODO Power overlay
                           InkWell(
                             onTap: () {
                               WmAPI.of(context).popOverlayEntry(
                                   Provider.of<DismissibleOverlayEntry>(context,
                                       listen: false));
-                              WmAPI.of(context).pushOverlayEntry(
-                                  DismissibleOverlayEntry(
+                              WmAPI.of(context)
+                                  .pushOverlayEntry(DismissibleOverlayEntry(
                                       uniqueId: "power_menu",
-                                      content: PowerOverlay()));
+                                      content: PowerOverlay(),
+                                      background: BoxContainer(
+                                        color: Theme.of(context)
+                                            .dialogBackgroundColor
+                                            .withOpacity(0.5),
+                                        useBlur: false,
+                                      )));
                               setState(() {});
                             },
                             mouseCursor: SystemMouseCursors.click,
