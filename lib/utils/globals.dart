@@ -25,8 +25,11 @@ String kernel = "5.10.1";
 String pangolinCommit = "Pangolin - reborn";
 String fullPangolinVersion = "$pangolinCommit";
 
-double sidePadding(BuildContext context, double size) =>
+double horizontalPadding(BuildContext context, double size) =>
     context.watch<WindowHierarchyState>().wmRect.width / 2 - size / 2;
+
+double verticalPadding(BuildContext context, double size) =>
+    context.watch<WindowHierarchyState>().wmRect.height / 2 - size / 3.5;
 
 List<String> languages = [
   "عربى - إيران",

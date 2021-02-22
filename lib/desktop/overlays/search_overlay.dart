@@ -37,8 +37,8 @@ class SearchOverlay extends StatelessWidget {
           builder: (context, child) {
             return Positioned(
               top: 64,
-              left: sidePadding(context, 600),
-              right: sidePadding(context, 600),
+              left: horizontalPadding(context, 600),
+              right: horizontalPadding(context, 600),
               child: BoxContainer(
                 decoration: BoxDecoration(
                   boxShadow: [

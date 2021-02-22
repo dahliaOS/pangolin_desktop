@@ -34,8 +34,8 @@ class ConnectionCenterOverlay extends StatelessWidget {
           builder: (context, child) {
             return Positioned(
               bottom: _wm.insets.bottom + 20,
-              left: sidePadding(context, 500),
-              right: sidePadding(context, 500),
+              left: horizontalPadding(context, 500),
+              right: horizontalPadding(context, 500),
               child: BoxContainer(
                 decoration: BoxDecoration(
                   boxShadow: [
