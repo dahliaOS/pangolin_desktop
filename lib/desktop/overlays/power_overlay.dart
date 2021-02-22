@@ -49,7 +49,9 @@ class PowerOverlay extends StatelessWidget {
                 child: Material(
                   color: Colors.transparent,
                   child: InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      SystemCalls().powerOff();
+                    },
                     mouseCursor: SystemMouseCursors.click,
                     child: Icon(
                       Icons.power_settings_new,
@@ -62,7 +64,9 @@ class PowerOverlay extends StatelessWidget {
                 child: Material(
                   color: Colors.transparent,
                   child: InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      SystemCalls().restart();
+                    },
                     mouseCursor: SystemMouseCursors.click,
                     child: Icon(
                       Icons.replay,
