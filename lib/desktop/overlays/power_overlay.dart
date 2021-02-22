@@ -79,7 +79,9 @@ class PowerOverlay extends StatelessWidget {
                 child: Material(
                   color: Colors.transparent,
                   child: InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      SystemCalls().sleep();
+                    },
                     mouseCursor: SystemMouseCursors.click,
                     child: Icon(
                       Icons.brightness_2_outlined,
