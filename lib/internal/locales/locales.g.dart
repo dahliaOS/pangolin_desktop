@@ -5,32 +5,40 @@ class Locales {
 
   static List<Locale> get supported => [
     Locale("de", "DE"),
+    Locale("el", "GR"),
     Locale("en", "GB"),
     Locale("en", "US"),
     Locale("fr", "FR"),
     Locale("hr", "HR"),
     Locale("id", "ID"),
+    Locale("it", "IT"),
     Locale("ja", "JP"),
     Locale("ko", "KR"),
     Locale("nl", "NL"),
     Locale("pt", "BR"),
     Locale("pt", "PT"),
+    Locale("ru", "RU"),
+    Locale("th", "TH"),
     Locale("tr", "TR"),
     Locale("zh", "TW"),
   ];
 
   static Map<String, Map<String, String>> get data => {
     _$LocaleDeDE().locale: _$LocaleDeDE().data,
+    _$LocaleElGR().locale: _$LocaleElGR().data,
     _$LocaleEnGB().locale: _$LocaleEnGB().data,
     _$LocaleEnUS().locale: _$LocaleEnUS().data,
     _$LocaleFrFR().locale: _$LocaleFrFR().data,
     _$LocaleHrHR().locale: _$LocaleHrHR().data,
     _$LocaleIdID().locale: _$LocaleIdID().data,
+    _$LocaleItIT().locale: _$LocaleItIT().data,
     _$LocaleJaJP().locale: _$LocaleJaJP().data,
     _$LocaleKoKR().locale: _$LocaleKoKR().data,
     _$LocaleNlNL().locale: _$LocaleNlNL().data,
     _$LocalePtBR().locale: _$LocalePtBR().data,
     _$LocalePtPT().locale: _$LocalePtPT().data,
+    _$LocaleRuRU().locale: _$LocaleRuRU().data,
+    _$LocaleThTH().locale: _$LocaleThTH().data,
     _$LocaleTrTR().locale: _$LocaleTrTR().data,
     _$LocaleZhTW().locale: _$LocaleZhTW().data,
   };
@@ -47,7 +55,7 @@ class _$LocaleDeDE extends _$LocaleBase {
 
   @override
   Map<String, String> get data => {
-    "pangolin.app_authenticator": "Authenticator",
+    "pangolin.app_authenticator": "Authentikator",
     "pangolin.app_calculator": "Rechner",
     "pangolin.app_clock": "Uhr",
     "pangolin.app_disks": "Festplattenverwaltung",
@@ -90,6 +98,59 @@ class _$LocaleDeDE extends _$LocaleBase {
     "pangolin.qs_wifi": "WLAN",
     "pangolin.app_containers": "Graft",
     "pangolin.launcher_card_information_value": "Es ist kalt, trage einen Mantel!",
+  };
+}
+
+
+class _$LocaleElGR extends _$LocaleBase {
+  @override
+  String get locale => "el-GR";
+
+  @override
+  Map<String, String> get data => {
+    "pangolin.app_authenticator": "Επαληθευτής",
+    "pangolin.app_calculator": "Αριθμομηχανή",
+    "pangolin.app_clock": "Ρολόι",
+    "pangolin.app_disks": "Δίσκοι",
+    "pangolin.app_files": "Αρχεία",
+    "pangolin.app_media": "Μέσα",
+    "pangolin.app_music": "Μουσική",
+    "pangolin.app_notes": "Επεξεργαστής Κειμένου",
+    "pangolin.app_notesmobile": "Σημειώσεις (Κινητό)",
+    "pangolin.app_messages": "Μηνύματα",
+    "pangolin.app_rootterminal": "Root Terminal",
+    "pangolin.app_settings": "Ρυθμίσεις",
+    "pangolin.app_systemlogs": "Αρχεία Καταγραφής Συστήματος",
+    "pangolin.app_taskmanager": "Διαχειριστής Εργασιών",
+    "pangolin.app_terminal": "Terminal",
+    "pangolin.app_themedemo": "Επίδειξη Θέματος",
+    "pangolin.app_welcome": "Καλωσορίσατε",
+    "pangolin.app_help": "Βοήθεια",
+    "pangolin.app_web": "Πρόγραμμα Περιήγησης",
+    "pangolin.app_developeroptions": "Επιλογές Προγραμματιστή",
+    "pangolin.featurenotimplemented_title": "Η λειτουργία δεν εφαρμόστηκε",
+    "pangolin.featurenotimplemented_value": "Αυτή η λειτουργία δεν είναι διαθέσιμη στην έκδοση του Pangolin σας, παρακαλώ δείτε https://reddit.com/r/dahliaos για να ελέγξετε για ενημερώσεις.",
+    "pangolin.launcher_card_information_title": "Πληροφορίες",
+    "pangolin.launcher_card_kernel_title": "Πυρήνας",
+    "pangolin.launcher_card_kernel_value": "Οι οδηγοί για το ενσωματωμένο GPU ενημερώθηκαν",
+    "pangolin.launcher_card_music_title": "Μουσική - Παίζει τώρα",
+    "pangolin.launcher_card_music_value": "Vance Joy - Georgia",
+    "pangolin.launcher_card_security_title": "Ασφάλεια",
+    "pangolin.launcher_card_security_value": "Το κλείδωμα συστήματος αρχείων είναι ενεργό",
+    "pangolin.launcher_card_system_title": "Σύστημα",
+    "pangolin.launcher_card_system_value": "Καλώς ήρθατε στο dahliaOS!",
+    "pangolin.launcher_search": "Αναζήτηση στη συσκευή σας, εφαρμογές, ιστός...",
+    "pangolin.qs_airplanemode": "Λειτουργία πτήσης",
+    "pangolin.qs_autorotate": "Αυτόματη περιστροφή",
+    "pangolin.qs_bluetooth": "Bluetooth",
+    "pangolin.qs_changelanguage": "Ελληνικά",
+    "pangolin.qs_dnd": "Μην ενοχλείτε",
+    "pangolin.qs_flashlight": "Φακός",
+    "pangolin.qs_invertcolors": "Αντιστροφή χρωμάτων",
+    "pangolin.qs_theme": "Θέμα",
+    "pangolin.qs_wifi": "Wi-Fi",
+    "pangolin.app_containers": "Graft",
+    "pangolin.launcher_card_information_value": "Έχει κρύο έξω, πάρε ένα παλτό!",
   };
 }
 
@@ -359,6 +420,59 @@ class _$LocaleIdID extends _$LocaleBase {
 }
 
 
+class _$LocaleItIT extends _$LocaleBase {
+  @override
+  String get locale => "it-IT";
+
+  @override
+  Map<String, String> get data => {
+    "pangolin.app_authenticator": "Autenticatore",
+    "pangolin.app_calculator": "Calcolatrice",
+    "pangolin.app_clock": "Orologio",
+    "pangolin.app_disks": "Dischi",
+    "pangolin.app_files": "File",
+    "pangolin.app_media": "Multimedia",
+    "pangolin.app_music": "Musica",
+    "pangolin.app_notes": "Editor di testo",
+    "pangolin.app_notesmobile": "Appunti (Mobile)",
+    "pangolin.app_messages": "Messaggi",
+    "pangolin.app_rootterminal": "Terminale root",
+    "pangolin.app_settings": "Impostazioni",
+    "pangolin.app_systemlogs": "Log di sistema",
+    "pangolin.app_taskmanager": "Gestione Attività",
+    "pangolin.app_terminal": "Terminale",
+    "pangolin.app_themedemo": "Demo del tema",
+    "pangolin.app_welcome": "Benvenuto",
+    "pangolin.app_help": "Aiuto",
+    "pangolin.app_web": "Browser web",
+    "pangolin.app_developeroptions": "Opzioni sviluppatore",
+    "pangolin.featurenotimplemented_title": "Funzionalità non implementata",
+    "pangolin.featurenotimplemented_value": "Questa funzione non è attualmente disponibile nella tua versione di Pangolin, per favore consulta https://reddit.com/r/dahliaos per controllare la disponibilità di aggiornamenti.",
+    "pangolin.launcher_card_information_title": "Informazioni",
+    "pangolin.launcher_card_kernel_title": "Kernel",
+    "pangolin.launcher_card_kernel_value": "Driver per GPU integrata aggiornati",
+    "pangolin.launcher_card_music_title": "Musica - riproduzione in corso",
+    "pangolin.launcher_card_music_value": "Vance Joy - Georgia",
+    "pangolin.launcher_card_security_title": "Sicurezza",
+    "pangolin.launcher_card_security_value": "Blocco del file system attivo",
+    "pangolin.launcher_card_system_title": "Sistema",
+    "pangolin.launcher_card_system_value": "Benvenuti a dahliaOS!",
+    "pangolin.launcher_search": "Cerca sul tuo dispositivo, app, web...",
+    "pangolin.qs_airplanemode": "Modalità aereo",
+    "pangolin.qs_autorotate": "Rotazione automatica",
+    "pangolin.qs_bluetooth": "Bluetooth",
+    "pangolin.qs_changelanguage": "Italiano",
+    "pangolin.qs_dnd": "Non disturbare",
+    "pangolin.qs_flashlight": "Torcia",
+    "pangolin.qs_invertcolors": "Inverti colori",
+    "pangolin.qs_theme": "Tema",
+    "pangolin.qs_wifi": "Wi-Fi",
+    "pangolin.app_containers": "Graft",
+    "pangolin.launcher_card_information_value": "Fa freddo fuori, prendi un cappotto!",
+  };
+}
+
+
 class _$LocaleJaJP extends _$LocaleBase {
   @override
   String get locale => "ja-JP";
@@ -620,6 +734,112 @@ class _$LocalePtPT extends _$LocaleBase {
     "pangolin.qs_wifi": "Wi-Fi",
     "pangolin.app_containers": "Graft",
     "pangolin.launcher_card_information_value": "Está frio lá fora, pegue um casaco!",
+  };
+}
+
+
+class _$LocaleRuRU extends _$LocaleBase {
+  @override
+  String get locale => "ru-RU";
+
+  @override
+  Map<String, String> get data => {
+    "pangolin.app_authenticator": "Аутентификатор",
+    "pangolin.app_calculator": "Калькулятор",
+    "pangolin.app_clock": "Часы",
+    "pangolin.app_disks": "Диски",
+    "pangolin.app_files": "Файлы",
+    "pangolin.app_media": "Медиа",
+    "pangolin.app_music": "Музыка",
+    "pangolin.app_notes": "Текстовый редактор",
+    "pangolin.app_notesmobile": "Заметки (мобильные)",
+    "pangolin.app_messages": "Сообщения",
+    "pangolin.app_rootterminal": "Терминал администратора",
+    "pangolin.app_settings": "Настройки",
+    "pangolin.app_systemlogs": "Журнал событий",
+    "pangolin.app_taskmanager": "Диспетчер задач",
+    "pangolin.app_terminal": "Терминал",
+    "pangolin.app_themedemo": "Демо-версия темы",
+    "pangolin.app_welcome": "Добро пожаловать",
+    "pangolin.app_help": "Справка",
+    "pangolin.app_web": "Браузер",
+    "pangolin.app_developeroptions": "Для разработчиков",
+    "pangolin.featurenotimplemented_title": "Функция в разработке",
+    "pangolin.featurenotimplemented_value": "На данный момент эта функция недоступна в этой версии Pangolin. Пожалуйста, посетите https://reddit.com/r/dahliaos для просмотра обновлений.",
+    "pangolin.launcher_card_information_title": "Информация",
+    "pangolin.launcher_card_kernel_title": "Ядро",
+    "pangolin.launcher_card_kernel_value": "Драйверы для встроенной видеокарты обновлены",
+    "pangolin.launcher_card_music_title": "Музыка - Сейчас играет",
+    "pangolin.launcher_card_music_value": "Vance Joy - Грузия",
+    "pangolin.launcher_card_security_title": "Безопасность",
+    "pangolin.launcher_card_security_value": "Блокировка файловой системы включена",
+    "pangolin.launcher_card_system_title": "Система",
+    "pangolin.launcher_card_system_value": "Добро пожаловать в dahliaOS!",
+    "pangolin.launcher_search": "Поиск на устройстве, в приложениях и Интернете...",
+    "pangolin.qs_airplanemode": "Режим полёта",
+    "pangolin.qs_autorotate": "Автоматический поворот",
+    "pangolin.qs_bluetooth": "Bluetooth",
+    "pangolin.qs_changelanguage": "русский",
+    "pangolin.qs_dnd": "Не беспокоить",
+    "pangolin.qs_flashlight": "Фонарик",
+    "pangolin.qs_invertcolors": "Инвертировать цвета",
+    "pangolin.qs_theme": "Тема оформления",
+    "pangolin.qs_wifi": "Wi-Fi",
+    "pangolin.app_containers": "Graft",
+    "pangolin.launcher_card_information_value": "Снаружи холодно, возьмите куртку!",
+  };
+}
+
+
+class _$LocaleThTH extends _$LocaleBase {
+  @override
+  String get locale => "th-TH";
+
+  @override
+  Map<String, String> get data => {
+    "pangolin.app_authenticator": "การเข้าสู่ระบบ",
+    "pangolin.app_calculator": "เครื่องคิดเลข",
+    "pangolin.app_clock": "นาฬิกา",
+    "pangolin.app_disks": "ดิสก์",
+    "pangolin.app_files": "ไฟล์",
+    "pangolin.app_media": "สื่อ",
+    "pangolin.app_music": "เพลง",
+    "pangolin.app_notes": "ตัวแก้ไขข้อความ",
+    "pangolin.app_notesmobile": "บันทึกย่อ (มือถือ)",
+    "pangolin.app_messages": "ข้อความ",
+    "pangolin.app_rootterminal": "เทอร์มินอลผู้ดูแลระบบ",
+    "pangolin.app_settings": "การตั้งค่า",
+    "pangolin.app_systemlogs": "บันทึกระบบ",
+    "pangolin.app_taskmanager": "ตัวจัดการงาน",
+    "pangolin.app_terminal": "เทอร์มินอล",
+    "pangolin.app_themedemo": "ธีมตัวอย่าง",
+    "pangolin.app_welcome": "ยินดีต้อนรับ",
+    "pangolin.app_help": "ช่วยเหลือ",
+    "pangolin.app_web": "เว็บบราวเซอร์",
+    "pangolin.app_developeroptions": "ตัวเลือกนักพัฒนา",
+    "pangolin.featurenotimplemented_title": "ความสามารถนี้ยังไม่พร้อมใช้งาน",
+    "pangolin.featurenotimplemented_value": "ความสามารถนี้ไม่พร้อมใช้งานในชุดที่คุณสร้าง Pangolin, กรุณาเข้าไปที่ https://reddit.com/r/dahliaos เพื่อเช็กการปรับปรุง",
+    "pangolin.launcher_card_information_title": "ข้อมสารสนเทศ",
+    "pangolin.launcher_card_kernel_title": "แกน",
+    "pangolin.launcher_card_kernel_value": "ไดร์เวอร์สำหรับการประมวลผลกราฟิกภายในได้ถูกปรับปรุง",
+    "pangolin.launcher_card_music_title": "เพลง - กำลังเล่น",
+    "pangolin.launcher_card_music_value": "Vance Joy - Georgia",
+    "pangolin.launcher_card_security_title": "ความปลอดภัย",
+    "pangolin.launcher_card_security_value": "การล็อกระบบไฟล์ทำงาน",
+    "pangolin.launcher_card_system_title": "ระบบ",
+    "pangolin.launcher_card_system_value": "ยินดีต้อนรับเข้าสู่ dahliaOS!",
+    "pangolin.launcher_search": "ค้นหาอุปกรณ์, แอป, เว็บ...",
+    "pangolin.qs_airplanemode": "โหมดเครื่องบิน",
+    "pangolin.qs_autorotate": "หมุนหน้าจอ",
+    "pangolin.qs_bluetooth": "บลูทูธ",
+    "pangolin.qs_changelanguage": "ภาษาไทย",
+    "pangolin.qs_dnd": "อย่ารบกวน",
+    "pangolin.qs_flashlight": "ไฟฉาย",
+    "pangolin.qs_invertcolors": "กลับสี",
+    "pangolin.qs_theme": "ธีม",
+    "pangolin.qs_wifi": "ไวไฟ",
+    "pangolin.app_containers": "Graft",
+    "pangolin.launcher_card_information_value": "ข้างนอกหนาวแล้วคว้าเสื้อคลุม!",
   };
 }
 
