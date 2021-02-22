@@ -17,6 +17,7 @@ limitations under the License.
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:pangolin/desktop/overlays/power_overlay.dart';
 import 'package:pangolin/desktop/overlays/search_overlay.dart';
 import 'package:pangolin/desktop/wallpaper.dart';
 import 'package:pangolin/utils/app_list.dart';
@@ -229,7 +230,16 @@ class _LauncherOverlayState extends State<LauncherOverlay> {
                         children: [
                           //TODO Power overlay
                           InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              WmAPI.of(context).popOverlayEntry(
+                                  Provider.of<DismissibleOverlayEntry>(context,
+                                      listen: false));
+                              WmAPI.of(context).pushOverlayEntry(
+                                  DismissibleOverlayEntry(
+                                      uniqueId: "power_menu",
+                                      content: PowerOverlay()));
+                              setState(() {});
+                            },
                             mouseCursor: SystemMouseCursors.click,
                             child: Icon(
                               Icons.power_settings_new,
