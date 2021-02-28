@@ -2,47 +2,37 @@ import 'dart:io';
 
 import 'package:xml/xml.dart';
 
-import 'locale_generator.dart';
-
 class XmlFileParser {
   const XmlFileParser._();
 
-  static Future<Map<String, String>> load(Directory dir, String locale) async {
-    Map<String, String> returnMap = {};
+  static Future<Map<String, String>> load(File file, String locale) async {
+    final Map<String, String> returnMap = {};
 
-    List<FileSystemEntity> files = dir.listSync();
+    final String fileContent = await file.readAsString();
+    final XmlDocument document = XmlDocument.parse(fileContent);
+    document.normalize();
 
-    for (FileSystemEntity file in files) {
-      if (!(file is File)) continue;
+    XmlElement base = document.lastElementChild;
 
-      final routeFile =
-          getNameFromPath(file.absolute.path).replaceAll(".xml", "");
-      final fileContent = await (file as File).readAsString();
-      var document = XmlDocument.parse(fileContent);
-      document.normalize();
+    for (XmlNode item in base.children) {
+      if (item is XmlElement) {
+        XmlElement element = item;
 
-      XmlElement base = document.lastElementChild;
+        String name = element.getAttribute("name");
+        if (name == null) continue;
 
-      for (XmlNode item in base.children) {
-        if (item is XmlElement) {
-          XmlElement element = item;
+        if (element.name.toString() == "string") {
+          returnMap["$name"] = _replacer(element.text);
+        } else if (element.name.toString() == "plurals") {
+          for (XmlNode plural in element.children) {
+            if (plural is XmlElement) {
+              XmlElement pluralElement = plural;
 
-          String name = element.getAttribute("name");
-          if (name == null) continue;
+              String pluralAttribute = pluralElement.getAttribute("quantity");
+              if (pluralAttribute == null) continue;
 
-          if (element.name.toString() == "string") {
-            returnMap["$routeFile.$name"] = _replacer(element.text);
-          } else if (element.name.toString() == "plurals") {
-            for (XmlNode plural in element.children) {
-              if (plural is XmlElement) {
-                XmlElement pluralElement = plural;
-
-                String pluralAttribute = pluralElement.getAttribute("quantity");
-                if (pluralAttribute == null) continue;
-
-                returnMap["$routeFile.$name.$pluralAttribute"] =
-                    _replacer(pluralElement.text);
-              }
+              returnMap["$name.$pluralAttribute"] =
+                  _replacer(pluralElement.text);
             }
           }
         }
@@ -53,40 +43,37 @@ class XmlFileParser {
   }
 
   static Future<Map<String, Map<String, StringInfo>>> loadWithStringInfo(
-      Directory dir, String locale) async {
-    Map<String, Map<String, StringInfo>> returnMap = {};
+      File file, String locale) async {
+    final Map<String, Map<String, StringInfo>> returnMap = {};
 
-    List<FileSystemEntity> files = dir.listSync();
+    final String fileContent = await file.readAsString();
+    final XmlDocument document = XmlDocument.parse(fileContent);
+    document.normalize();
 
-    for (FileSystemEntity file in files) {
-      if (!(file is File)) continue;
+    final XmlElement base = document.lastElementChild;
 
-      final routeFile =
-          getNameFromPath(file.absolute.path).replaceAll(".xml", "");
-      returnMap[routeFile] = {};
-      final fileContent = await (file as File).readAsString();
-      var document = XmlDocument.parse(fileContent);
-      document.normalize();
+    for (XmlNode item in base.children) {
+      if (item is XmlElement) {
+        final XmlElement element = item;
 
-      XmlElement base = document.lastElementChild;
+        final String name = element.getAttribute("name");
+        if (name == null) continue;
+        final List<String> splittedName = name.split(".");
+        final String routeName = splittedName.first;
+        splittedName.removeAt(0);
+        final String normalizedName = splittedName.join(".");
 
-      for (XmlNode item in base.children) {
-        if (item is XmlElement) {
-          XmlElement element = item;
+        returnMap[routeName] ??= {};
 
-          String name = element.getAttribute("name");
-          if (name == null) continue;
-
-          if (element.name.toString() == "string") {
-            if (element.text.contains("%s")) {
-              returnMap[routeFile]?[name] ??= ArgumentString()
-                ..argNum = _argumentNum(element.text);
-            } else {
-              returnMap[routeFile]?[name] ??= CommonString();
-            }
-          } else if (element.name.toString() == "plurals") {
-            returnMap[routeFile]?[name] ??= PluralString();
+        if (element.name.toString() == "string") {
+          if (element.text.contains("%s")) {
+            returnMap[routeName][normalizedName] ??= ArgumentString()
+              ..argNum = _argumentNum(element.text);
+          } else {
+            returnMap[routeName][normalizedName] ??= CommonString();
           }
+        } else if (element.name.toString() == "plurals") {
+          returnMap[routeName][normalizedName] ??= PluralString();
         }
       }
     }
@@ -108,7 +95,7 @@ class XmlFileParser {
     int i;
 
     for (i = 0; _workBase.contains("%s"); i++) {
-      final indexOf = _workBase.indexOf("%s");
+      final int indexOf = _workBase.indexOf("%s");
       _workBase = _workBase.substring(indexOf + 2);
     }
 
@@ -123,5 +110,5 @@ class CommonString extends StringInfo {}
 class PluralString extends StringInfo {}
 
 class ArgumentString extends StringInfo {
-  int? argNum;
+  int argNum;
 }
