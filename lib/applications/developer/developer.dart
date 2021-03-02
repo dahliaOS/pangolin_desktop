@@ -70,7 +70,7 @@ class _DeveloperAppPageState extends State<DeveloperAppPage> {
                     child: Text('Reboot')),
                 RaisedButton(
                     onPressed: () {
-                      Process.run('poweroff', ['-f']);
+                      Process.run('shutdown', ['-P']);
                     },
                     child: Text('Shutdown')),
                 RaisedButton(
