@@ -15,6 +15,7 @@ class Locales {
     Locale("ja", "JP"),
     Locale("ko", "KR"),
     Locale("nl", "NL"),
+    Locale("no", "NO"),
     Locale("pt", "BR"),
     Locale("pt", "PT"),
     Locale("ru", "RU"),
@@ -35,6 +36,7 @@ class Locales {
     _$LocaleJaJP().locale: _$LocaleJaJP().data,
     _$LocaleKoKR().locale: _$LocaleKoKR().data,
     _$LocaleNlNL().locale: _$LocaleNlNL().data,
+    _$LocaleNoNO().locale: _$LocaleNoNO().data,
     _$LocalePtBR().locale: _$LocalePtBR().data,
     _$LocalePtPT().locale: _$LocalePtPT().data,
     _$LocaleRuRU().locale: _$LocaleRuRU().data,
@@ -628,6 +630,58 @@ class _$LocaleNlNL extends _$LocaleBase {
     "pangolin.qs_wifi": "Wi-Fi",
     "pangolin.app_containers": "Graft",
     "pangolin.launcher_card_information_value": "Het is buiten koud, pak een jas!",
+  };
+}
+
+
+class _$LocaleNoNO extends _$LocaleBase {
+  @override
+  String get locale => "no-NO";
+
+  @override
+  Map<String, String> get data => {
+    "pangolin.app_containers": "Kontainer",
+    "pangolin.app_authenticator": "Autentisering",
+    "pangolin.app_calculator": "Kalkulator",
+    "pangolin.app_clock": "Klokke",
+    "pangolin.app_disks": "Disker",
+    "pangolin.app_files": "Filer",
+    "pangolin.app_media": "Media",
+    "pangolin.app_music": "Musikk",
+    "pangolin.app_notes": "Tekst Redigering",
+    "pangolin.app_notesmobile": "Notater (Mobil)",
+    "pangolin.app_messages": "Meldinger",
+    "pangolin.app_rootterminal": "Root Terminal",
+    "pangolin.app_settings": "Innstillinger",
+    "pangolin.app_systemlogs": "Systemlogger",
+    "pangolin.app_taskmanager": "Oppgavebehandler",
+    "pangolin.app_terminal": "Terminal",
+    "pangolin.app_themedemo": "Tema Demo",
+    "pangolin.app_welcome": "Velkommen",
+    "pangolin.app_help": "Hjelp",
+    "pangolin.app_web": "Nettleser",
+    "pangolin.app_developeroptions": "Alternativer for utviklere",
+    "pangolin.featurenotimplemented_title": "Funksjonen er ikke implementert",
+    "pangolin.featurenotimplemented_value": "Denne funksjonen er ikke tilgjengelig i ditt bygg av Pangolin, vennligst se https://reddit.com/r/dahliaos for å se etter oppdateringer.",
+    "pangolin.launcher_card_information_title": "Informasjon",
+    "pangolin.launcher_card_kernel_title": "Kjerne",
+    "pangolin.launcher_card_kernel_value": "Drivere for integrert GPU oppdatert",
+    "pangolin.launcher_card_music_title": "Musikk - Spiller av",
+    "pangolin.launcher_card_music_value": "Vance Joy - Georgia",
+    "pangolin.launcher_card_security_title": "Sikkerhet",
+    "pangolin.launcher_card_security_value": "Filsystemlås er PÅ",
+    "pangolin.launcher_card_system_title": "System",
+    "pangolin.launcher_card_system_value": "Velkommen til dahliaOS!",
+    "pangolin.launcher_search": "Søk på enheten, apper, på nettet...",
+    "pangolin.qs_airplanemode": "Flymodus",
+    "pangolin.qs_autorotate": "Automatisk rotering",
+    "pangolin.qs_bluetooth": "Bluetooth",
+    "pangolin.qs_changelanguage": "Norsk",
+    "pangolin.qs_dnd": "Ikke forstyrr",
+    "pangolin.qs_flashlight": "Lommelykt",
+    "pangolin.qs_invertcolors": "Inverter farger",
+    "pangolin.qs_theme": "Utseende",
+    "pangolin.qs_wifi": "Wi-Fi",
   };
 }
 
