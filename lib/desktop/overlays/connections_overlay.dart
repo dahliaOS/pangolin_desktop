@@ -17,6 +17,7 @@ limitations under the License.
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:pangolin/internal/locales/locale_strings.g.dart';
 import 'package:pangolin/utils/globals.dart';
 import 'package:pangolin/utils/wm_api.dart';
 import 'package:pangolin/widgets/qs_button.dart';
@@ -102,11 +103,11 @@ class ConnectionCenterOverlay extends StatelessWidget {
                           mainAxisSpacing: 4,
                           children: [
                             QuickSettingsButton(
-                              title: "Wi-Fi",
+                              title: LocaleStrings.pangolin.qsWifi,
                               icon: Icons.signal_wifi_4_bar_rounded,
                             ),
                             QuickSettingsButton(
-                              title: "Bluetooth",
+                              title: LocaleStrings.pangolin.qsBluetooth,
                               icon: Icons.bluetooth_connected_outlined,
                             ),
                             QuickSettingsButton(
@@ -131,7 +132,7 @@ class ConnectionCenterOverlay extends StatelessWidget {
                             ),
                             QuickSettingsButton(
                               color: Colors.grey[850],
-                              title: "Airplane\nMode",
+                              title: LocaleStrings.pangolin.qsAirplanemode,
                               icon: Icons.airplanemode_active,
                             ),
                           ],

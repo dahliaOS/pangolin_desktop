@@ -27,7 +27,7 @@ class SearchOverlay extends StatelessWidget {
   const SearchOverlay({this.text = ""});
   @override
   Widget build(BuildContext context) {
-    final _controller = TextEditingController(text: text);
+    final _controller = TextEditingController(text: text != "" ? text : "");
     final _focusNode = FocusNode();
     _focusNode.requestFocus();
     return Builder(builder: (context) {

@@ -15,9 +15,10 @@ dependencies:
       url: https://github.com/dahliaOS/backend.git
   provider: ^5.0.0-nullsafe.3
   animations: ^2.0.0-nullsafety.0
-  easy_localization: ^2.3.4-nullsafety.4
+  easy_localization: ^3.0.0
   recase: any
-  xml: any
+  xml: ^5.0.2
+  intl: ^0.17.0
   utopia_wm:
     #path: ../utopia/
     git:
@@ -73,6 +74,8 @@ flutter:
     - assets/images/logos/
     - assets/images/other/
     - assets/icons/
+    - assets/locales/
+
 
   fonts:
     - family:  PangolinCustomIcons

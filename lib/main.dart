@@ -15,8 +15,11 @@ limitations under the License.
 */
 
 import 'package:dahlia_backend/dahlia_backend.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/desktop/desktop.dart';
+import 'package:pangolin/internal/locales/generated_asset_loader.g.dart';
+import 'package:pangolin/internal/locales/locales.g.dart';
 import 'package:pangolin/utils/theme.dart';
 import 'package:provider/provider.dart';
 
@@ -30,7 +33,13 @@ void main() async {
   runApp(ChangeNotifierProvider<PreferenceProvider>.value(
       value: PreferenceProvider(),
       builder: (context, child) {
-        return Pangolin();
+        return EasyLocalization(
+            supportedLocales: Locales.supported,
+            fallbackLocale: Locale("en", "US"),
+            assetLoader: GeneratedAssetLoader(),
+            path: "assets/locales",
+            startLocale: Locale("en", "US"),
+            child: Pangolin());
       }));
 }
 

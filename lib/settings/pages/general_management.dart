@@ -194,68 +194,68 @@ void _setLanguage(String _selected, BuildContext context) {
 void _setKeyboard(String _selected, BuildContext context) {
   switch (_selected) {
     case "عربى - إيران":
-      EasyLocalization.of(context).locale = Locale("ar", "SA");
+      EasyLocalization.of(context)?.setLocale(Locale("ar", "SA"));
       DatabaseManager.set("keyboardLayout", "ar_SA");
       DatabaseManager.set("keyboardLayoutName", "عربى - إيران");
       break;
     case "Bosanski - Bosna i Hercegovina":
-      EasyLocalization.of(context).locale = Locale("bs", "BA");
+      EasyLocalization.of(context)?.setLocale(Locale("bs", "BA"));
       DatabaseManager.set("keyboardLayout", "bs_BA");
       DatabaseManager.set(
           "keyboardLayoutName", "Bosanski - Bosna i Hercegovina");
       break;
     case "Hrvatski - Hrvatska":
-      EasyLocalization.of(context).locale = Locale("hr", "HR");
+      EasyLocalization.of(context)?.setLocale(Locale("hr", "HR"));
       DatabaseManager.set("keyboardLayout", "hr_HR");
       DatabaseManager.set("keyboardLayoutName", "Hrvatski - Hrvatska");
       break;
     case "Nederlands - Nederland":
-      EasyLocalization.of(context).locale = Locale("nl", "NL");
+      EasyLocalization.of(context)?.setLocale(Locale("nl", "NL"));
       DatabaseManager.set("keyboardLayout", "nl_NL");
       DatabaseManager.set("keyboardLayoutName", "Nederlands - Nederland");
       break;
     case "English - United States":
-      EasyLocalization.of(context).locale = Locale("en", "US");
+      EasyLocalization.of(context)?.setLocale(Locale("en", "US"));
       DatabaseManager.set("keyboardLayout", "en_US");
       DatabaseManager.set("keyboardLayoutName", "English - United States");
       break;
     case "Français - France":
-      EasyLocalization.of(context).locale = Locale("fr", "FR");
+      EasyLocalization.of(context)?.setLocale(Locale("fr", "FR"));
       DatabaseManager.set("keyboardLayout", "fr_FR");
       DatabaseManager.set("keyboardLayoutName", "Français - France");
       break;
     case "Deutsch - Deutschland":
-      EasyLocalization.of(context).locale = Locale("de", "DE");
+      EasyLocalization.of(context)?.setLocale(Locale("de", "DE"));
       DatabaseManager.set("keyboardLayout", "de_DE");
       DatabaseManager.set("keyboardLayoutName", "Deutsch - Deutschland");
       break;
     case "bahasa Indonesia - Indonesia":
-      EasyLocalization.of(context).locale = Locale("id", "ID");
+      EasyLocalization.of(context)?.setLocale(Locale("id", "ID"));
       DatabaseManager.set("keyboardLayout", "id_ID");
       DatabaseManager.set("keyboardLayoutName", "bahasa Indonesia - Indonesia");
       break;
     case "Polski - Polska":
-      EasyLocalization.of(context).locale = Locale("pl", "PL");
+      EasyLocalization.of(context)?.setLocale(Locale("pl", "PL"));
       DatabaseManager.set("keyboardLayout", "pl_PL");
       DatabaseManager.set("keyboardLayoutName", "Polski - Polska");
       break;
     case "Português - Brasil":
-      EasyLocalization.of(context).locale = Locale("pt", "BR");
+      EasyLocalization.of(context)?.setLocale(Locale("pt", "BR"));
       DatabaseManager.set("keyboardLayout", "pt_BR");
       DatabaseManager.set("keyboardLayoutName", "Português - Brasil");
       break;
     case "русский - Россия":
-      EasyLocalization.of(context).locale = Locale("ru", "RU");
+      EasyLocalization.of(context)?.setLocale(Locale("ru", "RU"));
       DatabaseManager.set("keyboardLayout", "ru_RU");
       DatabaseManager.set("keyboardLayoutName", "русский - Россия");
       break;
     case "Svenska - Sverige":
-      EasyLocalization.of(context).locale = Locale("sv", "SE");
+      EasyLocalization.of(context)?.setLocale(Locale("sv", "SE"));
       DatabaseManager.set("keyboardLayout", "sv_SE");
       DatabaseManager.set("keyboardLayoutName", "Svenska - Sverige");
       break;
     case "Український - Україна":
-      EasyLocalization.of(context).locale = Locale("uk", "UA");
+      EasyLocalization.of(context)?.setLocale(Locale("uk", "UA"));
       DatabaseManager.set("keyboardLayout", "uk_UA");
       DatabaseManager.set("keyboardLayoutName", "Український - Україна");
       break;
@@ -265,69 +265,70 @@ void _setKeyboard(String _selected, BuildContext context) {
 void _setTimezone(String _selected, BuildContext context) {
   switch (_selected) {
     case "عربى - إيران":
-      EasyLocalization.of(context).locale = Locale("ar", "SA");
-      DatabaseManager.set("timeZone", "ar_SA");
-      DatabaseManager.set("timeZoneName", "عربى - إيران");
+      EasyLocalization.of(context)?.setLocale(Locale("ar", "SA"));
+      DatabaseManager.set("keyboardLayout", "ar_SA");
+      DatabaseManager.set("keyboardLayoutName", "عربى - إيران");
       break;
     case "Bosanski - Bosna i Hercegovina":
-      EasyLocalization.of(context).locale = Locale("bs", "BA");
-      DatabaseManager.set("timeZone", "bs_BA");
-      DatabaseManager.set("timeZoneName", "Bosanski - Bosna i Hercegovina");
+      EasyLocalization.of(context)?.setLocale(Locale("bs", "BA"));
+      DatabaseManager.set("keyboardLayout", "bs_BA");
+      DatabaseManager.set(
+          "keyboardLayoutName", "Bosanski - Bosna i Hercegovina");
       break;
     case "Hrvatski - Hrvatska":
-      EasyLocalization.of(context).locale = Locale("hr", "HR");
-      DatabaseManager.set("timeZone", "hr_HR");
-      DatabaseManager.set("timeZoneName", "Hrvatski - Hrvatska");
+      EasyLocalization.of(context)?.setLocale(Locale("hr", "HR"));
+      DatabaseManager.set("keyboardLayout", "hr_HR");
+      DatabaseManager.set("keyboardLayoutName", "Hrvatski - Hrvatska");
       break;
     case "Nederlands - Nederland":
-      EasyLocalization.of(context).locale = Locale("nl", "NL");
-      DatabaseManager.set("timeZone", "nl_NL");
-      DatabaseManager.set("timeZoneName", "Nederlands - Nederland");
+      EasyLocalization.of(context)?.setLocale(Locale("nl", "NL"));
+      DatabaseManager.set("keyboardLayout", "nl_NL");
+      DatabaseManager.set("keyboardLayoutName", "Nederlands - Nederland");
       break;
     case "English - United States":
-      EasyLocalization.of(context).locale = Locale("en", "US");
-      DatabaseManager.set("timeZone", "en_US");
-      DatabaseManager.set("timeZoneName", "English - United States");
+      EasyLocalization.of(context)?.setLocale(Locale("en", "US"));
+      DatabaseManager.set("keyboardLayout", "en_US");
+      DatabaseManager.set("keyboardLayoutName", "English - United States");
       break;
     case "Français - France":
-      EasyLocalization.of(context).locale = Locale("fr", "FR");
-      DatabaseManager.set("timeZone", "fr_FR");
-      DatabaseManager.set("timeZoneName", "Français - France");
+      EasyLocalization.of(context)?.setLocale(Locale("fr", "FR"));
+      DatabaseManager.set("keyboardLayout", "fr_FR");
+      DatabaseManager.set("keyboardLayoutName", "Français - France");
       break;
     case "Deutsch - Deutschland":
-      EasyLocalization.of(context).locale = Locale("de", "DE");
-      DatabaseManager.set("timeZone", "de_DE");
-      DatabaseManager.set("timeZoneName", "Deutsch - Deutschland");
+      EasyLocalization.of(context)?.setLocale(Locale("de", "DE"));
+      DatabaseManager.set("keyboardLayout", "de_DE");
+      DatabaseManager.set("keyboardLayoutName", "Deutsch - Deutschland");
       break;
     case "bahasa Indonesia - Indonesia":
-      EasyLocalization.of(context).locale = Locale("id", "ID");
-      DatabaseManager.set("timeZone", "id_ID");
-      DatabaseManager.set("timeZoneName", "bahasa Indonesia - Indonesia");
+      EasyLocalization.of(context)?.setLocale(Locale("id", "ID"));
+      DatabaseManager.set("keyboardLayout", "id_ID");
+      DatabaseManager.set("keyboardLayoutName", "bahasa Indonesia - Indonesia");
       break;
     case "Polski - Polska":
-      EasyLocalization.of(context).locale = Locale("pl", "PL");
-      DatabaseManager.set("timeZone", "pl_PL");
-      DatabaseManager.set("timeZoneName", "Polski - Polska");
+      EasyLocalization.of(context)?.setLocale(Locale("pl", "PL"));
+      DatabaseManager.set("keyboardLayout", "pl_PL");
+      DatabaseManager.set("keyboardLayoutName", "Polski - Polska");
       break;
     case "Português - Brasil":
-      EasyLocalization.of(context).locale = Locale("pt", "BR");
-      DatabaseManager.set("timeZone", "pt_BR");
-      DatabaseManager.set("timeZoneName", "Português - Brasil");
+      EasyLocalization.of(context)?.setLocale(Locale("pt", "BR"));
+      DatabaseManager.set("keyboardLayout", "pt_BR");
+      DatabaseManager.set("keyboardLayoutName", "Português - Brasil");
       break;
     case "русский - Россия":
-      EasyLocalization.of(context).locale = Locale("ru", "RU");
-      DatabaseManager.set("timeZone", "ru_RU");
-      DatabaseManager.set("timeZoneName", "русский - Россия");
+      EasyLocalization.of(context)?.setLocale(Locale("ru", "RU"));
+      DatabaseManager.set("keyboardLayout", "ru_RU");
+      DatabaseManager.set("keyboardLayoutName", "русский - Россия");
       break;
     case "Svenska - Sverige":
-      EasyLocalization.of(context).locale = Locale("sv", "SE");
-      DatabaseManager.set("timeZone", "sv_SE");
-      DatabaseManager.set("timeZoneName", "Svenska - Sverige");
+      EasyLocalization.of(context)?.setLocale(Locale("sv", "SE"));
+      DatabaseManager.set("keyboardLayout", "sv_SE");
+      DatabaseManager.set("keyboardLayoutName", "Svenska - Sverige");
       break;
     case "Український - Україна":
-      EasyLocalization.of(context).locale = Locale("uk", "UA");
-      DatabaseManager.set("timeZone", "uk_UA");
-      DatabaseManager.set("timeZoneName", "Український - Україна");
+      EasyLocalization.of(context)?.setLocale(Locale("uk", "UA"));
+      DatabaseManager.set("keyboardLayout", "uk_UA");
+      DatabaseManager.set("keyboardLayoutName", "Український - Україна");
       break;
   }
 }
