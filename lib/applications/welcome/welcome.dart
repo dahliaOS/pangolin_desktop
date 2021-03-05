@@ -15,12 +15,38 @@ limitations under the License.
 */
 
 import 'dart:io';
+import 'package:Pangolin/main.dart';
 import 'dart:ui';
 import 'package:Pangolin/utils/globals.dart';
 import 'package:flutter/material.dart';
+import 'package:path/path.dart';
 
 void main() {
   runApp(new Welcome());
+}
+
+extension CustomColorScheme on ColorScheme {
+  Color get titleText => brightness == Brightness.light
+      ? const Color(0xFF000000)
+      : const Color(0xFFffffff);
+  Color get foregroundText => brightness == Brightness.light
+      ? const Color(0xFF222222)
+      : const Color(0xFFffffff);
+  String get logoMode => brightness == Brightness.light
+      ? "assets/images/logos/dahliaOS/PNG/dahliaOS_logo_with_text_drop_shadow.png"
+      : "assets/images/logos/dahliaOS/PNG/logo-white.png";
+  Color get lowerText => brightness == Brightness.light
+      ? const Color(0xFF333333)
+      : const Color(0xFFffffff);
+  Color get cardColor => brightness == Brightness.light
+      ? const Color(0xFFffffff)
+      : const Color(0xFF303030);
+  Color get barIconColor => brightness == Brightness.light
+      ? const Color(0xFF454545)
+      : const Color(0xFFffffff);
+  Color get barColor => brightness == Brightness.light
+      ? const Color(0xFFe0e0e0)
+      : const Color(0xFF333333);
 }
 
 class Welcome extends StatelessWidget {
@@ -29,10 +55,18 @@ class Welcome extends StatelessWidget {
     return new MaterialApp(
       title: 'Welcome',
       theme: new ThemeData(
+        brightness: Brightness.light,
         platform: TargetPlatform.fuchsia,
         primarySwatch: Colors.deepOrange,
         canvasColor: const Color(0xFFfffffff),
       ),
+      darkTheme: new ThemeData(
+          brightness: Brightness.dark,
+          platform: TargetPlatform.fuchsia,
+          primarySwatch: Colors.deepOrange),
+      themeMode: Pangolin.settingsBox.get("darkMode")
+          ? ThemeMode.dark
+          : ThemeMode.light,
       initialRoute: '/',
       routes: {
         // When navigating to the "/" route, build the FirstScreen widget.
@@ -53,7 +87,7 @@ Container feature(
   return Container(
       width: 512,
       child: Card(
-        color: Color(0xffffffff),
+        color: Theme.of(context).colorScheme.cardColor,
         elevation: 0,
         margin: EdgeInsets.all(25),
         child: InkWell(
@@ -77,10 +111,12 @@ Container feature(
                 Text(header,
                     style: TextStyle(
                         fontSize: 18,
-                        color: Color(0xff222222),
+                        color: Theme.of(context).colorScheme.foregroundText,
                         fontWeight: FontWeight.w600)),
                 Text(main,
-                    style: TextStyle(fontSize: 15, color: Color(0xff333333)))
+                    style: TextStyle(
+                        fontSize: 15,
+                        color: Theme.of(context).colorScheme.lowerText))
               ]),
               new Expanded(
                 child: new Container(),
@@ -88,7 +124,7 @@ Container feature(
               new Center(
                 child: new Icon(
                   Icons.arrow_forward,
-                  color: Colors.grey[800],
+                  color: Theme.of(context).colorScheme.foregroundText,
                   size: 32,
                 ),
               )
@@ -103,15 +139,18 @@ class FirstScreen extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         iconTheme: IconThemeData(
-          color: Colors.black, //change your color here
+          color: Theme.of(context)
+              .colorScheme
+              .foregroundText, //change your color here
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).colorScheme.cardColor,
         shadowColor: const Color(0x00ffffff),
         title: Image.asset(
-          'assets/images/logos/dahliaOS/PNG/dahliaOS_logo_with_text_drop_shadow.png',
+          Theme.of(context).colorScheme.logoMode,
           fit: BoxFit.fitHeight,
+          filterQuality: FilterQuality.medium,
           width: 300,
-          height: 32,
+          height: 25,
         ),
       ),
       body: Center(
@@ -127,7 +166,7 @@ class FirstScreen extends StatelessWidget {
                     "Welcome to dahliaOS!",
                     style: new TextStyle(
                         fontSize: 36.0,
-                        color: const Color(0xFF000000),
+                        color: Theme.of(context).colorScheme.titleText,
                         fontWeight: FontWeight.w400,
                         fontFamily: "Sulphur Point"),
                   ),
@@ -274,7 +313,7 @@ class FirstScreen extends StatelessWidget {
                               child: new Padding(
                                   padding: EdgeInsets.all(8),
                                   child: new Text(
-                                    "WARNING: You are on a pre-release build of dahliaOS. For your protection, wireless networking has been disabled.",
+                                    "WARNING: You are on a pre-release build of dahliaOS. Some features may not work as intended.",
                                     style: new TextStyle(
                                       color: Colors.grey[900],
                                       fontSize: 14,
@@ -298,30 +337,40 @@ class BuildInfo extends StatelessWidget {
         appBar: AppBar(
           centerTitle: true,
           iconTheme: IconThemeData(
-            color: Colors.black, //change your color here
+            color: Theme.of(context)
+                .colorScheme
+                .foregroundText, //change your color here
           ),
-          backgroundColor: Colors.white,
+          backgroundColor: Theme.of(context).colorScheme.cardColor,
           shadowColor: const Color(0x00ffffff),
           title: new Text(
             "Build Information",
-            style: new TextStyle(color: Colors.black),
+            style: new TextStyle(
+                color: Theme.of(context).colorScheme.foregroundText),
           ),
         ),
         body: new Center(
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           new Image.asset(
-            'assets/images/logos/dahliaOS/PNG/dahliaOS_logo_with_text_drop_shadow.png',
+            Theme.of(context).colorScheme.logoMode,
             fit: BoxFit.fitHeight,
+            filterQuality: FilterQuality.medium,
             width: 300,
-            height: 32,
+            height: 52,
           ),
           Text(longName,
-              style: TextStyle(fontSize: 14, color: Color(0xff000000))),
+              style: TextStyle(
+                  fontSize: 14,
+                  color: Theme.of(context).colorScheme.foregroundText)),
           Text(kernel,
-              style: TextStyle(fontSize: 14, color: Color(0xff000000))),
+              style: TextStyle(
+                  fontSize: 14,
+                  color: Theme.of(context).colorScheme.foregroundText)),
           Text(pangolinCommit,
-              style: TextStyle(fontSize: 14, color: Color(0xff000000))),
+              style: TextStyle(
+                  fontSize: 14,
+                  color: Theme.of(context).colorScheme.foregroundText)),
           RaisedButton(
               onPressed: () {
                 final snackBar = SnackBar(
@@ -337,27 +386,6 @@ class BuildInfo extends StatelessWidget {
                   padding: EdgeInsets.fromLTRB(15, 0, 5, 0),
                 );
 
-                /*final snackBar = SnackBar(
-                  behavior: SnackBarBehavior.floating,
-                  content: SizedBox(
-                      height: 50.0,
-                      width: 50,
-                      child: Container(
-                        child: Center(
-                            child: Text(
-                          "Connection dropped.",
-                          style: TextStyle(
-                              color: Colors.white, fontWeight: FontWeight.bold),
-                          textAlign: TextAlign.center,
-                        )),
-                      )),
-                  duration: Duration(seconds: 10),
-                  backgroundColor: Colors.red,
-                  width: 250,
-                );*/
-
-                // Find the Scaffold in the widget tree and use
-                // it to show a SnackBar.
                 Scaffold.of(context).showSnackBar(snackBar);
               },
               elevation: 1,
@@ -375,13 +403,16 @@ class Feedback extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         iconTheme: IconThemeData(
-          color: Colors.black, //change your color here
+          color: Theme.of(context)
+              .colorScheme
+              .foregroundText, //change your color here
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).colorScheme.cardColor,
         shadowColor: const Color(0x00ffffff),
         title: new Text(
           "Feedback",
-          style: new TextStyle(color: Colors.black),
+          style: new TextStyle(
+              color: Theme.of(context).colorScheme.foregroundText),
         ),
       ),
       body: Center(
@@ -389,12 +420,18 @@ class Feedback extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Text('We are always looking for ways we can improve!',
-              style: TextStyle(fontSize: 14, color: Color(0xff000000))),
+              style: TextStyle(
+                  fontSize: 14,
+                  color: Theme.of(context).colorScheme.foregroundText)),
           Text('Please submit feedback to contact+feedback@dahliaos.io',
-              style: TextStyle(fontSize: 14, color: Color(0xff000000))),
+              style: TextStyle(
+                  fontSize: 14,
+                  color: Theme.of(context).colorScheme.foregroundText)),
           Text(
               'Experienced a bug? Report an issue at github.com/dahlia-os/releases',
-              style: TextStyle(fontSize: 14, color: Color(0xff000000))),
+              style: TextStyle(
+                  fontSize: 14,
+                  color: Theme.of(context).colorScheme.foregroundText)),
           RaisedButton(
             onPressed: () {
               // Navigate back to the first screen by popping the current route
@@ -409,11 +446,11 @@ class Feedback extends StatelessWidget {
   }
 }
 
-Container socialItem(String icon, String header, String main) {
+Container socialItem(String icon, String header, String main, context) {
   return Container(
       width: 512,
       child: Card(
-        color: Color(0xffffffff),
+        color: Theme.of(context).colorScheme.cardColor,
         elevation: 0,
         margin: EdgeInsets.all(25),
         child: InkWell(
@@ -434,10 +471,12 @@ Container socialItem(String icon, String header, String main) {
                 Text(header,
                     style: TextStyle(
                         fontSize: 18,
-                        color: Color(0xff222222),
+                        color: Theme.of(context).colorScheme.foregroundText,
                         fontWeight: FontWeight.w600)),
                 Text(main,
-                    style: TextStyle(fontSize: 15, color: Color(0xff333333)))
+                    style: TextStyle(
+                        fontSize: 15,
+                        color: Theme.of(context).colorScheme.lowerText))
               ]),
             ])),
       ));
@@ -450,13 +489,16 @@ class SocialMedia extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         iconTheme: IconThemeData(
-          color: Colors.black, //change your color here
+          color: Theme.of(context)
+              .colorScheme
+              .foregroundText, //change your color here
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).colorScheme.cardColor,
         shadowColor: const Color(0x00ffffff),
         title: new Text(
           "Social Media",
-          style: new TextStyle(color: Colors.black),
+          style: new TextStyle(
+              color: Theme.of(context).colorScheme.foregroundText),
         ),
       ),
       body: Center(
@@ -475,45 +517,24 @@ class SocialMedia extends StatelessWidget {
       ),*/
 
                   socialItem(
-                    "assets/images/logos/dahliaOS/PNG/dahliaOS_logo_drop_shadow.png",
-                    "Official Website",
-                    "https://dahliaos.io",
-                  ),
-                  socialItem(
-                    "assets/images/icons/PNG/discord.png",
-                    "Discord",
-                    "https://dahliaos.io/discord",
-                  ),
-                  socialItem(
-                    "assets/images/icons/PNG/facebook.png",
-                    "Facebook",
-                    "https://dahliaos.io/facebook",
-                  ),
-                  socialItem(
-                    "assets/images/icons/PNG/github.png",
-                    "Github",
-                    "https://dahliaos.io/github",
-                  ),
-                  socialItem(
-                    "assets/images/icons/PNG/instagram.png",
-                    "Instagram",
-                    "https://dahliaos.io/instagram",
-                  ),
-                  socialItem(
-                    "assets/images/icons/PNG/reddit.png",
-                    "Reddit",
-                    "https://dahliaos.io/reddit",
-                  ),
-                  socialItem(
-                    "assets/images/icons/PNG/telegram.png",
-                    "Telegram",
-                    "https://dahliaos.io/telegram",
-                  ),
-                  socialItem(
-                    "assets/images/icons/PNG/twitter.png",
-                    "Twitter",
-                    "https://dahliaos.io/twitter",
-                  ),
+                      "assets/images/logos/dahliaOS/PNG/dahliaOS_logo_drop_shadow.png",
+                      "Official Website",
+                      "https://dahliaos.io",
+                      context),
+                  socialItem("assets/images/icons/PNG/discord.png", "Discord",
+                      "https://dahliaos.io/discord", context),
+                  socialItem("assets/images/icons/PNG/facebook.png", "Facebook",
+                      "https://dahliaos.io/facebook", context),
+                  socialItem("assets/images/icons/PNG/github.png", "Github",
+                      "https://dahliaos.io/github", context),
+                  socialItem("assets/images/icons/PNG/instagram.png",
+                      "Instagram", "https://dahliaos.io/instagram", context),
+                  socialItem("assets/images/icons/PNG/reddit.png", "Reddit",
+                      "https://dahliaos.io/reddit", context),
+                  socialItem("assets/images/icons/PNG/telegram.png", "Telegram",
+                      "https://dahliaos.io/telegram", context),
+                  socialItem("assets/images/icons/PNG/twitter.png", "Twitter",
+                      "https://dahliaos.io/twitter", context),
 
                   /* RaisedButton(
           child: Text('Launch screen'),
@@ -536,11 +557,11 @@ class SocialMedia extends StatelessWidget {
   }
 }
 
-Container person(String icon, String header, String main) {
+Container person(String icon, String header, String main, context) {
   return Container(
       width: 512,
       child: Card(
-        color: Color(0xffffffff),
+        color: Theme.of(context).colorScheme.cardColor,
         elevation: 0,
         margin: EdgeInsets.all(25),
         child: InkWell(
@@ -551,7 +572,8 @@ Container person(String icon, String header, String main) {
                   padding: EdgeInsets.fromLTRB(0, 0, 15, 0),
                   child: CircleAvatar(
                     radius: 32,
-                    backgroundColor: Color(0xff222222),
+                    backgroundColor:
+                        Theme.of(context).colorScheme.foregroundText,
                     child: CircleAvatar(
                       radius: 30,
                       backgroundImage: AssetImage(icon),
@@ -563,10 +585,12 @@ Container person(String icon, String header, String main) {
                 Text(header,
                     style: TextStyle(
                         fontSize: 18,
-                        color: Color(0xff222222),
+                        color: Theme.of(context).colorScheme.foregroundText,
                         fontWeight: FontWeight.w600)),
                 Text(main,
-                    style: TextStyle(fontSize: 15, color: Color(0xff333333)))
+                    style: TextStyle(
+                        fontSize: 15,
+                        color: Theme.of(context).colorScheme.lowerText))
               ]),
             ])),
       ));
@@ -579,13 +603,16 @@ class Credits extends StatelessWidget {
         appBar: AppBar(
           centerTitle: true,
           iconTheme: IconThemeData(
-            color: Colors.black, //change your color here
+            color: Theme.of(context)
+                .colorScheme
+                .foregroundText, //change your color here
           ),
-          backgroundColor: Colors.white,
+          backgroundColor: Theme.of(context).colorScheme.cardColor,
           shadowColor: const Color(0x00ffffff),
           title: new Text(
             "Credits",
-            style: new TextStyle(color: Colors.black),
+            style: new TextStyle(
+                color: Theme.of(context).colorScheme.foregroundText),
           ),
         ),
         body: new SingleChildScrollView(
@@ -593,9 +620,13 @@ class Credits extends StatelessWidget {
             scrollDirection: Axis.vertical,
             child: new Column(children: <Widget>[
               Text("Thank you to everyone who made this dream come true!",
-                  style: TextStyle(fontSize: 14, color: Color(0xff000000))),
+                  style: TextStyle(
+                      fontSize: 14,
+                      color: Theme.of(context).colorScheme.foregroundText)),
               Text("Want to help out? Find us at https://github.com/dahlia-os",
-                  style: TextStyle(fontSize: 14, color: Color(0xff000000))),
+                  style: TextStyle(
+                      fontSize: 14,
+                      color: Theme.of(context).colorScheme.foregroundText)),
               new Center(
                 child: new SingleChildScrollView(
                     padding:
@@ -603,115 +634,88 @@ class Credits extends StatelessWidget {
                     scrollDirection: Axis.vertical,
                     child: new Wrap(children: <Widget>[
                       person(
-                        "assets/images/credits/Profile pictures/bleonard.png",
-                        "Blake Leonard",
-                        "bleonard252",
-                      ),
+                          "assets/images/credits/Profile pictures/bleonard.png",
+                          "Blake Leonard",
+                          "bleonard252",
+                          context),
+                      person("assets/images/credits/Profile pictures/noah.jpeg",
+                          "Noah Cain", "nmcain", context),
                       person(
-                        "assets/images/credits/Profile pictures/noah.jpeg",
-                        "Noah Cain",
-                        "nmcain",
-                      ),
+                          "assets/images/credits/Profile pictures/camden.jpeg",
+                          "Camden Bruce",
+                          "EnderNightLord-ChromeBook",
+                          context),
+                      person("assets/images/credits/Profile pictures/faust.png",
+                          "Marin Heđeš", "SincerelyFaust", context),
+                      person("assets/images/credits/Profile pictures/lars.jpeg",
+                          "Lars", "larsb24", context),
+                      person("assets/images/credits/Profile pictures/horus.png",
+                          "Hackerman", "Horus125", context),
+                      person("assets/images/credits/Profile pictures/haru.jpeg",
+                          "Kanou Haru", "kanouharu", context),
                       person(
-                        "assets/images/credits/Profile pictures/camden.jpeg",
-                        "Camden Bruce",
-                        "EnderNightLord-ChromeBook",
-                      ),
+                          "assets/images/credits/Profile pictures/nobody.png",
+                          "Nobody",
+                          "nobody5050",
+                          context),
                       person(
-                        "assets/images/credits/Profile pictures/faust.png",
-                        "Marin Heđeš",
-                        "SincerelyFaust",
-                      ),
+                          "assets/images/credits/Profile pictures/subspace.png",
+                          "Lucas Puntillo",
+                          "puntillol59",
+                          context),
+                      person("assets/images/credits/Profile pictures/hexa.png",
+                          "Quinten", "HexaOneOfficial", context),
+                      person("assets/images/credits/Profile pictures/x7.jpeg",
+                          "Syed Mushaheed", "predatorx7", context),
+                      person("assets/images/credits/Profile pictures/vanzh.png",
+                          "V.", "xVanzh", context),
                       person(
-                        "assets/images/credits/Profile pictures/lars.jpeg",
-                        "Lars",
-                        "larsb24",
-                      ),
+                          "assets/images/credits/Profile pictures/funeoz.jpeg",
+                          "Funeoz",
+                          "Funeoz",
+                          context),
                       person(
-                        "assets/images/credits/Profile pictures/horus.png",
-                        "Hackerman",
-                        "Horus125",
-                      ),
+                          "assets/images/credits/Profile pictures/fristover.png",
+                          "Fristover",
+                          "Fristover",
+                          context),
                       person(
-                        "assets/images/credits/Profile pictures/haru.jpeg",
-                        "Kanou Haru",
-                        "kanouharu",
-                      ),
+                          "assets/images/credits/Profile pictures/allansrc.jpeg",
+                          "Allan Ramos",
+                          "Allansrc",
+                          context),
                       person(
-                        "assets/images/credits/Profile pictures/nobody.png",
-                        "Nobody",
-                        "nobody5050",
-                      ),
+                          "assets/images/credits/Profile pictures/xeu100.png",
+                          "xeu100",
+                          "xeu100",
+                          context),
+                      person("assets/images/credits/Profile pictures/Seplx.png",
+                          "Seplx", "Seplx", context),
                       person(
-                        "assets/images/credits/Profile pictures/subspace.png",
-                        "Lucas Puntillo",
-                        "puntillol59",
-                      ),
+                          "assets/images/credits/Profile pictures/aoaowangxiao.jpeg",
+                          "aoaowangxiao",
+                          "aoaowangxiao",
+                          context),
                       person(
-                        "assets/images/credits/Profile pictures/hexa.png",
-                        "Quinten",
-                        "HexaOneOfficial",
-                      ),
+                          "assets/images/credits/Profile pictures/evolutionevotv.png",
+                          "evoDesign",
+                          "evolutionevotv",
+                          context),
                       person(
-                        "assets/images/credits/Profile pictures/x7.jpeg",
-                        "Syed Mushaheed",
-                        "predatorx7",
-                      ),
+                          "assets/images/credits/Profile pictures/febryardiansyah.jpeg",
+                          "Febry Ardiansyah",
+                          "febryardiansyah",
+                          context),
                       person(
-                        "assets/images/credits/Profile pictures/vanzh.png",
-                        "V.",
-                        "xVanzh",
-                      ),
+                          "assets/images/credits/Profile pictures/goktugvatandas.jpeg",
+                          "Göktuğ Vatandaş",
+                          "goktugvatandas",
+                          context),
                       person(
-                        "assets/images/credits/Profile pictures/funeoz.jpeg",
-                        "Funeoz",
-                        "Funeoz",
-                      ),
-                      person(
-                        "assets/images/credits/Profile pictures/fristover.png",
-                        "Fristover",
-                        "Fristover",
-                      ),
-                      person(
-                        "assets/images/credits/Profile pictures/allansrc.jpeg",
-                        "Allan Ramos",
-                        "Allansrc",
-                      ),
-                      person(
-                        "assets/images/credits/Profile pictures/xeu100.png",
-                        "xeu100",
-                        "xeu100",
-                      ),
-                      person(
-                        "assets/images/credits/Profile pictures/Seplx.png",
-                        "Seplx",
-                        "Seplx",
-                      ),
-                      person(
-                        "assets/images/credits/Profile pictures/aoaowangxiao.jpeg",
-                        "aoaowangxiao",
-                        "aoaowangxiao",
-                      ),
-                      person(
-                        "assets/images/credits/Profile pictures/evolutionevotv.png",
-                        "evoDesign",
-                        "evolutionevotv",
-                      ),
-                      person(
-                        "assets/images/credits/Profile pictures/febryardiansyah.jpeg",
-                        "Febry Ardiansyah",
-                        "febryardiansyah",
-                      ),
-                      person(
-                        "assets/images/credits/Profile pictures/goktugvatandas.jpeg",
-                        "Göktuğ Vatandaş",
-                        "goktugvatandas",
-                      ),
-                      person(
-                        "assets/images/logos/dahliaOS/PNG/dahliaOS_logo_drop_shadow.png",
-                        "And... you!",
-                        "Thanks for testing out this build!",
-                      ),
+                          "assets/images/logos/dahliaOS/PNG/dahliaOS_logo_drop_shadow.png",
+                          "And... you!",
+                          "Thanks for testing out this build!",
+                          context),
                     ])),
               )
             ])));
@@ -797,13 +801,16 @@ class Software extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         iconTheme: IconThemeData(
-          color: Colors.black, //change your color here
+          color: Theme.of(context)
+              .colorScheme
+              .foregroundText, //change your color here
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).colorScheme.cardColor,
         shadowColor: const Color(0x00ffffff),
         title: new Text(
           "Software",
-          style: new TextStyle(color: Colors.black),
+          style: new TextStyle(
+              color: Theme.of(context).colorScheme.foregroundText),
         ),
       ),
       body: Center(

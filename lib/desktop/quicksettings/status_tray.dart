@@ -95,20 +95,36 @@ class StatusTrayWidgetState extends State<StatusTrayWidget> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     new Icon(Icons.signal_wifi_4_bar,
-                        color: const Color(0xFFffffff), size: 18.0),
+                        color: Pangolin.settingsBox.get("desktopDarkMode")
+                            ? Colors.white
+                            : Colors.black,
+                        size: 18.0),
                     new Icon(Icons.bluetooth,
-                        color: const Color(0xFFffffff), size: 18.0),
+                        color: Pangolin.settingsBox.get("desktopDarkMode")
+                            ? Colors.white
+                            : Colors.black,
+                        size: 18.0),
                     new Icon(Icons.battery_charging_full,
-                        color: const Color(0xFFffffff), size: 18.0),
+                        color: Pangolin.settingsBox.get("desktopDarkMode")
+                            ? Colors.white
+                            : Colors.black,
+                        size: 18.0),
                     VerticalDivider(
                       thickness: 2,
                       endIndent: 7,
                       indent: 7,
-                      color: Colors.white,
+                      color: Pangolin.settingsBox.get("desktopDarkMode")
+                          ? Colors.white
+                          : Colors.black,
                     ),
                     Text(
                       _timeString,
-                      style: TextStyle(fontSize: 15, color: Colors.white),
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: Pangolin.settingsBox.get("desktopDarkMode")
+                            ? Colors.white
+                            : Colors.black,
+                      ),
                     ),
                   ]),
             ),

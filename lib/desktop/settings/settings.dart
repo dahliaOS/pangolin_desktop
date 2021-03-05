@@ -62,7 +62,7 @@ class Settings extends StatelessWidget {
     ),
     TileItem(
       "Customization",
-      "Customize the look and feel of Pangolin",
+      "Customize the look and feel of dahliaOS",
       Icons.color_lens,
       Customization(),
     ),
@@ -91,9 +91,9 @@ class Settings extends StatelessWidget {
       Backup(),
     ),
     TileItem(
-      "Advanced Features",
-      "Coming soon!",
-      Icons.add_circle_outline,
+      "Developer Options",
+      "Feature Flags, Advanced Options",
+      Icons.developer_mode,
       AdvancedFeatures(),
     ),
     TileItem(

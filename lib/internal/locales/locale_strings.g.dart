@@ -7,7 +7,6 @@ class LocaleStrings {
 }
 
 class _$PangolinLocaleStrings {
-  final String appContainers = "pangolin.app_containers".tr();
   final String appAuthenticator = "pangolin.app_authenticator".tr();
   final String appCalculator = "pangolin.app_calculator".tr();
   final String appClock = "pangolin.app_clock".tr();
@@ -31,7 +30,6 @@ class _$PangolinLocaleStrings {
   final String featurenotimplementedTitle = "pangolin.featurenotimplemented_title".tr();
   final String featurenotimplementedValue = "pangolin.featurenotimplemented_value".tr();
   final String launcherCardInformationTitle = "pangolin.launcher_card_information_title".tr();
-  final String launcherCardInformationValue = "pangolin.launcher_card_information_value".tr();
   final String launcherCardKernelTitle = "pangolin.launcher_card_kernel_title".tr();
   final String launcherCardKernelValue = "pangolin.launcher_card_kernel_value".tr();
   final String launcherCardMusicTitle = "pangolin.launcher_card_music_title".tr();
@@ -50,5 +48,7 @@ class _$PangolinLocaleStrings {
   final String qsInvertcolors = "pangolin.qs_invertcolors".tr();
   final String qsTheme = "pangolin.qs_theme".tr();
   final String qsWifi = "pangolin.qs_wifi".tr();
+  final String appContainers = "pangolin.app_containers".tr();
+  final String launcherCardInformationValue = "pangolin.launcher_card_information_value".tr();
 }
 

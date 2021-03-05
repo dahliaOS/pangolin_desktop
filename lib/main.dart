@@ -19,6 +19,7 @@ import 'package:Pangolin/internal/locales/generated_asset_loader.g.dart';
 import 'package:Pangolin/internal/locales/locales.g.dart';
 import 'package:Pangolin/desktop/window/model.dart';
 import 'package:Pangolin/utils/applicationdata.dart';
+
 import 'package:Pangolin/utils/hiveManager.dart';
 import 'package:Pangolin/utils/themes/customization_manager.dart';
 import 'package:hive/hive.dart';
@@ -31,7 +32,8 @@ import 'package:easy_localization/easy_localization.dart';
 /// Set this to disable certain things during testing.
 /// Use this sparingly, or better yet, not at all.
 bool isTesting = false;
-
+// Set this to enable features only found on dahliaOS.
+bool isDahlia = true;
 WindowsData provisionalWindowData = new WindowsData();
 
 var defaultTheme;
@@ -42,8 +44,7 @@ void main() async {
   await Hive.initFlutter();
   Pangolin.settingsBox = await Hive.openBox("settings");
   HiveManager.initializeHive();
-  //loadConfig();
-  // defaultTheme = await getSystemTheme();
+
   runApp(
     EasyLocalization(
       supportedLocales: Locales.supported,

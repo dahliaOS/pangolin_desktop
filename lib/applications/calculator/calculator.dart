@@ -13,7 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-
+import 'package:Pangolin/main.dart';
 import 'package:flutter/material.dart';
 import 'package:expressions/expressions.dart';
 import 'dart:math' as math;
@@ -22,22 +22,32 @@ class Calculator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Calculator',
-        theme: ThemeData(
-          primarySwatch: Colors.green,
-          accentColor: Colors.green[600],
-        ),
-        home: CalculatorHome(),
+      title: 'Calculator',
+      theme: ThemeData(
+        primarySwatch: Colors.green,
+        accentColor: Colors.green[600],
+      ),
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
+        primarySwatch: Colors.green,
+        accentColor: Colors.green[600],
+      ),
+      themeMode: Pangolin.settingsBox.get("darkMode")
+          ? ThemeMode.dark
+          : ThemeMode.light,
+      home: CalculatorHome(),
     );
   }
 }
 
 class _CalculatorHomeState extends State<CalculatorHome> {
-  TextSelection _currentSelection = TextSelection(baseOffset: 0, extentOffset: 0);
+  TextSelection _currentSelection =
+      TextSelection(baseOffset: 0, extentOffset: 0);
   TextEditingController _controller = TextEditingController(text: '');
   final GlobalKey _textFieldKey = GlobalKey();
   final textFieldPadding = EdgeInsets.only(right: 8.0);
-  static TextStyle textFieldTextStyle = TextStyle(fontSize: 80.0, fontWeight: FontWeight.w300);
+  static TextStyle textFieldTextStyle =
+      TextStyle(fontSize: 80.0, fontWeight: FontWeight.w300);
   Color _numColor = Color.fromRGBO(48, 47, 63, .94);
   Color _opColor = Color.fromRGBO(22, 21, 29, .93);
   double _fontSize = textFieldTextStyle.fontSize;
@@ -46,9 +56,9 @@ class _CalculatorHomeState extends State<CalculatorHome> {
   bool _invertedMode = false;
   bool _toggled = false;
 
-
   void _onTextChanged() {
-    final inputWidth = _textFieldKey.currentContext.size.width - textFieldPadding.horizontal;
+    final inputWidth =
+        _textFieldKey.currentContext.size.width - textFieldPadding.horizontal;
 
     final textPainter = TextPainter(
       textDirection: TextDirection.ltr,
@@ -81,11 +91,14 @@ class _CalculatorHomeState extends State<CalculatorHome> {
     setState(() {
       if (_controller.selection.baseOffset >= 0) {
         _currentSelection = TextSelection(
-            baseOffset: _controller.selection.baseOffset + 1,
-            extentOffset: _controller.selection.extentOffset + 1,
+          baseOffset: _controller.selection.baseOffset + 1,
+          extentOffset: _controller.selection.extentOffset + 1,
         );
-        _controller.text = _controller.text.substring(0, _controller.selection.baseOffset) +
-            character + _controller.text.substring(_controller.selection.baseOffset, _controller.text.length);
+        _controller.text =
+            _controller.text.substring(0, _controller.selection.baseOffset) +
+                character +
+                _controller.text.substring(
+                    _controller.selection.baseOffset, _controller.text.length);
         _controller.selection = _currentSelection;
       } else {
         _controller.text += character;
@@ -104,7 +117,7 @@ class _CalculatorHomeState extends State<CalculatorHome> {
               baseOffset: _controller.selection.baseOffset - 1,
               extentOffset: _controller.selection.extentOffset - 1);
           _controller.text = _controller.text
-              .substring(0, _controller.selection.baseOffset - 1) +
+                  .substring(0, _controller.selection.baseOffset - 1) +
               _controller.text.substring(
                   _controller.selection.baseOffset, _controller.text.length);
           _controller.selection = _currentSelection;
@@ -117,14 +130,17 @@ class _CalculatorHomeState extends State<CalculatorHome> {
     _onTextChanged();
   }
 
-int errorcount = 0;
+  int errorcount = 0;
 
   void _equals() {
     String originalExp = _controller.text.toString();
     setState(() {
       try {
-        var diff = "(".allMatches(_controller.text).length - ")".allMatches(_controller.text).length;
-        if (diff>0) {_controller.text += ')'*diff;}
+        var diff = "(".allMatches(_controller.text).length -
+            ")".allMatches(_controller.text).length;
+        if (diff > 0) {
+          _controller.text += ')' * diff;
+        }
         String expText = _controller.text
             .replaceAll('e+', 'e')
             .replaceAll('e', '*10^')
@@ -134,13 +150,18 @@ int errorcount = 0;
             .replaceAll('sin(', _useRadians ? 'sin(' : 'sin(π/180.0 *')
             .replaceAll('cos(', _useRadians ? 'cos(' : 'cos(π/180.0 *')
             .replaceAll('tan(', _useRadians ? 'tan(' : 'tan(π/180.0 *')
-            .replaceAll('sin⁻¹', _useRadians? 'asin' : '180/π*asin')
-            .replaceAll('cos⁻¹', _useRadians? 'acos' : '180/π*acos')
-            .replaceAll('tan⁻¹', _useRadians? 'atan' : '180/π*atan')
+            .replaceAll('sin⁻¹', _useRadians ? 'asin' : '180/π*asin')
+            .replaceAll('cos⁻¹', _useRadians ? 'acos' : '180/π*acos')
+            .replaceAll('tan⁻¹', _useRadians ? 'atan' : '180/π*atan')
             .replaceAll('π', 'PI')
             .replaceAll('℮', 'E')
-            .replaceAllMapped(RegExp(r'(\d+)\!'), (Match m) => "fact(${m.group(1)})")
-            .replaceAllMapped(RegExp(r'(?:\(([^)]+)\)|([0-9A-Za-z]+(?:\.\d+)?))\^(?:\(([^)]+)\)|([0-9A-Za-z]+(?:\.\d+)?))'), (Match m) => "pow(${m.group(1) ?? ''}${m.group(2) ?? ''},${m.group(3)??''}${m.group(4)??''})")
+            .replaceAllMapped(
+                RegExp(r'(\d+)\!'), (Match m) => "fact(${m.group(1)})")
+            .replaceAllMapped(
+                RegExp(
+                    r'(?:\(([^)]+)\)|([0-9A-Za-z]+(?:\.\d+)?))\^(?:\(([^)]+)\)|([0-9A-Za-z]+(?:\.\d+)?))'),
+                (Match m) =>
+                    "pow(${m.group(1) ?? ''}${m.group(2) ?? ''},${m.group(3) ?? ''}${m.group(4) ?? ''})")
             .replaceAll('√(', 'sqrt(');
         print(expText);
         Expression exp = Expression.parse(expText);
@@ -167,12 +188,14 @@ int errorcount = 0;
             .replaceAll(RegExp(r'\.$'), '');
         if (_controller.text == "NaN") _controller.text = "Impossible";
       } catch (e) {
-        if (errorcount < 5 && originalExp == "error+123") _controller.text = 'Congratulations!';
+        if (errorcount < 5 && originalExp == "error+123")
+          _controller.text = 'Congratulations!';
         else if (originalExp == "you little...π") {
           _controller.text = 'warning';
-        }
-        else if (errorcount > 5) _controller.text = 'you little...';
-        else _controller.text = 'error';
+        } else if (errorcount > 5)
+          _controller.text = 'you little...';
+        else
+          _controller.text = 'error';
         errorcount++;
       }
     });
@@ -180,7 +203,7 @@ int errorcount = 0;
   }
 
   double log10(num x) {
-    return math.log(x)/math.log(10);
+    return math.log(x) / math.log(10);
   }
 
   int factorial(int number) {
@@ -196,53 +219,59 @@ int errorcount = 0;
   }
 
   Widget _buildButton(String label, [Function() func]) {
-    if (func==null) func =  (){_append(label);};
+    if (func == null)
+      func = () {
+        _append(label);
+      };
     return Expanded(
-        child: InkResponse(
-          onTap: func,
-          onLongPress: (label == 'C') ? () => _clear(true) : null,
-          child: Center(
-              child: Text(
-                label,
-                style: TextStyle(
-                    fontSize: (MediaQuery.of(context).orientation == Orientation.portrait) ? 32.0 : 20.0,//24
-                    fontWeight: FontWeight.w300,
-                    color: Colors.white
-                ),
-              )
-          ),
-        ),
+      child: InkResponse(
+        onTap: func,
+        onLongPress: (label == 'C') ? () => _clear(true) : null,
+        child: Center(
+            child: Text(
+          label,
+          style: TextStyle(
+              fontSize:
+                  (MediaQuery.of(context).orientation == Orientation.portrait)
+                      ? 32.0
+                      : 20.0, //24
+              fontWeight: FontWeight.w300,
+              color: Colors.white),
+        )),
+      ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-        appBar: AppBar(
-          backgroundColor: Theme.of(context).canvasColor,
-          elevation: 0.0,
-          title: Text(_toggled?(_useRadians?'RAD':'DEG'):'', style: TextStyle(color: Colors.grey)),
-        ),
-        body: Column(
-          children: [
-            Expanded(
-              flex: 3,
-              child: TextField(
-                key: _textFieldKey,
-                controller: _controller,
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  contentPadding: textFieldPadding,
-                ),
-                textAlign: TextAlign.right,
-                style: textFieldTextStyle.copyWith(fontSize: _fontSize),
-                focusNode: AlwaysDisabledFocusNode(),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).canvasColor,
+        elevation: 0.0,
+        title: Text(_toggled ? (_useRadians ? 'RAD' : 'DEG') : '',
+            style: TextStyle(color: Colors.grey)),
+      ),
+      body: Column(
+        children: [
+          Expanded(
+            flex: 3,
+            child: TextField(
+              key: _textFieldKey,
+              controller: _controller,
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                contentPadding: textFieldPadding,
               ),
+              textAlign: TextAlign.right,
+              style: textFieldTextStyle.copyWith(fontSize: _fontSize),
+              focusNode: AlwaysDisabledFocusNode(),
             ),
-            Expanded(
-              flex: 5,
-               child: Material(color: _opColor,
-                child: PageView(
+          ),
+          Expanded(
+            flex: 5,
+            child: Material(
+              color: _opColor,
+              child: PageView(
                 controller: _pageController,
                 children: [
                   Row(
@@ -255,7 +284,8 @@ int errorcount = 0;
                             Expanded(
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
                                   _buildButton('C', _clear),
                                   _buildButton('('),
@@ -266,147 +296,188 @@ int errorcount = 0;
                             Expanded(
                               flex: 4,
                               child: Material(
-                                  color: _numColor,
-                                  borderRadius: BorderRadius.only(topRight: Radius.circular(8)),
-                                  child: Column(
-                                children: [
-                                  Expanded(
-                                    child: Row(
-                                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        _buildButton('7'),
-                                        _buildButton('8'),
-                                        _buildButton('9'),
-                                      ],
+                                color: _numColor,
+                                borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(8)),
+                                child: Column(
+                                  children: [
+                                    Expanded(
+                                      child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.stretch,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          _buildButton('7'),
+                                          _buildButton('8'),
+                                          _buildButton('9'),
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                  Expanded(
-                                    child: Row(
-                                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        _buildButton('4'),
-                                        _buildButton('5'),
-                                        _buildButton('6'),
-                                      ],
+                                    Expanded(
+                                      child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.stretch,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          _buildButton('4'),
+                                          _buildButton('5'),
+                                          _buildButton('6'),
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                  Expanded(
-                                    child: Row(
-                                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        _buildButton('1'),
-                                        _buildButton('2'),
-                                        _buildButton('3'),
-                                      ],
+                                    Expanded(
+                                      child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.stretch,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          _buildButton('1'),
+                                          _buildButton('2'),
+                                          _buildButton('3'),
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                  Expanded(
-                                    child: Row(
-                                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        _buildButton('%'),
-                                        _buildButton('0'),
-                                        _buildButton('.'),
-                                      ],
+                                    Expanded(
+                                      child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.stretch,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          _buildButton('%'),
+                                          _buildButton('0'),
+                                          _buildButton('.'),
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
-                            ),
                             ),
                           ],
                         ),
                       ),
                       Expanded(
-                        child: Column(
-                          children: <Widget>[
-                            _buildButton('÷'),
-                            _buildButton('×'),
-                            _buildButton('-'),
-                            _buildButton('+'),
-                            _buildButton('=', _equals),
-                          ],
-                        )
-                        ),
+                          child: Column(
+                        children: <Widget>[
+                          _buildButton('÷'),
+                          _buildButton('×'),
+                          _buildButton('-'),
+                          _buildButton('+'),
+                          _buildButton('=', _equals),
+                        ],
+                      )),
                       InkWell(
-                          child: Container(
-                            color: Theme.of(context).accentColor,
-                            child: Icon(
-                              Icons.chevron_left,
-                              color: Colors.white,
-                            ),
-                          ),
-                          onTap: () => _pageController.animateToPage(
-                            1,
-                            duration: Duration(milliseconds: 500),
-                            curve: Curves.ease,
+                        child: Container(
+                          color: Theme.of(context).accentColor,
+                          child: Icon(
+                            Icons.chevron_left,
+                            color: Colors.white,
                           ),
                         ),
+                        onTap: () => _pageController.animateToPage(
+                          1,
+                          duration: Duration(milliseconds: 500),
+                          curve: Curves.ease,
+                        ),
+                      ),
                     ],
                   ),
                   Material(
                     color: Theme.of(context).accentColor,
-                    child:
-                  Column(
-                    children: [
-                      Expanded(
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            _buildButton(_invertedMode ? 'sin⁻¹' : 'sin', () => _invertedMode ? _append('sin⁻¹(') : _append('sin(')),
-                            _buildButton(_invertedMode ? 'cos⁻¹' : 'cos', () => _invertedMode ? _append('cos⁻¹(') : _append('cos(')),
-                            _buildButton(_invertedMode ? 'tan⁻¹' : 'tan', () => _invertedMode ? _append('tan⁻¹(') : _append('tan(')),
-                          ],
+                    child: Column(
+                      children: [
+                        Expanded(
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              _buildButton(
+                                  _invertedMode ? 'sin⁻¹' : 'sin',
+                                  () => _invertedMode
+                                      ? _append('sin⁻¹(')
+                                      : _append('sin(')),
+                              _buildButton(
+                                  _invertedMode ? 'cos⁻¹' : 'cos',
+                                  () => _invertedMode
+                                      ? _append('cos⁻¹(')
+                                      : _append('cos(')),
+                              _buildButton(
+                                  _invertedMode ? 'tan⁻¹' : 'tan',
+                                  () => _invertedMode
+                                      ? _append('tan⁻¹(')
+                                      : _append('tan(')),
+                            ],
+                          ),
                         ),
-                      ),
-                      Expanded(
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            _buildButton(_invertedMode ? 'eˣ' : 'ln', () => _invertedMode ? _append('℮^(') : _append('ln(')),
-                            _buildButton(_invertedMode ? '10ˣ' : 'log', () => _invertedMode ? _append('10^(') : _append('log(')),
-                            _buildButton(_invertedMode ? 'x²' : '√', () => _invertedMode ? _append('^2') : _append('√(')),
-                          ],
+                        Expanded(
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              _buildButton(
+                                  _invertedMode ? 'eˣ' : 'ln',
+                                  () => _invertedMode
+                                      ? _append('℮^(')
+                                      : _append('ln(')),
+                              _buildButton(
+                                  _invertedMode ? '10ˣ' : 'log',
+                                  () => _invertedMode
+                                      ? _append('10^(')
+                                      : _append('log(')),
+                              _buildButton(
+                                  _invertedMode ? 'x²' : '√',
+                                  () => _invertedMode
+                                      ? _append('^2')
+                                      : _append('√(')),
+                            ],
+                          ),
                         ),
-                      ),
-                      Expanded(
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            _buildButton('π'),
-                            _buildButton('e', () => _append('℮')),
-                            _buildButton('^'),
-                          ],
+                        Expanded(
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              _buildButton('π'),
+                              _buildButton('e', () => _append('℮')),
+                              _buildButton('^'),
+                            ],
+                          ),
                         ),
-                      ),
-                      Expanded(
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            _buildButton(_invertedMode ? '𝗜𝗡𝗩' : 'INV', () {setState(() {_invertedMode = !_invertedMode;});}),
-                            _buildButton(_useRadians ? 'RAD' : 'DEG', () {setState(() {_useRadians = !_useRadians; _toggled = true;});}),
-                            _buildButton('!'),
-                          ],
+                        Expanded(
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              _buildButton(_invertedMode ? '𝗜𝗡𝗩' : 'INV',
+                                  () {
+                                setState(() {
+                                  _invertedMode = !_invertedMode;
+                                });
+                              }),
+                              _buildButton(_useRadians ? 'RAD' : 'DEG', () {
+                                setState(() {
+                                  _useRadians = !_useRadians;
+                                  _toggled = true;
+                                });
+                              }),
+                              _buildButton('!'),
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
+                      ],
+                    ),
                   )
                 ],
               ),
-              ),
             ),
-          ],
-        ),
-      );
+          ),
+        ],
+      ),
+    );
   }
 }
 

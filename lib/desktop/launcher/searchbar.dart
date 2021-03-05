@@ -15,6 +15,7 @@ limitations under the License.
 */
 
 import 'package:flutter/material.dart';
+import 'package:Pangolin/main.dart';
 
 class SearchWidget extends StatefulWidget {
   final Function onSearch;
@@ -49,13 +50,23 @@ class _SearchWidgetState extends State<SearchWidget> {
             children: <Widget>[
               new Expanded(
                   child: new TextField(
-                style: new TextStyle(color: Colors.white),
+                style: new TextStyle(
+                  color: Pangolin.settingsBox.get("desktopDarkMode")
+                      ? Colors.white
+                      : Colors.black,
+                ),
                 maxLines: 1,
                 decoration: new InputDecoration(
-                    hintStyle: TextStyle(color: Colors.white),
+                    hintStyle: TextStyle(
+                      color: Pangolin.settingsBox.get("desktopDarkMode")
+                          ? Colors.white
+                          : Colors.black,
+                    ),
                     icon: Icon(
                       Icons.search,
-                      color: const Color(0xFFffffff),
+                      color: Pangolin.settingsBox.get("desktopDarkMode")
+                          ? Colors.white
+                          : Colors.black,
                     ),
                     hintText: "Search your device, app, web...",
                     border: InputBorder.none),

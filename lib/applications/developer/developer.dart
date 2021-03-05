@@ -29,12 +29,16 @@ class DeveloperApp extends StatelessWidget {
     return new MaterialApp(
       title: 'Developer Options',
       theme: new ThemeData(
+        brightness: Brightness.light,
         primarySwatch: Colors.red,
-        primaryColor: const Color(0xFFf44336),
-        accentColor: const Color(0xFFf44336),
-        canvasColor: const Color(0xFFfafafa),
-        platform: TargetPlatform.android,
       ),
+      darkTheme: new ThemeData(
+        brightness: Brightness.dark,
+        primarySwatch: Colors.red,
+      ),
+      themeMode: Pangolin.settingsBox.get("darkMode")
+          ? ThemeMode.dark
+          : ThemeMode.light,
       home: new DeveloperAppPage(),
     );
   }
@@ -66,7 +70,7 @@ class _DeveloperAppPageState extends State<DeveloperAppPage> {
                     child: Text('Reboot')),
                 RaisedButton(
                     onPressed: () {
-                      Process.run('poweroff', ['-f']);
+                      Process.run('shutdown', ['-P']);
                     },
                     child: Text('Shutdown')),
                 RaisedButton(

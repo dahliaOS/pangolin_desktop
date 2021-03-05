@@ -31,15 +31,19 @@ class _AboutState extends State<About> {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 40),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Center(
+              Padding(
+                  padding: EdgeInsets.only(left: 25),
                   child: Text(
-                "About Device",
-                style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: "Roboto"),
-              )),
+                    "About Device",
+                    style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.w300,
+                        fontFamily: "Roboto"),
+                  )),
               SizedBox(height: 20),
               Container(
                 decoration: BoxDecoration(
@@ -53,18 +57,15 @@ class _AboutState extends State<About> {
                   ],
                 ),
                 height: 200,
-                width: 200,
+                //width: 200,
                 child: Image(
                   image: AssetImage(
-                      "assets/images/logos/dahliaOS/PNG/dahliaOS_logo_drop_shadow.png"),
+                      "assets/images/logos/dahliaOS/PNG/dahliaOS-modern.png"),
                   fit: BoxFit.cover,
+                  filterQuality: FilterQuality.medium,
                 ),
               ),
               SizedBox(height: 10),
-              Text(
-                "dahliaOS",
-                style: TextStyle(fontSize: 35),
-              ),
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 SettingsHeader(heading: "Version"),
                 SettingsTile(children: [Text(longName)]),

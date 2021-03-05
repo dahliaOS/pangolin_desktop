@@ -12,6 +12,9 @@ limitations under the License.
 */
 
 import 'package:flutter/material.dart';
+import 'package:Pangolin/main.dart';
+import 'shell/terminal-widget.dart';
+import 'dart:io';
 
 void main() {
   runApp(new Logs());
@@ -23,8 +26,16 @@ class Logs extends StatelessWidget {
     return new MaterialApp(
       title: 'System Logs',
       theme: new ThemeData(
+        brightness: Brightness.light,
         primarySwatch: Colors.red,
       ),
+      darkTheme: new ThemeData(
+        brightness: Brightness.dark,
+        primarySwatch: Colors.red,
+      ),
+      themeMode: Pangolin.settingsBox.get("darkMode")
+          ? ThemeMode.dark
+          : ThemeMode.light,
       home: new LogsPage(),
     );
   }
@@ -38,6 +49,12 @@ class LogsPage extends StatefulWidget {
 
 class _LogsPageState extends State<LogsPage> {
   int _selectedIndex = 0;
+  List<Widget> screens = [
+    logItem("dmesg"),
+    logItem("xorg"),
+    logItem("message"),
+    logItem("fs")
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -54,39 +71,115 @@ class _LogsPageState extends State<LogsPage> {
                 _selectedIndex = index;
               });
             },
-            labelType: NavigationRailLabelType.selected,
+            labelType: NavigationRailLabelType.all,
             destinations: [
               NavigationRailDestination(
-                icon: Icon(Icons.apps),
-                selectedIcon: Icon(Icons.apps),
-                label: Text('Application Logs'),
+                icon: Icon(Icons.developer_board),
+                selectedIcon: Icon(Icons.developer_board),
+                label: Text('Kernel Logs'),
               ),
               NavigationRailDestination(
-                icon: Icon(Icons.new_releases),
-                selectedIcon: Icon(Icons.new_releases),
-                label: Text('Event Logs'),
-              ),
-              NavigationRailDestination(
-                icon: Icon(Icons.settings),
-                selectedIcon: Icon(Icons.settings),
-                label: Text('Service Logs'),
+                icon: Icon(Icons.tv),
+                selectedIcon: Icon(Icons.tv),
+                label: Text('Display Logs'),
               ),
               NavigationRailDestination(
                 icon: Icon(Icons.brightness_low),
                 selectedIcon: Icon(Icons.brightness_low),
                 label: Text('System Logs'),
               ),
+              NavigationRailDestination(
+                icon: Icon(Icons.storage),
+                selectedIcon: Icon(Icons.storage),
+                label: Text('Filesystem Logs'),
+              ),
             ],
           ),
           VerticalDivider(thickness: 1, width: 1),
           // This is the main content.
-          Expanded(
-            child: Center(
-              child: Text('selectedIndex: $_selectedIndex'),
-            ),
-          )
+          Expanded(child: screens[_selectedIndex])
         ],
       ),
     );
   }
+}
+
+String dmesg() {
+  ProcessResult result = Process.runSync('dmesg', ['-k']);
+  var verString = result.stdout;
+  if (verString == null) {
+    return "ERROR: Couldn't get the dmesg of the system";
+  }
+  return verString;
+}
+
+String xorg() {
+  ProcessResult result = Process.runSync('cat', ['/var/log/Xorg.0.log']);
+  var verString = result.stdout;
+  if (verString == null) {
+    return "ERROR: Couldn't find the display logs";
+  }
+  return verString;
+}
+
+String message() {
+  ProcessResult result = Process.runSync('cat', ['/var/log/messages']);
+  var verString = result.stdout;
+  if (verString == null) {
+    return "ERROR: Couldn't get the system messages";
+  }
+  return verString;
+}
+
+String fs() {
+  ProcessResult result = Process.runSync('df', ['-h']);
+  var verString = result.stdout;
+  if (verString == null) {
+    return "ERROR: Couldn't get the active filesystems";
+  }
+  return verString;
+}
+
+Widget logItem(String type) {
+  return new Container(
+    child: new Column(
+      children: [
+        new Expanded(
+          child: new Container(
+            width: 1.7976931348623157e+308,
+            color: const Color(0xFF111111),
+            child: new SingleChildScrollView(
+              child: new Padding(
+                padding: EdgeInsets.all(5),
+                child: new Text(
+                  () {
+                    if (type == "dmesg") {
+                      return dmesg();
+                    }
+                    if (type == "xorg") {
+                      return xorg();
+                    }
+                    if (type == "message") {
+                      return message();
+                    }
+                    if (type == "fs") {
+                      return fs();
+                    }
+                  }(),
+                  style: new TextStyle(
+                      fontSize: 15.0,
+                      color: const Color(0xFFf2f2f2),
+                      fontFamily: "Cousine"),
+                ),
+              ),
+            ),
+          ),
+        ),
+        new Container(
+          height: 150,
+          child: Terminal(),
+        )
+      ],
+    ),
+  );
 }

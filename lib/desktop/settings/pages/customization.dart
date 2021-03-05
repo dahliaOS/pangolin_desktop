@@ -39,15 +39,19 @@ class _CustomizationState extends State<Customization> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 40),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Center(
+                Padding(
+                    padding: EdgeInsets.only(left: 25),
                     child: Text(
-                  "Customization",
-                  style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: "Roboto"),
-                )),
+                      "Customization",
+                      style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.w300,
+                          fontFamily: "Roboto"),
+                    )),
                 Padding(
                   padding: const EdgeInsets.all(30.0),
                   child: Column(
@@ -181,8 +185,8 @@ class _CustomizationState extends State<Customization> {
                                 SwitchListTile(
                               secondary: Icon(Icons.brightness_4_outlined),
                               value: notifier.darkTheme,
-                              title: Text(
-                                  "Enable Dark mode on the desktop and all applications"),
+                              title:
+                                  Text("Enable Dark mode on all applications"),
                               onChanged: (bool state) {
                                 setState(() {
                                   notifier.toggleThemeDarkMode(state);
@@ -196,7 +200,17 @@ class _CustomizationState extends State<Customization> {
                                 });
                               },
                             ),
-                          )
+                          ),
+                          SwitchListTile(
+                            secondary: Icon(Icons.call_to_action_outlined),
+                            value: HiveManager.get("desktopDarkMode"),
+                            title: Text("Enable dark mode on the desktop"),
+                            onChanged: (bool state) {
+                              setState(() {
+                                HiveManager.set("desktopDarkMode", state);
+                              });
+                            },
+                          ),
                         ],
                       ),
                       SettingsHeader(heading: "Taskbar"),
@@ -265,10 +279,24 @@ class _CustomizationState extends State<Customization> {
                               SwitchListTile(
                                 secondary: Icon(Icons.view_comfortable),
                                 value: HiveManager.get("launcherWideMode"),
-                                title: Text("Enable Wide launcher mode"),
+                                title: Text(
+                                    "Span applications across the full width of the launcher"),
                                 onChanged: (bool state) {
                                   setState(() {
                                     HiveManager.set("launcherWideMode", state);
+                                  });
+                                },
+                              ),
+                              SwitchListTile(
+                                secondary: Icon(Icons.widgets),
+                                value: HiveManager.get(
+                                    "showIntentCardsInLauncher"),
+                                title:
+                                    Text("Show Intent Cards in the launcher"),
+                                onChanged: (bool state) {
+                                  setState(() {
+                                    HiveManager.set(
+                                        "showIntentCardsInLauncher", state);
                                   });
                                 },
                               ),
@@ -370,8 +398,10 @@ class _CustomizationState extends State<Customization> {
                                         new FlatButton(
                                           child: new Text("Yes"),
                                           onPressed: () {
-                                            Process.run(
-                                                'bash', ['/dahlia/restart.sh']);
+                                            Process.start(
+                                                'bash', ['/dahlia/restart.sh'],
+                                                mode:
+                                                    ProcessStartMode.detached);
                                           },
                                         ),
                                       ],

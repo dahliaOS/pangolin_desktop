@@ -125,7 +125,9 @@ class _DesktopState extends State<Desktop> {
                         filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
                         child: Container(
                           decoration: BoxDecoration(
-                            color: Colors.black.withOpacity(0.75),
+                            color: Pangolin.settingsBox.get("desktopDarkMode")
+                                ? Colors.black.withOpacity(0.75)
+                                : Colors.white.withOpacity(0.75),
                           ),
                           child: QuickSettings(),
                         ),
@@ -153,7 +155,9 @@ class _DesktopState extends State<Desktop> {
                 child: Container(
                     //color: Color.fromARGB(150, 0, 0, 0),
                     decoration: BoxDecoration(
-                      color: Color.fromARGB(150, 0, 0, 0),
+                      color: Pangolin.settingsBox.get("desktopDarkMode")
+                          ? Color.fromARGB(150, 0, 0, 0)
+                          : Colors.white.withOpacity(0.75),
                       //uncomment below to add radius to the launcher panel
                       //borderRadius: BorderRadius.circular(2),
                     ),
@@ -297,7 +301,7 @@ class _DesktopState extends State<Desktop> {
             ),
           ),
 
-          // WallpaperPicker(),
+          // BlueLight Filter Overlay,
           IgnorePointer(
             child: Container(
               width: double.infinity,

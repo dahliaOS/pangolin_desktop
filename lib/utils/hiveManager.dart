@@ -20,7 +20,7 @@ class HiveManager {
     createEntryIfNotExisting("accentColorName", "orange");
     createEntryIfNotExisting(
         "accentColorValue", Colors.deepOrangeAccent[400].value);
-    createEntryIfNotExisting("darkMode", true);
+    //createEntryIfNotExisting("darkMode", true);
     createEntryIfNotExisting("centerTaskbar", false);
     createEntryIfNotExisting("volumeLevel", 0.75);
     createEntryIfNotExisting("brightness", 1.0);
@@ -41,7 +41,9 @@ class HiveManager {
     createEntryIfNotExisting("timeZoneName", "English - United States");
     createEntryIfNotExisting("launcherWideMode", false);
     createEntryIfNotExisting("coloredTitlebar", true);
-    createEntryIfNotExisting("developeroptions", false);
+    createEntryIfNotExisting("developeroptions", true);
+    createEntryIfNotExisting("showIntentCardsInLauncher", true);
+    createEntryIfNotExisting("desktopDarkMode", true);
   }
 
   static set(String key, dynamic value) {
@@ -86,5 +88,6 @@ List<String> wallpapers = [
   "assets/images/wallpapers/dahliaOS/Gradient_logo_wallpaper.png",
   "assets/images/wallpapers/dahliaOS/Three_bubbles_wallpaper.png",
   "assets/images/wallpapers/dahliaOS/Bubbles_wallpaper.png",
+  "assets/images/wallpapers/dahliaOS/Mountains_wallpaper.png",
   "assets/images/wallpapers/Nature/mountain.jpg",
 ];
