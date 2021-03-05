@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_containers">Container</string>
     <string name="app_authenticator">Autenticatore</string>
     <string name="app_calculator">Calcolatrice</string>
     <string name="app_clock">Orologio</string>
@@ -9,12 +8,12 @@
     <string name="app_media">Multimedia</string>
     <string name="app_music">Musica</string>
     <string name="app_notes">Editor di testo</string>
-    <string name="app_notesmobile">Appunti (mobile)</string>
+    <string name="app_notesmobile">Appunti (Mobile)</string>
     <string name="app_messages">Messaggi</string>
     <string name="app_rootterminal">Terminale root</string>
     <string name="app_settings">Impostazioni</string>
     <string name="app_systemlogs">Log di sistema</string>
-    <string name="app_taskmanager">Task manager</string>
+    <string name="app_taskmanager">Gestione Attività</string>
     <string name="app_terminal">Terminale</string>
     <string name="app_themedemo">Demo del tema</string>
     <string name="app_welcome">Benvenuto</string>
@@ -24,11 +23,10 @@
     <string name="featurenotimplemented_title">Funzionalità non implementata</string>
     <string name="featurenotimplemented_value">Questa funzione non è attualmente disponibile nella tua versione di Pangolin, per favore consulta https://reddit.com/r/dahliaos per controllare la disponibilità di aggiornamenti.</string>
     <string name="launcher_card_information_title">Informazioni</string>
-    <string name="launcher_card_information_value">Attenzione: Stai usando una versione di sviluppo in anteprima! Per la tua protezione, questa versione è stata isolata dal network.</string>
     <string name="launcher_card_kernel_title">Kernel</string>
     <string name="launcher_card_kernel_value">Driver per GPU integrata aggiornati</string>
     <string name="launcher_card_music_title">Musica - riproduzione in corso</string>
-    <string name="launcher_card_music_value">Lil Pump - Boss</string>
+    <string name="launcher_card_music_value">Vance Joy - Georgia</string>
     <string name="launcher_card_security_title">Sicurezza</string>
     <string name="launcher_card_security_value">Blocco del file system attivo</string>
     <string name="launcher_card_system_title">Sistema</string>
@@ -37,10 +35,12 @@
     <string name="qs_airplanemode">Modalità aereo</string>
     <string name="qs_autorotate">Rotazione automatica</string>
     <string name="qs_bluetooth">Bluetooth</string>
-    <string name="qs_changelanguage">Italiano</string>
+    <string name="qs_changelanguage" comment="Replace this with the name of the language you're translating to">Italiano</string>
     <string name="qs_dnd">Non disturbare</string>
     <string name="qs_flashlight">Torcia</string>
     <string name="qs_invertcolors">Inverti colori</string>
     <string name="qs_theme">Tema</string>
     <string name="qs_wifi">Wi-Fi</string>
+    <string name="app_containers" comment="Do not actually translate this string, just write &quot;Graft&quot; as the translation">Graft</string>
+    <string name="launcher_card_information_value">Fa freddo fuori, prendi un cappotto!</string>
 </resources>

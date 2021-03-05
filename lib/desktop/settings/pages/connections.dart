@@ -18,6 +18,7 @@ import 'package:Pangolin/utils/widgets/conditionWidget.dart';
 import 'package:Pangolin/utils/widgets/settingsTile.dart';
 import 'package:Pangolin/utils/widgets/settingsheader.dart';
 import 'package:flutter/material.dart';
+import 'package:Pangolin/utils/others/wifi.dart';
 
 class Connections extends StatefulWidget {
   @override
@@ -48,15 +49,19 @@ class _ConnectionsState extends State<Connections> {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 40),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Center(
+              Padding(
+                  padding: EdgeInsets.only(left: 25),
                   child: Text(
-                "Connections",
-                style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: "Roboto"),
-              )),
+                    "Connections",
+                    style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.w300,
+                        fontFamily: "Roboto"),
+                  )),
               Padding(
                 padding: const EdgeInsets.all(30.0),
                 child: Column(
@@ -81,8 +86,9 @@ class _ConnectionsState extends State<Connections> {
                                 CustomConditionWidget(
                                     HiveManager.get("wifi"),
                                     Container(
-                                      height: 300,
-                                      child: ListView.builder(
+                                        height: 300,
+                                        child:
+                                            /* ListView.builder(
                                           itemCount: wifiList.length,
                                           itemBuilder:
                                               (BuildContext context, int i) {
@@ -116,8 +122,9 @@ class _ConnectionsState extends State<Connections> {
                                                 });
                                               },
                                             );
-                                          }),
-                                    ),
+                                          }),*/
+                                            new ClipRect(
+                                                child: new WirelessApp())),
                                     SizedBox.shrink()),
                               ],
                             ),
@@ -218,7 +225,7 @@ class _ConnectionsState extends State<Connections> {
                               child: new Padding(
                                   padding: EdgeInsets.all(8),
                                   child: new Text(
-                                    "WARNING: You are on a pre-release build of dahliaOS. Wireless networking and Bluetooth have been disabled.",
+                                    "WARNING: You are on a pre-release build of dahliaOS. Some features may not work as intended.",
                                     style: new TextStyle(
                                       color: Colors.grey[900],
                                       fontSize: 14,

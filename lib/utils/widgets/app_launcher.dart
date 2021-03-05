@@ -21,6 +21,7 @@ import 'package:Pangolin/utils/widgets/hover.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/rendering.dart';
+import 'package:Pangolin/main.dart';
 
 class AppLauncherButton extends StatefulWidget {
   final Widget app;
@@ -148,8 +149,12 @@ class AppLauncherButtonState extends State<AppLauncherButton> {
                               fontSize: 15.0,
                               fontWeight: FontWeight.w400,
                               color: widget.appExists
-                                  ? Colors.white
-                                  : Colors.grey[400],
+                                  ? Pangolin.settingsBox.get("desktopDarkMode")
+                                      ? Colors.white
+                                      : Colors.black
+                                  : Pangolin.settingsBox.get("desktopDarkMode")
+                                      ? Colors.grey[400]
+                                      : Colors.grey[700],
                             ),
                             textAlign: TextAlign.center,
                           ),

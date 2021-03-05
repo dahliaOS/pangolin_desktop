@@ -117,7 +117,9 @@ class QuickSettingsState extends State<QuickSettings> {
     var biggerFont = TextStyle(
       fontSize: scale(12.0),
       fontWeight: FontWeight.w400,
-      color: Colors.white,
+      color: Pangolin.settingsBox.get("desktopDarkMode")
+          ? Colors.white
+          : Colors.black,
     );
     Widget topSection = Container(
       padding:
@@ -149,6 +151,9 @@ class QuickSettingsState extends State<QuickSettings> {
             icon: Icon(
               Icons.power_settings_new,
               size: scale(20),
+              color: Pangolin.settingsBox.get("desktopDarkMode")
+                  ? Colors.white
+                  : Colors.black,
             ),
             onPressed: () {
               showGeneralDialog(
@@ -173,7 +178,7 @@ class QuickSettingsState extends State<QuickSettings> {
                               padding: EdgeInsets.only(
                                   top: scale(20.0), right: scale(20)),
                               child: buildPowerItem(Icons.power_settings_new,
-                                  'Power off', 'poweroff', '-f'),
+                                  'Power off', 'shutdown', '-P'),
                             ),
                             Padding(
                               padding: EdgeInsets.only(
@@ -214,6 +219,9 @@ class QuickSettingsState extends State<QuickSettings> {
             icon: Icon(
               Icons.settings,
               size: scale(20),
+              color: Pangolin.settingsBox.get("desktopDarkMode")
+                  ? Colors.white
+                  : Colors.black,
             ),
             onPressed: () {
               Provider.of<WindowsData>(context, listen: false)
@@ -238,7 +246,9 @@ class QuickSettingsState extends State<QuickSettings> {
                 Icon(
                   Icons.brightness_6,
                   size: 20,
-                  color: Colors.white,
+                  color: Pangolin.settingsBox.get("desktopDarkMode")
+                      ? Colors.white
+                      : Colors.black,
                 ),
                 Expanded(
                   child: Slider(
@@ -256,7 +266,9 @@ class QuickSettingsState extends State<QuickSettings> {
                     child: Text(
                       "${(brightness * 100).toInt().toString()}",
                       style: TextStyle(
-                        color: Colors.white,
+                        color: Pangolin.settingsBox.get("desktopDarkMode")
+                            ? Colors.white
+                            : Colors.black,
                         letterSpacing: 1.2,
                         fontSize: scale(12.0),
                       ),
@@ -271,7 +283,9 @@ class QuickSettingsState extends State<QuickSettings> {
                 Icon(
                   Icons.volume_up,
                   size: scale(20),
-                  color: Colors.white,
+                  color: Pangolin.settingsBox.get("desktopDarkMode")
+                      ? Colors.white
+                      : Colors.black,
                 ),
                 Expanded(
                   child: Slider(
@@ -290,7 +304,9 @@ class QuickSettingsState extends State<QuickSettings> {
                     child: Text(
                       "${(volume * 100).toInt().toString()}",
                       style: TextStyle(
-                        color: Colors.white,
+                        color: Pangolin.settingsBox.get("desktopDarkMode")
+                            ? Colors.white
+                            : Colors.black,
                         letterSpacing: 1.2,
                         fontSize: scale(12.0),
                       ),
@@ -350,8 +366,18 @@ class QuickSettingsState extends State<QuickSettings> {
                       .add(child: WirelessApp(), color: Colors.deepOrange[700]);
                   hideOverlays();
                 }),
-                buildTile(
-                    Icons.palette, LocaleStrings.pangolin.qsTheme, changeColor),
+                buildTile(Icons.palette, LocaleStrings.pangolin.qsTheme, () {
+                  setState(() {
+                    /* if (HiveManager.get("darkMode") == false) {
+                      HiveManager.set("darkMode", true);
+                      print("setting dark mode");
+                    }
+                    if (HiveManager.get("darkMode") == true) {
+                      HiveManager.set("darkMode", false);
+                      print("setting light mode");
+                    }*/
+                  });
+                }),
                 buildTile(Icons.battery_full, '85%', changeColor),
                 buildTile(Icons.do_not_disturb_off,
                     LocaleStrings.pangolin.qsDnd, changeColor),
