@@ -6,7 +6,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "2389b5e7f53856b61c767f49d61ec3c163988dc3"
+      resolved-ref: "1660233f0b48e6003f6eb8ac953a94187cba2f9f"
       url: "https://github.com/dahliaOS/media.git"
     source: git
     version: "1.0.0+1"
@@ -50,7 +50,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: e4a043573a8327871267d03f31a316aa1c197322
+      resolved-ref: a93d019e6b6213ed3cd261411743a38705e43501
       url: "https://github.com/dahliaOS/calculator.git"
     source: git
     version: "1.0.0+1"
@@ -88,7 +88,7 @@ packages:
       name: cron
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.4"
+    version: "0.3.0"
   crypto:
     dependency: transitive
     description:
@@ -108,7 +108,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "402fd8ca33a4458305633ee3ca71bb66ca550a9b"
+      resolved-ref: fae93f069aef08b561dea1f64b102ce7e6e6033a
       url: "https://github.com/dahliaOS/backend.git"
     source: git
     version: "0.0.1+1"
@@ -117,7 +117,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "6b7aae76655ea76da631124828ce4aa69837d09f"
+      resolved-ref: "1bf24fc5e5cc8e5b69d1e1b8ed97a0dfad3c82a0"
       url: "https://github.com/dahliaOS/clock.git"
     source: git
     version: "0.0.1+1"
@@ -168,17 +168,10 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "4cc38d35a7e0e24dd6f065b059a1e5904666c929"
+      resolved-ref: a3f91d68938db45ce40fc2f69d4b676aaccd713c
       url: "https://github.com/dahliaOS/files.git"
     source: git
     version: "1.0.0+1"
-  filesize:
-    dependency: transitive
-    description:
-      name: filesize
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.4"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -214,7 +207,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "9b4516836d73b7f3f2f53cdf21f6a23a02d8d698"
+      resolved-ref: "9c7f302f0133afc6111700919a44940e794b7a26"
       url: "https://github.com/dahliaOS/graft.git"
     source: git
     version: "1.0.0+1"
@@ -224,7 +217,7 @@ packages:
       name: hive
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.6.0-nullsafety.2"
+    version: "2.0.0"
   integration_test:
     dependency: "direct dev"
     description: flutter
@@ -429,7 +422,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "0dcf449a4b16ebe7347ddd608be696d20f3a2355"
+      resolved-ref: "59f07f4d133624837b48d2a1fffa6d29abab08cc"
       url: "https://github.com/dahliaOS/system_logs.git"
     source: git
     version: "1.0.0+1"
@@ -438,7 +431,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: d367f32c034975f7e49cdc9b846e546eb4b890e3
+      resolved-ref: "90a3ae69fc18521ed25ff7bb491b3801844875c5"
       url: "https://github.com/dahliaOS/task_manager.git"
     source: git
     version: "1.0.0+1"
@@ -454,7 +447,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: a00e7eb3a3e1389446892ee8c6c2b290d23aaa33
+      resolved-ref: "4b210ee74d7674642268f0e5b715545cf58f3a35"
       url: "https://github.com/dahliaOS/terminal.git"
     source: git
     version: "1.0.0+1"
@@ -470,7 +463,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: e098bb7f66e001b81f6d2e0fa7ce787c12edf7eb
+      resolved-ref: "512131334c852516918c9cee3df517a95b22e72d"
       url: "https://github.com/dahliaOS/text_editor.git"
     source: git
     version: "1.0.0+1"
@@ -509,7 +502,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: fe6ce1236f1cf26dc672238f4f9f6df70b7c92ad
+      resolved-ref: "13df4134b712e65f1e6fa89aaa5ff76618039848"
       url: "https://github.com/dahliaOS/web_browser.git"
     source: git
     version: "1.0.0+1"
@@ -525,7 +518,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "26b7efa4f6b4bb9e8782860ec9bdcade4f6a5578"
+      resolved-ref: "9bafe8eab474d4e28cc1c09695438aacce54f386"
       url: "https://github.com/dahliaOS/welcome.git"
     source: git
     version: "1.0.0+1"

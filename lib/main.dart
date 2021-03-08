@@ -30,12 +30,14 @@ void main() async {
   DateTimeManager.formatTime();
   DateTimeManager.setDateFormat("yMd");
   DateTimeManager.formatDate();
+  await EasyLocalization.ensureInitialized();
   runApp(ChangeNotifierProvider<PreferenceProvider>.value(
       value: PreferenceProvider(),
       builder: (context, child) {
         return EasyLocalization(
             supportedLocales: Locales.supported,
             fallbackLocale: Locale("en", "US"),
+            useFallbackTranslations: true,
             assetLoader: GeneratedAssetLoader(),
             path: "assets/locales",
             startLocale: Locale("en", "US"),
