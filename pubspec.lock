@@ -334,7 +334,7 @@ packages:
       name: recase
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.1"
+    version: "4.0.0-nullsafety.0"
   shared_preferences:
     dependency: transitive
     description:

@@ -2,7 +2,7 @@ import 'locale_gen/asset_loader_generator.dart';
 import 'locale_gen/key_generator.dart';
 import 'locale_gen/locale_generator.dart';
 
-const String _localeFolder = "locales";
+const String _localeFolder = "assets/locales";
 const String _outputFolder = "lib/internal/locales";
 const String _defaultLocale = "en-US";
 void main(List<String> args) async {

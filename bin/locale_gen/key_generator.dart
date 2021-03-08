@@ -12,8 +12,8 @@ class KeyGenerator {
   KeyGenerator(this.localeDir, this.outputDir, this.defaultLocale);
 
   Future<void> generate() async {
-    String locale;
-    File path;
+    late String locale;
+    late File path;
     final Directory providedDir = Directory(localeDir);
     final Directory absoluteOutputDir = Directory(outputDir).absolute;
     final List<FileSystemEntity> files = providedDir.listSync();
@@ -28,7 +28,7 @@ class KeyGenerator {
         final String _locale = getNameFromPath(element.path);
         if (_locale == defaultLocale) {
           locale = _locale;
-          path = File(element.path + "/strings.xml");
+          path = File(element.path + "/pangolin.xml");
         }
       }
     }

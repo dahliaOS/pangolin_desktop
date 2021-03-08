@@ -25,7 +25,7 @@ class LocaleGenerator {
         print(element);
         final String locale = getNameFromPath(element.path);
         locales.add(locale);
-        paths.add(File(element.path + "/strings.xml"));
+        paths.add(File(element.path + "/pangolin.xml"));
       }
     }
 

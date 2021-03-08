@@ -16,7 +16,7 @@ dependencies:
   provider: ^5.0.0-nullsafe.3
   animations: ^2.0.0-nullsafety.0
   easy_localization: ^3.0.0
-  recase: any
+  recase: ^4.0.0-nullsafety.0
   xml: ^5.0.2
   intl: ^0.17.0
   utopia_wm:
