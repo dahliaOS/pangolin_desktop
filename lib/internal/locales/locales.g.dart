@@ -55,7 +55,7 @@ class _$LocaleDeDE extends _$LocaleBase {
 
   @override
   Map<String, String> get data => {
-    "pangolin.app_authenticator": "Authentikator",
+    "pangolin.app_authenticator": "Authentifikator",
     "pangolin.app_calculator": "Rechner",
     "pangolin.app_clock": "Uhr",
     "pangolin.app_disks": "Festplattenverwaltung",
