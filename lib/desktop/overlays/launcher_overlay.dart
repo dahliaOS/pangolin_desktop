@@ -148,7 +148,7 @@ class _LauncherOverlayState extends State<LauncherOverlay> {
                     margin: const EdgeInsets.only(top: 33 + (1 / 3), bottom: 8),
                     child: BoxContainer(
                       customBorderRadius: BorderRadius.circular(8),
-                      color: Colors.white,
+                      color: Theme.of(context).backgroundColor,
                       useSystemOpacity: true,
                       // have to give explicit size, as the child ListView can't calculate its Y height
                       height: 38,
@@ -162,7 +162,7 @@ class _LauncherOverlayState extends State<LauncherOverlay> {
                             useSystemOpacity: _selected == index,
                             customBorderRadius: BorderRadius.circular(8),
                             color: _selected == index
-                                ? Colors.white
+                                ? Theme.of(context).backgroundColor
                                 : Colors.transparent,
                             child: InkWell(
                                 onTap: () {
@@ -222,7 +222,7 @@ class _LauncherOverlayState extends State<LauncherOverlay> {
                     child: BoxContainer(
                       width: 28 * 3 + 16 * 4,
                       height: 32 + 16,
-                      color: Colors.white,
+                      color: Theme.of(context).backgroundColor,
                       useSystemOpacity: true,
                       customBorderRadius: BorderRadius.circular(8),
                       child: Row(
@@ -237,6 +237,7 @@ class _LauncherOverlayState extends State<LauncherOverlay> {
                                   .pushOverlayEntry(DismissibleOverlayEntry(
                                       uniqueId: "power_menu",
                                       content: PowerOverlay(),
+                                      duration: Duration.zero,
                                       background: BoxContainer(
                                         color: Theme.of(context)
                                             .dialogBackgroundColor
