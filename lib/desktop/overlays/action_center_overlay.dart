@@ -19,154 +19,118 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:pangolin/utils/wm_api.dart';
 import 'package:pangolin/widgets/qs_button.dart';
-import 'package:pangolin/utils/globals.dart';
-import 'package:utopia_wm/wm.dart';
 import 'package:provider/provider.dart';
+import 'package:utopia_wm/wm.dart';
 
 class ActionCenterOverlay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final _wm = context.watch<WindowHierarchyState>();
-    return Builder(builder: (context) {
-      final _ac = context.watch<DismissibleOverlayEntry>().animation;
-      return AnimatedBuilder(
-          animation: _ac,
-          builder: (context, child) {
-            return Positioned(
-              bottom: _wm.insets.bottom + 20,
-              left: horizontalPadding(context, 500),
-              right: horizontalPadding(context, 500),
-              child: BoxContainer(
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.5),
-                      blurRadius: 10.0,
-                      spreadRadius: 0.0,
-                      offset:
-                          Offset(2.0, 2.0), // shadow direction: bottom right
-                    )
-                  ],
-                ),
-                useSystemOpacity: true,
+    return Positioned(
+      bottom: 48 + 8,
+      right: 8,
+      child: BoxContainer(
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.5),
+              blurRadius: 10.0,
+              spreadRadius: 0.0,
+              offset: Offset(2.0, 2.0), // shadow direction: bottom right
+            )
+          ],
+        ),
+        useSystemOpacity: true,
+        color: Theme.of(context).scaffoldBackgroundColor,
+        customBorderRadius: BorderRadius.circular(10),
+        width: 500,
+        height: 328,
+        child: SizedBox(
+          height: 48,
+          child: Column(
+            children: [
+              BoxContainer(
+                padding: EdgeInsets.symmetric(horizontal: 16),
                 color: Theme.of(context).scaffoldBackgroundColor,
-                customBorderRadius: BorderRadius.circular(10),
-                width: 500,
-                height: 320 * _ac.value,
-                //margin: EdgeInsets.only(bottom: wmKey.currentState!.insets.bottom + 20),
-                child: Column(
+                useSystemOpacity: true,
+                height: 48,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SizedBox(
-                      height: 48,
-                      child: Column(
-                        children: [
-                          BoxContainer(
-                            padding: EdgeInsets.symmetric(horizontal: 16),
-                            color: Theme.of(context).scaffoldBackgroundColor,
-                            useSystemOpacity: true,
-                            height: 48,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                InkWell(
-                                  child: Icon(Icons.power_settings_new_rounded),
-                                  mouseCursor: SystemMouseCursors.click,
-                                ),
-                                Text(
-                                  "Action Center",
-                                  style: Theme.of(context).textTheme.headline6,
-                                ),
-                                InkWell(
-                                  child: Icon(Icons.settings_outlined),
-                                  mouseCursor: SystemMouseCursors.click,
-                                  onTap: () {
-                                    WmAPI(context).popOverlayEntry(
-                                        Provider.of<DismissibleOverlayEntry>(
-                                            context,
-                                            listen: false));
-                                    WmAPI(context)
-                                        .openApp("io.dahlia.settings");
-                                    /* WmAPI(context).pushWindowEntry(
-                                    WindowEntry.withDefaultToolbar(
-                                        content: Settings(),
-                                        initialSize: Size(1280, 720))); */
-                                  },
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
+                    InkWell(
+                      child: Icon(Icons.edit),
+                      mouseCursor: SystemMouseCursors.click,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 12.0, vertical: 24),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              QuickSettingsButton(
-                                  title: "Power\nMode",
-                                  icon: Icons.battery_charging_full_outlined),
-                              QuickSettingsButton(
-                                title: "Blue light\nfilter",
-                                icon: Icons.brightness_4,
-                              ),
-                              QuickSettingsButton(
-                                  title: "Ambient\nDisplay",
-                                  icon: Icons.access_time_outlined),
-                              QuickSettingsButton(
-                                title: "Screen\nRecorder",
-                                icon: Icons.fiber_manual_record_outlined,
-                              ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              InkWell(
-                                child: Icon(Icons.volume_down),
-                              ),
-                              SizedBox(
-                                width: 360,
-                                child: Slider(
-                                  onChanged: (details) {},
-                                  value: 0.5,
-                                ),
-                              ),
-                              InkWell(
-                                child: Icon(Icons.arrow_forward_ios),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              InkWell(
-                                child: Icon(Icons.brightness_5),
-                              ),
-                              SizedBox(
-                                width: 360,
-                                child: Slider(
-                                  onChanged: (details) {},
-                                  value: 0.5,
-                                ),
-                              ),
-                              InkWell(
-                                child: Icon(Icons.arrow_forward_ios),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    )
+                    Text(
+                      "Connections",
+                      style: Theme.of(context).textTheme.headline6,
+                    ),
+                    InkWell(
+                      child: Icon(Icons.settings_outlined),
+                      mouseCursor: SystemMouseCursors.click,
+                      onTap: () {
+                        WmAPI(context).popOverlayEntry(
+                            Provider.of<DismissibleOverlayEntry>(context,
+                                listen: false));
+                        WmAPI(context).openApp("io.dahlia.settings");
+                        /* WmAPI(context).pushWindowEntry(
+                                WindowEntry.withDefaultToolbar(
+                                    content: Settings(),
+                                    initialSize: Size(1280, 720))); */
+                      },
+                    ),
                   ],
                 ),
               ),
-            );
-          });
-    });
+              SizedBox(
+                height: 280,
+                width: 500,
+                child: GridView.count(
+                  physics: BouncingScrollPhysics(),
+                  padding: EdgeInsets.all(24),
+                  crossAxisCount: 4,
+                  mainAxisSpacing: 4,
+                  children: [
+                    QuickSettingsButton(
+                      //TODO fix locale-gen loader
+                      title: "LocaleStrings.pangolin.qsWifi",
+                      icon: Icons.signal_wifi_4_bar_rounded,
+                    ),
+                    QuickSettingsButton(
+                      title: "LocaleStrings.pangolin.qsBluetooth",
+                      icon: Icons.bluetooth_connected_outlined,
+                    ),
+                    QuickSettingsButton(
+                      title: "Ethernet",
+                      icon: Icons.settings_ethernet,
+                    ),
+                    QuickSettingsButton(
+                      title: "LTE",
+                      icon: Icons.signal_cellular_4_bar_rounded,
+                    ),
+                    QuickSettingsButton(
+                      title: "Location",
+                      icon: Icons.location_on_rounded,
+                    ),
+                    QuickSettingsButton(
+                      title: "Nearby\nShare",
+                      icon: Icons.ios_share,
+                    ),
+                    QuickSettingsButton(
+                      title: "Screen\nSharing",
+                      icon: Icons.screen_share,
+                    ),
+                    QuickSettingsButton(
+                      color: Colors.grey[850],
+                      title: "LocaleStrings.pangolin.qsAirplanemode",
+                      icon: Icons.airplanemode_active,
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

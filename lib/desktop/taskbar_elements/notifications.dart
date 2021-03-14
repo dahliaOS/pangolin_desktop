@@ -23,16 +23,20 @@ class NotificationsButton extends StatelessWidget {
     return SizedBox(
         width: 48,
         height: 48,
-        child: Material(
-          color: Colors.transparent,
-          child: InkWell(
-            borderRadius: BorderRadius.circular(4),
-            hoverColor: Theme.of(context).cardColor.withOpacity(0.5),
-            mouseCursor: SystemMouseCursors.click,
-            onTap: () {},
-            child: Padding(
-              padding: EdgeInsets.all(12),
-              child: Center(child: Icon(Icons.notifications_active, size: 20)),
+        child: Padding(
+          padding: const EdgeInsets.all(4.0),
+          child: Material(
+            color: Colors.transparent,
+            child: InkWell(
+              borderRadius: BorderRadius.circular(4),
+              hoverColor: Theme.of(context).cardColor.withOpacity(0.5),
+              mouseCursor: SystemMouseCursors.click,
+              onTap: () {},
+              child: Padding(
+                padding: EdgeInsets.all(8),
+                child:
+                    Center(child: Icon(Icons.notifications_active, size: 20)),
+              ),
             ),
           ),
         ));

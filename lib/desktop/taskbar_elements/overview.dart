@@ -26,20 +26,25 @@ class OverviewButton extends StatelessWidget {
     return SizedBox(
       width: 48,
       height: 48,
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          borderRadius: BorderRadius.circular(4),
-          hoverColor: Theme.of(context).cardColor.withOpacity(0.5),
-          mouseCursor: SystemMouseCursors.click,
-          onTap: () {
-            WmAPI.of(context).pushOverlayEntry(DismissibleOverlayEntry(
-                uniqueId: "overview", content: OverviewOverlay()));
-          },
-          child: Padding(
-            padding: EdgeInsets.all(12),
-            child:
-                Center(child: Icon(Icons.fullscreen_exit_outlined, size: 20)),
+      child: Padding(
+        padding: const EdgeInsets.all(4.0),
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            borderRadius: BorderRadius.circular(4),
+            hoverColor: Theme.of(context).cardColor.withOpacity(0.5),
+            mouseCursor: SystemMouseCursors.click,
+            onTap: () {
+              WmAPI.of(context).pushOverlayEntry(DismissibleOverlayEntry(
+                  uniqueId: "overview",
+                  content: OverviewOverlay(),
+                  duration: Duration.zero));
+            },
+            child: Padding(
+              padding: EdgeInsets.all(8),
+              child:
+                  Center(child: Icon(Icons.fullscreen_exit_outlined, size: 20)),
+            ),
           ),
         ),
       ),

@@ -14,6 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'package:animations/animations.dart';
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -31,58 +32,51 @@ class SearchOverlay extends StatelessWidget {
     final _focusNode = FocusNode();
     _focusNode.requestFocus();
     return Builder(builder: (context) {
-      final _ac = context.watch<DismissibleOverlayEntry>().animation;
-      return AnimatedBuilder(
-          animation: _ac,
-          builder: (context, child) {
-            return Positioned(
-              top: 64,
-              left: horizontalPadding(context, 600),
-              right: horizontalPadding(context, 600),
-              child: BoxContainer(
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.5),
-                      blurRadius: 10.0,
-                      spreadRadius: 0.0,
-                      offset:
-                          Offset(2.0, 2.0), // shadow direction: bottom right
-                    )
-                  ],
-                ),
-                useSystemOpacity: true,
-                color: Theme.of(context).scaffoldBackgroundColor,
-                customBorderRadius: BorderRadius.circular(10),
-                width: 500,
-                height: 320 * _ac.value,
-                //margin: EdgeInsets.only(bottom: wmKey.currentState!.insets.bottom + 20),
+      return Positioned(
+        top: 64,
+        left: horizontalPadding(context, 600),
+        right: horizontalPadding(context, 600),
+        child: BoxContainer(
+          decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.5),
+                blurRadius: 10.0,
+                spreadRadius: 0.0,
+                offset: Offset(2.0, 2.0), // shadow direction: bottom right
+              )
+            ],
+          ),
+          useSystemOpacity: true,
+          color: Theme.of(context).scaffoldBackgroundColor,
+          customBorderRadius: BorderRadius.circular(10),
+          width: 500,
+          height: 320,
+          child: Column(
+            children: [
+              SizedBox(
+                height: 52,
                 child: Column(
                   children: [
-                    SizedBox(
-                      height: 52,
-                      child: Column(
-                        children: [
-                          BoxContainer(
-                              //padding: EdgeInsets.symmetric(horizontal: 16),
-                              color: Theme.of(context).scaffoldBackgroundColor,
-                              useSystemOpacity: true,
-                              height: 52,
-                              child: Searchbar(
-                                focusNode: _focusNode,
-                                controller: _controller,
-                                hint: '"Search Device, Apps and Web',
-                                leading: Icon(Icons.search),
-                                trailing: Icon(Icons.more_vert_rounded),
-                              )),
-                        ],
-                      ),
-                    ),
+                    BoxContainer(
+                        //padding: EdgeInsets.symmetric(horizontal: 16),
+                        color: Theme.of(context).scaffoldBackgroundColor,
+                        useSystemOpacity: true,
+                        height: 52,
+                        child: Searchbar(
+                          focusNode: _focusNode,
+                          controller: _controller,
+                          hint: '"Search Device, Apps and Web',
+                          leading: Icon(Icons.search),
+                          trailing: Icon(Icons.more_vert_rounded),
+                        )),
                   ],
                 ),
               ),
-            );
-          });
+            ],
+          ),
+        ),
+      );
     });
   }
 }
