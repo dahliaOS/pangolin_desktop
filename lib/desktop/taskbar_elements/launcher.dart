@@ -16,7 +16,7 @@ limitations under the License.
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:pangolin/desktop/overlays/launcher_overlay.dart';
+import 'package:pangolin/desktop/overlays/launcher/launcher_overlay.dart';
 import 'package:pangolin/utils/wm_api.dart';
 import 'package:utopia_wm/wm.dart';
 
