@@ -15,11 +15,9 @@ limitations under the License.
 */
 
 import 'package:flutter/material.dart';
-import 'package:pangolin/desktop/taskbar_elements/action_center.dart';
 import 'package:pangolin/desktop/taskbar_elements/clock.dart';
-import 'package:pangolin/desktop/taskbar_elements/connections.dart';
+import 'package:pangolin/desktop/taskbar_elements/action_center.dart';
 import 'package:pangolin/desktop/taskbar_elements/launcher.dart';
-import 'package:pangolin/desktop/taskbar_elements/music.dart';
 import 'package:pangolin/desktop/taskbar_elements/notifications.dart';
 import 'package:pangolin/desktop/taskbar_elements/overview.dart';
 import 'package:pangolin/desktop/taskbar_elements/search.dart';
@@ -40,16 +38,20 @@ class Desktop extends StatelessWidget {
           alwaysOnTopWindows: [
             Taskbar(
               leading: [
+                SizedBox(
+                  width: 4,
+                ),
                 LauncherButton(),
                 SearchButton(),
                 OverviewButton(),
-                NotificationsButton(),
-                MusicButton()
               ],
               trailing: [
-                ConnectionsButton(),
-                ActionCenterButton(),
-                DateClockWidget()
+                NotificationsButton(),
+                ActionCetnerButton(),
+                DateClockWidget(),
+                SizedBox(
+                  width: 4,
+                ),
               ],
             ),
           ],
