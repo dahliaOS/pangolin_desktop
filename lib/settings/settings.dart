@@ -353,7 +353,7 @@ class _SearchState extends State<Search> {
     final _data = context.watch<PreferenceProvider>();
     return Consumer<SettingsProvider>(builder: (context, provider, _) {
       return Container(
-        color: Colors.white,
+        color: Theme.of(context).backgroundColor,
         child: Center(
           child: Hero(
             tag: "search",
