@@ -38,18 +38,11 @@ class SearchOverlay extends StatelessWidget {
         right: horizontalPadding(context, 600),
         child: BoxContainer(
           decoration: BoxDecoration(
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.5),
-                blurRadius: 10.0,
-                spreadRadius: 0.0,
-                offset: Offset(2.0, 2.0), // shadow direction: bottom right
-              )
-            ],
-          ),
+              border: Border.all(
+                  color: Theme.of(context).backgroundColor, width: 2),
+              borderRadius: BorderRadius.circular(10)),
           useSystemOpacity: true,
           color: Theme.of(context).scaffoldBackgroundColor,
-          customBorderRadius: BorderRadius.circular(10),
           width: 500,
           height: 320,
           child: Column(

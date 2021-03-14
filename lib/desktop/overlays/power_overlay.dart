@@ -29,16 +29,10 @@ class PowerOverlay extends StatelessWidget {
         bottom: verticalPadding(context, 100),
         child: BoxContainer(
           decoration: BoxDecoration(
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.5),
-                blurRadius: 10.0,
-                spreadRadius: 0.0,
-                offset: Offset(2.0, 2.0), // shadow direction: bottom right
-              )
-            ],
+            border:
+                Border.all(color: Theme.of(context).backgroundColor, width: 2),
+            borderRadius: BorderRadius.circular(10),
           ),
-          customBorderRadius: BorderRadius.circular(8),
           color: Theme.of(context).cardColor.withOpacity(0.9),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
