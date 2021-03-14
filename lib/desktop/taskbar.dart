@@ -24,7 +24,6 @@ class Taskbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _data = context.watch<PreferenceProvider>();
     return Positioned(
       left: 0,
       right: 0,
@@ -32,9 +31,8 @@ class Taskbar extends StatelessWidget {
       height: 48,
       child: BoxContainer(
           height: 48,
-          color: _data.darkMode
-              ? Colors.black.withOpacity(_data.themeOpacity)
-              : Colors.white.withOpacity(_data.themeOpacity),
+          useSystemOpacity: true,
+          color: Theme.of(context).backgroundColor,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
