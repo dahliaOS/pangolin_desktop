@@ -24,18 +24,20 @@ ThemeData theme(BuildContext context) {
       fontFamily: _data.fontFamily,
       brightness: _data.darkMode ? Brightness.dark : Brightness.light,
       accentColor: Color(_data.accentColor),
-      backgroundColor: _data.darkMode ? Colors.black : Colors.white,
-      canvasColor: _data.darkMode ? Color(0xff111111) : Colors.white,
+      backgroundColor: _data.darkMode ? Color(0xff0a0a0a) : Color(0xfff0f8ff),
+      canvasColor: _data.darkMode ? Color(0xff0a0a0a) : Color(0xfff0f8ff),
       primaryColor: Color(_data.accentColor),
       primaryColorDark: Color(_data.accentColor),
-      cardColor: _data.darkMode ? Color(0xff0c0c0c) : Colors.grey[200],
-      scaffoldBackgroundColor: _data.darkMode ? Colors.black : Colors.white,
+      cardColor: _data.darkMode ? Color(0xff0a0a0a) : Colors.grey[200],
+      scaffoldBackgroundColor:
+          _data.darkMode ? Color(0xff0a0a0a) : Color(0xfff0f8ff),
       inputDecorationTheme: InputDecorationTheme(
         labelStyle: TextStyle(
           color: Color(_data.accentColor),
         ),
       ),
-      dialogBackgroundColor: _data.darkMode ? Colors.white : Colors.black,
+      dialogBackgroundColor:
+          _data.darkMode ? Color(0xfff0f8ff) : Color(0xff0a0a0a),
       toggleableActiveColor: Color(_data.accentColor),
       platform: TargetPlatform.android,
       sliderTheme: SliderThemeData(
