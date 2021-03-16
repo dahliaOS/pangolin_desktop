@@ -25,12 +25,12 @@ ThemeData theme(BuildContext context) {
       brightness: _data.darkMode ? Brightness.dark : Brightness.light,
       accentColor: Color(_data.accentColor),
       backgroundColor: _data.darkMode ? Color(0xff0a0a0a) : Color(0xfff0f8ff),
-      canvasColor: _data.darkMode ? Color(0xff0a0a0a) : Color(0xfff0f8ff),
+      canvasColor: _data.darkMode ? Color(0xff151515) : Color(0xfff0f8ff),
       primaryColor: Color(_data.accentColor),
       primaryColorDark: Color(_data.accentColor),
-      cardColor: _data.darkMode ? Color(0xff0a0a0a) : Colors.grey[200],
+      cardColor: _data.darkMode ? Color(0xff151515) : Colors.grey[200],
       scaffoldBackgroundColor:
-          _data.darkMode ? Color(0xff0a0a0a) : Color(0xfff0f8ff),
+          _data.darkMode ? Color(0xff151515) : Color(0xfff0f8ff),
       inputDecorationTheme: InputDecorationTheme(
         labelStyle: TextStyle(
           color: Color(_data.accentColor),

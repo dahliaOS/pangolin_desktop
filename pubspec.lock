@@ -341,7 +341,7 @@ packages:
       name: shared_preferences
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.4"
+    version: "2.0.5"
   shared_preferences_linux:
     dependency: transitive
     description:
@@ -479,7 +479,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "8077efdcd82f0191198bb43a1afccd74d42765cf"
+      resolved-ref: "19350943b8df2a0eb6c8b9e963f25c1a5a404658"
       url: "https://github.com/dahliaOS/utopia.git"
     source: git
     version: "1.0.0+1"
