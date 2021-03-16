@@ -8,8 +8,6 @@
             "name": "pangolin_desktop",
             "request": "launch",
             "type": "dart",
-            "args": ["--no-sound-null-safety"],
-            "vmAdditionalArgs": ["--no-sound-null-safety"],
         }
     ]
 }
