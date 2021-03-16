@@ -8,6 +8,7 @@ class Locales {
     Locale("el", "GR"),
     Locale("en", "GB"),
     Locale("en", "US"),
+    Locale("eo", "UY"),
     Locale("fr", "FR"),
     Locale("hr", "HR"),
     Locale("id", "ID"),
@@ -28,6 +29,7 @@ class Locales {
     _$LocaleElGR().locale: _$LocaleElGR().data,
     _$LocaleEnGB().locale: _$LocaleEnGB().data,
     _$LocaleEnUS().locale: _$LocaleEnUS().data,
+    _$LocaleEoUY().locale: _$LocaleEoUY().data,
     _$LocaleFrFR().locale: _$LocaleFrFR().data,
     _$LocaleHrHR().locale: _$LocaleHrHR().data,
     _$LocaleIdID().locale: _$LocaleIdID().data,
@@ -55,7 +57,7 @@ class _$LocaleDeDE extends _$LocaleBase {
 
   @override
   Map<String, String> get data => {
-    "pangolin.app_authenticator": "Authentikator",
+    "pangolin.app_authenticator": "Authentifikator",
     "pangolin.app_calculator": "Rechner",
     "pangolin.app_clock": "Uhr",
     "pangolin.app_disks": "Festplattenverwaltung",
@@ -257,6 +259,59 @@ class _$LocaleEnUS extends _$LocaleBase {
     "pangolin.qs_wifi": "Wi-Fi",
     "pangolin.app_containers": "Graft",
     "pangolin.launcher_card_information_value": "It's cold outside, grab a coat!",
+  };
+}
+
+
+class _$LocaleEoUY extends _$LocaleBase {
+  @override
+  String get locale => "eo-UY";
+
+  @override
+  Map<String, String> get data => {
+    "pangolin.app_authenticator": "Aŭtentikigilo",
+    "pangolin.app_calculator": "Kalkulilo",
+    "pangolin.app_clock": "Horloĝo",
+    "pangolin.app_disks": "Diskoj",
+    "pangolin.app_files": "Dosieroj",
+    "pangolin.app_media": "Ludilo",
+    "pangolin.app_music": "Muziko",
+    "pangolin.app_notes": "Tekstredaktilo",
+    "pangolin.app_notesmobile": "Notoj (Poŝtelefona)",
+    "pangolin.app_messages": "Mesaĝoj",
+    "pangolin.app_rootterminal": "Superuzanta Terminalo",
+    "pangolin.app_settings": "Agordoj",
+    "pangolin.app_systemlogs": "Sistemaj Protokoloj",
+    "pangolin.app_taskmanager": "Taskadministranto",
+    "pangolin.app_terminal": "Terminalo",
+    "pangolin.app_themedemo": "Temtesto",
+    "pangolin.app_welcome": "Bonveno",
+    "pangolin.app_help": "Helpo",
+    "pangolin.app_web": "Retumilo",
+    "pangolin.app_developeroptions": "Agordoj por Programistoj",
+    "pangolin.featurenotimplemented_title": "Funkcio ne estis efektivigita",
+    "pangolin.featurenotimplemented_value": "Ĉi tiu funkcio nuntempe ne haveblas ĉe via konstruo de Pangolin, bonvolu vidu https://reddit.com/r/dahliaos kontroli por updatoj.",
+    "pangolin.launcher_card_information_title": "Informo",
+    "pangolin.launcher_card_kernel_title": "Kerno",
+    "pangolin.launcher_card_kernel_value": "Ŝoforoj por Integra GPU ĝisdatigitaj",
+    "pangolin.launcher_card_music_title": "Muziko - Nun muzikante",
+    "pangolin.launcher_card_music_value": "Jonny M - Dankon",
+    "pangolin.launcher_card_security_title": "Sekureco",
+    "pangolin.launcher_card_security_value": "Dosiersistema ŝlosilo estas AKTIVA",
+    "pangolin.launcher_card_system_title": "Sistemo",
+    "pangolin.launcher_card_system_value": "Bonvenon al dahliaOS!",
+    "pangolin.launcher_search": "Traserĉu viajn aparatojn, programoj, kaj reto...",
+    "pangolin.qs_airplanemode": "Aviadila reĝimo",
+    "pangolin.qs_autorotate": "Aŭtomate turniĝi",
+    "pangolin.qs_bluetooth": "Bluetooth",
+    "pangolin.qs_changelanguage": "Esperanto",
+    "pangolin.qs_dnd": "Ne ĝenu",
+    "pangolin.qs_flashlight": "Poŝlampo",
+    "pangolin.qs_invertcolors": "Inversigi kolorojn",
+    "pangolin.qs_theme": "Temo",
+    "pangolin.qs_wifi": "Wi-Fi",
+    "pangolin.app_containers": "Graft",
+    "pangolin.launcher_card_information_value": "Estas malvarma, portu surtuton!",
   };
 }
 
