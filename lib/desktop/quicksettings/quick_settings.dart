@@ -136,9 +136,9 @@ class QuickSettingsState extends State<QuickSettings> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           new Padding(
-            padding: EdgeInsets.all(6),
+            padding: EdgeInsets.all(8),
             child: new CircleAvatar(
-              radius: 16,
+              radius: 13,
               backgroundImage: AssetImage(
                 "assets/images/credits/profiles/null.png",
               ),
