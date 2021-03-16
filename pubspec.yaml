@@ -107,7 +107,7 @@ flutter:
           style: italic
   assets:
     - assets/images/
-    - assets/images/credits/Profile pictures/
+    - assets/images/credits/profiles/
     - assets/images/wallpapers/dahliaOS/
     - assets/images/wallpapers/Nature/
     - assets/images/icons/PNG/
