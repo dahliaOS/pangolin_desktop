@@ -120,7 +120,7 @@ class Settings extends StatelessWidget {
       child: MaterialApp(
         title: 'Settings',
         theme: theme(context),
-        initialRoute: '/settingshome',
+        initialRoute: '/',
         routes: {
           // When navigating to the "/" route, build the FirstScreen widget.
           '/': (context) => SettingsPage(title: 'Settings'),
