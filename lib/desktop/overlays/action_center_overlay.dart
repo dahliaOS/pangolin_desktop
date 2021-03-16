@@ -17,6 +17,7 @@ limitations under the License.
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:pangolin/internal/locales/locale_strings.g.dart';
 import 'package:pangolin/utils/wm_api.dart';
 import 'package:pangolin/widgets/qs_button.dart';
 import 'package:provider/provider.dart';
@@ -85,11 +86,11 @@ class ActionCenterOverlay extends StatelessWidget {
                   children: [
                     QuickSettingsButton(
                       //TODO fix locale-gen loader
-                      title: "LocaleStrings.pangolin.qsWifi",
+                      title: LocaleStrings.qs.wifi,
                       icon: Icons.signal_wifi_4_bar_rounded,
                     ),
                     QuickSettingsButton(
-                      title: "LocaleStrings.pangolin.qsBluetooth",
+                      title: LocaleStrings.qs.bluetooth,
                       icon: Icons.bluetooth_connected_outlined,
                     ),
                     QuickSettingsButton(
@@ -114,7 +115,7 @@ class ActionCenterOverlay extends StatelessWidget {
                     ),
                     QuickSettingsButton(
                       color: Colors.grey[850],
-                      title: "LocaleStrings.pangolin.qsAirplanemode",
+                      title: LocaleStrings.qs.airplanemode,
                       icon: Icons.airplanemode_active,
                     ),
                   ],

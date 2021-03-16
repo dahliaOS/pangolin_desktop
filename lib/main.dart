@@ -31,18 +31,22 @@ void main() async {
   DateTimeManager.setDateFormat("yMd");
   DateTimeManager.formatDate();
   await EasyLocalization.ensureInitialized();
-  runApp(ChangeNotifierProvider<PreferenceProvider>.value(
-      value: PreferenceProvider(),
-      builder: (context, child) {
-        return EasyLocalization(
-            supportedLocales: Locales.supported,
-            fallbackLocale: Locale("en", "US"),
-            useFallbackTranslations: true,
-            assetLoader: GeneratedAssetLoader(),
-            path: "assets/locales",
-            startLocale: Locale("en", "US"),
-            child: Pangolin());
-      }));
+  runApp(
+    EasyLocalization(
+      supportedLocales: Locales.supported,
+      fallbackLocale: Locale("en", "US"),
+      useFallbackTranslations: true,
+      assetLoader: GeneratedAssetLoader(),
+      path: "assets/locales",
+      startLocale: Locale("en", "US"),
+      child: ChangeNotifierProvider<PreferenceProvider>.value(
+        value: PreferenceProvider(),
+        builder: (context, child) {
+          return Pangolin();
+        },
+      ),
+    ),
+  );
 }
 
 class Pangolin extends StatelessWidget {
@@ -51,6 +55,9 @@ class Pangolin extends StatelessWidget {
     return MaterialApp(
       home: Desktop(),
       theme: theme(context),
+      locale: context.locale,
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
     );
   }
 }
