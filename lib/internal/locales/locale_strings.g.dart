@@ -8,7 +8,6 @@ class LocaleStrings {
   static _$AppLocaleStrings get app => _$AppLocaleStrings();
   static _$MiscLocaleStrings get misc => _$MiscLocaleStrings();
   static _$LaunchercardLocaleStrings get launchercard => _$LaunchercardLocaleStrings();
-  static _$LauncherSearchLocaleStrings get launcherSearch => _$LauncherSearchLocaleStrings();
   static _$QsLocaleStrings get qs => _$QsLocaleStrings();
 }
 
@@ -58,8 +57,8 @@ class _$AppLocaleStrings {
 }
 
 class _$MiscLocaleStrings {
-  final String miscFeaturenotimplementedTitle = "misc.misc.featurenotimplemented_title".tr();
-  final String miscFeaturenotimplementedValue = "misc.misc.featurenotimplemented_value".tr();
+  final String featurenotimplementedTitle = "misc.featurenotimplemented_title".tr();
+  final String featurenotimplementedValue = "misc.featurenotimplemented_value".tr();
 }
 
 class _$LaunchercardLocaleStrings {
@@ -72,11 +71,8 @@ class _$LaunchercardLocaleStrings {
   final String securityValue = "launchercard.security_value".tr();
   final String systemTitle = "launchercard.system_title".tr();
   final String systemValue = "launchercard.system_value".tr();
+  final String launcherSearch = "launchercard.launcher_search".tr();
   final String informationValue = "launchercard.information_value".tr();
-}
-
-class _$LauncherSearchLocaleStrings {
-  final String  = "launcher_search.".tr();
 }
 
 class _$QsLocaleStrings {
