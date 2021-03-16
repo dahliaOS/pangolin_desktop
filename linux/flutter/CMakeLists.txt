@@ -24,6 +24,9 @@ find_package(PkgConfig REQUIRED)
 pkg_check_modules(GTK REQUIRED IMPORTED_TARGET gtk+-3.0)
 pkg_check_modules(GLIB REQUIRED IMPORTED_TARGET glib-2.0)
 pkg_check_modules(GIO REQUIRED IMPORTED_TARGET gio-2.0)
+pkg_check_modules(BLKID REQUIRED IMPORTED_TARGET blkid)
+pkg_check_modules(LZMA REQUIRED IMPORTED_TARGET liblzma)
+pkg_check_modules(GCRYPT REQUIRED IMPORTED_TARGET libgcrypt)
 
 set(FLUTTER_LIBRARY "${EPHEMERAL_DIR}/libflutter_linux_gtk.so")
 
@@ -65,6 +68,9 @@ target_link_libraries(flutter INTERFACE
   PkgConfig::GTK
   PkgConfig::GLIB
   PkgConfig::GIO
+  PkgConfig::BLKID
+  PkgConfig::LZMA
+  PkgConfig::GCRYPT
 )
 add_dependencies(flutter flutter_assemble)
 
@@ -78,7 +84,8 @@ add_custom_command(
   COMMAND ${CMAKE_COMMAND} -E env
     ${FLUTTER_TOOL_ENVIRONMENT}
     "${FLUTTER_ROOT}/packages/flutter_tools/bin/tool_backend.sh"
-      linux-x64 ${CMAKE_BUILD_TYPE}
+      ${FLUTTER_TARGET_PLATFORM} ${CMAKE_BUILD_TYPE}
+  VERBATIM
 )
 add_custom_target(flutter_assemble DEPENDS
   "${FLUTTER_LIBRARY}"
