@@ -14,12 +14,13 @@ limitations under the License.
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:pangolin/utils/globals.dart';
 import 'package:pangolin/widgets/settingsTile.dart';
 import 'package:pangolin/widgets/settingsheader.dart';
 import 'package:provider/provider.dart';
 
 class Customization extends StatefulWidget {
-  static int selectedWallpaper = DatabaseManager.get("wallpaper");
+  static int selectedWallpaper = 0;
   @override
   _CustomizationState createState() => _CustomizationState();
 }
@@ -220,6 +221,32 @@ class _CustomizationState extends State<Customization> {
                         )
                       ],
                     ),
+                    SettingsHeader(heading: "Deskotop"),
+                    SettingsTile(children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 12.0, vertical: 8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text("Choose your Desktop Wallpaper"),
+                            ElevatedButton(
+                                onPressed: () {
+                                  showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return WallpaperChooser();
+                                      });
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 8.0, vertical: 12.0),
+                                  child: Text("Choose Wallpaper"),
+                                ))
+                          ],
+                        ),
+                      ),
+                    ])
 
                     /*SettingsHeader(heading: "Taskbar"),
                     SettingsTile(
@@ -384,7 +411,7 @@ class WallpaperChooser extends StatefulWidget {
 }
 
 class _WallpaperChooserState extends State<WallpaperChooser> {
-  int _index = DatabaseManager.get("wallpaper");
+  //int _index = DatabaseManager.get("wallpaper");
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -393,19 +420,19 @@ class _WallpaperChooserState extends State<WallpaperChooser> {
       content: SizedBox(
         width: MediaQuery.of(context).size.width - 200,
         height: MediaQuery.of(context).size.height - 300,
-        /* child: GridView.builder(
+        child: GridView.builder(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 4, childAspectRatio: 16 / 9),
           itemCount: wallpapers.length,
           itemBuilder: (BuildContext context, int index) {
-            _index = index;
+            //_index = index;
             return Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: GestureDetector(
                   onTap: () {
                     setState(() {
-                      _index = index;
-                      Customization.selectedWallpaper = index;
+                      //_index = index;
+                      //Customization.selectedWallpaper = index;
                     });
                   },
                   child: Stack(
@@ -432,22 +459,28 @@ class _WallpaperChooserState extends State<WallpaperChooser> {
                   ),
                 ));
           },
-        ), */
+        ),
       ),
       actions: <Widget>[
         // usually buttons at the bottom of the dialog
-        new FlatButton(
-          child: new Text("Close"),
+        new TextButton(
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: new Text("Close"),
+          ),
           onPressed: () {
-            Customization.selectedWallpaper = DatabaseManager.get("wallpaper");
+            //Customization.selectedWallpaper = DatabaseManager.get("wallpaper");
             Navigator.of(context).pop();
           },
         ),
-        new FlatButton(
-          child: new Text("Save"),
+        new TextButton(
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: new Text("Save"),
+          ),
           onPressed: () {
-            DatabaseManager.set("wallpaper", Customization.selectedWallpaper);
-            print(DatabaseManager.get("wallpaper"));
+            //DatabaseManager.set("wallpaper", Customization.selectedWallpaper);
+            //print(DatabaseManager.get("wallpaper"));
             Navigator.of(context).pop();
           },
         ),
