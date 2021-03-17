@@ -414,6 +414,7 @@ class _WallpaperChooserState extends State<WallpaperChooser> {
   //int _index = DatabaseManager.get("wallpaper");
   @override
   Widget build(BuildContext context) {
+    final _data = context.watch<PreferenceProvider>();
     return AlertDialog(
       backgroundColor: Theme.of(context).canvasColor,
       title: Text("Choose a Wallpaper"),
@@ -428,9 +429,10 @@ class _WallpaperChooserState extends State<WallpaperChooser> {
             //_index = index;
             return Padding(
                 padding: const EdgeInsets.all(12.0),
-                child: GestureDetector(
+                child: InkWell(
                   onTap: () {
                     setState(() {
+                      _data.wallpaper = wallpapers[index];
                       //_index = index;
                       //Customization.selectedWallpaper = index;
                     });
@@ -444,7 +446,7 @@ class _WallpaperChooserState extends State<WallpaperChooser> {
                           scale: 1.0,
                         ),
                       ),
-                      (Customization.selectedWallpaper == index)
+                      (_data.wallpaper == wallpapers[index])
                           ? Positioned(
                               bottom: 5,
                               right: 5,

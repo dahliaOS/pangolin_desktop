@@ -14,16 +14,19 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Wallpaper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final _data = context.watch<PreferenceProvider>();
     return Stack(
       children: [
         SizedBox.expand(
           child: Image.asset(
-            "assets/images/wallpapers/Three_Bubbles.png",
+            _data.wallpaper,
             fit: BoxFit.cover,
           ),
         ),
