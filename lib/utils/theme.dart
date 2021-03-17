@@ -21,6 +21,8 @@ import 'package:provider/provider.dart';
 ThemeData theme(BuildContext context) {
   final _data = context.watch<PreferenceProvider>();
   return ThemeData(
+      //visualDensity: VisualDensity(horizontal: -3.5, vertical: -3.5),
+      buttonColor: Color(_data.accentColor),
       fontFamily: _data.fontFamily,
       brightness: _data.darkMode ? Brightness.dark : Brightness.light,
       accentColor: Color(_data.accentColor),
