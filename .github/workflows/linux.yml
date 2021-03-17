@@ -22,7 +22,7 @@ jobs:
         name: Make sure Flutter is up to date
       - run: flutter config --enable-linux-desktop
         name: Enable linux support
-      - run: sudo apt update && sudo apt install cmake ninja-build clang libgtk-3-dev util-linux lzma git-remote-gcrypt -y
+      - run: sudo apt update && sudo apt install cmake ninja-build clang libgtk-3-dev util-linux liblzma libgcrypt -y
         name: Install system dependencies
       - name: Get dependencies
         run: flutter pub get && flutter pub upgrade
