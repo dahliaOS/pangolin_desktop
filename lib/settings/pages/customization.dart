@@ -419,7 +419,7 @@ class _WallpaperChooserState extends State<WallpaperChooser> {
       backgroundColor: Theme.of(context).canvasColor,
       title: Text("Choose a Wallpaper"),
       content: SizedBox(
-        width: MediaQuery.of(context).size.width - 200,
+        width: MediaQuery.of(context).size.width - 300,
         height: MediaQuery.of(context).size.height - 300,
         child: GridView.builder(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -463,30 +463,6 @@ class _WallpaperChooserState extends State<WallpaperChooser> {
           },
         ),
       ),
-      actions: <Widget>[
-        // usually buttons at the bottom of the dialog
-        new TextButton(
-          child: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: new Text("Close"),
-          ),
-          onPressed: () {
-            //Customization.selectedWallpaper = DatabaseManager.get("wallpaper");
-            Navigator.of(context).pop();
-          },
-        ),
-        new TextButton(
-          child: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: new Text("Save"),
-          ),
-          onPressed: () {
-            //DatabaseManager.set("wallpaper", Customization.selectedWallpaper);
-            //print(DatabaseManager.get("wallpaper"));
-            Navigator.of(context).pop();
-          },
-        ),
-      ],
     );
   }
 }
