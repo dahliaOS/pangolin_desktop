@@ -39,7 +39,7 @@ class Searchbar extends StatelessWidget {
   Widget build(BuildContext context) {
     return BoxContainer(
       customBorderRadius: borderRadius ?? BorderRadius.circular(8),
-      color: Theme.of(context).cardColor,
+      color: Theme.of(context).backgroundColor,
       useSystemOpacity: true,
       width: 800,
       height: 48,
