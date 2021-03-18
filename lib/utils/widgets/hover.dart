@@ -18,7 +18,7 @@ class Hover extends StatefulWidget {
   final Widget child;
   final Color color;
   final BorderRadius borderRadius;
-  final SystemMouseCursor cursor;
+  final MouseCursor cursor;
   final double opacity;
   const Hover({
     @required this.child,

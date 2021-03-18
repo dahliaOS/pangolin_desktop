@@ -13,7 +13,6 @@ limitations under the License.
 
 import 'dart:ui';
 import 'dart:io';
-import 'package:Pangolin/desktop/launcher/applications.dart';
 import 'package:Pangolin/internal/locales/locale_strings.g.dart';
 import 'package:Pangolin/internal/locales/locales.g.dart';
 import 'package:Pangolin/utils/others/functions.dart';
@@ -25,7 +24,6 @@ import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'dart:async';
-import 'package:Pangolin/utils/globals.dart';
 import 'package:Pangolin/main.dart';
 import 'package:Pangolin/desktop/settings/settings.dart';
 import 'package:Pangolin/utils/others/wifi.dart';
@@ -47,7 +45,7 @@ class QuickSettingsState extends State<QuickSettings> {
     super.initState();
     Pangolin.settingsBox = Hive.box("settings");
     _timeString = _formatDateTime(DateTime.now(), 'h:mm');
-    _dateString = _formatDateTime(DateTime.now(), 'd MMMM yyyy');
+    _dateString = _formatDateTime(DateTime.now(), 'E, d MMMM yyyy');
     if (!isTesting)
       Timer.periodic(
           Duration(milliseconds: 100), (Timer t) => _getTime(context));
@@ -65,7 +63,7 @@ class QuickSettingsState extends State<QuickSettings> {
       _timeString = formattedTime;
       _dateString = formattedDate;
     });
-  } //
+  }
 
   //Default date format
   String _formatDateTime(DateTime dateTime, String pattern) {
@@ -123,66 +121,36 @@ class QuickSettingsState extends State<QuickSettings> {
           ? Colors.white
           : Colors.black,
     );
-
-    Widget modernHeader = Container(
-      width: 420,
-      color: Pangolin.settingsBox.get("desktopDarkMode")
-          ? Colors.black.withOpacity(0.5)
-          : Colors.white.withOpacity(0.5),
-      height: 45,
-      child: new Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        mainAxisSize: MainAxisSize.max,
-        crossAxisAlignment: CrossAxisAlignment.center,
+    Widget topSection = Container(
+      padding:
+          EdgeInsets.symmetric(horizontal: scale(12.0), vertical: scale(5.0)),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          new Padding(
-            padding: EdgeInsets.all(8),
-            child: new CircleAvatar(
-              radius: 13,
-              backgroundImage: AssetImage(
-                "assets/images/credits/profiles/null.png",
-              ),
+          /*Expanded(
+            child:*/
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: scale(8.0)),
+              child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(_timeString, style: biggerFont),
+                      //Icon(Icons.brightness_1, size: 10.0,color: Colors.white),
+                      Text('  •  ', style: biggerFont),
+                      Text(_dateString, style: biggerFont),
+                    ],
+                  )),
             ),
           ),
-          new Text(
-            "Live Session",
-            style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 15,
-                color: Pangolin.settingsBox.get("desktopDarkMode")
-                    ? Colors.white
-                    : Colors.black),
-          ),
-          new Center(
-            child: new Icon(
-              Icons.keyboard_arrow_down,
-              color: Pangolin.settingsBox.get("desktopDarkMode")
-                  ? Colors.white
-                  : Colors.black,
-            ),
-          ),
-          new Expanded(
-            child: new Container(),
-          ),
-          new IconButton(
-            icon: Icon(
-              Icons.settings,
-              size: scale(16),
-              color: Pangolin.settingsBox.get("desktopDarkMode")
-                  ? Colors.white
-                  : Colors.black,
-            ),
-            onPressed: () {
-              Provider.of<WindowsData>(context, listen: false)
-                  .add(child: Settings(), color: Colors.grey[900]);
-              hideOverlays();
-            },
-            color: const Color(0xFFffffff),
-          ),
+          //Spacer(),
+          //),
           new IconButton(
             icon: Icon(
               Icons.power_settings_new,
-              size: scale(16),
+              size: scale(20),
               color: Pangolin.settingsBox.get("desktopDarkMode")
                   ? Colors.white
                   : Colors.black,
@@ -210,7 +178,7 @@ class QuickSettingsState extends State<QuickSettings> {
                               padding: EdgeInsets.only(
                                   top: scale(20.0), right: scale(20)),
                               child: buildPowerItem(Icons.power_settings_new,
-                                  'Power off', 'shutdown', '-P'),
+                                  'Power off', 'poweroff', '-f'),
                             ),
                             Padding(
                               padding: EdgeInsets.only(
@@ -246,122 +214,27 @@ class QuickSettingsState extends State<QuickSettings> {
             },
             color: const Color(0xFFffffff),
           ),
+
+          new IconButton(
+            icon: Icon(
+              Icons.settings,
+              size: scale(20),
+              color: Pangolin.settingsBox.get("desktopDarkMode")
+                  ? Colors.white
+                  : Colors.black,
+            ),
+            onPressed: () {
+              Provider.of<WindowsData>(context, listen: false)
+                  .add(child: Settings(), color: Colors.grey[900]);
+              hideOverlays();
+            },
+            color: const Color(0xFFffffff),
+          ),
         ],
       ),
     );
-
-    Column buildTile(IconData icon, String label, Function onClick) {
-      return Column(
-        //mainAxisSize: MainAxisSize.min,
-        //mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          SizedBox(
-            width: scale(50),
-            height: scale(50),
-            child: FloatingActionButton(
-              onPressed: onClick,
-              elevation: 0.0,
-              disabledElevation: 0.0,
-              focusElevation: 0.0,
-              highlightElevation: 0.0,
-              hoverElevation: 0.0,
-              child: Icon(icon, color: Colors.white, size: scale(20.0)),
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.only(top: scale(10)),
-            child: Text(
-              label,
-              style: TextStyle(
-                  //fontSize: 14,
-                  color: Pangolin.settingsBox.get("desktopDarkMode")
-                      ? Colors.white
-                      : Colors.black),
-              textAlign: TextAlign.center,
-            ),
-          ),
-        ],
-      );
-    }
 
     void changeColor() {}
-
-    Widget tileSection = Expanded(
-      child: Container(
-          padding: EdgeInsets.only(left: 10, right: 10),
-          child: GridView.count(
-              physics: BouncingScrollPhysics(),
-              crossAxisCount: 5,
-              childAspectRatio: 3 / 4,
-              children: [
-                buildTile(Icons.network_wifi, LocaleStrings.pangolin.qsWifi,
-                    () {
-                  setState(() {
-                    HiveManager.set("wifi", false);
-                  });
-                  Provider.of<WindowsData>(context, listen: false)
-                      .add(child: WirelessApp(), color: Colors.deepOrange[700]);
-                  hideOverlays();
-                }),
-                buildTile(Icons.palette, LocaleStrings.pangolin.qsTheme, () {
-                  setState(() {
-                    /* if (HiveManager.get("darkMode") == false) {
-                      HiveManager.set("darkMode", true);
-                      print("setting dark mode");
-                    }
-                    if (HiveManager.get("darkMode") == true) {
-                      HiveManager.set("darkMode", false);
-                      print("setting light mode");
-                    }*/
-                  });
-                }),
-                buildTile(Icons.battery_full, '85%', changeColor),
-                buildTile(Icons.do_not_disturb_off,
-                    LocaleStrings.pangolin.qsDnd, changeColor),
-                buildTile(Icons.lightbulb_outline,
-                    LocaleStrings.pangolin.qsFlashlight, changeColor),
-                buildTile(Icons.screen_lock_rotation,
-                    LocaleStrings.pangolin.qsAutorotate, changeColor),
-                buildTile(Icons.bluetooth, LocaleStrings.pangolin.qsBluetooth,
-                    changeColor),
-                buildTile(Icons.airplanemode_inactive,
-                    LocaleStrings.pangolin.qsAirplanemode, changeColor),
-                buildTile(Icons.invert_colors_off,
-                    LocaleStrings.pangolin.qsInvertcolors, changeColor),
-                buildTile(
-                    Icons.language, LocaleStrings.pangolin.qsChangelanguage,
-                    () {
-                  int index = Locales.supported.indexOf(context.locale);
-                  if (index + 1 < Locales.supported.length) {
-                    context.locale = Locales.supported[index + 1];
-                  } else {
-                    context.locale = Locales.supported[0];
-                  }
-                }),
-              ])),
-    );
-
-    Widget topSection = Container(
-      child: new Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        mainAxisSize: MainAxisSize.max,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: EdgeInsets.all(15),
-            child: Text(
-              "Quick Controls",
-              style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  color: Pangolin.settingsBox.get("desktopDarkMode")
-                      ? Colors.white
-                      : Colors.black),
-            ),
-          ),
-        ],
-      ),
-    );
 
     Widget sliderSection = Container(
         margin: EdgeInsets.fromLTRB(20, 0, 20, 10),
@@ -445,93 +318,102 @@ class QuickSettingsState extends State<QuickSettings> {
           ],
         ));
 
-    Widget actionChip(IconData icon, String label) {
-      return Padding(
-          padding: EdgeInsets.only(right: 8),
-          child: Container(
-            height: 28,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(
-                Radius.circular(100),
-              ),
-              color: Pangolin.settingsBox.get("desktopDarkMode")
-                  ? Colors.white.withOpacity(0.25)
-                  : Colors.white.withOpacity(0.5),
+    Column buildTile(IconData icon, String label, Function onClick) {
+      return Column(
+        //mainAxisSize: MainAxisSize.min,
+        //mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          SizedBox(
+            width: scale(50),
+            height: scale(50),
+            child: FloatingActionButton(
+              onPressed: onClick,
+              elevation: 0.0,
+              disabledElevation: 0.0,
+              focusElevation: 0.0,
+              highlightElevation: 0.0,
+              hoverElevation: 0.0,
+              child: Icon(icon, color: Colors.white, size: scale(20.0)),
             ),
-            child: new Row(
-              children: [
-                new Padding(
-                    padding: EdgeInsets.only(left: 8, right: 8, bottom: 2),
-                    child: Icon(
-                      icon,
-                      size: 15,
-                      color: Pangolin.settingsBox.get("desktopDarkMode")
-                          ? Colors.white
-                          : Colors.black,
-                    )),
-                new Text(
-                  label + "   ",
-                  style: new TextStyle(
-                    color: Pangolin.settingsBox.get("desktopDarkMode")
-                        ? Colors.white
-                        : Colors.black,
-                  ),
-                )
-              ],
+          ),
+          Container(
+            margin: EdgeInsets.only(top: scale(10)),
+            child: Text(
+              label,
+              style: biggerFont,
+              textAlign: TextAlign.center,
             ),
-          ));
+          ),
+        ],
+      );
     }
 
-    Widget chipSection = Padding(
-        padding: EdgeInsets.only(left: 16, bottom: 8.0),
-        child: Row(
-          children: [
-            actionChip(Icons.more_time, "Reminder"),
-            actionChip(Icons.info_outline, totalVersionNumber),
-            actionChip(Icons.domain_verification, "dahliaOS.io")
-          ],
-        ));
+    Widget tileSection = Expanded(
+      child: Container(
+          padding: EdgeInsets.all(scale(10.0)),
+          child: GridView.count(
+              physics: BouncingScrollPhysics(),
+              crossAxisCount: 4,
+              childAspectRatio: 3 / 4,
+              children: [
+                buildTile(Icons.network_wifi, LocaleStrings.pangolin.qsWifi,
+                    () {
+                  setState(() {
+                    HiveManager.set("wifi", false);
+                  });
+                  Provider.of<WindowsData>(context, listen: false)
+                      .add(child: WirelessApp(), color: Colors.deepOrange[700]);
+                  hideOverlays();
+                }),
+                buildTile(Icons.palette, LocaleStrings.pangolin.qsTheme, () {
+                  setState(() {
+                    /* if (HiveManager.get("darkMode") == false) {
+                      HiveManager.set("darkMode", true);
+                      print("setting dark mode");
+                    }
+                    if (HiveManager.get("darkMode") == true) {
+                      HiveManager.set("darkMode", false);
+                      print("setting light mode");
+                    }*/
+                  });
+                }),
+                buildTile(Icons.battery_full, '85%', changeColor),
+                buildTile(Icons.do_not_disturb_off,
+                    LocaleStrings.pangolin.qsDnd, changeColor),
+                buildTile(Icons.lightbulb_outline,
+                    LocaleStrings.pangolin.qsFlashlight, changeColor),
+                buildTile(Icons.screen_lock_rotation,
+                    LocaleStrings.pangolin.qsAutorotate, changeColor),
+                buildTile(Icons.bluetooth, LocaleStrings.pangolin.qsBluetooth,
+                    changeColor),
+                buildTile(Icons.airplanemode_inactive,
+                    LocaleStrings.pangolin.qsAirplanemode, changeColor),
+                buildTile(Icons.invert_colors_off,
+                    LocaleStrings.pangolin.qsInvertcolors, changeColor),
+                buildTile(
+                    Icons.language, LocaleStrings.pangolin.qsChangelanguage,
+                    () {
+                  int index = Locales.supported.indexOf(context.locale);
+                  if (index + 1 < Locales.supported.length) {
+                    context.locale = Locales.supported[index + 1];
+                  } else {
+                    context.locale = Locales.supported[0];
+                  }
+                }),
+              ])),
+    );
 
     return Container(
       color: Colors.black.withOpacity(0.0),
       //original color was 29353a, migrated to 2D2D2D
       //padding: const EdgeInsets.all(10.0),
       //alignment: Alignment.centerLeft,
-      margin: EdgeInsets.all(scale(0.0)),
-      width: scale(420),
+      margin: EdgeInsets.all(scale(15.0)),
+      width: scale(320),
       height: scale(500),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        mainAxisSize: MainAxisSize.max,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          modernHeader,
-          topSection,
-          tileSection,
-          chipSection,
-          sliderSection,
-          Container(
-            height: 55,
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: scale(18.0)),
-              child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(_timeString, style: biggerFont),
-                            //Icon(Icons.brightness_1, size: 10.0,color: Colors.white),
-                            Text('  |  ', style: biggerFont),
-                            Text(_dateString, style: biggerFont),
-                          ],
-                        ),
-                      ])),
-            ),
-          )
-        ],
+        children: [topSection, sliderSection, tileSection],
       ),
     );
   }

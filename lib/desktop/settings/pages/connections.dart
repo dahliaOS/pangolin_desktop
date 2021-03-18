@@ -75,6 +75,7 @@ class _ConnectionsState extends State<Connections> {
                             Column(
                               children: [
                                 SwitchListTile(
+                                  secondary: Icon(Icons.wifi),
                                   onChanged: (bool value) {
                                     setState(() {
                                       HiveManager.set("wifi", value);
@@ -132,6 +133,7 @@ class _ConnectionsState extends State<Connections> {
                             Column(
                               children: [
                                 SwitchListTile(
+                                  secondary: Icon(Icons.bluetooth),
                                   onChanged: (bool value) {
                                     setState(() {
                                       HiveManager.set("bluetooth", value);
