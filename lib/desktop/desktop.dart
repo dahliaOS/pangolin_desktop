@@ -124,10 +124,12 @@ class _DesktopState extends State<Desktop> {
                       BackdropFilter(
                         filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
                         child: Container(
+                          width: 420,
+                          height: 500,
                           decoration: BoxDecoration(
                             color: Pangolin.settingsBox.get("desktopDarkMode")
                                 ? Colors.black.withOpacity(0.75)
-                                : Colors.white.withOpacity(0.75),
+                                : Colors.white.withOpacity(0.5),
                           ),
                           child: QuickSettings(),
                         ),
