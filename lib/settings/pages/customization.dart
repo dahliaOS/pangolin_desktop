@@ -99,6 +99,7 @@ class _CustomizationState extends State<Customization> {
                                         height: 40,
                                         width: 40,
                                         child: FloatingActionButton(
+                                          elevation: 1.0,
                                           onPressed: () {
                                             if (_data.blur > 5) {
                                               _data.blur = _data.blur - 5;
@@ -115,6 +116,7 @@ class _CustomizationState extends State<Customization> {
                                         height: 40,
                                         width: 40,
                                         child: FloatingActionButton(
+                                          elevation: 1.0,
                                           onPressed: () {
                                             if (_data.blur < 50) {
                                               _data.blur = _data.blur + 5;
