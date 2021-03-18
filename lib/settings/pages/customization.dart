@@ -86,37 +86,44 @@ class _CustomizationState extends State<Customization> {
                               _data.enableBlur = !_data.enableBlur;
                             }),
                         _data.enableBlur
-                            ? Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
+                            ? Column(
                                 children: [
                                   SizedBox(
-                                    height: 40,
-                                    width: 40,
-                                    child: FloatingActionButton(
-                                      onPressed: () {
-                                        if (_data.blur > 5) {
-                                          _data.blur = _data.blur - 5;
-                                        }
-                                      },
-                                      child: Icon(Icons.remove),
-                                    ),
+                                    height: 8,
                                   ),
-                                  Text(
-                                    _data.blur.toString(),
-                                    style: TextStyle(fontSize: 17),
-                                  ),
-                                  SizedBox(
-                                    height: 40,
-                                    width: 40,
-                                    child: FloatingActionButton(
-                                      onPressed: () {
-                                        if (_data.blur < 50) {
-                                          _data.blur = _data.blur + 5;
-                                        }
-                                      },
-                                      child: Icon(Icons.add),
-                                    ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      SizedBox(
+                                        height: 40,
+                                        width: 40,
+                                        child: FloatingActionButton(
+                                          onPressed: () {
+                                            if (_data.blur > 5) {
+                                              _data.blur = _data.blur - 5;
+                                            }
+                                          },
+                                          child: Icon(Icons.remove),
+                                        ),
+                                      ),
+                                      Text(
+                                        _data.blur.toString(),
+                                        style: TextStyle(fontSize: 17),
+                                      ),
+                                      SizedBox(
+                                        height: 40,
+                                        width: 40,
+                                        child: FloatingActionButton(
+                                          onPressed: () {
+                                            if (_data.blur < 50) {
+                                              _data.blur = _data.blur + 5;
+                                            }
+                                          },
+                                          child: Icon(Icons.add),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ],
                               )
