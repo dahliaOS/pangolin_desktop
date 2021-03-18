@@ -22,7 +22,6 @@ import 'package:provider/provider.dart';
 
 class WmAPI {
   late BuildContext context;
-  WmAPI(this.context);
   WmAPI.of(this.context);
   void popOverlayEntry(DismissibleOverlayEntry entry) {
     Provider.of<WindowHierarchyState>(context, listen: false)

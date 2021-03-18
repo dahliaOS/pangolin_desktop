@@ -35,7 +35,7 @@ class ActionCetnerButton extends StatelessWidget {
             hoverColor: Theme.of(context).cardColor.withOpacity(0.5),
             mouseCursor: SystemMouseCursors.click,
             onTap: () {
-              WmAPI(context).pushOverlayEntry(DismissibleOverlayEntry(
+              WmAPI.of(context).pushOverlayEntry(DismissibleOverlayEntry(
                   uniqueId: "connection_center",
                   content: ActionCenterOverlay(),
                   duration: Duration.zero));

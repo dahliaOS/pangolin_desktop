@@ -68,11 +68,11 @@ class ActionCenterOverlay extends StatelessWidget {
                       child: Icon(Icons.settings_outlined),
                       mouseCursor: SystemMouseCursors.click,
                       onTap: () {
-                        WmAPI(context).popOverlayEntry(
+                        WmAPI.of(context).popOverlayEntry(
                             Provider.of<DismissibleOverlayEntry>(context,
                                 listen: false));
-                        WmAPI(context).openApp("io.dahlia.settings");
-                        /* WmAPI(context).pushWindowEntry(
+                        WmAPI.of(context).openApp("io.dahlia.settings");
+                        /* WmAPI.of(context).pushWindowEntry(
                                 WindowEntry.withDefaultToolbar(
                                     content: Settings(),
                                     initialSize: Size(1280, 720))); */
