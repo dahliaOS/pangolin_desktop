@@ -194,7 +194,7 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
-    final _data = context.watch<PreferenceProvider>();
+    final _data = Provider.of<PreferenceProvider>(context, listen: false);
     return Consumer<SettingsProvider>(
       builder: (context, provider, _) {
         return Scaffold(
@@ -350,7 +350,7 @@ class Search extends StatefulWidget {
 class _SearchState extends State<Search> {
   @override
   Widget build(BuildContext context) {
-    final _data = context.watch<PreferenceProvider>();
+    final _data = Provider.of<PreferenceProvider>(context, listen: false);
     return Consumer<SettingsProvider>(builder: (context, provider, _) {
       return Container(
         color: Theme.of(context).backgroundColor,

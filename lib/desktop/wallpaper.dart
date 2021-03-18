@@ -21,7 +21,7 @@ import 'package:provider/provider.dart';
 class Wallpaper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final _data = context.watch<PreferenceProvider>();
+    final _data = Provider.of<PreferenceProvider>(context, listen: false);
     return Stack(
       children: [
         SizedBox.expand(

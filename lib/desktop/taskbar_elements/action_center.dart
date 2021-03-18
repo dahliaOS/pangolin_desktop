@@ -38,7 +38,8 @@ class ActionCetnerButton extends StatelessWidget {
               WmAPI.of(context).pushOverlayEntry(DismissibleOverlayEntry(
                   uniqueId: "connection_center",
                   content: ActionCenterOverlay(),
-                  duration: Duration.zero));
+                  duration: Duration(milliseconds: 100),
+                  curve: Curves.easeInOut));
             },
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),

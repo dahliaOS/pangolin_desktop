@@ -30,7 +30,7 @@ class SettingsHome extends StatefulWidget {
 class _SettingsHomeState extends State<SettingsHome> {
   @override
   Widget build(BuildContext context) {
-    final _data = context.watch<PreferenceProvider>();
+    final _data = Provider.of<PreferenceProvider>(context, listen: false);
     return Consumer<SettingsProvider>(builder: (context, provider, _) {
       return Container(
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),

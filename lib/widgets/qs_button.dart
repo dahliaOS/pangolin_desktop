@@ -28,7 +28,7 @@ class QuickSettingsButton extends StatelessWidget {
   const QuickSettingsButton({this.title, this.onTap, this.icon, this.color});
   @override
   Widget build(BuildContext context) {
-    final _data = context.watch<PreferenceProvider>();
+    final _data = Provider.of<PreferenceProvider>(context, listen: false);
     return Column(
       children: [
         SizedBox(

@@ -37,7 +37,7 @@ class Connections extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _data = context.watch<PreferenceProvider>();
+    final _data = Provider.of<PreferenceProvider>(context, listen: false);
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(

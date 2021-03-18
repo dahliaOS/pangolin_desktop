@@ -28,7 +28,7 @@ class Customization extends StatefulWidget {
 class _CustomizationState extends State<Customization> {
   @override
   Widget build(BuildContext context) {
-    final _data = context.watch<PreferenceProvider>();
+    final _data = Provider.of<PreferenceProvider>(context, listen: false);
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -377,7 +377,7 @@ class _CustomizationState extends State<Customization> {
   Color currentColor = Color(0xff443a49);
 
   InkWell buildAcctenColorButton(Color color, String name) {
-    final _data = context.watch<PreferenceProvider>();
+    final _data = Provider.of<PreferenceProvider>(context, listen: false);
     return InkWell(
       hoverColor: Colors.transparent,
       mouseCursor: SystemMouseCursors.click,
@@ -421,7 +421,7 @@ class _WallpaperChooserState extends State<WallpaperChooser> {
   //int _index = DatabaseManager.get("wallpaper");
   @override
   Widget build(BuildContext context) {
-    final _data = context.watch<PreferenceProvider>();
+    final _data = Provider.of<PreferenceProvider>(context, listen: false);
     return AlertDialog(
       backgroundColor: Theme.of(context).canvasColor,
       title: Text("Choose a Wallpaper"),

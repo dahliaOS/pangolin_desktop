@@ -26,108 +26,120 @@ import 'package:utopia_wm/wm.dart';
 class ActionCenterOverlay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final _animation =
+        Provider.of<DismissibleOverlayEntry>(context, listen: false).animation;
     return Positioned(
       bottom: 48 + 8,
       right: 8,
-      child: BoxContainer(
-        decoration: BoxDecoration(
-            boxShadow: [
-              BoxShadow(
-                  color: Colors.black.withOpacity(0.2),
-                  spreadRadius: 5,
-                  blurRadius: 50)
-            ],
-            border:
-                Border.all(color: Theme.of(context).backgroundColor, width: 2),
-            borderRadius: BorderRadius.circular(10)),
-        useSystemOpacity: true,
-        color: Theme.of(context).backgroundColor,
-        width: 500,
-        height: 328,
-        child: SizedBox(
-          height: 48,
-          child: Column(
-            children: [
-              BoxContainer(
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                color: Theme.of(context).backgroundColor,
-                useSystemOpacity: true,
+      child: AnimatedBuilder(
+        animation: _animation,
+        builder: (context, chilld) => FadeTransition(
+          opacity: _animation,
+          child: ScaleTransition(
+            scale: _animation,
+            alignment: FractionalOffset(0.8, 1.0),
+            child: BoxContainer(
+              decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.black.withOpacity(0.2),
+                        spreadRadius: 5,
+                        blurRadius: 50)
+                  ],
+                  border: Border.all(
+                      color: Theme.of(context).backgroundColor, width: 2),
+                  borderRadius: BorderRadius.circular(10)),
+              useSystemOpacity: true,
+              color: Theme.of(context).backgroundColor,
+              width: 500,
+              height: 328,
+              child: SizedBox(
                 height: 48,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                child: Column(
                   children: [
-                    InkWell(
-                      child: Icon(Icons.edit),
-                      mouseCursor: SystemMouseCursors.click,
+                    BoxContainer(
+                      padding: EdgeInsets.symmetric(horizontal: 16),
+                      color: Theme.of(context).backgroundColor,
+                      useSystemOpacity: true,
+                      height: 48,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          InkWell(
+                            child: Icon(Icons.edit),
+                            mouseCursor: SystemMouseCursors.click,
+                          ),
+                          Text(
+                            "Connections",
+                            style: Theme.of(context).textTheme.headline6,
+                          ),
+                          InkWell(
+                            child: Icon(Icons.settings_outlined),
+                            mouseCursor: SystemMouseCursors.click,
+                            onTap: () {
+                              WmAPI.of(context).popOverlayEntry(
+                                  Provider.of<DismissibleOverlayEntry>(context,
+                                      listen: false));
+                              WmAPI.of(context).openApp("io.dahlia.settings");
+                              /* WmAPI.of(context).pushWindowEntry(
+                                      WindowEntry.withDefaultToolbar(
+                                          content: Settings(),
+                                          initialSize: Size(1280, 720))); */
+                            },
+                          ),
+                        ],
+                      ),
                     ),
-                    Text(
-                      "Connections",
-                      style: Theme.of(context).textTheme.headline6,
-                    ),
-                    InkWell(
-                      child: Icon(Icons.settings_outlined),
-                      mouseCursor: SystemMouseCursors.click,
-                      onTap: () {
-                        WmAPI.of(context).popOverlayEntry(
-                            Provider.of<DismissibleOverlayEntry>(context,
-                                listen: false));
-                        WmAPI.of(context).openApp("io.dahlia.settings");
-                        /* WmAPI.of(context).pushWindowEntry(
-                                WindowEntry.withDefaultToolbar(
-                                    content: Settings(),
-                                    initialSize: Size(1280, 720))); */
-                      },
-                    ),
+                    SizedBox(
+                      height: 280,
+                      width: 500,
+                      child: GridView.count(
+                        physics: BouncingScrollPhysics(),
+                        padding: EdgeInsets.all(24),
+                        crossAxisCount: 4,
+                        mainAxisSpacing: 4,
+                        children: [
+                          QuickSettingsButton(
+                            //TODO fix locale-gen loader
+                            title: LocaleStrings.qs.wifi,
+                            icon: Icons.signal_wifi_4_bar_rounded,
+                          ),
+                          QuickSettingsButton(
+                            title: LocaleStrings.qs.bluetooth,
+                            icon: Icons.bluetooth_connected_outlined,
+                          ),
+                          QuickSettingsButton(
+                            title: "Ethernet",
+                            icon: Icons.settings_ethernet,
+                          ),
+                          QuickSettingsButton(
+                            title: "LTE",
+                            icon: Icons.signal_cellular_4_bar_rounded,
+                          ),
+                          QuickSettingsButton(
+                            title: "Location",
+                            icon: Icons.location_on_rounded,
+                          ),
+                          QuickSettingsButton(
+                            title: "Nearby\nShare",
+                            icon: Icons.ios_share,
+                          ),
+                          QuickSettingsButton(
+                            title: "Screen\nSharing",
+                            icon: Icons.screen_share,
+                          ),
+                          QuickSettingsButton(
+                            color: Colors.grey[850],
+                            title: LocaleStrings.qs.airplanemode,
+                            icon: Icons.airplanemode_active,
+                          ),
+                        ],
+                      ),
+                    )
                   ],
                 ),
               ),
-              SizedBox(
-                height: 280,
-                width: 500,
-                child: GridView.count(
-                  physics: BouncingScrollPhysics(),
-                  padding: EdgeInsets.all(24),
-                  crossAxisCount: 4,
-                  mainAxisSpacing: 4,
-                  children: [
-                    QuickSettingsButton(
-                      //TODO fix locale-gen loader
-                      title: LocaleStrings.qs.wifi,
-                      icon: Icons.signal_wifi_4_bar_rounded,
-                    ),
-                    QuickSettingsButton(
-                      title: LocaleStrings.qs.bluetooth,
-                      icon: Icons.bluetooth_connected_outlined,
-                    ),
-                    QuickSettingsButton(
-                      title: "Ethernet",
-                      icon: Icons.settings_ethernet,
-                    ),
-                    QuickSettingsButton(
-                      title: "LTE",
-                      icon: Icons.signal_cellular_4_bar_rounded,
-                    ),
-                    QuickSettingsButton(
-                      title: "Location",
-                      icon: Icons.location_on_rounded,
-                    ),
-                    QuickSettingsButton(
-                      title: "Nearby\nShare",
-                      icon: Icons.ios_share,
-                    ),
-                    QuickSettingsButton(
-                      title: "Screen\nSharing",
-                      icon: Icons.screen_share,
-                    ),
-                    QuickSettingsButton(
-                      color: Colors.grey[850],
-                      title: LocaleStrings.qs.airplanemode,
-                      icon: Icons.airplanemode_active,
-                    ),
-                  ],
-                ),
-              )
-            ],
+            ),
           ),
         ),
       ),
