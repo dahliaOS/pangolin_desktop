@@ -22,6 +22,7 @@ ThemeData theme(BuildContext context) {
   final _data = context.watch<PreferenceProvider>();
   return ThemeData(
       //visualDensity: VisualDensity(horizontal: -3.5, vertical: -3.5),
+      splashColor: Color(_data.accentColor),
       buttonColor: Color(_data.accentColor),
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
