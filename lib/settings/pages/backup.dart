@@ -23,6 +23,7 @@ class _BackupState extends State<Backup> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 40),
           child: Column(

@@ -33,6 +33,7 @@ class GeneralManagement extends StatelessWidget {
     final _data = Provider.of<PreferenceProvider>(context, listen: false);
     return Scaffold(
       body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 40),
           child: Column(
