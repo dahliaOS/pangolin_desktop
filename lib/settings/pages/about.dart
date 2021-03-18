@@ -46,7 +46,7 @@ class About extends StatelessWidget {
                 decoration: BoxDecoration(
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.grey.withOpacity(0.2),
+                      color: Colors.grey.withOpacity(0.1),
                       spreadRadius: 1,
                       blurRadius: 100,
                       offset: Offset(0, 0), // changes position of shadow
@@ -55,10 +55,12 @@ class About extends StatelessWidget {
                 ),
                 height: 200,
                 //width: 200,
-                child: Image(
-                  image: AssetImage("assets/images/logos/dahliaOS-modern.png"),
-                  fit: BoxFit.cover,
-                  filterQuality: FilterQuality.medium,
+                child: Center(
+                  child: Image(
+                    image: AssetImage("assets/images/logos/dahliaOS-logo.png"),
+                    fit: BoxFit.cover,
+                    filterQuality: FilterQuality.medium,
+                  ),
                 ),
               ),
               SizedBox(height: 10),
