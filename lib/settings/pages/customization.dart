@@ -425,6 +425,7 @@ class _WallpaperChooserState extends State<WallpaperChooser> {
   @override
   Widget build(BuildContext context) {
     final _data = Provider.of<PreferenceProvider>(context, listen: false);
+    final _controller = TextEditingController();
     return AlertDialog(
       backgroundColor: Theme.of(context).canvasColor,
       title: Text("Choose a Wallpaper"),
@@ -473,6 +474,40 @@ class _WallpaperChooserState extends State<WallpaperChooser> {
           },
         ),
       ),
+      actions: [
+        Row(
+          children: [
+            Expanded(
+                child: TextField(
+              decoration: InputDecoration(hintText: "Set wallpaper from URL"),
+              maxLines: 1,
+              controller: _controller,
+              onSubmitted: (text) {
+                if (text.startsWith("http")) {
+                  _data.wallpaper = text;
+                  Navigator.pop(context);
+                } else {
+                  Navigator.pop(context);
+                }
+              },
+            )),
+            TextButton(
+                onPressed: () {
+                  if (_controller.text.startsWith("http")) {
+                    _data.wallpaper = _controller.text;
+                    Navigator.pop(context);
+                  } else {
+                    Navigator.pop(context);
+                  }
+                },
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 14.0, horizontal: 22),
+                  child: Text("Save"),
+                ))
+          ],
+        ),
+      ],
     );
   }
 }

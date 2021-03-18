@@ -14,6 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -24,12 +25,7 @@ class Wallpaper extends StatelessWidget {
     final _data = Provider.of<PreferenceProvider>(context, listen: false);
     return Stack(
       children: [
-        SizedBox.expand(
-          child: Image.asset(
-            _data.wallpaper,
-            fit: BoxFit.cover,
-          ),
-        ),
+        SizedBox.expand(child: wallpaperImage(_data.wallpaper)),
         Positioned(
           child: Text(
             "Warning!\nYou are using a pre release version of the Pangolin Desktop",
@@ -40,5 +36,19 @@ class Wallpaper extends StatelessWidget {
         )
       ],
     );
+  }
+
+  Widget wallpaperImage(String source) {
+    if (source.startsWith("http")) {
+      return CachedNetworkImage(
+        imageUrl: source,
+        fit: BoxFit.cover,
+      );
+    } else {
+      return Image.asset(
+        source,
+        fit: BoxFit.cover,
+      );
+    }
   }
 }
