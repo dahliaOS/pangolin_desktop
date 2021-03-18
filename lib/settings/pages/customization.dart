@@ -379,9 +379,10 @@ class _CustomizationState extends State<Customization> {
   Color currentColor = Color(0xff443a49);
 
   InkWell buildAcctenColorButton(Color color, String name) {
-    final _data = Provider.of<PreferenceProvider>(context, listen: false);
+    final _data = Provider.of<PreferenceProvider>(context, listen: true);
     return InkWell(
       hoverColor: Colors.transparent,
+      splashColor: Colors.transparent,
       mouseCursor: SystemMouseCursors.click,
       onTap: () {
         _data.accentColor = color.value;
@@ -391,7 +392,7 @@ class _CustomizationState extends State<Customization> {
         child: Tooltip(
           message: name,
           child: CircleAvatar(
-            backgroundColor: Colors.grey[350],
+            backgroundColor: Colors.grey,
             child: Padding(
               padding: const EdgeInsets.all(3.0),
               child: CircleAvatar(
