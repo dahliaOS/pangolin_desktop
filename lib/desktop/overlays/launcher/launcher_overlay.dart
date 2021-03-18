@@ -35,6 +35,8 @@ class LauncherOverlay extends StatefulWidget {
 class _LauncherOverlayState extends State<LauncherOverlay> {
   @override
   Widget build(BuildContext context) {
+    final _animation =
+        Provider.of<DismissibleOverlayEntry>(context, listen: false).animation;
     final _controller = PageController();
 
     return Positioned(
@@ -54,16 +56,26 @@ class _LauncherOverlayState extends State<LauncherOverlay> {
             BoxContainer(
               useBlur: true,
               color: Colors.black.withOpacity(0.5),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Search(),
-                  LauncherCategories(
-                    controller: _controller,
+              child: AnimatedBuilder(
+                animation: _animation,
+                builder: (context, child) => FadeTransition(
+                  opacity: _animation,
+                  child: ScaleTransition(
+                    scale: _animation,
+                    alignment: FractionalOffset.bottomCenter,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Search(),
+                        LauncherCategories(
+                          controller: _controller,
+                        ),
+                        LauncherGrid(controller: _controller),
+                        LauncherPowerMenu(),
+                      ],
+                    ),
                   ),
-                  LauncherGrid(controller: _controller),
-                  LauncherPowerMenu(),
-                ],
+                ),
               ),
             ),
           ],
