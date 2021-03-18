@@ -24,6 +24,8 @@ ThemeData theme(BuildContext context) {
       //visualDensity: VisualDensity(horizontal: -3.5, vertical: -3.5),
       splashColor: Color(_data.accentColor),
       buttonColor: Color(_data.accentColor),
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+          foregroundColor: Theme.of(context).backgroundColor),
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
               backgroundColor:

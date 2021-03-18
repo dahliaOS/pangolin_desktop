@@ -350,7 +350,6 @@ class Search extends StatefulWidget {
 class _SearchState extends State<Search> {
   @override
   Widget build(BuildContext context) {
-    final _data = Provider.of<PreferenceProvider>(context, listen: false);
     return Consumer<SettingsProvider>(builder: (context, provider, _) {
       return Container(
         color: Theme.of(context).backgroundColor,
@@ -380,7 +379,7 @@ class _SearchState extends State<Search> {
                         },
                         child: Icon(
                           Icons.arrow_back,
-                          color: Color(_data.accentColor),
+                          color: Theme.of(context).accentColor,
                         ),
                       ),
                       Expanded(
@@ -399,7 +398,7 @@ class _SearchState extends State<Search> {
                             ),
                             icon: Icon(
                               Icons.search,
-                              color: Color(_data.accentColor),
+                              color: Theme.of(context).accentColor,
                             ),
                             hintText: 'Search settings',
                             border: InputBorder.none,
