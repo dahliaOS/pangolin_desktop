@@ -23,6 +23,10 @@ ThemeData theme(BuildContext context) {
   return ThemeData(
       //visualDensity: VisualDensity(horizontal: -3.5, vertical: -3.5),
       buttonColor: Color(_data.accentColor),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ButtonStyle(
+              backgroundColor:
+                  MaterialStateProperty.all(Color(_data.accentColor)))),
       fontFamily: _data.fontFamily,
       brightness: _data.darkMode ? Brightness.dark : Brightness.light,
       accentColor: Color(_data.accentColor),
