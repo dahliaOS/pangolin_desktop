@@ -51,7 +51,7 @@ packages:
       name: cached_network_image
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.5.1"
+    version: "3.0.0-nullsafety"
   calculator:
     dependency: "direct main"
     description:
@@ -190,14 +190,14 @@ packages:
       name: flutter_blurhash
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.5.0"
+    version: "0.5.4-nullsafety.0"
   flutter_cache_manager:
     dependency: transitive
     description:
       name: flutter_cache_manager
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.2"
+    version: "3.0.0-nullsafety.1"
   flutter_driver:
     dependency: transitive
     description: flutter
@@ -306,7 +306,7 @@ packages:
       name: octo_image
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.0"
+    version: "1.0.0-nullsafety.1"
   path:
     dependency: transitive
     description:
@@ -411,7 +411,7 @@ packages:
       name: rxdart
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.25.0"
+    version: "0.26.0"
   shared_preferences:
     dependency: transitive
     description:
@@ -650,4 +650,4 @@ packages:
     version: "5.0.2"
 sdks:
   dart: ">=2.12.0 <3.0.0"
-  flutter: ">=1.24.0-10"
+  flutter: ">=1.24.0-10.2.pre"
