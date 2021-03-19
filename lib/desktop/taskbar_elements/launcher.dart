@@ -38,7 +38,7 @@ class LauncherButton extends StatelessWidget {
               WmAPI.of(context).pushOverlayEntry(DismissibleOverlayEntry(
                   uniqueId: "launcher",
                   content: LauncherOverlay(),
-                  duration: Duration(milliseconds: 300),
+                  duration: Duration(milliseconds: 200),
                   curve: Curves.easeInOut));
             },
             child: Padding(
