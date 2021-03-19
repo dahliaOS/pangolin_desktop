@@ -79,9 +79,6 @@ flutter:
 
 
   fonts:
-    - family:  PangolinCustomIcons
-      fonts:
-       - asset: fonts/PangolinCustomIcons.ttf
     - family:  DM-Sans
       fonts:
        - asset: fonts/dm-sans/DMSans-Bold.ttf
