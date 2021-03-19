@@ -19,60 +19,72 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/utils/globals.dart';
 import 'package:pangolin/widgets/searchbar.dart';
+import 'package:provider/provider.dart';
+import 'package:utopia_wm/wm.dart';
 
 class SearchOverlay extends StatelessWidget {
   final String text;
   const SearchOverlay({this.text = ""});
   @override
   Widget build(BuildContext context) {
+    final _animation =
+        Provider.of<DismissibleOverlayEntry>(context, listen: false).animation;
     final _controller = TextEditingController(text: text != "" ? text : "");
     final _focusNode = FocusNode();
     _focusNode.requestFocus();
-    return Builder(builder: (context) {
-      return Positioned(
-        top: 64,
-        left: horizontalPadding(context, 600),
-        right: horizontalPadding(context, 600),
-        child: BoxContainer(
-          decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                    color: Colors.black.withOpacity(0.2),
-                    spreadRadius: 5,
-                    blurRadius: 50)
-              ],
-              border: Border.all(
-                  color: Theme.of(context).backgroundColor, width: 2),
-              borderRadius: BorderRadius.circular(10)),
-          useSystemOpacity: true,
-          color: Theme.of(context).backgroundColor,
-          width: 500,
-          height: 320,
-          child: Column(
-            children: [
-              SizedBox(
-                height: 52,
-                child: Column(
-                  children: [
-                    BoxContainer(
-                        //padding: EdgeInsets.symmetric(horizontal: 16),
-                        color: Theme.of(context).backgroundColor,
-                        useSystemOpacity: true,
-                        height: 52,
-                        child: Searchbar(
-                          focusNode: _focusNode,
-                          controller: _controller,
-                          hint: '"Search Device, Apps and Web',
-                          leading: Icon(Icons.search),
-                          trailing: Icon(Icons.more_vert_rounded),
-                        )),
+    return Positioned(
+      top: 64,
+      left: horizontalPadding(context, 600),
+      right: horizontalPadding(context, 600),
+      child: AnimatedBuilder(
+        animation: _animation,
+        builder: (context, child) => FadeTransition(
+          opacity: _animation,
+          child: ScaleTransition(
+            scale: _animation,
+            alignment: FractionalOffset.topCenter,
+            child: BoxContainer(
+              decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.black.withOpacity(0.2),
+                        spreadRadius: 5,
+                        blurRadius: 50)
                   ],
-                ),
+                  border: Border.all(
+                      color: Theme.of(context).backgroundColor, width: 2),
+                  borderRadius: BorderRadius.circular(10)),
+              useSystemOpacity: true,
+              color: Theme.of(context).backgroundColor,
+              width: 500,
+              height: 320,
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 52,
+                    child: Column(
+                      children: [
+                        BoxContainer(
+                            //padding: EdgeInsets.symmetric(horizontal: 16),
+                            color: Theme.of(context).backgroundColor,
+                            useSystemOpacity: true,
+                            height: 52,
+                            child: Searchbar(
+                              focusNode: _focusNode,
+                              controller: _controller,
+                              hint: '"Search Device, Apps and Web',
+                              leading: Icon(Icons.search),
+                              trailing: Icon(Icons.more_vert_rounded),
+                            )),
+                      ],
+                    ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
-      );
-    });
+      ),
+    );
   }
 }

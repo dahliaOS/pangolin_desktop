@@ -38,7 +38,8 @@ class SearchButton extends StatelessWidget {
               WmAPI.of(context).pushOverlayEntry(DismissibleOverlayEntry(
                   uniqueId: "search",
                   content: SearchOverlay(),
-                  duration: Duration.zero));
+                  duration: Duration(milliseconds: 100),
+                  curve: Curves.easeInOut));
             },
             child: Padding(
               padding: EdgeInsets.all(8),
