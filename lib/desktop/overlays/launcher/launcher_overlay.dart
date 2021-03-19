@@ -37,6 +37,9 @@ class _LauncherOverlayState extends State<LauncherOverlay> {
   Widget build(BuildContext context) {
     final _animation =
         Provider.of<DismissibleOverlayEntry>(context, listen: false).animation;
+    final _animationController =
+        Provider.of<DismissibleOverlayEntry>(context, listen: false)
+            .animationController;
     final _controller = PageController();
 
     return Positioned(
@@ -45,7 +48,9 @@ class _LauncherOverlayState extends State<LauncherOverlay> {
       left: 0,
       right: 0,
       child: GestureDetector(
-        onTap: () {
+        onTap: () async {
+          _animationController.reverse();
+          await Future.delayed(_animationController.duration!);
           WmAPI.of(context).popOverlayEntry(
               Provider.of<DismissibleOverlayEntry>(context, listen: false));
           setState(() {});
