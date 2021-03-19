@@ -22,10 +22,10 @@ import 'package:pangolin/widgets/settingsheader.dart';
 import 'package:provider/provider.dart';
 
 class GeneralManagement extends StatelessWidget {
-  List<Locale> localesLanguages = Locales.supported;
+  final List<Locale> localesLanguages = Locales.supported;
   String showLanguage(value) {
     final local = value.replaceAll("_", "-");
-    return Locales.data['$local']!['pangolin.qs_changelanguage']!;
+    return Locales.data['$local']!['qs.changelanguage']!;
   }
 
   @override
@@ -62,8 +62,8 @@ class GeneralManagement extends StatelessWidget {
                         Text("Language"),
                         SizedBox(height: 5),
                         Container(
-                          width: 1.7976931348623157e+308,
-                          /* child: DropdownButton<String>(
+                          width: double.infinity,
+                          child: DropdownButton<String>(
                             icon: Icon(null),
                             hint: Text("Language"),
                             value: '${context.locale}',
@@ -77,7 +77,7 @@ class GeneralManagement extends StatelessWidget {
                             onChanged: (_) {
                               _setLanguage(_ ?? "en_US", context);
                             },
-                          ), */
+                          ),
                         ),
                       ],
                     ),
