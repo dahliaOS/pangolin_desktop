@@ -239,7 +239,10 @@ class _CustomizationState extends State<Customization> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text("Choose your Desktop Wallpaper"),
+                            Text(
+                              "Choose your Desktop Wallpaper",
+                              style: Theme.of(context).textTheme.subtitle1,
+                            ),
                             ElevatedButton(
                                 onPressed: () {
                                   showDialog(
