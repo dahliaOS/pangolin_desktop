@@ -115,7 +115,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "5f935480632b3ab2c4607480663d52a6dd4303ed"
+      resolved-ref: "6b4870709cfe9f80c130579a2a30d9bc7ef99d24"
       url: "https://github.com/dahliaOS/backend.git"
     source: git
     version: "0.0.1+1"
