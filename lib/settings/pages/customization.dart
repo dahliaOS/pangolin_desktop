@@ -14,6 +14,7 @@ limitations under the License.
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:pangolin/utils/globals.dart';
 import 'package:pangolin/widgets/settingsTile.dart';
 import 'package:pangolin/widgets/settingsheader.dart';
@@ -71,6 +72,7 @@ class _CustomizationState extends State<Customization> {
                             buildAcctenColorButton(
                                 (_data.darkMode ? Colors.white : Colors.black),
                                 _data.darkMode ? "White" : "Black"),
+                            buildCustomAcctenColorButton()
                           ],
                         ),
                         SizedBox(height: 5),
@@ -389,6 +391,7 @@ class _CustomizationState extends State<Customization> {
       splashColor: Colors.transparent,
       mouseCursor: SystemMouseCursors.click,
       onTap: () {
+        _data.useCustomAccentColor = false;
         _data.accentColor = color.value;
       },
       child: Padding(
@@ -407,6 +410,82 @@ class _CustomizationState extends State<Customization> {
                               ? Colors.black
                               : Colors.white)
                       : SizedBox.shrink()),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  InkWell buildCustomAcctenColorButton() {
+    final _data = Provider.of<PreferenceProvider>(context, listen: true);
+    return InkWell(
+      hoverColor: Colors.transparent,
+      splashColor: Colors.transparent,
+      mouseCursor: SystemMouseCursors.click,
+      onTap: () {
+        showDialog(
+            context: context,
+            builder: (context) {
+              int? _customValue;
+              return AlertDialog(
+                content: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    ColorPicker(
+                      showLabel: true,
+                      portraitOnly: true,
+                      enableAlpha: false,
+                      onColorChanged: (Color value) {
+                        //_data.accentColor = value.value;
+                        setState(() {
+                          _customValue = value.value;
+                        });
+                      },
+                      pickerColor: Color(_data.accentColor),
+                    ),
+                  ],
+                ),
+                actions: [
+                  TextButton(
+                      onPressed: () {
+                        if (_customValue != null) {
+                          _data.accentColor = _customValue!;
+                          _data.useCustomAccentColor = true;
+                          Navigator.pop(context);
+                        } else
+                          Navigator.pop(context);
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 14.0, horizontal: 22),
+                        child: Text("Save"),
+                      )),
+                ],
+              );
+            });
+        //_data.accentColor = color.value;
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        child: Tooltip(
+          message: "Custom",
+          child: CircleAvatar(
+            backgroundColor: Colors.grey,
+            child: Padding(
+              padding: const EdgeInsets.all(3.0),
+              child: CircleAvatar(
+                  backgroundColor: Color(_data.accentColor),
+                  child: (_data
+                          .useCustomAccentColor) //_data.accentColor == color.value)
+                      ? Icon(Icons.blur_circular,
+                          color: DatabaseManager.get("darkMode")
+                              ? Colors.black
+                              : Colors.white)
+                      : Icon(
+                          Icons.add,
+                          color: Colors.white,
+                        )),
             ),
           ),
         ),
@@ -508,7 +587,7 @@ class _WallpaperChooserState extends State<WallpaperChooser> {
                   padding: const EdgeInsets.symmetric(
                       vertical: 14.0, horizontal: 22),
                   child: Text("Save"),
-                ))
+                )),
           ],
         ),
       ],

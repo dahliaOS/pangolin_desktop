@@ -46,7 +46,7 @@ ThemeData theme(BuildContext context) {
         ),
       ),
       dialogBackgroundColor:
-          _data.darkMode ? Color(0xfff0f8ff) : Color(0xff0a0a0a),
+          !_data.darkMode ? Color(0xfff0f8ff) : Color(0xff0a0a0a),
       toggleableActiveColor: Color(_data.accentColor),
       platform: TargetPlatform.android,
       sliderTheme: SliderThemeData(

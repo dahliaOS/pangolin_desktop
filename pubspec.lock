@@ -115,7 +115,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "6b4870709cfe9f80c130579a2a30d9bc7ef99d24"
+      resolved-ref: "6290c652176d6eca663cfd5d2e40bec9c8eea748"
       url: "https://github.com/dahliaOS/backend.git"
     source: git
     version: "0.0.1+1"
@@ -198,6 +198,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.0-nullsafety.1"
+  flutter_colorpicker:
+    dependency: "direct main"
+    description:
+      name: flutter_colorpicker
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.4.0"
   flutter_driver:
     dependency: transitive
     description: flutter
@@ -245,7 +252,7 @@ packages:
       name: http
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.13.0"
+    version: "0.13.1"
   http_parser:
     dependency: transitive
     description:
@@ -259,7 +266,7 @@ packages:
       name: image
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.1"
+    version: "3.0.2"
   integration_test:
     dependency: "direct dev"
     description: flutter
