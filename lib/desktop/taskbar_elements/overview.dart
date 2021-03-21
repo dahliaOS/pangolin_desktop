@@ -18,6 +18,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:pangolin/desktop/overlays/overview_overlay.dart';
 import 'package:pangolin/utils/wm_api.dart';
+import 'package:provider/provider.dart';
 import 'package:utopia_wm/wm.dart';
 
 class OverviewButton extends StatelessWidget {
@@ -29,7 +30,11 @@ class OverviewButton extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(4.0),
         child: Material(
-          color: Colors.transparent,
+          borderRadius: BorderRadius.circular(4),
+          color: Provider.of<WindowHierarchyState>(context)
+                  .overlayIsActive("overview")
+              ? Theme.of(context).cardColor.withOpacity(0.5)
+              : Colors.transparent,
           child: InkWell(
             borderRadius: BorderRadius.circular(4),
             hoverColor: Theme.of(context).cardColor.withOpacity(0.5),

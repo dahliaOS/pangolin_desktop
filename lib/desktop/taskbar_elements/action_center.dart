@@ -18,6 +18,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:pangolin/desktop/overlays/action_center_overlay.dart';
 import 'package:pangolin/utils/wm_api.dart';
+import 'package:provider/provider.dart';
 import 'package:utopia_wm/wm.dart';
 
 class ActionCetnerButton extends StatelessWidget {
@@ -29,14 +30,18 @@ class ActionCetnerButton extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(4.0),
         child: Material(
-          color: Colors.transparent,
+          borderRadius: BorderRadius.circular(4),
+          color: Provider.of<WindowHierarchyState>(context)
+                  .overlayIsActive("action_center")
+              ? Theme.of(context).cardColor.withOpacity(0.5)
+              : Colors.transparent,
           child: InkWell(
             borderRadius: BorderRadius.circular(4),
             hoverColor: Theme.of(context).cardColor.withOpacity(0.5),
             mouseCursor: SystemMouseCursors.click,
             onTap: () {
               WmAPI.of(context).pushOverlayEntry(DismissibleOverlayEntry(
-                  uniqueId: "connection_center",
+                  uniqueId: "action_center",
                   content: ActionCenterOverlay(),
                   duration: Duration(milliseconds: 100),
                   curve: Curves.easeInOut));
