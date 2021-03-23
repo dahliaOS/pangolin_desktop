@@ -115,7 +115,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "6290c652176d6eca663cfd5d2e40bec9c8eea748"
+      resolved-ref: "43def212b9da83d054256f701f80abf3e6b947dc"
       url: "https://github.com/dahliaOS/backend.git"
     source: git
     version: "0.0.1+1"
@@ -197,7 +197,7 @@ packages:
       name: flutter_cache_manager
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.0-nullsafety.1"
+    version: "3.0.0-nullsafety.2"
   flutter_colorpicker:
     dependency: "direct main"
     description:
@@ -584,7 +584,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "19350943b8df2a0eb6c8b9e963f25c1a5a404658"
+      resolved-ref: ce51798bcd1c25a7d4b0ddbf282da1bd5210e46d
       url: "https://github.com/dahliaOS/utopia.git"
     source: git
     version: "1.0.0+1"
@@ -594,7 +594,7 @@ packages:
       name: uuid
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.1"
+    version: "3.0.2"
   vector_math:
     dependency: transitive
     description:
