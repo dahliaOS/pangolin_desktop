@@ -15,14 +15,10 @@ import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
-import 'package:pangolin/utils/context_menus/context_menu.dart';
-import 'package:pangolin/utils/context_menus/context_menu_item.dart';
-import 'package:pangolin/utils/context_menus/core/context_menu_overlay.dart';
 import 'package:pangolin/utils/globals.dart';
 import 'package:pangolin/widgets/settingsTile.dart';
 import 'package:pangolin/widgets/settingsheader.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter/rendering.dart';
 
 class Customization extends StatefulWidget {
   static int selectedWallpaper = 0;
@@ -590,8 +586,10 @@ class _WallpaperChooserState extends State<WallpaperChooser> {
               children: [
                 Expanded(
                     child: TextField(
-                  decoration:
-                      InputDecoration(hintText: "Set wallpaper from URL"),
+                  decoration: InputDecoration(
+                      hintText: "Set wallpaper from URL",
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(6))),
                   maxLines: 1,
                   controller: _controller,
                   onSubmitted: (text) {
