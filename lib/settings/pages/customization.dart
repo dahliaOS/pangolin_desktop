@@ -233,7 +233,7 @@ class _CustomizationState extends State<Customization> {
                         )
                       ],
                     ),
-                    SettingsHeader(heading: "Deskotop"),
+                    SettingsHeader(heading: "Desktop"),
                     SettingsTile(children: [
                       Padding(
                         padding: const EdgeInsets.symmetric(
