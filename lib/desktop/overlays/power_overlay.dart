@@ -28,12 +28,13 @@ class PowerOverlay extends StatelessWidget {
         top: verticalPadding(context, 100),
         bottom: verticalPadding(context, 100),
         child: BoxContainer(
+          useSystemOpacity: true,
           decoration: BoxDecoration(
             border:
                 Border.all(color: Theme.of(context).backgroundColor, width: 2),
             borderRadius: BorderRadius.circular(10),
           ),
-          color: Theme.of(context).cardColor.withOpacity(0.9),
+          color: Theme.of(context).backgroundColor,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.stretch,

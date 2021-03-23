@@ -115,7 +115,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "43def212b9da83d054256f701f80abf3e6b947dc"
+      resolved-ref: "93b4df8baa959aef3e69a08eb04573da1229e7b8"
       url: "https://github.com/dahliaOS/backend.git"
     source: git
     version: "0.0.1+1"
@@ -608,7 +608,7 @@ packages:
       name: vm_service
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.0.1-nullsafety.1"
+    version: "6.1.0+1"
   web_browser:
     dependency: "direct main"
     description:
