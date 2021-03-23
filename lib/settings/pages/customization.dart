@@ -484,7 +484,9 @@ class _CustomizationState extends State<Customization> {
                               : Colors.white)
                       : Icon(
                           Icons.add,
-                          color: Colors.white,
+                          color: _data.accentColor == Colors.white.value
+                              ? Colors.black
+                              : Colors.white,
                         )),
             ),
           ),
