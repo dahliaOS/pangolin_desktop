@@ -15,10 +15,14 @@ import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+import 'package:pangolin/utils/context_menus/context_menu.dart';
+import 'package:pangolin/utils/context_menus/context_menu_item.dart';
+import 'package:pangolin/utils/context_menus/core/context_menu_overlay.dart';
 import 'package:pangolin/utils/globals.dart';
 import 'package:pangolin/widgets/settingsTile.dart';
 import 'package:pangolin/widgets/settingsheader.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter/rendering.dart';
 
 class Customization extends StatefulWidget {
   static int selectedWallpaper = 0;
@@ -248,6 +252,7 @@ class _CustomizationState extends State<Customization> {
                             ElevatedButton(
                                 onPressed: () {
                                   showDialog(
+                                      barrierColor: Colors.transparent,
                                       context: context,
                                       builder: (context) {
                                         return WallpaperChooser();
@@ -511,88 +516,120 @@ class _WallpaperChooserState extends State<WallpaperChooser> {
   Widget build(BuildContext context) {
     final _data = Provider.of<PreferenceProvider>(context, listen: false);
     final _controller = TextEditingController();
-    return AlertDialog(
-      backgroundColor: Theme.of(context).canvasColor,
-      title: Text("Choose a Wallpaper"),
-      content: SizedBox(
+    return GestureDetector(
+      onTap: () => Navigator.pop(context),
+      child: BoxContainer(
+        customBorderRadius: BorderRadius.circular(10),
+        color: Theme.of(context).backgroundColor,
+        useSystemOpacity: true,
+        margin: EdgeInsets.symmetric(horizontal: 300, vertical: 100),
         width: MediaQuery.of(context).size.width - 300,
         height: MediaQuery.of(context).size.height - 300,
-        child: GridView.builder(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 4, childAspectRatio: 16 / 9),
-          itemCount: wallpapers.length,
-          itemBuilder: (BuildContext context, int index) {
-            //_index = index;
-            return Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: InkWell(
-                  onTap: () {
-                    setState(() {
-                      _data.wallpaper = wallpapers[index];
-                      //_index = index;
-                      //Customization.selectedWallpaper = index;
-                    });
-                  },
-                  child: Stack(
-                    children: [
-                      Positioned.fill(
-                        child: Image.asset(
-                          wallpapers[index].toString(),
-                          fit: BoxFit.cover,
-                          scale: 1.0,
-                        ),
+        child: AlertDialog(
+          backgroundColor: Colors.transparent,
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text("Choose a Wallpaper"),
+              FloatingActionButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: Icon(
+                    Icons.close,
+                    color: Theme.of(context).textTheme.bodyText1?.color,
+                  )),
+            ],
+          ),
+          content: SizedBox(
+            width: MediaQuery.of(context).size.width - 300,
+            height: MediaQuery.of(context).size.height - 300,
+            child: GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 4, childAspectRatio: 16 / 9),
+              itemCount: wallpapers.length,
+              itemBuilder: (BuildContext context, int index) {
+                //_index = index;
+                return Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: InkWell(
+                      onTap: () {
+                        setState(() {
+                          _data.wallpaper = wallpapers[index];
+                          //_index = index;
+                          //Customization.selectedWallpaper = index;
+                        });
+                      },
+                      child: Stack(
+                        children: [
+                          Positioned.fill(
+                            child: Image.asset(
+                              wallpapers[index].toString(),
+                              fit: BoxFit.cover,
+                              scale: 1.0,
+                            ),
+                          ),
+                          (_data.wallpaper == wallpapers[index])
+                              ? Positioned(
+                                  bottom: 5,
+                                  right: 5,
+                                  child: CircleAvatar(
+                                    backgroundColor:
+                                        Theme.of(context).accentColor,
+                                    foregroundColor: Colors.white,
+                                    child: Icon(Icons.check),
+                                  ),
+                                )
+                              : SizedBox.shrink(),
+                        ],
                       ),
-                      (_data.wallpaper == wallpapers[index])
-                          ? Positioned(
-                              bottom: 5,
-                              right: 5,
-                              child: CircleAvatar(
-                                backgroundColor: Theme.of(context).accentColor,
-                                foregroundColor: Colors.white,
-                                child: Icon(Icons.check),
-                              ),
-                            )
-                          : SizedBox.shrink(),
-                    ],
-                  ),
-                ));
-          },
-        ),
-      ),
-      actions: [
-        Row(
-          children: [
-            Expanded(
-                child: TextField(
-              decoration: InputDecoration(hintText: "Set wallpaper from URL"),
-              maxLines: 1,
-              controller: _controller,
-              onSubmitted: (text) {
-                if (text.startsWith("http")) {
-                  _data.wallpaper = text;
-                  Navigator.pop(context);
-                } else {
-                  Navigator.pop(context);
-                }
+                    ));
               },
-            )),
-            TextButton(
-                onPressed: () {
-                  if (_controller.text.startsWith("http")) {
-                    _data.wallpaper = _controller.text;
-                    Navigator.pop(context);
-                  } else {
-                    Navigator.pop(context);
-                  }
-                },
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 14.0, horizontal: 22),
-                  child: Text("Save"),
+            ),
+          ),
+          actions: [
+            Row(
+              children: [
+                Expanded(
+                    child: TextField(
+                  decoration:
+                      InputDecoration(hintText: "Set wallpaper from URL"),
+                  maxLines: 1,
+                  controller: _controller,
+                  onSubmitted: (text) {
+                    if (text.startsWith("http")) {
+                      _data.wallpaper = text;
+                      Navigator.pop(context);
+                    } else {
+                      Navigator.pop(context);
+                    }
+                  },
                 )),
+                SizedBox(
+                  width: 16,
+                ),
+                FloatingActionButton.extended(
+                  onPressed: () {
+                    if (_controller.text.startsWith("http")) {
+                      _data.wallpaper = _controller.text;
+                      Navigator.pop(context);
+                    } else {
+                      Navigator.pop(context);
+                    }
+                  },
+                  label: Text(
+                    "Save",
+                    style: TextStyle(
+                        color: Theme.of(context).textTheme.bodyText1?.color),
+                  ),
+                  icon: Icon(
+                    Icons.save_outlined,
+                    color: Theme.of(context).textTheme.bodyText1?.color,
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
-      ],
+      ),
     );
   }
 }
