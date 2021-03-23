@@ -17,6 +17,10 @@ limitations under the License.
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
+import 'package:pangolin/settings/pages/customization.dart';
+import 'package:pangolin/utils/context_menus/context_menu.dart';
+import 'package:pangolin/utils/context_menus/context_menu_item.dart';
+import 'package:pangolin/utils/context_menus/core/context_menu_overlay.dart';
 import 'package:provider/provider.dart';
 
 class Wallpaper extends StatelessWidget {
@@ -25,7 +29,26 @@ class Wallpaper extends StatelessWidget {
     final _data = Provider.of<PreferenceProvider>(context, listen: false);
     return Stack(
       children: [
-        SizedBox.expand(child: wallpaperImage(_data.wallpaper)),
+        SizedBox.expand(
+            child: ContextMenuRegion(
+                contextMenu: ContextMenu(
+                  items: [
+                    ContextMenuItem(
+                      onTap: () {
+                        showDialog(
+                            barrierColor: Colors.transparent,
+                            context: context,
+                            builder: (context) {
+                              return WallpaperChooser();
+                            });
+                      },
+                      icon: Icons.image,
+                      title: "Change Wallpaper",
+                      shortcut: "",
+                    ),
+                  ],
+                ),
+                child: wallpaperImage(_data.wallpaper))),
         Positioned(
           child: Text(
             "Warning!\nYou are using a pre release version of the Pangolin Desktop",
