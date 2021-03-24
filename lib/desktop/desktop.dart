@@ -34,12 +34,6 @@ class Desktop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Provider.of<PreferenceProvider>(context).useColoredTitlebar =
-              !Provider.of<PreferenceProvider>(context).useColoredTitlebar;
-        },
-      ),
       body: WindowHierarchy(
           key: wmKey,
           rootWindow: Wallpaper(),

@@ -75,7 +75,14 @@ class _CustomizationState extends State<Customization> {
                             buildCustomAcctenColorButton()
                           ],
                         ),
-                        SizedBox(height: 5),
+                        SizedBox(height: 15),
+                        SwitchListTile(
+                            title: Text("Use colored Titlebar"),
+                            value: _data.useColoredTitlebar,
+                            onChanged: (val) {
+                              _data.useColoredTitlebar =
+                                  !_data.useColoredTitlebar;
+                            })
                       ],
                     ),
                     SettingsHeader(heading: "Blur"),

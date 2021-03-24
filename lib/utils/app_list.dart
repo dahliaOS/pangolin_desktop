@@ -19,6 +19,7 @@ import 'package:calculator/calculator.dart';
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:dahlia_clock/main.dart';
 import 'package:files/main.dart';
+import 'package:flutter/material.dart';
 import 'package:graft/main.dart';
 import 'package:pangolin/settings/settings.dart';
 import 'package:pangolin/widgets/error_window.dart';
@@ -31,6 +32,7 @@ import 'package:welcome/main.dart';
 
 List<Application> applications = [
   Application(
+    color: Colors.deepOrange.shade500,
     packageName: "io.dahlia.settings",
     app: Settings(),
     name: "Settings",
@@ -39,6 +41,7 @@ List<Application> applications = [
     description: "",
   ),
   Application(
+      color: Colors.green,
       packageName: "io.dahlia.calculator",
       app: Calculator(),
       name: "Calculator",
@@ -46,6 +49,7 @@ List<Application> applications = [
       category: ApplicationCategory.OFFICE,
       description: ""),
   Application(
+      color: Colors.grey,
       packageName: "io.dahlia.terminal",
       app: Terminal(),
       name: "Terminal",
@@ -53,6 +57,7 @@ List<Application> applications = [
       category: ApplicationCategory.SYSTEM,
       description: ""),
   Application(
+      color: Colors.amber,
       packageName: "io.dahlia.editor",
       app: TextEditorApp(),
       name: "Text Editor",
@@ -60,6 +65,7 @@ List<Application> applications = [
       category: ApplicationCategory.OFFICE,
       description: ""),
   Application(
+      color: Colors.blue,
       packageName: "io.dahlia.graft",
       app: Graft(),
       name: "Graft",
@@ -67,6 +73,7 @@ List<Application> applications = [
       category: ApplicationCategory.SYSTEM,
       description: ""),
   Application(
+      color: Colors.deepOrange,
       packageName: "io.dahlia.web",
       app: Browser(),
       name: "Web Browser",
@@ -74,6 +81,7 @@ List<Application> applications = [
       category: ApplicationCategory.INTERNET,
       description: ""),
   Application(
+      color: Colors.deepOrange,
       packageName: "io.dahlia.files",
       app: Files(),
       name: "Files",
@@ -81,6 +89,7 @@ List<Application> applications = [
       category: ApplicationCategory.SYSTEM,
       description: ""),
   Application(
+      color: Colors.blueAccent,
       packageName: "io.dahlia.media",
       app: Media(),
       name: "Media",
@@ -88,6 +97,7 @@ List<Application> applications = [
       category: ApplicationCategory.MEDIA,
       description: ""),
   Application(
+      color: Colors.lightBlue,
       packageName: "io.dahlia.clock",
       app: Clock(),
       name: "Clock",
@@ -95,6 +105,7 @@ List<Application> applications = [
       category: ApplicationCategory.SYSTEM,
       description: ""),
   Application(
+      color: Colors.red,
       packageName: "io.dahlia.logs",
       app: Logs(),
       name: "System Logs",
@@ -102,6 +113,7 @@ List<Application> applications = [
       category: ApplicationCategory.SYSTEM,
       description: ""),
   Application(
+      color: Colors.lime,
       packageName: "io.dahlia.welcome",
       app: Welcome(),
       name: "Welcome",
@@ -109,6 +121,7 @@ List<Application> applications = [
       category: ApplicationCategory.SYSTEM,
       description: ""),
   Application(
+      color: Colors.cyanAccent,
       packageName: "io.dahlia.taskmanager",
       app: Tasks(),
       name: "Task Manager",

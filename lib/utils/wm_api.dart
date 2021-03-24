@@ -47,7 +47,7 @@ class WmAPI {
     pushWindowEntry(WindowEntry.withDefaultToolbar(
       content: getApp(packageName).app ?? ErrorWindow(),
       initialSize: Size(1280, 720),
-      bgColor: Colors.green,
+      toolbarColor: getApp(packageName).color ?? Colors.grey,
       icon: AssetImage("assets/icons/${getApp(packageName).iconName}.png"),
       title: getApp(packageName).name,
     ));
