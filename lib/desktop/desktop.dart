@@ -14,6 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/desktop/taskbar_elements/clock.dart';
 import 'package:pangolin/desktop/taskbar_elements/action_center.dart';
@@ -23,6 +24,7 @@ import 'package:pangolin/desktop/taskbar_elements/overview.dart';
 import 'package:pangolin/desktop/taskbar_elements/search.dart';
 import 'package:pangolin/desktop/taskbar.dart';
 import 'package:pangolin/desktop/wallpaper.dart';
+import 'package:provider/provider.dart';
 import 'package:utopia_wm/wm.dart';
 
 // ignore: must_be_immutable
@@ -32,6 +34,12 @@ class Desktop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Provider.of<PreferenceProvider>(context).useColoredTitlebar =
+              !Provider.of<PreferenceProvider>(context).useColoredTitlebar;
+        },
+      ),
       body: WindowHierarchy(
           key: wmKey,
           rootWindow: Wallpaper(),
