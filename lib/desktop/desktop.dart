@@ -17,7 +17,7 @@ limitations under the License.
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/desktop/taskbar_elements/clock.dart';
-import 'package:pangolin/desktop/taskbar_elements/action_center.dart';
+import 'package:pangolin/desktop/taskbar_elements/quick_settings.dart';
 import 'package:pangolin/desktop/taskbar_elements/launcher.dart';
 import 'package:pangolin/desktop/taskbar_elements/notifications.dart';
 import 'package:pangolin/desktop/taskbar_elements/overview.dart';
@@ -49,7 +49,7 @@ class Desktop extends StatelessWidget {
               ],
               trailing: [
                 NotificationsButton(),
-                ActionCetnerButton(),
+                QuickSettingsButton(),
                 DateClockWidget(),
                 SizedBox(
                   width: 4,
