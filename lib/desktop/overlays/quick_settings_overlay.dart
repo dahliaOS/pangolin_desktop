@@ -135,7 +135,7 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay> {
                       width: 500,
                       child: GridView.count(
                         physics: BouncingScrollPhysics(),
-                        padding: EdgeInsets.only(top: 16, left: 16, right: 16),
+                        padding: EdgeInsets.only(top: 32, left: 16, right: 16),
                         crossAxisCount: 5,
                         mainAxisSpacing: 10,
                         children: [
@@ -149,29 +149,36 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay> {
                             icon: Icons.do_not_disturb_off,
                           ),
                           QuickSettingsButton(
-                            title: "Ethernet",
-                            icon: Icons.settings_ethernet,
+                            title: LocaleStrings.qs.flashlight,
+                            icon: Icons.lightbulb_outline,
                           ),
                           QuickSettingsButton(
-                            title: "LTE",
-                            icon: Icons.signal_cellular_4_bar_rounded,
+                            title: LocaleStrings.qs.autorotate,
+                            icon: Icons.screen_lock_rotation,
                           ),
                           QuickSettingsButton(
-                            title: "Location",
-                            icon: Icons.location_on_rounded,
+                            title: LocaleStrings.qs.bluetooth,
+                            icon: Icons.bluetooth,
                           ),
                           QuickSettingsButton(
-                            title: "NearbyShare",
-                            icon: Icons.ios_share,
+                              title: LocaleStrings.qs.airplanemode,
+                              icon: Icons.airplanemode_inactive),
+                          QuickSettingsButton(
+                            title: LocaleStrings.qs.invertcolors,
+                            icon: Icons.invert_colors_off,
                           ),
                           QuickSettingsButton(
-                            title: "Screen\nSharing",
-                            icon: Icons.screen_share,
+                            title: LocaleStrings.qs.changelanguage,
+                            icon: Icons.language,
+                            //TODO ADD LANGUAGE CHANGER HERE
                           ),
                           QuickSettingsButton(
-                            color: Colors.grey[850],
-                            title: LocaleStrings.qs.airplanemode,
-                            icon: Icons.airplanemode_active,
+                            title: 'TTY Shell',
+                            icon: Icons.developer_mode,
+                          ),
+                          QuickSettingsButton(
+                            title: 'Mobile Layout',
+                            icon: Icons.phone_android,
                           ),
                         ],
                       ),
