@@ -32,8 +32,8 @@ class QuickSettingsButton extends StatelessWidget {
     return Column(
       children: [
         SizedBox(
-          width: 56,
-          height: 56,
+          width: 50,
+          height: 50,
           child: InkWell(
             mouseCursor: SystemMouseCursors.click,
             child: CircleAvatar(
@@ -41,19 +41,19 @@ class QuickSettingsButton extends StatelessWidget {
               child: Icon(
                 icon ?? Icons.error,
                 color: Colors.white,
-                size: 32,
+                size: 20,
               ),
             ),
           ),
         ),
         SizedBox(
-          height: 8,
+          height: 6,
         ),
         Text(
           title ?? "error",
-          style: Theme.of(context).textTheme.subtitle1,
+          style: Theme.of(context).textTheme.bodyText1,
           textAlign: TextAlign.center,
-        )
+        ),
       ],
     );
   }
