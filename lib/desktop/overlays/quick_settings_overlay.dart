@@ -58,6 +58,8 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay> {
               child: SizedBox(
                 height: 48,
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     BoxContainer(
                       color: Theme.of(context).backgroundColor,
@@ -130,15 +132,26 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay> {
                         ],
                       ),
                     ),
+                    Padding(
+                      padding: EdgeInsets.all(15),
+                      child: Text(
+                        "Quick Controls",
+                        style: Theme.of(context).textTheme.subtitle2,
+                      ),
+                    ),
                     SizedBox(
                       height: 380,
                       width: 500,
                       child: GridView.count(
                         physics: BouncingScrollPhysics(),
-                        padding: EdgeInsets.only(top: 32, left: 16, right: 16),
+                        padding: EdgeInsets.only(top: 0, left: 16, right: 16),
                         crossAxisCount: 5,
                         mainAxisSpacing: 10,
                         children: [
+                          QuickSettingsButton(
+                            title: LocaleStrings.qs.wifi,
+                            icon: Icons.network_wifi,
+                          ),
                           QuickSettingsButton(
                             //TODO fix locale-gen loader
                             title: '85%',
@@ -176,13 +189,9 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay> {
                             title: 'TTY Shell',
                             icon: Icons.developer_mode,
                           ),
-                          QuickSettingsButton(
-                            title: 'Mobile Layout',
-                            icon: Icons.phone_android,
-                          ),
                         ],
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
