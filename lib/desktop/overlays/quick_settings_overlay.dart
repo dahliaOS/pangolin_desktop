@@ -31,6 +31,8 @@ class QuickSettingsOverlay extends StatefulWidget {
 }
 
 class _QuickSettingsOverlayState extends State<QuickSettingsOverlay> {
+  double brightness = 0.8;
+  double volume = 0.5;
   @override
   Widget build(BuildContext context) {
     final _animation =
@@ -203,6 +205,71 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay> {
                             actionChip(Icons.domain_verification, "dahliaOS.io",
                                 context),
                             actionChip(Icons.edit, "New", context)
+                          ],
+                        )),
+                    Container(
+                        margin: EdgeInsets.fromLTRB(20, 0, 20, 10),
+                        child: Column(
+                          children: <Widget>[
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Icon(
+                                  Icons.brightness_6,
+                                  size: 20,
+                                ),
+                                Expanded(
+                                  child: Slider(
+                                      value: brightness,
+                                      divisions: 10,
+                                      onChanged: (newBrightness) {
+                                        setState(() {
+                                          brightness = newBrightness;
+                                        });
+                                      }),
+                                ),
+                                Container(
+                                  width: 35,
+                                  child: Center(
+                                    child: Text(
+                                        "${(brightness * 100).toInt().toString()}",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .subtitle2),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: <Widget>[
+                                Icon(
+                                  Icons.volume_up,
+                                  size: 20,
+                                ),
+                                Expanded(
+                                  child: Slider(
+                                    value: volume,
+                                    divisions: 20,
+                                    onChanged: (newVolume) {
+                                      setState(() {
+                                        volume = newVolume;
+                                      });
+                                    },
+                                  ),
+                                ),
+                                Container(
+                                  width: 35,
+                                  child: Center(
+                                    child: Text(
+                                        "${(volume * 100).toInt().toString()}",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .subtitle2),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ],
                         ))
                   ],
