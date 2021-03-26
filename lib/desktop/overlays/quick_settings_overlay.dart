@@ -19,11 +19,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:pangolin/internal/locales/locale_strings.g.dart';
 import 'package:pangolin/utils/wm_api.dart';
+import 'package:pangolin/desktop/overlays/power_overlay.dart';
 import 'package:pangolin/widgets/qs_button.dart';
 import 'package:provider/provider.dart';
 import 'package:utopia_wm/wm.dart';
 
-class QuickSettingsOverlay extends StatelessWidget {
+class QuickSettingsOverlay extends StatefulWidget {
+  @override
+  _QuickSettingsOverlayState createState() => _QuickSettingsOverlayState();
+}
+
+class _QuickSettingsOverlayState extends State<QuickSettingsOverlay> {
   @override
   Widget build(BuildContext context) {
     final _animation =
@@ -39,39 +45,48 @@ class QuickSettingsOverlay extends StatelessWidget {
             scale: _animation,
             alignment: FractionalOffset(0.8, 1.0),
             child: BoxContainer(
-              decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                        color: Colors.black.withOpacity(0.2),
-                        spreadRadius: 5,
-                        blurRadius: 50)
-                  ],
-                  border: Border.all(
-                      color: Theme.of(context).backgroundColor, width: 2),
-                  borderRadius: BorderRadius.circular(10)),
+              decoration: BoxDecoration(boxShadow: [
+                BoxShadow(
+                    color: Colors.black.withOpacity(0.2),
+                    spreadRadius: 5,
+                    blurRadius: 50)
+              ], borderRadius: BorderRadius.circular(5)),
               useSystemOpacity: true,
               color: Theme.of(context).backgroundColor,
               width: 500,
-              height: 328,
+              height: 500,
               child: SizedBox(
                 height: 48,
                 child: Column(
                   children: [
                     BoxContainer(
-                      padding: EdgeInsets.symmetric(horizontal: 16),
                       color: Theme.of(context).backgroundColor,
                       useSystemOpacity: true,
-                      height: 48,
+                      height: 45,
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.max,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
+                          new Padding(
+                            padding: EdgeInsets.only(left: 10, right: 10),
+                            child: new CircleAvatar(
+                              radius: 13,
+                              backgroundImage: AssetImage(
+                                "assets/images/other/null.png",
+                              ),
+                            ),
+                          ),
+                          new Text(
+                            "Live Session",
+                            style: Theme.of(context).textTheme.subtitle2,
+                          ),
                           InkWell(
-                            child: Icon(Icons.edit),
+                            child: Icon(Icons.keyboard_arrow_down),
                             mouseCursor: SystemMouseCursors.click,
                           ),
-                          Text(
-                            "Connections",
-                            style: Theme.of(context).textTheme.headline6,
+                          new Expanded(
+                            child: new Container(),
                           ),
                           InkWell(
                             child: Icon(Icons.settings_outlined),
@@ -87,26 +102,51 @@ class QuickSettingsOverlay extends StatelessWidget {
                                           initialSize: Size(1280, 720))); */
                             },
                           ),
+                          Padding(
+                            padding: EdgeInsets.only(left: 20, right: 20),
+                            child: InkWell(
+                              child: Icon(Icons.power_settings_new),
+                              mouseCursor: SystemMouseCursors.click,
+                              onTap: () {
+                                WmAPI.of(context).popOverlayEntry(
+                                    Provider.of<DismissibleOverlayEntry>(
+                                        context,
+                                        listen: false));
+                                WmAPI.of(context)
+                                    .pushOverlayEntry(DismissibleOverlayEntry(
+                                        uniqueId: "power_menu",
+                                        content: PowerOverlay(),
+                                        duration: Duration.zero,
+                                        background: BoxContainer(
+                                          color: Theme.of(context)
+                                              .dialogBackgroundColor
+                                              .withOpacity(0.5),
+                                          useBlur: false,
+                                        )));
+                                setState(() {});
+                              },
+                            ),
+                          )
                         ],
                       ),
                     ),
                     SizedBox(
-                      height: 280,
+                      height: 380,
                       width: 500,
                       child: GridView.count(
                         physics: BouncingScrollPhysics(),
-                        padding: EdgeInsets.all(24),
-                        crossAxisCount: 4,
-                        mainAxisSpacing: 4,
+                        padding: EdgeInsets.only(top: 16, left: 16, right: 16),
+                        crossAxisCount: 5,
+                        mainAxisSpacing: 10,
                         children: [
                           QuickSettingsButton(
                             //TODO fix locale-gen loader
-                            title: LocaleStrings.qs.wifi,
-                            icon: Icons.signal_wifi_4_bar_rounded,
+                            title: '85%',
+                            icon: Icons.battery_full,
                           ),
                           QuickSettingsButton(
-                            title: LocaleStrings.qs.bluetooth,
-                            icon: Icons.bluetooth_connected_outlined,
+                            title: LocaleStrings.qs.dnd,
+                            icon: Icons.do_not_disturb_off,
                           ),
                           QuickSettingsButton(
                             title: "Ethernet",
@@ -121,7 +161,7 @@ class QuickSettingsOverlay extends StatelessWidget {
                             icon: Icons.location_on_rounded,
                           ),
                           QuickSettingsButton(
-                            title: "Nearby\nShare",
+                            title: "NearbyShare",
                             icon: Icons.ios_share,
                           ),
                           QuickSettingsButton(
