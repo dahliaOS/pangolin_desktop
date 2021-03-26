@@ -23,6 +23,7 @@ import 'package:pangolin/desktop/overlays/power_overlay.dart';
 import 'package:pangolin/widgets/qs_button.dart';
 import 'package:provider/provider.dart';
 import 'package:utopia_wm/wm.dart';
+import 'package:pangolin/utils/globals.dart';
 
 class QuickSettingsOverlay extends StatefulWidget {
   @override
@@ -140,8 +141,8 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay> {
                       ),
                     ),
                     SizedBox(
-                      height: 380,
                       width: 500,
+                      height: 200,
                       child: GridView.count(
                         physics: BouncingScrollPhysics(),
                         padding: EdgeInsets.only(top: 0, left: 16, right: 16),
@@ -192,6 +193,18 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay> {
                         ],
                       ),
                     ),
+                    Padding(
+                        padding: EdgeInsets.only(left: 16),
+                        child: Row(
+                          children: [
+                            actionChip(Icons.more_time, "Reminder", context),
+                            actionChip(Icons.info_outline, totalVersionNumber,
+                                context),
+                            actionChip(Icons.domain_verification, "dahliaOS.io",
+                                context),
+                            actionChip(Icons.edit, "New", context)
+                          ],
+                        ))
                   ],
                 ),
               ),
