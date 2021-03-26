@@ -17,7 +17,7 @@ import 'package:utopia_wm/wm.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-String totalVersionNumber = "21.02.7";
+String totalVersionNumber = "21030";
 String headingFeatureString =
     "dahliaOS Linux-Based " + totalVersionNumber + " ...";
 String longName = "dahliaOS Linux-Based " + totalVersionNumber + " PRE-RELEASE";
