@@ -58,3 +58,31 @@ class QuickSettingsButton extends StatelessWidget {
     );
   }
 }
+
+Widget actionChip(IconData icon, String label, context) {
+  return Padding(
+      padding: EdgeInsets.only(right: 8),
+      child: Container(
+        height: 28,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(
+            Radius.circular(100),
+          ),
+          color: Colors.white.withOpacity(0.25),
+        ),
+        child: new Row(
+          children: [
+            new Padding(
+                padding: EdgeInsets.only(left: 8, right: 8, bottom: 2),
+                child: Icon(
+                  icon,
+                  size: 15,
+                )),
+            new Text(
+              label + "   ",
+              style: Theme.of(context).textTheme.subtitle2,
+            )
+          ],
+        ),
+      ));
+}
