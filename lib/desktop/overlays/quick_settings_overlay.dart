@@ -23,7 +23,7 @@ import 'package:pangolin/widgets/qs_button.dart';
 import 'package:provider/provider.dart';
 import 'package:utopia_wm/wm.dart';
 
-class ActionCenterOverlay extends StatelessWidget {
+class QuickSettingsOverlay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _animation =

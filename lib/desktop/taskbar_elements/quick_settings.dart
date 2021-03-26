@@ -16,12 +16,12 @@ limitations under the License.
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:pangolin/desktop/overlays/action_center_overlay.dart';
+import 'package:pangolin/desktop/overlays/quick_settings_overlay.dart';
 import 'package:pangolin/utils/wm_api.dart';
 import 'package:provider/provider.dart';
 import 'package:utopia_wm/wm.dart';
 
-class ActionCetnerButton extends StatelessWidget {
+class QuickSettingsButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -42,7 +42,7 @@ class ActionCetnerButton extends StatelessWidget {
             onTap: () {
               WmAPI.of(context).pushOverlayEntry(DismissibleOverlayEntry(
                   uniqueId: "action_center",
-                  content: ActionCenterOverlay(),
+                  content: QuickSettingsOverlay(),
                   duration: Duration(milliseconds: 100),
                   curve: Curves.easeInOut));
             },
