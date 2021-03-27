@@ -66,7 +66,7 @@ discretion of the dahliaOS Project Integrity Team:
 
  * a request for an apology;
  * a private or public warning or reprimand;
- * a temporary ban from the Discord server, blog, dahlia-os repository or
+ * a temporary ban from the Discord server, blog, dahliaOS repository or
    organization, or other dahliaOS-supported communication group, including
    loss of committer status;
  * a permanent ban from any of the above, or from all current and future
