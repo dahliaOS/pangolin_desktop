@@ -34,7 +34,7 @@ class QuickSettingsOverlay extends StatefulWidget {
 class _QuickSettingsOverlayState extends State<QuickSettingsOverlay> {
   double brightness = 0.8;
   double volume = 0.5;
-  String _dateString;
+  /*String _dateString;
   String _timeString;
   @override
   void initState() {
@@ -62,11 +62,11 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay> {
   //Format date using language
   String _formatLocaleDate(DateTime dateTime) {
     return DateFormat.yMMMMd().format(dateTime);
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
-    _getTime(context);
+    // _getTime(context);
     final _animation =
         Provider.of<DismissibleOverlayEntry>(context, listen: false).animation;
     return Positioned(
@@ -89,7 +89,7 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay> {
               useSystemOpacity: true,
               color: Theme.of(context).backgroundColor,
               width: 500,
-              height: 480,
+              height: 500,
               child: SizedBox(
                 height: 48,
                 child: Column(
@@ -318,7 +318,7 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text(timeString,
+                                      Text("timeString",
                                           style: Theme.of(context)
                                               .textTheme
                                               .subtitle2),
@@ -327,7 +327,7 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay> {
                                           style: Theme.of(context)
                                               .textTheme
                                               .subtitle2),
-                                      Text(_dateString,
+                                      Text("_dateString",
                                           style: Theme.of(context)
                                               .textTheme
                                               .subtitle2),
