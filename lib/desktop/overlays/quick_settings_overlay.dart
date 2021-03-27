@@ -89,7 +89,7 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay> {
               useSystemOpacity: true,
               color: Theme.of(context).backgroundColor,
               width: 500,
-              height: 500,
+              height: 480,
               child: SizedBox(
                 height: 48,
                 child: Column(
