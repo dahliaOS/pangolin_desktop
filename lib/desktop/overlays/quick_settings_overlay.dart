@@ -13,7 +13,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-
+import 'dart:async';
+import 'package:intl/intl.dart';
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -33,8 +34,39 @@ class QuickSettingsOverlay extends StatefulWidget {
 class _QuickSettingsOverlayState extends State<QuickSettingsOverlay> {
   double brightness = 0.8;
   double volume = 0.5;
+  String _dateString;
+  String _timeString;
+  @override
+  void initState() {
+    super.initState();
+    _timeString = _formatDateTime(DateTime.now(), 'h:mm');
+    _dateString = _formatDateTime(DateTime.now(), 'd MMMM yyyy');
+
+    Timer.periodic(Duration(milliseconds: 100), (Timer t) => _getTime(context));
+  }
+
+  void _getTime(BuildContext context) {
+    final DateTime now = DateTime.now();
+    final String formattedTime = _formatDateTime(now, 'h:mm');
+    final String formattedDate = _formatLocaleDate(now);
+    setState(() {
+      _timeString = formattedTime;
+      _dateString = formattedDate;
+    });
+  }
+
+  String _formatDateTime(DateTime dateTime, String pattern) {
+    return DateFormat(pattern).format(dateTime);
+  }
+
+  //Format date using language
+  String _formatLocaleDate(DateTime dateTime) {
+    return DateFormat.yMMMMd().format(dateTime);
+  }
+
   @override
   Widget build(BuildContext context) {
+    _getTime(context);
     final _animation =
         Provider.of<DismissibleOverlayEntry>(context, listen: false).animation;
     return Positioned(
@@ -57,7 +89,7 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay> {
               useSystemOpacity: true,
               color: Theme.of(context).backgroundColor,
               width: 500,
-              height: 500,
+              height: 480,
               child: SizedBox(
                 height: 48,
                 child: Column(
@@ -271,7 +303,39 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay> {
                               ],
                             ),
                           ],
-                        ))
+                        )),
+                    Container(
+                      height: 55,
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 18.0),
+                        child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(timeString,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .subtitle2),
+                                      //Icon(Icons.brightness_1, size: 10.0,color: Colors.white),
+                                      Text('  |  ',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .subtitle2),
+                                      Text(_dateString,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .subtitle2),
+                                    ],
+                                  ),
+                                ])),
+                      ),
+                    )
                   ],
                 ),
               ),
