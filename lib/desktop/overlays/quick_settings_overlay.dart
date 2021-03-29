@@ -13,8 +13,6 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import 'dart:async';
-import 'package:intl/intl.dart';
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -85,7 +83,7 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay> {
                     color: Colors.black.withOpacity(0.2),
                     spreadRadius: 5,
                     blurRadius: 50)
-              ], borderRadius: BorderRadius.circular(5)),
+              ], borderRadius: BorderRadius.circular(10)),
               useSystemOpacity: true,
               color: Theme.of(context).backgroundColor,
               width: 500,
@@ -236,7 +234,7 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay> {
                                 context),
                             actionChip(Icons.domain_verification, "dahliaOS.io",
                                 context),
-                            actionChip(Icons.edit, "New", context)
+                            //actionChip(Icons.add, null, context)
                           ],
                         )),
                     Container(
@@ -305,7 +303,7 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay> {
                           ],
                         )),
                     Container(
-                      height: 55,
+                      height: 50,
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 18.0),
                         child: SingleChildScrollView(
