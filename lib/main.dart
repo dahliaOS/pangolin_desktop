@@ -25,14 +25,16 @@ import 'package:provider/provider.dart';
 import 'package:pangolin/internal/visualEngine/visualEngine.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  loadVisualEngine();
+
   await DatabaseManager.initialseDatabase();
   PreferenceProvider();
   DateTimeManager.initialiseScheduler();
   DateTimeManager.formatTime();
   DateTimeManager.setDateFormat("yMd");
   DateTimeManager.formatDate();
-  //loadVisualEngine();
-
+  
   await EasyLocalization.ensureInitialized();
   runApp(
     EasyLocalization(
