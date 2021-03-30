@@ -24,6 +24,7 @@ class VisualInformation {
       required this.titleInfo});
 
   factory VisualInformation.fromJson(Map<String, dynamic> parsedJson) {
+
     return VisualInformation(
         taskbarHeight: parsedJson['taskbarHeight'],
         opaqueTitlebars: parsedJson['opaqueTitlebars'],
