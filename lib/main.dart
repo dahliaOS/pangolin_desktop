@@ -22,6 +22,7 @@ import 'package:pangolin/internal/locales/generated_asset_loader.g.dart';
 import 'package:pangolin/internal/locales/locales.g.dart';
 import 'package:pangolin/utils/theme.dart';
 import 'package:provider/provider.dart';
+import 'package:pangolin/internal/visualEngine/visualEngine.dart';
 
 void main() async {
   await DatabaseManager.initialseDatabase();
@@ -30,6 +31,8 @@ void main() async {
   DateTimeManager.formatTime();
   DateTimeManager.setDateFormat("yMd");
   DateTimeManager.formatDate();
+  //loadVisualEngine();
+
   await EasyLocalization.ensureInitialized();
   runApp(
     EasyLocalization(
