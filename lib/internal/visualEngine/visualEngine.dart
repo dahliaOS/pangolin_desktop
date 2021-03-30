@@ -8,6 +8,8 @@ Future<String> _loadDataAsset() async {
 }
 
 Future loadVisualEngine() async {
+  
+
   String jsonString = await _loadDataAsset();
   final jsonResponse = json.decode(jsonString);
   VisualInformation visuals = new VisualInformation.fromJson(jsonResponse);
