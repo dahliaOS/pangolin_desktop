@@ -16,17 +16,24 @@ limitations under the License.
 
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:pangolin/utils/app_list.dart';
 import 'package:pangolin/utils/wm_api.dart';
 import 'package:provider/provider.dart';
 import 'package:utopia_wm/wm.dart';
 
-class AppLauncherButton extends StatelessWidget {
+class AppLauncherButton extends StatefulWidget {
   final String packageName;
   const AppLauncherButton(this.packageName);
+
+  @override
+  _AppLauncherButtonState createState() => _AppLauncherButtonState();
+}
+
+class _AppLauncherButtonState extends State<AppLauncherButton> {
   @override
   Widget build(BuildContext context) {
-    final Application application = getApp(packageName);
+    final Application application = getApp(widget.packageName);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Material(
@@ -34,32 +41,40 @@ class AppLauncherButton extends StatelessWidget {
         color: Colors.transparent,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: InkWell(
-            borderRadius: BorderRadius.circular(12),
-            hoverColor: Theme.of(context).cardColor.withOpacity(0.5),
-            focusColor: Colors.white,
-            onTap: () {
-              WmAPI.of(context).popOverlayEntry(
-                  Provider.of<DismissibleOverlayEntry>(context, listen: false));
-              WmAPI.of(context).openApp(packageName);
+          child: GestureDetector(
+            onSecondaryTap: () {
+              //right click to pin/unpin
+              Provider.of<PreferenceProvider>(context, listen: false)
+                  .togglePinnedApp(application.packageName ?? "");
             },
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  // color: Colors.yellow,
-                  child: Image.asset(
-                    "assets/icons/${application.iconName}.png",
+            child: InkWell(
+              borderRadius: BorderRadius.circular(12),
+              hoverColor: Theme.of(context).cardColor.withOpacity(0.5),
+              focusColor: Colors.white,
+              onTap: () {
+                WmAPI.of(context).popOverlayEntry(
+                    Provider.of<DismissibleOverlayEntry>(context,
+                        listen: false));
+                WmAPI.of(context).openApp(widget.packageName);
+              },
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    // color: Colors.yellow,
+                    child: Image.asset(
+                      "assets/icons/${application.iconName}.png",
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height: 8,
-                ),
-                Text(
-                  application.name ?? "",
-                  style: TextStyle(fontSize: 17, color: Colors.white),
-                )
-              ],
+                  SizedBox(
+                    height: 18,
+                  ),
+                  Text(
+                    application.name ?? "",
+                    style: TextStyle(fontSize: 17, color: Colors.white),
+                  )
+                ],
+              ),
             ),
           ),
         ),
