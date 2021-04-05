@@ -16,7 +16,9 @@ limitations under the License.
 
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
+import 'package:pangolin/desktop/taskbar_elements/taskbar_item.dart';
 import 'package:provider/provider.dart';
+import 'package:utopia_wm/wm.dart';
 
 class Taskbar extends StatelessWidget {
   final List<Widget>? leading, trailing;
@@ -24,6 +26,8 @@ class Taskbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<String> _pinnedApps =
+        Provider.of<PreferenceProvider>(context).pinnedApps;
     return Positioned(
       left: 0,
       right: 0,
@@ -33,34 +37,71 @@ class Taskbar extends StatelessWidget {
           height: 48,
           useSystemOpacity: true,
           color: Theme.of(context).backgroundColor,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          child: Stack(
+            //mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                children: leading ?? [SizedBox.shrink()],
+              Positioned(
+                left: 0,
+                right: 0,
+                bottom: 0,
+                height: 48,
+                child: Row(
+                  children: leading ?? [SizedBox.shrink()],
+                ),
               ),
-              Row(
-                children: trailing ?? [SizedBox.shrink()],
+              Positioned.fill(
+                child: Align(
+                  alignment: Alignment.center,
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: _pinnedApps
+                            .map<Widget>((e) => TaskbarItem(packageName: e))
+                            .toList()
+                            .joinType(SizedBox(
+                              width: 4,
+                            ))
+                              ..addAll(
+                                  Provider.of<WindowHierarchyState>(context)
+                                      .windows
+                                      .map<Widget>((e) =>
+                                          _pinnedApps.contains(e.packageName)
+                                              ? SizedBox.shrink()
+                                              : TaskbarItem(
+                                                  packageName: e.packageName))
+                                      .toList())),
+                  ),
+                ),
+              ),
+              Positioned(
+                left: 0,
+                right: 0,
+                bottom: 0,
+                height: 48,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: trailing ?? [SizedBox.shrink()],
+                ),
               )
             ],
-          )
-
-          /*Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 4.0),
-              child: FloatingActionButton(
-                onPressed: () {
-                  Provider.of<WindowHierarchyState>(context, listen: false)
-                      .pushWindowEntry(WindowEntry.withDefaultToolbar(
-                          content: Example(), packageName: "test"));
-                },
-                child: Icon(Icons.brightness_5_outlined),
-              ),
-            )
-          ],
-        ),*/
-          ),
+          )),
     );
+  }
+}
+
+extension JoinList<T> on List<T> {
+  List<T> joinType(T separator) {
+    List<T> workList = [];
+
+    for (int i = 0; i < (length * 2) - 1; i++) {
+      if (i % 2 == 0) {
+        workList.add(this[i ~/ 2]);
+      } else {
+        workList.add(separator);
+      }
+    }
+
+    return workList;
   }
 }
