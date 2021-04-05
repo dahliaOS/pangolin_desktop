@@ -115,7 +115,7 @@ packages:
     description:
       path: "."
       ref: "feature/pinnedApps"
-      resolved-ref: "9eda4beefe7bb4ef86569bbbc6e36597283679f8"
+      resolved-ref: "2b7f8bc7b85abb028e9ecf8a4fe1833738b5a1e2"
       url: "https://github.com/dahliaOS/backend.git"
     source: git
     version: "0.0.1+1"

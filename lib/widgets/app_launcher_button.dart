@@ -45,7 +45,7 @@ class _AppLauncherButtonState extends State<AppLauncherButton> {
             onSecondaryTap: () {
               //right click to pin/unpin
               Provider.of<PreferenceProvider>(context, listen: false)
-                  .addToPinnedApps = application.packageName ?? "";
+                  .togglePinnedApp(application.packageName ?? "");
             },
             child: InkWell(
               borderRadius: BorderRadius.circular(12),
