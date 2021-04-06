@@ -39,15 +39,17 @@ class QuickSettingsState extends State<QuickSettings> {
   double brightness = 0.8;
   double volume = 0.5;
 
-  String _dateString;
-  String _timeString;
+  ValueNotifier<String> _timeStringNotifier;
+  ValueNotifier<String> _dateStringNotifier;
 
   @override
   void initState() {
     super.initState();
     Pangolin.settingsBox = Hive.box("settings");
-    _timeString = _formatDateTime(DateTime.now(), 'h:mm');
-    _dateString = _formatDateTime(DateTime.now(), 'd MMMM yyyy');
+    _timeStringNotifier =
+        ValueNotifier(_formatDateTime(DateTime.now(), 'h:mm'));
+    _dateStringNotifier =
+        ValueNotifier(_formatDateTime(DateTime.now(), 'd MMMM yyyy'));
     if (!isTesting)
       Timer.periodic(
           Duration(milliseconds: 100), (Timer t) => _getTime(context));
@@ -61,10 +63,9 @@ class QuickSettingsState extends State<QuickSettings> {
         ? _formatDateTime(now, 'h:mm:ss')
         : _formatDateTime(now, 'h:mm');
     final String formattedDate = _formatLocaleDate(now);
-    setState(() {
-      _timeString = formattedTime;
-      _dateString = formattedDate;
-    });
+
+    _timeStringNotifier.value = formattedTime;
+    _dateStringNotifier.value = formattedDate;
   } //
 
   //Default date format
@@ -522,10 +523,22 @@ class QuickSettingsState extends State<QuickSettings> {
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(_timeString, style: biggerFont),
+                            ValueListenableBuilder(
+                              valueListenable: _timeStringNotifier,
+                              builder: (BuildContext context, String time,
+                                  Widget child) {
+                                return Text(time, style: biggerFont);
+                              },
+                            ),
                             //Icon(Icons.brightness_1, size: 10.0,color: Colors.white),
                             Text('  |  ', style: biggerFont),
-                            Text(_dateString, style: biggerFont),
+                            ValueListenableBuilder(
+                              valueListenable: _dateStringNotifier,
+                              builder: (BuildContext context, String date,
+                                  Widget child) {
+                                return Text(date, style: biggerFont);
+                              },
+                            ),
                           ],
                         ),
                       ])),

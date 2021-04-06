@@ -18,6 +18,7 @@ import 'dart:async';
 import 'dart:ui';
 
 import 'package:Pangolin/desktop/quicksettings/quick_settings.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -40,15 +41,14 @@ class Clock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return new MaterialApp(
       title: 'Clock',
-      theme: new ThemeData(
+      theme: ThemeData(
         platform: TargetPlatform.fuchsia,
         primaryColor: Colors.blue[900],
-        brightness: Brightness.dark
+        brightness: Brightness.dark,
       ),
-      home: ClockApp()
+      home: ClockApp(),
     );
   }
 }
@@ -73,7 +73,10 @@ class _ClockApp extends State<ClockApp> with TickerProviderStateMixin {
               controller: tcon,
               indicator: BoxDecoration(
                 color: Theme.of(context).canvasColor,
-                borderRadius: BorderRadius.only(topLeft: Radius.circular(8), topRight: Radius.circular(8)),
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(8),
+                  topRight: Radius.circular(8),
+                ),
               ),
               isScrollable: true,
               tabs: [
@@ -91,25 +94,22 @@ class _ClockApp extends State<ClockApp> with TickerProviderStateMixin {
             PopupMenuButton(
               icon: Icon(Icons.more_vert),
               itemBuilder: (context) => <PopupMenuEntry>[
-                PopupMenuItem(
-                  child: Text("Settings"),
-                  value: "settings"
-                )
+                PopupMenuItem(child: Text("Settings"), value: "settings")
               ],
               onSelected: (value) {
                 if (value == "settings") notImplemented(context);
               },
             ),
-          ]
+          ],
         ),
       ),
       body: TabBarView(
         controller: tcon,
         children: [
           WorldClockTab(),
-          AlarmsTab()
+          AlarmsTab(),
         ],
-      )
+      ),
     );
   }
 }
@@ -120,27 +120,48 @@ class WorldClockTab extends StatefulWidget {
 }
 
 class _WorldClockTabState extends State<WorldClockTab> {
-
-  DateTime _datetime = DateTime.now();
-  Timer _ctimer;
+  Timer _timer;
+  ValueNotifier<String> _timeStringNotifier;
 
   @override
   Widget build(BuildContext context) {
-    if (_ctimer == null) _ctimer = Timer.periodic(Duration(seconds: 1), (me) {
-      _datetime = DateTime.now();
-      setState(() {});
-    });
     return Material(
       child: Center(
-        child: Text(
-          "${_datetime.hour}:${_datetime.minute < 10 ? "0"+_datetime.minute.toString() : _datetime.minute}:${_datetime.second < 10 ? "0"+_datetime.second.toString() : _datetime.second}",
-          style: TextStyle(
-            fontSize: 48,
-            fontWeight: FontWeight.bold
-          ),
-        )
+        child: ValueListenableBuilder(
+          valueListenable: _timeStringNotifier,
+          builder: (BuildContext context, String time, Widget child) {
+            return Text(
+              time,
+              style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
+            );
+          },
+        ),
       ),
     );
+  }
+
+  @override
+  void initState() {
+    _timeStringNotifier = ValueNotifier(_formatDateTime(DateTime.now()));
+    _timer = Timer.periodic(Duration(seconds: 1), (Timer t) => _getTime());
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    // Cancel the timer once we are done with it
+    _timer.cancel();
+    super.dispose();
+  }
+
+  String _formatDateTime(DateTime dateTime) {
+    return DateFormat.Hms().format(dateTime);
+  }
+
+  void _getTime() {
+    final DateTime now = DateTime.now();
+    final String formattedDateTime = _formatDateTime(now);
+    _timeStringNotifier.value = formattedDateTime;
   }
 }
 
@@ -149,7 +170,7 @@ class AlarmsTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       child: Center(
-        child: Icon(Icons.timer_rounded)
+        child: Icon(Icons.timer_rounded),
       ),
     );
   }

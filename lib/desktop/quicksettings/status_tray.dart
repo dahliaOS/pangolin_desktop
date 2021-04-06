@@ -42,10 +42,10 @@ class StatusTrayWidget extends StatefulWidget {
 }
 
 class StatusTrayWidgetState extends State<StatusTrayWidget> {
-  String _timeString;
+  ValueNotifier<String> _timeStringNotifier;
   @override
   void initState() {
-    _timeString = _formatDateTime(DateTime.now());
+    _timeStringNotifier = ValueNotifier(_formatDateTime(DateTime.now()));
     if (!isTesting)
       Timer.periodic(Duration(seconds: 1), (Timer t) => _getTime());
     else
@@ -56,9 +56,8 @@ class StatusTrayWidgetState extends State<StatusTrayWidget> {
   void _getTime() {
     final DateTime now = DateTime.now();
     final String formattedDateTime = _formatDateTime(now);
-    setState(() {
-      _timeString = formattedDateTime;
-    });
+
+    _timeStringNotifier.value = formattedDateTime;
   }
 
   String _formatDateTime(DateTime dateTime) {
@@ -117,14 +116,20 @@ class StatusTrayWidgetState extends State<StatusTrayWidget> {
                           ? Colors.white
                           : Colors.black,
                     ),
-                    Text(
-                      _timeString,
-                      style: TextStyle(
-                        fontSize: 15,
-                        color: Pangolin.settingsBox.get("desktopDarkMode")
-                            ? Colors.white
-                            : Colors.black,
-                      ),
+                    ValueListenableBuilder(
+                      valueListenable: _timeStringNotifier,
+                      builder:
+                          (BuildContext context, String time, Widget child) {
+                        return Text(
+                          time,
+                          style: TextStyle(
+                            fontSize: 15,
+                            color: Pangolin.settingsBox.get("desktopDarkMode")
+                                ? Colors.white
+                                : Colors.black,
+                          ),
+                        );
+                      },
                     ),
                   ]),
             ),
