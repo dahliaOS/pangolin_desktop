@@ -120,6 +120,7 @@ class WorldClockTab extends StatefulWidget {
 }
 
 class _WorldClockTabState extends State<WorldClockTab> {
+  Timer _timer;
   ValueNotifier<String> _timeStringNotifier;
 
   @override
@@ -142,8 +143,15 @@ class _WorldClockTabState extends State<WorldClockTab> {
   @override
   void initState() {
     _timeStringNotifier = ValueNotifier(_formatDateTime(DateTime.now()));
-    Timer.periodic(Duration(seconds: 1), (Timer t) => _getTime());
+    _timer = Timer.periodic(Duration(seconds: 1), (Timer t) => _getTime());
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    // Cancel the timer once we are done with it
+    _timer.cancel();
+    super.dispose();
   }
 
   String _formatDateTime(DateTime dateTime) {
