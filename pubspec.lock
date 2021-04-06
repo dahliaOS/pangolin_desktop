@@ -51,16 +51,16 @@ packages:
       name: cached_network_image
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.0-nullsafety"
+    version: "3.0.0"
   calculator:
     dependency: "direct main"
     description:
       path: "."
       ref: HEAD
-      resolved-ref: a93d019e6b6213ed3cd261411743a38705e43501
+      resolved-ref: be61222237167afb66d264be6887d2e1f2af3417
       url: "https://github.com/dahliaOS/calculator.git"
     source: git
-    version: "1.0.0+1"
+    version: "1.1.0+10"
   characters:
     dependency: transitive
     description:
@@ -114,8 +114,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: HEAD
-      resolved-ref: "0d59411c56d359230db8ebef8d6632fabe8a32a5"
+      ref: "feature/pinnedApps"
+      resolved-ref: "2b7f8bc7b85abb028e9ecf8a4fe1833738b5a1e2"
       url: "https://github.com/dahliaOS/backend.git"
     source: git
     version: "0.0.1+1"
@@ -148,7 +148,7 @@ packages:
       name: expressions
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.0"
+    version: "0.2.1"
   fake_async:
     dependency: transitive
     description:
@@ -175,7 +175,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: a8883f9337a7141f9830de7afed53d2bbabc65d4
+      resolved-ref: f724dd3892cc8a82a112672c0049d339a5e53fa0
       url: "https://github.com/dahliaOS/files.git"
     source: git
     version: "1.0.0+1"
@@ -190,14 +190,14 @@ packages:
       name: flutter_blurhash
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.5.4-nullsafety.0"
+    version: "0.6.0"
   flutter_cache_manager:
     dependency: transitive
     description:
       name: flutter_cache_manager
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.0-nullsafety.2"
+    version: "3.0.1"
   flutter_colorpicker:
     dependency: "direct main"
     description:
@@ -245,7 +245,7 @@ packages:
       name: hive
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0"
+    version: "2.0.2"
   http:
     dependency: transitive
     description:
@@ -313,7 +313,7 @@ packages:
       name: octo_image
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.0-nullsafety.1"
+    version: "1.0.0+1"
   path:
     dependency: transitive
     description:
@@ -390,7 +390,7 @@ packages:
       name: process
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.2.1"
+    version: "4.2.0"
   provider:
     dependency: "direct main"
     description:
@@ -583,8 +583,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: HEAD
-      resolved-ref: b5a0386da6dee4e66f1f772e5c54332f6bbf0eae
+      ref: "feature/pinnedApps"
+      resolved-ref: b2f35cb749f85a07d8b8a9c26a6ef61166be28ee
       url: "https://github.com/dahliaOS/utopia.git"
     source: git
     version: "1.0.0+1"
@@ -594,7 +594,7 @@ packages:
       name: uuid
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.2"
+    version: "3.0.3"
   vector_math:
     dependency: transitive
     description:
@@ -640,7 +640,7 @@ packages:
       name: win32
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.4"
+    version: "2.0.5"
   xdg_directories:
     dependency: transitive
     description:
