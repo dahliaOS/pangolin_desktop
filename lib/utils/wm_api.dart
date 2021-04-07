@@ -45,6 +45,7 @@ class WmAPI {
 
   void openApp(String packageName) {
     pushWindowEntry(WindowEntry.withDefaultToolbar(
+      packageName: packageName,
       content: getApp(packageName).app ?? ErrorWindow(),
       initialSize: Size(1280, 720),
       toolbarColor: getApp(packageName).color ?? Colors.grey,
