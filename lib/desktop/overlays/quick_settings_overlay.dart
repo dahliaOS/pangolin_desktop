@@ -16,13 +16,13 @@ limitations under the License.
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:pangolin/internal/locales/locale_strings.g.dart';
-import 'package:pangolin/utils/wm_api.dart';
 import 'package:pangolin/desktop/overlays/power_overlay.dart';
+import 'package:pangolin/internal/locales/locale_strings.g.dart';
+import 'package:pangolin/utils/globals.dart';
+import 'package:pangolin/utils/wm_api.dart';
 import 'package:pangolin/widgets/qs_button.dart';
 import 'package:provider/provider.dart';
 import 'package:utopia_wm/wm.dart';
-import 'package:pangolin/utils/globals.dart';
 
 class QuickSettingsOverlay extends StatefulWidget {
   @override
@@ -307,31 +307,49 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay> {
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 18.0),
                         child: SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text("timeString",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .subtitle2),
-                                      //Icon(Icons.brightness_1, size: 10.0,color: Colors.white),
-                                      Text('  |  ',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .subtitle2),
-                                      Text("_dateString",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .subtitle2),
-                                    ],
+                                  ValueListenableBuilder(
+                                    valueListenable:
+                                        DateTimeManager.getTimeNotifier()!,
+                                    builder: (BuildContext context, String time,
+                                        Widget? child) {
+                                      return Text(
+                                        time,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .subtitle2,
+                                      );
+                                    },
                                   ),
-                                ])),
+                                  //Icon(Icons.brightness_1, size: 10.0,color: Colors.white),
+                                  Text('  |  ',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .subtitle2),
+                                  ValueListenableBuilder(
+                                    valueListenable:
+                                        DateTimeManager.getTimeNotifier()!,
+                                    builder: (BuildContext context, String date,
+                                        Widget? child) {
+                                      return Text(
+                                        DateTimeManager.getDate().toString(),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .subtitle2,
+                                      );
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
                     )
                   ],

@@ -22,41 +22,54 @@ class DateClockWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        width: 96,
-        height: 48,
-        child: Padding(
-          padding: const EdgeInsets.all(4.0),
-          child: Material(
-            color: Colors.transparent,
-            child: InkWell(
-              borderRadius: BorderRadius.circular(4),
-              hoverColor: Theme.of(context).cardColor.withOpacity(0.5),
-              mouseCursor: SystemMouseCursors.click,
-              onTap: () {},
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                child: Center(
-                    child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      DateTimeManager.getTime().toString(),
-                      style: TextStyle(fontWeight: FontWeight.w500),
-                    ),
-                    SizedBox(
-                      height: 2,
-                    ),
-                    Text(
-                      DateTimeManager.getDate().toString(),
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
-                )),
-              ),
+      width: 96,
+      height: 48,
+      child: Padding(
+        padding: const EdgeInsets.all(4.0),
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            borderRadius: BorderRadius.circular(4),
+            hoverColor: Theme.of(context).cardColor.withOpacity(0.5),
+            mouseCursor: SystemMouseCursors.click,
+            onTap: () {},
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+              child: Center(
+                  child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ValueListenableBuilder(
+                    valueListenable: DateTimeManager.getTimeNotifier()!,
+                    builder:
+                        (BuildContext context, String time, Widget? child) {
+                      return Text(
+                        time,
+                        style: TextStyle(fontWeight: FontWeight.w500),
+                      );
+                    },
+                  ),
+                  SizedBox(
+                    height: 2,
+                  ),
+                  ValueListenableBuilder(
+                    valueListenable: DateTimeManager.getDateNotifier()!,
+                    builder:
+                        (BuildContext context, String date, Widget? child) {
+                      return Text(
+                        date,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              )),
             ),
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
