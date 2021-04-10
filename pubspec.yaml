@@ -10,15 +10,15 @@ dependencies:
   flutter:
     sdk: flutter
   dahlia_backend:
-    #path: ../dahlia_backend/
-    git:
-      url: https://github.com/dahliaOS/backend.git
-      ref: main
+    path: backend/
+    #git:
+    #  url: https://github.com/dahliaOS/backend.git
+    #  ref: main
   utopia_wm:
-    #path: ../utopia/
-    git:
-      url: https://github.com/dahliaOS/utopia.git
-      ref: utopia
+    path: utopia/
+    #git:
+    #  url: https://github.com/dahliaOS/utopia.git
+    #  ref: utopia
   provider: ^5.0.0
   animations: ^2.0.0-nullsafety.0
   easy_localization: ^3.0.0

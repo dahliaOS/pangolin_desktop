@@ -113,11 +113,9 @@ packages:
   dahlia_backend:
     dependency: "direct main"
     description:
-      path: "."
-      ref: "feature/pinnedApps"
-      resolved-ref: "2b7f8bc7b85abb028e9ecf8a4fe1833738b5a1e2"
-      url: "https://github.com/dahliaOS/backend.git"
-    source: git
+      path: backend
+      relative: true
+    source: path
     version: "0.0.1+1"
   dahlia_clock:
     dependency: "direct main"
@@ -205,11 +203,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.4.0"
-  flutter_driver:
-    dependency: transitive
-    description: flutter
-    source: sdk
-    version: "0.0.0"
   flutter_localizations:
     dependency: transitive
     description: flutter
@@ -221,11 +214,6 @@ packages:
     source: sdk
     version: "0.0.0"
   flutter_web_plugins:
-    dependency: transitive
-    description: flutter
-    source: sdk
-    version: "0.0.0"
-  fuchsia_remote_debug_protocol:
     dependency: transitive
     description: flutter
     source: sdk
@@ -267,11 +255,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.2"
-  integration_test:
-    dependency: "direct dev"
-    description: flutter
-    source: sdk
-    version: "0.0.0"
   intl:
     dependency: "direct main"
     description:
@@ -508,13 +491,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0"
-  sync_http:
-    dependency: transitive
-    description:
-      name: sync_http
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.3.0"
   synchronized:
     dependency: transitive
     description:
@@ -582,11 +558,9 @@ packages:
   utopia_wm:
     dependency: "direct main"
     description:
-      path: "."
-      ref: "feature/pinnedApps"
-      resolved-ref: b2f35cb749f85a07d8b8a9c26a6ef61166be28ee
-      url: "https://github.com/dahliaOS/utopia.git"
-    source: git
+      path: utopia
+      relative: true
+    source: path
     version: "1.0.0+1"
   uuid:
     dependency: transitive
@@ -602,13 +576,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
-  vm_service:
-    dependency: transitive
-    description:
-      name: vm_service
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "6.1.0+1"
   web_browser:
     dependency: "direct main"
     description:
@@ -618,13 +585,6 @@ packages:
       url: "https://github.com/dahliaOS/web_browser.git"
     source: git
     version: "1.0.0+1"
-  webdriver:
-    dependency: transitive
-    description:
-      name: webdriver
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.0.0"
   welcome:
     dependency: "direct main"
     description:
