@@ -33,7 +33,14 @@ class Desktop extends StatelessWidget {
       GlobalKey<WindowHierarchyState>();
   @override
   Widget build(BuildContext context) {
+    final _feature = Provider.of<FeatureFlags>(context);
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          _feature.useAcrylic = !_feature.useAcrylic;
+          print(_feature.useAcrylic);
+        },
+      ),
       body: WindowHierarchy(
           key: wmKey,
           rootWindow: Wallpaper(),

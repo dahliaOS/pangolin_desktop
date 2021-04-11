@@ -12,7 +12,7 @@ limitations under the License.
 */
 
 import 'package:dahlia_backend/dahlia_backend.dart';
-import 'package:pangolin/settings/pages/advanved_features.dart';
+import 'package:pangolin/settings/pages/developer_options.dart';
 import 'package:pangolin/settings/pages/backup.dart';
 import 'package:pangolin/settings/pages/about.dart';
 import 'package:pangolin/settings/pages/accounts.dart';
@@ -87,7 +87,7 @@ class Settings extends StatelessWidget {
       "Developer Options",
       "Feature Flags, Advanced Options",
       Icons.developer_mode,
-      AdvancedFeatures(),
+      DeveloperOptions(),
     ),
     TileItem(
       "General management",

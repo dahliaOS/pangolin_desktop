@@ -1,0 +1,1 @@
+https://raw.githubusercontent.com/microsoft/microsoft-ui-xaml/master/dev/Materials/Acrylic/Assets/NoiseAsset_256X256_PNG.png

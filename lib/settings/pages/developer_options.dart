@@ -17,10 +17,11 @@ import 'package:pangolin/widgets/settingsTile.dart';
 import 'package:pangolin/widgets/settingsheader.dart';
 import 'package:provider/provider.dart';
 
-class AdvancedFeatures extends StatelessWidget {
+class DeveloperOptions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _data = Provider.of<PreferenceProvider>(context, listen: false);
+    final _features = Provider.of<FeatureFlags>(context);
     return Scaffold(
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
@@ -41,24 +42,34 @@ class AdvancedFeatures extends StatelessWidget {
                         fontFamily: "Roboto"),
                   )),
               Padding(
-                  padding: const EdgeInsets.all(30.0),
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                padding: const EdgeInsets.all(30.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SettingsHeader(heading: "User Shells"),
+                    SettingsTile(
                       children: [
-                        SettingsHeader(heading: "User Shells"),
-                        SettingsTile(
-                          children: [
-                            SwitchListTile(
-                              secondary: Icon(Icons.desktop_windows),
-                              value: _data.enableBlur,
-                              title: Text("Enable blur effects on the desktop"),
-                              onChanged: (bool state) {
-                                _data.enableBlur = !_data.enableBlur;
-                              },
-                            ),
-                          ],
+                        SwitchListTile(
+                          secondary: Icon(Icons.desktop_windows),
+                          value: _data.enableBlur,
+                          title: Text("Enable blur effects on the desktop"),
+                          onChanged: (bool state) {
+                            _data.enableBlur = !_data.enableBlur;
+                          },
                         ),
-                      ])),
+                      ],
+                    ),
+                    SettingsHeader(heading: "Feature Flags"),
+                    SettingsTile(children: [
+                      SwitchListTile(
+                          title: Text(
+                              "Use Acrylic Background Blur for the shell [WIP]"),
+                          value: _features.useAcrylic,
+                          onChanged: (val) => _features.useAcrylic = val)
+                    ]),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
@@ -90,7 +101,7 @@ class AdvancedFeatures extends StatelessWidget {
                               child: new Padding(
                                   padding: EdgeInsets.all(8),
                                   child: new Text(
-                                    "WARNING: ADVANCED OPTIONS AHEAD! By using these options, you could lose system data or compromise your security or privacy. ",
+                                    "WARNING: DEVELOPER OPTIONS AHEAD! By using these options, you could lose system data or compromise your security or privacy. ",
                                     style: new TextStyle(
                                       color: Colors.white,
                                       fontSize: 14,

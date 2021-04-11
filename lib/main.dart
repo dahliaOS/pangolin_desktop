@@ -34,7 +34,7 @@ void main() async {
   DateTimeManager.formatTime();
   DateTimeManager.setDateFormat("yMd");
   DateTimeManager.formatDate();
-  
+
   await EasyLocalization.ensureInitialized();
   runApp(
     EasyLocalization(
@@ -47,7 +47,8 @@ void main() async {
       child: ChangeNotifierProvider<PreferenceProvider>.value(
         value: PreferenceProvider(),
         builder: (context, child) {
-          return Pangolin();
+          return ChangeNotifierProvider<FeatureFlags>.value(
+              value: FeatureFlags(), builder: (context, child) => Pangolin());
         },
       ),
     ),
