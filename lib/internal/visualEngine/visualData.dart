@@ -17,6 +17,7 @@ class VisualInformation {
   double taskbarHeight;
   bool opaqueTitlebars;
   bool titleInfo;
+  double windowRadius;
   double taskbarRounding;
   double taskbarOpacity;
   String activeAppsPosition;
@@ -38,6 +39,7 @@ class VisualInformation {
       {required this.taskbarHeight,
       required this.opaqueTitlebars,
       required this.titleInfo,
+      required this.windowRadius,
       required this.taskbarRounding,
       required this.taskbarOpacity,
       required this.activeAppsPosition,
@@ -60,6 +62,7 @@ class VisualInformation {
         taskbarHeight: parsedJson['taskbarHeight'],
         opaqueTitlebars: parsedJson['opaqueTitlebars'],
         titleInfo: parsedJson['titleInfo'],
+        windowRadius: parsedJson['windowRadius'],
         activeAppsPosition: parsedJson['activeAppsPosition'],
         userName: parsedJson['userName'],
         launcherCategories: parsedJson['launcherCategories'],

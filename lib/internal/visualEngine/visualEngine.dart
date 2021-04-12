@@ -15,6 +15,7 @@ Future loadVisualEngine() async {
   print(visuals.taskbarHeight);
   print(visuals.opaqueTitlebars);
   print(visuals.titleInfo);
+  print(visuals.windowRadius);
   print(visuals.activeAppsPosition);
   print(visuals.userName);
   print(visuals.launcherCategories);
@@ -33,6 +34,7 @@ Future loadVisualEngine() async {
   DatabaseManager.set('taskbarHeight', visuals.taskbarHeight);
   DatabaseManager.set('opaqueTitlebars', visuals.opaqueTitlebars);
   DatabaseManager.set('titleInfo', visuals.titleInfo);
+  DatabaseManager.set('titleInfo', visuals.windowRadius);
   DatabaseManager.set('activeAppsPosition', visuals.activeAppsPosition);
   DatabaseManager.set('userName', visuals.userName);
   DatabaseManager.set('launcherCategories', visuals.launcherCategories);

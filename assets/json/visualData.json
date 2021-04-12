@@ -2,6 +2,7 @@
   "taskbarHeight": 48.0,
   "opaqueTitlebars": true,
   "titleInfo": true,
+  "windowRadius":5.0,
   "taskbarRounding": 15.0,
   "taskbarOpacity": 50.0,
   "activeAppsPosition": "left",
