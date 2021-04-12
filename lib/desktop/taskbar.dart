@@ -32,9 +32,9 @@ class Taskbar extends StatelessWidget {
       left: 0,
       right: 0,
       bottom: 0,
-      height: 48,
+      height: DatabaseManager.get('taskbarHeight').toDouble() ?? 48,
       child: BoxContainer(
-          height: 48,
+          height: DatabaseManager.get('taskbarHeight').toDouble() ?? 48,
           useSystemOpacity: true,
           color: Theme.of(context).backgroundColor,
           child: Stack(
@@ -44,7 +44,7 @@ class Taskbar extends StatelessWidget {
                 left: 0,
                 right: 0,
                 bottom: 0,
-                height: 48,
+                height: DatabaseManager.get('taskbarHeight').toDouble() ?? 48,
                 child: Row(
                   children: leading ?? [SizedBox.shrink()],
                 ),
@@ -78,7 +78,7 @@ class Taskbar extends StatelessWidget {
                 left: 0,
                 right: 0,
                 bottom: 0,
-                height: 48,
+                height: DatabaseManager.get('taskbarHeight').toDouble() ?? 48,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: trailing ?? [SizedBox.shrink()],

@@ -26,7 +26,6 @@ import 'package:pangolin/internal/visualEngine/visualEngine.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  loadVisualEngine();
 
   await DatabaseManager.initialseDatabase();
   PreferenceProvider();
@@ -36,6 +35,7 @@ void main() async {
   DateTimeManager.formatDate();
 
   await EasyLocalization.ensureInitialized();
+  loadVisualEngine();
   runApp(
     EasyLocalization(
       supportedLocales: Locales.supported,

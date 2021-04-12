@@ -1,5 +1,23 @@
 {
-  "taskbarHeight":48,
-  "opaqueTitlebars":true,
-  "titleInfo" : true
+  "taskbarHeight": 48.0,
+  "opaqueTitlebars": true,
+  "titleInfo": true,
+  "windowRadius":5.0,
+  "taskbarRounding": 15.0,
+  "taskbarOpacity": 50.0,
+  "activeAppsPosition": "left",
+  "showDate": true,
+  "searchIcon": false,
+  "overviewIcon": false,
+  "notificationsIcon": false,
+  "launcherIndicator": "Icons.applications",
+  "launcherCategories": false,
+  "searchBarString": "Search your device, apps, web...",
+  "launcherSystemOptions": false,
+  "searchbarRounding": 15.0,
+  "qsRounding": 15.0,
+  "qsTileRounding": 100.0,
+  "overlayOpacity": 50.0,
+  "overlayButtonRounding": 5.0,
+  "userName": "Live User"
 }
