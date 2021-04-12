@@ -12,7 +12,7 @@ limitations under the License.
 */
 
 import 'package:dahlia_backend/dahlia_backend.dart';
-import 'package:pangolin/settings/pages/advanved_features.dart';
+import 'package:pangolin/settings/pages/developerOptions.dart';
 import 'package:pangolin/settings/pages/backup.dart';
 import 'package:pangolin/settings/pages/about.dart';
 import 'package:pangolin/settings/pages/accounts.dart';
