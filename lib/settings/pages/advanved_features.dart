@@ -45,13 +45,29 @@ class AdvancedFeatures extends StatelessWidget {
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SettingsHeader(heading: "User Shells"),
+                        SettingsHeader(heading: "Feature Flags"),
                         SettingsTile(
                           children: [
                             SwitchListTile(
                               secondary: Icon(Icons.desktop_windows),
                               value: _data.enableBlur,
                               title: Text("Enable blur effects on the desktop"),
+                              onChanged: (bool state) {
+                                _data.enableBlur = !_data.enableBlur;
+                              },
+                            ),
+                            SwitchListTile(
+                              secondary: Icon(Icons.phone_android),
+                              value: _data.enableBlur,
+                              title: Text("Pangolin Mobile as default shell"),
+                              onChanged: (bool state) {
+                                _data.enableBlur = !_data.enableBlur;
+                              },
+                            ),
+                            SwitchListTile(
+                              secondary: Icon(Icons.memory),
+                              value: _data.enableBlur,
+                              title: Text("Use LTS kernel"),
                               onChanged: (bool state) {
                                 _data.enableBlur = !_data.enableBlur;
                               },
