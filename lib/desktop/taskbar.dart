@@ -36,6 +36,13 @@ class Taskbar extends StatelessWidget {
       child: BoxContainer(
           height: DatabaseManager.get('taskbarHeight').toDouble() ?? 48,
           useSystemOpacity: true,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.only(
+                topLeft:
+                    Radius.circular(DatabaseManager.get('taskbarRounding')),
+                topRight:
+                    Radius.circular(DatabaseManager.get('taskbarRounding'))),
+          ),
           color: Theme.of(context).backgroundColor,
           child: Stack(
             //mainAxisAlignment: MainAxisAlignment.spaceBetween,
