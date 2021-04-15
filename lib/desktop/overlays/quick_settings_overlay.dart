@@ -78,12 +78,15 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay> {
             scale: _animation,
             alignment: FractionalOffset(0.8, 1.0),
             child: BoxContainer(
-              decoration: BoxDecoration(boxShadow: [
-                BoxShadow(
-                    color: Colors.black.withOpacity(0.2),
-                    spreadRadius: 5,
-                    blurRadius: 50)
-              ], borderRadius: BorderRadius.circular(10)),
+              decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.black.withOpacity(0.2),
+                        spreadRadius: 5,
+                        blurRadius: 50)
+                  ],
+                  borderRadius:
+                      BorderRadius.circular(DatabaseManager.get("qsRounding"))),
               useSystemOpacity: true,
               color: Theme.of(context).backgroundColor,
               width: 500,
@@ -113,7 +116,7 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay> {
                             ),
                           ),
                           new Text(
-                            "Live Session",
+                            DatabaseManager.get("userName"),
                             style: Theme.of(context).textTheme.subtitle2,
                           ),
                           InkWell(
