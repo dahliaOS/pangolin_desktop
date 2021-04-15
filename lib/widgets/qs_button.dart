@@ -18,6 +18,7 @@ import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
+import 'package:dahlia_backend/dahlia_backend.dart';
 
 class QuickSettingsButton extends StatelessWidget {
   final String? title;
@@ -36,12 +37,16 @@ class QuickSettingsButton extends StatelessWidget {
           height: 50,
           child: InkWell(
             mouseCursor: SystemMouseCursors.click,
-            child: CircleAvatar(
-              backgroundColor: color ?? Color(_data.accentColor),
-              child: Icon(
-                icon ?? Icons.error,
-                color: Colors.white,
-                size: 20,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(
+                  DatabaseManager.get("qsTileRounding")), //or 15.0
+              child: Container(
+                color: color ?? Color(_data.accentColor),
+                child: Icon(
+                  icon ?? Icons.error,
+                  color: Colors.white,
+                  size: 20,
+                ),
               ),
             ),
           ),
