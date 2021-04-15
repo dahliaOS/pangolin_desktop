@@ -20,6 +20,30 @@ import 'package:pangolin/desktop/overlays/launcher/launcher_overlay.dart';
 import 'package:pangolin/utils/wm_api.dart';
 import 'package:provider/provider.dart';
 import 'package:utopia_wm/wm.dart';
+import 'package:dahlia_backend/dahlia_backend.dart';
+
+Icon getIconWidget(String input) {
+  if (DatabaseManager.get(input).toString() == "Icons.apps") {
+    return Icon(Icons.apps);
+  } else if (DatabaseManager.get(input).toString() == "Icons.circle") {
+    return Icon(
+      Icons.panorama_fish_eye,
+      size: 20,
+    );
+  } else if (DatabaseManager.get(input).toString() == "Icons.dahlia") {
+    return Icon(
+      Icons.brightness_low,
+      size: 20,
+    );
+  } else if (DatabaseManager.get(input).toString() == "Icons.radio") {
+    return Icon(
+      Icons.radio_button_checked,
+      size: 20,
+    );
+  } else {
+    return Icon(Icons.add);
+  }
+}
 
 class LauncherButton extends StatelessWidget {
   @override
@@ -48,7 +72,7 @@ class LauncherButton extends StatelessWidget {
             },
             child: Padding(
               padding: EdgeInsets.all(8),
-              child: Center(child: Icon(Icons.apps)),
+              child: Center(child: getIconWidget("launcherIndicator")),
             ),
           ),
         ),
