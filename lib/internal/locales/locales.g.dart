@@ -81,7 +81,7 @@ class _$LocaleDeDE extends _$LocaleBase {
     "pangolin.featurenotimplemented_value": "Diese Funktion ist in ihrer Version von Pangolin noch nicht verfügbar. Bitte siehe https://reddit.com/r/dahliaos für Aktualisierungen und weiter Informationen.",
     "pangolin.launcher_card_information_title": "Informationen",
     "pangolin.launcher_card_kernel_title": "Kernel",
-    "pangolin.launcher_card_kernel_value": "Treiber für Intigrierte Grafikkarte aktualisiert",
+    "pangolin.launcher_card_kernel_value": "Treiber für integrierte Grafikkarte aktualisiert",
     "pangolin.launcher_card_music_title": "Musik - Spielt Gerade",
     "pangolin.launcher_card_music_value": "Vance Joy - Georgia",
     "pangolin.launcher_card_security_title": "Sicherheit",
