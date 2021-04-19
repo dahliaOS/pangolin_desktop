@@ -129,7 +129,10 @@ class GeneralManagement extends StatelessWidget {
                             " :53",
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: Colors.grey.shade600),
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .bodyText1
+                                    ?.color),
                           ),
                           value: _data.showSeconds,
                           title: Text("Show seconds"),
@@ -142,7 +145,10 @@ class GeneralManagement extends StatelessWidget {
                             "14:00",
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: Colors.grey.shade600),
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .bodyText1
+                                    ?.color),
                           ),
                           value: _data.enable24h,
                           title: Text("Enable 24-hour time"),

@@ -15,10 +15,10 @@ dependencies:
     #  url: https://github.com/dahliaOS/backend.git
     #  ref: main
   utopia_wm:
-    path: utopia/
-    #git:
-    #  url: https://github.com/dahliaOS/utopia.git
-    #  ref: utopia
+    #path: utopia/
+    git:
+      url: https://github.com/dahliaOS/utopia.git
+      ref: submodule
   provider: ^5.0.0
   animations: ^2.0.0-nullsafety.0
   easy_localization: ^3.0.0
@@ -84,6 +84,9 @@ flutter:
 
 
   fonts:
+    - family: CustomIcons
+      fonts:
+        - asset: fonts/CustomIcons.ttf
     - family:  DM-Sans
       fonts:
        - asset: fonts/dm-sans/DMSans-Bold.ttf

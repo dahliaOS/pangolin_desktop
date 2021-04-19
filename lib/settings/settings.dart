@@ -249,6 +249,7 @@ class _SettingsPageState extends State<SettingsPage> {
                                   padding: EdgeInsets.symmetric(
                                       horizontal: 10, vertical: 0),
                                   child: ListView.builder(
+                                    physics: BouncingScrollPhysics(),
                                     itemCount: Settings.items.length,
                                     itemBuilder: (BuildContext context, int i) {
                                       return Container(

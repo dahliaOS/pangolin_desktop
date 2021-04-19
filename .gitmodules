@@ -1,7 +1,3 @@
-[submodule "utopia"]
-	path = utopia
-	url = https://github.com/dahliaOS/utopia.git
-	branch = submodule
 [submodule "backend"]
 	path = backend
 	url = https://github.com/dahliaOS/backend.git

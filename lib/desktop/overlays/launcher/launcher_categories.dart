@@ -25,6 +25,7 @@ class LauncherCategories extends StatefulWidget {
 }
 
 class _LauncherCategoriesState extends State<LauncherCategories> {
+  GlobalKey key = GlobalKey();
   var _selected = 0;
   @override
   Widget build(BuildContext context) {
@@ -53,9 +54,8 @@ class _LauncherCategoriesState extends State<LauncherCategories> {
           itemCount: launcherCategories.length,
           itemBuilder: (context, index) {
             return BoxContainer(
-              useBlur: false,
               useSystemOpacity: _selected == index,
-              customBorderRadius: BorderRadius.circular(8),
+              //customBorderRadius: BorderRadius.circular(8),
               color: _selected == index
                   ? Theme.of(context).backgroundColor
                   : Colors.transparent,

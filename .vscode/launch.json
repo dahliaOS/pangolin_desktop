@@ -8,6 +8,8 @@
             "name": "pangolin_desktop",
             "request": "launch",
             "type": "dart",
+            "deviceId": "linux",
+            "program": "lib/main.dart",
         }
     ]
 }

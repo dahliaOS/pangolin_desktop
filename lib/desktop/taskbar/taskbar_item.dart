@@ -22,11 +22,12 @@ import 'package:utopia_wm/wm.dart';
 
 class TaskbarItem extends StatelessWidget {
   final String packageName;
-  TaskbarItem({required this.packageName});
+  TaskbarItem({required this.packageName, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     //Running apps
+    //// ITS FAILING HERE
     final windows = Provider.of<WindowHierarchyState>(context, listen: false)
         .entriesByFocus;
     //Selected App
@@ -45,29 +46,34 @@ class TaskbarItem extends StatelessWidget {
         : true;
 
     //Build Widget
-    return SizedBox(
-      height: 48,
-      width: 52,
-      child: Material(
-        //set a background colour if the app is running or focused
-        color: appIsRunning
-            ? (focused
-                ? Theme.of(context).accentColor.withOpacity(0.5)
-                : Theme.of(context).backgroundColor.withOpacity(0.5))
-            : Colors.transparent,
-        child: InkWell(
-          onTap: () {
-            //open the app or toggle
-            if (appIsRunning) {
-              _onTap(context, entry);
-            } else {
-              WmAPI.of(context).openApp(packageName);
-            }
-          },
-          child: Padding(
-            padding: const EdgeInsets.all(6.0),
-            child: Image(
-              image: AssetImage("assets/icons/${_app.iconName}.png"),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 2.0),
+      child: SizedBox(
+        height: 48,
+        width: 52,
+        child: Material(
+          //set a background colour if the app is running or focused
+          color: appIsRunning
+              ? (focused
+                  ? Theme.of(context).accentColor.withOpacity(0.5)
+                  : Theme.of(context).backgroundColor.withOpacity(0.5))
+              : Colors.transparent,
+          child: InkWell(
+            onTap: () {
+              //open the app or toggle
+              if (appIsRunning) {
+                _onTap(context, entry);
+              } else {
+                WmAPI.of(context).openApp(packageName);
+                //print(packageName);
+              }
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(6.0),
+              child: Image(
+                  image: appIsRunning
+                      ? entry?.icon ?? NetworkImage("https://google.com")
+                      : AssetImage("assets/icons/${_app.iconName}.png")),
             ),
           ),
         ),

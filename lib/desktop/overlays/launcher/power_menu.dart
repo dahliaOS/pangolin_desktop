@@ -48,9 +48,7 @@ class _LauncherPowerMenuState extends State<LauncherPowerMenu> {
                     content: PowerOverlay(),
                     duration: Duration.zero,
                     background: BoxContainer(
-                      color: Theme.of(context)
-                          .dialogBackgroundColor
-                          .withOpacity(0.5),
+                      color: Theme.of(context).shadowColor.withOpacity(0.5),
                       useBlur: false,
                     )));
                 setState(() {});

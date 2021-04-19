@@ -17,6 +17,7 @@ limitations under the License.
 import 'package:flutter/material.dart';
 import 'package:pangolin/utils/app_list.dart';
 import 'package:pangolin/widgets/error_window.dart';
+import 'package:pangolin/widgets/window_toolbar.dart';
 import 'package:utopia_wm/wm.dart';
 import 'package:provider/provider.dart';
 
@@ -44,7 +45,12 @@ class WmAPI {
   }
 
   void openApp(String packageName) {
-    pushWindowEntry(WindowEntry.withDefaultToolbar(
+    pushWindowEntry(WindowEntry(
+      bgColor: Theme.of(context).accentColor.withOpacity(0.05),
+      initiallyCenter: true,
+      allowResize: true,
+      usesToolbar: true,
+      toolbar: PangolinWindowToolbar(),
       packageName: packageName,
       content: getApp(packageName).app ?? ErrorWindow(),
       initialSize: Size(1280, 720),

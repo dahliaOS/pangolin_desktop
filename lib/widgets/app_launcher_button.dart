@@ -44,6 +44,9 @@ class _AppLauncherButtonState extends State<AppLauncherButton> {
           child: GestureDetector(
             onSecondaryTap: () {
               //right click to pin/unpin
+              /* Provider.of<PreferenceProvider>(context, listen: false)
+                  .pinnedApps
+                  .clear(); */
               Provider.of<PreferenceProvider>(context, listen: false)
                   .togglePinnedApp(application.packageName ?? "");
             },

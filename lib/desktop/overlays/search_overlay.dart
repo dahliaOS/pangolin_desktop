@@ -46,13 +46,14 @@ class SearchOverlay extends StatelessWidget {
             child: BoxContainer(
               decoration: BoxDecoration(
                   boxShadow: [
-                    BoxShadow(
-                        color: Colors.black.withOpacity(0.2),
-                        spreadRadius: 5,
-                        blurRadius: 50)
+                    /* BoxShadow(
+                      color: Colors.black.withOpacity(0.2),
+                      spreadRadius: 5,
+                      blurRadius: 50,
+                    ) */
                   ],
-                  border: Border.all(
-                      color: Theme.of(context).backgroundColor, width: 2),
+                  /* border: Border.all(
+                      color: Theme.of(context).backgroundColor, width: 2), */
                   borderRadius: BorderRadius.circular(10)),
               useSystemOpacity: true,
               color: Theme.of(context).backgroundColor,
@@ -61,14 +62,14 @@ class SearchOverlay extends StatelessWidget {
               child: Column(
                 children: [
                   SizedBox(
-                    height: 52,
+                    height: 48,
                     child: Column(
                       children: [
                         BoxContainer(
                             //padding: EdgeInsets.symmetric(horizontal: 16),
                             color: Theme.of(context).backgroundColor,
                             useSystemOpacity: true,
-                            height: 52,
+                            height: 48,
                             child: Searchbar(
                               focusNode: _focusNode,
                               controller: _controller,

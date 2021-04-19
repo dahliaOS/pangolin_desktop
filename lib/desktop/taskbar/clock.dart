@@ -29,8 +29,8 @@ class DateClockWidget extends StatelessWidget {
         child: Material(
           color: Colors.transparent,
           child: InkWell(
-            borderRadius: BorderRadius.circular(4),
-            hoverColor: Theme.of(context).cardColor.withOpacity(0.5),
+            borderRadius: BorderRadius.circular(6),
+            hoverColor: Theme.of(context).accentColor.withOpacity(0.5),
             mouseCursor: SystemMouseCursors.click,
             onTap: () {},
             child: Padding(

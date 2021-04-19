@@ -16,7 +16,7 @@ limitations under the License.
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:pangolin/desktop/overlays/quick_settings_overlay.dart';
+import 'package:pangolin/desktop/overlays/quicksettings/quick_settings_overlay.dart';
 import 'package:pangolin/utils/wm_api.dart';
 import 'package:provider/provider.dart';
 import 'package:utopia_wm/wm.dart';
@@ -30,14 +30,14 @@ class QuickSettingsButton extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(4.0),
         child: Material(
-          borderRadius: BorderRadius.circular(4),
+          borderRadius: BorderRadius.circular(6),
           color: Provider.of<WindowHierarchyState>(context)
                   .overlayIsActive("action_center")
-              ? Theme.of(context).cardColor.withOpacity(0.5)
+              ? Theme.of(context).accentColor.withOpacity(0.5)
               : Colors.transparent,
           child: InkWell(
-            borderRadius: BorderRadius.circular(4),
-            hoverColor: Theme.of(context).cardColor.withOpacity(0.5),
+            borderRadius: BorderRadius.circular(6),
+            hoverColor: Theme.of(context).accentColor.withOpacity(0.5),
             mouseCursor: SystemMouseCursors.click,
             onTap: () {
               WmAPI.of(context).pushOverlayEntry(DismissibleOverlayEntry(

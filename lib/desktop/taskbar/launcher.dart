@@ -30,14 +30,14 @@ class LauncherButton extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(4.0),
         child: Material(
-          borderRadius: BorderRadius.circular(4),
+          borderRadius: BorderRadius.circular(6),
           color: Provider.of<WindowHierarchyState>(context)
                   .overlayIsActive("launcher")
-              ? Theme.of(context).cardColor.withOpacity(0.5)
+              ? Theme.of(context).accentColor.withOpacity(0.5)
               : Colors.transparent,
           child: InkWell(
-            borderRadius: BorderRadius.circular(4),
-            hoverColor: Theme.of(context).cardColor.withOpacity(0.5),
+            borderRadius: BorderRadius.circular(6),
+            hoverColor: Theme.of(context).accentColor.withOpacity(0.5),
             mouseCursor: SystemMouseCursors.click,
             onTap: () {
               WmAPI.of(context).pushOverlayEntry(DismissibleOverlayEntry(

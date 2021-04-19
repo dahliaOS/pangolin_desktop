@@ -102,7 +102,7 @@ packages:
       name: crypto
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.0"
+    version: "3.0.1"
   cupertino_icons:
     dependency: transitive
     description:
@@ -146,7 +146,7 @@ packages:
       name: expressions
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.1"
+    version: "0.2.2"
   fake_async:
     dependency: transitive
     description:
@@ -173,7 +173,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: f724dd3892cc8a82a112672c0049d339a5e53fa0
+      resolved-ref: fe5300aed25ce480f0b101b4c0cc8fa6c4e13d1c
       url: "https://github.com/dahliaOS/files.git"
     source: git
     version: "1.0.0+1"
@@ -233,7 +233,7 @@ packages:
       name: hive
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.2"
+    version: "2.0.3"
   http:
     dependency: transitive
     description:
@@ -352,7 +352,7 @@ packages:
       name: petitparser
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.0.2"
+    version: "4.1.0"
   platform:
     dependency: transitive
     description:
@@ -373,7 +373,7 @@ packages:
       name: process
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.2.0"
+    version: "4.2.1"
   provider:
     dependency: "direct main"
     description:
@@ -387,7 +387,7 @@ packages:
       name: quiver
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.0"
+    version: "3.0.1"
   recase:
     dependency: "direct main"
     description:
@@ -538,7 +538,7 @@ packages:
       name: test_api
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.19"
+    version: "0.3.0"
   text_editor:
     dependency: "direct main"
     description:
@@ -558,9 +558,11 @@ packages:
   utopia_wm:
     dependency: "direct main"
     description:
-      path: utopia
-      relative: true
-    source: path
+      path: "."
+      ref: submodule
+      resolved-ref: c96f219ddd6a87e2d4348b6e1528084f34fadab8
+      url: "https://github.com/dahliaOS/utopia.git"
+    source: git
     version: "1.0.0+1"
   uuid:
     dependency: transitive
@@ -568,7 +570,7 @@ packages:
       name: uuid
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.3"
+    version: "3.0.4"
   vector_math:
     dependency: transitive
     description:
@@ -614,7 +616,7 @@ packages:
       name: xml
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.0.2"
+    version: "5.1.0"
 sdks:
   dart: ">=2.12.0 <3.0.0"
   flutter: ">=1.24.0-10.2.pre"
