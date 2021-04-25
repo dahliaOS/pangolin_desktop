@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app.authenticator">Authenticator</string>
+    <string name="app.calculator">Rechner</string>
+    <string name="app.clock">Uhr</string>
+    <string name="app.disks">Festplattenverwaltung</string>
+    <string name="app.files">Dateien</string>
+    <string name="app.media">Medien</string>
+    <string name="app.music">Musik</string>
+    <string name="app.notes">Texteditor</string>
+    <string name="app.notesmobile">Notizen (Mobile)</string>
+    <string name="app.messages">Nachrichten</string>
+    <string name="app.rootterminal">Root Terminal</string>
+    <string name="app.settings">Einstellungen</string>
+    <string name="app.systemlogs">Systemprotokoll</string>
+    <string name="app.taskmanager">Task Manager</string>
+    <string name="app.terminal">Terminal</string>
+    <string name="app.themedemo">Thema Vorschau</string>
+    <string name="app.welcome">Willkommen</string>
+    <string name="app.help">Hilfe</string>
+    <string name="app.web">Web Browser</string>
+    <string name="app.developeroptions">Entwickleroptionen</string>
+    <string name="misc.featurenotimplemented_title">Funktion noch nicht Intigriert</string>
+    <string name="misc.featurenotimplemented_value">Diese Funktion ist in ihrer Version von Pangolin noch nicht verfügbar. Bitte siehe https://reddit.com/r/dahliaos für Aktualisierungen und weiter Informationen.</string>
+    <string name="launchercard.information_title">Informationen</string>
+    <string name="launchercard.kernel_title">Kernel</string>
+    <string name="launchercard.kernel_value">Treiber für Intigrierte Grafikkarte aktualisiert</string>
+    <string name="launchercard.music_title">Musik - Spielt Gerade</string>
+    <string name="launchercard.music_value">Vance Joy - Georgia</string>
+    <string name="launchercard.security_title">Sicherheit</string>
+    <string name="launchercard.security_value">Dateisystemsperre ist AN</string>
+    <string name="launchercard.system_title">System</string>
+    <string name="launchercard.system_value">Willkommen bei dahliaOS!</string>
+    <string name="launcher_search">Suche Dateien, Apps, Internet...</string>
+    <string name="qs.airplanemode">Flugmodus</string>
+    <string name="qs.autorotate">Automatisch drehen</string>
+    <string name="qs.bluetooth">Bluetooth</string>
+    <string name="qs.changelanguage" comment="Replace this with the name of the language you're translating to">Deutsch</string>
+    <string name="qs.dnd">Nicht stören</string>
+    <string name="qs.flashlight">Taschenlampe</string>
+    <string name="qs.invertcolors">Farben umkehren</string>
+    <string name="qs.theme">Thema</string>
+    <string name="qs.wifi">WLAN</string>
+    <string name="app.containers" comment="Do not actually translate this string, just write &quot;Graft&quot; as the translation">Graft</string>
+    <string name="launchercard.information_value">Es ist kalt, trage einen Mantel!</string>
+</resources>

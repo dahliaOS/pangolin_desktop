@@ -1,0 +1,3 @@
+files:
+  - source: /assets/locales/en-US/
+    translation: /assets/locales/%locale%/%original_file_name%

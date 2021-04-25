@@ -1,0 +1,144 @@
+name: pangolin
+description: The Desktop Environment for dahliaOS
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0-0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  dahlia_backend:
+    path: backend/
+    #git:
+    #  url: https://github.com/dahliaOS/backend.git
+    #  ref: main
+  utopia_wm:
+    #path: utopia/
+    git:
+      url: https://github.com/dahliaOS/utopia.git
+      ref: utopia
+  provider: ^5.0.0
+  animations: ^2.0.0-nullsafety.0
+  easy_localization: ^3.0.0
+  recase: ^4.0.0-nullsafety.0
+  xml: ^5.0.2
+  intl: ^0.17.0
+  flutter_colorpicker: ^0.4.0
+  cached_network_image: ^3.0.0-nullsafety
+  calculator:
+    git:
+      url: https://github.com/dahliaOS/calculator.git
+  graft:
+    git:
+      url: https://github.com/dahliaOS/graft.git
+  text_editor:
+    git:
+      url: https://github.com/dahliaOS/text_editor.git
+  files:
+    git:
+      url: https://github.com/dahliaOS/files.git
+  web_browser:
+    git:
+      url: https://github.com/dahliaOS/web_browser.git
+  task_manager:
+    git:
+      url: https://github.com/dahliaOS/task_manager.git
+  media:
+    git:
+      url: https://github.com/dahliaOS/media.git
+  dahlia_clock:
+    git:
+      url: https://github.com/dahliaOS/clock.git
+  system_logs:
+    git:
+      url: https://github.com/dahliaOS/system_logs.git
+  terminal:
+    git:
+      url: https://github.com/dahliaOS/terminal.git
+  welcome:
+    git:
+      url: https://github.com/dahliaOS/welcome.git
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+#  integration_test:
+#    sdk: flutter
+
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/images/wallpapers/
+    - assets/images/logos/
+    - assets/images/other/
+    - assets/icons/
+    - assets/locales/
+    - assets/json/visualData.json
+    - global/assets/
+
+
+  fonts:
+    - family: CustomIcons
+      fonts:
+        - asset: fonts/CustomIcons.ttf
+    - family:  DM-Sans
+      fonts:
+       - asset: fonts/dm-sans/DMSans-Bold.ttf
+       - asset: fonts/dm-sans/DMSans-BoldItalic.ttf
+       - asset: fonts/dm-sans/DMSans-Italic.ttf
+       - asset: fonts/dm-sans/DMSans-Medium.ttf
+       - asset: fonts/dm-sans/DMSans-MediumItalic.ttf
+       - asset: fonts/dm-sans/DMSans-Regular.ttf
+    - family:  Lato
+      fonts:
+       - asset: fonts/lato/Lato-Black.ttf
+       - asset: fonts/lato/Lato-BlackItalic.ttf
+       - asset: fonts/lato/Lato-Bold.ttf
+       - asset: fonts/lato/Lato-BoldItalic.ttf
+       - asset: fonts/lato/Lato-Italic.ttf
+       - asset: fonts/lato/Lato-Regular.ttf
+       - asset: fonts/lato/Lato-Light.ttf
+       - asset: fonts/lato/Lato-LightItalic.ttf
+       - asset: fonts/lato/Lato-Thin.ttf
+       - asset: fonts/lato/Lato-Italic.ttf
+    - family:  Inter
+      fonts:
+       - asset: fonts/inter/Inter-Black.ttf
+       - asset: fonts/inter/Inter-Bold.ttf
+       - asset: fonts/inter/Inter-ExtraBold.ttf
+       - asset: fonts/inter/Inter-ExtraLight.ttf
+       - asset: fonts/inter/Inter-Regular.ttf
+       - asset: fonts/inter/Inter-Light.ttf
+       - asset: fonts/inter/Inter-SemiBold.ttf
+       - asset: fonts/inter/Inter-Thin.ttf
+  # An image asset can refer to one or more resolution-specific "variants", see
+  # https://flutter.dev/assets-and-images/#resolution-aware.
+
+  # For details regarding adding assets from package dependencies, see
+  # https://flutter.dev/assets-and-images/#from-packages
+
+  # To add custom fonts to your application, add a fonts section here,
+  # in this "flutter" section. Each entry in this list should have a
+  # "family" key with the font family name, and a "fonts" key with a
+  # list giving the asset and other descriptors for the font. For
+  # example:
+  # fonts:
+  #   - family: Schyler
+  #     fonts:
+  #       - asset: fonts/Schyler-Regular.ttf
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
+  #   - family: Trajan Pro
+  #     fonts:
+  #       - asset: fonts/TrajanPro.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
+  #
+  # For details regarding fonts from package dependencies,
+  # see https://flutter.dev/custom-fonts/#from-packages
