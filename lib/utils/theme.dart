@@ -14,6 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'package:animations/animations.dart';
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -22,6 +23,11 @@ ThemeData theme(BuildContext context) {
   final _data = context.watch<PreferenceProvider>();
   return ThemeData(
       //visualDensity: VisualDensity(horizontal: -3.5, vertical: -3.5),
+      pageTransitionsTheme: PageTransitionsTheme(builders: {
+        TargetPlatform.android:
+            FadeThroughPageTransitionsBuilder(fillColor: Colors.transparent),
+      }),
+      //hoverColor: Color(_data.accentColor).withOpacity(0.5),
       splashColor: Color(_data.accentColor),
       buttonColor: Color(_data.accentColor),
       floatingActionButtonTheme: FloatingActionButtonThemeData(
@@ -37,7 +43,7 @@ ThemeData theme(BuildContext context) {
       canvasColor: _data.darkMode ? Color(0xff151515) : Color(0xfff0f8ff),
       primaryColor: Color(_data.accentColor),
       primaryColorDark: Color(_data.accentColor),
-      cardColor: _data.darkMode ? Color(0xff151515) : Colors.grey[200],
+      cardColor: _data.darkMode ? Color(0xff151515) : Color(0xfff0f8ff),
       scaffoldBackgroundColor:
           _data.darkMode ? Color(0xff151515) : Color(0xfff0f8ff),
       inputDecorationTheme: InputDecorationTheme(

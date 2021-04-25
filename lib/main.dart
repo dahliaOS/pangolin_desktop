@@ -35,7 +35,7 @@ void main() async {
   DateTimeManager.formatDate();
 
   await EasyLocalization.ensureInitialized();
-  loadVisualEngine();
+  await loadVisualEngine();
   runApp(
     EasyLocalization(
       supportedLocales: Locales.supported,
@@ -47,7 +47,8 @@ void main() async {
       child: ChangeNotifierProvider<PreferenceProvider>.value(
         value: PreferenceProvider(),
         builder: (context, child) {
-          return Pangolin();
+          return ChangeNotifierProvider<FeatureFlags>.value(
+              value: FeatureFlags(), builder: (context, child) => Pangolin());
         },
       ),
     ),

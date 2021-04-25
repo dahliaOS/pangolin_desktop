@@ -49,8 +49,7 @@ class _LauncherOverlayState extends State<LauncherOverlay> {
       right: 0,
       child: GestureDetector(
         onTap: () async {
-          _animationController.reverse();
-          await Future.delayed(_animationController.duration!);
+          await _animationController.reverse();
           WmAPI.of(context).popOverlayEntry(
               Provider.of<DismissibleOverlayEntry>(context, listen: false));
           setState(() {});

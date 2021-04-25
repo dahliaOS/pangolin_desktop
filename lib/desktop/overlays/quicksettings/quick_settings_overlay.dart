@@ -1,0 +1,361 @@
+/*
+Copyright 2021 The dahliaOS Authors
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+import 'package:dahlia_backend/dahlia_backend.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:pangolin/desktop/overlays/quicksettings/qs_bluetooth.dart';
+import 'package:pangolin/desktop/overlays/quicksettings/qs_language.dart';
+import 'package:pangolin/desktop/overlays/quicksettings/qs_theme.dart';
+import 'package:pangolin/desktop/overlays/quicksettings/qs_wifi.dart';
+import 'package:pangolin/internal/locales/locale_strings.g.dart';
+import 'package:pangolin/internal/locales/locales.g.dart';
+import 'package:pangolin/utils/globals.dart';
+import 'package:pangolin/utils/wm_api.dart';
+import 'package:pangolin/widgets/qs_button.dart';
+import 'package:provider/provider.dart';
+import 'package:utopia_wm/wm.dart';
+import 'package:easy_localization/easy_localization.dart';
+
+class QuickSettingsOverlay extends StatefulWidget {
+  @override
+  _QuickSettingsOverlayState createState() => _QuickSettingsOverlayState();
+}
+
+class _QuickSettingsOverlayState extends State<QuickSettingsOverlay> {
+  @override
+  Widget build(BuildContext context) {
+    // _getTime(context);
+    final _animation =
+        Provider.of<DismissibleOverlayEntry>(context, listen: false).animation;
+    return Positioned(
+      bottom: 48 + 8,
+      right: 8,
+      child: AnimatedBuilder(
+        animation: _animation,
+        builder: (context, chilld) => FadeTransition(
+          opacity: _animation,
+          child: ScaleTransition(
+            scale: _animation,
+            alignment: FractionalOffset(0.8, 1.0),
+            child: BoxContainer(
+              decoration: BoxDecoration(boxShadow: [
+                /* BoxShadow(
+                    color: Colors.black.withOpacity(0.2),
+                    spreadRadius: 5,
+                    blurRadius: 50) */
+              ], borderRadius: BorderRadius.circular(10)),
+              useSystemOpacity: true,
+              color: Theme.of(context).backgroundColor,
+              width: 500,
+              height: 424,
+              child: MaterialApp(
+                routes: {
+                  "/": (context) => QsMain(),
+                  "/wifi": (context) => QsWifi(),
+                  "/theme": (context) => QsTheme(),
+                  "/bluetooth": (context) => QsBluetooth(),
+                  "/language": (context) => QsLanguage(),
+                },
+                theme: Theme.of(context),
+                debugShowCheckedModeBanner: false,
+                locale: context.locale,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class QsMain extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final _pref = context.watch<PreferenceProvider>();
+    return Scaffold(
+      backgroundColor: Colors.transparent,
+
+      //AppBar
+      appBar: AppBar(
+        toolbarHeight: 48,
+        textTheme: Theme.of(context).textTheme,
+        iconTheme: Theme.of(context).iconTheme,
+        backgroundColor: Theme.of(context).backgroundColor.withOpacity(0.2),
+        elevation: 0,
+        title: Row(
+          children: [
+            SizedBox(
+              width: 12,
+            ),
+            Text(
+              "Quick Controls",
+              style: TextStyle(fontSize: 18),
+            ),
+          ],
+        ),
+        actions: [
+          IconButton(
+            icon: Icon(
+              Icons.person_outline,
+            ),
+            onPressed: () {},
+          ),
+          SizedBox(
+            width: 4,
+          ),
+          IconButton(
+            icon: Icon(Icons.settings_outlined),
+            onPressed: () {
+              WmAPI.of(context).popCurrentOverlayEntry();
+              WmAPI.of(context).openApp("io.dahlia.settings");
+            },
+          ),
+          SizedBox(
+            width: 4,
+          ),
+          IconButton(
+            icon: Icon(
+              Icons.power_settings_new,
+            ),
+            onPressed: () {},
+          ),
+          SizedBox(
+            width: 8,
+          ),
+          SizedBox(
+            width: 12,
+          ),
+        ],
+        centerTitle: false,
+      ),
+
+      //Body
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(
+            height: 12,
+          ),
+          //Quick Controls Grid
+          SizedBox(
+            width: 520,
+            height: 200,
+            child: GridView.count(
+              physics: NeverScrollableScrollPhysics(),
+              //padding: EdgeInsets.only(left: 8, right: 8),
+              crossAxisCount: 5,
+              mainAxisSpacing: 4,
+              children: [
+                QuickSettingsButton(
+                  enabled: _pref.wifi,
+                  title: LocaleStrings.qs.wifi,
+                  icon: Icons.wifi,
+                  disabledIcon: Icons.wifi_off,
+                  onTap: () {
+                    _pref.wifi = !_pref.wifi;
+                  },
+                  onTapSecondary: () {
+                    Navigator.pushNamed(context, "/wifi");
+                  },
+                ),
+                QuickSettingsButton(
+                  title: LocaleStrings.qs.bluetooth,
+                  icon: Icons.bluetooth,
+                  disabledIcon: Icons.bluetooth_disabled_outlined,
+                  enabled: _pref.bluetooth,
+                  onTap: () {
+                    _pref.bluetooth = !_pref.bluetooth;
+                  },
+                  onTapSecondary: () {
+                    Navigator.pushNamed(context, "/bluetooth");
+                  },
+                ),
+                QuickSettingsButton(
+                  title: 'Battery\n85%',
+                  icon: Icons.battery_full,
+                  disabledIcon: Icons.battery_full,
+                  enabled: false,
+                  onTap: () {},
+                  onTapSecondary: () {},
+                ),
+                QuickSettingsButton(
+                  title: LocaleStrings.qs.dnd,
+                  icon: Icons.do_not_disturb_outlined,
+                  disabledIcon: Icons.do_not_disturb_off_outlined,
+                  enabled: false,
+                  onTap: () {},
+                  onTapSecondary: () {},
+                ),
+                QuickSettingsButton(
+                  title: LocaleStrings.qs.flashlight,
+                  icon: Icons.flashlight_on_outlined,
+                  disabledIcon: Icons.flashlight_off_outlined,
+                  enabled: false,
+                  onTap: () {},
+                  onTapSecondary: () {},
+                ),
+                QuickSettingsButton(
+                  title: LocaleStrings.qs.autorotate,
+                  icon: Icons.screen_rotation,
+                  disabledIcon: Icons.screen_lock_rotation,
+                  enabled: false,
+                  onTap: () {},
+                  onTapSecondary: () {},
+                ),
+                QuickSettingsButton(
+                  title: LocaleStrings.qs.airplanemode,
+                  icon: Icons.airplanemode_active,
+                  disabledIcon: Icons.airplanemode_inactive,
+                  enabled: (!_pref.wifi && !_pref.bluetooth),
+                  onTap: () {
+                    _pref.wifi = false;
+                    _pref.bluetooth = false;
+                  },
+                  onTapSecondary: () {},
+                ),
+                QuickSettingsButton(
+                  title: LocaleStrings.qs.theme,
+                  icon: Icons.brightness_4_outlined,
+                  disabledIcon: Icons.brightness_5_outlined,
+                  enabled: _pref.darkMode,
+                  onTap: () {
+                    _pref.darkMode = !_pref.darkMode;
+                  },
+                  onTapSecondary: () {
+                    Navigator.pushNamed(context, "/theme");
+                  },
+                ),
+                QuickSettingsButton(
+                  title: LocaleStrings.qs.changelanguage,
+                  icon: Icons.language,
+                  disabledIcon: Icons.language,
+                  enabled: true,
+                  onTap: () {
+                    int index = Locales.supported.indexOf(context.locale);
+                    if (index + 1 < Locales.supported.length) {
+                      context.setLocale(Locales.supported[index + 1]);
+                    } else {
+                      context.setLocale(Locales.supported[0]);
+                    }
+                  },
+                  onTapSecondary: () {
+                    Navigator.pushNamed(context, "/language");
+                  },
+                ),
+                QuickSettingsButton(
+                  title: 'TTY Shell',
+                  icon: Icons.developer_mode,
+                  disabledIcon: Icons.developer_mode,
+                  enabled: true,
+                  onTap: () {},
+                  onTapSecondary: () {},
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 16,
+          ),
+
+          //Chip List
+          Padding(
+            padding: EdgeInsets.only(left: 16),
+            child: Row(
+              children: [
+                actionChip(Icons.more_time, "Reminder", context),
+                actionChip(
+                    Icons.info_outline, "Build $totalVersionNumber", context),
+                actionChip(Icons.domain_verification, "dahliaos.io", context),
+                actionChip(Icons.edit_outlined, null, context),
+                //actionChip(Icons.add, null, context)
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 4,
+          ),
+
+          //Sliders
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: Column(
+              children: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Icon(
+                      Icons.brightness_6,
+                      size: 20,
+                    ),
+                    Expanded(
+                      child: Slider(
+                          value: _pref.brightness,
+                          divisions: 10,
+                          onChanged: (newBrightness) {
+                            _pref.brightness = newBrightness;
+                            /* setState(() {
+                              brightness = newBrightness;
+                            }); */
+                          }),
+                    ),
+                    Container(
+                      width: 35,
+                      child: Center(
+                        child: Text(
+                            "${(_pref.brightness * 100).toInt().toString()}",
+                            style: Theme.of(context).textTheme.subtitle2),
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    Icon(
+                      Icons.volume_up,
+                      size: 20,
+                    ),
+                    Expanded(
+                      child: Slider(
+                        value: _pref.volumeLevel,
+                        divisions: 20,
+                        onChanged: (newVolume) {
+                          _pref.volumeLevel = newVolume;
+                          /* setState(() {
+                            volume = newVolume;
+                          }); */
+                        },
+                      ),
+                    ),
+                    Container(
+                      width: 35,
+                      child: Center(
+                        child: Text(
+                            "${(_pref.volumeLevel * 100).toInt().toString()}",
+                            style: Theme.of(context).textTheme.subtitle2),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

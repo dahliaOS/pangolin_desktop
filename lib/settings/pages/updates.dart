@@ -11,8 +11,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:pangolin/settings/settings.dart';
 import 'dart:io';
 import 'package:pangolin/widgets/settingsTile.dart';
 
@@ -47,36 +47,38 @@ class GraftFormState extends State<GraftForm> {
           Padding(
               padding: EdgeInsets.only(top: 0),
               child: Text("Software Updates")),
-          Row(
-            children: [
-              Switch(
-                value: updates,
-                onChanged: (value) {
-                  setState(() {
-                    updates = value;
-                  });
+          SwitchListTile(
+            value: updates,
+            onChanged: (value) {
+              setState(
+                () {
+                  updates = value;
                 },
-              ),
-              Text("Enable System Updates"),
-            ],
+              );
+            },
+            title: Text("Enable System Updates"),
           ),
-          Row(
-            children: [
-              Switch(
-                value: extPkgs,
-                onChanged: (value) {
-                  Scaffold.of(context).showSnackBar(SnackBar(
-                      backgroundColor: Colors.red,
-                      duration: Duration(seconds: 3),
-                      content: Text(
-                          'DANGER: UNSIGNED PACKAGES CAN BE DANGEROUS! Only use update packages you trust!')));
-                  setState(() {
-                    extPkgs = value;
-                  });
+          SwitchListTile(
+            value: extPkgs,
+            onChanged: (value) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  backgroundColor: Colors.red,
+                  duration: Duration(seconds: 3),
+                  content: Text(
+                      'DANGER: UNSIGNED PACKAGES CAN BE DANGEROUS! Only use update packages you trust!'),
+                ),
+              );
+              setState(
+                () {
+                  extPkgs = value;
                 },
-              ),
-              Text("Allow Unsigned Packages"),
-            ],
+              );
+            },
+            title: Text("Allow Unsigned Packages"),
+          ),
+          SizedBox(
+            height: 16,
           ),
           TextFormField(
             initialValue: 'https://dahliaos.io/update/next.upd',
@@ -166,16 +168,8 @@ class _UpdatesState extends State<Updates> {
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              settingsTitle("Updates"),
               Padding(
-                  padding: EdgeInsets.only(left: 25),
-                  child: Text(
-                    "Updates",
-                    style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.w300,
-                        fontFamily: "Roboto"),
-                  )),
-              new Padding(
                   padding: EdgeInsets.only(left: 20, right: 20),
                   child: Column(
                     children: [

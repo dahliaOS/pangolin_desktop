@@ -16,12 +16,12 @@ limitations under the License.
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:pangolin/desktop/overlays/overview_overlay.dart';
+import 'package:pangolin/desktop/overlays/search_overlay.dart';
 import 'package:pangolin/utils/wm_api.dart';
 import 'package:provider/provider.dart';
 import 'package:utopia_wm/wm.dart';
 
-class OverviewButton extends StatelessWidget {
+class SearchButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -30,25 +30,25 @@ class OverviewButton extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(4.0),
         child: Material(
-          borderRadius: BorderRadius.circular(4),
+          borderRadius: BorderRadius.circular(6),
           color: Provider.of<WindowHierarchyState>(context)
-                  .overlayIsActive("overview")
-              ? Theme.of(context).cardColor.withOpacity(0.5)
+                  .overlayIsActive("search")
+              ? Theme.of(context).accentColor.withOpacity(0.5)
               : Colors.transparent,
           child: InkWell(
-            borderRadius: BorderRadius.circular(4),
-            hoverColor: Theme.of(context).cardColor.withOpacity(0.5),
+            borderRadius: BorderRadius.circular(6),
+            hoverColor: Theme.of(context).accentColor.withOpacity(0.5),
             mouseCursor: SystemMouseCursors.click,
             onTap: () {
               WmAPI.of(context).pushOverlayEntry(DismissibleOverlayEntry(
-                  uniqueId: "overview",
-                  content: OverviewOverlay(),
-                  duration: Duration.zero));
+                  uniqueId: "search",
+                  content: SearchOverlay(),
+                  duration: Duration(milliseconds: 100),
+                  curve: Curves.easeInOut));
             },
             child: Padding(
               padding: EdgeInsets.all(8),
-              child:
-                  Center(child: Icon(Icons.fullscreen_exit_outlined, size: 20)),
+              child: Center(child: Icon(Icons.search, size: 20)),
             ),
           ),
         ),

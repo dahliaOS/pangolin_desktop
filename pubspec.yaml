@@ -10,12 +10,12 @@ dependencies:
   flutter:
     sdk: flutter
   dahlia_backend:
-    #path: ../dahlia_backend/
-    git:
-      url: https://github.com/dahliaOS/backend.git
-      ref: main
+    path: backend/
+    #git:
+    #  url: https://github.com/dahliaOS/backend.git
+    #  ref: main
   utopia_wm:
-    #path: ../utopia/
+    #path: utopia/
     git:
       url: https://github.com/dahliaOS/utopia.git
       ref: utopia
@@ -45,7 +45,7 @@ dependencies:
   task_manager:
     git:
       url: https://github.com/dahliaOS/task_manager.git
-  Media:
+  media:
     git:
       url: https://github.com/dahliaOS/media.git
   dahlia_clock:
@@ -80,9 +80,13 @@ flutter:
     - assets/icons/
     - assets/locales/
     - assets/json/visualData.json
+    - global/assets/
 
 
   fonts:
+    - family: CustomIcons
+      fonts:
+        - asset: fonts/CustomIcons.ttf
     - family:  DM-Sans
       fonts:
        - asset: fonts/dm-sans/DMSans-Bold.ttf
@@ -103,6 +107,16 @@ flutter:
        - asset: fonts/lato/Lato-LightItalic.ttf
        - asset: fonts/lato/Lato-Thin.ttf
        - asset: fonts/lato/Lato-Italic.ttf
+    - family:  Inter
+      fonts:
+       - asset: fonts/inter/Inter-Black.ttf
+       - asset: fonts/inter/Inter-Bold.ttf
+       - asset: fonts/inter/Inter-ExtraBold.ttf
+       - asset: fonts/inter/Inter-ExtraLight.ttf
+       - asset: fonts/inter/Inter-Regular.ttf
+       - asset: fonts/inter/Inter-Light.ttf
+       - asset: fonts/inter/Inter-SemiBold.ttf
+       - asset: fonts/inter/Inter-Thin.ttf
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

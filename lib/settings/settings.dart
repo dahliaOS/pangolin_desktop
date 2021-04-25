@@ -12,7 +12,7 @@ limitations under the License.
 */
 
 import 'package:dahlia_backend/dahlia_backend.dart';
-import 'package:pangolin/settings/pages/developerOptions.dart';
+import 'package:pangolin/settings/pages/developer_options.dart';
 import 'package:pangolin/settings/pages/backup.dart';
 import 'package:pangolin/settings/pages/about.dart';
 import 'package:pangolin/settings/pages/accounts.dart';
@@ -21,7 +21,6 @@ import 'package:pangolin/settings/pages/connections.dart';
 import 'package:pangolin/settings/pages/customization.dart';
 import 'package:pangolin/settings/pages/display.dart';
 import 'package:pangolin/settings/pages/general_management.dart';
-import 'package:pangolin/settings/pages/grid.dart';
 import 'package:pangolin/settings/pages/security.dart';
 import 'package:pangolin/settings/pages/sound.dart';
 import 'package:pangolin/settings/pages/updates.dart';
@@ -87,7 +86,7 @@ class Settings extends StatelessWidget {
       "Developer Options",
       "Feature Flags, Advanced Options",
       Icons.developer_mode,
-      AdvancedFeatures(),
+      DeveloperOptions(),
     ),
     TileItem(
       "General management",
@@ -126,7 +125,6 @@ class Settings extends StatelessWidget {
           '/': (context) => SettingsPage(title: 'Settings'),
           // When navigating to the "/second" route, build the SecondScreen widget.
           '/search': (context) => Search(),
-          '/settingshome': (context) => SettingsHome(),
         },
       ),
     );
@@ -182,6 +180,18 @@ Container buildSettingsHeader(String title) {
   );
 }
 
+Padding settingsTitle(String title) {
+  return Padding(
+      padding: EdgeInsets.only(left: 25),
+      child: Text(
+        title,
+        style: TextStyle(
+          fontSize: 30,
+          fontWeight: FontWeight.w300,
+        ),
+      ));
+}
+
 class SettingsPage extends StatefulWidget {
   final String? title;
 
@@ -223,7 +233,7 @@ class _SettingsPageState extends State<SettingsPage> {
                                         .cardColor
                                         .withOpacity(0.7),
                                     borderRadius: const BorderRadius.all(
-                                      const Radius.circular(8),
+                                      Radius.circular(8),
                                     ),
                                     //elevation: 5.0,
                                     child: constraints.maxWidth > 768
@@ -249,6 +259,7 @@ class _SettingsPageState extends State<SettingsPage> {
                                   padding: EdgeInsets.symmetric(
                                       horizontal: 10, vertical: 0),
                                   child: ListView.builder(
+                                    physics: BouncingScrollPhysics(),
                                     itemCount: Settings.items.length,
                                     itemBuilder: (BuildContext context, int i) {
                                       return Container(
@@ -265,6 +276,9 @@ class _SettingsPageState extends State<SettingsPage> {
                                               BorderRadius.circular(10),
                                         ),
                                         child: ListTile(
+                                          hoverColor: Theme.of(context)
+                                              .accentColor
+                                              .withOpacity(0.3),
                                           dense: true,
                                           title: Visibility(
                                             visible: constraints.maxWidth > 768
@@ -304,21 +318,21 @@ class _SettingsPageState extends State<SettingsPage> {
                         ),
                         Expanded(
                           child: PageTransitionSwitcher(
+                            transitionBuilder:
+                                (child, primaryAnimation, secondaryAnimation) {
+                              return FadeThroughTransition(
+                                animation: primaryAnimation,
+                                secondaryAnimation: secondaryAnimation,
+                                fillColor: Colors.transparent,
+                                child: child,
+                              );
+                            },
                             child: IndexedStack(
                               key: ValueKey(provider.pageIndex),
                               index: provider.pageIndex,
                               children:
                                   Settings.items.map((e) => e.page).toList(),
                             ),
-                            transitionBuilder:
-                                (child, primaryAnimation, secondaryAnimation) {
-                              return FadeThroughTransition(
-                                animation: primaryAnimation,
-                                secondaryAnimation: secondaryAnimation,
-                                child: child,
-                                fillColor: Colors.transparent,
-                              );
-                            },
                           ),
                         ),
                       ],
@@ -358,7 +372,7 @@ class _SearchState extends State<Search> {
             tag: "search",
             child: Material(
               color: Theme.of(context).cardColor,
-              borderRadius: const BorderRadius.all(const Radius.circular(25)),
+              borderRadius: const BorderRadius.all(Radius.circular(25)),
               //elevation: 5.0,
               child: GestureDetector(
                 onTap: () {
@@ -421,7 +435,7 @@ class _SearchState extends State<Search> {
 
 class SettingsProvider extends ChangeNotifier {
   int? _pageIndex = 0;
-  TextEditingController _controller = TextEditingController();
+  final TextEditingController _controller = TextEditingController();
 
   TextEditingController get controller => _controller;
   int get pageIndex => _pageIndex!;

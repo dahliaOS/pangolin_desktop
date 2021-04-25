@@ -14,28 +14,39 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
-import 'package:pangolin/desktop/taskbar_elements/clock.dart';
-import 'package:pangolin/desktop/taskbar_elements/quick_settings.dart';
-import 'package:pangolin/desktop/taskbar_elements/launcher.dart';
-import 'package:pangolin/desktop/taskbar_elements/notifications.dart';
-import 'package:pangolin/desktop/taskbar_elements/overview.dart';
-import 'package:pangolin/desktop/taskbar_elements/search.dart';
-import 'package:pangolin/desktop/taskbar.dart';
+import 'package:pangolin/desktop/taskbar/clock.dart';
+import 'package:pangolin/desktop/taskbar/quick_settings.dart';
+import 'package:pangolin/desktop/taskbar/launcher.dart';
+import 'package:pangolin/desktop/taskbar/overview.dart';
+import 'package:pangolin/desktop/taskbar/search.dart';
+import 'package:pangolin/desktop/taskbar/taskbar.dart';
 import 'package:pangolin/desktop/wallpaper.dart';
-import 'package:provider/provider.dart';
 import 'package:utopia_wm/wm.dart';
 
 // ignore: must_be_immutable
-class Desktop extends StatelessWidget {
+class Desktop extends StatefulWidget {
   static final GlobalKey<WindowHierarchyState> wmKey =
       GlobalKey<WindowHierarchyState>();
+
+  @override
+  _DesktopState createState() => _DesktopState();
+}
+
+class _DesktopState extends State<Desktop> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      /* floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Provider.of<PreferenceProvider>(context, listen: false)
+                  .centerTaskbar =
+              !Provider.of<PreferenceProvider>(context, listen: false)
+                  .centerTaskbar;
+        },
+      ), */
       body: WindowHierarchy(
-          key: wmKey,
+          key: Desktop.wmKey,
           rootWindow: Wallpaper(),
           alwaysOnTopWindows: [
             Taskbar(
@@ -48,7 +59,7 @@ class Desktop extends StatelessWidget {
                 OverviewButton(),
               ],
               trailing: [
-                NotificationsButton(),
+                //NotificationsButton(),
                 QuickSettingsButton(),
                 DateClockWidget(),
                 SizedBox(

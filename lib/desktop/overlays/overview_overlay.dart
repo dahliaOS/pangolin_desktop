@@ -45,8 +45,13 @@ class _OverviewOverlayState extends State<OverviewOverlay> {
           child: Stack(
             children: [
               Positioned(
+                top: 0,
+                left: 0,
+                right: 0,
+                height: 152,
                 child: BoxContainer(
-                  color: Theme.of(context).backgroundColor.withOpacity(0.5),
+                  color: Theme.of(context).backgroundColor,
+                  useSystemOpacity: true,
                   useBlur: true,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -70,11 +75,14 @@ class _OverviewOverlayState extends State<OverviewOverlay> {
                       Padding(
                         padding: const EdgeInsets.all(12.0),
                         child: FloatingActionButton.extended(
+                          highlightElevation: 2,
                           onPressed: () {},
                           hoverColor: Theme.of(context).backgroundColor,
                           label: Text("New Desktop"),
                           icon: Icon(Icons.add),
-                          foregroundColor: Colors.black,
+                          hoverElevation: 1,
+                          foregroundColor:
+                              Theme.of(context).textTheme.bodyText1?.color,
                           backgroundColor: Theme.of(context)
                               .backgroundColor
                               .withOpacity(0.5),
@@ -84,10 +92,6 @@ class _OverviewOverlayState extends State<OverviewOverlay> {
                     ],
                   ),
                 ),
-                top: 0,
-                left: 0,
-                right: 0,
-                height: 175,
               ),
             ],
           ),

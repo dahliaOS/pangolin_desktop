@@ -1,9 +1,5 @@
 #include "my_application.h"
 
-#include <stdio.h>
-#include <sys/stat.h>
-#include <string>
-
 #include <flutter_linux/flutter_linux.h>
 #ifdef GDK_WINDOWING_X11
 #include <gdk/gdkx.h>
@@ -18,11 +14,6 @@ struct _MyApplication {
 
 G_DEFINE_TYPE(MyApplication, my_application, GTK_TYPE_APPLICATION)
 
-inline bool file_exists (const std::string& name) {
-  struct stat buffer;   
-  return (stat (name.c_str(), &buffer) == 0); 
-}
-
 // Implements GApplication::activate.
 static void my_application_activate(GApplication* application) {
   MyApplication* self = MY_APPLICATION(application);
@@ -36,7 +27,7 @@ static void my_application_activate(GApplication* application) {
   // in case the window manager does more exotic layout, e.g. tiling.
   // If running on Wayland assume the header bar will work (may need changing
   // if future cases occur).
-  gboolean use_header_bar = false;
+  gboolean use_header_bar = TRUE;
 #ifdef GDK_WINDOWING_X11
   GdkScreen *screen = gtk_window_get_screen(window);
   if (GDK_IS_X11_SCREEN(screen)) {
@@ -58,10 +49,6 @@ static void my_application_activate(GApplication* application) {
   }
 
   gtk_window_set_default_size(window, 1280, 720);
-  gtk_window_set_default_icon_name("preferences-desktop-theme");
-  if (file_exists("/usr/share/pixmaps/pangolin-desktop.png")) {
-    gtk_window_set_icon_from_file(window, "/usr/share/pixmaps/pangolin-desktop.png", nullptr);
-  };
   gtk_widget_show(GTK_WIDGET(window));
 
   g_autoptr(FlDartProject) project = fl_dart_project_new();
@@ -113,5 +100,6 @@ static void my_application_init(MyApplication* self) {}
 MyApplication* my_application_new() {
   return MY_APPLICATION(g_object_new(my_application_get_type(),
                                      "application-id", APPLICATION_ID,
+                                     "flags", G_APPLICATION_NON_UNIQUE,
                                      nullptr));
 }

@@ -17,75 +17,93 @@ limitations under the License.
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:pangolin/desktop/wallpaper.dart';
 import 'package:pangolin/utils/globals.dart';
+import 'package:pangolin/utils/wm_api.dart';
 
 class PowerOverlay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-        left: horizontalPadding(context, 300),
-        right: horizontalPadding(context, 300),
-        top: verticalPadding(context, 100),
-        bottom: verticalPadding(context, 100),
-        child: BoxContainer(
-          useSystemOpacity: true,
-          decoration: BoxDecoration(
-            border:
-                Border.all(color: Theme.of(context).backgroundColor, width: 2),
-            borderRadius: BorderRadius.circular(10),
+    return Stack(
+      children: [
+        Wallpaper(),
+        GestureDetector(
+          onTap: () {
+            WmAPI.of(context).popCurrentOverlayEntry();
+            //setState(() {});
+          },
+          child: BoxContainer(
+            color: Theme.of(context).shadowColor.withOpacity(0.5),
+            useBlur: true,
           ),
-          color: Theme.of(context).backgroundColor,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Expanded(
-                child: Material(
-                  color: Colors.transparent,
-                  child: InkWell(
-                    onTap: () {
-                      SystemCalls().powerOff();
-                    },
-                    mouseCursor: SystemMouseCursors.click,
-                    child: Icon(
-                      Icons.power_settings_new,
-                      size: 40,
+        ),
+        Positioned(
+            left: horizontalPadding(context, 320),
+            right: horizontalPadding(context, 320),
+            top: verticalPadding(context, 100),
+            bottom: verticalPadding(context, 100),
+            child: BoxContainer(
+              useSystemOpacity: true,
+              useBlur: true,
+              decoration: BoxDecoration(
+                border: Border.all(
+                    color: Theme.of(context).backgroundColor, width: 2),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              color: Theme.of(context).backgroundColor,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Expanded(
+                    child: Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        onTap: () {
+                          SystemCalls().powerOff();
+                        },
+                        mouseCursor: SystemMouseCursors.click,
+                        child: Icon(
+                          Icons.power_settings_new,
+                          size: 40,
+                        ),
+                      ),
                     ),
                   ),
-                ),
-              ),
-              Expanded(
-                child: Material(
-                  color: Colors.transparent,
-                  child: InkWell(
-                    onTap: () {
-                      SystemCalls().restart();
-                    },
-                    mouseCursor: SystemMouseCursors.click,
-                    child: Icon(
-                      Icons.replay,
-                      size: 40,
+                  Expanded(
+                    child: Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        onTap: () {
+                          SystemCalls().restart();
+                        },
+                        mouseCursor: SystemMouseCursors.click,
+                        child: Icon(
+                          Icons.replay,
+                          size: 40,
+                        ),
+                      ),
                     ),
                   ),
-                ),
-              ),
-              Expanded(
-                child: Material(
-                  color: Colors.transparent,
-                  child: InkWell(
-                    onTap: () {
-                      SystemCalls().sleep();
-                    },
-                    mouseCursor: SystemMouseCursors.click,
-                    child: Icon(
-                      Icons.brightness_2_outlined,
-                      size: 40,
+                  Expanded(
+                    child: Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        onTap: () {
+                          SystemCalls().sleep();
+                        },
+                        mouseCursor: SystemMouseCursors.click,
+                        child: Icon(
+                          Icons.brightness_2_outlined,
+                          size: 40,
+                        ),
+                      ),
                     ),
                   ),
-                ),
+                ],
               ),
-            ],
-          ),
-        ));
+            ))
+      ],
+    );
   }
 }

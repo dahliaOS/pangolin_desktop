@@ -13,11 +13,12 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
+import 'package:pangolin/utils/accent_color_data.dart';
 import 'package:utopia_wm/wm.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-String totalVersionNumber = "21030";
+String totalVersionNumber = "210419";
 String headingFeatureString =
     "dahliaOS Linux-Based " + totalVersionNumber + " ...";
 String longName = "dahliaOS Linux-Based " + totalVersionNumber + " PRE-RELEASE";
@@ -58,4 +59,15 @@ List<String> wallpapers = [
   "assets/images/wallpapers/Bubbles_wallpaper.png",
   "assets/images/wallpapers/Mountains_wallpaper.png",
   "assets/images/wallpapers/mountain.jpg",
+];
+
+List<AccentColorData> accentColors = [
+  AccentColorData(color: Colors.deepOrange, title: "Orange"),
+  AccentColorData(color: Colors.red.shade700, title: "Red"),
+  AccentColorData(color: Colors.greenAccent.shade700, title: "Green"),
+  AccentColorData(color: Colors.blue, title: "Blue"),
+  AccentColorData(color: Colors.purple, title: "Purple"),
+  AccentColorData(color: Colors.cyan, title: "Cyan"),
+  AccentColorData(color: Colors.amber, title: "Amber"),
+  AccentColorData(color: null, title: "Custom Accent Color"),
 ];

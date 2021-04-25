@@ -17,47 +17,81 @@ limitations under the License.
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:provider/provider.dart';
-import 'package:dahlia_backend/dahlia_backend.dart';
 
-class QuickSettingsButton extends StatelessWidget {
-  final String? title;
-  final void Function()? onTap;
-  final IconData? icon;
-  final Color? color;
+// ignore: must_be_immutable
+class QuickSettingsButton extends StatefulWidget {
+  final String title;
+  final void Function() onTap, onTapSecondary;
+  final IconData icon, disabledIcon;
+  bool enabled;
 
-  const QuickSettingsButton({this.title, this.onTap, this.icon, this.color});
+  QuickSettingsButton({
+    required this.title,
+    required this.onTap,
+    required this.icon,
+    required this.disabledIcon,
+    required this.enabled,
+    required this.onTapSecondary,
+  });
+
+  @override
+  _QuickSettingsButtonState createState() => _QuickSettingsButtonState();
+}
+
+class _QuickSettingsButtonState extends State<QuickSettingsButton> {
   @override
   Widget build(BuildContext context) {
-    final _data = Provider.of<PreferenceProvider>(context, listen: false);
     return Column(
       children: [
         SizedBox(
           width: 50,
           height: 50,
-          child: InkWell(
-            mouseCursor: SystemMouseCursors.click,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(
-                  DatabaseManager.get("qsTileRounding")), //or 15.0
-              child: Container(
-                color: color ?? Color(_data.accentColor),
-                child: Icon(
-                  icon ?? Icons.error,
-                  color: Colors.white,
-                  size: 20,
-                ),
+          child: GestureDetector(
+            onSecondaryTap: widget.onTapSecondary,
+            child: RawMaterialButton(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(
+                      DatabaseManager.get("qsTileRounding"))),
+              fillColor: widget.enabled
+                  ? Theme.of(context).accentColor
+                  : Theme.of(context).backgroundColor,
+              enableFeedback: true,
+              elevation: 0.0,
+              hoverElevation: 1,
+              onLongPress: widget.onTapSecondary,
+              //borderRadius: BorderRadius.circular(25),
+              onPressed: () {
+                widget.onTap();
+                //widget.enabled = !widget.enabled;
+                setState(() {});
+              },
+              mouseCursor: SystemMouseCursors.click,
+              child: Icon(
+                widget.enabled ? widget.icon : widget.disabledIcon,
+                color: widget.enabled
+                    ? Colors.white
+                    : Theme.of(context).textTheme.bodyText1?.color,
+                size: 20,
               ),
             ),
           ),
         ),
         SizedBox(
-          height: 6,
+          height: 4,
         ),
-        Text(
-          title ?? "error",
-          style: Theme.of(context).textTheme.bodyText1,
-          textAlign: TextAlign.center,
+        InkWell(
+          onTap: widget.onTapSecondary,
+          borderRadius: BorderRadius.circular(4),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 6.0, horizontal: 8.0),
+            child: Text(
+              widget.title.split(" ")[0].characters.length > 2
+                  ? widget.title.replaceAll(" ", "\n")
+                  : widget.title.replaceRange(6, 7, "\n"),
+              style: Theme.of(context).textTheme.bodyText1,
+              textAlign: TextAlign.center,
+            ),
+          ),
         ),
       ],
     );
@@ -81,20 +115,22 @@ Widget actionChip(IconData icon, String? label, context) {
               borderRadius: BorderRadius.all(
                 Radius.circular(100),
               ),
-              color: Colors.white.withOpacity(0.25),
+              color: Theme.of(context).backgroundColor.withOpacity(0.5),
             ),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: new Row(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Padding(
                     padding: EdgeInsets.only(right: label != null ? 8.0 : 0.0),
                     child: Icon(
                       icon,
-                      size: 15,
+                      size: 16,
                     ),
                   ),
-                  new Text(
+                  Text(
                     label ?? "",
                     style: Theme.of(context).textTheme.subtitle2,
                   )

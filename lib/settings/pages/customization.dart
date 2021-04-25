@@ -15,6 +15,7 @@ import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+import 'package:pangolin/settings/settings.dart';
 import 'package:pangolin/utils/globals.dart';
 import 'package:pangolin/widgets/settingsTile.dart';
 import 'package:pangolin/widgets/settingsheader.dart';
@@ -24,6 +25,143 @@ class Customization extends StatefulWidget {
   static int selectedWallpaper = 0;
   @override
   _CustomizationState createState() => _CustomizationState();
+
+  static Row accentColors(PreferenceProvider _data, BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        buildAcctenColorButton(Colors.deepOrange, "Orange", context),
+        buildAcctenColorButton(Colors.red.shade700, "Red", context),
+        buildAcctenColorButton(Colors.greenAccent.shade700, "Green", context),
+        buildAcctenColorButton(Colors.blue, "Blue", context),
+        buildAcctenColorButton(Colors.purple, "Purple", context),
+        buildAcctenColorButton(Colors.cyan, "Cyan", context),
+        buildAcctenColorButton(Colors.amber, "Amber", context),
+        buildAcctenColorButton((_data.darkMode ? Colors.white : Colors.black),
+            _data.darkMode ? "White" : "Black", context),
+        buildCustomAcctenColorButton(context)
+      ],
+    );
+  }
+
+  Color pickerColor = Color(0xff443a49);
+  Color currentColor = Color(0xff443a49);
+
+  static InkWell buildAcctenColorButton(
+      Color color, String name, BuildContext context) {
+    final _data = Provider.of<PreferenceProvider>(context, listen: true);
+    return InkWell(
+      hoverColor: Colors.transparent,
+      splashColor: Colors.transparent,
+      mouseCursor: SystemMouseCursors.click,
+      onTap: () {
+        _data.useCustomAccentColor = false;
+        _data.accentColor = color.value;
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        child: Tooltip(
+          message: name,
+          child: CircleAvatar(
+            backgroundColor: Colors.grey,
+            child: Padding(
+              padding: const EdgeInsets.all(3.0),
+              child: CircleAvatar(
+                  backgroundColor: color,
+                  child: (_data.accentColor == color.value)
+                      ? Icon(Icons.blur_circular,
+                          color: DatabaseManager.get("darkMode")
+                              ? Colors.black
+                              : Colors.white)
+                      : SizedBox.shrink()),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  static InkWell buildCustomAcctenColorButton(BuildContext context) {
+    final _data = Provider.of<PreferenceProvider>(context, listen: true);
+    return InkWell(
+      hoverColor: Colors.transparent,
+      splashColor: Colors.transparent,
+      mouseCursor: SystemMouseCursors.click,
+      onTap: () {
+        accentColorDialog(context, _data);
+        //_data.accentColor = color.value;
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        child: Tooltip(
+          message: "Custom",
+          child: CircleAvatar(
+            backgroundColor: Colors.grey,
+            child: Padding(
+              padding: const EdgeInsets.all(3.0),
+              child: CircleAvatar(
+                  backgroundColor: Color(_data.accentColor),
+                  child: (_data
+                          .useCustomAccentColor) //_data.accentColor == color.value)
+                      ? Icon(Icons.blur_circular,
+                          color: DatabaseManager.get("darkMode")
+                              ? Colors.black
+                              : Colors.white)
+                      : Icon(
+                          Icons.add,
+                          color: _data.accentColor == Colors.white.value
+                              ? Colors.black
+                              : Colors.white,
+                        )),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  static Future<dynamic> accentColorDialog(
+      BuildContext context, PreferenceProvider _data) {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          int? _customValue;
+          return AlertDialog(
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ColorPicker(
+                  showLabel: true,
+                  portraitOnly: true,
+                  enableAlpha: false,
+                  onColorChanged: (Color value) {
+                    //_data.accentColor = value.value;
+                    _customValue = value.value;
+                  },
+                  pickerColor: Color(_data.accentColor),
+                ),
+              ],
+            ),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    if (_customValue != null) {
+                      _data.accentColor = _customValue!;
+                      _data.useCustomAccentColor = true;
+                      Navigator.pop(context);
+                    } else {
+                      Navigator.pop(context);
+                    }
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 14.0, horizontal: 22),
+                    child: Text("Save"),
+                  )),
+            ],
+          );
+        });
+  }
 }
 
 class _CustomizationState extends State<Customization> {
@@ -40,15 +178,7 @@ class _CustomizationState extends State<Customization> {
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                  padding: EdgeInsets.only(left: 25),
-                  child: Text(
-                    "Customization",
-                    style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.w300,
-                        fontFamily: "Roboto"),
-                  )),
+              settingsTitle("Customization"),
               Padding(
                 padding: const EdgeInsets.all(30.0),
                 child: Column(
@@ -58,23 +188,7 @@ class _CustomizationState extends State<Customization> {
                     SettingsTile(
                       children: [
                         SizedBox(height: 5),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            buildAcctenColorButton(Colors.deepOrange, "Orange"),
-                            buildAcctenColorButton(Colors.red.shade700, "Red"),
-                            buildAcctenColorButton(
-                                Colors.greenAccent.shade700, "Green"),
-                            buildAcctenColorButton(Colors.blue, "Blue"),
-                            buildAcctenColorButton(Colors.purple, "Purple"),
-                            buildAcctenColorButton(Colors.cyan, "Cyan"),
-                            buildAcctenColorButton(Colors.amber, "Amber"),
-                            buildAcctenColorButton(
-                                (_data.darkMode ? Colors.white : Colors.black),
-                                _data.darkMode ? "White" : "Black"),
-                            buildCustomAcctenColorButton()
-                          ],
-                        ),
+                        Customization.accentColors(_data, context),
                         SizedBox(height: 15),
                         SwitchListTile(
                             title: Text("Use colored Titlebar"),
@@ -83,6 +197,26 @@ class _CustomizationState extends State<Customization> {
                               _data.useColoredTitlebar =
                                   !_data.useColoredTitlebar;
                             })
+                      ],
+                    ),
+                    SettingsHeader(heading: "Dark Mode"),
+                    SettingsTile(
+                      children: [
+                        SwitchListTile(
+                          secondary: Icon(Icons.brightness_4_outlined),
+                          value: _data.darkMode,
+                          title: Text("Enable Dark mode on all applications"),
+                          onChanged: (bool state) {
+                            _data.darkMode = !_data.darkMode;
+                            if (_data.darkMode &&
+                                _data.accentColor == Colors.black.value) {
+                              _data.accentColor = Colors.white.value;
+                            } else if (!_data.darkMode &&
+                                _data.accentColor == Colors.white.value) {
+                              _data.accentColor = Colors.black.value;
+                            }
+                          },
+                        ),
                       ],
                     ),
                     SettingsHeader(heading: "Blur"),
@@ -142,24 +276,14 @@ class _CustomizationState extends State<Customization> {
                             : SizedBox.shrink()
                       ],
                     ),
-                    SettingsHeader(heading: "Dark Mode"),
+                    SettingsHeader(heading: "Taskbar"),
                     SettingsTile(
                       children: [
                         SwitchListTile(
-                          secondary: Icon(Icons.brightness_4_outlined),
-                          value: _data.darkMode,
-                          title: Text("Enable Dark mode on all applications"),
-                          onChanged: (bool state) {
-                            _data.darkMode = !_data.darkMode;
-                            if (_data.darkMode &&
-                                _data.accentColor == Colors.black.value) {
-                              _data.accentColor = Colors.white.value;
-                            } else if (!_data.darkMode &&
-                                _data.accentColor == Colors.white.value) {
-                              _data.accentColor = Colors.black.value;
-                            }
-                          },
-                        ),
+                            title: Text("Center Taskbar"),
+                            secondary: Icon(Icons.view_array_outlined),
+                            value: _data.centerTaskbar,
+                            onChanged: (val) => _data.centerTaskbar = val),
                       ],
                     ),
                     SettingsHeader(heading: "Opacity"),
@@ -223,16 +347,20 @@ class _CustomizationState extends State<Customization> {
                             isExpanded: true,
                             items: [
                               DropdownMenuItem(
-                                child: Text("Roboto"),
                                 value: "Roboto",
+                                child: Text("Roboto"),
                               ),
                               DropdownMenuItem(
-                                child: Text("DM Sans"),
                                 value: "DM-Sans",
+                                child: Text("DM Sans"),
                               ),
                               DropdownMenuItem(
-                                child: Text("Lato"),
                                 value: "Lato",
+                                child: Text("Lato"),
+                              ),
+                              DropdownMenuItem(
+                                value: "Inter",
+                                child: Text("Inter"),
                               ),
                             ],
                             value: _data.fontFamily,
@@ -388,120 +516,6 @@ class _CustomizationState extends State<Customization> {
       ),
     );
   }
-
-  Color pickerColor = Color(0xff443a49);
-  Color currentColor = Color(0xff443a49);
-
-  InkWell buildAcctenColorButton(Color color, String name) {
-    final _data = Provider.of<PreferenceProvider>(context, listen: true);
-    return InkWell(
-      hoverColor: Colors.transparent,
-      splashColor: Colors.transparent,
-      mouseCursor: SystemMouseCursors.click,
-      onTap: () {
-        _data.useCustomAccentColor = false;
-        _data.accentColor = color.value;
-      },
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-        child: Tooltip(
-          message: name,
-          child: CircleAvatar(
-            backgroundColor: Colors.grey,
-            child: Padding(
-              padding: const EdgeInsets.all(3.0),
-              child: CircleAvatar(
-                  backgroundColor: color,
-                  child: (_data.accentColor == color.value)
-                      ? Icon(Icons.blur_circular,
-                          color: DatabaseManager.get("darkMode")
-                              ? Colors.black
-                              : Colors.white)
-                      : SizedBox.shrink()),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  InkWell buildCustomAcctenColorButton() {
-    final _data = Provider.of<PreferenceProvider>(context, listen: true);
-    return InkWell(
-      hoverColor: Colors.transparent,
-      splashColor: Colors.transparent,
-      mouseCursor: SystemMouseCursors.click,
-      onTap: () {
-        showDialog(
-            context: context,
-            builder: (context) {
-              int? _customValue;
-              return AlertDialog(
-                content: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    ColorPicker(
-                      showLabel: true,
-                      portraitOnly: true,
-                      enableAlpha: false,
-                      onColorChanged: (Color value) {
-                        //_data.accentColor = value.value;
-                        setState(() {
-                          _customValue = value.value;
-                        });
-                      },
-                      pickerColor: Color(_data.accentColor),
-                    ),
-                  ],
-                ),
-                actions: [
-                  TextButton(
-                      onPressed: () {
-                        if (_customValue != null) {
-                          _data.accentColor = _customValue!;
-                          _data.useCustomAccentColor = true;
-                          Navigator.pop(context);
-                        } else
-                          Navigator.pop(context);
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 14.0, horizontal: 22),
-                        child: Text("Save"),
-                      )),
-                ],
-              );
-            });
-        //_data.accentColor = color.value;
-      },
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-        child: Tooltip(
-          message: "Custom",
-          child: CircleAvatar(
-            backgroundColor: Colors.grey,
-            child: Padding(
-              padding: const EdgeInsets.all(3.0),
-              child: CircleAvatar(
-                  backgroundColor: Color(_data.accentColor),
-                  child: (_data
-                          .useCustomAccentColor) //_data.accentColor == color.value)
-                      ? Icon(Icons.blur_circular,
-                          color: DatabaseManager.get("darkMode")
-                              ? Colors.black
-                              : Colors.white)
-                      : Icon(
-                          Icons.add,
-                          color: _data.accentColor == Colors.white.value
-                              ? Colors.black
-                              : Colors.white,
-                        )),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
 }
 
 class WallpaperChooser extends StatefulWidget {
@@ -529,6 +543,7 @@ class _WallpaperChooserState extends State<WallpaperChooser> {
         width: MediaQuery.of(context).size.width - 300,
         height: MediaQuery.of(context).size.height - 300,
         child: AlertDialog(
+          elevation: 0.0,
           backgroundColor: Colors.transparent,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

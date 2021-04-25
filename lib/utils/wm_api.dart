@@ -17,15 +17,28 @@ limitations under the License.
 import 'package:flutter/material.dart';
 import 'package:pangolin/utils/app_list.dart';
 import 'package:pangolin/widgets/error_window.dart';
+import 'package:pangolin/widgets/window_toolbar.dart';
 import 'package:utopia_wm/wm.dart';
 import 'package:provider/provider.dart';
 
 class WmAPI {
-  late BuildContext context;
-  WmAPI.of(this.context);
+  final BuildContext context;
+  const WmAPI.of(this.context);
+
   void popOverlayEntry(DismissibleOverlayEntry entry) {
     Provider.of<WindowHierarchyState>(context, listen: false)
         .popOverlayEntry(entry);
+  }
+
+  void popCurrentOverlayEntry() {
+    if (Provider.of<WindowHierarchyState>(context, listen: false)
+        .overlays
+        .isNotEmpty) {
+      Provider.of<WindowHierarchyState>(context, listen: false).popOverlayEntry(
+          Provider.of<DismissibleOverlayEntry>(context, listen: false));
+      // ignore: invalid_use_of_protected_member
+      ScaffoldMessenger.of(context).setState(() {});
+    }
   }
 
   void popWindowEntry(WindowEntry entry) {
@@ -44,10 +57,16 @@ class WmAPI {
   }
 
   void openApp(String packageName) {
-    pushWindowEntry(WindowEntry.withDefaultToolbar(
+    pushWindowEntry(WindowEntry(
+      bgColor: Theme.of(context).accentColor.withOpacity(0.05),
+      initiallyCenter: true,
+      allowResize: true,
+      usesToolbar: true,
+      toolbar: PangolinWindowToolbar(),
       packageName: packageName,
       content: getApp(packageName).app ?? ErrorWindow(),
       initialSize: Size(1280, 720),
+      minSize: Size(720, 480),
       toolbarColor: getApp(packageName).color ?? Colors.grey,
       icon: AssetImage("assets/icons/${getApp(packageName).iconName}.png"),
       title: getApp(packageName).name,
