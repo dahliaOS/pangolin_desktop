@@ -12,6 +12,7 @@ limitations under the License.
 */
 
 import 'package:flutter/material.dart';
+import 'package:pangolin/internal/locales/locale_strings.g.dart';
 import 'package:pangolin/settings/settings.dart';
 
 class Security extends StatefulWidget {
@@ -32,7 +33,7 @@ class _SecurityState extends State<Security> {
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              settingsTitle("Security"),
+              settingsTitle(LocaleStrings.settings.headerSecurity),
             ],
           ),
         ),

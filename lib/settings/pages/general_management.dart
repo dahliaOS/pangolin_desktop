@@ -15,6 +15,7 @@ import 'dart:ui';
 
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:pangolin/internal/locales/locale_strings.g.dart';
 import 'package:pangolin/internal/locales/locales.g.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/settings/settings.dart';
@@ -42,23 +43,25 @@ class GeneralManagement extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              settingsTitle("General Management"),
+              settingsTitle(LocaleStrings.settings.headerGeneral),
               Padding(
                 padding: const EdgeInsets.all(30.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SettingsHeader(heading: "Language and Region"),
+                    SettingsHeader(
+                        heading:
+                            LocaleStrings.settings.generalLanguageAndRegion),
                     SettingsTile(
                       margin: EdgeInsets.symmetric(horizontal: 16.0),
                       children: [
-                        Text("Language"),
+                        Text(LocaleStrings.settings.generalLanguage),
                         SizedBox(height: 5),
                         Container(
                           width: double.infinity,
                           child: DropdownButton<String>(
                             icon: Icon(null),
-                            hint: Text("Language"),
+                            hint: Text(LocaleStrings.settings.generalLanguage),
                             value: '${context.locale}',
                             // items: languages.map((String value) {
                             items: localesLanguages.map((value) {
@@ -74,13 +77,14 @@ class GeneralManagement extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SettingsHeader(heading: "Time"),
+                    SettingsHeader(heading: LocaleStrings.settings.generalTime),
                     SettingsTile(
                       children: [
                         SwitchListTile(
                           secondary: Icon(Icons.timelapse),
                           value: _data.enableAutoTime,
-                          title: Text("Automatic time"),
+                          title: Text(
+                              LocaleStrings.settings.generalTimeAutomaticTime),
                           onChanged: (bool state) {
                             _data.enableAutoTime = !_data.enableAutoTime;
                           },
@@ -128,7 +132,8 @@ class GeneralManagement extends StatelessWidget {
                                     ?.color),
                           ),
                           value: _data.showSeconds,
-                          title: Text("Show seconds"),
+                          title: Text(
+                              LocaleStrings.settings.generalTimeShowSeconds),
                           onChanged: (bool state) {
                             _data.showSeconds = !_data.showSeconds;
                           },
@@ -144,14 +149,16 @@ class GeneralManagement extends StatelessWidget {
                                     ?.color),
                           ),
                           value: _data.enable24h,
-                          title: Text("Enable 24-hour time"),
+                          title: Text(LocaleStrings
+                              .settings.generalTimeEnableTwentyfourHours),
                           onChanged: (bool state) {
                             _data.enable24h = !_data.enable24h;
                           },
                         ),
                       ],
                     ),
-                    SettingsHeader(heading: "Keyboard"),
+                    SettingsHeader(
+                        heading: LocaleStrings.settings.generalKeyboard),
                     SettingsTile(
                       margin: EdgeInsets.symmetric(horizontal: 16.0),
                       children: [

@@ -13,14 +13,22 @@ limitations under the License.
 
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
+import 'package:pangolin/internal/locales/locale_strings.g.dart';
 import 'package:pangolin/settings/settings.dart';
 import 'package:pangolin/widgets/settingsTile.dart';
 import 'package:pangolin/widgets/settingsheader.dart';
 import 'package:provider/provider.dart';
 
-class Connections extends StatelessWidget {
+class Connections extends StatefulWidget {
+  @override
+  _ConnectionsState createState() => _ConnectionsState();
+}
+
+class _ConnectionsState extends State<Connections> {
   List<WifiItem> wifiList = List<WifiItem>.empty(growable: true);
+
   List<BluetoothItem> bluetoothList = List<BluetoothItem>.empty(growable: true);
+
   @override
   void initState() {
     wifiList.add(WifiItem("Wi-Fi 1", true));
@@ -34,7 +42,7 @@ class Connections extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _data = Provider.of<PreferenceProvider>(context, listen: false);
+    final _data = Provider.of<PreferenceProvider>(context);
     return Scaffold(
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
@@ -45,13 +53,15 @@ class Connections extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              settingsTitle("Connections"),
+              settingsTitle(LocaleStrings.settings.headerConnections),
               Padding(
                 padding: const EdgeInsets.all(30.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SettingsHeader(heading: "Wi-Fi and Bluetooth"),
+                    SettingsHeader(
+                        heading:
+                            LocaleStrings.settings.connectionsWifiAndBluetooth),
                     SettingsTile(
                       children: [
                         Wrap(
@@ -61,9 +71,11 @@ class Connections extends StatelessWidget {
                                 SwitchListTile(
                                   onChanged: (bool value) {
                                     _data.wifi = !_data.wifi;
+                                    setState(() {});
                                   },
                                   value: _data.wifi,
-                                  title: Text("Enable Wi-Fi"),
+                                  title: Text(LocaleStrings
+                                      .settings.connectionsEnableWifi),
                                 ),
                                 /* CustomConditionWidget(
                                     DatabaseManager.get("wifi"),
@@ -118,7 +130,8 @@ class Connections extends StatelessWidget {
                                     _data.bluetooth = !_data.bluetooth;
                                   },
                                   value: _data.bluetooth,
-                                  title: Text("Enable Bluetooth"),
+                                  title: Text(LocaleStrings
+                                      .settings.connectionsEnableBluetooth),
                                 ),
                                 /* CustomConditionWidget(
                                     DatabaseManager.get("bluetooth"),

@@ -12,6 +12,7 @@ limitations under the License.
 */
 
 import 'package:flutter/material.dart';
+import 'package:pangolin/internal/locales/locale_strings.g.dart';
 import 'package:pangolin/settings/settings.dart';
 
 class Accounts extends StatefulWidget {
@@ -32,7 +33,7 @@ class _AccountsState extends State<Accounts> {
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              settingsTitle("Accounts"),
+              settingsTitle(LocaleStrings.settings.headerAccounts),
             ],
           ),
         ),

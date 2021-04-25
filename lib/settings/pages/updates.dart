@@ -12,6 +12,7 @@ limitations under the License.
 */
 
 import 'package:flutter/material.dart';
+import 'package:pangolin/internal/locales/locale_strings.g.dart';
 import 'package:pangolin/settings/settings.dart';
 import 'dart:io';
 import 'package:pangolin/widgets/settingsTile.dart';
@@ -46,7 +47,7 @@ class GraftFormState extends State<GraftForm> {
         children: <Widget>[
           Padding(
               padding: EdgeInsets.only(top: 0),
-              child: Text("Software Updates")),
+              child: Text(LocaleStrings.settings.updatesSoftwareUpdates)),
           SwitchListTile(
             value: updates,
             onChanged: (value) {
@@ -56,7 +57,7 @@ class GraftFormState extends State<GraftForm> {
                 },
               );
             },
-            title: Text("Enable System Updates"),
+            title: Text(LocaleStrings.settings.updatesEnableSystemUpdates),
           ),
           SwitchListTile(
             value: extPkgs,
@@ -75,7 +76,7 @@ class GraftFormState extends State<GraftForm> {
                 },
               );
             },
-            title: Text("Allow Unsigned Packages"),
+            title: Text(LocaleStrings.settings.updatesAllowUnsignedPackages),
           ),
           SizedBox(
             height: 16,
@@ -83,7 +84,7 @@ class GraftFormState extends State<GraftForm> {
           TextFormField(
             initialValue: 'https://dahliaos.io/update/next.upd',
             decoration: InputDecoration(
-                labelText: "Update Package URL",
+                labelText: LocaleStrings.settings.updatesUpdatePackageUrl,
                 border: OutlineInputBorder(),
                 prefixIcon: Icon(Icons.storage)),
             validator: (value) {
@@ -141,7 +142,7 @@ class GraftFormState extends State<GraftForm> {
                   }
                 }
               },
-              child: Text('Update System'),
+              child: Text(LocaleStrings.settings.updatesButtonUpdateSystem),
             ),
           ),
         ],
@@ -168,7 +169,7 @@ class _UpdatesState extends State<Updates> {
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              settingsTitle("Updates"),
+              settingsTitle(LocaleStrings.settings.headerUpdates),
               Padding(
                   padding: EdgeInsets.only(left: 20, right: 20),
                   child: Column(

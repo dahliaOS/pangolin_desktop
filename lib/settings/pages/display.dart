@@ -15,6 +15,7 @@ import 'dart:ui';
 
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
+import 'package:pangolin/internal/locales/locale_strings.g.dart';
 import 'package:pangolin/settings/settings.dart';
 import 'package:pangolin/widgets/settingsTile.dart';
 import 'package:pangolin/widgets/settingsheader.dart';
@@ -34,16 +35,17 @@ class Display extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              settingsTitle("Display"),
+              settingsTitle(LocaleStrings.settings.headerDisplay),
               Padding(
                 padding: const EdgeInsets.all(30.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SettingsHeader(heading: "Screen"),
+                    SettingsHeader(
+                        heading: LocaleStrings.settings.displayScreen),
                     SettingsTile(
                       children: [
-                        Text("Set your screen brightness"),
+                        Text(LocaleStrings.settings.displayScreenDesc),
                         SizedBox(height: 5),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -66,7 +68,8 @@ class Display extends StatelessWidget {
                         )
                       ],
                     ),
-                    SettingsHeader(heading: "Blue light filter"),
+                    SettingsHeader(
+                        heading: LocaleStrings.settings.displayBlueLightFilter),
                     SettingsTile(
                       children: [
                         SwitchListTile(
@@ -76,16 +79,17 @@ class Display extends StatelessWidget {
                                 !_data.enableBluelightFilter;
                           },
                           value: _data.enableBluelightFilter,
-                          title: Text(
-                              "Enable blue light filter to protect your eyes"),
+                          title: Text(LocaleStrings
+                              .settings.displayBlueLightFilterDesc),
                         ),
                       ],
                     ),
-                    SettingsHeader(heading: "Resolution"),
+                    SettingsHeader(
+                        heading: LocaleStrings.settings.displayResolution),
                     AbsorbPointer(
                       child: SettingsTile(
                         children: [
-                          Text("Adjust your screen resolution"),
+                          Text(LocaleStrings.settings.displayResolutionDesc),
                           SizedBox(height: 5),
                           Padding(
                             padding: const EdgeInsets.all(8.0),

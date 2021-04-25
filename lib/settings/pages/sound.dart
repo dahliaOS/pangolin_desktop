@@ -13,6 +13,7 @@ limitations under the License.
 
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
+import 'package:pangolin/internal/locales/locale_strings.g.dart';
 import 'package:pangolin/settings/settings.dart';
 import 'package:pangolin/widgets/settingsTile.dart';
 import 'package:pangolin/widgets/settingsheader.dart';
@@ -32,16 +33,17 @@ class Sound extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              settingsTitle("Sound and Volume"),
+              settingsTitle(LocaleStrings.settings.headerSound),
               Padding(
                 padding: const EdgeInsets.all(30.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SettingsHeader(heading: "System volume"),
+                    SettingsHeader(
+                        heading: LocaleStrings.settings.soundSystemVolume),
                     SettingsTile(
                       children: [
-                        Text("Set your system volume"),
+                        Text(LocaleStrings.settings.soundSystemVolumeDesc),
                         SizedBox(height: 5),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -66,10 +68,11 @@ class Sound extends StatelessWidget {
                         )
                       ],
                     ),
-                    SettingsHeader(heading: "Volume levels"),
+                    SettingsHeader(
+                        heading: LocaleStrings.settings.soundVolumeLevels),
                     SettingsTile(
                       children: [
-                        Text("Set individual volume for each application"),
+                        Text(LocaleStrings.settings.soundVolumeLevelsDesc),
                         SizedBox(height: 5),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -94,16 +97,16 @@ class Sound extends StatelessWidget {
                         )
                       ],
                     ),
-                    SettingsHeader(heading: "Output"),
+                    SettingsHeader(heading: LocaleStrings.settings.soundOutput),
                     SettingsTile(
                       children: [
-                        Text("Select output device"),
+                        Text(LocaleStrings.settings.soundOutputDesc),
                         SizedBox(height: 5),
                         Container(
                           width: 1.7976931348623157e+308,
                           child: DropdownButton<String>(
                             icon: Icon(null),
-                            hint: Text("Language"),
+                            hint: Text("Device"),
                             value: "Speaker",
                             items:
                                 ["Speaker", "Headphones"].map((String value) {

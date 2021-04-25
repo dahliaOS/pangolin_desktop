@@ -13,6 +13,7 @@ limitations under the License.
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:pangolin/internal/locales/locale_strings.g.dart';
 
 class LauncherCategories extends StatefulWidget {
   final PageController? controller;
@@ -31,13 +32,13 @@ class _LauncherCategoriesState extends State<LauncherCategories> {
   @override
   Widget build(BuildContext context) {
     List<String> launcherCategories = [
-      "All Applications",
-      "Internet",
-      "Media",
-      "Gaming",
-      "Development",
-      "Office",
-      "System"
+      LocaleStrings.launcher.categoriesAll,
+      LocaleStrings.launcher.categoriesInternet,
+      LocaleStrings.launcher.categoriesMedia,
+      LocaleStrings.launcher.categoriesGaming,
+      LocaleStrings.launcher.categoriesDevelopment,
+      LocaleStrings.launcher.categoriesOffice,
+      LocaleStrings.launcher.categoriesSystem
     ];
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,

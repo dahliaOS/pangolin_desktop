@@ -13,6 +13,7 @@ limitations under the License.
 
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
+import 'package:pangolin/internal/locales/locale_strings.g.dart';
 import 'package:pangolin/settings/settings.dart';
 import 'package:pangolin/widgets/settingsTile.dart';
 import 'package:pangolin/widgets/settingsheader.dart';
@@ -33,7 +34,7 @@ class DeveloperOptions extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              settingsTitle("Developer Options"),
+              settingsTitle(LocaleStrings.settings.headerDevoptions),
               Padding(
                 padding: const EdgeInsets.all(30.0),
                 child: Column(

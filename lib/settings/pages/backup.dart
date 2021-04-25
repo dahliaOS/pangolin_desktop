@@ -12,6 +12,7 @@ limitations under the License.
 */
 
 import 'package:flutter/material.dart';
+import 'package:pangolin/internal/locales/locale_strings.g.dart';
 import 'package:pangolin/settings/settings.dart';
 
 class Backup extends StatefulWidget {
@@ -32,7 +33,7 @@ class _BackupState extends State<Backup> {
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              settingsTitle("Backup"),
+              settingsTitle(LocaleStrings.settings.headerBackup),
             ],
           ),
         ),

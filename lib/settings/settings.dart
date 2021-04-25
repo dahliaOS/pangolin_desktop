@@ -12,6 +12,7 @@ limitations under the License.
 */
 
 import 'package:dahlia_backend/dahlia_backend.dart';
+import 'package:pangolin/internal/locales/locale_strings.g.dart';
 import 'package:pangolin/settings/pages/developer_options.dart';
 import 'package:pangolin/settings/pages/backup.dart';
 import 'package:pangolin/settings/pages/about.dart';
@@ -35,74 +36,74 @@ import 'dart:ui';
 class Settings extends StatelessWidget {
   static List<TileItem> items = [
     TileItem(
-      "Connections",
-      "Wi-Fi, Bluetooth, other connections",
+      LocaleStrings.settings.tabsConnections,
+      LocaleStrings.settings.tabsConnectionsDescription,
       Icons.wifi,
       Connections(),
     ),
     TileItem(
-      "Volume and sounds",
-      "Sound mode, volume",
+      LocaleStrings.settings.tabsSound,
+      LocaleStrings.settings.tabsSoundDescription,
       Icons.volume_up,
       Sound(),
     ),
     TileItem(
-      "Display",
-      "Brightness, Blue light filter",
+      LocaleStrings.settings.tabsDisplay,
+      LocaleStrings.settings.tabsDisplayDescription,
       Icons.brightness_5,
       Display(),
     ),
     TileItem(
-      "Customization",
-      "Customize the look and feel of dahliaOS",
+      LocaleStrings.settings.tabsCustomization,
+      LocaleStrings.settings.tabsCustomizationDescription,
       Icons.color_lens,
       Customization(),
     ),
     TileItem(
-      "Applications",
-      "Manage Apps and permissions",
+      LocaleStrings.settings.tabsApplications,
+      LocaleStrings.settings.tabsApplicationsDescription,
       Icons.apps,
       Applications(),
     ),
     TileItem(
-      "Security",
-      "Settings for security and privacy",
+      LocaleStrings.settings.tabsSecurity,
+      LocaleStrings.settings.tabsSecurityDescription,
       Icons.security,
       Security(),
     ),
     TileItem(
-      "Accounts",
-      "Manage and add accounts",
+      LocaleStrings.settings.tabsAccounts,
+      LocaleStrings.settings.tabsAccountsDescription,
       Icons.people,
       Accounts(),
     ),
     TileItem(
-      "Backup",
-      "Backup and Restore",
+      LocaleStrings.settings.tabsBackup,
+      LocaleStrings.settings.tabsBackupDescription,
       Icons.update,
       Backup(),
     ),
     TileItem(
-      "Developer Options",
-      "Feature Flags, Advanced Options",
+      LocaleStrings.settings.tabsDevoptions,
+      LocaleStrings.settings.tabsDevoptionsDescription,
       Icons.developer_mode,
       DeveloperOptions(),
     ),
     TileItem(
-      "General management",
-      "Language, Keyboard, Time",
+      LocaleStrings.settings.tabsGeneral,
+      LocaleStrings.settings.tabsGeneralDescription,
       Icons.language,
       GeneralManagement(),
     ),
     TileItem(
-      "Updates",
-      "Download, Sources, Changelog",
+      LocaleStrings.settings.tabsUpdates,
+      LocaleStrings.settings.tabsUpdatesDescription,
       Icons.system_update,
       Updates(),
     ),
     TileItem(
-      "About Device",
-      "Status, Information",
+      LocaleStrings.settings.tabsAbout,
+      LocaleStrings.settings.tabsAboutDescription,
       Icons.laptop,
       About(),
     ),
@@ -414,7 +415,7 @@ class _SearchState extends State<Search> {
                               Icons.search,
                               color: Theme.of(context).accentColor,
                             ),
-                            hintText: 'Search settings',
+                            hintText: LocaleStrings.settings.tabsSearch,
                             border: InputBorder.none,
                           ),
                           onSubmitted: null,

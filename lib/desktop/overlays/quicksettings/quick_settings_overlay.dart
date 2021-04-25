@@ -102,7 +102,7 @@ class QsMain extends StatelessWidget {
               width: 12,
             ),
             Text(
-              "Quick Controls",
+              LocaleStrings.qs.quickControls,
               style: TextStyle(fontSize: 18),
             ),
           ],

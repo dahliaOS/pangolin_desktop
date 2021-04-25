@@ -15,6 +15,7 @@ import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+import 'package:pangolin/internal/locales/locale_strings.g.dart';
 import 'package:pangolin/settings/settings.dart';
 import 'package:pangolin/utils/globals.dart';
 import 'package:pangolin/widgets/settingsTile.dart';
@@ -178,20 +179,23 @@ class _CustomizationState extends State<Customization> {
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              settingsTitle("Customization"),
+              settingsTitle(LocaleStrings.settings.headerCustomization),
               Padding(
                 padding: const EdgeInsets.all(30.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SettingsHeader(heading: "Accent Color"),
+                    SettingsHeader(
+                        heading:
+                            LocaleStrings.settings.customizationAccentColor),
                     SettingsTile(
                       children: [
                         SizedBox(height: 5),
                         Customization.accentColors(_data, context),
                         SizedBox(height: 15),
                         SwitchListTile(
-                            title: Text("Use colored Titlebar"),
+                            title: Text(LocaleStrings
+                                .settings.customizationColoredTitlebar),
                             value: _data.useColoredTitlebar,
                             onChanged: (val) {
                               _data.useColoredTitlebar =
@@ -199,13 +203,15 @@ class _CustomizationState extends State<Customization> {
                             })
                       ],
                     ),
-                    SettingsHeader(heading: "Dark Mode"),
+                    SettingsHeader(
+                        heading: LocaleStrings.settings.customizationDarkMode),
                     SettingsTile(
                       children: [
                         SwitchListTile(
                           secondary: Icon(Icons.brightness_4_outlined),
                           value: _data.darkMode,
-                          title: Text("Enable Dark mode on all applications"),
+                          title: Text(LocaleStrings
+                              .settings.customizationEnableDarkMode),
                           onChanged: (bool state) {
                             _data.darkMode = !_data.darkMode;
                             if (_data.darkMode &&
@@ -219,13 +225,15 @@ class _CustomizationState extends State<Customization> {
                         ),
                       ],
                     ),
-                    SettingsHeader(heading: "Blur"),
+                    SettingsHeader(
+                        heading: LocaleStrings.settings.customizationBlur),
                     SettingsTile(
                       children: [
                         SwitchListTile(
                             secondary: Icon(Icons.blur_on_outlined),
                             value: _data.enableBlur,
-                            title: Text("Enable blur effects on the desktop"),
+                            title: Text(
+                                LocaleStrings.settings.customizationEnableBlur),
                             onChanged: (bool state) {
                               _data.enableBlur = !_data.enableBlur;
                             }),
@@ -276,24 +284,27 @@ class _CustomizationState extends State<Customization> {
                             : SizedBox.shrink()
                       ],
                     ),
-                    SettingsHeader(heading: "Taskbar"),
+                    SettingsHeader(
+                        heading: LocaleStrings.settings.customizationTaskbar),
                     SettingsTile(
                       children: [
                         SwitchListTile(
-                            title: Text("Center Taskbar"),
+                            title: Text(LocaleStrings
+                                .settings.customizationEnableCenteredTaskbar),
                             secondary: Icon(Icons.view_array_outlined),
                             value: _data.centerTaskbar,
                             onChanged: (val) => _data.centerTaskbar = val),
                       ],
                     ),
-                    SettingsHeader(heading: "Opacity"),
+                    SettingsHeader(
+                        heading: LocaleStrings.settings.customizationOpacity),
                     SettingsTile(
                       children: [
                         Padding(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 12.0, vertical: 8.0),
                           child: Text(
-                            "Change system opacity",
+                            LocaleStrings.settings.customizationChangeOpacity,
                             style: TextStyle(fontSize: 17),
                           ),
                         ),
@@ -327,14 +338,15 @@ class _CustomizationState extends State<Customization> {
                         ),
                       ],
                     ),
-                    SettingsHeader(heading: "Font"),
+                    SettingsHeader(
+                        heading: LocaleStrings.settings.customizationFont),
                     SettingsTile(
                       children: [
                         Padding(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 12.0, vertical: 8.0),
                           child: Text(
-                            "Choose system font family",
+                            LocaleStrings.settings.customizationChooseFont,
                             style: TextStyle(fontSize: 17),
                           ),
                         ),
@@ -368,7 +380,8 @@ class _CustomizationState extends State<Customization> {
                         )
                       ],
                     ),
-                    SettingsHeader(heading: "Desktop"),
+                    SettingsHeader(
+                        heading: LocaleStrings.settings.customizationDesktop),
                     SettingsTile(children: [
                       Padding(
                         padding: const EdgeInsets.symmetric(
@@ -377,7 +390,8 @@ class _CustomizationState extends State<Customization> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "Choose your Desktop Wallpaper",
+                              LocaleStrings
+                                  .settings.customizationChooseWallpaperDesc,
                               style: Theme.of(context).textTheme.subtitle1,
                             ),
                             ElevatedButton(
@@ -392,7 +406,8 @@ class _CustomizationState extends State<Customization> {
                                 child: Padding(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 8.0, vertical: 12.0),
-                                  child: Text("Choose Wallpaper"),
+                                  child: Text(LocaleStrings.settings
+                                      .customizationChooseWallpaperBtn),
                                 ))
                           ],
                         ),

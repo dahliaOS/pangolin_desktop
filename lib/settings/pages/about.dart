@@ -13,6 +13,7 @@ limitations under the License.
 
 import 'dart:ui';
 import 'package:dahlia_backend/dahlia_backend.dart';
+import 'package:pangolin/internal/locales/locale_strings.g.dart';
 import 'package:pangolin/settings/settings.dart';
 import 'package:pangolin/utils/globals.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +35,7 @@ class About extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              settingsTitle("About Device"),
+              settingsTitle(LocaleStrings.settings.headerAbout),
               SizedBox(height: 20),
               Container(
                 decoration: BoxDecoration(
@@ -58,25 +59,30 @@ class About extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 10),
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                SettingsHeader(heading: "Version"),
-                SettingsTile(children: [Text(longName)]),
-                SettingsHeader(heading: "Kernel"),
-                SettingsTile(children: [Text(kernel)]),
-                SettingsHeader(heading: "Pangolin Version"),
-                SettingsTile(children: [Text(fullPangolinVersion)]),
-                SettingsHeader(heading: "Developer Options"),
-                SettingsTile(children: [
-                  SwitchListTile(
-                    secondary: Icon(Icons.developer_mode_outlined),
-                    title: Text("Enable Developer Options"),
-                    onChanged: (bool value) {
-                      _data.enableDevOptions = !_data.enableDevOptions;
-                    },
-                    value: _data.enableDevOptions,
-                  )
-                ]),
-              ]),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SettingsHeader(heading: LocaleStrings.settings.aboutVersion),
+                  SettingsTile(
+                    children: [
+                      Text(longName),
+                    ],
+                  ),
+                  SettingsHeader(heading: LocaleStrings.settings.aboutKernel),
+                  SettingsTile(
+                    children: [
+                      Text(kernel),
+                    ],
+                  ),
+                  SettingsHeader(
+                      heading: LocaleStrings.settings.aboutPangolinVersion),
+                  SettingsTile(
+                    children: [
+                      Text(fullPangolinVersion),
+                    ],
+                  ),
+                ],
+              ),
             ],
           ),
         ),
