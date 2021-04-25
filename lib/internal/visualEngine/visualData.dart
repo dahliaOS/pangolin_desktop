@@ -31,6 +31,7 @@ class VisualInformation {
   bool launcherSystemOptions;
   double searchbarRounding;
   double qsTileRounding;
+  double qsRounding;
   double overlayOpacity;
   double overlayButtonRounding;
   String userName;
@@ -54,12 +55,13 @@ class VisualInformation {
       required this.searchbarRounding,
       required this.qsTileRounding,
       required this.overlayOpacity,
+      required this.qsRounding,
       required this.overlayButtonRounding,
       required this.userName});
 
   factory VisualInformation.fromJson(Map<String, dynamic> parsedJson) {
     return VisualInformation(
-        taskbarHeight: parsedJson['taskbarHeight'],
+        taskbarHeight: parsedJson['taskbarHeight'], //complete
         opaqueTitlebars: parsedJson['opaqueTitlebars'],
         titleInfo: parsedJson['titleInfo'],
         windowRadius: parsedJson['windowRadius'],
@@ -72,12 +74,13 @@ class VisualInformation {
         overlayButtonRounding: parsedJson['overlayButtonRounding'],
         overlayOpacity: parsedJson['overlayOpacity'],
         overviewIcon: parsedJson['overviewIcon'],
+        qsRounding: parsedJson['qsRounding'],
         qsTileRounding: parsedJson['qsTileRounding'],
         searchbarRounding: parsedJson['searchbarRounding'],
         searchBarString: parsedJson['searchBarString'],
         searchIcon: parsedJson['searchIcon'],
         showDate: parsedJson['showDate'],
         taskbarOpacity: parsedJson['taskbarOpacity'],
-        taskbarRounding: parsedJson['taskbarRounding']);
+        taskbarRounding: parsedJson['taskbarRounding']); //complete
   }
 }

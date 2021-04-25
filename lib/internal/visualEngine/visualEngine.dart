@@ -63,6 +63,7 @@ Future loadVisualEngine() async {
   DatabaseManager.set('searchBarString', visuals.searchBarString);
   DatabaseManager.set('searchIcon', visuals.searchIcon);
   DatabaseManager.set('showDate', visuals.showDate);
+  DatabaseManager.set('qsRounding', visuals.qsRounding);
   DatabaseManager.set('taskbarOpacity', visuals.taskbarOpacity);
   DatabaseManager.set('taskbarRounding', visuals.taskbarRounding);
 }
