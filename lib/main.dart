@@ -35,7 +35,7 @@ void main() async {
   DateTimeManager.formatDate();
 
   await EasyLocalization.ensureInitialized();
-  loadVisualEngine();
+  await loadVisualEngine();
   runApp(
     EasyLocalization(
       supportedLocales: Locales.supported,

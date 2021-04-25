@@ -15,6 +15,7 @@ import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+import 'package:pangolin/settings/settings.dart';
 import 'package:pangolin/utils/globals.dart';
 import 'package:pangolin/widgets/settingsTile.dart';
 import 'package:pangolin/widgets/settingsheader.dart';
@@ -148,8 +149,9 @@ class Customization extends StatefulWidget {
                       _data.accentColor = _customValue!;
                       _data.useCustomAccentColor = true;
                       Navigator.pop(context);
-                    } else
+                    } else {
                       Navigator.pop(context);
+                    }
                   },
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
@@ -176,15 +178,7 @@ class _CustomizationState extends State<Customization> {
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                  padding: EdgeInsets.only(left: 25),
-                  child: Text(
-                    "Customization",
-                    style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.w300,
-                        fontFamily: "Roboto"),
-                  )),
+              settingsTitle("Customization"),
               Padding(
                 padding: const EdgeInsets.all(30.0),
                 child: Column(
@@ -353,16 +347,20 @@ class _CustomizationState extends State<Customization> {
                             isExpanded: true,
                             items: [
                               DropdownMenuItem(
-                                child: Text("Roboto"),
                                 value: "Roboto",
+                                child: Text("Roboto"),
                               ),
                               DropdownMenuItem(
-                                child: Text("DM Sans"),
                                 value: "DM-Sans",
+                                child: Text("DM Sans"),
                               ),
                               DropdownMenuItem(
-                                child: Text("Lato"),
                                 value: "Lato",
+                                child: Text("Lato"),
+                              ),
+                              DropdownMenuItem(
+                                value: "Inter",
+                                child: Text("Inter"),
                               ),
                             ],
                             value: _data.fontFamily,

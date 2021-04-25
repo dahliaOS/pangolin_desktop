@@ -17,6 +17,7 @@ import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:pangolin/internal/locales/locales.g.dart';
 import 'package:flutter/material.dart';
+import 'package:pangolin/settings/settings.dart';
 import 'package:pangolin/widgets/settingsTile.dart';
 import 'package:pangolin/widgets/settingsheader.dart';
 import 'package:provider/provider.dart';
@@ -41,15 +42,7 @@ class GeneralManagement extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                  padding: EdgeInsets.only(left: 25),
-                  child: Text(
-                    "General",
-                    style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.w300,
-                        fontFamily: "Roboto"),
-                  )),
+              settingsTitle("General Management"),
               Padding(
                 padding: const EdgeInsets.all(30.0),
                 child: Column(
@@ -195,7 +188,7 @@ class GeneralManagement extends StatelessWidget {
 void _setLanguage(String _selected, BuildContext context) {
   Locale locale = Locale(_selected.split('_').first, _selected.split('_').last);
   int index = Locales.supported.indexOf(locale);
-  context.locale = Locales.supported[index];
+  context.setLocale(Locales.supported[index]);
 }
 
 void _setKeyboard(String _selected, BuildContext context) {

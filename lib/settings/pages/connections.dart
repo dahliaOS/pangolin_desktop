@@ -11,26 +11,23 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'dart:ui';
-
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
+import 'package:pangolin/settings/settings.dart';
 import 'package:pangolin/widgets/settingsTile.dart';
 import 'package:pangolin/widgets/settingsheader.dart';
 import 'package:provider/provider.dart';
 
 class Connections extends StatelessWidget {
-  List<WifiItem> wifiList = new List<WifiItem>.empty(growable: true);
-  List<BluetoothItem> bluetoothList =
-      new List<BluetoothItem>.empty(growable: true);
+  List<WifiItem> wifiList = List<WifiItem>.empty(growable: true);
+  List<BluetoothItem> bluetoothList = List<BluetoothItem>.empty(growable: true);
   @override
   void initState() {
-    // TODO: implement initState
-    wifiList.add(new WifiItem("Wi-Fi 1", true));
-    wifiList.add(new WifiItem("Wi-Fi 2", false));
-    wifiList.add(new WifiItem("Wi-Fi 3", false));
-    bluetoothList.add(new BluetoothItem("Some Random Bluetooth Device", false));
-    bluetoothList.add(new BluetoothItem(
+    wifiList.add(WifiItem("Wi-Fi 1", true));
+    wifiList.add(WifiItem("Wi-Fi 2", false));
+    wifiList.add(WifiItem("Wi-Fi 3", false));
+    bluetoothList.add(BluetoothItem("Some Random Bluetooth Device", false));
+    bluetoothList.add(BluetoothItem(
         "Another Bluetooth Device with a longer name to test if that causes errors",
         false));
   }
@@ -48,15 +45,7 @@ class Connections extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                  padding: EdgeInsets.only(left: 25),
-                  child: Text(
-                    "Connections",
-                    style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.w300,
-                        fontFamily: "Roboto"),
-                  )),
+              settingsTitle("Connections"),
               Padding(
                 padding: const EdgeInsets.all(30.0),
                 child: Column(
@@ -209,7 +198,7 @@ class BluetoothItem {
   BluetoothItem(this.name, this.connected);
 }
 
-setConnected(int index, List items) {
+void setConnected(int index, List items) {
   switch (items[index].connected) {
     case true:
       for (int _i = 0; _i < items.length; _i++) {

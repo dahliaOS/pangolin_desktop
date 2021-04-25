@@ -40,7 +40,7 @@ class _ContextMenuRegionState extends State<ContextMenuRegion> {
     );
   }
 
-  showOverlay(BuildContext context, dynamic details) {
+  void showOverlay(BuildContext context, dynamic details) {
     bool rtl =
         details.localPosition.dx < MediaQuery.of(context).size.width * (7 / 8);
     WmAPI.of(context).pushOverlayEntry(DismissibleOverlayEntry(
@@ -223,6 +223,7 @@ class _ContextMenuRegionState extends State<ContextMenuRegion> {
       position: position,
       items: [
         PopupMenuItem(
+          value: "wallpaper",
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -230,14 +231,13 @@ class _ContextMenuRegionState extends State<ContextMenuRegion> {
               Text("Change Wallpaper"),
             ],
           ),
-          value: "wallpaper",
         ),
       ],
     );
     if (result != null) {
       switch (result) {
         case "wallpaper":
-          showDialog(
+          await showDialog(
               context: context,
               builder: (context) {
                 return WallpaperChooser();

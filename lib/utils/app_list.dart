@@ -14,13 +14,13 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:Media/main.dart';
 import 'package:calculator/calculator.dart';
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:dahlia_clock/main.dart';
 import 'package:files/main.dart';
 import 'package:flutter/material.dart';
 import 'package:graft/main.dart';
+import 'package:media/main.dart';
 import 'package:pangolin/settings/settings.dart';
 import 'package:pangolin/widgets/error_window.dart';
 import 'package:system_logs/main.dart';

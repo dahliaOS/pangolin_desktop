@@ -13,6 +13,7 @@ limitations under the License.
 
 import 'dart:ui';
 import 'package:dahlia_backend/dahlia_backend.dart';
+import 'package:pangolin/settings/settings.dart';
 import 'package:pangolin/utils/globals.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/widgets/settingsTile.dart';
@@ -33,15 +34,7 @@ class About extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                  padding: EdgeInsets.only(left: 25),
-                  child: Text(
-                    "About Device",
-                    style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.w300,
-                        fontFamily: "Roboto"),
-                  )),
+              settingsTitle("About Device"),
               SizedBox(height: 20),
               Container(
                 decoration: BoxDecoration(

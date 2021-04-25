@@ -12,6 +12,7 @@ limitations under the License.
 */
 
 import 'package:flutter/material.dart';
+import 'package:pangolin/settings/settings.dart';
 
 class Applications extends StatefulWidget {
   @override
@@ -31,15 +32,7 @@ class _ApplicationsState extends State<Applications> {
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                  padding: EdgeInsets.only(left: 25),
-                  child: Text(
-                    "Applications",
-                    style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.w300,
-                        fontFamily: "Roboto"),
-                  )),
+              settingsTitle("Applications"),
             ],
           ),
         ),

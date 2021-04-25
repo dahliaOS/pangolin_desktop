@@ -15,65 +15,159 @@ limitations under the License.
 */
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:pangolin/utils/app_list.dart';
 import 'package:pangolin/utils/wm_api.dart';
 import 'package:provider/provider.dart';
 import 'package:utopia_wm/wm.dart';
 
-class TaskbarItem extends StatelessWidget {
+class TaskbarItem extends StatefulWidget {
   final String packageName;
   TaskbarItem({required this.packageName, Key? key}) : super(key: key);
+
+  @override
+  _TaskbarItemState createState() => _TaskbarItemState();
+}
+
+class _TaskbarItemState extends State<TaskbarItem>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _ac;
+  late Animation<double> _anim;
+  bool _hovering = false;
+  @override
+  void initState() {
+    super.initState();
+    _ac = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 150),
+    );
+    _anim = CurvedAnimation(
+      parent: _ac,
+      curve: Curves.ease,
+      reverseCurve: Curves.ease,
+    );
+  }
+
+  @override
+  void dispose() {
+    _ac.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     //Running apps
     //// ITS FAILING HERE
-    final windows = Provider.of<WindowHierarchyState>(context, listen: false)
-        .entriesByFocus;
+    final hierarchy = context.watch<WindowHierarchyState>();
+    final windows = hierarchy.entriesByFocus;
     //Selected App
     final _app = applications
-        .firstWhere((element) => element.packageName == packageName);
+        .firstWhere((element) => element.packageName == widget.packageName);
     //Check if App is running or just pinned
     bool appIsRunning =
-        windows.any((element) => element.packageName == packageName);
+        windows.any((element) => element.packageName == widget.packageName);
     //get the WindowEntry when the App is running
     late WindowEntry? entry = appIsRunning
-        ? windows.firstWhere((element) => element.packageName == packageName)
+        ? windows
+            .firstWhere((element) => element.packageName == widget.packageName)
         : null;
     //check if the App is focused
     bool focused = windows.length > 1
-        ? windows.last.packageName == packageName && !windows.last.minimized
+        ? windows.last.packageName == widget.packageName &&
+            !windows.last.minimized
         : true;
 
+    bool showSelected = appIsRunning ? focused && !entry!.minimized : false;
+    if (showSelected) {
+      _ac.animateTo(1);
+    } else {
+      _ac.animateBack(0);
+    }
+
     //Build Widget
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 2.0),
-      child: SizedBox(
-        height: 48,
-        width: 52,
-        child: Material(
-          //set a background colour if the app is running or focused
-          color: appIsRunning
-              ? (focused
-                  ? Theme.of(context).accentColor.withOpacity(0.5)
-                  : Theme.of(context).backgroundColor.withOpacity(0.5))
-              : Colors.transparent,
-          child: InkWell(
-            onTap: () {
-              //open the app or toggle
-              if (appIsRunning) {
-                _onTap(context, entry);
-              } else {
-                WmAPI.of(context).openApp(packageName);
-                //print(packageName);
-              }
-            },
-            child: Padding(
-              padding: const EdgeInsets.all(6.0),
-              child: Image(
-                  image: appIsRunning
-                      ? entry?.icon ?? NetworkImage("https://google.com")
-                      : AssetImage("assets/icons/${_app.iconName}.png")),
+    return LayoutBuilder(
+      builder: (context, constraints) => Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 2.0),
+        child: SizedBox(
+          height: 48,
+          width: 50,
+          child: GestureDetector(
+            //key: _globalKey,
+            child: Material(
+              borderRadius: BorderRadius.circular(4),
+              //set a background colour if the app is running or focused
+              color: appIsRunning
+                  ? (showSelected
+                      ? Theme.of(context)
+                          .textTheme
+                          .bodyText1
+                          ?.color
+                          ?.withOpacity(0.2)
+                      : Theme.of(context).backgroundColor.withOpacity(0.0))
+                  : Colors.transparent,
+              child: InkWell(
+                onHover: (value) {
+                  _hovering = value;
+                  setState(() {});
+                },
+                borderRadius: BorderRadius.circular(4),
+                onTap: () {
+                  //open the app or toggle
+                  if (appIsRunning) {
+                    _onTap(context, entry);
+                  } else {
+                    WmAPI.of(context).openApp(widget.packageName);
+                    //print(packageName);
+                  }
+                },
+                child: AnimatedBuilder(
+                  animation: _anim,
+                  builder: (context, child) => Stack(
+                    children: [
+                      Align(
+                        alignment: Alignment.center,
+                        child: Padding(
+                          padding: const EdgeInsets.all(6.0),
+                          child: Image(
+                            image: appIsRunning
+                                ? entry?.icon ?? NetworkImage("")
+                                : AssetImage(
+                                    "assets/icons/${_app.iconName}.png"),
+                          ),
+                        ),
+                      ),
+                      AnimatedPositioned(
+                        duration: Duration(milliseconds: 150),
+                        curve: Curves.ease,
+                        bottom: 2,
+                        left: appIsRunning
+                            ? _hovering
+                                ? showSelected
+                                    ? 4
+                                    : 8
+                                : showSelected
+                                    ? 4
+                                    : constraints.maxHeight / 2 - 8
+                            : 50 / 2,
+                        right: appIsRunning
+                            ? _hovering
+                                ? showSelected
+                                    ? 4
+                                    : 8
+                                : showSelected
+                                    ? 4
+                                    : constraints.maxHeight / 2 - 8
+                            : 50 / 2,
+                        height: 2,
+                        child: Material(
+                          borderRadius: BorderRadius.circular(2),
+                          color: Theme.of(context).accentColor,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ),
           ),
         ),
@@ -87,11 +181,7 @@ class TaskbarItem extends StatelessWidget {
     final windows = hierarchy.entriesByFocus;
 
     bool focused = windows.last.id == entry!.id;
-
-    /* _overlayTimer?.cancel();
-    _overlayTimer = null;
-    _showOverlay = false;
-    setState(() {}); */
+    setState(() {});
     if (focused && !entry.minimized) {
       entry.minimized = true;
       if (windows.length > 1) {
@@ -99,9 +189,11 @@ class TaskbarItem extends StatelessWidget {
           windows[windows.length - 2],
         );
       }
+      setState(() {});
     } else {
       entry.minimized = false;
       hierarchy.requestWindowFocus(entry);
+      setState(() {});
     }
   }
 }

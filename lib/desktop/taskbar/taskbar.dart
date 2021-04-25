@@ -14,6 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'dart:math';
+
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/desktop/taskbar/taskbar_item.dart';
@@ -38,8 +40,7 @@ class _TaskbarState extends State<Taskbar> {
           .windows
           .map<String>(
               (e) => _pinnedApps.contains(e.packageName) ? "" : e.packageName)
-          .toList()
-            ..remove(""));
+          .toList());
 
     Widget items = ReorderableListView(
         shrinkWrap: true,
@@ -64,7 +65,11 @@ class _TaskbarState extends State<Taskbar> {
           });
         },
         children: _taskbarApps
-            .map<Widget>((e) => TaskbarItem(key: ValueKey(e), packageName: e))
+            .map<Widget>((e) => e != ""
+                ? TaskbarItem(key: ValueKey(e), packageName: e)
+                : SizedBox.shrink(
+                    key: ValueKey(Random()),
+                  ))
             .toList());
     return Positioned(
       left: 0,

@@ -16,7 +16,6 @@ limitations under the License.
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable
 class QuickSettingsButton extends StatefulWidget {
@@ -97,7 +96,7 @@ class _QuickSettingsButtonState extends State<QuickSettingsButton> {
   }
 }
 
-Widget actionChip(IconData icon, String label, context) {
+Widget actionChip(IconData icon, String? label, context) {
   return Padding(
     padding: EdgeInsets.only(right: 8),
     child: Material(
@@ -114,21 +113,23 @@ Widget actionChip(IconData icon, String label, context) {
               borderRadius: BorderRadius.all(
                 Radius.circular(100),
               ),
-              color: Theme.of(context).backgroundColor.withOpacity(0.25),
+              color: Theme.of(context).backgroundColor.withOpacity(0.5),
             ),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: new Row(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(right: 8.0),
+                    padding: EdgeInsets.only(right: label != null ? 8.0 : 0.0),
                     child: Icon(
                       icon,
-                      size: 15,
+                      size: 16,
                     ),
                   ),
-                  new Text(
-                    label,
+                  Text(
+                    label ?? "",
                     style: Theme.of(context).textTheme.subtitle2,
                   )
                 ],

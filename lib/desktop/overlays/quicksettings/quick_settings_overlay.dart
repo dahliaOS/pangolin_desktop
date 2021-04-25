@@ -13,6 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
+
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -119,6 +120,7 @@ class QsMain extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.settings_outlined),
             onPressed: () {
+              WmAPI.of(context).popCurrentOverlayEntry();
               WmAPI.of(context).openApp("io.dahlia.settings");
             },
           ),
@@ -278,6 +280,7 @@ class QsMain extends StatelessWidget {
                 actionChip(
                     Icons.info_outline, "Build $totalVersionNumber", context),
                 actionChip(Icons.domain_verification, "dahliaos.io", context),
+                actionChip(Icons.edit_outlined, null, context),
                 //actionChip(Icons.add, null, context)
               ],
             ),
@@ -300,9 +303,10 @@ class QsMain extends StatelessWidget {
                     ),
                     Expanded(
                       child: Slider(
-                          value: 0.5,
+                          value: _pref.brightness,
                           divisions: 10,
                           onChanged: (newBrightness) {
+                            _pref.brightness = newBrightness;
                             /* setState(() {
                               brightness = newBrightness;
                             }); */
@@ -311,7 +315,8 @@ class QsMain extends StatelessWidget {
                     Container(
                       width: 35,
                       child: Center(
-                        child: Text("${(0.5 * 100).toInt().toString()}",
+                        child: Text(
+                            "${(_pref.brightness * 100).toInt().toString()}",
                             style: Theme.of(context).textTheme.subtitle2),
                       ),
                     ),
@@ -326,9 +331,10 @@ class QsMain extends StatelessWidget {
                     ),
                     Expanded(
                       child: Slider(
-                        value: 0.5,
+                        value: _pref.volumeLevel,
                         divisions: 20,
                         onChanged: (newVolume) {
+                          _pref.volumeLevel = newVolume;
                           /* setState(() {
                             volume = newVolume;
                           }); */
@@ -338,7 +344,8 @@ class QsMain extends StatelessWidget {
                     Container(
                       width: 35,
                       child: Center(
-                        child: Text("${(0.5 * 100).toInt().toString()}",
+                        child: Text(
+                            "${(_pref.volumeLevel * 100).toInt().toString()}",
                             style: Theme.of(context).textTheme.subtitle2),
                       ),
                     ),

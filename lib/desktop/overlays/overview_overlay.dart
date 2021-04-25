@@ -45,6 +45,10 @@ class _OverviewOverlayState extends State<OverviewOverlay> {
           child: Stack(
             children: [
               Positioned(
+                top: 0,
+                left: 0,
+                right: 0,
+                height: 152,
                 child: BoxContainer(
                   color: Theme.of(context).backgroundColor,
                   useSystemOpacity: true,
@@ -88,10 +92,6 @@ class _OverviewOverlayState extends State<OverviewOverlay> {
                     ],
                   ),
                 ),
-                top: 0,
-                left: 0,
-                right: 0,
-                height: 152,
               ),
             ],
           ),

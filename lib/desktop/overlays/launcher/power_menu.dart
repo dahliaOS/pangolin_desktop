@@ -29,65 +29,78 @@ class _LauncherPowerMenuState extends State<LauncherPowerMenu> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(50.0),
-      child: BoxContainer(
+      child: SizedBox(
         width: 28 * 3 + 16 * 4,
         height: 32 + 16,
-        color: Theme.of(context).backgroundColor,
-        useSystemOpacity: true,
-        customBorderRadius: BorderRadius.circular(8),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            InkWell(
-              onTap: () {
-                WmAPI.of(context).popOverlayEntry(
-                    Provider.of<DismissibleOverlayEntry>(context,
-                        listen: false));
-                WmAPI.of(context).pushOverlayEntry(DismissibleOverlayEntry(
-                    uniqueId: "power_menu",
-                    content: PowerOverlay(),
-                    duration: Duration.zero,
-                    background: BoxContainer(
-                      color: Theme.of(context).shadowColor.withOpacity(0.5),
-                      useBlur: false,
-                    )));
-                setState(() {});
-              },
-              mouseCursor: SystemMouseCursors.click,
-              child: Icon(
-                Icons.power_settings_new,
-                size: 28,
-              ),
+        child: BoxContainer(
+          color: Theme.of(context).backgroundColor,
+          useSystemOpacity: true,
+          customBorderRadius: BorderRadius.circular(8),
+          child: Material(
+            color: Colors.transparent,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: SizedBox(
+                    height: 32 + 16,
+                    child: InkWell(
+                      onTap: () {
+                        WmAPI.of(context).popOverlayEntry(
+                            Provider.of<DismissibleOverlayEntry>(context,
+                                listen: false));
+                        WmAPI.of(context).pushOverlayEntry(
+                          DismissibleOverlayEntry(
+                            uniqueId: "power_menu",
+                            content: PowerOverlay(),
+                            duration: Duration.zero,
+                          ),
+                        );
+                        setState(() {});
+                      },
+                      mouseCursor: SystemMouseCursors.click,
+                      child: Icon(
+                        Icons.power_settings_new,
+                        size: 28,
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: SizedBox(
+                    height: 32 + 16,
+                    child: InkWell(
+                      onTap: () {},
+                      mouseCursor: SystemMouseCursors.click,
+                      child: Icon(
+                        Icons.person,
+                        size: 28,
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: SizedBox(
+                    height: 32 + 16,
+                    child: InkWell(
+                      onTap: () {
+                        WmAPI.of(context).popOverlayEntry(
+                            Provider.of<DismissibleOverlayEntry>(context,
+                                listen: false));
+                        WmAPI.of(context).openApp("io.dahlia.settings");
+                        setState(() {});
+                      },
+                      mouseCursor: SystemMouseCursors.click,
+                      child: Icon(
+                        Icons.settings_outlined,
+                        size: 28,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
-            SizedBox(
-              width: 16,
-            ),
-            InkWell(
-              onTap: () {},
-              mouseCursor: SystemMouseCursors.click,
-              child: Icon(
-                Icons.person,
-                size: 28,
-              ),
-            ),
-            SizedBox(
-              width: 16,
-            ),
-            InkWell(
-              onTap: () {
-                WmAPI.of(context).popOverlayEntry(
-                    Provider.of<DismissibleOverlayEntry>(context,
-                        listen: false));
-                WmAPI.of(context).openApp("io.dahlia.settings");
-                setState(() {});
-              },
-              mouseCursor: SystemMouseCursors.click,
-              child: Icon(
-                Icons.settings_outlined,
-                size: 28,
-              ),
-            ),
-          ],
+          ),
         ),
       ),
     );

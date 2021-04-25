@@ -18,7 +18,6 @@ import 'package:flutter/material.dart';
 import 'package:pangolin/desktop/taskbar/clock.dart';
 import 'package:pangolin/desktop/taskbar/quick_settings.dart';
 import 'package:pangolin/desktop/taskbar/launcher.dart';
-import 'package:pangolin/desktop/taskbar/notifications.dart';
 import 'package:pangolin/desktop/taskbar/overview.dart';
 import 'package:pangolin/desktop/taskbar/search.dart';
 import 'package:pangolin/desktop/taskbar/taskbar.dart';
@@ -26,9 +25,15 @@ import 'package:pangolin/desktop/wallpaper.dart';
 import 'package:utopia_wm/wm.dart';
 
 // ignore: must_be_immutable
-class Desktop extends StatelessWidget {
+class Desktop extends StatefulWidget {
   static final GlobalKey<WindowHierarchyState> wmKey =
       GlobalKey<WindowHierarchyState>();
+
+  @override
+  _DesktopState createState() => _DesktopState();
+}
+
+class _DesktopState extends State<Desktop> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +46,7 @@ class Desktop extends StatelessWidget {
         },
       ), */
       body: WindowHierarchy(
-          key: wmKey,
+          key: Desktop.wmKey,
           rootWindow: Wallpaper(),
           alwaysOnTopWindows: [
             Taskbar(

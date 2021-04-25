@@ -21,6 +21,7 @@ import 'package:pangolin/settings/pages/customization.dart';
 import 'package:pangolin/utils/context_menus/context_menu.dart';
 import 'package:pangolin/utils/context_menus/context_menu_item.dart';
 import 'package:pangolin/utils/context_menus/core/context_menu_overlay.dart';
+import 'package:pangolin/utils/globals.dart';
 import 'package:provider/provider.dart';
 
 class Wallpaper extends StatelessWidget {
@@ -50,12 +51,14 @@ class Wallpaper extends StatelessWidget {
                 ),
                 child: wallpaperImage(_data.wallpaper))),
         Positioned(
-          child: Text(
-            "Warning!\nYou are using a pre release version of the Pangolin Desktop",
-            style: TextStyle(color: Colors.white),
-          ),
-          bottom: 80,
+          bottom: 70,
           right: 20,
+          child: Text(
+            "Pangolin Version $totalVersionNumber",
+            style: TextStyle(
+              color: Colors.white,
+            ),
+          ),
         )
       ],
     );

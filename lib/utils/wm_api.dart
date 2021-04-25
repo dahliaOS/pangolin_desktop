@@ -22,11 +22,23 @@ import 'package:utopia_wm/wm.dart';
 import 'package:provider/provider.dart';
 
 class WmAPI {
-  late BuildContext context;
-  WmAPI.of(this.context);
+  final BuildContext context;
+  const WmAPI.of(this.context);
+
   void popOverlayEntry(DismissibleOverlayEntry entry) {
     Provider.of<WindowHierarchyState>(context, listen: false)
         .popOverlayEntry(entry);
+  }
+
+  void popCurrentOverlayEntry() {
+    if (Provider.of<WindowHierarchyState>(context, listen: false)
+        .overlays
+        .isNotEmpty) {
+      Provider.of<WindowHierarchyState>(context, listen: false).popOverlayEntry(
+          Provider.of<DismissibleOverlayEntry>(context, listen: false));
+      // ignore: invalid_use_of_protected_member
+      ScaffoldMessenger.of(context).setState(() {});
+    }
   }
 
   void popWindowEntry(WindowEntry entry) {
@@ -54,6 +66,7 @@ class WmAPI {
       packageName: packageName,
       content: getApp(packageName).app ?? ErrorWindow(),
       initialSize: Size(1280, 720),
+      minSize: Size(720, 480),
       toolbarColor: getApp(packageName).color ?? Colors.grey,
       icon: AssetImage("assets/icons/${getApp(packageName).iconName}.png"),
       title: getApp(packageName).name,

@@ -18,7 +18,7 @@ dependencies:
     #path: utopia/
     git:
       url: https://github.com/dahliaOS/utopia.git
-      ref: submodule
+      ref: utopia
   provider: ^5.0.0
   animations: ^2.0.0-nullsafety.0
   easy_localization: ^3.0.0
@@ -45,7 +45,7 @@ dependencies:
   task_manager:
     git:
       url: https://github.com/dahliaOS/task_manager.git
-  Media:
+  media:
     git:
       url: https://github.com/dahliaOS/media.git
   dahlia_clock:
@@ -107,6 +107,16 @@ flutter:
        - asset: fonts/lato/Lato-LightItalic.ttf
        - asset: fonts/lato/Lato-Thin.ttf
        - asset: fonts/lato/Lato-Italic.ttf
+    - family:  Inter
+      fonts:
+       - asset: fonts/inter/Inter-Black.ttf
+       - asset: fonts/inter/Inter-Bold.ttf
+       - asset: fonts/inter/Inter-ExtraBold.ttf
+       - asset: fonts/inter/Inter-ExtraLight.ttf
+       - asset: fonts/inter/Inter-Regular.ttf
+       - asset: fonts/inter/Inter-Light.ttf
+       - asset: fonts/inter/Inter-SemiBold.ttf
+       - asset: fonts/inter/Inter-Thin.ttf
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

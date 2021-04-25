@@ -14,6 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:pangolin/desktop/overlays/quicksettings/quick_settings_overlay.dart';
@@ -24,6 +25,7 @@ import 'package:utopia_wm/wm.dart';
 class QuickSettingsButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final _pref = Provider.of<PreferenceProvider>(context);
     return SizedBox(
       //width: 96,
       height: 48,
@@ -52,32 +54,39 @@ class QuickSettingsButton extends StatelessWidget {
                   child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Icon(
-                    Icons.settings_ethernet,
-                    size: 18,
-                  ),
-                  SizedBox(
-                    width: 12,
-                  ),
-                  Icon(
-                    Icons.bluetooth,
-                    size: 18,
-                  ),
-                  SizedBox(
-                    width: 12,
-                  ),
-                  Icon(
-                    Icons.wifi,
-                    size: 18,
-                  ),
-                  SizedBox(
-                    width: 12,
-                  ),
-                  RotatedBox(
-                    quarterTurns: 1,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 6.0),
                     child: Icon(
-                      Icons.battery_charging_full,
+                      Icons.settings_ethernet,
                       size: 18,
+                    ),
+                  ),
+                  _pref.wifi
+                      ? Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 6.0),
+                          child: Icon(
+                            Icons.wifi,
+                            size: 18,
+                          ),
+                        )
+                      : SizedBox.shrink(),
+                  _pref.bluetooth
+                      ? Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 6.0),
+                          child: Icon(
+                            Icons.bluetooth,
+                            size: 18,
+                          ),
+                        )
+                      : SizedBox.shrink(),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 6.0),
+                    child: RotatedBox(
+                      quarterTurns: 1,
+                      child: Icon(
+                        Icons.battery_charging_full,
+                        size: 18,
+                      ),
                     ),
                   ),
                 ],

@@ -27,6 +27,7 @@ ThemeData theme(BuildContext context) {
         TargetPlatform.android:
             FadeThroughPageTransitionsBuilder(fillColor: Colors.transparent),
       }),
+      //hoverColor: Color(_data.accentColor).withOpacity(0.5),
       splashColor: Color(_data.accentColor),
       buttonColor: Color(_data.accentColor),
       floatingActionButtonTheme: FloatingActionButtonThemeData(
@@ -42,7 +43,7 @@ ThemeData theme(BuildContext context) {
       canvasColor: _data.darkMode ? Color(0xff151515) : Color(0xfff0f8ff),
       primaryColor: Color(_data.accentColor),
       primaryColorDark: Color(_data.accentColor),
-      cardColor: _data.darkMode ? Color(0xff151515) : Colors.grey[200],
+      cardColor: _data.darkMode ? Color(0xff151515) : Color(0xfff0f8ff),
       scaffoldBackgroundColor:
           _data.darkMode ? Color(0xff151515) : Color(0xfff0f8ff),
       inputDecorationTheme: InputDecorationTheme(

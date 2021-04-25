@@ -13,6 +13,7 @@ limitations under the License.
 
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
+import 'package:pangolin/settings/settings.dart';
 import 'package:pangolin/widgets/settingsTile.dart';
 import 'package:pangolin/widgets/settingsheader.dart';
 import 'package:provider/provider.dart';
@@ -32,15 +33,7 @@ class DeveloperOptions extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                  padding: EdgeInsets.only(left: 25),
-                  child: Text(
-                    "Developer Options",
-                    style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.w300,
-                        fontFamily: "Roboto"),
-                  )),
+              settingsTitle("Developer Options"),
               Padding(
                 padding: const EdgeInsets.all(30.0),
                 child: Column(
@@ -91,20 +84,20 @@ class DeveloperOptions extends StatelessWidget {
       bottomNavigationBar: BottomAppBar(
           elevation: 0.0,
           color: Color(0x00ffffff),
-          child: new SizedBox(
+          child: SizedBox(
               height: 50,
               width: 15,
-              child: new Padding(
+              child: Padding(
                   padding: EdgeInsets.all(0),
                   child: Card(
                     elevation: 0,
                     color: Colors.red[500],
-                    child: new SingleChildScrollView(
+                    child: SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
-                      child: new Row(
+                      child: Row(
                         children: [
-                          new Center(
-                              child: new Padding(
+                          Center(
+                              child: Padding(
                                   padding: EdgeInsets.all(8),
                                   child: Icon(
                                     Icons.warning,
@@ -112,11 +105,11 @@ class DeveloperOptions extends StatelessWidget {
                                     color: Colors.white,
                                   ))),
                           Center(
-                              child: new Padding(
+                              child: Padding(
                                   padding: EdgeInsets.all(8),
-                                  child: new Text(
+                                  child: Text(
                                     "WARNING: DEVELOPER OPTIONS AHEAD! By using these options, you could lose system data or compromise your security or privacy. ",
-                                    style: new TextStyle(
+                                    style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 14,
                                       fontFamily: "Roboto",
