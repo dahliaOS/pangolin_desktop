@@ -33,6 +33,7 @@ class LauncherOverlay extends StatefulWidget {
 }
 
 class _LauncherOverlayState extends State<LauncherOverlay> {
+  final _focusNode = FocusNode(canRequestFocus: true);
   @override
   Widget build(BuildContext context) {
     final _animation =
@@ -42,47 +43,63 @@ class _LauncherOverlayState extends State<LauncherOverlay> {
             .animationController;
     final _controller = PageController();
 
+    _focusNode.requestFocus();
+
     return Positioned(
       top: 0,
       bottom: 48,
       left: 0,
       right: 0,
-      child: GestureDetector(
-        onTap: () async {
-          await _animationController.reverse();
-          WmAPI.of(context).popOverlayEntry(
-              Provider.of<DismissibleOverlayEntry>(context, listen: false));
-          setState(() {});
+      child: RawKeyboardListener(
+        focusNode: _focusNode,
+        onKey: (details) {
+          WmAPI.of(context).popCurrentOverlayEntry();
+          WmAPI.of(context).pushOverlayEntry(
+            DismissibleOverlayEntry(
+              uniqueId: "search",
+              content: SearchOverlay(
+                text: details.data.keyLabel.toString(),
+              ),
+            ),
+          );
         },
-        child: Stack(
-          children: [
-            Wallpaper(),
-            BoxContainer(
-              useBlur: true,
-              color: Colors.black.withOpacity(0.5),
-              child: AnimatedBuilder(
-                animation: _animation,
-                builder: (context, child) => FadeTransition(
-                  opacity: _animation,
-                  child: ScaleTransition(
-                    scale: _animation,
-                    alignment: FractionalOffset.bottomCenter,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Search(),
-                        LauncherCategories(
-                          controller: _controller,
-                        ),
-                        LauncherGrid(controller: _controller),
-                        LauncherPowerMenu(),
-                      ],
+        child: GestureDetector(
+          onTap: () async {
+            await _animationController.reverse();
+            WmAPI.of(context).popOverlayEntry(
+                Provider.of<DismissibleOverlayEntry>(context, listen: false));
+            setState(() {});
+          },
+          child: Stack(
+            children: [
+              Wallpaper(),
+              BoxContainer(
+                useBlur: true,
+                color: Colors.black.withOpacity(0.5),
+                child: AnimatedBuilder(
+                  animation: _animation,
+                  builder: (context, child) => FadeTransition(
+                    opacity: _animation,
+                    child: ScaleTransition(
+                      scale: _animation,
+                      alignment: FractionalOffset.bottomCenter,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Search(),
+                          LauncherCategories(
+                            controller: _controller,
+                          ),
+                          LauncherGrid(controller: _controller),
+                          LauncherPowerMenu(),
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -102,11 +119,14 @@ class Search extends StatelessWidget {
           onTextChanged: (change) {
             WmAPI.of(context).popOverlayEntry(
                 Provider.of<DismissibleOverlayEntry>(context, listen: false));
-            WmAPI.of(context).pushOverlayEntry(DismissibleOverlayEntry(
+            WmAPI.of(context).pushOverlayEntry(
+              DismissibleOverlayEntry(
                 uniqueId: "search",
                 content: SearchOverlay(
                   text: change,
-                )));
+                ),
+              ),
+            );
           },
           leading: Icon(Icons.search),
           trailing: Icon(Icons.menu),
