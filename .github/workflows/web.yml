@@ -1,0 +1,36 @@
+
+name: Build and Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        name: Checkout repository
+      - uses: subosito/flutter-action@v1
+        name: Set up Flutter
+      - name: Checkout submodules
+        uses: textbook/git-checkout-submodule-action@master
+      - run: flutter channel master
+        name: Switch Flutter channel
+      - run: flutter upgrade
+        name: Make sure Flutter is up to date
+      - run: flutter config --enable-web
+        name: Enable Web support
+      - run: sudo apt update && sudo apt install cmake ninja-build clang libgtk-3-dev util-linux liblzma-dev libgcrypt-dev -y
+        name: Install system dependencies
+      - name: Get dependencies
+        run: flutter pub get && flutter pub upgrade
+      - run: flutter build web --release
+        name: Build Pangolin for Web
+      - name: Deploy to GitHub pages
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git --work-tree build/web add --all
+          git commit -m "Automatic deployment by github-actions"
+          git push origin HEAD:gh-pages --force
