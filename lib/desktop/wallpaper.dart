@@ -20,8 +20,9 @@ import 'package:flutter/material.dart';
 import 'package:pangolin/settings/pages/customization.dart';
 import 'package:pangolin/utils/context_menus/context_menu.dart';
 import 'package:pangolin/utils/context_menus/context_menu_item.dart';
-import 'package:pangolin/utils/context_menus/core/context_menu_overlay.dart';
+import 'package:pangolin/utils/context_menus/core/context_menu_region.dart';
 import 'package:pangolin/utils/globals.dart';
+import 'package:pangolin/utils/wm_api.dart';
 import 'package:provider/provider.dart';
 
 class Wallpaper extends StatelessWidget {
@@ -45,6 +46,14 @@ class Wallpaper extends StatelessWidget {
                       },
                       icon: Icons.image,
                       title: "Change Wallpaper",
+                      shortcut: "",
+                    ),
+                    ContextMenuItem(
+                      onTap: () {
+                        WmAPI.of(context).openApp("io.dahlia.settings");
+                      },
+                      icon: Icons.settings_outlined,
+                      title: "Settings",
                       shortcut: "",
                     ),
                   ],

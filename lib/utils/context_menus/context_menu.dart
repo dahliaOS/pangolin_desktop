@@ -14,26 +14,38 @@ limitations under the License.
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/utils/context_menus/context_menu_item.dart';
+import 'package:pangolin/utils/size_meassure.dart';
 
-class ContextMenu extends StatelessWidget {
+class ContextMenu extends StatefulWidget {
   ContextMenu({Key? key, required this.items});
   final List<ContextMenuItem> items;
+
+  @override
+  _ContextMenuState createState() => _ContextMenuState();
+}
+
+class _ContextMenuState extends State<ContextMenu> {
+  Size size = Size.zero;
   @override
   Widget build(BuildContext context) {
     return BoxContainer(
-      decoration: BoxDecoration(boxShadow: [
-        BoxShadow(
-            blurRadius: 30,
-            color: Theme.of(context).shadowColor.withOpacity(0.5))
-      ]),
+      useSystemOpacity: true,
       customBorderRadius: BorderRadius.circular(6),
       color: Theme.of(context).backgroundColor,
-      useBlur: true,
-      useSystemOpacity: true,
       child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: items,
+        child: SizeMeasureWidget(
+          onSizeMeasure: (size) =>
+              WidgetsBinding.instance!.addPostFrameCallback(
+            (_) => setState(() => this.size = size),
+          ),
+          child: SizedBox(
+            width: size != Size.zero ? size.width : null,
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: widget.items,
+            ),
+          ),
         ),
       ),
     );

@@ -14,9 +14,13 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:pangolin/utils/app_list.dart';
+import 'package:pangolin/utils/context_menus/context_menu.dart';
+import 'package:pangolin/utils/context_menus/context_menu_item.dart';
+import 'package:pangolin/utils/context_menus/core/context_menu_region.dart';
 import 'package:pangolin/utils/wm_api.dart';
 import 'package:provider/provider.dart';
 import 'package:utopia_wm/wm.dart';
@@ -83,7 +87,7 @@ class _TaskbarItemState extends State<TaskbarItem>
     } else {
       _ac.animateBack(0);
     }
-
+    final _pref = Provider.of<PreferenceProvider>(context);
     //Build Widget
     return LayoutBuilder(
       builder: (context, constraints) => Padding(
@@ -91,80 +95,97 @@ class _TaskbarItemState extends State<TaskbarItem>
         child: SizedBox(
           height: 48,
           width: 50,
-          child: GestureDetector(
-            //key: _globalKey,
-            child: Material(
-              borderRadius: BorderRadius.circular(4),
-              //set a background colour if the app is running or focused
-              color: appIsRunning
-                  ? (showSelected
-                      ? Theme.of(context)
-                          .textTheme
-                          .bodyText1
-                          ?.color
-                          ?.withOpacity(0.2)
-                      : Theme.of(context).backgroundColor.withOpacity(0.0))
-                  : Colors.transparent,
-              child: InkWell(
-                onHover: (value) {
-                  _hovering = value;
-                  setState(() {});
-                },
+          child: ContextMenuRegion(
+            useLongPress: false,
+            contextMenu: ContextMenu(
+              items: [
+                ContextMenuItem(
+                  icon: Icons.push_pin_outlined,
+                  title: _pref.pinnedApps.contains(_app.packageName)
+                      ? "Unpin from Taskbar"
+                      : "Pin to Taskbar",
+                  onTap: () {
+                    _pref.togglePinnedApp(_app.packageName ?? "");
+                  },
+                  shortcut: "",
+                ),
+              ],
+            ),
+            child: GestureDetector(
+              //key: _globalKey,
+              child: Material(
                 borderRadius: BorderRadius.circular(4),
-                onTap: () {
-                  //open the app or toggle
-                  if (appIsRunning) {
-                    _onTap(context, entry);
-                  } else {
-                    WmAPI.of(context).openApp(widget.packageName);
-                    //print(packageName);
-                  }
-                },
-                child: AnimatedBuilder(
-                  animation: _anim,
-                  builder: (context, child) => Stack(
-                    children: [
-                      Align(
-                        alignment: Alignment.center,
-                        child: Padding(
-                          padding: const EdgeInsets.all(6.0),
-                          child: Image(
-                            image: appIsRunning
-                                ? entry?.icon ?? NetworkImage("")
-                                : AssetImage(
-                                    "assets/icons/${_app.iconName}.png"),
+                //set a background colour if the app is running or focused
+                color: appIsRunning
+                    ? (showSelected
+                        ? Theme.of(context)
+                            .textTheme
+                            .bodyText1
+                            ?.color
+                            ?.withOpacity(0.2)
+                        : Theme.of(context).backgroundColor.withOpacity(0.0))
+                    : Colors.transparent,
+                child: InkWell(
+                  onHover: (value) {
+                    _hovering = value;
+                    setState(() {});
+                  },
+                  borderRadius: BorderRadius.circular(4),
+                  onTap: () {
+                    //open the app or toggle
+                    if (appIsRunning) {
+                      _onTap(context, entry);
+                    } else {
+                      WmAPI.of(context).openApp(widget.packageName);
+                      //print(packageName);
+                    }
+                  },
+                  child: AnimatedBuilder(
+                    animation: _anim,
+                    builder: (context, child) => Stack(
+                      children: [
+                        Align(
+                          alignment: Alignment.center,
+                          child: Padding(
+                            padding: const EdgeInsets.all(6.0),
+                            child: Image(
+                              image: appIsRunning
+                                  ? entry?.icon ?? NetworkImage("")
+                                  : AssetImage(
+                                      "assets/icons/${_app.iconName}.png"),
+                            ),
                           ),
                         ),
-                      ),
-                      AnimatedPositioned(
-                        duration: Duration(milliseconds: 150),
-                        curve: Curves.ease,
-                        bottom: 2,
-                        left: appIsRunning
-                            ? _hovering
-                                ? showSelected
-                                    ? 4
-                                    : 8
-                                : showSelected
-                                    ? 4
-                                    : constraints.maxHeight / 2 - 8
-                            : 50 / 2,
-                        right: appIsRunning
-                            ? _hovering
-                                ? showSelected
-                                    ? 4
-                                    : 8
-                                : showSelected
-                                    ? 4
-                                    : constraints.maxHeight / 2 - 8
-                            : 50 / 2,
-                        height: 2,
-                        child: Material(
-                          borderRadius: BorderRadius.circular(2),
-                          color: Theme.of(context).accentColor,
+                        AnimatedPositioned(
+                          duration: Duration(milliseconds: 150),
+                          curve: Curves.ease,
+                          bottom: 2,
+                          left: appIsRunning
+                              ? _hovering
+                                  ? showSelected
+                                      ? 4
+                                      : 8
+                                  : showSelected
+                                      ? 4
+                                      : constraints.maxHeight / 2 - 8
+                              : 50 / 2,
+                          right: appIsRunning
+                              ? _hovering
+                                  ? showSelected
+                                      ? 4
+                                      : 8
+                                  : showSelected
+                                      ? 4
+                                      : constraints.maxHeight / 2 - 8
+                              : 50 / 2,
+                          height: 2,
+                          child: Material(
+                            borderRadius: BorderRadius.circular(2),
+                            color: Theme.of(context).accentColor,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),

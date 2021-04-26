@@ -13,8 +13,6 @@ limitations under the License.
 
 import 'package:flutter/material.dart';
 import 'package:pangolin/utils/wm_api.dart';
-import 'package:provider/provider.dart';
-import 'package:utopia_wm/wm.dart';
 
 class ContextMenuItem extends StatelessWidget {
   ContextMenuItem(
@@ -32,8 +30,7 @@ class ContextMenuItem extends StatelessWidget {
       color: Colors.transparent,
       child: InkWell(
         onTap: () {
-          WmAPI.of(context).popOverlayEntry(
-              Provider.of<DismissibleOverlayEntry>(context, listen: false));
+          WmAPI.of(context).popCurrentOverlayEntry();
           onTap();
         },
         child: Padding(
