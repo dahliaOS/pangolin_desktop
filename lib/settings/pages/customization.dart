@@ -622,22 +622,43 @@ class _WallpaperChooserState extends State<WallpaperChooser> {
             Row(
               children: [
                 Expanded(
-                    child: TextField(
-                  decoration: InputDecoration(
-                      hintText: "Set wallpaper from URL",
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(6))),
-                  maxLines: 1,
-                  controller: _controller,
-                  onSubmitted: (text) {
-                    if (text.startsWith("http")) {
-                      _data.wallpaper = text;
-                      Navigator.pop(context);
-                    } else {
-                      Navigator.pop(context);
-                    }
+                  child: TextField(
+                    decoration: InputDecoration(
+                        contentPadding:
+                            EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                        hintText: "Set wallpaper from URL",
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(40))),
+                    maxLines: 1,
+                    controller: _controller,
+                    onSubmitted: (text) {
+                      if (text.startsWith("http")) {
+                        _data.wallpaper = text;
+                        Navigator.pop(context);
+                      } else {
+                        Navigator.pop(context);
+                      }
+                    },
+                  ),
+                ),
+                SizedBox(
+                  width: 16,
+                ),
+                FloatingActionButton.extended(
+                  onPressed: () {
+                    _data.wallpaper = link;
+                    Navigator.pop(context);
                   },
-                )),
+                  label: Text(
+                    "Use Bing Wallpaper",
+                    style: TextStyle(
+                        color: Theme.of(context).textTheme.bodyText1?.color),
+                  ),
+                  icon: Icon(
+                    Icons.image_outlined,
+                    color: Theme.of(context).textTheme.bodyText1?.color,
+                  ),
+                ),
                 SizedBox(
                   width: 16,
                 ),

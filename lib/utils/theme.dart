@@ -23,10 +23,12 @@ ThemeData theme(BuildContext context) {
   final _data = context.watch<PreferenceProvider>();
   return ThemeData(
       //visualDensity: VisualDensity(horizontal: -3.5, vertical: -3.5),
-      pageTransitionsTheme: PageTransitionsTheme(builders: {
-        TargetPlatform.android:
-            FadeThroughPageTransitionsBuilder(fillColor: Colors.transparent),
-      }),
+      pageTransitionsTheme: PageTransitionsTheme(
+        builders: {
+          TargetPlatform.android:
+              FadeThroughPageTransitionsBuilder(fillColor: Colors.transparent),
+        },
+      ),
       //hoverColor: Color(_data.accentColor).withOpacity(0.5),
       splashColor: Color(_data.accentColor),
       buttonColor: Color(_data.accentColor),

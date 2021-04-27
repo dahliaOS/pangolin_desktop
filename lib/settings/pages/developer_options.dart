@@ -83,43 +83,46 @@ class DeveloperOptions extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: BottomAppBar(
-          elevation: 0.0,
-          color: Color(0x00ffffff),
-          child: SizedBox(
-              height: 50,
-              width: 15,
-              child: Padding(
-                  padding: EdgeInsets.all(0),
-                  child: Card(
-                    elevation: 0,
-                    color: Colors.red[500],
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: [
-                          Center(
-                              child: Padding(
-                                  padding: EdgeInsets.all(8),
-                                  child: Icon(
-                                    Icons.warning,
-                                    size: 25,
-                                    color: Colors.white,
-                                  ))),
-                          Center(
-                              child: Padding(
-                                  padding: EdgeInsets.all(8),
-                                  child: Text(
-                                    "WARNING: DEVELOPER OPTIONS AHEAD! By using these options, you could lose system data or compromise your security or privacy. ",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 14,
-                                      fontFamily: "Roboto",
-                                    ),
-                                  ))),
-                        ],
-                      ),
-                    ),
-                  )))),
+        elevation: 0.0,
+        color: Color(0x00ffffff),
+        child: SizedBox(
+          height: 50,
+          width: 15,
+          child: Padding(
+            padding: EdgeInsets.all(0),
+            child: Card(
+              elevation: 0,
+              color: Colors.red[500],
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    Center(
+                        child: Padding(
+                            padding: EdgeInsets.all(8),
+                            child: Icon(
+                              Icons.warning,
+                              size: 25,
+                              color: Colors.white,
+                            ))),
+                    Center(
+                        child: Padding(
+                            padding: EdgeInsets.all(8),
+                            child: Text(
+                              "WARNING: DEVELOPER OPTIONS AHEAD! By using these options, you could lose system data or compromise your security or privacy. ",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 14,
+                                fontFamily: "Roboto",
+                              ),
+                            ))),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

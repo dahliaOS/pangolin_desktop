@@ -13,6 +13,9 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
+import 'dart:convert';
+
+import 'package:http/http.dart';
 import 'package:pangolin/utils/accent_color_data.dart';
 import 'package:utopia_wm/wm.dart';
 import 'package:flutter/material.dart';
@@ -71,3 +74,13 @@ List<AccentColorData> accentColors = [
   AccentColorData(color: Colors.amber, title: "Amber"),
   AccentColorData(color: null, title: "Custom Accent Color"),
 ];
+
+String link = "";
+String copyright = "";
+void getBingWallpaper() async {
+  Response response = await get(Uri.parse(
+      'https://bing.biturl.top/?resolution=1920&format=json&index=0&mkt=en-US'));
+  Map data = jsonDecode(response.body);
+  link = data['url'];
+  copyright = data['copyright'];
+}

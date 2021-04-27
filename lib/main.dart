@@ -30,9 +30,6 @@ void main() async {
   await DatabaseManager.initialseDatabase();
   PreferenceProvider();
   DateTimeManager.initialiseScheduler();
-  DateTimeManager.formatTime();
-  DateTimeManager.setDateFormat("yMd");
-  DateTimeManager.formatDate();
 
   await EasyLocalization.ensureInitialized();
   await loadVisualEngine();

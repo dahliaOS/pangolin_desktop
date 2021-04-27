@@ -25,7 +25,18 @@ import 'package:pangolin/utils/globals.dart';
 import 'package:pangolin/utils/wm_api.dart';
 import 'package:provider/provider.dart';
 
-class Wallpaper extends StatelessWidget {
+class Wallpaper extends StatefulWidget {
+  @override
+  _WallpaperState createState() => _WallpaperState();
+}
+
+class _WallpaperState extends State<Wallpaper> {
+  @override
+  void initState() {
+    super.initState();
+    getBingWallpaper();
+  }
+
   @override
   Widget build(BuildContext context) {
     final _data = Provider.of<PreferenceProvider>(context, listen: false);
@@ -62,13 +73,21 @@ class Wallpaper extends StatelessWidget {
         Positioned(
           bottom: 70,
           right: 20,
-          child: Text(
-            "Pangolin Version $totalVersionNumber",
-            style: TextStyle(
-              color: Colors.white,
-            ),
-          ),
-        )
+          child: _data.wallpaper == link
+              ? BoxContainer(
+                  customBorderRadius: BorderRadius.circular(4),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      copyright,
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                )
+              : SizedBox.shrink(),
+        ),
       ],
     );
   }
@@ -78,6 +97,12 @@ class Wallpaper extends StatelessWidget {
       return CachedNetworkImage(
         imageUrl: source,
         fit: BoxFit.cover,
+        cacheKey: source,
+        useOldImageOnUrlChange: true,
+        fadeInDuration: Duration(milliseconds: 1000),
+        fadeOutDuration: Duration(milliseconds: 1000),
+        fadeInCurve: Curves.easeInOut,
+        fadeOutCurve: Curves.easeInOut,
       );
     } else {
       return Image.asset(
