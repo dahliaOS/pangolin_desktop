@@ -118,6 +118,14 @@ flutter:
        - asset: fonts/inter/Inter-Light.ttf
        - asset: fonts/inter/Inter-SemiBold.ttf
        - asset: fonts/inter/Inter-Thin.ttf
+    - family:  FiraCode
+      fonts:
+       - asset: fonts/firacode/FiraCode-Bold.ttf
+       - asset: fonts/firacode/FiraCode-Medium.ttf
+       - asset: fonts/firacode/FiraCode-Retina.ttf
+       - asset: fonts/firacode/FiraCode-Light.ttf
+       - asset: fonts/firacode/DMSans-MediumItalic.ttf
+       - asset: fonts/firacode/DMSans-Regular.ttf
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

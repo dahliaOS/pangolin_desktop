@@ -73,6 +73,11 @@ class DeveloperOptions extends StatelessWidget {
                                 "Use Acrylic Background Blur for the shell [WIP]"),
                             value: _features.useAcrylic,
                             onChanged: (val) => _features.useAcrylic = val),
+                        SwitchListTile(
+                            secondary: Icon(Icons.tune),
+                            title: Text("Override visualData.json database"),
+                            value: _features.jsonOverride,
+                            onChanged: (val) => _features.jsonOverride = val),
                       ],
                     ),
                   ],
