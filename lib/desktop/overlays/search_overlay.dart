@@ -42,7 +42,7 @@ class SearchOverlay extends StatelessWidget {
           opacity: _animation,
           child: ScaleTransition(
             scale: _animation,
-            alignment: FractionalOffset.topCenter,
+            alignment: FractionalOffset.bottomCenter,
             child: BoxContainer(
               decoration: BoxDecoration(
                   boxShadow: [
@@ -66,17 +66,18 @@ class SearchOverlay extends StatelessWidget {
                     child: Column(
                       children: [
                         BoxContainer(
-                            //padding: EdgeInsets.symmetric(horizontal: 16),
-                            color: Theme.of(context).backgroundColor,
-                            useSystemOpacity: true,
-                            height: 48,
-                            child: Searchbar(
-                              focusNode: _focusNode,
-                              controller: _controller,
-                              hint: '"Search Device, Apps and Web',
-                              leading: Icon(Icons.search),
-                              trailing: Icon(Icons.more_vert_rounded),
-                            )),
+                          //padding: EdgeInsets.symmetric(horizontal: 16),
+                          color: Theme.of(context).backgroundColor,
+                          useSystemOpacity: true,
+                          height: 48,
+                          child: Searchbar(
+                            focusNode: _focusNode,
+                            controller: _controller,
+                            hint: '"Search Device, Apps and Web',
+                            leading: Icon(Icons.search),
+                            trailing: Icon(Icons.more_vert_rounded),
+                          ),
+                        ),
                       ],
                     ),
                   ),

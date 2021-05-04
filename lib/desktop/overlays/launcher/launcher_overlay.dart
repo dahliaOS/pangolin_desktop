@@ -17,6 +17,7 @@ limitations under the License.
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 import 'package:pangolin/desktop/overlays/launcher/launcher_categories.dart';
 import 'package:pangolin/desktop/overlays/launcher/launcher_grid.dart';
 import 'package:pangolin/desktop/overlays/launcher/power_menu.dart';
@@ -26,6 +27,7 @@ import 'package:pangolin/utils/wm_api.dart';
 import 'package:pangolin/widgets/searchbar.dart';
 import 'package:provider/provider.dart';
 import 'package:utopia_wm/wm.dart';
+import 'package:pangolin/utils/preference_extension.dart';
 
 class LauncherOverlay extends StatefulWidget {
   @override
@@ -36,6 +38,7 @@ class _LauncherOverlayState extends State<LauncherOverlay> {
   final _focusNode = FocusNode(canRequestFocus: true);
   @override
   Widget build(BuildContext context) {
+    final _pref = Provider.of<PreferenceProvider>(context);
     final _animation =
         Provider.of<DismissibleOverlayEntry>(context, listen: false).animation;
     final _animationController =
@@ -46,24 +49,48 @@ class _LauncherOverlayState extends State<LauncherOverlay> {
     _focusNode.requestFocus();
 
     return Positioned(
-      top: 0,
-      bottom: 48,
-      left: 0,
-      right: 0,
+      top: !_pref.isTaskbarTop ? 0 : 48,
+      bottom: _pref.isTaskbarTop
+          ? 0
+          : _pref.isTaskbarLeft || _pref.isTaskbarRight
+              ? 0
+              : 48,
+      left: _pref.isTaskbarLeft ? 48 : 0,
+      right: _pref.isTaskbarRight ? 48 : 0,
       child: RawKeyboardListener(
         focusNode: _focusNode,
         onKey: (details) {
           WmAPI.of(context).popCurrentOverlayEntry();
           WmAPI.of(context).pushOverlayEntry(
             DismissibleOverlayEntry(
-              uniqueId: "search",
-              content: SearchOverlay(
-                text: details.data.keyLabel.toString(),
-              ),
-            ),
+                uniqueId: "search",
+                content: SearchOverlay(
+                  text: details.data.keyLabel.toString(),
+                ),
+                duration: Duration(milliseconds: 100),
+                curve: Curves.easeInOut),
           );
         },
         child: GestureDetector(
+          onVerticalDragUpdate: (details) {
+            if (details.delta.dy > 0) {
+              _animationController.value =
+                  _animationController.value - details.delta.dy / 1200;
+            } else if (details.delta.dy < -1 &&
+                _animationController.value < 1) {
+              _animationController.value =
+                  _animationController.value - details.delta.dy / 800;
+            }
+            //print(_animationController.value);
+          },
+          onVerticalDragEnd: (details) async {
+            if (_animationController.value > 0.6) {
+              _animationController.animateBack(1.0);
+            } else {
+              await _animationController.reverse();
+              WmAPI.of(context).popCurrentOverlayEntry();
+            }
+          },
           onTap: () async {
             await _animationController.reverse();
             WmAPI.of(context).popOverlayEntry(
@@ -75,14 +102,16 @@ class _LauncherOverlayState extends State<LauncherOverlay> {
               Wallpaper(),
               BoxContainer(
                 useBlur: true,
-                color: Colors.black.withOpacity(0.5),
+                color: Theme.of(context).backgroundColor.withOpacity(0.5),
                 child: AnimatedBuilder(
                   animation: _animation,
                   builder: (context, child) => FadeTransition(
                     opacity: _animation,
                     child: ScaleTransition(
                       scale: _animation,
-                      alignment: FractionalOffset.bottomCenter,
+                      alignment: _pref.taskbarPosition != 0
+                          ? FractionalOffset.bottomCenter
+                          : FractionalOffset.topCenter,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
@@ -121,11 +150,12 @@ class Search extends StatelessWidget {
                 Provider.of<DismissibleOverlayEntry>(context, listen: false));
             WmAPI.of(context).pushOverlayEntry(
               DismissibleOverlayEntry(
-                uniqueId: "search",
-                content: SearchOverlay(
-                  text: change,
-                ),
-              ),
+                  uniqueId: "search",
+                  content: SearchOverlay(
+                    text: change,
+                  ),
+                  duration: Duration(milliseconds: 100),
+                  curve: Curves.easeInOut),
             );
           },
           leading: Icon(Icons.search),

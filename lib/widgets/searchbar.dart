@@ -41,6 +41,7 @@ class Searchbar extends StatelessWidget {
       customBorderRadius: borderRadius ?? BorderRadius.circular(8),
       color: Theme.of(context).backgroundColor,
       useSystemOpacity: true,
+      useShadows: true,
       width: 800,
       height: 48,
       child: Row(

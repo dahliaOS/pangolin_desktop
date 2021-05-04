@@ -15,5 +15,6 @@ analyzer:
     unnecessary_this: ignore
     unused_local_variable: ignore
     omit_local_variable_types: ignore
+    todo: ignore
 #   exclude:
 #     - path/to/excluded/files/**

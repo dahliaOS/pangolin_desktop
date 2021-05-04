@@ -30,6 +30,7 @@ void main() async {
   await DatabaseManager.initialseDatabase();
   PreferenceProvider();
   DateTimeManager.initialiseScheduler();
+  DateTimeManager.setDateFormat("yMMMMd");
 
   await EasyLocalization.ensureInitialized();
   await loadVisualEngine();
@@ -45,7 +46,9 @@ void main() async {
         value: PreferenceProvider(),
         builder: (context, child) {
           return ChangeNotifierProvider<FeatureFlags>.value(
-              value: FeatureFlags(), builder: (context, child) => Pangolin());
+            value: FeatureFlags(),
+            builder: (context, child) => Pangolin(),
+          );
         },
       ),
     ),

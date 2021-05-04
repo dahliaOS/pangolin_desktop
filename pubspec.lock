@@ -28,7 +28,49 @@ packages:
       name: async
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.5.0"
+    version: "2.6.0"
+  battery_plus:
+    dependency: transitive
+    description:
+      name: battery_plus
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
+  battery_plus_linux:
+    dependency: transitive
+    description:
+      name: battery_plus_linux
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
+  battery_plus_macos:
+    dependency: transitive
+    description:
+      name: battery_plus_macos
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
+  battery_plus_platform_interface:
+    dependency: transitive
+    description:
+      name: battery_plus_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
+  battery_plus_web:
+    dependency: transitive
+    description:
+      name: battery_plus_web
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
+  battery_plus_windows:
+    dependency: transitive
+    description:
+      name: battery_plus_windows
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
   boolean_selector:
     dependency: transitive
     description:
@@ -117,6 +159,13 @@ packages:
       url: "https://github.com/dahliaOS/clock.git"
     source: git
     version: "0.0.1+1"
+  dbus:
+    dependency: transitive
+    description:
+      name: dbus
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.5"
   easy_localization:
     dependency: "direct main"
     description:

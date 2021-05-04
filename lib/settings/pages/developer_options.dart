@@ -42,43 +42,45 @@ class DeveloperOptions extends StatelessWidget {
                   children: [
                     SettingsHeader(heading: "Feature Flags"),
                     SettingsTile(
-                      children: [
-                        SwitchListTile(
-                          secondary: Icon(Icons.desktop_windows),
-                          value: _data.enableBlur,
-                          title: Text("Enable blur effects on the desktop"),
-                          onChanged: (bool state) {
-                            _data.enableBlur = !_data.enableBlur;
-                          },
-                        ),
-                        SwitchListTile(
-                          secondary: Icon(Icons.phone_android),
-                          value: _data.enableBlur,
-                          title: Text("Pangolin Mobile as default shell"),
-                          onChanged: (bool state) {
-                            _data.enableBlur = !_data.enableBlur;
-                          },
-                        ),
-                        SwitchListTile(
-                          secondary: Icon(Icons.memory),
-                          value: _data.enableBlur,
-                          title: Text("Use LTS kernel"),
-                          onChanged: (bool state) {
-                            _data.enableBlur = !_data.enableBlur;
-                          },
-                        ),
-                        SwitchListTile(
-                            secondary: Icon(Icons.blur_linear),
-                            title: Text(
-                                "Use Acrylic Background Blur for the shell [WIP]"),
-                            value: _features.useAcrylic,
-                            onChanged: (val) => _features.useAcrylic = val),
-                        SwitchListTile(
-                            secondary: Icon(Icons.tune),
-                            title: Text("Override visualData.json database"),
-                            value: _features.jsonOverride,
-                            onChanged: (val) => _features.jsonOverride = val),
-                      ],
+                      child: Column(
+                        children: [
+                          SwitchListTile(
+                            secondary: Icon(Icons.desktop_windows),
+                            value: _data.enableBlur,
+                            title: Text("Enable blur effects on the desktop"),
+                            onChanged: (bool state) {
+                              _data.enableBlur = !_data.enableBlur;
+                            },
+                          ),
+                          SwitchListTile(
+                            secondary: Icon(Icons.phone_android),
+                            value: _data.enableBlur,
+                            title: Text("Pangolin Mobile as default shell"),
+                            onChanged: (bool state) {
+                              _data.enableBlur = !_data.enableBlur;
+                            },
+                          ),
+                          SwitchListTile(
+                            secondary: Icon(Icons.memory),
+                            value: _data.enableBlur,
+                            title: Text("Use LTS kernel"),
+                            onChanged: (bool state) {
+                              _data.enableBlur = !_data.enableBlur;
+                            },
+                          ),
+                          SwitchListTile(
+                              secondary: Icon(Icons.blur_linear),
+                              title: Text(
+                                  "Use Acrylic Background Blur for the shell [WIP]"),
+                              value: _features.useAcrylic,
+                              onChanged: (val) => _features.useAcrylic = val),
+                          SwitchListTile(
+                              secondary: Icon(Icons.tune),
+                              title: Text("Override visualData.json database"),
+                              value: _features.jsonOverride,
+                              onChanged: (val) => _features.jsonOverride = val),
+                        ],
+                      ),
                     ),
                   ],
                 ),

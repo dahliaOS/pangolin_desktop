@@ -57,18 +57,20 @@ class LauncherButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(6),
           color: Provider.of<WindowHierarchyState>(context)
                   .overlayIsActive("launcher")
-              ? Theme.of(context).accentColor.withOpacity(0.5)
+              ? Theme.of(context).accentColor
               : Colors.transparent,
           child: InkWell(
             borderRadius: BorderRadius.circular(6),
             hoverColor: Theme.of(context).accentColor.withOpacity(0.5),
             mouseCursor: SystemMouseCursors.click,
             onTap: () {
-              WmAPI.of(context).pushOverlayEntry(DismissibleOverlayEntry(
-                  uniqueId: "launcher",
-                  content: LauncherOverlay(),
-                  duration: Duration(milliseconds: 200),
-                  curve: Curves.easeInOut));
+              WmAPI.of(context).pushOverlayEntry(
+                DismissibleOverlayEntry(
+                    uniqueId: "launcher",
+                    content: LauncherOverlay(),
+                    duration: Duration(milliseconds: 200),
+                    curve: Curves.easeInOut),
+              );
             },
             child: Padding(
               padding: EdgeInsets.all(8),

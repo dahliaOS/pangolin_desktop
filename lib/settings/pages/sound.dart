@@ -42,84 +42,10 @@ class Sound extends StatelessWidget {
                     SettingsHeader(
                         heading: LocaleStrings.settings.soundSystemVolume),
                     SettingsTile(
-                      children: [
-                        Text(LocaleStrings.settings.soundSystemVolumeDesc),
-                        SizedBox(height: 5),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Expanded(
-                                child: Slider(
-                                  activeColor: Color(_data.accentColor),
-                                  inactiveColor: Color(_data.accentColor),
-                                  divisions: 20,
-                                  label:
-                                      "${(_data.volumeLevel * 100).toString().replaceAll(".0", "")}%",
-                                  onChanged: (double state) {
-                                    _data.volumeLevel = state;
-                                  },
-                                  value: _data.volumeLevel,
-                                ),
-                              )
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                    SettingsHeader(
-                        heading: LocaleStrings.settings.soundVolumeLevels),
-                    SettingsTile(
-                      children: [
-                        Text(LocaleStrings.settings.soundVolumeLevelsDesc),
-                        SizedBox(height: 5),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Expanded(
-                                child: Slider(
-                                  activeColor: Color(_data.accentColor),
-                                  inactiveColor: Color(_data.accentColor),
-                                  divisions: 20,
-                                  label:
-                                      "${(_data.volumeLevel * 100).toString().replaceAll(".0", "")}%",
-                                  onChanged: (double state) {
-                                    _data.volumeLevel = state;
-                                  },
-                                  value: _data.volumeLevel,
-                                ),
-                              )
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                    SettingsHeader(heading: LocaleStrings.settings.soundOutput),
-                    SettingsTile(
-                      children: [
-                        Text(LocaleStrings.settings.soundOutputDesc),
-                        SizedBox(height: 5),
-                        Container(
-                          width: 1.7976931348623157e+308,
-                          child: DropdownButton<String>(
-                            icon: Icon(null),
-                            hint: Text("Device"),
-                            value: "Speaker",
-                            items:
-                                ["Speaker", "Headphones"].map((String value) {
-                              return DropdownMenuItem<String>(
-                                value: value,
-                                child: Center(child: Text(value)),
-                              );
-                            }).toList(),
-                            onChanged: (_) {},
-                          ),
-                        ),
-                        SizedBox(height: 15),
-                        Row(
+                      title: LocaleStrings.settings.soundSystemVolumeDesc,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Expanded(
@@ -134,10 +60,79 @@ class Sound extends StatelessWidget {
                                 },
                                 value: _data.volumeLevel,
                               ),
-                            ),
+                            )
                           ],
-                        )
-                      ],
+                        ),
+                      ),
+                    ),
+                    SettingsHeader(
+                        heading: LocaleStrings.settings.soundVolumeLevels),
+                    SettingsTile(
+                      title: LocaleStrings.settings.soundVolumeLevelsDesc,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Expanded(
+                              child: Slider(
+                                activeColor: Color(_data.accentColor),
+                                inactiveColor: Color(_data.accentColor),
+                                divisions: 20,
+                                label:
+                                    "${(_data.volumeLevel * 100).toString().replaceAll(".0", "")}%",
+                                onChanged: (double state) {
+                                  _data.volumeLevel = state;
+                                },
+                                value: _data.volumeLevel,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    SettingsHeader(heading: LocaleStrings.settings.soundOutput),
+                    SettingsTile(
+                      title: LocaleStrings.settings.soundOutputDesc,
+                      child: Column(
+                        children: [
+                          Container(
+                            width: 1.7976931348623157e+308,
+                            child: DropdownButton<String>(
+                              icon: Icon(null),
+                              hint: Text("Device"),
+                              value: "Speaker",
+                              items:
+                                  ["Speaker", "Headphones"].map((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Center(child: Text(value)),
+                                );
+                              }).toList(),
+                              onChanged: (_) {},
+                            ),
+                          ),
+                          SizedBox(height: 15),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Expanded(
+                                child: Slider(
+                                  activeColor: Color(_data.accentColor),
+                                  inactiveColor: Color(_data.accentColor),
+                                  divisions: 20,
+                                  label:
+                                      "${(_data.volumeLevel * 100).toString().replaceAll(".0", "")}%",
+                                  onChanged: (double state) {
+                                    _data.volumeLevel = state;
+                                  },
+                                  value: _data.volumeLevel,
+                                ),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
                     ),
                   ],
                 ),

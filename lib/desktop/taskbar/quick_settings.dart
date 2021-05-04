@@ -21,6 +21,7 @@ import 'package:pangolin/desktop/overlays/quicksettings/quick_settings_overlay.d
 import 'package:pangolin/utils/wm_api.dart';
 import 'package:provider/provider.dart';
 import 'package:utopia_wm/wm.dart';
+import 'package:pangolin/utils/preference_extension.dart';
 
 class QuickSettingsButton extends StatelessWidget {
   @override
@@ -28,14 +29,15 @@ class QuickSettingsButton extends StatelessWidget {
     final _pref = Provider.of<PreferenceProvider>(context);
     return SizedBox(
       //width: 96,
-      height: 48,
+      width: _pref.isTaskbarHorizontal ? null : 48,
+      height: _pref.isTaskbarHorizontal ? 48 : null,
       child: Padding(
         padding: const EdgeInsets.all(4.0),
         child: Material(
           borderRadius: BorderRadius.circular(6),
           color: Provider.of<WindowHierarchyState>(context)
                   .overlayIsActive("action_center")
-              ? Theme.of(context).accentColor.withOpacity(0.5)
+              ? Theme.of(context).accentColor
               : Colors.transparent,
           child: InkWell(
             borderRadius: BorderRadius.circular(6),
@@ -51,50 +53,68 @@ class QuickSettingsButton extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
               child: Center(
-                  child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 6.0),
-                    child: Icon(
-                      Icons.settings_ethernet,
-                      size: 18,
-                    ),
-                  ),
-                  _pref.wifi
-                      ? Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 6.0),
-                          child: Icon(
-                            Icons.wifi,
-                            size: 18,
-                          ),
-                        )
-                      : SizedBox.shrink(),
-                  _pref.bluetooth
-                      ? Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 6.0),
-                          child: Icon(
-                            Icons.bluetooth,
-                            size: 18,
-                          ),
-                        )
-                      : SizedBox.shrink(),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 6.0),
-                    child: RotatedBox(
-                      quarterTurns: 1,
-                      child: Icon(
-                        Icons.battery_charging_full,
-                        size: 18,
+                child: _pref.isTaskbarHorizontal
+                    ? Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: items(context))
+                    : Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: items(context),
                       ),
-                    ),
-                  ),
-                ],
-              )),
+              ),
             ),
           ),
         ),
       ),
     );
+  }
+
+  List<Widget> items(BuildContext context) {
+    final _pref = Provider.of<PreferenceProvider>(context);
+    return [
+      Padding(
+        padding: _pref.isTaskbarHorizontal
+            ? EdgeInsets.symmetric(horizontal: 6.0)
+            : EdgeInsets.symmetric(vertical: 6.0),
+        child: Icon(
+          Icons.settings_ethernet,
+          size: 18,
+        ),
+      ),
+      _pref.wifi
+          ? Padding(
+              padding: _pref.isTaskbarHorizontal
+                  ? EdgeInsets.symmetric(horizontal: 6.0)
+                  : EdgeInsets.symmetric(vertical: 6.0),
+              child: Icon(
+                Icons.wifi,
+                size: 18,
+              ),
+            )
+          : SizedBox.shrink(),
+      _pref.bluetooth
+          ? Padding(
+              padding: _pref.isTaskbarHorizontal
+                  ? EdgeInsets.symmetric(horizontal: 6.0)
+                  : EdgeInsets.symmetric(vertical: 6.0),
+              child: Icon(
+                Icons.bluetooth,
+                size: 18,
+              ),
+            )
+          : SizedBox.shrink(),
+      Padding(
+        padding: _pref.isTaskbarHorizontal
+            ? EdgeInsets.symmetric(horizontal: 6.0)
+            : EdgeInsets.symmetric(vertical: 6.0),
+        child: RotatedBox(
+          quarterTurns: 1,
+          child: Icon(
+            Icons.battery_charging_full,
+            size: 18,
+          ),
+        ),
+      ),
+    ];
   }
 }

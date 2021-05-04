@@ -54,119 +54,84 @@ class GeneralManagement extends StatelessWidget {
                             LocaleStrings.settings.generalLanguageAndRegion),
                     SettingsTile(
                       margin: EdgeInsets.symmetric(horizontal: 16.0),
-                      children: [
-                        Text(LocaleStrings.settings.generalLanguage),
-                        SizedBox(height: 5),
-                        Container(
-                          width: double.infinity,
-                          child: DropdownButton<String>(
-                            icon: Icon(null),
-                            hint: Text(LocaleStrings.settings.generalLanguage),
-                            value: '${context.locale}',
-                            // items: languages.map((String value) {
-                            items: localesLanguages.map((value) {
-                              return DropdownMenuItem<String>(
-                                value: '$value',
-                                child: Text(showLanguage('$value')),
-                              );
-                            }).toList(),
-                            onChanged: (_) {
-                              _setLanguage(_ ?? "en_US", context);
-                            },
-                          ),
+                      title: LocaleStrings.settings.generalLanguage,
+                      child: Container(
+                        width: double.infinity,
+                        child: DropdownButton<String>(
+                          icon: Icon(null),
+                          hint: Text(LocaleStrings.settings.generalLanguage),
+                          value: '${context.locale}',
+                          // items: languages.map((String value) {
+                          items: localesLanguages.map((value) {
+                            return DropdownMenuItem<String>(
+                              value: '$value',
+                              child: Text(showLanguage('$value')),
+                            );
+                          }).toList(),
+                          onChanged: (_) {
+                            _setLanguage(_ ?? "en_US", context);
+                          },
                         ),
-                      ],
+                      ),
                     ),
                     SettingsHeader(heading: LocaleStrings.settings.generalTime),
                     SettingsTile(
-                      children: [
-                        SwitchListTile(
-                          secondary: Icon(Icons.timelapse),
-                          value: _data.enableAutoTime,
-                          title: Text(
-                              LocaleStrings.settings.generalTimeAutomaticTime),
-                          onChanged: (bool state) {
-                            _data.enableAutoTime = !_data.enableAutoTime;
-                          },
-                        ),
-                        /* ConditionWidget(
-                            !(DatabaseManager.get("enableAutoTime")),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Divider(),
-                                SizedBox(height: 15),
-                                Text("Time Zone"),
-                                SizedBox(height: 5),
-                                Container(
-                                  width: 1.7976931348623157e+308,
-                                  child: DropdownButton<String>(
-                                    icon: Icon(null),
-                                    hint: Text("Time"),
-                                    value: DatabaseManager.get("timeZoneName"),
-                                    items: languages.map((String value) {
-                                      return DropdownMenuItem<String>(
-                                        value: value,
-                                        child: Text(value),
-                                      );
-                                    }).toList(),
-                                    onChanged: (_) {
-                                      _setKeyboard(_, context);
-                                      setState(() {
-                                        _setTimezone(_, context);
-                                      });
-                                    },
-                                  ),
-                                ),
-                                SizedBox(height: 5),
-                              ],
-                            )), */
-                        SwitchListTile(
-                          secondary: Text(
-                            " :53",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Theme.of(context)
-                                    .textTheme
-                                    .bodyText1
-                                    ?.color),
+                      child: Column(
+                        children: [
+                          SwitchListTile(
+                            secondary: Icon(Icons.timelapse),
+                            value: _data.enableAutoTime,
+                            title: Text(LocaleStrings
+                                .settings.generalTimeAutomaticTime),
+                            onChanged: (bool state) {
+                              _data.enableAutoTime = !_data.enableAutoTime;
+                            },
                           ),
-                          value: _data.showSeconds,
-                          title: Text(
-                              LocaleStrings.settings.generalTimeShowSeconds),
-                          onChanged: (bool state) {
-                            _data.showSeconds = !_data.showSeconds;
-                          },
-                        ),
-                        SwitchListTile(
-                          secondary: Text(
-                            "14:00",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Theme.of(context)
-                                    .textTheme
-                                    .bodyText1
-                                    ?.color),
+                          SwitchListTile(
+                            secondary: Text(
+                              " :53",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .bodyText1
+                                      ?.color),
+                            ),
+                            value: _data.showSeconds,
+                            title: Text(
+                                LocaleStrings.settings.generalTimeShowSeconds),
+                            onChanged: (bool state) {
+                              _data.showSeconds = !_data.showSeconds;
+                            },
                           ),
-                          value: _data.enable24h,
-                          title: Text(LocaleStrings
-                              .settings.generalTimeEnableTwentyfourHours),
-                          onChanged: (bool state) {
-                            _data.enable24h = !_data.enable24h;
-                          },
-                        ),
-                      ],
+                          SwitchListTile(
+                            secondary: Text(
+                              "14:00",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .bodyText1
+                                      ?.color),
+                            ),
+                            value: _data.enable24h,
+                            title: Text(LocaleStrings
+                                .settings.generalTimeEnableTwentyfourHours),
+                            onChanged: (bool state) {
+                              _data.enable24h = !_data.enable24h;
+                            },
+                          ),
+                        ],
+                      ),
                     ),
                     SettingsHeader(
                         heading: LocaleStrings.settings.generalKeyboard),
                     SettingsTile(
                       margin: EdgeInsets.symmetric(horizontal: 16.0),
-                      children: [
-                        Text("Set keyboard layout (WIP)"),
-                        SizedBox(height: 5),
-                        Container(
-                          width: 1.7976931348623157e+308,
-                          /* child: DropdownButton<String>(
+                      title: "Set keyboard layout (WIP)",
+                      child: Container(
+                        width: 1.7976931348623157e+308,
+                        /* child: DropdownButton<String>(
                             icon: Icon(null),
                             hint: Text("Language"),
                             value: _data.keyboardLayoutName,
@@ -178,8 +143,7 @@ class GeneralManagement extends StatelessWidget {
                             }).toList(),
                             onChanged: (_) {},
                           ), */
-                        ),
-                      ],
+                      ),
                     ),
                   ],
                 ),

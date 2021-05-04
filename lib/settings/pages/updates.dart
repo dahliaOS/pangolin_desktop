@@ -176,20 +176,17 @@ class _UpdatesState extends State<Updates> {
                     children: [
                       SizedBox(height: 5),
                       SettingsTile(
-                        children: [
-                          SizedBox(height: 5),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Expanded(
-                                  child: GraftForm(),
-                                )
-                              ],
-                            ),
-                          )
-                        ],
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Expanded(
+                                child: GraftForm(),
+                              )
+                            ],
+                          ),
+                        ),
                       ),
                     ], //end of column
                   )),

@@ -17,12 +17,12 @@ limitations under the License.
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
-import 'package:pangolin/settings/pages/customization.dart';
 import 'package:pangolin/utils/context_menus/context_menu.dart';
 import 'package:pangolin/utils/context_menus/context_menu_item.dart';
 import 'package:pangolin/utils/context_menus/core/context_menu_region.dart';
 import 'package:pangolin/utils/globals.dart';
 import 'package:pangolin/utils/wm_api.dart';
+import 'package:pangolin/widgets/wallpaper_picker.dart';
 import 'package:provider/provider.dart';
 
 class Wallpaper extends StatefulWidget {
@@ -52,7 +52,7 @@ class _WallpaperState extends State<Wallpaper> {
                             barrierColor: Colors.transparent,
                             context: context,
                             builder: (context) {
-                              return WallpaperChooser();
+                              return WallpaperPicker();
                             });
                       },
                       icon: Icons.image,
@@ -71,15 +71,16 @@ class _WallpaperState extends State<Wallpaper> {
                 ),
                 child: wallpaperImage(_data.wallpaper))),
         Positioned(
-          bottom: 70,
-          right: 20,
+          bottom: 48 + 8,
+          right: 8,
           child: _data.wallpaper == link
               ? BoxContainer(
                   customBorderRadius: BorderRadius.circular(4),
+                  useSystemOpacity: true,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      copyright,
+                      copyright.replaceAll(",", ",\n"),
                       style: TextStyle(
                         color: Colors.white,
                       ),
