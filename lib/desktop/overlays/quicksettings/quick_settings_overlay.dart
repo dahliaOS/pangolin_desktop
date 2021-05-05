@@ -71,7 +71,7 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay> {
                     blurRadius: 50) */
               ], borderRadius: BorderRadius.circular(10)),
               useSystemOpacity: true,
-              color: Theme.of(context).backgroundColor,
+              color: Theme.of(context).scaffoldBackgroundColor,
               width: 500,
               height: 424,
               child: MaterialApp(
