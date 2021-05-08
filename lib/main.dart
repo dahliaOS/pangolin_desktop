@@ -31,6 +31,10 @@ void main() async {
   PreferenceProvider();
   DateTimeManager.initialiseScheduler();
   DateTimeManager.setDateFormat("yMMMMd");
+  if (double.tryParse(DatabaseManager.get("wallpaper")) != null) {
+    DatabaseManager.set(
+        "wallpaper", "assets/images/wallpapers/Three_Bubbles.png");
+  }
 
   await EasyLocalization.ensureInitialized();
   await loadVisualEngine();
