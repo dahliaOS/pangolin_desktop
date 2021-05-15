@@ -47,7 +47,7 @@ class SearchOverlay extends StatelessWidget {
           opacity: _animation,
           child: ScaleTransition(
             scale: _animation,
-            alignment: FractionalOffset.topCenter,
+            alignment: FractionalOffset.bottomCenter,
             child: BoxContainer(
               decoration: BoxDecoration(
                   boxShadow: [

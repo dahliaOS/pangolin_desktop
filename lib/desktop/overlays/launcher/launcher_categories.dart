@@ -49,9 +49,10 @@ class _LauncherCategoriesState extends State<LauncherCategories> {
           // The row of chips 'test test test test' lol
           margin: const EdgeInsets.only(top: 33 + (1 / 3), bottom: 8),
           child: BoxContainer(
-            customBorderRadius: BorderRadius.circular(8),
-            color: Theme.of(context).backgroundColor,
-            useSystemOpacity: true,
+            useShadows: true,
+            customBorderRadius: BorderRadius.circular(6),
+            color: Theme.of(context).backgroundColor.withOpacity(0.5),
+            useSystemOpacity: false,
             // have to give explicit size, as the child ListView can't calculate its Y height
             height: 38,
             child: ListView.builder(
@@ -60,36 +61,34 @@ class _LauncherCategoriesState extends State<LauncherCategories> {
               itemCount: launcherCategories.length,
               itemBuilder: (context, index) {
                 return Material(
+                  borderRadius: BorderRadius.circular(6),
                   color: _selected == index
                       ? Theme.of(context).accentColor
                       : Colors.transparent,
                   child: InkWell(
-                    /* useSystemOpacity: _selected == index,
-                    //customBorderRadius: BorderRadius.circular(8),
-                    focusColor: _selected == index
-                        ? Theme.of(context).backgroundColor
-                        : Colors.transparent, */
-                    /* color: _selected == index
-                        ? Theme.of(context).backgroundColor
-                        : Colors.transparent, */
-                    child: InkWell(
-                        onTap: () {
-                          setState(() {
-                            _selected = index;
-                          });
-                          widget.controller?.animateToPage(index,
-                              duration: Duration(milliseconds: 300),
-                              curve: Curves.easeInOut);
-                        },
-                        mouseCursor: SystemMouseCursors.click,
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 8.0, horizontal: 18),
-                          child: Center(
-                            child: Text(launcherCategories[index]),
+                      borderRadius: BorderRadius.circular(6),
+                      onTap: () {
+                        setState(() {
+                          _selected = index;
+                        });
+                        widget.controller?.animateToPage(index,
+                            duration: Duration(milliseconds: 300),
+                            curve: Curves.easeInOut);
+                      },
+                      mouseCursor: SystemMouseCursors.click,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 8.0, horizontal: 18),
+                        child: Center(
+                          child: Text(
+                            launcherCategories[index],
+                            style: TextStyle(
+                                fontWeight: _selected == index
+                                    ? FontWeight.bold
+                                    : FontWeight.normal),
                           ),
-                        )),
-                  ),
+                        ),
+                      )),
                 );
               },
             ),

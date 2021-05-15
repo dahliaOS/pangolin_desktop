@@ -39,6 +39,7 @@
         navigator.serviceWorker.register('flutter_service_worker.js');
       });
     }
+    document.addEventListener('contextmenu', event => event.preventDefault());
   </script>
   <script src="main.dart.js" type="application/javascript"></script>
 </body>

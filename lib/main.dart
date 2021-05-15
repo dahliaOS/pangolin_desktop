@@ -30,6 +30,11 @@ void main() async {
   await DatabaseManager.initialseDatabase();
   PreferenceProvider();
   DateTimeManager.initialiseScheduler();
+  DateTimeManager.setDateFormat("yMMMMd");
+  if (double.tryParse(DatabaseManager.get("wallpaper")) != null) {
+    DatabaseManager.set(
+        "wallpaper", "assets/images/wallpapers/Three_Bubbles.png");
+  }
 
   await EasyLocalization.ensureInitialized();
   await loadVisualEngine();
@@ -45,7 +50,9 @@ void main() async {
         value: PreferenceProvider(),
         builder: (context, child) {
           return ChangeNotifierProvider<FeatureFlags>.value(
-              value: FeatureFlags(), builder: (context, child) => Pangolin());
+            value: FeatureFlags(),
+            builder: (context, child) => Pangolin(),
+          );
         },
       ),
     ),

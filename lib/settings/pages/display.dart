@@ -44,10 +44,8 @@ class Display extends StatelessWidget {
                     SettingsHeader(
                         heading: LocaleStrings.settings.displayScreen),
                     SettingsTile(
-                      children: [
-                        Text(LocaleStrings.settings.displayScreenDesc),
-                        SizedBox(height: 5),
-                        Padding(
+                        title: LocaleStrings.settings.displayScreenDesc,
+                        child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -65,104 +63,98 @@ class Display extends StatelessWidget {
                               )
                             ],
                           ),
-                        )
-                      ],
-                    ),
+                        )),
                     SettingsHeader(
                         heading: LocaleStrings.settings.displayBlueLightFilter),
                     SettingsTile(
-                      children: [
-                        SwitchListTile(
-                          secondary: Icon(Icons.remove_red_eye_outlined),
-                          onChanged: (bool value) {
-                            _data.enableBluelightFilter =
-                                !_data.enableBluelightFilter;
-                          },
-                          value: _data.enableBluelightFilter,
-                          title: Text(LocaleStrings
-                              .settings.displayBlueLightFilterDesc),
-                        ),
-                      ],
+                      child: SwitchListTile(
+                        secondary: Icon(Icons.remove_red_eye_outlined),
+                        onChanged: (bool value) {
+                          _data.enableBluelightFilter =
+                              !_data.enableBluelightFilter;
+                        },
+                        value: _data.enableBluelightFilter,
+                        title: Text(
+                            LocaleStrings.settings.displayBlueLightFilterDesc),
+                      ),
                     ),
                     SettingsHeader(
                         heading: LocaleStrings.settings.displayResolution),
                     AbsorbPointer(
                       child: SettingsTile(
-                        children: [
-                          Text(LocaleStrings.settings.displayResolutionDesc),
-                          SizedBox(height: 5),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Expanded(
-                                      child: Slider(
-                                        divisions: 20,
-                                        onChanged: (double state) {},
-                                        value: 0.75,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                SizedBox(height: 20),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Container(
-                                      height: 200,
-                                      width: 400,
-                                      color: Colors.grey,
-                                      child: Center(
-                                        child: Container(
-                                          width: 50,
-                                          height: 50,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                            color: Colors.grey[350],
-                                          ),
-                                          child: Center(
-                                            child: Text(
-                                              "1",
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold),
-                                            ),
+                        title: LocaleStrings.settings.displayResolutionDesc,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Expanded(
+                                    child: Slider(
+                                      divisions: 20,
+                                      onChanged: (double state) {},
+                                      value: 0.75,
+                                    ),
+                                  )
+                                ],
+                              ),
+                              SizedBox(height: 20),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Container(
+                                    height: 200,
+                                    width: 400,
+                                    color: Colors.grey,
+                                    child: Center(
+                                      child: Container(
+                                        width: 50,
+                                        height: 50,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                          color: Colors.grey[350],
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                            "1",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold),
                                           ),
                                         ),
                                       ),
                                     ),
-                                    Container(
-                                      height: 200,
-                                      width: 400,
-                                      color: Colors.grey,
-                                      child: Center(
-                                        child: Container(
-                                          width: 50,
-                                          height: 50,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                            color: Colors.grey[350],
-                                          ),
-                                          child: Center(
-                                            child: Text(
-                                              "2",
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold),
-                                            ),
+                                  ),
+                                  Container(
+                                    height: 200,
+                                    width: 400,
+                                    color: Colors.grey,
+                                    child: Center(
+                                      child: Container(
+                                        width: 50,
+                                        height: 50,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                          color: Colors.grey[350],
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                            "2",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold),
                                           ),
                                         ),
                                       ),
-                                    )
-                                  ],
-                                )
-                                //TODO put into Alert Dialog for Help
-                                /*Row(
+                                    ),
+                                  )
+                                ],
+                              )
+                              //TODO put into Alert Dialog for Help
+                              /*Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Text(
@@ -175,10 +167,9 @@ class Display extends StatelessWidget {
                             ),
                           ],
                         ),*/
-                              ],
-                            ),
-                          )
-                        ],
+                            ],
+                          ),
+                        ),
                       ),
                     ),
                   ],

@@ -64,22 +64,16 @@ class About extends StatelessWidget {
                 children: [
                   SettingsHeader(heading: LocaleStrings.settings.aboutVersion),
                   SettingsTile(
-                    children: [
-                      Text(longName),
-                    ],
+                    child: Text(longName),
                   ),
                   SettingsHeader(heading: LocaleStrings.settings.aboutKernel),
                   SettingsTile(
-                    children: [
-                      Text(kernel),
-                    ],
+                    child: Text(kernel),
                   ),
                   SettingsHeader(
                       heading: LocaleStrings.settings.aboutPangolinVersion),
                   SettingsTile(
-                    children: [
-                      Text(fullPangolinVersion),
-                    ],
+                    child: Text(fullPangolinVersion),
                   ),
                 ],
               ),

@@ -14,10 +14,15 @@ limitations under the License.
 import 'package:flutter/material.dart';
 
 class SettingsTile extends StatelessWidget {
-  final List<Widget>? children;
+  final Widget? child;
+  final String? title;
   final EdgeInsetsGeometry? margin;
-  const SettingsTile({Key? key, @required this.children, this.margin})
-      : super(key: key);
+  SettingsTile({
+    Key? key,
+    @required this.child,
+    this.margin,
+    this.title,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +44,15 @@ class SettingsTile extends StatelessWidget {
             margin: this.margin,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: this.children ?? [SizedBox.shrink()],
+              children: [
+                title != null ? Text(title!) : SizedBox.shrink(),
+                title != null
+                    ? SizedBox(
+                        height: 8,
+                      )
+                    : SizedBox.shrink(),
+                child ?? SizedBox.shrink(),
+              ],
             ),
           ),
         ),

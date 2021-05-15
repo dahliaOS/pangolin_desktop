@@ -24,6 +24,7 @@ import 'package:pangolin/utils/context_menus/core/context_menu_region.dart';
 import 'package:pangolin/utils/wm_api.dart';
 import 'package:provider/provider.dart';
 import 'package:utopia_wm/wm.dart';
+import 'package:pangolin/utils/preference_extension.dart';
 
 class TaskbarItem extends StatefulWidget {
   final String packageName;

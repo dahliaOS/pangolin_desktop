@@ -33,7 +33,7 @@ class OverviewButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(6),
           color: Provider.of<WindowHierarchyState>(context)
                   .overlayIsActive("overview")
-              ? Theme.of(context).accentColor.withOpacity(0.5)
+              ? Theme.of(context).accentColor
               : Colors.transparent,
           child: InkWell(
             borderRadius: BorderRadius.circular(6),

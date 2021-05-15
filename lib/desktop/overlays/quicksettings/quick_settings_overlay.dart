@@ -29,6 +29,7 @@ import 'package:pangolin/widgets/qs_button.dart';
 import 'package:provider/provider.dart';
 import 'package:utopia_wm/wm.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:pangolin/utils/preference_extension.dart';
 
 class QuickSettingsOverlay extends StatefulWidget {
   @override
@@ -38,19 +39,30 @@ class QuickSettingsOverlay extends StatefulWidget {
 class _QuickSettingsOverlayState extends State<QuickSettingsOverlay> {
   @override
   Widget build(BuildContext context) {
+    final _pref = Provider.of<PreferenceProvider>(context);
     // _getTime(context);
     final _animation =
         Provider.of<DismissibleOverlayEntry>(context, listen: false).animation;
     return Positioned(
-      bottom: 48 + 8,
-      right: 8,
+      bottom: _pref.isTaskbarRight || _pref.isTaskbarLeft
+          ? 8
+          : !_pref.isTaskbarTop
+              ? 48 + 8
+              : null,
+      top: _pref.isTaskbarTop ? 48 + 8 : null,
+      right: _pref.isTaskbarRight
+          ? 48 + 8
+          : _pref.isTaskbarLeft
+              ? null
+              : 8,
+      left: _pref.isTaskbarLeft ? 48 + 8 : null,
       child: AnimatedBuilder(
         animation: _animation,
         builder: (context, chilld) => FadeTransition(
           opacity: _animation,
           child: ScaleTransition(
             scale: _animation,
-            alignment: FractionalOffset(0.8, 1.0),
+            alignment: FractionalOffset(0.8, !_pref.isTaskbarTop ? 1.0 : 0.0),
             child: BoxContainer(
               decoration: BoxDecoration(boxShadow: [
                 /* BoxShadow(
@@ -59,7 +71,7 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay> {
                     blurRadius: 50) */
               ], borderRadius: BorderRadius.circular(10)),
               useSystemOpacity: true,
-              color: Theme.of(context).backgroundColor,
+              color: Theme.of(context).scaffoldBackgroundColor,
               width: 500,
               height: 424,
               child: MaterialApp(

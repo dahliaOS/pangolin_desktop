@@ -58,7 +58,6 @@ class WmAPI {
 
   void openApp(String packageName) {
     pushWindowEntry(WindowEntry(
-      bgColor: Theme.of(context).accentColor.withOpacity(0.05),
       initiallyCenter: true,
       allowResize: true,
       usesToolbar: true,

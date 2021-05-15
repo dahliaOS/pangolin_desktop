@@ -80,7 +80,10 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
                         SizedBox(width: 8),
                         Spacer(),
                         WindowToolbarButton(
-                          icon: Icon(Icons.minimize),
+                          icon: Padding(
+                            padding: const EdgeInsets.only(bottom: 8.0),
+                            child: Icon(Icons.minimize),
+                          ),
                           onTap: () {
                             final hierarchy =
                                 context.read<WindowHierarchyState>();

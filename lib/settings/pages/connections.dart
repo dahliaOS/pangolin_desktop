@@ -63,21 +63,20 @@ class _ConnectionsState extends State<Connections> {
                         heading:
                             LocaleStrings.settings.connectionsWifiAndBluetooth),
                     SettingsTile(
-                      children: [
-                        Wrap(
-                          children: [
-                            Column(
-                              children: [
-                                SwitchListTile(
-                                  onChanged: (bool value) {
-                                    _data.wifi = !_data.wifi;
-                                    setState(() {});
-                                  },
-                                  value: _data.wifi,
-                                  title: Text(LocaleStrings
-                                      .settings.connectionsEnableWifi),
-                                ),
-                                /* CustomConditionWidget(
+                      child: Wrap(
+                        children: [
+                          Column(
+                            children: [
+                              SwitchListTile(
+                                onChanged: (bool value) {
+                                  _data.wifi = !_data.wifi;
+                                  setState(() {});
+                                },
+                                value: _data.wifi,
+                                title: Text(LocaleStrings
+                                    .settings.connectionsEnableWifi),
+                              ),
+                              /* CustomConditionWidget(
                                     DatabaseManager.get("wifi"),
                                     Container(
                                         height: 300,
@@ -120,20 +119,20 @@ class _ConnectionsState extends State<Connections> {
                                             new ClipRect(
                                                 child: new WirelessApp())),
                                 SizedBox.shrink()), */
-                              ],
-                            ),
-                            Divider(),
-                            Column(
-                              children: [
-                                SwitchListTile(
-                                  onChanged: (bool value) {
-                                    _data.bluetooth = !_data.bluetooth;
-                                  },
-                                  value: _data.bluetooth,
-                                  title: Text(LocaleStrings
-                                      .settings.connectionsEnableBluetooth),
-                                ),
-                                /* CustomConditionWidget(
+                            ],
+                          ),
+                          Divider(),
+                          Column(
+                            children: [
+                              SwitchListTile(
+                                onChanged: (bool value) {
+                                  _data.bluetooth = !_data.bluetooth;
+                                },
+                                value: _data.bluetooth,
+                                title: Text(LocaleStrings
+                                    .settings.connectionsEnableBluetooth),
+                              ),
+                              /* CustomConditionWidget(
                                     DatabaseManager.get("bluetooth"),
                                     Container(
                                       height: 300,
@@ -178,11 +177,10 @@ class _ConnectionsState extends State<Connections> {
                                           }),
                                     ),
                                     SizedBox.shrink()), */
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
