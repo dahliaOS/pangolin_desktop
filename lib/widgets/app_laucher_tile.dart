@@ -19,8 +19,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:pangolin/utils/app_list.dart';
 import 'package:pangolin/utils/wm_api.dart';
-import 'package:provider/provider.dart';
-import 'package:utopia_wm/wm.dart';
 
 class AppLauncherTile extends StatefulWidget {
   final String packageName;
@@ -34,57 +32,31 @@ class _AppLauncherTileState extends State<AppLauncherTile> {
   @override
   Widget build(BuildContext context) {
     final Application application = getApp(widget.packageName);
-    return Container(
-      child: Material(
-        // Material widget to allow a HoverColor for each app
-        color: Colors.transparent,
-        child: GestureDetector(
-          onSecondaryTap: () {
-            //right click to pin/unpin
-            /* Provider.of<PreferenceProvider>(context, listen: false)
-                .pinnedApps
-                .clear(); */
-            Provider.of<PreferenceProvider>(context, listen: false)
-                .togglePinnedApp(application.packageName ?? "");
-          },
-          child: InkWell(
-            borderRadius: BorderRadius.circular(12),
-            hoverColor: Theme.of(context).cardColor.withOpacity(0.5),
-            focusColor: Colors.white,
-            onTap: () {
-              WmAPI.of(context).popOverlayEntry(
-                  Provider.of<DismissibleOverlayEntry>(context, listen: false));
-              WmAPI.of(context).openApp(widget.packageName);
-            },
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Container(
-                    // color: Colors.yellow,
-                    height: 34,
-                    child: Image.asset(
-                      "assets/icons/${application.iconName}.png",
-                    ),
-                  ),
-                  SizedBox(
-                    width: 18,
-                  ),
-                  Text(
-                    application.name ?? "",
-                    style: TextStyle(fontSize: 17, color: Colors.white),
-                  ),
-                  Spacer(),
-                  Text(
-                    "App",
-                    style: TextStyle(fontSize: 17, color: Colors.white),
-                  ),
-                ],
-              ),
+    return Material(
+      borderRadius: BorderRadius.circular(8),
+      color: Colors.transparent,
+      child: ListTile(
+        contentPadding: EdgeInsets.fromLTRB(16, 0, 16, 2),
+        autofocus: true,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        title: Text(application.name ?? ""),
+        leading: Column(
+          children: [
+            SizedBox(
+              height: 10,
             ),
-          ),
+            Image.asset(
+              "assets/icons/${application.iconName}.png",
+              height: 34,
+            ),
+          ],
         ),
+        trailing: Text("App"),
+        subtitle: Text(application.description ?? ""),
+        onTap: () {
+          WmAPI.of(context).popCurrentOverlayEntry();
+          WmAPI.of(context).openApp(widget.packageName);
+        },
       ),
     );
   }

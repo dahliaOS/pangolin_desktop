@@ -92,7 +92,6 @@ class SearchOverlay extends StatelessWidget {
 
                   ValueListenableBuilder(
                     builder: (_, List<Application>? apps, Widget? child) {
-                      print(apps);
                       return apps!.isNotEmpty
                           ? Container(
                               height: 270,
@@ -100,9 +99,9 @@ class SearchOverlay extends StatelessWidget {
                                 children: [
                                   Container(
                                     padding: EdgeInsets.only(
-                                      top: 28,
-                                      left: 28,
-                                      right: 28,
+                                      top: 16,
+                                      left: 24,
+                                      right: 24,
                                     ),
                                     child: Text(
                                       'Results',
@@ -110,19 +109,14 @@ class SearchOverlay extends StatelessWidget {
                                           fontSize: 17, color: Colors.white),
                                     ),
                                   ),
-                                  Container(
+                                  ListView.builder(
                                     padding: EdgeInsets.symmetric(
-                                        horizontal: 8, vertical: 4),
-                                    child: ListView.builder(
-                                      shrinkWrap: true,
-                                      itemCount: apps.length,
-                                      physics: BouncingScrollPhysics(),
-                                      itemBuilder: (_, index) => Container(
-                                        child: ListTile(
-                                          title: AppLauncherTile(
-                                              apps[index].packageName!),
-                                        ),
-                                      ),
+                                        horizontal: 16, vertical: 4),
+                                    shrinkWrap: true,
+                                    itemCount: apps.length,
+                                    physics: BouncingScrollPhysics(),
+                                    itemBuilder: (_, index) => AppLauncherTile(
+                                      apps[index].packageName!,
                                     ),
                                   ),
                                 ],
