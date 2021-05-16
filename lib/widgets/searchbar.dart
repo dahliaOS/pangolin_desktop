@@ -49,7 +49,7 @@ class Searchbar extends StatelessWidget {
         children: [
           SizedBox(
               height: 48,
-              width: 48,
+              width: 56,
               child: InkWell(
                 mouseCursor: SystemMouseCursors.click,
                 child: this.leading ??
@@ -67,12 +67,13 @@ class Searchbar extends StatelessWidget {
               decoration: InputDecoration(
                 hintText: hint,
                 border: InputBorder.none,
+                focusedBorder: InputBorder.none,
               ),
             ),
           ),
           SizedBox(
               height: 48,
-              width: 48,
+              width: 56,
               child: InkWell(
                 mouseCursor: SystemMouseCursors.click,
                 child: this.trailing ??

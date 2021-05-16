@@ -18,13 +18,18 @@ import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/utils/globals.dart';
+import 'package:pangolin/widgets/app_laucher_tile.dart';
 import 'package:pangolin/widgets/searchbar.dart';
 import 'package:provider/provider.dart';
 import 'package:utopia_wm/wm.dart';
+import 'search/search_service.dart';
 
 class SearchOverlay extends StatelessWidget {
   final String text;
-  const SearchOverlay({this.text = ""});
+  SearchOverlay({this.text = ""});
+
+  final searchService = SearchNotifier();
+
   @override
   Widget build(BuildContext context) {
     final _animation =
@@ -73,13 +78,53 @@ class SearchOverlay extends StatelessWidget {
                           child: Searchbar(
                             focusNode: _focusNode,
                             controller: _controller,
-                            hint: '"Search Device, Apps and Web',
+                            hint: 'Search Device, Apps and Web',
                             leading: Icon(Icons.search),
                             trailing: Icon(Icons.more_vert_rounded),
+                            onTextChanged: searchService.globalSearch,
                           ),
                         ),
                       ],
                     ),
+                  ),
+
+                  /// `Applicotins builder`
+
+                  ValueListenableBuilder(
+                    builder: (_, List<Application>? apps, Widget? child) {
+                      return apps!.isNotEmpty
+                          ? Container(
+                              height: 270,
+                              child: ListView(
+                                children: [
+                                  Container(
+                                    padding: EdgeInsets.only(
+                                      top: 16,
+                                      left: 24,
+                                      right: 24,
+                                    ),
+                                    child: Text(
+                                      'Results',
+                                      style: TextStyle(
+                                          fontSize: 17, color: Colors.white),
+                                    ),
+                                  ),
+                                  ListView.builder(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 16, vertical: 4),
+                                    shrinkWrap: true,
+                                    itemCount: apps.length,
+                                    physics: BouncingScrollPhysics(),
+                                    itemBuilder: (_, index) => AppLauncherTile(
+                                      apps[index].packageName!,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )
+                          : SizedBox();
+                    },
+                    valueListenable: searchService.termSearchResult,
                   ),
                 ],
               ),

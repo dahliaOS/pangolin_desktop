@@ -38,7 +38,7 @@ List<Application> applications = [
     name: "Settings",
     iconName: "settings",
     category: ApplicationCategory.SYSTEM,
-    description: "",
+    description: "Change system setting",
   ),
   Application(
       color: Colors.green,
@@ -47,7 +47,7 @@ List<Application> applications = [
       name: "Calculator",
       iconName: "calculator",
       category: ApplicationCategory.OFFICE,
-      description: ""),
+      description: "Solve mathematic calculations"),
   Application(
       color: Colors.grey,
       packageName: "io.dahlia.terminal",
@@ -55,7 +55,7 @@ List<Application> applications = [
       name: "Terminal",
       iconName: "terminal",
       category: ApplicationCategory.SYSTEM,
-      description: ""),
+      description: "Execute commands"),
   Application(
       color: Colors.amber,
       packageName: "io.dahlia.editor",
@@ -63,7 +63,7 @@ List<Application> applications = [
       name: "Text Editor",
       iconName: "notes",
       category: ApplicationCategory.OFFICE,
-      description: ""),
+      description: "Write texts and notes"),
   Application(
       color: Colors.blue,
       packageName: "io.dahlia.graft",
@@ -71,7 +71,7 @@ List<Application> applications = [
       name: "Graft",
       iconName: "graft",
       category: ApplicationCategory.SYSTEM,
-      description: ""),
+      description: "Manager your containers"),
   Application(
       color: Colors.deepOrange,
       packageName: "io.dahlia.web",
@@ -79,7 +79,7 @@ List<Application> applications = [
       name: "Web Browser",
       iconName: "web",
       category: ApplicationCategory.INTERNET,
-      description: ""),
+      description: "Search and browse the web"),
   Application(
       color: Colors.deepOrange,
       packageName: "io.dahlia.files",
@@ -87,7 +87,7 @@ List<Application> applications = [
       name: "Files",
       iconName: "files",
       category: ApplicationCategory.SYSTEM,
-      description: ""),
+      description: "Browse your local files"),
   Application(
       color: Colors.blueAccent,
       packageName: "io.dahlia.media",
@@ -95,7 +95,7 @@ List<Application> applications = [
       name: "Media",
       iconName: "photos",
       category: ApplicationCategory.MEDIA,
-      description: ""),
+      description: "View photos and play videos"),
   Application(
       color: Colors.lightBlue,
       packageName: "io.dahlia.clock",
@@ -103,7 +103,7 @@ List<Application> applications = [
       name: "Clock",
       iconName: "clock",
       category: ApplicationCategory.SYSTEM,
-      description: ""),
+      description: "Manage timers"),
   Application(
       color: Colors.red,
       packageName: "io.dahlia.logs",
@@ -111,7 +111,7 @@ List<Application> applications = [
       name: "System Logs",
       iconName: "logs",
       category: ApplicationCategory.SYSTEM,
-      description: ""),
+      description: "Check the system logs"),
   Application(
       color: Colors.lime,
       packageName: "io.dahlia.welcome",
@@ -119,7 +119,7 @@ List<Application> applications = [
       name: "Welcome",
       iconName: "welcome-info",
       category: ApplicationCategory.SYSTEM,
-      description: ""),
+      description: "Welcome screen with more information"),
   Application(
       color: Colors.cyanAccent,
       packageName: "io.dahlia.taskmanager",
@@ -127,7 +127,7 @@ List<Application> applications = [
       name: "Task Manager",
       iconName: "task",
       category: ApplicationCategory.SYSTEM,
-      description: ""),
+      description: "Manager running apps"),
 ];
 
 Application getApp(String packageName) {
