@@ -23,16 +23,16 @@
  - You can check it online [here](https://web.dahliaos.io)!
 
 <p align="center">
-  <img width="100%" src="https://user-images.githubusercontent.com/18690588/102312943-7fc63200-3f24-11eb-81c0-20afd0af5106.png"
+  <img width="100%" src="https://docs.dahliaos.io/img/screenshot/21xxxx/desktop.png"
 </p>
 
-> Pangolin Desktop Linux-based build 201215 showing OTA Updates and Quick Settings.
+> Pangolin Desktop calculator app and quick-settings menu.
 
 <p align="center">
-  <img width="100%" src="https://user-images.githubusercontent.com/18690588/102312976-8e144e00-3f24-11eb-80a8-78e0c2a2798d.png"
+  <img width="100%" src="https://docs.dahliaos.io/img/screenshot/21xxxx/launcher.png"
 </p>
 
-> Pangolin Desktop Linux-based build 201215 showing the Graft App and the Clock.
+> Pangolin Desktop app launcher screen.
 
 ## Build Pangolin Desktop
 
