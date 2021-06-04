@@ -71,6 +71,9 @@ dev_dependencies:
 #  integration_test:
 #    sdk: flutter
 
+dependency_overrides:
+  expressions: ^0.2.2
+
 
 flutter:
 
