@@ -17,6 +17,7 @@ limitations under the License.
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable
 class QuickSettingsButton extends StatefulWidget {
@@ -41,6 +42,7 @@ class QuickSettingsButton extends StatefulWidget {
 class _QuickSettingsButtonState extends State<QuickSettingsButton> {
   @override
   Widget build(BuildContext context) {
+    final _feature = Provider.of<FeatureFlags>(context, listen: false);
     return Column(
       children: [
         SizedBox(
@@ -53,11 +55,17 @@ class _QuickSettingsButtonState extends State<QuickSettingsButton> {
                   borderRadius: BorderRadius.circular(
                       DatabaseManager.get("qsTileRounding"))),
               fillColor: widget.enabled
-                  ? Theme.of(context).accentColor
-                  : Theme.of(context).backgroundColor,
+                  ? _feature.useAccentColorBG
+                      ? Theme.of(context).colorScheme.secondary.withOpacity(0.5)
+                      : Theme.of(context).colorScheme.secondary
+                  : _feature.useAccentColorBG
+                      ? Theme.of(context).backgroundColor.withOpacity(0.5)
+                      : Theme.of(context).backgroundColor,
               enableFeedback: true,
               elevation: 0.0,
-              hoverElevation: 1,
+              hoverElevation: 0,
+              focusElevation: 0,
+              highlightElevation: 0,
               onLongPress: widget.onTapSecondary,
               //borderRadius: BorderRadius.circular(25),
               onPressed: () {

@@ -14,6 +14,7 @@ import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:pangolin/internal/locales/locale_strings.g.dart';
+import 'package:pangolin/utils/common_data.dart';
 
 class LauncherCategories extends StatefulWidget {
   final PageController? controller;
@@ -49,24 +50,28 @@ class _LauncherCategoriesState extends State<LauncherCategories> {
           // The row of chips 'test test test test' lol
           margin: const EdgeInsets.only(top: 33 + (1 / 3), bottom: 8),
           child: BoxContainer(
+            useBlur: true,
             useShadows: true,
-            customBorderRadius: BorderRadius.circular(6),
+            customBorderRadius:
+                CommonData.of(context).borderRadius(BorderRadiusType.SMALL),
             color: Theme.of(context).backgroundColor.withOpacity(0.5),
-            useSystemOpacity: false,
+            useSystemOpacity: true,
             // have to give explicit size, as the child ListView can't calculate its Y height
-            height: 38,
+            height: 42,
             child: ListView.builder(
               shrinkWrap: true,
               scrollDirection: Axis.horizontal,
               itemCount: launcherCategories.length,
               itemBuilder: (context, index) {
                 return Material(
-                  borderRadius: BorderRadius.circular(6),
+                  borderRadius: CommonData.of(context)
+                      .borderRadius(BorderRadiusType.SMALL),
                   color: _selected == index
-                      ? Theme.of(context).accentColor
+                      ? Theme.of(context).colorScheme.secondary
                       : Colors.transparent,
                   child: InkWell(
-                      borderRadius: BorderRadius.circular(6),
+                      borderRadius: CommonData.of(context)
+                          .borderRadius(BorderRadiusType.SMALL),
                       onTap: () {
                         setState(() {
                           _selected = index;
@@ -85,7 +90,10 @@ class _LauncherCategoriesState extends State<LauncherCategories> {
                             style: TextStyle(
                                 fontWeight: _selected == index
                                     ? FontWeight.bold
-                                    : FontWeight.normal),
+                                    : FontWeight.normal,
+                                color: _selected == index
+                                    ? CommonData.of(context).textColorAlt()
+                                    : CommonData.of(context).textColor()),
                           ),
                         ),
                       )),

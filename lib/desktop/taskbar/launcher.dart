@@ -17,64 +17,82 @@ limitations under the License.
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:pangolin/desktop/overlays/launcher/launcher_overlay.dart';
+import 'package:pangolin/utils/common_data.dart';
+import 'package:pangolin/utils/context_menus/context_menu.dart';
+import 'package:pangolin/utils/context_menus/context_menu_item.dart';
+import 'package:pangolin/utils/context_menus/core/context_menu_region.dart';
+import 'package:pangolin/utils/overlay_manager.dart';
 import 'package:pangolin/utils/wm_api.dart';
 import 'package:provider/provider.dart';
 import 'package:utopia_wm/wm.dart';
 import 'package:dahlia_backend/dahlia_backend.dart';
 
-Icon getIconWidget(String input) {
-  if (DatabaseManager.get(input).toString() == "Icons.apps") {
-    return Icon(Icons.apps);
-  } else if (DatabaseManager.get(input).toString() == "Icons.circle") {
-    return Icon(
-      Icons.panorama_fish_eye,
-      size: 20,
-    );
-  } else if (DatabaseManager.get(input).toString() == "Icons.dahlia") {
-    return Icon(
-      Icons.brightness_low,
-      size: 20,
-    );
-  } else if (DatabaseManager.get(input).toString() == "Icons.radio") {
-    return Icon(
-      Icons.radio_button_checked,
-      size: 20,
-    );
-  } else {
-    return Icon(Icons.add);
-  }
-}
-
 class LauncherButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final _pref = Provider.of<PreferenceProvider>(context);
     return SizedBox(
       width: 48,
       height: 48,
       child: Padding(
         padding: const EdgeInsets.all(4.0),
-        child: Material(
-          borderRadius: BorderRadius.circular(6),
-          color: Provider.of<WindowHierarchyState>(context)
-                  .overlayIsActive("launcher")
-              ? Theme.of(context).accentColor
-              : Colors.transparent,
-          child: InkWell(
-            borderRadius: BorderRadius.circular(6),
-            hoverColor: Theme.of(context).accentColor.withOpacity(0.5),
-            mouseCursor: SystemMouseCursors.click,
-            onTap: () {
-              WmAPI.of(context).pushOverlayEntry(
-                DismissibleOverlayEntry(
-                    uniqueId: "launcher",
-                    content: LauncherOverlay(),
-                    duration: Duration(milliseconds: 200),
-                    curve: Curves.easeInOut),
-              );
-            },
-            child: Padding(
-              padding: EdgeInsets.all(8),
-              child: Center(child: getIconWidget("launcherIndicator")),
+        child: ContextMenuRegion(
+          contextMenu: ContextMenu(
+            items: [
+              ContextMenuItem(
+                icon: Icons.apps_rounded,
+                title: "Icon 1",
+                onTap: () {
+                  _pref.launcherIcon = Icons.apps_rounded.codePoint;
+                },
+                shortcut: "",
+              ),
+              ContextMenuItem(
+                icon: Icons.panorama_fish_eye,
+                title: "Icon 2",
+                onTap: () {
+                  _pref.launcherIcon = Icons.panorama_fish_eye.codePoint;
+                },
+                shortcut: "",
+              ),
+              ContextMenuItem(
+                icon: Icons.brightness_low,
+                title: "Icon 3",
+                onTap: () {
+                  _pref.launcherIcon = Icons.brightness_low.codePoint;
+                },
+                shortcut: "",
+              ),
+              ContextMenuItem(
+                icon: Icons.radio_button_checked,
+                title: "Icon 4",
+                onTap: () {
+                  _pref.launcherIcon = Icons.radio_button_checked.codePoint;
+                },
+                shortcut: "  ",
+              ),
+            ],
+          ),
+          child: ClipRRect(
+            borderRadius:
+                CommonData.of(context).borderRadius(BorderRadiusType.SMALL),
+            child: Material(
+              color: Provider.of<WindowHierarchyState>(context)
+                      .overlayIsActive("launcher")
+                  ? Theme.of(context).colorScheme.secondary
+                  : Colors.transparent,
+              child: InkWell(
+                hoverColor:
+                    Theme.of(context).colorScheme.secondary.withOpacity(0.5),
+                mouseCursor: SystemMouseCursors.click,
+                onTap: () => OverlayManager.of(context).openLauncher(),
+                child: Padding(
+                  padding: EdgeInsets.all(8),
+                  child: Center(
+                      child: Icon(IconData(_pref.launcherIcon,
+                          fontFamily: "MaterialIcons"))),
+                ),
+              ),
             ),
           ),
         ),

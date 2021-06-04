@@ -33,7 +33,7 @@ ThemeData theme(BuildContext context) {
     ),
     //hoverColor: Color(_data.accentColor).withOpacity(0.5),
     splashColor: Color(_data.accentColor),
-    buttonColor: Color(_data.accentColor),
+    /* buttonColor: Color(_data.accentColor), */
     floatingActionButtonTheme: FloatingActionButtonThemeData(),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
@@ -44,8 +44,23 @@ ThemeData theme(BuildContext context) {
     ),
 
     fontFamily: _data.fontFamily,
-    brightness: _data.darkMode ? Brightness.dark : Brightness.light,
-    accentColor: Color(_data.accentColor),
+    /* brightness: _data.darkMode ? Brightness.dark : Brightness.light,
+    accentColor: Color(_data.accentColor), */
+    colorScheme: ColorScheme(
+      background: CustomThemeData.of(context).backgroundColor,
+      brightness: _data.darkMode ? Brightness.dark : Brightness.light,
+      error: Colors.red,
+      onBackground: Colors.grey,
+      onError: Colors.red[900]!,
+      onPrimary: Color(_data.accentColor),
+      onSecondary: Color(_data.accentColor),
+      onSurface: Color(0xff141414),
+      primary: Color(_data.accentColor),
+      primaryVariant: Color(_data.accentColor),
+      secondary: Color(_data.accentColor),
+      secondaryVariant: Color(_data.accentColor),
+      surface: Color(0xff141414),
+    ),
     backgroundColor: _data.darkMode ? Color(0xff0a0a0a) : Color(0xffffffff),
     canvasColor: _data.darkMode ? Color(0xff151515) : Color(0xffffffff),
     primaryColor: Color(_data.accentColor),
@@ -81,4 +96,47 @@ ThemeData theme(BuildContext context) {
       inactiveTickMarkColor: Colors.white.withOpacity(0.5),
     ),
   );
+}
+
+class CustomThemeData {
+  final Color backgroundColor,
+      surfaceColor,
+      accentColor,
+      variantColor,
+      textColor,
+      textVariantColor;
+
+  const CustomThemeData({
+    required this.accentColor,
+    required this.backgroundColor,
+    required this.surfaceColor,
+    required this.variantColor,
+    required this.textColor,
+    required this.textVariantColor,
+  });
+
+  static CustomThemeData of(BuildContext context) {
+    final Color _accentColor,
+        _backgroundColor,
+        _surfaceColor,
+        _variantColor,
+        _textColor,
+        _textVariantColor;
+    final _provider = Provider.of<PreferenceProvider>(context);
+    _accentColor = Color(_provider.accentColor);
+    _backgroundColor =
+        _provider.darkMode ? Color(0xff0a0a0a) : Color(0xfffafafa);
+    _surfaceColor = _provider.darkMode ? Color(0xff141414) : Color(0xffffffff);
+    _variantColor = _provider.darkMode ? Color(0xfffafafa) : Color(0xff0a0a0a);
+    _textColor = _provider.darkMode ? Color(0xfffafafa) : Color(0xff0a0a0a);
+    _textVariantColor =
+        _provider.darkMode ? Color(0xff0a0a0a) : Color(0xfffafafa);
+    return CustomThemeData(
+        accentColor: _accentColor,
+        backgroundColor: _backgroundColor,
+        surfaceColor: _surfaceColor,
+        variantColor: _variantColor,
+        textColor: _textColor,
+        textVariantColor: _textVariantColor);
+  }
 }

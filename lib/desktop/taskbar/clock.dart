@@ -17,6 +17,7 @@ limitations under the License.
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:pangolin/utils/common_data.dart';
 import 'package:provider/provider.dart';
 import 'package:pangolin/utils/preference_extension.dart';
 
@@ -34,59 +35,63 @@ class DateClockWidget extends StatelessWidget {
           height: _pref.isTaskbarHorizontal ? 48 : time.characters.length * 9,
           child: Padding(
             padding: const EdgeInsets.all(4.0),
-            child: Material(
-              color: Colors.transparent,
-              child: InkWell(
-                borderRadius: BorderRadius.circular(6),
-                hoverColor: Theme.of(context).accentColor.withOpacity(0.5),
-                mouseCursor: SystemMouseCursors.click,
-                onTap: () {},
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 1),
-                  child: Center(
-                    child: _pref.isTaskbarHorizontal
-                        ? Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                time,
-                                style: TextStyle(fontWeight: FontWeight.w500),
-                                textAlign: TextAlign.center,
-                              ),
-                              SizedBox(
-                                height: 2,
-                              ),
-                              _pref.isTaskbarHorizontal
-                                  ? Text(
-                                      date,
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    )
-                                  : SizedBox.shrink(),
-                            ],
-                          )
-                        : Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                time.replaceAll(":", "\n"),
-                                style: TextStyle(fontWeight: FontWeight.w500),
-                                textAlign: TextAlign.center,
-                              ),
-                              SizedBox(
-                                height: 2,
-                              ),
-                              _pref.isTaskbarHorizontal
-                                  ? Text(
-                                      date,
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    )
-                                  : SizedBox.shrink(),
-                            ],
-                          ),
+            child: ClipRRect(
+              borderRadius:
+                  CommonData.of(context).borderRadius(BorderRadiusType.SMALL),
+              child: Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  hoverColor:
+                      Theme.of(context).colorScheme.secondary.withOpacity(0.5),
+                  mouseCursor: SystemMouseCursors.click,
+                  onTap: () {},
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 1),
+                    child: Center(
+                      child: _pref.isTaskbarHorizontal
+                          ? Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  time,
+                                  style: TextStyle(fontWeight: FontWeight.w500),
+                                  textAlign: TextAlign.center,
+                                ),
+                                SizedBox(
+                                  height: 2,
+                                ),
+                                _pref.isTaskbarHorizontal
+                                    ? Text(
+                                        date,
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      )
+                                    : SizedBox.shrink(),
+                              ],
+                            )
+                          : Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  time.replaceAll(":", "\n"),
+                                  style: TextStyle(fontWeight: FontWeight.w500),
+                                  textAlign: TextAlign.center,
+                                ),
+                                SizedBox(
+                                  height: 2,
+                                ),
+                                _pref.isTaskbarHorizontal
+                                    ? Text(
+                                        date,
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      )
+                                    : SizedBox.shrink(),
+                              ],
+                            ),
+                    ),
                   ),
                 ),
               ),

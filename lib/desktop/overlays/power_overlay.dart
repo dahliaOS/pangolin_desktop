@@ -18,6 +18,7 @@ import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:pangolin/desktop/wallpaper.dart';
+import 'package:pangolin/utils/common_data.dart';
 import 'package:pangolin/utils/globals.dart';
 import 'package:pangolin/utils/wm_api.dart';
 
@@ -33,7 +34,8 @@ class PowerOverlay extends StatelessWidget {
             //setState(() {});
           },
           child: BoxContainer(
-            color: Theme.of(context).shadowColor.withOpacity(0.5),
+            useAccentBG: true,
+            color: Theme.of(context).backgroundColor.withOpacity(0.5),
             useBlur: true,
           ),
         ),
@@ -45,11 +47,9 @@ class PowerOverlay extends StatelessWidget {
             child: BoxContainer(
               useSystemOpacity: true,
               useBlur: true,
-              decoration: BoxDecoration(
-                border: Border.all(
-                    color: Theme.of(context).backgroundColor, width: 2),
-                borderRadius: BorderRadius.circular(10),
-              ),
+              useShadows: true,
+              customBorderRadius:
+                  CommonData.of(context).borderRadius(BorderRadiusType.MEDIUM),
               color: Theme.of(context).backgroundColor,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,

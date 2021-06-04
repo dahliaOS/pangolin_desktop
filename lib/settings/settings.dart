@@ -220,6 +220,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: <Widget>[
                         BoxContainer(
+                          useAccentBG: true,
                           color: Theme.of(context).backgroundColor,
                           useSystemOpacity: true,
                           width: constraints.maxWidth > 768 ? 300 : 90,
@@ -267,9 +268,9 @@ class _SettingsPageState extends State<SettingsPage> {
                                         margin: EdgeInsets.all(6),
                                         decoration: BoxDecoration(
                                           color: provider.pageIndex == i
-                                              ? Color(
-                                                  _data.accentColor,
-                                                ).withOpacity(0.2)
+                                              ? Theme.of(context)
+                                                  .colorScheme
+                                                  .secondary
                                               : Color(
                                                   _data.accentColor,
                                                 ).withOpacity(0.0),
@@ -278,7 +279,8 @@ class _SettingsPageState extends State<SettingsPage> {
                                         ),
                                         child: ListTile(
                                           hoverColor: Theme.of(context)
-                                              .accentColor
+                                              .colorScheme
+                                              .secondary
                                               .withOpacity(0.3),
                                           dense: true,
                                           title: Visibility(
@@ -287,9 +289,13 @@ class _SettingsPageState extends State<SettingsPage> {
                                                 : false,
                                             child: Text(
                                               Settings.items[i].title,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyText1,
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                                fontWeight:
+                                                    provider.pageIndex == i
+                                                        ? FontWeight.bold
+                                                        : FontWeight.normal,
+                                              ),
                                             ),
                                           ),
                                           subtitle: Visibility(
@@ -297,11 +303,26 @@ class _SettingsPageState extends State<SettingsPage> {
                                                 ? true
                                                 : false,
                                             child: Text(
-                                                Settings.items[i].subtitle),
+                                              Settings.items[i].subtitle,
+                                              style: TextStyle(
+                                                fontSize: 12,
+                                                fontWeight:
+                                                    provider.pageIndex == i
+                                                        ? FontWeight.w600
+                                                        : FontWeight.normal,
+                                              ),
+                                            ),
                                           ),
                                           leading: Icon(
                                             Settings.items[i].icon,
-                                            color: Color(_data.accentColor),
+                                            color: provider.pageIndex == i
+                                                ? Theme.of(context)
+                                                    .textTheme
+                                                    .bodyText1
+                                                    ?.color
+                                                : Theme.of(context)
+                                                    .colorScheme
+                                                    .secondary,
                                           ),
                                           onTap: () {
                                             setState(
@@ -394,7 +415,7 @@ class _SearchState extends State<Search> {
                         },
                         child: Icon(
                           Icons.arrow_back,
-                          color: Theme.of(context).accentColor,
+                          color: Theme.of(context).colorScheme.secondary,
                         ),
                       ),
                       Expanded(
@@ -413,7 +434,7 @@ class _SearchState extends State<Search> {
                             ),
                             icon: Icon(
                               Icons.search,
-                              color: Theme.of(context).accentColor,
+                              color: Theme.of(context).colorScheme.secondary,
                             ),
                             hintText: LocaleStrings.settings.tabsSearch,
                             border: InputBorder.none,

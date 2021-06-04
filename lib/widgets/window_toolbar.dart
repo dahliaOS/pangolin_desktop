@@ -13,11 +13,14 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-
 import 'package:dahlia_backend/dahlia_backend.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'package:pangolin/utils/context_menus/context_menu.dart';
+import 'package:pangolin/utils/context_menus/context_menu_item.dart';
+import 'package:pangolin/utils/context_menus/core/context_menu_region.dart';
 import 'package:provider/provider.dart';
 import 'package:utopia_wm/wm.dart';
 
@@ -37,124 +40,176 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
     final fgColor = !_data.darkMode ? Colors.grey[900]! : Colors.white;
 
     return GestureDetector(
-      child: SizedBox(
-        height: 40,
-        child: BoxContainer(
-          cursor: _cursor,
-          customBorderRadius:
-              entry.maximized || entry.windowDock != WindowDock.NORMAL
-                  ? BorderRadius.circular(0)
-                  : BorderRadius.only(
-                      topLeft: Radius.circular(8),
-                      topRight: Radius.circular(8)),
-          useBlur: true,
-          color: _data.useColoredTitlebar
-              ? entry.toolbarColor
-              : (_data.darkMode ? Color(0xff0a0a0a) : Color(0xfff0f8ff)),
-          useSystemOpacity: true,
-          child: Material(
-            color: Colors.transparent,
-            child: IconTheme.merge(
-              data: IconThemeData(
-                color: fgColor,
-                size: 20,
-              ),
-              child: Stack(
-                children: [
-                  Align(
-                    alignment: Alignment.center,
-                    child: Row(
+      child: ContextMenuRegion(
+        contextMenu: ContextMenu(
+          items: [
+            ContextMenuItem(
+              icon: Icons.close,
+              title: "Close Window",
+              onTap: onClose,
+              shortcut: "",
+            ),
+            ContextMenuItem(
+              icon: Icons.minimize,
+              title: "Minimize Window",
+              onTap: onMinimize,
+              shortcut: "",
+            ),
+            ContextMenuItem(
+              icon: Icons.info_outline_rounded,
+              title: "App Info",
+              onTap: () {
+                showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    elevation: 1.0,
+                    backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                    content: Column(
+                      mainAxisSize: MainAxisSize.min,
                       children: [
-                        SizedBox(width: 12),
                         entry.icon != null
-                            ? Image(
-                                image: entry.icon!,
-                                width: 20,
-                                height: 20,
-                              )
-                            : Icon(
-                                Icons.apps,
-                                size: 20,
-                                color: fgColor,
-                              ),
-                        SizedBox(width: 8),
-                        Spacer(),
-                        WindowToolbarButton(
-                          icon: Padding(
-                            padding: const EdgeInsets.only(bottom: 8.0),
-                            child: Icon(Icons.minimize),
-                          ),
-                          onTap: () {
-                            final hierarchy =
-                                context.read<WindowHierarchyState>();
-                            final windows = hierarchy.entriesByFocus;
-
-                            entry.minimized = true;
-                            if (windows.length > 1) {
-                              hierarchy.requestWindowFocus(
-                                  windows[windows.length - 2]);
-                            }
-                          },
-                          hoverColor:
-                              Theme.of(context).accentColor.withOpacity(0.2),
+                            ? Image(image: entry.icon!)
+                            : Icon(Icons.apps),
+                        SizedBox(
+                          height: 16,
                         ),
-                        WindowToolbarButton(
-                          icon: entry.maximized
-                              ? Icon(_ToolbarIcons.minimize)
-                              : Icon(_ToolbarIcons.maximize),
-                          onTap: () {
-                            context
-                                .read<WindowHierarchyState>()
-                                .requestWindowFocus(entry);
-                            entry.toggleMaximize();
-                            if (!entry.maximized) {
-                              entry.windowDock = WindowDock.NORMAL;
-                            }
-                          },
-                          hoverColor:
-                              Theme.of(context).accentColor.withOpacity(0.2),
-                        ),
-                        WindowToolbarButton(
-                          icon: Icon(Icons.close),
-                          onTap: onClose,
-                          hoverColor:
-                              Theme.of(context).accentColor.withOpacity(0.2),
-                        ),
-                        SizedBox(width: 2),
+                        Text(entry.title ?? "")
                       ],
                     ),
-                  ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      entry.title ?? "",
-                      style: TextStyle(
-                        color: fgColor,
-                      ),
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                  Positioned(
-                    top: 0,
-                    left: 0,
-                    right: 40.0 * 3,
-                    bottom: 0,
-                    child: MouseRegion(
-                      cursor: _cursor,
-                      child: GestureDetector(
-                        onTertiaryTapUp: (details) {
-                          setState(() {
-                            onClose();
-                          });
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
                         },
-                        onTap: onTap,
-                        onDoubleTap: onDoubleTap,
-                        onPanUpdate: onDrag,
-                        onPanEnd: onDragEnd,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text("Close"),
+                        ),
+                      )
+                    ],
+                  ),
+                );
+              },
+              shortcut: "",
+            ),
+          ],
+        ),
+        child: SizedBox(
+          height: 40,
+          child: BoxContainer(
+            useAccentBG: true,
+            cursor: _cursor,
+            customBorderRadius:
+                entry.maximized || entry.windowDock != WindowDock.NORMAL
+                    ? BorderRadius.circular(0)
+                    : BorderRadius.only(
+                        topLeft: Radius.circular(8),
+                        topRight: Radius.circular(8)),
+            useBlur: true,
+            color: _data.useColoredTitlebar
+                ? entry.toolbarColor
+                : (_data.darkMode ? Color(0xff0a0a0a) : Color(0xfff0f8ff)),
+            useSystemOpacity: true,
+            child: Material(
+              color: Colors.transparent,
+              child: IconTheme.merge(
+                data: IconThemeData(
+                  color: fgColor,
+                  size: 20,
+                ),
+                child: Stack(
+                  children: [
+                    Align(
+                      alignment: Alignment.center,
+                      child: Row(
+                        children: [
+                          SizedBox(width: 12),
+                          entry.icon != null
+                              ? Image(
+                                  image: entry.icon!,
+                                  width: 20,
+                                  height: 20,
+                                )
+                              : Icon(
+                                  Icons.apps,
+                                  size: 20,
+                                  color: fgColor,
+                                ),
+                          SizedBox(width: 8),
+                          Spacer(),
+                          WindowToolbarButton(
+                            icon: Padding(
+                              padding: const EdgeInsets.only(bottom: 8.0),
+                              child: Icon(Icons.minimize),
+                            ),
+                            onTap: onMinimize,
+                            hoverColor: Theme.of(context)
+                                .colorScheme
+                                .secondary
+                                .withOpacity(0.2),
+                          ),
+                          WindowToolbarButton(
+                            icon: entry.maximized
+                                ? Icon(_ToolbarIcons.minimize)
+                                : Icon(_ToolbarIcons.maximize),
+                            onTap: () {
+                              context
+                                  .read<WindowHierarchyState>()
+                                  .requestWindowFocus(entry);
+                              entry.toggleMaximize();
+                              if (!entry.maximized) {
+                                entry.windowDock = WindowDock.NORMAL;
+                              }
+                            },
+                            hoverColor: Theme.of(context)
+                                .colorScheme
+                                .secondary
+                                .withOpacity(0.2),
+                          ),
+                          WindowToolbarButton(
+                            icon: Icon(Icons.close),
+                            onTap: onClose,
+                            hoverColor: Theme.of(context)
+                                .colorScheme
+                                .secondary
+                                .withOpacity(0.2),
+                          ),
+                          SizedBox(width: 2),
+                        ],
                       ),
                     ),
-                  ),
-                ],
+                    Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        entry.title ?? "",
+                        style: TextStyle(
+                          color: fgColor,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    Positioned(
+                      top: 0,
+                      left: 0,
+                      right: 40.0 * 3,
+                      bottom: 0,
+                      child: MouseRegion(
+                        cursor: _cursor,
+                        child: GestureDetector(
+                          onTertiaryTapUp: (details) {
+                            setState(() {
+                              onClose();
+                            });
+                          },
+                          onTap: onTap,
+                          onDoubleTap: onDoubleTap,
+                          onPanUpdate: onDrag,
+                          onPanEnd: onDragEnd,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -167,6 +222,17 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
     final entry = context.read<WindowEntry>();
     final hierarchy = context.read<WindowHierarchyState>();
     hierarchy.popWindowEntry(entry);
+  }
+
+  void onMinimize() {
+    final entry = context.read<WindowEntry>();
+    final hierarchy = context.read<WindowHierarchyState>();
+    final windows = hierarchy.entriesByFocus;
+
+    entry.minimized = true;
+    if (windows.length > 1) {
+      hierarchy.requestWindowFocus(windows[windows.length - 2]);
+    }
   }
 
   void onDrag(details) {

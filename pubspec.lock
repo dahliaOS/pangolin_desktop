@@ -28,7 +28,7 @@ packages:
       name: async
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.6.1"
+    version: "2.7.0"
   battery_plus:
     dependency: transitive
     description:
@@ -181,7 +181,7 @@ packages:
     source: hosted
     version: "0.0.2"
   expressions:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       name: expressions
       url: "https://pub.dartlang.org"
@@ -239,9 +239,11 @@ packages:
   flutter_colorpicker:
     dependency: "direct main"
     description:
-      name: flutter_colorpicker
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "."
+      ref: HEAD
+      resolved-ref: abe3f53957eb55374663d038b60b8ba62f6dab72
+      url: "https://github.com/mchome/flutter_colorpicker.git"
+    source: git
     version: "0.4.0"
   flutter_localizations:
     dependency: transitive
@@ -338,7 +340,7 @@ packages:
       name: meta
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.3.0"
+    version: "1.4.0"
   nested:
     dependency: transitive
     description:
@@ -594,7 +596,7 @@ packages:
       name: test_api
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.0"
+    version: "0.4.0"
   text_editor:
     dependency: "direct main"
     description:

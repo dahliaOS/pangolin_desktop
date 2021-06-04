@@ -24,7 +24,6 @@ import 'package:pangolin/utils/context_menus/core/context_menu_region.dart';
 import 'package:pangolin/utils/wm_api.dart';
 import 'package:provider/provider.dart';
 import 'package:utopia_wm/wm.dart';
-import 'package:pangolin/utils/preference_extension.dart';
 
 class TaskbarItem extends StatefulWidget {
   final String packageName;
@@ -182,7 +181,7 @@ class _TaskbarItemState extends State<TaskbarItem>
                           height: 2,
                           child: Material(
                             borderRadius: BorderRadius.circular(2),
-                            color: Theme.of(context).accentColor,
+                            color: Theme.of(context).colorScheme.secondary,
                           ),
                         ),
                       ],

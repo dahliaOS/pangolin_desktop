@@ -21,6 +21,10 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/desktop/overlays/launcher/launcher_overlay.dart';
 import 'package:pangolin/desktop/taskbar/taskbar_item.dart';
+import 'package:pangolin/utils/context_menus/context_menu.dart';
+import 'package:pangolin/utils/context_menus/context_menu_item.dart';
+import 'package:pangolin/utils/context_menus/core/context_menu_region.dart';
+import 'package:pangolin/utils/overlay_manager.dart';
 import 'package:pangolin/utils/wm_api.dart';
 import 'package:provider/provider.dart';
 import 'package:utopia_wm/wm.dart';
@@ -94,79 +98,118 @@ class _TaskbarState extends State<Taskbar> {
               _scroll = _scroll + pointerSignal.scrollDelta.dy;
             });
             if (_scroll > 500) {
-              WmAPI.of(context).pushOverlayEntry(
-                DismissibleOverlayEntry(
-                    uniqueId: "launcher",
-                    content: LauncherOverlay(),
-                    duration: Duration(milliseconds: 200),
-                    curve: Curves.easeInOut),
-              );
+              OverlayManager.of(context).openLauncher();
             }
-            print(_scroll);
-            print('Scrolled');
           }
         },
-        child: BoxContainer(
-            //height: 48,
-            //height: DatabaseManager.get('taskbarHeight').toDouble() ?? 48,
-            useSystemOpacity: true,
-            color: Theme.of(context).backgroundColor,
-            child: Stack(
-              children: [
-                _pref.centerTaskbar ? Center(child: items) : SizedBox.shrink(),
-                _pref.isTaskbarHorizontal
-                    ? Row(
-                        children: [
-                          Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: widget.leading ?? [SizedBox.shrink()],
-                          ),
-                          Expanded(
-                            child: _pref.centerTaskbar ? Container() : items,
-                          ),
-                          Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: widget.trailing ?? [SizedBox.shrink()],
-                          ),
-                        ],
-                      )
-                    : Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: widget.leading ?? [SizedBox.shrink()],
-                          ),
-                          Expanded(
-                            child: _pref.centerTaskbar ? Container() : items,
-                          ),
-                          Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: widget.trailing ?? [SizedBox.shrink()],
-                          ),
-                        ],
-                      ),
-                /* Positioned(
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  height: DatabaseManager.get('taskbarHeight').toDouble() ?? 48,
-                  child: Row(
-                    children: widget.leading ?? [SizedBox.shrink()],
+        child: ContextMenuRegion(
+          contextMenu: ContextMenu(
+            items: [
+              ContextMenuItem(
+                icon: Icons.power_input_sharp,
+                title: "Taskbar Position",
+                onTap: () {},
+                shortcut: "",
+              ),
+              ContextMenuItem(
+                icon: Icons.arrow_drop_down_rounded,
+                title: "Bottom",
+                onTap: () {
+                  _pref.taskbarPosition = 2.0;
+                },
+                shortcut: "",
+              ),
+              ContextMenuItem(
+                icon: Icons.arrow_drop_up_rounded,
+                title: "Top",
+                onTap: () {
+                  _pref.taskbarPosition = 0.0;
+                },
+                shortcut: "",
+              ),
+              ContextMenuItem(
+                icon: Icons.arrow_left_rounded,
+                title: "Left",
+                onTap: () {
+                  _pref.taskbarPosition = 1.0;
+                },
+                shortcut: "",
+              ),
+              ContextMenuItem(
+                icon: Icons.arrow_right_rounded,
+                title: "Right",
+                onTap: () {
+                  _pref.taskbarPosition = 3.0;
+                },
+                shortcut: "",
+              ),
+            ],
+          ),
+          child: BoxContainer(
+              useAccentBG: true,
+              //height: 48,
+              //height: DatabaseManager.get('taskbarHeight').toDouble() ?? 48,
+              useSystemOpacity: true,
+              color: Theme.of(context).backgroundColor,
+              child: Stack(
+                children: [
+                  _pref.centerTaskbar
+                      ? Center(child: items)
+                      : SizedBox.shrink(),
+                  _pref.isTaskbarHorizontal
+                      ? Row(
+                          children: [
+                            Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: widget.leading ?? [SizedBox.shrink()],
+                            ),
+                            Expanded(
+                              child: _pref.centerTaskbar ? Container() : items,
+                            ),
+                            Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: widget.trailing ?? [SizedBox.shrink()],
+                            ),
+                          ],
+                        )
+                      : Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: widget.leading ?? [SizedBox.shrink()],
+                            ),
+                            Expanded(
+                              child: _pref.centerTaskbar ? Container() : items,
+                            ),
+                            Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: widget.trailing ?? [SizedBox.shrink()],
+                            ),
+                          ],
+                        ),
+                  /* Positioned(
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    height: DatabaseManager.get('taskbarHeight').toDouble() ?? 48,
+                    child: Row(
+                      children: widget.leading ?? [SizedBox.shrink()],
+                    ),
                   ),
-                ),
-                Positioned(
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  height: DatabaseManager.get('taskbarHeight').toDouble() ?? 48,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: widget.trailing ?? [SizedBox.shrink()],
-                  ),
-                ) */
-              ],
-            )),
+                  Positioned(
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    height: DatabaseManager.get('taskbarHeight').toDouble() ?? 48,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: widget.trailing ?? [SizedBox.shrink()],
+                    ),
+                  ) */
+                ],
+              )),
+        ),
       ),
     );
   }

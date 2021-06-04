@@ -18,6 +18,7 @@ import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:pangolin/utils/app_list.dart';
+import 'package:pangolin/utils/common_data.dart';
 import 'package:pangolin/utils/wm_api.dart';
 import 'package:provider/provider.dart';
 import 'package:utopia_wm/wm.dart';
@@ -43,17 +44,13 @@ class _AppLauncherButtonState extends State<AppLauncherButton> {
           padding: const EdgeInsets.all(8.0),
           child: GestureDetector(
             onSecondaryTap: () {
-              //right click to pin/unpin
-              /* Provider.of<PreferenceProvider>(context, listen: false)
-                  .pinnedApps
-                  .clear(); */
               Provider.of<PreferenceProvider>(context, listen: false)
                   .togglePinnedApp(application.packageName ?? "");
             },
             child: InkWell(
               borderRadius: BorderRadius.circular(12),
-              hoverColor: Theme.of(context).cardColor.withOpacity(0.5),
-              focusColor: Colors.white,
+              hoverColor: CommonData.of(context).textColor().withOpacity(0.2),
+              focusColor: CommonData.of(context).textColor(),
               onTap: () {
                 WmAPI.of(context).popOverlayEntry(
                     Provider.of<DismissibleOverlayEntry>(context,
@@ -74,7 +71,9 @@ class _AppLauncherButtonState extends State<AppLauncherButton> {
                   ),
                   Text(
                     application.name ?? "",
-                    style: TextStyle(fontSize: 17, color: Colors.white),
+                    style: TextStyle(
+                        fontSize: 17,
+                        color: CommonData.of(context).textColor()),
                   )
                 ],
               ),

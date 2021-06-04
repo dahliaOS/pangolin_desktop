@@ -13,6 +13,7 @@ limitations under the License.
 
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
+import 'package:pangolin/utils/common_data.dart';
 import 'package:pangolin/utils/context_menus/context_menu_item.dart';
 import 'package:pangolin/utils/size_meassure.dart';
 
@@ -29,8 +30,11 @@ class _ContextMenuState extends State<ContextMenu> {
   @override
   Widget build(BuildContext context) {
     return BoxContainer(
+      useAccentBG: true,
+      useShadows: true,
       useSystemOpacity: true,
-      customBorderRadius: BorderRadius.circular(6),
+      customBorderRadius:
+          CommonData.of(context).borderRadius(BorderRadiusType.SMALL),
       color: Theme.of(context).backgroundColor,
       child: SingleChildScrollView(
         child: SizeMeasureWidget(

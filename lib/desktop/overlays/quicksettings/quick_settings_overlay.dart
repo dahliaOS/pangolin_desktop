@@ -23,7 +23,9 @@ import 'package:pangolin/desktop/overlays/quicksettings/qs_theme.dart';
 import 'package:pangolin/desktop/overlays/quicksettings/qs_wifi.dart';
 import 'package:pangolin/internal/locales/locale_strings.g.dart';
 import 'package:pangolin/internal/locales/locales.g.dart';
+import 'package:pangolin/utils/common_data.dart';
 import 'package:pangolin/utils/globals.dart';
+import 'package:pangolin/utils/overlay_manager.dart';
 import 'package:pangolin/utils/wm_api.dart';
 import 'package:pangolin/widgets/qs_button.dart';
 import 'package:provider/provider.dart';
@@ -64,14 +66,18 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay> {
             scale: _animation,
             alignment: FractionalOffset(0.8, !_pref.isTaskbarTop ? 1.0 : 0.0),
             child: BoxContainer(
-              decoration: BoxDecoration(boxShadow: [
+              useAccentBG: true,
+              useShadows: true,
+              customBorderRadius:
+                  CommonData.of(context).borderRadius(BorderRadiusType.BIG),
+              /* decoration: BoxDecoration(boxShadow: [
                 /* BoxShadow(
                     color: Colors.black.withOpacity(0.2),
                     spreadRadius: 5,
                     blurRadius: 50) */
-              ], borderRadius: BorderRadius.circular(10)),
+              ], borderRadius: BorderRadius.circular(10)), */
               useSystemOpacity: true,
-              color: Theme.of(context).scaffoldBackgroundColor,
+              color: Theme.of(context).backgroundColor.withOpacity(0.1),
               width: 500,
               height: 424,
               child: MaterialApp(
@@ -143,7 +149,10 @@ class QsMain extends StatelessWidget {
             icon: Icon(
               Icons.power_settings_new,
             ),
-            onPressed: () {},
+            onPressed: () {
+              OverlayManager.of(context).closeCurrentOverlay();
+              OverlayManager.of(context).openPowerMenu();
+            },
           ),
           SizedBox(
             width: 8,

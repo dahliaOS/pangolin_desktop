@@ -14,7 +14,7 @@ limitations under the License.
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:pangolin/desktop/overlays/power_overlay.dart';
+import 'package:pangolin/utils/overlay_manager.dart';
 import 'package:pangolin/utils/wm_api.dart';
 import 'package:provider/provider.dart';
 import 'package:utopia_wm/wm.dart';
@@ -34,6 +34,7 @@ class _LauncherPowerMenuState extends State<LauncherPowerMenu> {
         height: 32 + 16,
         child: BoxContainer(
           useShadows: true,
+          useBlur: true,
           color: Theme.of(context).backgroundColor,
           useSystemOpacity: true,
           customBorderRadius: BorderRadius.circular(8),
@@ -47,16 +48,7 @@ class _LauncherPowerMenuState extends State<LauncherPowerMenu> {
                     height: 32 + 16,
                     child: InkWell(
                       onTap: () {
-                        WmAPI.of(context).popOverlayEntry(
-                            Provider.of<DismissibleOverlayEntry>(context,
-                                listen: false));
-                        WmAPI.of(context).pushOverlayEntry(
-                          DismissibleOverlayEntry(
-                            uniqueId: "power_menu",
-                            content: PowerOverlay(),
-                            duration: Duration.zero,
-                          ),
-                        );
+                        OverlayManager.of(context).openPowerMenu();
                         setState(() {});
                       },
                       mouseCursor: SystemMouseCursors.click,

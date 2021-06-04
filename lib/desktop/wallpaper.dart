@@ -17,6 +17,7 @@ limitations under the License.
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
+import 'package:pangolin/utils/common_data.dart';
 import 'package:pangolin/utils/context_menus/context_menu.dart';
 import 'package:pangolin/utils/context_menus/context_menu_item.dart';
 import 'package:pangolin/utils/context_menus/core/context_menu_region.dart';
@@ -71,18 +72,22 @@ class _WallpaperState extends State<Wallpaper> {
                 ),
                 child: wallpaperImage(_data.wallpaper))),
         Positioned(
-          bottom: 48 + 8,
-          right: 8,
+          bottom: 48 + 12,
+          right: 10,
           child: _data.wallpaper == link
               ? BoxContainer(
-                  customBorderRadius: BorderRadius.circular(4),
+                  useShadows: true,
+                  useAccentBG: true,
+                  customBorderRadius: CommonData.of(context)
+                      .borderRadius(BorderRadiusType.SMALL),
                   useSystemOpacity: true,
+                  color: CommonData.of(context).textColorAlt(),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      copyright.replaceAll(",", ",\n"),
+                      copyright.replaceAll(", ", ",\n"),
                       style: TextStyle(
-                        color: Colors.white,
+                        color: CommonData.of(context).textColor(),
                       ),
                     ),
                   ),
@@ -92,24 +97,24 @@ class _WallpaperState extends State<Wallpaper> {
       ],
     );
   }
+}
 
-  Widget wallpaperImage(String source) {
-    if (source.startsWith("http")) {
-      return CachedNetworkImage(
-        imageUrl: source,
-        fit: BoxFit.cover,
-        cacheKey: source,
-        useOldImageOnUrlChange: true,
-        fadeInDuration: Duration(milliseconds: 1000),
-        fadeOutDuration: Duration(milliseconds: 1000),
-        fadeInCurve: Curves.easeInOut,
-        fadeOutCurve: Curves.easeInOut,
-      );
-    } else {
-      return Image.asset(
-        source,
-        fit: BoxFit.cover,
-      );
-    }
+Widget wallpaperImage(String source) {
+  if (source.startsWith("http")) {
+    return CachedNetworkImage(
+      imageUrl: source,
+      fit: BoxFit.cover,
+      cacheKey: source,
+      useOldImageOnUrlChange: true,
+      fadeInDuration: Duration(milliseconds: 1000),
+      fadeOutDuration: Duration(milliseconds: 1000),
+      fadeInCurve: Curves.easeInOut,
+      fadeOutCurve: Curves.easeInOut,
+    );
+  } else {
+    return Image.asset(
+      source,
+      fit: BoxFit.cover,
+    );
   }
 }

@@ -17,6 +17,8 @@ limitations under the License.
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:pangolin/desktop/overlays/overview_overlay.dart';
+import 'package:pangolin/utils/common_data.dart';
+import 'package:pangolin/utils/overlay_manager.dart';
 import 'package:pangolin/utils/wm_api.dart';
 import 'package:provider/provider.dart';
 import 'package:utopia_wm/wm.dart';
@@ -29,26 +31,24 @@ class OverviewButton extends StatelessWidget {
       height: 48,
       child: Padding(
         padding: const EdgeInsets.all(4.0),
-        child: Material(
-          borderRadius: BorderRadius.circular(6),
-          color: Provider.of<WindowHierarchyState>(context)
-                  .overlayIsActive("overview")
-              ? Theme.of(context).accentColor
-              : Colors.transparent,
-          child: InkWell(
-            borderRadius: BorderRadius.circular(6),
-            hoverColor: Theme.of(context).accentColor.withOpacity(0.5),
-            mouseCursor: SystemMouseCursors.click,
-            onTap: () {
-              WmAPI.of(context).pushOverlayEntry(DismissibleOverlayEntry(
-                  uniqueId: "overview",
-                  content: OverviewOverlay(),
-                  duration: Duration.zero));
-            },
-            child: Padding(
-              padding: EdgeInsets.all(8),
-              child:
-                  Center(child: Icon(Icons.fullscreen_exit_outlined, size: 20)),
+        child: ClipRRect(
+          borderRadius:
+              CommonData.of(context).borderRadius(BorderRadiusType.SMALL),
+          child: Material(
+            color: Provider.of<WindowHierarchyState>(context)
+                    .overlayIsActive("overview")
+                ? Theme.of(context).colorScheme.secondary
+                : Colors.transparent,
+            child: InkWell(
+              hoverColor:
+                  Theme.of(context).colorScheme.secondary.withOpacity(0.5),
+              mouseCursor: SystemMouseCursors.click,
+              onTap: () => OverlayManager.of(context).openOverview(),
+              child: Padding(
+                padding: EdgeInsets.all(8),
+                child: Center(
+                    child: Icon(Icons.fullscreen_exit_outlined, size: 20)),
+              ),
             ),
           ),
         ),

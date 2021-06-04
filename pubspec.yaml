@@ -15,7 +15,7 @@ dependencies:
     #  url: https://github.com/dahliaOS/backend.git
     #  ref: main
   utopia_wm:
-    #path: utopia/
+    #path: ../utopia/
     git:
       url: https://github.com/dahliaOS/utopia.git
       ref: utopia

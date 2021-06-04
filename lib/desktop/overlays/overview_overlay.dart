@@ -16,6 +16,7 @@ limitations under the License.
 
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
+import 'package:pangolin/utils/common_data.dart';
 import 'package:pangolin/utils/wm_api.dart';
 import 'package:provider/provider.dart';
 import 'package:utopia_wm/wm.dart';
@@ -59,7 +60,8 @@ class _OverviewOverlayState extends State<OverviewOverlay> {
                       Padding(
                         padding: const EdgeInsets.all(12.0),
                         child: BoxContainer(
-                            customBorderRadius: BorderRadius.circular(6),
+                            customBorderRadius: CommonData.of(context)
+                                .borderRadius(BorderRadiusType.SMALL),
                             decoration: BoxDecoration(boxShadow: [
                               BoxShadow(
                                 color: Colors.black.withOpacity(0.5),

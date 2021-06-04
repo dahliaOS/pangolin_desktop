@@ -17,6 +17,7 @@ limitations under the License.
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:pangolin/utils/globals.dart';
 import 'package:provider/provider.dart';
 
@@ -62,8 +63,8 @@ class _WallpaperPickerState extends State<WallpaperPicker>
             title: TabBar(
               enableFeedback: true,
               physics: BouncingScrollPhysics(),
-              indicatorColor: Theme.of(context).accentColor,
-              labelColor: Theme.of(context).accentColor,
+              indicatorColor: Theme.of(context).colorScheme.secondary,
+              labelColor: Theme.of(context).colorScheme.secondary,
               labelStyle: Theme.of(context).textTheme.bodyText2?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
@@ -123,8 +124,9 @@ class _WallpaperPickerState extends State<WallpaperPicker>
                                         bottom: 5,
                                         right: 5,
                                         child: CircleAvatar(
-                                          backgroundColor:
-                                              Theme.of(context).accentColor,
+                                          backgroundColor: Theme.of(context)
+                                              .colorScheme
+                                              .secondary,
                                           foregroundColor: Colors.white,
                                           child: Icon(Icons.check),
                                         ),
@@ -158,6 +160,15 @@ class _WallpaperPickerState extends State<WallpaperPicker>
                             onTap: () =>
                                 _data.wallpaper = _recentWallpapers[index],
                             child: CachedNetworkImage(
+                              errorWidget: (context, string, _) => Container(
+                                color: Theme.of(context).colorScheme.secondary,
+                                child: Center(
+                                  child: Text(
+                                    "Error\nImage does not exist anymore",
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                              ),
                               imageUrl: _recentWallpapers[index],
                               cacheKey: _recentWallpapers[index],
                               fit: BoxFit.cover,

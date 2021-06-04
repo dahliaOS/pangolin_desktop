@@ -19,6 +19,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:pangolin/utils/app_list.dart';
 import 'package:pangolin/utils/wm_api.dart';
+import 'package:provider/provider.dart';
 
 class AppLauncherTile extends StatefulWidget {
   final String packageName;
@@ -32,6 +33,7 @@ class _AppLauncherTileState extends State<AppLauncherTile> {
   @override
   Widget build(BuildContext context) {
     final Application application = getApp(widget.packageName);
+    final _pref = Provider.of<PreferenceProvider>(context);
     return Material(
       borderRadius: BorderRadius.circular(8),
       color: Colors.transparent,
@@ -54,6 +56,7 @@ class _AppLauncherTileState extends State<AppLauncherTile> {
         trailing: Text("App"),
         subtitle: Text(application.description ?? ""),
         onTap: () {
+          _pref.addRecentSearchResult(application.packageName!);
           WmAPI.of(context).popCurrentOverlayEntry();
           WmAPI.of(context).openApp(widget.packageName);
         },

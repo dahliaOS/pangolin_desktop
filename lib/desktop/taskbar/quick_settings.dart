@@ -18,6 +18,8 @@ import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:pangolin/desktop/overlays/quicksettings/quick_settings_overlay.dart';
+import 'package:pangolin/utils/common_data.dart';
+import 'package:pangolin/utils/overlay_manager.dart';
 import 'package:pangolin/utils/wm_api.dart';
 import 'package:provider/provider.dart';
 import 'package:utopia_wm/wm.dart';
@@ -33,34 +35,31 @@ class QuickSettingsButton extends StatelessWidget {
       height: _pref.isTaskbarHorizontal ? 48 : null,
       child: Padding(
         padding: const EdgeInsets.all(4.0),
-        child: Material(
-          borderRadius: BorderRadius.circular(6),
-          color: Provider.of<WindowHierarchyState>(context)
-                  .overlayIsActive("action_center")
-              ? Theme.of(context).accentColor
-              : Colors.transparent,
-          child: InkWell(
-            borderRadius: BorderRadius.circular(6),
-            hoverColor: Theme.of(context).accentColor.withOpacity(0.5),
-            mouseCursor: SystemMouseCursors.click,
-            onTap: () {
-              WmAPI.of(context).pushOverlayEntry(DismissibleOverlayEntry(
-                  uniqueId: "action_center",
-                  content: QuickSettingsOverlay(),
-                  duration: Duration(milliseconds: 100),
-                  curve: Curves.easeInOut));
-            },
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-              child: Center(
-                child: _pref.isTaskbarHorizontal
-                    ? Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: items(context))
-                    : Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: items(context),
-                      ),
+        child: ClipRRect(
+          borderRadius:
+              CommonData.of(context).borderRadius(BorderRadiusType.SMALL),
+          child: Material(
+            color: Provider.of<WindowHierarchyState>(context)
+                    .overlayIsActive("action_center")
+                ? Theme.of(context).colorScheme.secondary
+                : Colors.transparent,
+            child: InkWell(
+              hoverColor:
+                  Theme.of(context).colorScheme.secondary.withOpacity(0.5),
+              mouseCursor: SystemMouseCursors.click,
+              onTap: () => OverlayManager.of(context).openQuickSettings(),
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                child: Center(
+                  child: _pref.isTaskbarHorizontal
+                      ? Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: items(context))
+                      : Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: items(context),
+                        ),
+                ),
               ),
             ),
           ),

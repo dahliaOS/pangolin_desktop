@@ -54,11 +54,9 @@ class DeveloperOptions extends StatelessWidget {
                           ),
                           SwitchListTile(
                             secondary: Icon(Icons.phone_android),
-                            value: _data.enableBlur,
+                            value: false,
                             title: Text("Pangolin Mobile as default shell"),
-                            onChanged: (bool state) {
-                              _data.enableBlur = !_data.enableBlur;
-                            },
+                            onChanged: (bool state) {},
                           ),
                           SwitchListTile(
                             secondary: Icon(Icons.memory),
@@ -79,6 +77,13 @@ class DeveloperOptions extends StatelessWidget {
                               title: Text("Override visualData.json database"),
                               value: _features.jsonOverride,
                               onChanged: (val) => _features.jsonOverride = val),
+                          SwitchListTile(
+                              secondary: Icon(Icons.colorize_rounded),
+                              title: Text(
+                                  "Use accent color as part of the background for transparent objects"),
+                              value: _features.useAccentColorBG,
+                              onChanged: (val) =>
+                                  _features.useAccentColorBG = val),
                         ],
                       ),
                     ),

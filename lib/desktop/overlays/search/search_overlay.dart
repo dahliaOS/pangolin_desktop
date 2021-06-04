@@ -17,12 +17,13 @@ limitations under the License.
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pangolin/utils/common_data.dart';
 import 'package:pangolin/utils/globals.dart';
 import 'package:pangolin/widgets/app_laucher_tile.dart';
 import 'package:pangolin/widgets/searchbar.dart';
 import 'package:provider/provider.dart';
 import 'package:utopia_wm/wm.dart';
-import 'search/search_service.dart';
+import 'search_service.dart';
 
 class SearchOverlay extends StatelessWidget {
   final String text;
@@ -36,6 +37,7 @@ class SearchOverlay extends StatelessWidget {
         Provider.of<DismissibleOverlayEntry>(context, listen: false).animation;
     final _controller = TextEditingController(text: text != "" ? text : "");
     final _focusNode = FocusNode();
+    final _pref = Provider.of<PreferenceProvider>(context, listen: false);
     _focusNode.requestFocus();
     return Positioned(
       top: 64,
@@ -49,42 +51,29 @@ class SearchOverlay extends StatelessWidget {
             scale: _animation,
             alignment: FractionalOffset.bottomCenter,
             child: BoxContainer(
-              decoration: BoxDecoration(
-                  boxShadow: [
-                    /* BoxShadow(
-                      color: Colors.black.withOpacity(0.2),
-                      spreadRadius: 5,
-                      blurRadius: 50,
-                    ) */
-                  ],
-                  /* border: Border.all(
-                      color: Theme.of(context).backgroundColor, width: 2), */
-                  borderRadius: BorderRadius.circular(10)),
+              useAccentBG: true,
+              useShadows: true,
+              customBorderRadius:
+                  CommonData.of(context).borderRadius(BorderRadiusType.BIG),
               useSystemOpacity: true,
               color: Theme.of(context).backgroundColor,
               width: 500,
               height: 320,
               child: Column(
                 children: [
-                  SizedBox(
+                  BoxContainer(
+                    useAccentBG: true,
+                    useSystemOpacity: true,
                     height: 48,
-                    child: Column(
-                      children: [
-                        BoxContainer(
-                          //padding: EdgeInsets.symmetric(horizontal: 16),
-                          color: Theme.of(context).backgroundColor,
-                          useSystemOpacity: true,
-                          height: 48,
-                          child: Searchbar(
-                            focusNode: _focusNode,
-                            controller: _controller,
-                            hint: 'Search Device, Apps and Web',
-                            leading: Icon(Icons.search),
-                            trailing: Icon(Icons.more_vert_rounded),
-                            onTextChanged: searchService.globalSearch,
-                          ),
-                        ),
-                      ],
+                    child: Searchbar(
+                      color: Theme.of(context).backgroundColor.withOpacity(0.2),
+                      borderRadius: BorderRadius.zero,
+                      focusNode: _focusNode,
+                      controller: _controller,
+                      hint: 'Search Device, Apps and Web',
+                      leading: Icon(Icons.search),
+                      trailing: Icon(Icons.menu_rounded),
+                      onTextChanged: searchService.globalSearch,
                     ),
                   ),
 
@@ -106,7 +95,10 @@ class SearchOverlay extends StatelessWidget {
                                     child: Text(
                                       'Results',
                                       style: TextStyle(
-                                          fontSize: 17, color: Colors.white),
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.w600,
+                                          color: CommonData.of(context)
+                                              .textColor()),
                                     ),
                                   ),
                                   ListView.builder(
@@ -122,7 +114,39 @@ class SearchOverlay extends StatelessWidget {
                                 ],
                               ),
                             )
-                          : SizedBox();
+                          : Container(
+                              height: 270,
+                              child: ListView(
+                                children: [
+                                  Container(
+                                    padding: EdgeInsets.only(
+                                      top: 16,
+                                      left: 24,
+                                      right: 24,
+                                    ),
+                                    child: Text(
+                                      'Recent',
+                                      style: TextStyle(
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.w600,
+                                          color: CommonData.of(context)
+                                              .textColor()),
+                                    ),
+                                  ),
+                                  ListView.builder(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 16, vertical: 4),
+                                    shrinkWrap: true,
+                                    reverse: true,
+                                    itemCount: _pref.recentSearchResults.length,
+                                    physics: BouncingScrollPhysics(),
+                                    itemBuilder: (_, index) => AppLauncherTile(
+                                      _pref.recentSearchResults[index],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
                     },
                     valueListenable: searchService.termSearchResult,
                   ),

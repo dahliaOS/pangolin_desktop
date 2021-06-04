@@ -17,12 +17,11 @@ limitations under the License.
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter/services.dart';
 import 'package:pangolin/desktop/overlays/launcher/launcher_categories.dart';
 import 'package:pangolin/desktop/overlays/launcher/launcher_grid.dart';
 import 'package:pangolin/desktop/overlays/launcher/power_menu.dart';
-import 'package:pangolin/desktop/overlays/search_overlay.dart';
 import 'package:pangolin/desktop/wallpaper.dart';
+import 'package:pangolin/utils/overlay_manager.dart';
 import 'package:pangolin/utils/wm_api.dart';
 import 'package:pangolin/widgets/searchbar.dart';
 import 'package:provider/provider.dart';
@@ -60,20 +59,13 @@ class _LauncherOverlayState extends State<LauncherOverlay> {
       child: RawKeyboardListener(
         focusNode: _focusNode,
         onKey: (details) {
-          WmAPI.of(context).popCurrentOverlayEntry();
-          WmAPI.of(context).pushOverlayEntry(
-            DismissibleOverlayEntry(
-                uniqueId: "search",
-                content: SearchOverlay(
-                  text: details.data.keyLabel.toString(),
-                ),
-                duration: Duration(milliseconds: 100),
-                curve: Curves.easeInOut),
-          );
+          OverlayManager.of(context).closeCurrentOverlay();
+          OverlayManager.of(context)
+              .openSearch(details.data.keyLabel.toString());
         },
         child: GestureDetector(
           onVerticalDragUpdate: (details) {
-            if (details.delta.dy > 0) {
+            if (details.delta.dy > 0.5) {
               _animationController.value =
                   _animationController.value - details.delta.dy / 1200;
             } else if (details.delta.dy < -1 &&
@@ -81,7 +73,6 @@ class _LauncherOverlayState extends State<LauncherOverlay> {
               _animationController.value =
                   _animationController.value - details.delta.dy / 800;
             }
-            //print(_animationController.value);
           },
           onVerticalDragEnd: (details) async {
             if (_animationController.value > 0.6) {
@@ -99,8 +90,10 @@ class _LauncherOverlayState extends State<LauncherOverlay> {
           },
           child: Stack(
             children: [
-              Wallpaper(),
+              Positioned.fill(top: 0, child: Wallpaper()),
               BoxContainer(
+                useAccentBG: true,
+                useSystemOpacity: true,
                 useBlur: true,
                 color: Theme.of(context).backgroundColor.withOpacity(0.5),
                 child: AnimatedBuilder(
@@ -146,17 +139,8 @@ class Search extends StatelessWidget {
         padding: EdgeInsets.only(top: 50),
         child: Searchbar(
           onTextChanged: (change) {
-            WmAPI.of(context).popOverlayEntry(
-                Provider.of<DismissibleOverlayEntry>(context, listen: false));
-            WmAPI.of(context).pushOverlayEntry(
-              DismissibleOverlayEntry(
-                  uniqueId: "search",
-                  content: SearchOverlay(
-                    text: change,
-                  ),
-                  duration: Duration(milliseconds: 100),
-                  curve: Curves.easeInOut),
-            );
+            OverlayManager.of(context).closeCurrentOverlay();
+            OverlayManager.of(context).openSearch("");
           },
           leading: Icon(Icons.search),
           trailing: Icon(Icons.menu),

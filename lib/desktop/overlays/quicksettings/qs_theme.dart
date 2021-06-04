@@ -98,7 +98,7 @@ class AccentColorIcon extends StatelessWidget {
                 )
               ]),
           child: CircleAvatar(
-              backgroundColor: color ?? Theme.of(context).accentColor,
+              backgroundColor: color ?? Theme.of(context).colorScheme.secondary,
               child: Icon(
                   color != null
                       ? _data.accentColor == color?.value
