@@ -224,11 +224,16 @@ class _WallpaperPickerState extends State<WallpaperPicker>
                     label: Text(
                       "Use Bing Wallpaper",
                       style: TextStyle(
-                          color: Theme.of(context).textTheme.bodyText1?.color),
+                        color: _data.darkMode
+                            ? Color(0xff0a0a0a)
+                            : Color(0xffffffff),
+                      ),
                     ),
                     icon: Icon(
                       Icons.image_outlined,
-                      color: Theme.of(context).textTheme.bodyText1?.color,
+                      color: _data.darkMode
+                          ? Color(0xff0a0a0a)
+                          : Color(0xffffffff),
                     ),
                   ),
                   SizedBox(
@@ -252,11 +257,16 @@ class _WallpaperPickerState extends State<WallpaperPicker>
                     label: Text(
                       "Save",
                       style: TextStyle(
-                          color: Theme.of(context).textTheme.bodyText1?.color),
+                        color: _data.darkMode
+                            ? Color(0xff0a0a0a)
+                            : Color(0xffffffff),
+                      ),
                     ),
                     icon: Icon(
                       Icons.save_outlined,
-                      color: Theme.of(context).textTheme.bodyText1?.color,
+                      color: _data.darkMode
+                          ? Color(0xff0a0a0a)
+                          : Color(0xffffffff),
                     ),
                   ),
                 ],
