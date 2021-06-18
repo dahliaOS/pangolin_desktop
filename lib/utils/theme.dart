@@ -40,6 +40,11 @@ ThemeData theme(BuildContext context) {
         backgroundColor: MaterialStateProperty.all(
           Color(_data.accentColor),
         ),
+        foregroundColor: MaterialStateProperty.all(
+          Color(
+            _data.darkMode ? 0xff0a0a0a : 0xffffffff,
+          ),
+        ),
       ),
     ),
 

@@ -142,7 +142,9 @@ class GraftFormState extends State<GraftForm> {
                   }
                 }
               },
-              child: Text(LocaleStrings.settings.updatesButtonUpdateSystem),
+              child: Text(
+                LocaleStrings.settings.updatesButtonUpdateSystem,
+              ),
             ),
           ),
         ],
