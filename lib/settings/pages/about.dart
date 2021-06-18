@@ -21,7 +21,12 @@ import 'package:pangolin/widgets/settingsTile.dart';
 import 'package:pangolin/widgets/settingsheader.dart';
 import 'package:provider/provider.dart';
 
-class About extends StatelessWidget {
+class About extends StatefulWidget {
+  @override
+  _AboutState createState() => _AboutState();
+}
+
+class _AboutState extends State<About> {
   @override
   Widget build(BuildContext context) {
     final _data = Provider.of<PreferenceProvider>(context, listen: false);
@@ -68,7 +73,7 @@ class About extends StatelessWidget {
                   ),
                   SettingsHeader(heading: LocaleStrings.settings.aboutKernel),
                   SettingsTile(
-                    child: Text(kernel),
+                    child: Text(kernel()),
                   ),
                   SettingsHeader(
                       heading: LocaleStrings.settings.aboutPangolinVersion),

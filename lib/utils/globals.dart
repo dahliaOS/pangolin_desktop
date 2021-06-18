@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 import 'dart:convert';
-
+import 'dart:io';
 import 'package:http/http.dart';
 import 'package:pangolin/utils/accent_color_data.dart';
 import 'package:utopia_wm/wm.dart';
@@ -25,7 +25,12 @@ String totalVersionNumber = "210419";
 String headingFeatureString =
     "dahliaOS Linux-Based " + totalVersionNumber + " ...";
 String longName = "dahliaOS Linux-Based " + totalVersionNumber + " PRE-RELEASE";
-String kernel = "5.10.1";
+String kernel() {
+  ProcessResult result = Process.runSync('uname', ['-sr']);
+  var kernelString = result.stdout;
+  return kernelString.toString().replaceAll('\n', '');
+}
+
 String pangolinCommit = "Pangolin - reborn";
 String fullPangolinVersion = "$pangolinCommit";
 
