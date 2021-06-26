@@ -77,8 +77,13 @@ class _TaskbarItemState extends State<TaskbarItem>
           )
         : null;
     //check if the App is focused
+    final LiveWindowEntry focusedEntry = windows.firstWhere(
+      (element) =>
+          element.registry.extra.stableId ==
+          hierarchy.normalEntries.last.registry.extra.stableId,
+    );
     bool focused = windows.length > 1
-        ? windows.last.registry.extra.stableId == widget.packageName &&
+        ? focusedEntry.registry.extra.stableId == widget.packageName &&
             !windows.last.registry.minimize.minimized
         : true;
 
