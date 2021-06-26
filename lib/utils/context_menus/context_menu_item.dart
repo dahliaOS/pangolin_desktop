@@ -13,42 +13,53 @@ limitations under the License.
 
 import 'package:flutter/material.dart';
 import 'package:pangolin/utils/wm_api.dart';
+import 'package:utopia_wm/wm_new.dart';
 
 class ContextMenuItem extends StatelessWidget {
-  ContextMenuItem(
-      {Key? key,
-      required this.icon,
-      required this.title,
-      required this.onTap,
-      required this.shortcut});
+  ContextMenuItem({
+    Key? key,
+    required this.icon,
+    required this.title,
+    required this.onTap,
+    required this.shortcut,
+  });
+
   final String title, shortcut;
   final IconData icon;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: () {
-          WmAPI.of(context).popCurrentOverlayEntry();
-          onTap();
-        },
-        child: Padding(
-          padding: const EdgeInsets.all(12),
-          child: Row(
-            children: [
-              Icon(this.icon),
-              SizedBox(
-                width: 16,
-              ),
-              Text(
-                this.title,
-                style: Theme.of(context).textTheme.subtitle1,
-              ),
-              //Spacer(),
-              Align(
-                  alignment: Alignment.centerRight, child: Text(this.shortcut))
-            ],
+    return SizedBox(
+      height: 40,
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: onTap != null
+              ? () {
+                  final _properties =
+                      WindowPropertyRegistry.of(context, listen: false);
+                  WmAPI.of(context).popWindowEntry(_properties.info.id);
+                  onTap?.call();
+                }
+              : null,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            child: Row(
+              children: [
+                Icon(this.icon),
+                SizedBox(
+                  width: 16,
+                ),
+                Text(
+                  this.title,
+                  style: Theme.of(context).textTheme.subtitle1,
+                ),
+                //Spacer(),
+                Align(
+                    alignment: Alignment.centerRight,
+                    child: Text(this.shortcut))
+              ],
+            ),
           ),
         ),
       ),

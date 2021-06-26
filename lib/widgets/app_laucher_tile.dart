@@ -17,6 +17,7 @@ limitations under the License.
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:pangolin/desktop/shell.dart';
 import 'package:pangolin/utils/app_list.dart';
 import 'package:pangolin/utils/wm_api.dart';
 import 'package:provider/provider.dart';
@@ -57,7 +58,7 @@ class _AppLauncherTileState extends State<AppLauncherTile> {
         subtitle: Text(application.description ?? ""),
         onTap: () {
           _pref.addRecentSearchResult(application.packageName!);
-          WmAPI.of(context).popCurrentOverlayEntry();
+          Shell.of(context, listen: false).dismissEverything();
           WmAPI.of(context).openApp(widget.packageName);
         },
       ),

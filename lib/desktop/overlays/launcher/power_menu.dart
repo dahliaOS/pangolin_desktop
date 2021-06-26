@@ -14,10 +14,9 @@ limitations under the License.
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:pangolin/utils/overlay_manager.dart';
+import 'package:pangolin/desktop/overlays/power_overlay.dart';
+import 'package:pangolin/desktop/shell.dart';
 import 'package:pangolin/utils/wm_api.dart';
-import 'package:provider/provider.dart';
-import 'package:utopia_wm/wm.dart';
 
 class LauncherPowerMenu extends StatefulWidget {
   @override
@@ -27,6 +26,8 @@ class LauncherPowerMenu extends StatefulWidget {
 class _LauncherPowerMenuState extends State<LauncherPowerMenu> {
   @override
   Widget build(BuildContext context) {
+    final _shell = Shell.of(context);
+
     return Padding(
       padding: const EdgeInsets.all(50.0),
       child: SizedBox(
@@ -48,7 +49,8 @@ class _LauncherPowerMenuState extends State<LauncherPowerMenu> {
                     height: 32 + 16,
                     child: InkWell(
                       onTap: () {
-                        OverlayManager.of(context).openPowerMenu();
+                        _shell.showOverlay(PowerOverlay.overlayId,
+                            dismissEverything: false);
                         setState(() {});
                       },
                       mouseCursor: SystemMouseCursors.click,
@@ -77,9 +79,7 @@ class _LauncherPowerMenuState extends State<LauncherPowerMenu> {
                     height: 32 + 16,
                     child: InkWell(
                       onTap: () {
-                        WmAPI.of(context).popOverlayEntry(
-                            Provider.of<DismissibleOverlayEntry>(context,
-                                listen: false));
+                        _shell.dismissEverything();
                         WmAPI.of(context).openApp("io.dahlia.settings");
                         setState(() {});
                       },

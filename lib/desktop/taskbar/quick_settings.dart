@@ -18,17 +18,17 @@ import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:pangolin/desktop/overlays/quicksettings/quick_settings_overlay.dart';
+import 'package:pangolin/desktop/shell.dart';
 import 'package:pangolin/utils/common_data.dart';
-import 'package:pangolin/utils/overlay_manager.dart';
-import 'package:pangolin/utils/wm_api.dart';
 import 'package:provider/provider.dart';
-import 'package:utopia_wm/wm.dart';
 import 'package:pangolin/utils/preference_extension.dart';
 
 class QuickSettingsButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _pref = Provider.of<PreferenceProvider>(context);
+    final _shell = Shell.of(context);
+
     return SizedBox(
       //width: 96,
       width: _pref.isTaskbarHorizontal ? null : 48,
@@ -38,16 +38,22 @@ class QuickSettingsButton extends StatelessWidget {
         child: ClipRRect(
           borderRadius:
               CommonData.of(context).borderRadius(BorderRadiusType.SMALL),
-          child: Material(
-            color: Provider.of<WindowHierarchyState>(context)
-                    .overlayIsActive("action_center")
-                ? Theme.of(context).colorScheme.secondary
-                : Colors.transparent,
+          child: ValueListenableBuilder<bool>(
+            valueListenable:
+                _shell.getShowingNotifier(QuickSettingsOverlay.overlayId),
+            builder: (context, showing, child) {
+              return Material(
+                color: showing
+                    ? Theme.of(context).colorScheme.secondary
+                    : Colors.transparent,
+                child: child,
+              );
+            },
             child: InkWell(
               hoverColor:
                   Theme.of(context).colorScheme.secondary.withOpacity(0.5),
               mouseCursor: SystemMouseCursors.click,
-              onTap: () => OverlayManager.of(context).openQuickSettings(),
+              onTap: () => _shell.toggleOverlay(QuickSettingsOverlay.overlayId),
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                 child: Center(

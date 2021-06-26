@@ -17,20 +17,20 @@ limitations under the License.
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:pangolin/desktop/overlays/launcher/launcher_overlay.dart';
+import 'package:pangolin/desktop/shell.dart';
 import 'package:pangolin/utils/common_data.dart';
 import 'package:pangolin/utils/context_menus/context_menu.dart';
 import 'package:pangolin/utils/context_menus/context_menu_item.dart';
 import 'package:pangolin/utils/context_menus/core/context_menu_region.dart';
-import 'package:pangolin/utils/overlay_manager.dart';
-import 'package:pangolin/utils/wm_api.dart';
 import 'package:provider/provider.dart';
-import 'package:utopia_wm/wm.dart';
 import 'package:dahlia_backend/dahlia_backend.dart';
 
 class LauncherButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _pref = Provider.of<PreferenceProvider>(context);
+    final _shell = Shell.of(context);
+
     return SizedBox(
       width: 48,
       height: 48,
@@ -69,28 +69,39 @@ class LauncherButton extends StatelessWidget {
                 onTap: () {
                   _pref.launcherIcon = Icons.radio_button_checked.codePoint;
                 },
-                shortcut: "  ",
+                shortcut: "",
               ),
             ],
           ),
           child: ClipRRect(
             borderRadius:
                 CommonData.of(context).borderRadius(BorderRadiusType.SMALL),
-            child: Material(
-              color: Provider.of<WindowHierarchyState>(context)
-                      .overlayIsActive("launcher")
-                  ? Theme.of(context).colorScheme.secondary
-                  : Colors.transparent,
+            child: ValueListenableBuilder<bool>(
+              valueListenable:
+                  _shell.getShowingNotifier(LauncherOverlay.overlayId),
+              builder: (context, showing, child) {
+                return Material(
+                  color: showing
+                      ? Theme.of(context).colorScheme.secondary
+                      : Colors.transparent,
+                  child: child,
+                );
+              },
               child: InkWell(
                 hoverColor:
                     Theme.of(context).colorScheme.secondary.withOpacity(0.5),
                 mouseCursor: SystemMouseCursors.click,
-                onTap: () => OverlayManager.of(context).openLauncher(),
+                onTap: () => _shell.toggleOverlay(LauncherOverlay.overlayId),
                 child: Padding(
                   padding: EdgeInsets.all(8),
                   child: Center(
-                      child: Icon(IconData(_pref.launcherIcon,
-                          fontFamily: "MaterialIcons"))),
+                    child: Icon(
+                      IconData(
+                        _pref.launcherIcon,
+                        fontFamily: "MaterialIcons",
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ),

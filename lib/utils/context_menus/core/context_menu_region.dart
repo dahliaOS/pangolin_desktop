@@ -11,10 +11,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/utils/context_menus/context_menu.dart';
-import 'package:pangolin/utils/wm_api.dart';
-import 'package:utopia_wm/wm.dart';
 
 class ContextMenuRegion extends StatefulWidget {
   ContextMenuRegion({
@@ -32,6 +31,22 @@ class ContextMenuRegion extends StatefulWidget {
 }
 
 class _ContextMenuRegionState extends State<ContextMenuRegion> {
+  static final contextMenuEntry = WindowEntry(
+    features: [
+      GeometryWindowFeature(),
+      ResizeWindowFeature(),
+    ],
+    properties: {
+      WindowExtras.stableId: "shell:context_menu",
+      WindowEntry.title: "Context menu",
+      WindowEntry.showOnTaskbar: false,
+      GeometryWindowFeature.size: Size(300, 300),
+      GeometryWindowFeature.position: Offset.zero,
+      WindowEntry.icon: null,
+      WindowEntry.alwaysOnTop: true,
+      WindowEntry.alwaysOnTopMode: AlwaysOnTopMode.systemOverlay,
+    },
+  );
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -51,28 +66,21 @@ class _ContextMenuRegionState extends State<ContextMenuRegion> {
   }
 
   void showOverlay(BuildContext context, dynamic details) {
-    bool rtl =
-        details.globalPosition.dx < MediaQuery.of(context).size.width * (7 / 8);
-    bool btt = details.globalPosition.dy >
-        MediaQuery.of(context).size.height * (6.5 / 8);
-    WmAPI.of(context).pushOverlayEntry(DismissibleOverlayEntry(
-      uniqueId: "context_menu",
-      duration: Duration.zero,
-      content: Positioned(
-          top: btt ? null : details.globalPosition.dy - 5,
-          bottom: btt
-              ? -details.globalPosition.dy +
-                  MediaQuery.of(context).size.height -
-                  5
-              : null,
-          left: rtl ? details.globalPosition.dx + 5 : null,
-          right: rtl
-              ? null
-              : MediaQuery.of(context).size.width -
-                  details.globalPosition.dx +
-                  5,
-          child: widget.contextMenu),
-    ));
+    final Size size = Size(300, widget.contextMenu.items.length * 40);
+    final double x = details.globalPosition.dx
+        .clamp(8.0, MediaQuery.of(context).size.width - size.width - 8.0);
+    final double y = details.globalPosition.dy
+        .clamp(8.0, MediaQuery.of(context).size.height - size.height - 8.0);
+
+    WindowHierarchy.of(context, listen: false).addWindowEntry(
+      contextMenuEntry.newInstance(
+        widget.contextMenu,
+        {
+          GeometryWindowFeature.position: Offset(x, y),
+          GeometryWindowFeature.size: size,
+        },
+      ),
+    );
     setState(() {});
   }
 }

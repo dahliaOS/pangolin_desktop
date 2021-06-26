@@ -17,7 +17,6 @@ limitations under the License.
 import 'package:animations/animations.dart';
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/diagnostics.dart';
 import 'package:flutter/src/cupertino/theme.dart';
 import 'package:provider/provider.dart';
 

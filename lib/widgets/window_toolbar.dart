@@ -22,9 +22,10 @@ import 'package:pangolin/utils/context_menus/context_menu.dart';
 import 'package:pangolin/utils/context_menus/context_menu_item.dart';
 import 'package:pangolin/utils/context_menus/core/context_menu_region.dart';
 import 'package:provider/provider.dart';
-import 'package:utopia_wm/wm.dart';
 
 class PangolinWindowToolbar extends StatefulWidget {
+  const PangolinWindowToolbar();
+
   @override
   _PangolinWindowToolbarState createState() => _PangolinWindowToolbarState();
 }
@@ -35,7 +36,7 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
 
   @override
   Widget build(BuildContext context) {
-    final entry = context.watch<WindowEntry>();
+    final properties = WindowPropertyRegistry.of(context);
     final _data = context.watch<PreferenceProvider>();
     final fgColor = !_data.darkMode ? Colors.grey[900]! : Colors.white;
 
@@ -46,13 +47,13 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
             ContextMenuItem(
               icon: Icons.close,
               title: "Close Window",
-              onTap: onClose,
+              onTap: () => onClose(properties),
               shortcut: "",
             ),
             ContextMenuItem(
               icon: Icons.minimize,
               title: "Minimize Window",
-              onTap: onMinimize,
+              onTap: () => onMinimize(properties),
               shortcut: "",
             ),
             ContextMenuItem(
@@ -67,13 +68,13 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
                     content: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        entry.icon != null
-                            ? Image(image: entry.icon!)
+                        properties.info.icon != null
+                            ? Image(image: properties.info.icon!)
                             : Icon(Icons.apps),
                         SizedBox(
                           height: 16,
                         ),
-                        Text(entry.title ?? "")
+                        Text(properties.info.title)
                       ],
                     ),
                     actions: [
@@ -96,120 +97,113 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
         ),
         child: SizedBox(
           height: 40,
-          child: BoxContainer(
-            useAccentBG: true,
-            cursor: _cursor,
-            customBorderRadius:
-                entry.maximized || entry.windowDock != WindowDock.NORMAL
-                    ? BorderRadius.circular(0)
-                    : BorderRadius.only(
-                        topLeft: Radius.circular(8),
-                        topRight: Radius.circular(8)),
-            useBlur: true,
-            color: _data.useColoredTitlebar
-                ? entry.toolbarColor
-                : (_data.darkMode ? Color(0xff0a0a0a) : Color(0xfff0f8ff)),
-            useSystemOpacity: true,
-            child: Material(
-              color: Colors.transparent,
-              child: IconTheme.merge(
-                data: IconThemeData(
-                  color: fgColor,
-                  size: 20,
-                ),
-                child: Stack(
-                  children: [
-                    Align(
-                      alignment: Alignment.center,
-                      child: Row(
-                        children: [
-                          SizedBox(width: 12),
-                          entry.icon != null
-                              ? Image(
-                                  image: entry.icon!,
-                                  width: 20,
-                                  height: 20,
-                                )
-                              : Icon(
-                                  Icons.apps,
-                                  size: 20,
-                                  color: fgColor,
-                                ),
-                          SizedBox(width: 8),
-                          Spacer(),
-                          WindowToolbarButton(
-                            icon: Padding(
-                              padding: const EdgeInsets.only(bottom: 8.0),
-                              child: Icon(Icons.minimize),
-                            ),
-                            onTap: onMinimize,
-                            hoverColor: Theme.of(context)
-                                .colorScheme
-                                .secondary
-                                .withOpacity(0.2),
+          child: Material(
+            color: Colors.transparent,
+            child: IconTheme.merge(
+              data: IconThemeData(
+                color: fgColor,
+                size: 20,
+              ),
+              child: Stack(
+                children: [
+                  Align(
+                    alignment: Alignment.center,
+                    child: Row(
+                      children: [
+                        SizedBox(width: 12),
+                        properties.info.icon != null
+                            ? Image(
+                                image: properties.info.icon!,
+                                width: 20,
+                                height: 20,
+                              )
+                            : Icon(
+                                Icons.apps,
+                                size: 20,
+                                color: fgColor,
+                              ),
+                        SizedBox(width: 8),
+                        Spacer(),
+                        WindowToolbarButton(
+                          icon: Padding(
+                            padding: const EdgeInsets.only(bottom: 8.0),
+                            child: Icon(Icons.minimize),
                           ),
-                          WindowToolbarButton(
-                            icon: entry.maximized
-                                ? Icon(_ToolbarIcons.minimize)
-                                : Icon(_ToolbarIcons.maximize),
-                            onTap: () {
-                              context
-                                  .read<WindowHierarchyState>()
-                                  .requestWindowFocus(entry);
-                              entry.toggleMaximize();
-                              if (!entry.maximized) {
-                                entry.windowDock = WindowDock.NORMAL;
-                              }
-                            },
-                            hoverColor: Theme.of(context)
-                                .colorScheme
-                                .secondary
-                                .withOpacity(0.2),
-                          ),
-                          WindowToolbarButton(
-                            icon: Icon(Icons.close),
-                            onTap: onClose,
-                            hoverColor: Theme.of(context)
-                                .colorScheme
-                                .secondary
-                                .withOpacity(0.2),
-                          ),
-                          SizedBox(width: 2),
-                        ],
-                      ),
-                    ),
-                    Align(
-                      alignment: Alignment.center,
-                      child: Text(
-                        entry.title ?? "",
-                        style: TextStyle(
-                          color: fgColor,
+                          onTap: () => onMinimize(properties),
+                          hoverColor: Theme.of(context)
+                              .colorScheme
+                              .secondary
+                              .withOpacity(0.2),
                         ),
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                    Positioned(
-                      top: 0,
-                      left: 0,
-                      right: 40.0 * 3,
-                      bottom: 0,
-                      child: MouseRegion(
-                        cursor: _cursor,
-                        child: GestureDetector(
-                          onTertiaryTapUp: (details) {
-                            setState(() {
-                              onClose();
-                            });
+                        WindowToolbarButton(
+                          icon: properties.geometry.maximized
+                              ? Icon(_ToolbarIcons.minimize)
+                              : Icon(_ToolbarIcons.maximize),
+                          onTap: () {
+                            properties.geometry.maximized =
+                                !properties.geometry.maximized;
+                            /* if (!entry.maximized) {
+                              entry.windowDock = WindowDock.NORMAL;
+                            } */
                           },
-                          onTap: onTap,
-                          onDoubleTap: onDoubleTap,
-                          onPanUpdate: onDrag,
-                          onPanEnd: onDragEnd,
+                          hoverColor: Theme.of(context)
+                              .colorScheme
+                              .secondary
+                              .withOpacity(0.2),
                         ),
+                        WindowToolbarButton(
+                          icon: Icon(Icons.close),
+                          onTap: () => onClose(properties),
+                          hoverColor: Theme.of(context)
+                              .colorScheme
+                              .secondary
+                              .withOpacity(0.2),
+                        ),
+                        SizedBox(width: 2),
+                      ],
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      properties.info.title,
+                      style: TextStyle(
+                        color: fgColor,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  Positioned(
+                    top: 0,
+                    left: 0,
+                    right: 40.0 * 3,
+                    bottom: 0,
+                    child: MouseRegion(
+                      cursor: _cursor,
+                      child: GestureDetector(
+                        onTertiaryTapUp: (details) {
+                          setState(() {
+                            onClose(properties);
+                          });
+                        },
+                        onPanStart: (details) {
+                          if (properties.geometry.maximized) {
+                            properties.geometry.maximized = false;
+                            properties.geometry.position =
+                                details.globalPosition +
+                                    Offset(
+                                      -properties.geometry.size.width / 2,
+                                      -properties.toolbar.size / 2,
+                                    );
+                          }
+                        },
+                        onDoubleTap: () => onDoubleTap(properties),
+                        onPanUpdate: (details) => onDrag(details, properties),
+                        onPanEnd: onDragEnd,
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -218,30 +212,28 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
     );
   }
 
-  void onClose() {
-    final entry = context.read<WindowEntry>();
-    final hierarchy = context.read<WindowHierarchyState>();
-    hierarchy.popWindowEntry(entry);
+  void onClose(WindowPropertyRegistry properties) {
+    final hierarchy = WindowHierarchy.of(context, listen: false);
+    hierarchy.removeWindowEntry(properties.info.id);
   }
 
-  void onMinimize() {
-    final entry = context.read<WindowEntry>();
-    final hierarchy = context.read<WindowHierarchyState>();
+  void onMinimize(WindowPropertyRegistry properties) {
+    final hierarchy = WindowHierarchy.of(context, listen: false);
     final windows = hierarchy.entriesByFocus;
 
-    entry.minimized = true;
+    properties.minimize.minimized = true;
     if (windows.length > 1) {
-      hierarchy.requestWindowFocus(windows[windows.length - 2]);
+      hierarchy.requestEntryFocus(windows[windows.length - 2].registry.info.id);
     }
   }
 
-  void onDrag(details) {
+  void onDrag(details, WindowPropertyRegistry properties) {
+    final hierarchy = WindowHierarchy.of(context, listen: false);
     setState(() {
       _cursor = SystemMouseCursors.move;
     });
     _lastDetails = details;
-    final entry = context.read<WindowEntry>();
-    final hierarchy = context.read<WindowHierarchyState>();
+    /* final hierarchy = context.read<WindowHierarchyState>();
     final docked = entry.maximized || entry.windowDock != WindowDock.NORMAL;
     double dockedToolbarOffset;
 
@@ -275,11 +267,15 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
     );
     hierarchy.requestWindowFocus(entry);
     entry.maximized = false;
-    entry.windowDock = WindowDock.NORMAL;
+    entry.windowDock = WindowDock.NORMAL; */
 
-    entry.windowRect = base.translate(
-      details.delta.dx,
-      details.delta.dy,
+    properties.geometry.position += details.delta;
+    properties.geometry.position = Offset(
+      properties.geometry.position.dx,
+      properties.geometry.position.dy.clamp(
+        0,
+        hierarchy.wmBounds.bottom - properties.toolbar.size,
+      ),
     );
     setState(() {});
   }
@@ -288,7 +284,7 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
     setState(() {
       _cursor = SystemMouseCursors.click;
     });
-    final entry = context.read<WindowEntry>();
+    /* final entry = context.read<WindowEntry>();
     final rect = context.read<WindowHierarchyState>().wmRect;
     final topEdge = _lastDetails.globalPosition.dy <= rect.top + 2;
     final leftEdge = _lastDetails.globalPosition.dx <= rect.left + 2;
@@ -335,19 +331,11 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
     if (rightEdge) {
       entry.windowDock = WindowDock.RIGHT;
       return;
-    }
+    } */
   }
 
-  void onTap() {
-    final entry = context.read<WindowEntry>();
-    context.read<WindowHierarchyState>().requestWindowFocus(entry);
-  }
-
-  void onDoubleTap() {
-    final entry = context.read<WindowEntry>();
-    final hierarchy = context.read<WindowHierarchyState>();
-    hierarchy.requestWindowFocus(entry);
-    entry.toggleMaximize();
+  void onDoubleTap(WindowPropertyRegistry properties) {
+    properties.geometry.maximized = !properties.geometry.maximized;
   }
 }
 

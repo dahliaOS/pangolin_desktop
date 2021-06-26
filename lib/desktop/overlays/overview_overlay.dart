@@ -14,30 +14,45 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'dart:async';
+
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
+import 'package:pangolin/desktop/shell.dart';
 import 'package:pangolin/utils/common_data.dart';
-import 'package:pangolin/utils/wm_api.dart';
-import 'package:provider/provider.dart';
-import 'package:utopia_wm/wm.dart';
 
-class OverviewOverlay extends StatefulWidget {
+class OverviewOverlay extends ShellOverlay {
+  static const String overlayId = "overview";
+
+  OverviewOverlay() : super(id: overlayId);
+
   @override
   _OverviewOverlayState createState() => _OverviewOverlayState();
 }
 
-class _OverviewOverlayState extends State<OverviewOverlay> {
+class _OverviewOverlayState extends State<OverviewOverlay>
+    with ShellOverlayState {
+  @override
+  FutureOr<void> requestShow(Map<String, dynamic> args) {
+    controller.showing = true;
+  }
+
+  @override
+  FutureOr<void> requestDismiss(Map<String, dynamic> args) {
+    controller.showing = false;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      top: 0,
-      bottom: 48,
-      left: 0,
-      right: 0,
+    final _hierarchy = WindowHierarchy.of(context);
+
+    if (!controller.showing) return SizedBox();
+
+    return Positioned.fromRect(
+      rect: _hierarchy.wmBounds,
       child: GestureDetector(
         onTap: () {
-          WmAPI.of(context).popOverlayEntry(
-              Provider.of<DismissibleOverlayEntry>(context, listen: false));
+          Shell.of(context, listen: false).dismissEverything();
           setState(() {});
         },
         child: BoxContainer(
@@ -60,19 +75,23 @@ class _OverviewOverlayState extends State<OverviewOverlay> {
                       Padding(
                         padding: const EdgeInsets.all(12.0),
                         child: BoxContainer(
-                            customBorderRadius: CommonData.of(context)
-                                .borderRadius(BorderRadiusType.SMALL),
-                            decoration: BoxDecoration(boxShadow: [
+                          customBorderRadius: CommonData.of(context)
+                              .borderRadius(BorderRadiusType.SMALL),
+                          decoration: BoxDecoration(
+                            boxShadow: [
                               BoxShadow(
                                 color: Colors.black.withOpacity(0.5),
                                 blurRadius: 10.0,
                                 spreadRadius: 0.0,
                                 offset: Offset(
-                                    2.0, 2.0), // shadow direction: bottom right
+                                  2.0,
+                                  2.0,
+                                ), // shadow direction: bottom right
                               )
-                            ]),
-                            child:
-                                Image.asset("assets/images/other/Desktop.png")),
+                            ],
+                          ),
+                          child: Image.asset("assets/images/other/Desktop.png"),
+                        ),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(12.0),

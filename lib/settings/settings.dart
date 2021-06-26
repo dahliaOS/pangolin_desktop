@@ -219,10 +219,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: <Widget>[
-                        BoxContainer(
-                          useAccentBG: true,
-                          color: Theme.of(context).backgroundColor,
-                          useSystemOpacity: true,
+                        SizedBox(
                           width: constraints.maxWidth > 768 ? 300 : 90,
                           child: Column(
                             children: [
