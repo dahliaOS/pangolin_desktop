@@ -15,8 +15,6 @@ jobs:
         name: Set up Flutter
       - name: Checkout submodules
         uses: textbook/git-checkout-submodule-action@master
-      - name: Update submodules
-        run: cd backend && git checkout main && git pull && cd ..
       - name: Switch Flutter channel
         run: flutter channel master
       - name: Make sure Flutter is up to date
