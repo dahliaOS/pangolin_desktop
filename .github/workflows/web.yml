@@ -15,6 +15,8 @@ jobs:
         name: Set up Flutter
       - name: Checkout submodules
         uses: textbook/git-checkout-submodule-action@master
+      - name: Update submodules
+        run: cd backend && git checkout main && git pull && cd ..
       - run: flutter channel master
         name: Switch Flutter channel
       - run: flutter upgrade
@@ -25,8 +27,8 @@ jobs:
         name: Install system dependencies
       - name: Get dependencies
         run: flutter pub get && flutter pub upgrade
+      - name: Build Pangolin for Web
       - run: flutter build web --release
-        name: Build Pangolin for Web
       - name: Deploy to GitHub pages
         run: |
           echo "web.dahliaos.io" >> build/web/CNAME
