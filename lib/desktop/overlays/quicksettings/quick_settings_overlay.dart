@@ -313,10 +313,12 @@ class QsMain extends StatelessWidget {
                 ),
                 QuickSettingsButton(
                   title: 'TTY Shell',
-                  icon: Icons.developer_mode,
-                  disabledIcon: Icons.developer_mode,
+                  icon: Icons.grid_3x3,
+                  disabledIcon: Icons.grid_3x3,
                   enabled: true,
-                  onTap: () {},
+                  onTap: () {
+                    SystemCalls().terminal();
+                  },
                   onTapSecondary: () {},
                 ),
               ],
