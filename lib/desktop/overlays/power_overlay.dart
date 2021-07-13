@@ -82,6 +82,7 @@ class _PowerOverlayState extends State<PowerOverlay> with ShellOverlayState {
                     child: InkWell(
                       onTap: () {
                         SystemCalls().powerOff();
+                        print("Powering off..");
                       },
                       mouseCursor: SystemMouseCursors.click,
                       child: Icon(
@@ -111,7 +112,23 @@ class _PowerOverlayState extends State<PowerOverlay> with ShellOverlayState {
                     color: Colors.transparent,
                     child: InkWell(
                       onTap: () {
-                        SystemCalls().sleep();
+                        SystemCalls().terminal();
+                      },
+                      mouseCursor: SystemMouseCursors.click,
+                      child: Icon(
+                        Icons.grid_3x3_outlined,
+                        size: 40,
+                      ),
+                    ),
+                  ),
+                ),
+                //TODO: Once development phase is over, disable TTY access functionality. For now, sleep is not a priority.
+                /* Expanded(
+                  child: Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                      onTap: () {
+                        SystemCalls().terminal();
                       },
                       mouseCursor: SystemMouseCursors.click,
                       child: Icon(
@@ -120,7 +137,7 @@ class _PowerOverlayState extends State<PowerOverlay> with ShellOverlayState {
                       ),
                     ),
                   ),
-                ),
+                ), */
               ],
             ),
           ),
