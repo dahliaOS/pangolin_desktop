@@ -103,7 +103,8 @@ class _ShellState extends State<Shell> {
                 OverviewButton(),
               ],
               trailing: [
-                //NotificationsButton(),
+                //TODO: here is the keyboard button
+                //KeyboardButton(),
                 QuickSettingsButton(),
                 DateClockWidget(),
               ],
