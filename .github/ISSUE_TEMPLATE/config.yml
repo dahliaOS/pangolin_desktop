@@ -1,7 +1,7 @@
 blank_issues_enabled: false
 contact_links:
   - name: Help
-    url: https://discord.gg/7qVbJHR
+    url: https://dahliaos.io/discord
     about: 'If you have a question or need help, join our Discord!'
   - name: Documentation issue
     url: https://github.com/dahliaos/documentation
