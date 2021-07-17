@@ -46,14 +46,16 @@ void main() async {
       assetLoader: GeneratedAssetLoader(),
       path: "assets/locales",
       startLocale: Locale("en", "US"),
-      child: ChangeNotifierProvider<PreferenceProvider>.value(
-        value: PreferenceProvider(),
-        builder: (context, child) {
-          return ChangeNotifierProvider<FeatureFlags>.value(
+      child: MultiProvider(
+        providers: [
+          ChangeNotifierProvider<PreferenceProvider>.value(
+            value: PreferenceProvider(),
+          ),
+          ChangeNotifierProvider<FeatureFlags>.value(
             value: FeatureFlags(),
-            builder: (context, child) => Pangolin(),
-          );
-        },
+          ),
+        ],
+        child: Pangolin(),
       ),
     ),
   );

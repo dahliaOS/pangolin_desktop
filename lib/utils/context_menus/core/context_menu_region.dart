@@ -40,7 +40,7 @@ class _ContextMenuRegionState extends State<ContextMenuRegion> {
       WindowExtras.stableId: "shell:context_menu",
       WindowEntry.title: "Context menu",
       WindowEntry.showOnTaskbar: false,
-      GeometryWindowFeature.size: Size(300, 300),
+      GeometryWindowFeature.size: Size(200, 300),
       GeometryWindowFeature.position: Offset.zero,
       WindowEntry.icon: null,
       WindowEntry.alwaysOnTop: true,
@@ -50,9 +50,7 @@ class _ContextMenuRegionState extends State<ContextMenuRegion> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      behavior: widget.useLongPress
-          ? HitTestBehavior.opaque
-          : HitTestBehavior.translucent,
+      behavior: HitTestBehavior.opaque,
       onLongPressStart: (details) {
         if (widget.useLongPress) {
           showOverlay(context, details);
@@ -66,7 +64,13 @@ class _ContextMenuRegionState extends State<ContextMenuRegion> {
   }
 
   void showOverlay(BuildContext context, dynamic details) {
-    final Size size = Size(300, widget.contextMenu.items.length * 40);
+    List<int> _length = List.empty(growable: true);
+    widget.contextMenu.items.forEach((element) {
+      _length.add(element.title.characters.length);
+    });
+    _length.sort();
+    final Size size =
+        Size(_length.last * 13, widget.contextMenu.items.length * 40);
     final double x = details.globalPosition.dx
         .clamp(8.0, MediaQuery.of(context).size.width - size.width - 8.0);
     final double y = details.globalPosition.dy

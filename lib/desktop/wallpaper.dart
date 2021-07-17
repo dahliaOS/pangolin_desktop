@@ -36,7 +36,7 @@ class WallpaperWindowFeature extends WindowFeature {
 
     // fetch image from properties
     final String? image =
-        Provider.of<PreferenceProvider>(context, listen: false).wallpaper;
+        Provider.of<PreferenceProvider>(context, listen: true).wallpaper;
 
     //get Bing Wallpaper of the Day data
     getBingWallpaper();

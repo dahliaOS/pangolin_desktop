@@ -634,7 +634,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "669a3b7cd6742c725389a2c2cc413c8f99362ce4"
+      resolved-ref: d1c44e53091b39b9a9a8a0544ec15e84d3f8bdb5
       url: "https://github.com/dahliaOS/welcome.git"
     source: git
     version: "1.0.0+1"

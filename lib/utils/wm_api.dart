@@ -20,6 +20,7 @@ import 'package:pangolin/utils/app_list.dart';
 import 'package:pangolin/widgets/error_window.dart';
 import 'package:pangolin/widgets/window_surface.dart';
 import 'package:pangolin/widgets/window_toolbar.dart';
+import 'package:utopia_wm/wm_new.dart';
 
 class WmAPI {
   static const WindowEntry windowEntry = WindowEntry(
@@ -33,7 +34,7 @@ class WmAPI {
     ],
     properties: {
       GeometryWindowFeature.position: Offset(32, 32),
-      GeometryWindowFeature.size: Size(600, 480),
+      GeometryWindowFeature.size: Size(1280, 720),
       ResizeWindowFeature.minSize: Size(480, 360),
       SurfaceWindowFeature.elevation: 4.0,
       SurfaceWindowFeature.shape: RoundedRectangleBorder(
@@ -86,6 +87,11 @@ class WmAPI {
         WindowEntry.icon:
             AssetImage("assets/icons/${getApp(packageName).iconName}.png"),
         WindowExtras.stableId: packageName,
+        GeometryWindowFeature.size: MediaQuery.of(context).size.width < 1920
+            ? Size(720, 480)
+            : MediaQuery.of(context).size.width < 1921
+                ? Size(1280, 720)
+                : Size(1920, 1080),
       },
     );
 

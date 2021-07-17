@@ -19,15 +19,22 @@ import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:http/http.dart';
 import 'package:pangolin/utils/accent_color_data.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 String totalVersionNumber = "210419";
 String headingFeatureString =
     "dahliaOS Linux-Based " + totalVersionNumber + " ...";
 String longName = "dahliaOS Linux-Based " + totalVersionNumber + " PRE-RELEASE";
 String kernel() {
-  ProcessResult result = Process.runSync('uname', ['-sr']);
-  var kernelString = result.stdout;
-  return kernelString.toString().replaceAll('\n', '');
+  if (!kIsWeb) {
+    if (!Platform.isWindows) {
+      ProcessResult result = Process.runSync('uname', ['-sr']);
+      var kernelString = result.stdout;
+      return kernelString.toString().replaceAll('\n', '');
+    } else
+      return "Windows";
+  } else
+    return "Web Build";
 }
 
 String pangolinCommit = "Pangolin - reborn";

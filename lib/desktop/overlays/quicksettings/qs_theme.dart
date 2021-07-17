@@ -19,7 +19,6 @@ import 'package:flutter/material.dart';
 import 'package:pangolin/utils/globals.dart';
 import 'package:pangolin/widgets/qs_appbar.dart';
 import 'package:provider/provider.dart';
-import 'package:pangolin/settings/pages/customization.dart';
 
 class QsTheme extends StatelessWidget {
   @override
@@ -55,7 +54,8 @@ class QsTheme extends StatelessWidget {
               onTap: () {
                 accentColors[index].color != null
                     ? _pref.accentColor = accentColors[index].color!.value
-                    : Customization.accentColorDialog(context, _pref);
+                    //TODO Fix accent color dialog
+                    : /* Customization.accentColorDialog(context, _pref) */ Container;
               },
               contentPadding: EdgeInsets.symmetric(vertical: 7, horizontal: 8),
               leading: AccentColorIcon(
