@@ -25,7 +25,7 @@ import 'package:pangolin/settings/settings.dart';
 import 'package:pangolin/widgets/error_window.dart';
 import 'package:system_logs/main.dart';
 import 'package:task_manager/monitor.dart';
-import 'package:terminal/terminal-widget.dart';
+import 'package:terminal/main.dart';
 import 'package:text_editor/editor.dart';
 import 'package:web_browser/main.dart';
 import 'package:welcome/main.dart';
