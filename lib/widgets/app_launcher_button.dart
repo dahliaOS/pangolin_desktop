@@ -17,11 +17,11 @@ limitations under the License.
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:pangolin/desktop/shell.dart';
 import 'package:pangolin/utils/app_list.dart';
 import 'package:pangolin/utils/common_data.dart';
 import 'package:pangolin/utils/wm_api.dart';
 import 'package:provider/provider.dart';
-import 'package:utopia_wm/wm.dart';
 
 class AppLauncherButton extends StatefulWidget {
   final String packageName;
@@ -52,9 +52,7 @@ class _AppLauncherButtonState extends State<AppLauncherButton> {
               hoverColor: CommonData.of(context).textColor().withOpacity(0.2),
               focusColor: CommonData.of(context).textColor(),
               onTap: () {
-                WmAPI.of(context).popOverlayEntry(
-                    Provider.of<DismissibleOverlayEntry>(context,
-                        listen: false));
+                Shell.of(context, listen: false).dismissEverything();
                 WmAPI.of(context).openApp(widget.packageName);
               },
               child: Column(

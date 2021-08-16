@@ -214,6 +214,43 @@ class _CustomizationState extends State<Customization>
                     ),
                   ),
                   SettingsHeader(
+                      heading: LocaleStrings.settings.customizationDesktop),
+                  SettingsTile(
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 12.0, vertical: 8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                LocaleStrings
+                                    .settings.customizationChooseWallpaperDesc,
+                                style: Theme.of(context).textTheme.subtitle1,
+                              ),
+                              ElevatedButton(
+                                  onPressed: () {
+                                    showDialog(
+                                        barrierColor: Colors.transparent,
+                                        context: context,
+                                        builder: (context) {
+                                          return WallpaperPicker();
+                                        });
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 8.0, vertical: 12.0),
+                                    child: Text(LocaleStrings.settings
+                                        .customizationChooseWallpaperBtn),
+                                  ))
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SettingsHeader(
                       heading: LocaleStrings.settings.customizationDarkMode),
                   SettingsTile(
                     child: SwitchListTile(
@@ -588,43 +625,6 @@ class _CustomizationState extends State<Customization>
                               ),
                             ],
                             value: _data.fontFamily,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SettingsHeader(
-                      heading: LocaleStrings.settings.customizationDesktop),
-                  SettingsTile(
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 12.0, vertical: 8.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                LocaleStrings
-                                    .settings.customizationChooseWallpaperDesc,
-                                style: Theme.of(context).textTheme.subtitle1,
-                              ),
-                              ElevatedButton(
-                                  onPressed: () {
-                                    showDialog(
-                                        barrierColor: Colors.transparent,
-                                        context: context,
-                                        builder: (context) {
-                                          return WallpaperPicker();
-                                        });
-                                  },
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 8.0, vertical: 12.0),
-                                    child: Text(LocaleStrings.settings
-                                        .customizationChooseWallpaperBtn),
-                                  ))
-                            ],
                           ),
                         ),
                       ],

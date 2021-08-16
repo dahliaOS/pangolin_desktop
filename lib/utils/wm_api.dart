@@ -14,23 +14,47 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/utils/app_list.dart';
 import 'package:pangolin/widgets/error_window.dart';
+import 'package:pangolin/widgets/window_surface.dart';
 import 'package:pangolin/widgets/window_toolbar.dart';
-import 'package:utopia_wm/wm.dart';
-import 'package:provider/provider.dart';
 
 class WmAPI {
+  static const WindowEntry windowEntry = WindowEntry(
+    features: [
+      MinimizeWindowFeature(),
+      GeometryWindowFeature(),
+      ResizeWindowFeature(),
+      SurfaceWindowFeature(),
+      FocusableWindowFeature(),
+      ToolbarWindowFeature(),
+    ],
+    properties: {
+      GeometryWindowFeature.position: Offset(32, 32),
+      GeometryWindowFeature.size: Size(600, 480),
+      ResizeWindowFeature.minSize: Size(480, 360),
+      SurfaceWindowFeature.elevation: 4.0,
+      SurfaceWindowFeature.shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(
+          Radius.circular(8),
+        ),
+      ),
+      SurfaceWindowFeature.background: PangolinWindowSurface(),
+      ToolbarWindowFeature.widget: PangolinWindowToolbar(),
+      ToolbarWindowFeature.size: 40.0,
+    },
+  );
   final BuildContext context;
   const WmAPI.of(this.context);
 
-  void popOverlayEntry(DismissibleOverlayEntry entry) {
+  /* void popOverlayEntry(DismissibleOverlayEntry entry) {
     Provider.of<WindowHierarchyState>(context, listen: false)
         .popOverlayEntry(entry);
-  }
+  } */
 
-  void popCurrentOverlayEntry() {
+  /*  void popCurrentOverlayEntry() {
     if (Provider.of<WindowHierarchyState>(context, listen: false)
         .overlays
         .isNotEmpty) {
@@ -39,36 +63,32 @@ class WmAPI {
       // ignore: invalid_use_of_protected_member
       ScaffoldMessenger.of(context).setState(() {});
     }
+  } */
+
+  void popWindowEntry(String id) {
+    WindowHierarchy.of(context, listen: false).removeWindowEntry(id);
   }
 
-  void popWindowEntry(WindowEntry entry) {
-    Provider.of<WindowHierarchyState>(context, listen: false)
-        .popWindowEntry(entry);
-  }
-
-  void pushOverlayEntry(DismissibleOverlayEntry entry) {
+  /* void pushOverlayEntry(DismissibleOverlayEntry entry) {
     Provider.of<WindowHierarchyState>(context, listen: false)
         .pushOverlayEntry(entry);
-  }
+  } */
 
-  void pushWindowEntry(WindowEntry entry) {
-    Provider.of<WindowHierarchyState>(context, listen: false)
-        .pushWindowEntry(entry);
+  void pushWindowEntry(LiveWindowEntry entry) {
+    WindowHierarchy.of(context, listen: false).addWindowEntry(entry);
   }
 
   void openApp(String packageName) {
-    pushWindowEntry(WindowEntry(
-      initiallyCenter: true,
-      allowResize: true,
-      usesToolbar: true,
-      toolbar: PangolinWindowToolbar(),
-      packageName: packageName,
-      content: getApp(packageName).app ?? ErrorWindow(),
-      initialSize: Size(1280, 720),
-      minSize: Size(720, 480),
-      toolbarColor: getApp(packageName).color ?? Colors.grey,
-      icon: AssetImage("assets/icons/${getApp(packageName).iconName}.png"),
-      title: getApp(packageName).name,
-    ));
+    final LiveWindowEntry _window = windowEntry.newInstance(
+      getApp(packageName).app ?? ErrorWindow(),
+      {
+        WindowEntry.title: getApp(packageName).name,
+        WindowEntry.icon:
+            AssetImage("assets/icons/${getApp(packageName).iconName}.png"),
+        WindowExtras.stableId: packageName,
+      },
+    );
+
+    pushWindowEntry(_window);
   }
 }

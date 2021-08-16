@@ -17,15 +17,14 @@ limitations under the License.
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:pangolin/desktop/overlays/search/search_overlay.dart';
+import 'package:pangolin/desktop/shell.dart';
 import 'package:pangolin/utils/common_data.dart';
-import 'package:pangolin/utils/overlay_manager.dart';
-import 'package:pangolin/utils/wm_api.dart';
-import 'package:provider/provider.dart';
-import 'package:utopia_wm/wm.dart';
 
 class SearchButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final _shell = Shell.of(context);
+
     return SizedBox(
       width: 48,
       height: 48,
@@ -34,16 +33,21 @@ class SearchButton extends StatelessWidget {
         child: ClipRRect(
           borderRadius:
               CommonData.of(context).borderRadius(BorderRadiusType.SMALL),
-          child: Material(
-            color: Provider.of<WindowHierarchyState>(context)
-                    .overlayIsActive("search")
-                ? Theme.of(context).colorScheme.secondary
-                : Colors.transparent,
+          child: ValueListenableBuilder<bool>(
+            valueListenable: _shell.getShowingNotifier(SearchOverlay.overlayId),
+            builder: (context, showing, child) {
+              return Material(
+                color: showing
+                    ? Theme.of(context).colorScheme.secondary
+                    : Colors.transparent,
+                child: child,
+              );
+            },
             child: InkWell(
               hoverColor:
                   Theme.of(context).colorScheme.secondary.withOpacity(0.5),
               mouseCursor: SystemMouseCursors.click,
-              onTap: () => OverlayManager.of(context).openSearch(""),
+              onTap: () => _shell.toggleOverlay(SearchOverlay.overlayId),
               child: Padding(
                 padding: EdgeInsets.all(8),
                 child: Center(child: Icon(Icons.search, size: 20)),

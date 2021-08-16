@@ -16,58 +16,84 @@ limitations under the License.
 
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
-import 'package:pangolin/desktop/taskbar/clock.dart';
-import 'package:pangolin/desktop/taskbar/quick_settings.dart';
-import 'package:pangolin/desktop/taskbar/launcher.dart';
-import 'package:pangolin/desktop/taskbar/overview.dart';
-import 'package:pangolin/desktop/taskbar/search.dart';
-import 'package:pangolin/desktop/taskbar/taskbar.dart';
+import 'package:pangolin/desktop/overlays/launcher/launcher_overlay.dart';
+import 'package:pangolin/desktop/overlays/overview_overlay.dart';
+import 'package:pangolin/desktop/overlays/power_overlay.dart';
+import 'package:pangolin/desktop/overlays/quicksettings/quick_settings_overlay.dart';
+import 'package:pangolin/desktop/overlays/search/search_overlay.dart';
+import 'package:pangolin/desktop/shell.dart';
 import 'package:pangolin/desktop/wallpaper.dart';
 import 'package:provider/provider.dart';
-import 'package:utopia_wm/wm.dart';
 import 'package:pangolin/utils/preference_extension.dart';
 
 // ignore: must_be_immutable
 class Desktop extends StatefulWidget {
-  static final GlobalKey<WindowHierarchyState> wmKey =
-      GlobalKey<WindowHierarchyState>();
+  static final WindowHierarchyController wmController =
+      WindowHierarchyController();
 
   @override
   _DesktopState createState() => _DesktopState();
 }
 
 class _DesktopState extends State<Desktop> {
+  static const shellEntry = WindowEntry(
+    features: [],
+    properties: {
+      WindowEntry.title: "shell",
+      WindowExtras.stableId: "shell",
+      WindowEntry.showOnTaskbar: false,
+      WindowEntry.icon: null,
+      WindowEntry.alwaysOnTop: true,
+      WindowEntry.alwaysOnTopMode: AlwaysOnTopMode.systemOverlay,
+    },
+  );
+  static const wallpaperEntry = WindowEntry(
+    features: [WallpaperWindowFeature()],
+    properties: {
+      WindowEntry.showOnTaskbar: false,
+      WindowEntry.icon: null,
+      WindowEntry.title: "wallpaper",
+    },
+  );
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+      Desktop.wmController.addWindowEntry(wallpaperEntry.newInstance());
+      Desktop.wmController.addWindowEntry(
+        shellEntry.newInstance(Shell(overlays: [
+          LauncherOverlay(),
+          SearchOverlay(),
+          OverviewOverlay(),
+          QuickSettingsOverlay(),
+          PowerOverlay(),
+        ])),
+      );
+      print("done");
+    });
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final _pref = Provider.of<PreferenceProvider>(context, listen: false);
+    Desktop.wmController.wmInsets = EdgeInsets.only(
+      left: _pref.isTaskbarLeft ? 48 : 0,
+      top: _pref.isTaskbarTop ? 48 : 0,
+      right: _pref.isTaskbarRight ? 48 : 0,
+      bottom: _pref.isTaskbarBottom ? 48 : 0,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    final _pref = Provider.of<PreferenceProvider>(context, listen: false);
-    return Scaffold(
-      body: WindowHierarchy(
-          key: Desktop.wmKey,
-          rootWindow: Wallpaper(),
-          alwaysOnTopWindows: [
-            Taskbar(
-              leading: [
-                SizedBox(
-                  width: 4,
-                ),
-                LauncherButton(),
-                SearchButton(),
-                OverviewButton(),
-              ],
-              trailing: [
-                //NotificationsButton(),
-                QuickSettingsButton(),
-                DateClockWidget(),
-                SizedBox(
-                  width: 4,
-                ),
-              ],
-            ),
-          ],
-          margin: EdgeInsets.only(
-            bottom: !_pref.isTaskbarTop ? 48 : 0,
-            top: _pref.isTaskbarTop ? 48 : 0,
-          )),
+    final _pref = Provider.of<PreferenceProvider>(context);
+
+    return SizedBox.expand(
+      child: WindowHierarchy(
+        controller: Desktop.wmController,
+      ),
     );
   }
 }

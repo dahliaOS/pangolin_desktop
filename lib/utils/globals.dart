@@ -14,26 +14,30 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 import 'dart:convert';
-
+import 'dart:io';
+import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:http/http.dart';
 import 'package:pangolin/utils/accent_color_data.dart';
-import 'package:utopia_wm/wm.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 String totalVersionNumber = "210419";
 String headingFeatureString =
     "dahliaOS Linux-Based " + totalVersionNumber + " ...";
 String longName = "dahliaOS Linux-Based " + totalVersionNumber + " PRE-RELEASE";
-String kernel = "5.10.1";
+String kernel() {
+  ProcessResult result = Process.runSync('uname', ['-sr']);
+  var kernelString = result.stdout;
+  return kernelString.toString().replaceAll('\n', '');
+}
+
 String pangolinCommit = "Pangolin - reborn";
 String fullPangolinVersion = "$pangolinCommit";
 
 double horizontalPadding(BuildContext context, double size) =>
-    context.watch<WindowHierarchyState>().wmRect.width / 2 - size / 2;
+    WindowHierarchy.of(context).wmBounds.width / 2 - size / 2;
 
 double verticalPadding(BuildContext context, double size) =>
-    context.watch<WindowHierarchyState>().wmRect.height / 2 - size / 3.5;
+    WindowHierarchy.of(context).wmBounds.height / 2 - size / 3.5;
 
 List<String> languages = [
   "عربى - إيران",

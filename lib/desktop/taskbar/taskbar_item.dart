@@ -23,7 +23,6 @@ import 'package:pangolin/utils/context_menus/context_menu_item.dart';
 import 'package:pangolin/utils/context_menus/core/context_menu_region.dart';
 import 'package:pangolin/utils/wm_api.dart';
 import 'package:provider/provider.dart';
-import 'package:utopia_wm/wm.dart';
 
 class TaskbarItem extends StatefulWidget {
   final String packageName;
@@ -62,26 +61,36 @@ class _TaskbarItemState extends State<TaskbarItem>
   Widget build(BuildContext context) {
     //Running apps
     //// ITS FAILING HERE
-    final hierarchy = context.watch<WindowHierarchyState>();
-    final windows = hierarchy.entriesByFocus;
+    final hierarchy = WindowHierarchy.of(context);
+    final windows = hierarchy.entries;
     //Selected App
     final _app = applications
         .firstWhere((element) => element.packageName == widget.packageName);
     //Check if App is running or just pinned
-    bool appIsRunning =
-        windows.any((element) => element.packageName == widget.packageName);
+    bool appIsRunning = windows.any(
+      (element) => element.registry.extra.stableId == widget.packageName,
+    );
     //get the WindowEntry when the App is running
-    late WindowEntry? entry = appIsRunning
-        ? windows
-            .firstWhere((element) => element.packageName == widget.packageName)
+    late LiveWindowEntry? entry = appIsRunning
+        ? windows.firstWhere(
+            (element) => element.registry.extra.stableId == widget.packageName,
+          )
         : null;
     //check if the App is focused
+    final LiveWindowEntry? focusedEntry = appIsRunning
+        ? windows.firstWhere(
+            (element) =>
+                element.registry.extra.stableId ==
+                hierarchy.normalEntries.last.registry.extra.stableId,
+          )
+        : null;
     bool focused = windows.length > 1
-        ? windows.last.packageName == widget.packageName &&
-            !windows.last.minimized
+        ? focusedEntry?.registry.extra.stableId == widget.packageName &&
+            !windows.last.registry.minimize.minimized
         : true;
 
-    bool showSelected = appIsRunning ? focused && !entry!.minimized : false;
+    bool showSelected =
+        appIsRunning ? focused && !entry!.registry.minimize.minimized : false;
     if (showSelected) {
       _ac.animateTo(1);
     } else {
@@ -134,7 +143,7 @@ class _TaskbarItemState extends State<TaskbarItem>
                   onTap: () {
                     //open the app or toggle
                     if (appIsRunning) {
-                      _onTap(context, entry);
+                      _onTap(context, entry!);
                     } else {
                       WmAPI.of(context).openApp(widget.packageName);
                       //print(packageName);
@@ -150,9 +159,11 @@ class _TaskbarItemState extends State<TaskbarItem>
                             padding: const EdgeInsets.all(6.0),
                             child: Image(
                               image: appIsRunning
-                                  ? entry?.icon ?? NetworkImage("")
+                                  ? entry?.registry.info.icon ??
+                                      NetworkImage("")
                                   : AssetImage(
-                                      "assets/icons/${_app.iconName}.png"),
+                                      "assets/icons/${_app.iconName}.png",
+                                    ),
                             ),
                           ),
                         ),
@@ -196,24 +207,23 @@ class _TaskbarItemState extends State<TaskbarItem>
     );
   }
 
-  void _onTap(BuildContext context, WindowEntry? entry) {
-    //final entry = Provider.of<WindowEntry>(context, listen: false);
-    final hierarchy = context.read<WindowHierarchyState>();
+  void _onTap(BuildContext context, LiveWindowEntry entry) {
+    final hierarchy = WindowHierarchy.of(context, listen: false);
     final windows = hierarchy.entriesByFocus;
 
-    bool focused = windows.last.id == entry!.id;
+    bool focused = hierarchy.isFocused(entry.registry.info.id);
     setState(() {});
-    if (focused && !entry.minimized) {
-      entry.minimized = true;
+    if (focused && !entry.registry.minimize.minimized) {
+      entry.registry.minimize.minimized = true;
       if (windows.length > 1) {
-        hierarchy.requestWindowFocus(
-          windows[windows.length - 2],
+        hierarchy.requestEntryFocus(
+          windows[windows.length - 2].registry.info.id,
         );
       }
       setState(() {});
     } else {
-      entry.minimized = false;
-      hierarchy.requestWindowFocus(entry);
+      entry.registry.minimize.minimized = false;
+      hierarchy.requestEntryFocus(entry.registry.info.id);
       setState(() {});
     }
   }

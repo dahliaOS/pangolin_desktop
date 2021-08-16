@@ -20,32 +20,67 @@ import 'package:flutter/rendering.dart';
 import 'package:pangolin/desktop/overlays/launcher/launcher_categories.dart';
 import 'package:pangolin/desktop/overlays/launcher/launcher_grid.dart';
 import 'package:pangolin/desktop/overlays/launcher/power_menu.dart';
-import 'package:pangolin/desktop/wallpaper.dart';
-import 'package:pangolin/utils/overlay_manager.dart';
-import 'package:pangolin/utils/wm_api.dart';
+import 'package:pangolin/desktop/overlays/search/search_overlay.dart';
+import 'package:pangolin/desktop/shell.dart';
+import 'package:pangolin/utils/common_data.dart';
 import 'package:pangolin/widgets/searchbar.dart';
 import 'package:provider/provider.dart';
-import 'package:utopia_wm/wm.dart';
 import 'package:pangolin/utils/preference_extension.dart';
 
-class LauncherOverlay extends StatefulWidget {
+class LauncherOverlay extends ShellOverlay {
+  static const String overlayId = 'launcher';
+
+  LauncherOverlay() : super(id: overlayId);
+
   @override
   _LauncherOverlayState createState() => _LauncherOverlayState();
 }
 
-class _LauncherOverlayState extends State<LauncherOverlay> {
+class _LauncherOverlayState extends State<LauncherOverlay>
+    with SingleTickerProviderStateMixin, ShellOverlayState {
+  late AnimationController ac;
+
+  @override
+  void initState() {
+    super.initState();
+    ac = AnimationController(
+      vsync: this,
+      duration: CommonData.of(context).animationDuration(),
+    );
+  }
+
+  @override
+  void dispose() {
+    ac.dispose();
+    super.dispose();
+  }
+
+  @override
+  Future<void> requestShow(Map<String, dynamic> args) async {
+    controller.showing = true;
+    await ac.forward();
+  }
+
+  @override
+  Future<void> requestDismiss(Map<String, dynamic> args) async {
+    await ac.reverse();
+    controller.showing = false;
+  }
+
   final _focusNode = FocusNode(canRequestFocus: true);
   @override
   Widget build(BuildContext context) {
     final _pref = Provider.of<PreferenceProvider>(context);
-    final _animation =
-        Provider.of<DismissibleOverlayEntry>(context, listen: false).animation;
-    final _animationController =
-        Provider.of<DismissibleOverlayEntry>(context, listen: false)
-            .animationController;
+    final _shell = Shell.of(context);
+    final Animation<double> _animation = CurvedAnimation(
+      parent: ac,
+      curve: CommonData.of(context).animationCurve(),
+    );
     final _controller = PageController();
 
     _focusNode.requestFocus();
+
+    if (!controller.showing) return SizedBox();
 
     return Positioned(
       top: !_pref.isTaskbarTop ? 0 : 48,
@@ -56,72 +91,57 @@ class _LauncherOverlayState extends State<LauncherOverlay> {
               : 48,
       left: _pref.isTaskbarLeft ? 48 : 0,
       right: _pref.isTaskbarRight ? 48 : 0,
-      child: RawKeyboardListener(
-        focusNode: _focusNode,
-        onKey: (details) {
-          OverlayManager.of(context).closeCurrentOverlay();
-          OverlayManager.of(context)
-              .openSearch(details.data.keyLabel.toString());
+      child: GestureDetector(
+        onVerticalDragUpdate: (details) {
+          if (details.delta.dy > 0.5) {
+            ac.value = ac.value - details.delta.dy / 1200;
+          } else if (details.delta.dy < -1 && ac.value < 1) {
+            ac.value = ac.value - details.delta.dy / 800;
+          }
         },
-        child: GestureDetector(
-          onVerticalDragUpdate: (details) {
-            if (details.delta.dy > 0.5) {
-              _animationController.value =
-                  _animationController.value - details.delta.dy / 1200;
-            } else if (details.delta.dy < -1 &&
-                _animationController.value < 1) {
-              _animationController.value =
-                  _animationController.value - details.delta.dy / 800;
-            }
-          },
-          onVerticalDragEnd: (details) async {
-            if (_animationController.value > 0.6) {
-              _animationController.animateBack(1.0);
-            } else {
-              await _animationController.reverse();
-              WmAPI.of(context).popCurrentOverlayEntry();
-            }
-          },
-          onTap: () async {
-            await _animationController.reverse();
-            WmAPI.of(context).popOverlayEntry(
-                Provider.of<DismissibleOverlayEntry>(context, listen: false));
-            setState(() {});
-          },
-          child: Stack(
-            children: [
-              Positioned.fill(top: 0, child: Wallpaper()),
-              BoxContainer(
-                useAccentBG: true,
-                useSystemOpacity: true,
-                useBlur: true,
-                color: Theme.of(context).backgroundColor.withOpacity(0.5),
-                child: AnimatedBuilder(
-                  animation: _animation,
-                  builder: (context, child) => FadeTransition(
-                    opacity: _animation,
-                    child: ScaleTransition(
-                      scale: _animation,
-                      alignment: _pref.taskbarPosition != 0
-                          ? FractionalOffset.bottomCenter
-                          : FractionalOffset.topCenter,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Search(),
-                          LauncherCategories(
-                            controller: _controller,
-                          ),
-                          LauncherGrid(controller: _controller),
-                          LauncherPowerMenu(),
-                        ],
-                      ),
+        onVerticalDragEnd: (details) async {
+          if (ac.value > 0.6) {
+            ac.animateBack(1.0);
+          } else {
+            await ac.reverse();
+            _shell.dismissOverlay(LauncherOverlay.overlayId);
+          }
+        },
+        onTap: () async {
+          await ac.reverse();
+          _shell.dismissOverlay(LauncherOverlay.overlayId);
+        },
+        child: Stack(
+          children: [
+            //Positioned.fill(top: 0, child: Wallpaper()),
+            BoxContainer(
+              useAccentBG: true,
+              useSystemOpacity: true,
+              useBlur: true,
+              color: Theme.of(context).backgroundColor.withOpacity(0.5),
+              child: AnimatedBuilder(
+                animation: _animation,
+                builder: (context, child) => FadeTransition(
+                  opacity: _animation,
+                  child: ScaleTransition(
+                    scale: _animation,
+                    alignment: _pref.taskbarPosition != 0
+                        ? FractionalOffset.bottomCenter
+                        : FractionalOffset.topCenter,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Search(),
+                        LauncherCategories(controller: _controller),
+                        LauncherGrid(controller: _controller),
+                        LauncherPowerMenu(),
+                      ],
                     ),
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -135,20 +155,25 @@ class Search extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _shell = Shell.of(context);
+
     return Container(
-        padding: EdgeInsets.only(top: 50),
-        child: Searchbar(
-          onTextChanged: (change) {
-            OverlayManager.of(context).closeCurrentOverlay();
-            OverlayManager.of(context).openSearch("");
-          },
-          leading: Icon(Icons.search),
-          trailing: Icon(Icons.menu),
-          hint: "Search Device, Apps and Web",
-          controller: TextEditingController(),
-          borderRadius: BorderRadius.circular(
-            8,
-          ),
-        ));
+      padding: EdgeInsets.only(top: 50),
+      child: Searchbar(
+        onTextChanged: (change) {
+          _shell.dismissOverlay(LauncherOverlay.overlayId);
+          _shell.showOverlay(
+            SearchOverlay.overlayId,
+            args: {"searchQuery": change},
+            dismissEverything: false,
+          );
+        },
+        leading: Icon(Icons.search),
+        trailing: Icon(Icons.menu),
+        hint: "Search Device, Apps and Web",
+        controller: TextEditingController(),
+        borderRadius: BorderRadius.circular(8),
+      ),
+    );
   }
 }

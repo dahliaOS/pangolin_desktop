@@ -53,7 +53,7 @@ You can contribute to the project by:
 
 ## Reporting bugs
 
-If you've experienced a bug and you'd like to report it, we highly recommend that you read [Before submitting a bug report](#before-submitting-a-bug-report), [How do I submit a good bug report?](#how-do-i-submit-a-good-bug-report) and that you use our issue template.
+If you've experienced a bug and you'd like to report it, we highly recommend that you read [Before submitting a bug report](#before-submitting-a-bug-report), [How do I write a good bug report?](#how-do-i-write-a-good-bug-report) and that you use our issue template.
 
 There are 2 ways you can report a bug, either in our Discord server by opening a ticket or by creating an issue on GitHub.
 

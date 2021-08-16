@@ -17,7 +17,6 @@ limitations under the License.
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
-import 'package:pangolin/utils/common_data.dart';
 import 'package:pangolin/utils/context_menus/context_menu.dart';
 import 'package:pangolin/utils/context_menus/context_menu_item.dart';
 import 'package:pangolin/utils/context_menus/core/context_menu_region.dart';
@@ -26,6 +25,95 @@ import 'package:pangolin/utils/wm_api.dart';
 import 'package:pangolin/widgets/wallpaper_picker.dart';
 import 'package:provider/provider.dart';
 
+class WallpaperWindowFeature extends WindowFeature {
+  const WallpaperWindowFeature();
+
+  @override
+  Widget build(BuildContext context, Widget content) {
+    // get properties
+    final WindowPropertyRegistry properties =
+        WindowPropertyRegistry.of(context);
+
+    // fetch image from properties
+    final String? image =
+        Provider.of<PreferenceProvider>(context, listen: false).wallpaper;
+
+    //get Bing Wallpaper of the Day data
+    getBingWallpaper();
+
+    return SizedBox.expand(
+      child: _WallpaperContextMenu(child: wallpaperImage(image!)),
+    );
+  }
+
+  @override
+  List<WindowPropertyKey> get requiredProperties => [];
+}
+
+class _WallpaperContextMenu extends StatelessWidget {
+  const _WallpaperContextMenu({
+    required Widget child,
+    Key? key,
+  })  : _child = child,
+        super(key: key);
+
+  final Widget _child;
+
+  @override
+  Widget build(BuildContext context) {
+    return ContextMenuRegion(
+      contextMenu: ContextMenu(
+        items: [
+          ContextMenuItem(
+            onTap: () {
+              showDialog(
+                barrierColor: Colors.transparent,
+                context: context,
+                builder: (context) {
+                  return WallpaperPicker();
+                },
+              );
+            },
+            icon: Icons.image,
+            title: "Change Wallpaper",
+            shortcut: "",
+          ),
+          ContextMenuItem(
+            onTap: () {
+              WmAPI.of(context).openApp("io.dahlia.settings");
+            },
+            icon: Icons.settings_outlined,
+            title: "Settings",
+            shortcut: "",
+          ),
+        ],
+      ),
+      child: _child,
+    );
+  }
+}
+
+Widget wallpaperImage(String source) {
+  if (source.startsWith("http")) {
+    return CachedNetworkImage(
+      imageUrl: source,
+      fit: BoxFit.cover,
+      cacheKey: source,
+      useOldImageOnUrlChange: true,
+      fadeInDuration: Duration(milliseconds: 1000),
+      fadeOutDuration: Duration(milliseconds: 1000),
+      fadeInCurve: Curves.easeInOut,
+      fadeOutCurve: Curves.easeInOut,
+    );
+  } else {
+    return Image.asset(
+      source,
+      fit: BoxFit.cover,
+    );
+  }
+}
+
+/* 
 class Wallpaper extends StatefulWidget {
   @override
   _WallpaperState createState() => _WallpaperState();
@@ -44,33 +132,35 @@ class _WallpaperState extends State<Wallpaper> {
     return Stack(
       children: [
         SizedBox.expand(
-            child: ContextMenuRegion(
-                contextMenu: ContextMenu(
-                  items: [
-                    ContextMenuItem(
-                      onTap: () {
-                        showDialog(
-                            barrierColor: Colors.transparent,
-                            context: context,
-                            builder: (context) {
-                              return WallpaperPicker();
-                            });
-                      },
-                      icon: Icons.image,
-                      title: "Change Wallpaper",
-                      shortcut: "",
-                    ),
-                    ContextMenuItem(
-                      onTap: () {
-                        WmAPI.of(context).openApp("io.dahlia.settings");
-                      },
-                      icon: Icons.settings_outlined,
-                      title: "Settings",
-                      shortcut: "",
-                    ),
-                  ],
+          child: ContextMenuRegion(
+            contextMenu: ContextMenu(
+              items: [
+                ContextMenuItem(
+                  onTap: () {
+                    showDialog(
+                        barrierColor: Colors.transparent,
+                        context: context,
+                        builder: (context) {
+                          return WallpaperPicker();
+                        });
+                  },
+                  icon: Icons.image,
+                  title: "Change Wallpaper",
+                  shortcut: "",
                 ),
-                child: wallpaperImage(_data.wallpaper))),
+                ContextMenuItem(
+                  onTap: () {
+                    WmAPI.of(context).openApp("io.dahlia.settings");
+                  },
+                  icon: Icons.settings_outlined,
+                  title: "Settings",
+                  shortcut: "",
+                ),
+              ],
+            ),
+            child: wallpaperImage(_data.wallpaper),
+          ),
+        ),
         Positioned(
           bottom: 48 + 12,
           right: 10,
@@ -118,3 +208,4 @@ Widget wallpaperImage(String source) {
     );
   }
 }
+ */

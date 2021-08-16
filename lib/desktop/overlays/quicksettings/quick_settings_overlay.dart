@@ -14,37 +14,78 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'dart:async';
+
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:pangolin/desktop/overlays/power_overlay.dart';
 import 'package:pangolin/desktop/overlays/quicksettings/qs_bluetooth.dart';
 import 'package:pangolin/desktop/overlays/quicksettings/qs_language.dart';
 import 'package:pangolin/desktop/overlays/quicksettings/qs_theme.dart';
 import 'package:pangolin/desktop/overlays/quicksettings/qs_wifi.dart';
+import 'package:pangolin/desktop/shell.dart';
 import 'package:pangolin/internal/locales/locale_strings.g.dart';
 import 'package:pangolin/internal/locales/locales.g.dart';
 import 'package:pangolin/utils/common_data.dart';
 import 'package:pangolin/utils/globals.dart';
-import 'package:pangolin/utils/overlay_manager.dart';
 import 'package:pangolin/utils/wm_api.dart';
 import 'package:pangolin/widgets/qs_button.dart';
 import 'package:provider/provider.dart';
-import 'package:utopia_wm/wm.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:pangolin/utils/preference_extension.dart';
 
-class QuickSettingsOverlay extends StatefulWidget {
+class QuickSettingsOverlay extends ShellOverlay {
+  static const String overlayId = 'quicksettings';
+
+  QuickSettingsOverlay() : super(id: overlayId);
+
   @override
   _QuickSettingsOverlayState createState() => _QuickSettingsOverlayState();
 }
 
-class _QuickSettingsOverlayState extends State<QuickSettingsOverlay> {
+class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
+    with SingleTickerProviderStateMixin, ShellOverlayState {
+  late AnimationController ac;
+
+  @override
+  void initState() {
+    super.initState();
+    ac = AnimationController(
+      vsync: this,
+      duration: CommonData.of(context).animationDuration(),
+    );
+  }
+
+  @override
+  void dispose() {
+    ac.dispose();
+    super.dispose();
+  }
+
+  @override
+  Future<void> requestShow(Map<String, dynamic> args) async {
+    controller.showing = true;
+    await ac.forward();
+  }
+
+  @override
+  Future<void> requestDismiss(Map<String, dynamic> args) async {
+    await ac.reverse();
+    controller.showing = false;
+  }
+
   @override
   Widget build(BuildContext context) {
     final _pref = Provider.of<PreferenceProvider>(context);
     // _getTime(context);
-    final _animation =
-        Provider.of<DismissibleOverlayEntry>(context, listen: false).animation;
+    final Animation<double> _animation = CurvedAnimation(
+      parent: ac,
+      curve: CommonData.of(context).animationCurve(),
+    );
+
+    if (!controller.showing) return SizedBox();
+
     return Positioned(
       bottom: _pref.isTaskbarRight || _pref.isTaskbarLeft
           ? 8
@@ -104,6 +145,8 @@ class QsMain extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _pref = context.watch<PreferenceProvider>();
+    final _shell = Shell.of(context);
+
     return Scaffold(
       backgroundColor: Colors.transparent,
 
@@ -116,9 +159,7 @@ class QsMain extends StatelessWidget {
         elevation: 0,
         title: Row(
           children: [
-            SizedBox(
-              width: 12,
-            ),
+            SizedBox(width: 12),
             Text(
               LocaleStrings.qs.quickControls,
               style: TextStyle(fontSize: 18),
@@ -132,34 +173,27 @@ class QsMain extends StatelessWidget {
             ),
             onPressed: () {},
           ),
-          SizedBox(
-            width: 4,
-          ),
+          SizedBox(width: 4),
           IconButton(
             icon: Icon(Icons.settings_outlined),
             onPressed: () {
-              WmAPI.of(context).popCurrentOverlayEntry();
+              _shell.dismissEverything();
               WmAPI.of(context).openApp("io.dahlia.settings");
             },
           ),
-          SizedBox(
-            width: 4,
-          ),
+          SizedBox(width: 4),
           IconButton(
             icon: Icon(
               Icons.power_settings_new,
             ),
             onPressed: () {
-              OverlayManager.of(context).closeCurrentOverlay();
-              OverlayManager.of(context).openPowerMenu();
+              _shell.showOverlay(
+                PowerOverlay.overlayId,
+                dismissEverything: false,
+              );
             },
           ),
-          SizedBox(
-            width: 8,
-          ),
-          SizedBox(
-            width: 12,
-          ),
+          SizedBox(width: 20),
         ],
         centerTitle: false,
       ),
@@ -279,10 +313,12 @@ class QsMain extends StatelessWidget {
                 ),
                 QuickSettingsButton(
                   title: 'TTY Shell',
-                  icon: Icons.developer_mode,
-                  disabledIcon: Icons.developer_mode,
+                  icon: Icons.grid_3x3,
+                  disabledIcon: Icons.grid_3x3,
                   enabled: true,
-                  onTap: () {},
+                  onTap: () {
+                    SystemCalls().terminal();
+                  },
                   onTapSecondary: () {},
                 ),
               ],

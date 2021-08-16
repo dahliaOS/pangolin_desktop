@@ -10,9 +10,8 @@
 <a href="https://github.com/dahliaos/documentation">Documentation</a>
 
 # Pangolin Desktop UI [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=dahliaOS%20is%20a%20modern,%20secure,%20lightweight%20and%20responsive%20operating%20system,%20combining%20the%20best%20of%20GNU/Linux%20and%20Fuchsia%20OS&url=https://dahliaos.io&via=realdahliaos&hashtags=dahliaos,linux,zircon,flutter,dart,fuchsia,opensource)
-![Build Linux](https://github.com/dahliaos/pangolin-desktop/workflows/Build%20Linux/badge.svg)
-![Build and Deploy Web](https://github.com/dahliaos/pangolin-desktop/workflows/Build%20and%20Deploy%20Web/badge.svg)
-![Locale Generator](https://github.com/dahliaos/pangolin-desktop/workflows/Locale%20Generator/badge.svg)
+[![Build and Deploy to Web](https://github.com/dahliaOS/pangolin_desktop/actions/workflows/web.yml/badge.svg?branch=main)](https://github.com/dahliaOS/pangolin_desktop/actions/workflows/web.yml)
+[![Locale Generator](https://github.com/dahliaOS/pangolin_desktop/actions/workflows/locale_gen.yml/badge.svg?branch=main)](https://github.com/dahliaOS/pangolin_desktop/actions/workflows/locale_gen.yml)
 ![Website](https://img.shields.io/website?url=https%3A%2F%2Fweb.dahliaos.io)
 [![Crowdin](https://badges.crowdin.net/e/1a53a75fb38f15843d4eb6d9b9e4215a/localized.svg)](https://translate.dahliaos.io/pangolin)
 ![GitHub](https://img.shields.io/github/license/dahliaos/pangolin-desktop?color=brightgreen)
@@ -36,7 +35,7 @@
 
 ## Build Pangolin Desktop
 
-If you're interested in building Pangolin, you can refer to [Building and Running Pangolin](https://github.com/dahliaos/pangolin-desktop/wiki/Building-and-Running-Pangolin)
+If you're interested in building Pangolin, you can refer to [Building and Running Pangolin](https://github.com/dahliaOS/pangolin_desktop/wiki/Compile-Pangolin-Desktop)
 
 For the submodules, use
 

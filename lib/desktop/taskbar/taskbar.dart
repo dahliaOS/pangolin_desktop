@@ -20,14 +20,12 @@ import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/desktop/overlays/launcher/launcher_overlay.dart';
+import 'package:pangolin/desktop/shell.dart';
 import 'package:pangolin/desktop/taskbar/taskbar_item.dart';
 import 'package:pangolin/utils/context_menus/context_menu.dart';
 import 'package:pangolin/utils/context_menus/context_menu_item.dart';
 import 'package:pangolin/utils/context_menus/core/context_menu_region.dart';
-import 'package:pangolin/utils/overlay_manager.dart';
-import 'package:pangolin/utils/wm_api.dart';
 import 'package:provider/provider.dart';
-import 'package:utopia_wm/wm.dart';
 import 'package:pangolin/utils/preference_extension.dart';
 
 class Taskbar extends StatefulWidget {
@@ -44,42 +42,48 @@ class _TaskbarState extends State<Taskbar> {
     final _pref = Provider.of<PreferenceProvider>(context);
     List<String> _pinnedApps = _pref.pinnedApps;
     List<String> _taskbarApps = _pinnedApps.toList()
-      ..addAll(Provider.of<WindowHierarchyState>(context)
-          .windows
+      ..addAll(WindowHierarchy.of(context)
+          .entries
           .map<String>(
-              (e) => _pinnedApps.contains(e.packageName) ? "" : e.packageName)
+            (e) => _pinnedApps.contains(e.registry.extra.stableId)
+                ? ""
+                : e.registry.extra.stableId,
+          )
           .toList());
 
     Widget items = ReorderableListView(
-        shrinkWrap: true,
-        primary: true,
-        physics: BouncingScrollPhysics(),
-        scrollDirection:
-            _pref.isTaskbarHorizontal ? Axis.horizontal : Axis.vertical,
-        onReorder: (int oldIndex, int newIndex) {
-          setState(() {
-            if (newIndex > oldIndex) {
-              newIndex -= 1;
-            }
-            final item = _taskbarApps.removeAt(oldIndex);
-            _taskbarApps.insert(newIndex, item);
-            if (_pinnedApps.contains(item)) {
+      shrinkWrap: true,
+      primary: true,
+      physics: BouncingScrollPhysics(),
+      scrollDirection:
+          _pref.isTaskbarHorizontal ? Axis.horizontal : Axis.vertical,
+      onReorder: (int oldIndex, int newIndex) {
+        setState(() {
+          if (newIndex > oldIndex) {
+            newIndex -= 1;
+          }
+          final item = _taskbarApps.removeAt(oldIndex);
+          _taskbarApps.insert(newIndex, item);
+          if (_pinnedApps.contains(item)) {
+            DatabaseManager.set("pinnedApps", _pinnedApps);
+          } else {
+            setState(() {
+              _pinnedApps.add(item);
               DatabaseManager.set("pinnedApps", _pinnedApps);
-            } else {
-              setState(() {
-                _pinnedApps.add(item);
-                DatabaseManager.set("pinnedApps", _pinnedApps);
-              });
-            }
-          });
-        },
-        children: _taskbarApps
-            .map<Widget>((e) => e != ""
+            });
+          }
+        });
+      },
+      children: _taskbarApps
+          .map<Widget>(
+            (e) => e != ""
                 ? TaskbarItem(key: ValueKey(e), packageName: e)
                 : SizedBox.shrink(
                     key: ValueKey(Random()),
-                  ))
-            .toList());
+                  ),
+          )
+          .toList(),
+    );
     double _scroll = 0;
     return Positioned(
       left: !_pref.isTaskbarRight ? 0 : null,
@@ -98,7 +102,7 @@ class _TaskbarState extends State<Taskbar> {
               _scroll = _scroll + pointerSignal.scrollDelta.dy;
             });
             if (_scroll > 500) {
-              OverlayManager.of(context).openLauncher();
+              Shell.of(context).dismissOverlay(LauncherOverlay.overlayId);
             }
           }
         },
@@ -108,7 +112,7 @@ class _TaskbarState extends State<Taskbar> {
               ContextMenuItem(
                 icon: Icons.power_input_sharp,
                 title: "Taskbar Position",
-                onTap: () {},
+                onTap: null,
                 shortcut: "",
               ),
               ContextMenuItem(
@@ -146,49 +150,55 @@ class _TaskbarState extends State<Taskbar> {
             ],
           ),
           child: BoxContainer(
-              useAccentBG: true,
-              //height: 48,
-              //height: DatabaseManager.get('taskbarHeight').toDouble() ?? 48,
-              useSystemOpacity: true,
-              color: Theme.of(context).backgroundColor,
-              child: Stack(
-                children: [
-                  _pref.centerTaskbar
-                      ? Center(child: items)
-                      : SizedBox.shrink(),
-                  _pref.isTaskbarHorizontal
-                      ? Row(
-                          children: [
-                            Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: widget.leading ?? [SizedBox.shrink()],
-                            ),
-                            Expanded(
-                              child: _pref.centerTaskbar ? Container() : items,
-                            ),
-                            Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: widget.trailing ?? [SizedBox.shrink()],
-                            ),
-                          ],
-                        )
-                      : Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: widget.leading ?? [SizedBox.shrink()],
-                            ),
-                            Expanded(
-                              child: _pref.centerTaskbar ? Container() : items,
-                            ),
-                            Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: widget.trailing ?? [SizedBox.shrink()],
-                            ),
-                          ],
-                        ),
-                  /* Positioned(
+            useAccentBG: true,
+            //height: 48,
+            //height: DatabaseManager.get('taskbarHeight').toDouble() ?? 48,
+            useSystemOpacity: true,
+            color: Theme.of(context).backgroundColor,
+            child: Stack(
+              children: [
+                _pref.centerTaskbar
+                    ? Positioned.fill(
+                        child: listenerWrapper(Center(child: items)),
+                      )
+                    : SizedBox.shrink(),
+                _pref.isTaskbarHorizontal
+                    ? Row(
+                        children: [
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: widget.leading ?? [SizedBox.shrink()],
+                          ),
+                          Expanded(
+                            child: _pref.centerTaskbar
+                                ? Container()
+                                : listenerWrapper(items),
+                          ),
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: widget.trailing ?? [SizedBox.shrink()],
+                          ),
+                        ],
+                      )
+                    : Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: widget.leading ?? [SizedBox.shrink()],
+                          ),
+                          Expanded(
+                            child: _pref.centerTaskbar
+                                ? Container()
+                                : listenerWrapper(items),
+                          ),
+                          Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: widget.trailing ?? [SizedBox.shrink()],
+                          ),
+                        ],
+                      ),
+                /* Positioned(
                     left: 0,
                     right: 0,
                     bottom: 0,
@@ -207,9 +217,22 @@ class _TaskbarState extends State<Taskbar> {
                       children: widget.trailing ?? [SizedBox.shrink()],
                     ),
                   ) */
-                ],
-              )),
+              ],
+            ),
+          ),
         ),
+      ),
+    );
+  }
+
+  Widget listenerWrapper(Widget child) {
+    return SizedBox.expand(
+      child: Listener(
+        onPointerDown: (event) {
+          Shell.of(context, listen: false).dismissEverything();
+        },
+        behavior: HitTestBehavior.translucent,
+        child: SizedBox.shrink(child: child),
       ),
     );
   }

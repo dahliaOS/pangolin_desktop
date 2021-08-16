@@ -17,28 +17,70 @@ limitations under the License.
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pangolin/desktop/shell.dart';
 import 'package:pangolin/utils/common_data.dart';
 import 'package:pangolin/utils/globals.dart';
 import 'package:pangolin/widgets/app_laucher_tile.dart';
 import 'package:pangolin/widgets/searchbar.dart';
 import 'package:provider/provider.dart';
-import 'package:utopia_wm/wm.dart';
 import 'search_service.dart';
 
-class SearchOverlay extends StatelessWidget {
-  final String text;
-  SearchOverlay({this.text = ""});
+class SearchOverlay extends ShellOverlay {
+  static const String overlayId = "search";
 
+  SearchOverlay() : super(id: overlayId);
+
+  @override
+  _SearchOverlayState createState() => _SearchOverlayState();
+}
+
+class _SearchOverlayState extends State<SearchOverlay>
+    with SingleTickerProviderStateMixin, ShellOverlayState {
   final searchService = SearchNotifier();
+  late AnimationController ac;
+  final _controller = TextEditingController();
+  final _focusNode = FocusNode();
+
+  @override
+  void initState() {
+    super.initState();
+    ac = AnimationController(
+      vsync: this,
+      duration: CommonData.of(context).animationDuration(),
+    );
+    ac.forward();
+  }
+
+  @override
+  void dispose() {
+    ac.dispose();
+    super.dispose();
+  }
+
+  @override
+  Future<void> requestShow(Map<String, dynamic> args) async {
+    _controller.text = args['searchQuery'] ?? "";
+    controller.showing = true;
+    await ac.forward();
+  }
+
+  @override
+  Future<void> requestDismiss(Map<String, dynamic> args) async {
+    await ac.reverse();
+    controller.showing = false;
+  }
 
   @override
   Widget build(BuildContext context) {
-    final _animation =
-        Provider.of<DismissibleOverlayEntry>(context, listen: false).animation;
-    final _controller = TextEditingController(text: text != "" ? text : "");
-    final _focusNode = FocusNode();
+    final Animation<double> _animation = CurvedAnimation(
+      parent: ac,
+      curve: CommonData.of(context).animationCurve(),
+    );
     final _pref = Provider.of<PreferenceProvider>(context, listen: false);
     _focusNode.requestFocus();
+
+    if (!controller.showing) return SizedBox();
+
     return Positioned(
       top: 64,
       left: horizontalPadding(context, 600),
@@ -79,76 +121,82 @@ class SearchOverlay extends StatelessWidget {
 
                   /// `Applicotins builder`
 
-                  ValueListenableBuilder(
-                    builder: (_, List<Application>? apps, Widget? child) {
-                      return apps!.isNotEmpty
-                          ? Container(
-                              height: 270,
-                              child: ListView(
-                                children: [
-                                  Container(
-                                    padding: EdgeInsets.only(
-                                      top: 16,
-                                      left: 24,
-                                      right: 24,
+                  Material(
+                    type: MaterialType.transparency,
+                    child: ValueListenableBuilder(
+                      builder: (_, List<Application>? apps, Widget? child) {
+                        return apps!.isNotEmpty
+                            ? Container(
+                                height: 270,
+                                child: ListView(
+                                  children: [
+                                    Container(
+                                      padding: EdgeInsets.only(
+                                        top: 16,
+                                        left: 24,
+                                        right: 24,
+                                      ),
+                                      child: Text(
+                                        'Results',
+                                        style: TextStyle(
+                                            fontSize: 17,
+                                            fontWeight: FontWeight.w600,
+                                            color: CommonData.of(context)
+                                                .textColor()),
+                                      ),
                                     ),
-                                    child: Text(
-                                      'Results',
-                                      style: TextStyle(
-                                          fontSize: 17,
-                                          fontWeight: FontWeight.w600,
-                                          color: CommonData.of(context)
-                                              .textColor()),
+                                    ListView.builder(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 16, vertical: 4),
+                                      shrinkWrap: true,
+                                      itemCount: apps.length,
+                                      physics: BouncingScrollPhysics(),
+                                      itemBuilder: (_, index) =>
+                                          AppLauncherTile(
+                                        apps[index].packageName!,
+                                      ),
                                     ),
-                                  ),
-                                  ListView.builder(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 16, vertical: 4),
-                                    shrinkWrap: true,
-                                    itemCount: apps.length,
-                                    physics: BouncingScrollPhysics(),
-                                    itemBuilder: (_, index) => AppLauncherTile(
-                                      apps[index].packageName!,
+                                  ],
+                                ),
+                              )
+                            : Container(
+                                height: 270,
+                                child: ListView(
+                                  children: [
+                                    Container(
+                                      padding: EdgeInsets.only(
+                                        top: 16,
+                                        left: 24,
+                                        right: 24,
+                                      ),
+                                      child: Text(
+                                        'Recent',
+                                        style: TextStyle(
+                                            fontSize: 17,
+                                            fontWeight: FontWeight.w600,
+                                            color: CommonData.of(context)
+                                                .textColor()),
+                                      ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            )
-                          : Container(
-                              height: 270,
-                              child: ListView(
-                                children: [
-                                  Container(
-                                    padding: EdgeInsets.only(
-                                      top: 16,
-                                      left: 24,
-                                      right: 24,
+                                    ListView.builder(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 16, vertical: 4),
+                                      shrinkWrap: true,
+                                      reverse: true,
+                                      itemCount:
+                                          _pref.recentSearchResults.length,
+                                      physics: BouncingScrollPhysics(),
+                                      itemBuilder: (_, index) =>
+                                          AppLauncherTile(
+                                        _pref.recentSearchResults[index],
+                                      ),
                                     ),
-                                    child: Text(
-                                      'Recent',
-                                      style: TextStyle(
-                                          fontSize: 17,
-                                          fontWeight: FontWeight.w600,
-                                          color: CommonData.of(context)
-                                              .textColor()),
-                                    ),
-                                  ),
-                                  ListView.builder(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 16, vertical: 4),
-                                    shrinkWrap: true,
-                                    reverse: true,
-                                    itemCount: _pref.recentSearchResults.length,
-                                    physics: BouncingScrollPhysics(),
-                                    itemBuilder: (_, index) => AppLauncherTile(
-                                      _pref.recentSearchResults[index],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            );
-                    },
-                    valueListenable: searchService.termSearchResult,
+                                  ],
+                                ),
+                              );
+                      },
+                      valueListenable: searchService.termSearchResult,
+                    ),
                   ),
                 ],
               ),

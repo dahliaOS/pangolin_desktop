@@ -46,10 +46,12 @@ class Searchbar extends StatelessWidget {
       useShadows: true,
       width: 800,
       height: 48,
-      child: Row(
-        //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          SizedBox(
+      child: Material(
+        type: MaterialType.transparency,
+        child: Row(
+          //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            SizedBox(
               height: 48,
               width: 56,
               child: InkWell(
@@ -59,21 +61,22 @@ class Searchbar extends StatelessWidget {
                       height: 48,
                       width: 48,
                     ),
-              )),
-          Expanded(
-            child: TextField(
-              onChanged: onTextChanged,
-              focusNode: focusNode,
-              controller: controller,
-              textAlign: TextAlign.center,
-              decoration: InputDecoration(
-                hintText: hint,
-                border: InputBorder.none,
-                focusedBorder: InputBorder.none,
               ),
             ),
-          ),
-          SizedBox(
+            Expanded(
+              child: TextField(
+                onChanged: onTextChanged,
+                focusNode: focusNode,
+                controller: controller,
+                textAlign: TextAlign.center,
+                decoration: InputDecoration(
+                  hintText: hint,
+                  border: InputBorder.none,
+                  focusedBorder: InputBorder.none,
+                ),
+              ),
+            ),
+            SizedBox(
               height: 48,
               width: 56,
               child: InkWell(
@@ -83,8 +86,10 @@ class Searchbar extends StatelessWidget {
                       height: 48,
                       width: 48,
                     ),
-              )),
-        ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
