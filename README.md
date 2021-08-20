@@ -37,6 +37,11 @@
 
 If you're interested in building Pangolin, you can refer to [Building and Running Pangolin](https://github.com/dahliaOS/pangolin_desktop/wiki/Compile-Pangolin-Desktop)
 
+For the submodules, use
+
+```
+git submodule update --init --recursive && cd backend && git checkout main
+```
 ## Contribute
 
 If you're wondering how to contribute to the project, please refer to [CONTRIBUTING.md](/CONTRIBUTING.md)

@@ -1,6 +1,6 @@
 name: pangolin
 description: The Desktop Environment for dahliaOS
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
@@ -56,11 +56,11 @@ dependencies:
   terminal:
     git:
       url: https://github.com/dahliaOS/terminal.git
+      ref: v2
   welcome:
     git:
       url: https://github.com/dahliaOS/welcome.git
   http: ^0.13.1
-
 
 dev_dependencies:
   flutter_test:
@@ -69,9 +69,7 @@ dev_dependencies:
 #    sdk: flutter
 
 
-
 flutter:
-
   uses-material-design: true
 
   assets:
@@ -83,42 +81,41 @@ flutter:
     - assets/json/visualData.json
     - global/assets/
 
-
   fonts:
     - family: CustomIcons
       fonts:
         - asset: fonts/CustomIcons.ttf
-    - family:  DM-Sans
+    - family: DM-Sans
       fonts:
-       - asset: fonts/dm-sans/DMSans-Bold.ttf
-       - asset: fonts/dm-sans/DMSans-BoldItalic.ttf
-       - asset: fonts/dm-sans/DMSans-Italic.ttf
-       - asset: fonts/dm-sans/DMSans-Medium.ttf
-       - asset: fonts/dm-sans/DMSans-MediumItalic.ttf
-       - asset: fonts/dm-sans/DMSans-Regular.ttf
-    - family:  Lato
+        - asset: fonts/dm-sans/DMSans-Bold.ttf
+        - asset: fonts/dm-sans/DMSans-BoldItalic.ttf
+        - asset: fonts/dm-sans/DMSans-Italic.ttf
+        - asset: fonts/dm-sans/DMSans-Medium.ttf
+        - asset: fonts/dm-sans/DMSans-MediumItalic.ttf
+        - asset: fonts/dm-sans/DMSans-Regular.ttf
+    - family: Lato
       fonts:
-       - asset: fonts/lato/Lato-Black.ttf
-       - asset: fonts/lato/Lato-BlackItalic.ttf
-       - asset: fonts/lato/Lato-Bold.ttf
-       - asset: fonts/lato/Lato-BoldItalic.ttf
-       - asset: fonts/lato/Lato-Italic.ttf
-       - asset: fonts/lato/Lato-Regular.ttf
-       - asset: fonts/lato/Lato-Light.ttf
-       - asset: fonts/lato/Lato-LightItalic.ttf
-       - asset: fonts/lato/Lato-Thin.ttf
-       - asset: fonts/lato/Lato-Italic.ttf
-    - family:  Inter
+        - asset: fonts/lato/Lato-Black.ttf
+        - asset: fonts/lato/Lato-BlackItalic.ttf
+        - asset: fonts/lato/Lato-Bold.ttf
+        - asset: fonts/lato/Lato-BoldItalic.ttf
+        - asset: fonts/lato/Lato-Italic.ttf
+        - asset: fonts/lato/Lato-Regular.ttf
+        - asset: fonts/lato/Lato-Light.ttf
+        - asset: fonts/lato/Lato-LightItalic.ttf
+        - asset: fonts/lato/Lato-Thin.ttf
+        - asset: fonts/lato/Lato-Italic.ttf
+    - family: Inter
       fonts:
-       - asset: fonts/inter/Inter-Black.ttf
-       - asset: fonts/inter/Inter-Bold.ttf
-       - asset: fonts/inter/Inter-ExtraBold.ttf
-       - asset: fonts/inter/Inter-ExtraLight.ttf
-       - asset: fonts/inter/Inter-Regular.ttf
-       - asset: fonts/inter/Inter-Light.ttf
-       - asset: fonts/inter/Inter-SemiBold.ttf
-       - asset: fonts/inter/Inter-Thin.ttf
-    - family:  FiraCode
+        - asset: fonts/inter/Inter-Black.ttf
+        - asset: fonts/inter/Inter-Bold.ttf
+        - asset: fonts/inter/Inter-ExtraBold.ttf
+        - asset: fonts/inter/Inter-ExtraLight.ttf
+        - asset: fonts/inter/Inter-Regular.ttf
+        - asset: fonts/inter/Inter-Light.ttf
+        - asset: fonts/inter/Inter-SemiBold.ttf
+        - asset: fonts/inter/Inter-Thin.ttf
+    - family: FiraCode
       fonts:
        - asset: fonts/firacode/FiraCode-Bold.ttf
        - asset: fonts/firacode/FiraCode-Medium.ttf
