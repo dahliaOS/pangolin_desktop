@@ -15,16 +15,23 @@ limitations under the License.
 */
 
 import 'package:flutter/material.dart';
-import 'package:pangolin/settings/widgets/settings_page.dart';
 
-class SettingsPageApplications extends StatelessWidget {
-  const SettingsPageApplications({Key? key}) : super(key: key);
+abstract class SettingsElementModel extends StatefulWidget {
+  final SettingsElementModelType type;
 
-  @override
-  Widget build(BuildContext context) {
-    return SettingsPage(
-      title: "Applications",
-      cards: [],
-    );
-  }
+  const SettingsElementModel({
+    required this.type,
+    Key? key,
+  }) : super(key: key);
+}
+
+// Types of SettingsCards
+enum SettingsElementModelType {
+  SWITCH,
+  EXPANDABLE,
+  EXPANDABLESWITCH,
+  ROUTER,
+  CUSTOMTRAILING,
+  CONTENTHEADER,
+  CUSTOM
 }

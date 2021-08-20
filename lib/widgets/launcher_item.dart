@@ -26,8 +26,7 @@ class LauncherItem extends StatelessWidget {
     return InkWell(
       hoverColor: Colors.white..withOpacity(0.3),
       onTap: () {},
-      child: BoxContainer(
-        useBlur: false,
+      child: BoxSurface(
         width: 128,
         height: 128,
         child: Column(

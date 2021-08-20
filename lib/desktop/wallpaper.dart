@@ -36,7 +36,7 @@ class WallpaperWindowFeature extends WindowFeature {
 
     // fetch image from properties
     final String? image =
-        Provider.of<PreferenceProvider>(context, listen: false).wallpaper;
+        Provider.of<PreferenceProvider>(context, listen: true).wallpaper;
 
     //get Bing Wallpaper of the Day data
     getBingWallpaper();
@@ -112,100 +112,3 @@ Widget wallpaperImage(String source) {
     );
   }
 }
-
-/* 
-class Wallpaper extends StatefulWidget {
-  @override
-  _WallpaperState createState() => _WallpaperState();
-}
-
-class _WallpaperState extends State<Wallpaper> {
-  @override
-  void initState() {
-    super.initState();
-    getBingWallpaper();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final _data = Provider.of<PreferenceProvider>(context, listen: false);
-    return Stack(
-      children: [
-        SizedBox.expand(
-          child: ContextMenuRegion(
-            contextMenu: ContextMenu(
-              items: [
-                ContextMenuItem(
-                  onTap: () {
-                    showDialog(
-                        barrierColor: Colors.transparent,
-                        context: context,
-                        builder: (context) {
-                          return WallpaperPicker();
-                        });
-                  },
-                  icon: Icons.image,
-                  title: "Change Wallpaper",
-                  shortcut: "",
-                ),
-                ContextMenuItem(
-                  onTap: () {
-                    WmAPI.of(context).openApp("io.dahlia.settings");
-                  },
-                  icon: Icons.settings_outlined,
-                  title: "Settings",
-                  shortcut: "",
-                ),
-              ],
-            ),
-            child: wallpaperImage(_data.wallpaper),
-          ),
-        ),
-        Positioned(
-          bottom: 48 + 12,
-          right: 10,
-          child: _data.wallpaper == link
-              ? BoxContainer(
-                  useShadows: true,
-                  useAccentBG: true,
-                  customBorderRadius: CommonData.of(context)
-                      .borderRadius(BorderRadiusType.SMALL),
-                  useSystemOpacity: true,
-                  color: CommonData.of(context).textColorAlt(),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      copyright.replaceAll(", ", ",\n"),
-                      style: TextStyle(
-                        color: CommonData.of(context).textColor(),
-                      ),
-                    ),
-                  ),
-                )
-              : SizedBox.shrink(),
-        ),
-      ],
-    );
-  }
-}
-
-Widget wallpaperImage(String source) {
-  if (source.startsWith("http")) {
-    return CachedNetworkImage(
-      imageUrl: source,
-      fit: BoxFit.cover,
-      cacheKey: source,
-      useOldImageOnUrlChange: true,
-      fadeInDuration: Duration(milliseconds: 1000),
-      fadeOutDuration: Duration(milliseconds: 1000),
-      fadeInCurve: Curves.easeInOut,
-      fadeOutCurve: Curves.easeInOut,
-    );
-  } else {
-    return Image.asset(
-      source,
-      fit: BoxFit.cover,
-    );
-  }
-}
- */

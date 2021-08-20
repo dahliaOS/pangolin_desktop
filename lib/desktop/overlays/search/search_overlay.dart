@@ -92,22 +92,18 @@ class _SearchOverlayState extends State<SearchOverlay>
           child: ScaleTransition(
             scale: _animation,
             alignment: FractionalOffset.bottomCenter,
-            child: BoxContainer(
-              useAccentBG: true,
-              useShadows: true,
-              customBorderRadius:
+            child: BoxSurface(
+              borderRadius:
                   CommonData.of(context).borderRadius(BorderRadiusType.BIG),
-              useSystemOpacity: true,
-              color: Theme.of(context).backgroundColor,
               width: 500,
-              height: 320,
+              height: 324,
               child: Column(
                 children: [
-                  BoxContainer(
-                    useAccentBG: true,
-                    useSystemOpacity: true,
+                  BoxSurface(
+                    outline: false,
                     height: 48,
                     child: Searchbar(
+                      outline: false,
                       color: Theme.of(context).backgroundColor.withOpacity(0.2),
                       borderRadius: BorderRadius.zero,
                       focusNode: _focusNode,

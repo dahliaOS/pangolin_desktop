@@ -55,9 +55,8 @@ class _OverviewOverlayState extends State<OverviewOverlay>
           Shell.of(context, listen: false).dismissEverything();
           setState(() {});
         },
-        child: BoxContainer(
-          useBlur: false,
-          color: Colors.black.withOpacity(0.5),
+        child: BoxSurface(
+          outline: false,
           child: Stack(
             children: [
               Positioned(
@@ -65,19 +64,17 @@ class _OverviewOverlayState extends State<OverviewOverlay>
                 left: 0,
                 right: 0,
                 height: 152,
-                child: BoxContainer(
-                  color: Theme.of(context).backgroundColor,
-                  useSystemOpacity: true,
-                  useBlur: true,
+                child: BoxSurface(
+                  outline: false,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Padding(
                         padding: const EdgeInsets.all(12.0),
-                        child: BoxContainer(
-                          customBorderRadius: CommonData.of(context)
+                        child: BoxSurface(
+                          borderRadius: CommonData.of(context)
                               .borderRadius(BorderRadiusType.SMALL),
-                          decoration: BoxDecoration(
+                          /* decoration: BoxDecoration(
                             boxShadow: [
                               BoxShadow(
                                 color: Colors.black.withOpacity(0.5),
@@ -89,7 +86,7 @@ class _OverviewOverlayState extends State<OverviewOverlay>
                                 ), // shadow direction: bottom right
                               )
                             ],
-                          ),
+                          ), */
                           child: Image.asset("assets/images/other/Desktop.png"),
                         ),
                       ),

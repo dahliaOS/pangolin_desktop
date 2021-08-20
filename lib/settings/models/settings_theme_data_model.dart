@@ -14,17 +14,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:flutter/material.dart';
-import 'package:pangolin/settings/widgets/settings_page.dart';
+import 'package:flutter/widgets.dart';
 
-class SettingsPageApplications extends StatelessWidget {
-  const SettingsPageApplications({Key? key}) : super(key: key);
+class ThemeModeDataModel {
+  final Color color;
+  final bool darkMode;
+  final String label;
 
-  @override
-  Widget build(BuildContext context) {
-    return SettingsPage(
-      title: "Applications",
-      cards: [],
-    );
-  }
+  const ThemeModeDataModel(this.color, this.label, this.darkMode);
 }

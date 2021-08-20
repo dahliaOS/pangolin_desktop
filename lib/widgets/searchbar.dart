@@ -23,6 +23,7 @@ class Searchbar extends StatelessWidget {
   final String? hint;
   final String text;
   final Color? color;
+  final bool outline;
   final TextEditingController? controller;
   final BorderRadius? borderRadius;
   final FocusNode? focusNode;
@@ -32,6 +33,7 @@ class Searchbar extends StatelessWidget {
       required this.trailing,
       required this.hint,
       required this.controller,
+      this.outline = true,
       this.borderRadius,
       this.focusNode,
       this.text = "",
@@ -40,10 +42,8 @@ class Searchbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BoxContainer(
-      customBorderRadius: borderRadius ?? BorderRadius.circular(8),
-      color: color ?? Theme.of(context).backgroundColor,
-      useSystemOpacity: true,
-      useShadows: true,
+      outline: outline,
+      borderRadius: borderRadius ?? BorderRadius.circular(8),
       width: 800,
       height: 48,
       child: Material(

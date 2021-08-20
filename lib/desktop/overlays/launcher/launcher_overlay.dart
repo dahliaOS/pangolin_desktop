@@ -114,11 +114,8 @@ class _LauncherOverlayState extends State<LauncherOverlay>
         child: Stack(
           children: [
             //Positioned.fill(top: 0, child: Wallpaper()),
-            BoxContainer(
-              useAccentBG: true,
-              useSystemOpacity: true,
-              useBlur: true,
-              color: Theme.of(context).backgroundColor.withOpacity(0.5),
+            BoxSurface(
+              outline: false,
               child: AnimatedBuilder(
                 animation: _animation,
                 builder: (context, child) => FadeTransition(

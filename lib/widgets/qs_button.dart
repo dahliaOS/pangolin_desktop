@@ -46,8 +46,8 @@ class _QuickSettingsButtonState extends State<QuickSettingsButton> {
     return Column(
       children: [
         SizedBox(
-          width: 50,
-          height: 50,
+          width: 48,
+          height: 48,
           child: GestureDetector(
             onSecondaryTap: widget.onTapSecondary,
             child: RawMaterialButton(

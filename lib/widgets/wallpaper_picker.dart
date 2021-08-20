@@ -47,10 +47,8 @@ class _WallpaperPickerState extends State<WallpaperPicker>
         List.from(_data.recentWallpapers.reversed, growable: true);
     return GestureDetector(
       onTap: () => Navigator.pop(context),
-      child: BoxContainer(
-        customBorderRadius: BorderRadius.circular(8),
-        color: Theme.of(context).backgroundColor,
-        useSystemOpacity: true,
+      child: BoxSurface(
+        borderRadius: BorderRadius.circular(8),
         margin: EdgeInsets.symmetric(horizontal: 300, vertical: 100),
         width: MediaQuery.of(context).size.width - 300,
         height: MediaQuery.of(context).size.height - 300,

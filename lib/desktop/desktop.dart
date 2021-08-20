@@ -70,7 +70,7 @@ class _DesktopState extends State<Desktop> {
           PowerOverlay(),
         ])),
       );
-      print("done");
+      print("Initilized Desktop Shell");
     });
   }
 

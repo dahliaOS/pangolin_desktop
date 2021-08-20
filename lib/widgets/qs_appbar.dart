@@ -43,7 +43,7 @@ class _QsAppBarState extends State<QsAppBar> {
       children: [
         AppBar(
           toolbarHeight: widget.preferredSize.height,
-          textTheme: Theme.of(context).textTheme,
+          foregroundColor: Theme.of(context).textTheme.bodyText1?.color,
           iconTheme: Theme.of(context).iconTheme,
           backgroundColor: Theme.of(context).backgroundColor.withOpacity(0.5),
           elevation: 0,

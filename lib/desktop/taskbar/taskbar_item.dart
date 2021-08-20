@@ -100,10 +100,10 @@ class _TaskbarItemState extends State<TaskbarItem>
     //Build Widget
     return LayoutBuilder(
       builder: (context, constraints) => Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 2.0),
+        padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 3.0),
         child: SizedBox(
-          height: 48,
-          width: 50,
+          height: 44,
+          width: 42,
           child: ContextMenuRegion(
             useLongPress: false,
             contextMenu: ContextMenu(
@@ -124,7 +124,7 @@ class _TaskbarItemState extends State<TaskbarItem>
               //key: _globalKey,
               child: Material(
                 borderRadius: BorderRadius.circular(4),
-                //set a background colour if the app is running or focused
+                //set a background color if the app is running or focused
                 color: appIsRunning
                     ? (showSelected
                         ? Theme.of(context)
@@ -156,7 +156,7 @@ class _TaskbarItemState extends State<TaskbarItem>
                         Align(
                           alignment: Alignment.center,
                           child: Padding(
-                            padding: const EdgeInsets.all(6.0),
+                            padding: const EdgeInsets.fromLTRB(6.0, 5, 6, 7),
                             child: Image(
                               image: appIsRunning
                                   ? entry?.registry.info.icon ??
@@ -170,7 +170,7 @@ class _TaskbarItemState extends State<TaskbarItem>
                         AnimatedPositioned(
                           duration: Duration(milliseconds: 150),
                           curve: Curves.ease,
-                          bottom: 2,
+                          bottom: 1,
                           left: appIsRunning
                               ? _hovering
                                   ? showSelected
@@ -189,7 +189,7 @@ class _TaskbarItemState extends State<TaskbarItem>
                                       ? 4
                                       : constraints.maxHeight / 2 - 8
                               : 50 / 2,
-                          height: 2,
+                          height: 3,
                           child: Material(
                             borderRadius: BorderRadius.circular(2),
                             color: Theme.of(context).colorScheme.secondary,
