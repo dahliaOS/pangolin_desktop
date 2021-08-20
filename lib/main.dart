@@ -20,6 +20,7 @@ import 'package:flutter/material.dart';
 import 'package:pangolin/desktop/desktop.dart';
 import 'package:pangolin/internal/locales/generated_asset_loader.g.dart';
 import 'package:pangolin/internal/locales/locales.g.dart';
+import 'package:pangolin/settings/data/presets.dart';
 import 'package:pangolin/utils/theme.dart';
 import 'package:provider/provider.dart';
 import 'package:pangolin/internal/visualEngine/visualEngine.dart';
@@ -27,17 +28,29 @@ import 'package:pangolin/internal/visualEngine/visualEngine.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  //initialize the database
   await DatabaseManager.initialseDatabase();
   PreferenceProvider();
+
+  //initialize scheduler for time and date
   DateTimeManager.initialiseScheduler();
   DateTimeManager.setDateFormat("yMMMMd");
+
+  //Fix old database entries
   if (double.tryParse(DatabaseManager.get("wallpaper")) != null) {
     DatabaseManager.set(
         "wallpaper", "assets/images/wallpapers/Three_Bubbles.png");
   }
 
+  //initialize the localization engine
   await EasyLocalization.ensureInitialized();
+
+  //load customization presets
+  SettingsPresets.loadPresets();
+
+  //load visual engine
   await loadVisualEngine();
+
   runApp(
     EasyLocalization(
       supportedLocales: Locales.supported,

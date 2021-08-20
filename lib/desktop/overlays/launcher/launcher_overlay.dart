@@ -111,37 +111,32 @@ class _LauncherOverlayState extends State<LauncherOverlay>
           await ac.reverse();
           _shell.dismissOverlay(LauncherOverlay.overlayId);
         },
-        child: Stack(
-          children: [
-            //Positioned.fill(top: 0, child: Wallpaper()),
-            BoxContainer(
-              useAccentBG: true,
-              useSystemOpacity: true,
-              useBlur: true,
-              color: Theme.of(context).backgroundColor.withOpacity(0.5),
-              child: AnimatedBuilder(
-                animation: _animation,
-                builder: (context, child) => FadeTransition(
-                  opacity: _animation,
-                  child: ScaleTransition(
-                    scale: _animation,
-                    alignment: _pref.taskbarPosition != 0
-                        ? FractionalOffset.bottomCenter
-                        : FractionalOffset.topCenter,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Search(),
-                        LauncherCategories(controller: _controller),
-                        LauncherGrid(controller: _controller),
-                        LauncherPowerMenu(),
-                      ],
-                    ),
-                  ),
+        child: BoxContainer(
+          useAccentBG: true,
+          useSystemOpacity: true,
+          useBlur: true,
+          color: Theme.of(context).backgroundColor.withOpacity(0.5),
+          child: AnimatedBuilder(
+            animation: _animation,
+            builder: (context, child) => FadeTransition(
+              opacity: _animation,
+              child: ScaleTransition(
+                scale: _animation,
+                alignment: _pref.taskbarPosition != 0
+                    ? FractionalOffset.bottomCenter
+                    : FractionalOffset.topCenter,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Search(),
+                    LauncherCategories(controller: _controller),
+                    LauncherGrid(controller: _controller),
+                    LauncherPowerMenu(),
+                  ],
                 ),
               ),
             ),
-          ],
+          ),
         ),
       ),
     );

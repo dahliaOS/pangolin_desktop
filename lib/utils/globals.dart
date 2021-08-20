@@ -25,7 +25,7 @@ String totalVersionNumber = "210419";
 String headingFeatureString =
     "dahliaOS Linux-Based " + totalVersionNumber + " ...";
 String longName = "dahliaOS Linux-Based " + totalVersionNumber + " PRE-RELEASE";
-String kernel() {
+String get kernel {
   if (!kIsWeb) {
     if (!Platform.isWindows) {
       ProcessResult result = Process.runSync('uname', ['-sr']);

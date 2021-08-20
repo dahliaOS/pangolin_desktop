@@ -124,7 +124,7 @@ class _TaskbarItemState extends State<TaskbarItem>
               //key: _globalKey,
               child: Material(
                 borderRadius: BorderRadius.circular(4),
-                //set a background colour if the app is running or focused
+                //set a background color if the app is running or focused
                 color: appIsRunning
                     ? (showSelected
                         ? Theme.of(context)

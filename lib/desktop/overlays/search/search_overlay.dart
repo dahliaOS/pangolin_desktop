@@ -94,7 +94,6 @@ class _SearchOverlayState extends State<SearchOverlay>
             alignment: FractionalOffset.bottomCenter,
             child: BoxContainer(
               useAccentBG: true,
-              useShadows: true,
               customBorderRadius:
                   CommonData.of(context).borderRadius(BorderRadiusType.BIG),
               useSystemOpacity: true,

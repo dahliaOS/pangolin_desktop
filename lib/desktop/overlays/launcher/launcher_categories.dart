@@ -50,8 +50,8 @@ class _LauncherCategoriesState extends State<LauncherCategories> {
           // The row of chips 'test test test test' lol
           margin: const EdgeInsets.only(top: 33 + (1 / 3), bottom: 8),
           child: BoxContainer(
+            //useOutline: true,
             useBlur: true,
-            useShadows: true,
             customBorderRadius:
                 CommonData.of(context).borderRadius(BorderRadiusType.SMALL),
             color: Theme.of(context).backgroundColor.withOpacity(0.5),
@@ -59,6 +59,7 @@ class _LauncherCategoriesState extends State<LauncherCategories> {
             // have to give explicit size, as the child ListView can't calculate its Y height
             height: 42,
             child: ListView.builder(
+              clipBehavior: Clip.antiAlias,
               shrinkWrap: true,
               scrollDirection: Axis.horizontal,
               itemCount: launcherCategories.length,
@@ -66,6 +67,7 @@ class _LauncherCategoriesState extends State<LauncherCategories> {
                 return Material(
                   borderRadius: CommonData.of(context)
                       .borderRadius(BorderRadiusType.SMALL),
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
                   color: _selected == index
                       ? Theme.of(context).colorScheme.secondary
                       : Colors.transparent,

@@ -1,3 +1,19 @@
+/*
+Copyright 2021 The dahliaOS Authors
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
 import 'package:animations/animations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -6,12 +22,12 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:pangolin/settings/pages/about.dart';
 import 'package:pangolin/settings/pages/applications.dart';
-import 'package:pangolin/settings/pages/connected_devices.dart';
-import 'package:pangolin/settings/pages/customization.dart';
+import 'package:pangolin/settings/pages/connections/connected_devices.dart';
+import 'package:pangolin/settings/pages/customization/customization.dart';
 import 'package:pangolin/settings/pages/developer_options.dart';
 import 'package:pangolin/settings/pages/display.dart';
 import 'package:pangolin/settings/pages/locale.dart';
-import 'package:pangolin/settings/pages/network.dart';
+import 'package:pangolin/settings/pages/network/network.dart';
 import 'package:pangolin/settings/pages/notifications.dart';
 import 'package:pangolin/settings/pages/sound.dart';
 import 'package:pangolin/utils/theme.dart';
@@ -19,18 +35,15 @@ import 'package:pangolin/utils/theme_manager.dart';
 import 'package:pangolin/widgets/searchbar.dart';
 import 'package:provider/provider.dart';
 
-class Settings extends StatefulWidget {
-  const Settings({Key? key}) : super(key: key);
-
-  @override
-  _SettingsState createState() => _SettingsState();
-}
-
-class _SettingsState extends State<Settings> {
+class Settings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider.value(
-      value: _SettingsProvider(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => _SettingsProvider(),
+        ),
+      ],
       child: MaterialApp(
         theme: theme(context),
         home: Scaffold(
@@ -54,8 +67,8 @@ class _SettingsHome extends StatefulWidget {
 class _SettingsHomeState extends State<_SettingsHome> {
   @override
   Widget build(BuildContext context) {
-    return Consumer<_SettingsProvider>(
-      builder: (context, provider, _) => LayoutBuilder(
+    return Consumer<_SettingsProvider>(builder: (context, provider, _) {
+      return LayoutBuilder(
         builder: (context, constraints) {
           bool isExpanded = constraints.maxWidth > 768;
           return Row(
@@ -114,9 +127,18 @@ class _SettingsHomeState extends State<_SettingsHome> {
                                             ? Text(
                                                 _settingsTiles[index].title,
                                                 style: TextStyle(
-                                                    fontWeight: isSelected
-                                                        ? FontWeight.bold
-                                                        : FontWeight.normal),
+                                                  fontWeight: isSelected
+                                                      ? FontWeight.bold
+                                                      : FontWeight.normal,
+                                                  color: isSelected
+                                                      ? ThemeManager.of(context)
+                                                                  .accentColorAlt
+                                                                  .computeLuminance() <
+                                                              0.4
+                                                          ? Colors.white
+                                                          : Colors.black
+                                                      : null,
+                                                ),
                                               )
                                             : null,
                                         subtitle: isTile
@@ -128,6 +150,15 @@ class _SettingsHomeState extends State<_SettingsHome> {
                                                       fontWeight: isSelected
                                                           ? FontWeight.bold
                                                           : FontWeight.normal,
+                                                      color: isSelected
+                                                          ? ThemeManager.of(
+                                                                          context)
+                                                                      .accentColorAlt
+                                                                      .computeLuminance() <
+                                                                  0.4
+                                                              ? Colors.white
+                                                              : Colors.black
+                                                          : null,
                                                     ),
                                                   )
                                                 : null
@@ -178,7 +209,8 @@ class _SettingsHomeState extends State<_SettingsHome> {
                     borderRadius:
                         BorderRadius.only(topLeft: Radius.circular(8)),
                     child: Scaffold(
-                      backgroundColor: Color(0xff151515),
+                      backgroundColor:
+                          Theme.of(context).scaffoldBackgroundColor,
                       body: _settingsTiles[provider.pageIndex].page ??
                           SizedBox.shrink(),
                     ),
@@ -188,8 +220,8 @@ class _SettingsHomeState extends State<_SettingsHome> {
             ],
           );
         },
-      ),
-    );
+      );
+    });
   }
 }
 

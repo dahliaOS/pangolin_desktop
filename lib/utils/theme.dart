@@ -18,6 +18,7 @@ import 'package:animations/animations.dart';
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/cupertino/theme.dart';
+import 'package:pangolin/utils/theme_manager.dart';
 import 'package:provider/provider.dart';
 
 ThemeData theme(BuildContext context) {
@@ -39,11 +40,9 @@ ThemeData theme(BuildContext context) {
         backgroundColor: MaterialStateProperty.all(
           Color(_data.accentColor),
         ),
+        elevation: MaterialStateProperty.all(0.0),
         foregroundColor: MaterialStateProperty.all(
-          Color(
-            _data.darkMode ? 0xff0a0a0a : 0xffffffff,
-          ),
-        ),
+            ThemeManager.of(context).foregroundColorOnAccentColor),
       ),
     ),
 
@@ -51,7 +50,7 @@ ThemeData theme(BuildContext context) {
     /* brightness: _data.darkMode ? Brightness.dark : Brightness.light,
     accentColor: Color(_data.accentColor), */
     colorScheme: ColorScheme(
-      background: CustomThemeData.of(context).backgroundColor,
+      background: ThemeManager.of(context).backgroundColor,
       brightness: _data.darkMode ? Brightness.dark : Brightness.light,
       error: Colors.red,
       onBackground: Colors.grey,
@@ -65,13 +64,12 @@ ThemeData theme(BuildContext context) {
       secondaryVariant: Color(_data.accentColor),
       surface: Color(0xff141414),
     ),
-    backgroundColor: _data.darkMode ? Color(0xff0a0a0a) : Color(0xffffffff),
-    canvasColor: _data.darkMode ? Color(0xff151515) : Color(0xffffffff),
+    backgroundColor: ThemeManager.of(context).backgroundColor,
+    canvasColor: ThemeManager.of(context).surfaceColor,
     primaryColor: Color(_data.accentColor),
     primaryColorDark: Color(_data.accentColor),
-    cardColor: _data.darkMode ? Color(0xff151515) : Color(0xffffffff),
-    scaffoldBackgroundColor:
-        _data.darkMode ? Color(0xff151515) : Color(0xffffffff),
+    cardColor: ThemeManager.of(context).cardColor,
+    scaffoldBackgroundColor: ThemeManager.of(context).surfaceColor,
     inputDecorationTheme: InputDecorationTheme(
       labelStyle: TextStyle(
         color: Color(_data.accentColor),
@@ -87,8 +85,7 @@ ThemeData theme(BuildContext context) {
         ),
       ),
     ),
-    dialogBackgroundColor:
-        !_data.darkMode ? Color(0xffffffff) : Color(0xff0a0a0a),
+    dialogBackgroundColor: ThemeManager.of(context).backgroundColor,
     toggleableActiveColor: Color(_data.accentColor),
     platform: TargetPlatform.android,
     sliderTheme: SliderThemeData(
@@ -102,7 +99,7 @@ ThemeData theme(BuildContext context) {
   );
 }
 
-class CustomThemeData {
+/* class CustomThemeData {
   final Color backgroundColor,
       surfaceColor,
       accentColor,
@@ -129,12 +126,12 @@ class CustomThemeData {
     final _provider = Provider.of<PreferenceProvider>(context);
     _accentColor = Color(_provider.accentColor);
     _backgroundColor =
-        _provider.darkMode ? Color(0xff0a0a0a) : Color(0xfffafafa);
+        _provider.darkMode ? Color(0xff0a0a0a) : Color(0xfff0f0f0);
     _surfaceColor = _provider.darkMode ? Color(0xff141414) : Color(0xffffffff);
-    _variantColor = _provider.darkMode ? Color(0xfffafafa) : Color(0xff0a0a0a);
-    _textColor = _provider.darkMode ? Color(0xfffafafa) : Color(0xff0a0a0a);
+    _variantColor = _provider.darkMode ? Color(0xfff0f0f0) : Color(0xff0a0a0a);
+    _textColor = _provider.darkMode ? Color(0xfff0f0f0) : Color(0xff0a0a0a);
     _textVariantColor =
-        _provider.darkMode ? Color(0xff0a0a0a) : Color(0xfffafafa);
+        _provider.darkMode ? Color(0xff0a0a0a) : Color(0xfff0f0f0);
     return CustomThemeData(
         accentColor: _accentColor,
         backgroundColor: _backgroundColor,
@@ -144,3 +141,4 @@ class CustomThemeData {
         textVariantColor: _textVariantColor);
   }
 }
+ */

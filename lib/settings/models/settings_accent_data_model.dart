@@ -14,22 +14,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:flutter/material.dart';
-import 'package:pangolin/settings/widgets/settings_page.dart';
+import 'package:flutter/widgets.dart';
 
-class SettingsPageLocale extends StatefulWidget {
-  SettingsPageLocale({Key? key}) : super(key: key);
+class AccentColorDataModel {
+  final Color color;
+  final String label;
 
-  @override
-  _SettingsPageLocaleState createState() => _SettingsPageLocaleState();
-}
-
-class _SettingsPageLocaleState extends State<SettingsPageLocale> {
-  @override
-  Widget build(BuildContext context) {
-    return SettingsPage(
-      title: "Locale",
-      cards: [],
-    );
-  }
+  const AccentColorDataModel(this.color, this.label);
 }

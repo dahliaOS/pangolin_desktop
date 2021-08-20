@@ -153,7 +153,7 @@ class QsMain extends StatelessWidget {
       //AppBar
       appBar: AppBar(
         toolbarHeight: 48,
-        textTheme: Theme.of(context).textTheme,
+        titleTextStyle: Theme.of(context).textTheme.headline6,
         iconTheme: Theme.of(context).iconTheme,
         backgroundColor: Theme.of(context).backgroundColor.withOpacity(0.2),
         elevation: 0,
