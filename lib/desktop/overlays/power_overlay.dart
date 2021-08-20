@@ -54,10 +54,8 @@ class _PowerOverlayState extends State<PowerOverlay> with ShellOverlayState {
           onTap: () {
             controller.requestDismiss({});
           },
-          child: BoxContainer(
-            useAccentBG: true,
-            color: Theme.of(context).backgroundColor.withOpacity(0.5),
-            useBlur: true,
+          child: BoxSurface(
+            outline: false,
           ),
         ),
         Positioned(
@@ -66,12 +64,8 @@ class _PowerOverlayState extends State<PowerOverlay> with ShellOverlayState {
           top: verticalPadding(context, 100),
           bottom: verticalPadding(context, 100),
           child: BoxContainer(
-            useSystemOpacity: true,
-            useBlur: true,
-            useShadows: true,
-            customBorderRadius:
+            borderRadius:
                 CommonData.of(context).borderRadius(BorderRadiusType.MEDIUM),
-            color: Theme.of(context).backgroundColor,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.stretch,

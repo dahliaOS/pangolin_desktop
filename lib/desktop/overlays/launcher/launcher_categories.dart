@@ -44,63 +44,60 @@ class _LauncherCategoriesState extends State<LauncherCategories> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Container(
-          //width: 652,
-          //color: Colors.white,
-          // The row of chips 'test test test test' lol
-          margin: const EdgeInsets.only(top: 33 + (1 / 3), bottom: 8),
-          child: BoxContainer(
-            //useOutline: true,
-            useBlur: true,
-            customBorderRadius:
-                CommonData.of(context).borderRadius(BorderRadiusType.SMALL),
-            color: Theme.of(context).backgroundColor.withOpacity(0.5),
-            useSystemOpacity: true,
-            // have to give explicit size, as the child ListView can't calculate its Y height
-            height: 42,
-            child: ListView.builder(
-              clipBehavior: Clip.antiAlias,
-              shrinkWrap: true,
-              scrollDirection: Axis.horizontal,
-              itemCount: launcherCategories.length,
-              itemBuilder: (context, index) {
-                return Material(
-                  borderRadius: CommonData.of(context)
-                      .borderRadius(BorderRadiusType.SMALL),
-                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                  color: _selected == index
-                      ? Theme.of(context).colorScheme.secondary
-                      : Colors.transparent,
-                  child: InkWell(
-                      borderRadius: CommonData.of(context)
-                          .borderRadius(BorderRadiusType.SMALL),
-                      onTap: () {
-                        setState(() {
-                          _selected = index;
-                        });
-                        widget.controller?.animateToPage(index,
-                            duration: Duration(milliseconds: 300),
-                            curve: Curves.easeInOut);
-                      },
-                      mouseCursor: SystemMouseCursors.click,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 8.0, horizontal: 18),
-                        child: Center(
-                          child: Text(
-                            launcherCategories[index],
-                            style: TextStyle(
-                                fontWeight: _selected == index
-                                    ? FontWeight.bold
-                                    : FontWeight.normal,
-                                color: _selected == index
-                                    ? CommonData.of(context).textColorAlt()
-                                    : CommonData.of(context).textColor()),
+        Transform.scale(
+          scale: 1.0,
+          child: Container(
+            //width: 652,
+            //color: Colors.white,
+            // The row of chips 'test test test test' lol
+            margin: const EdgeInsets.only(top: 33 + (1 / 3), bottom: 8),
+            child: BoxContainer(
+              borderRadius:
+                  CommonData.of(context).borderRadius(BorderRadiusType.MEDIUM),
+              // have to give explicit size, as the child ListView can't calculate its Y height
+              height: 42,
+              child: ListView.builder(
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                itemCount: launcherCategories.length,
+                itemBuilder: (context, index) {
+                  return Material(
+                    borderRadius: CommonData.of(context)
+                        .borderRadius(BorderRadiusType.SMALL),
+                    color: _selected == index
+                        ? Theme.of(context).colorScheme.secondary
+                        : Colors.transparent,
+                    child: InkWell(
+                        borderRadius: CommonData.of(context)
+                            .borderRadius(BorderRadiusType.SMALL),
+                        onTap: () {
+                          setState(() {
+                            _selected = index;
+                          });
+                          widget.controller?.animateToPage(index,
+                              duration: Duration(milliseconds: 300),
+                              curve: Curves.easeInOut);
+                        },
+                        mouseCursor: SystemMouseCursors.click,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 8.0, horizontal: 18),
+                          child: Center(
+                            child: Text(
+                              launcherCategories[index],
+                              style: TextStyle(
+                                  fontWeight: _selected == index
+                                      ? FontWeight.bold
+                                      : FontWeight.normal,
+                                  color: _selected == index
+                                      ? CommonData.of(context).textColorAlt()
+                                      : CommonData.of(context).textColor()),
+                            ),
                           ),
-                        ),
-                      )),
-                );
-              },
+                        )),
+                  );
+                },
+              ),
             ),
           ),
         ),

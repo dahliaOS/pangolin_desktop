@@ -106,10 +106,8 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
           child: ScaleTransition(
             scale: _animation,
             alignment: FractionalOffset(0.8, !_pref.isTaskbarTop ? 1.0 : 0.0),
-            child: BoxContainer(
-              useAccentBG: true,
-              useShadows: true,
-              customBorderRadius:
+            child: BoxSurface(
+              borderRadius:
                   CommonData.of(context).borderRadius(BorderRadiusType.BIG),
               /* decoration: BoxDecoration(boxShadow: [
                 /* BoxShadow(
@@ -117,10 +115,8 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
                     spreadRadius: 5,
                     blurRadius: 50) */
               ], borderRadius: BorderRadius.circular(10)), */
-              useSystemOpacity: true,
-              color: Theme.of(context).backgroundColor.withOpacity(0.1),
               width: 500,
-              height: 424,
+              height: 428,
               child: MaterialApp(
                 routes: {
                   "/": (context) => QsMain(),
@@ -153,7 +149,7 @@ class QsMain extends StatelessWidget {
       //AppBar
       appBar: AppBar(
         toolbarHeight: 48,
-        titleTextStyle: Theme.of(context).textTheme.headline6,
+        foregroundColor: Theme.of(context).textTheme.bodyText1?.color,
         iconTheme: Theme.of(context).iconTheme,
         backgroundColor: Theme.of(context).backgroundColor.withOpacity(0.2),
         elevation: 0,

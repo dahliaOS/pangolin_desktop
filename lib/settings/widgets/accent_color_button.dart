@@ -31,7 +31,7 @@ class AccentColorButton extends StatefulWidget {
 class _AccentColorButtonState extends State<AccentColorButton> {
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<PreferenceProvider>(context, listen: false);
+    final provider = Provider.of<PreferenceProvider>(context);
     return Tooltip(
       message: widget.model.label,
       child: InkWell(

@@ -29,13 +29,8 @@ class _ContextMenuState extends State<ContextMenu> {
   Size size = Size.zero;
   @override
   Widget build(BuildContext context) {
-    return BoxContainer(
-      useAccentBG: true,
-      useShadows: true,
-      useSystemOpacity: true,
-      customBorderRadius:
-          CommonData.of(context).borderRadius(BorderRadiusType.SMALL),
-      color: Theme.of(context).backgroundColor,
+    return BoxSurface(
+      borderRadius: CommonData.of(context).borderRadius(BorderRadiusType.SMALL),
       child: SingleChildScrollView(
         child: SizeMeasureWidget(
           onSizeMeasure: (size) =>

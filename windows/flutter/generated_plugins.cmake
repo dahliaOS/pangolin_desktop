@@ -3,7 +3,8 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
-  battery_plus_windows
+  url_launcher_windows
+  windows_path_provider
 )
 
 set(PLUGIN_BUNDLED_LIBRARIES)

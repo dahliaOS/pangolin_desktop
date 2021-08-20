@@ -149,12 +149,10 @@ class _TaskbarState extends State<Taskbar> {
               ),
             ],
           ),
-          child: BoxContainer(
-            useAccentBG: true,
+          child: BoxSurface(
+            outline: false,
             //height: 48,
             //height: DatabaseManager.get('taskbarHeight').toDouble() ?? 48,
-            useSystemOpacity: true,
-            color: Theme.of(context).backgroundColor,
             child: Stack(
               children: [
                 _pref.centerTaskbar

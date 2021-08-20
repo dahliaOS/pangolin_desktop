@@ -30,7 +30,7 @@ class ContextMenuItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 40,
+      height: 44,
       child: Material(
         color: Colors.transparent,
         child: InkWell(
@@ -43,7 +43,7 @@ class ContextMenuItem extends StatelessWidget {
                 }
               : null,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12),
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 2),
             child: Row(
               children: [
                 Icon(this.icon),

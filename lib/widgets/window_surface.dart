@@ -22,10 +22,8 @@ class PangolinWindowSurface extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BoxContainer(
-      useAccentBG: true,
-      useBlur: true,
-      useSystemOpacity: true,
+    return BoxSurface(
+      outline: false,
     );
   }
 }

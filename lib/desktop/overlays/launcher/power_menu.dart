@@ -34,10 +34,7 @@ class _LauncherPowerMenuState extends State<LauncherPowerMenu> {
         width: 28 * 3 + 16 * 4,
         height: 32 + 16,
         child: BoxContainer(
-          useBlur: true,
-          color: Theme.of(context).backgroundColor,
-          useSystemOpacity: true,
-          customBorderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(8),
           child: Material(
             color: Colors.transparent,
             child: Row(

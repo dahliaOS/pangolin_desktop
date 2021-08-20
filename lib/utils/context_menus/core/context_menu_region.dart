@@ -70,7 +70,7 @@ class _ContextMenuRegionState extends State<ContextMenuRegion> {
     });
     _length.sort();
     final Size size =
-        Size(_length.last * 13, widget.contextMenu.items.length * 40);
+        Size(_length.last * 13, widget.contextMenu.items.length * 44);
     final double x = details.globalPosition.dx
         .clamp(8.0, MediaQuery.of(context).size.width - size.width - 8.0);
     final double y = details.globalPosition.dy

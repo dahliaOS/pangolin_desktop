@@ -102,7 +102,7 @@ class OverlayManager {
   }
 
   // General Background
-  BoxContainer _background() => BoxContainer(
+  BoxSurface _background() => BoxSurface(
         color: Colors.black.withOpacity(0.2),
         margin: CommonData.of(context).taskbarMargin(),
         useBlur: true,

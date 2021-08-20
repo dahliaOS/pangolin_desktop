@@ -16,6 +16,7 @@ limitations under the License.
 
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
+import 'package:pangolin/settings/data/presets.dart';
 import 'package:pangolin/utils/globals.dart';
 import 'package:pangolin/widgets/qs_appbar.dart';
 import 'package:provider/provider.dart';
@@ -32,46 +33,24 @@ class QsTheme extends StatelessWidget {
           onTap: () {
             _pref.darkMode = !_pref.darkMode;
           },
-          /* elevation: 0,
-        toolbarHeight: 48,
-        textTheme: Theme.of(context).textTheme,
-        iconTheme: Theme.of(context).iconTheme,
-        backgroundColor: Theme.of(context).backgroundColor.withOpacity(0.4),
-        centerTitle: true,
-        title: Text("Wi-Fi"),
-        actions: [
-          Switch(value: true, onChanged: (val) {}),
-          SizedBox(
-            width: 8,
-          ),
-        ], */
         ),
         body: ListView.builder(
           physics: BouncingScrollPhysics(),
-          itemCount: accentColors.length,
+          itemCount: SettingsPresets.accentColorPresets.length,
           itemBuilder: (context, index) {
             return ListTile(
               onTap: () {
-                accentColors[index].color != null
-                    ? _pref.accentColor = accentColors[index].color!.value
-                    //TODO Fix accent color dialog
-                    : /* Customization.accentColorDialog(context, _pref) */ Container;
+                _pref.accentColor =
+                    SettingsPresets.accentColorPresets[index].color.value;
               },
               contentPadding: EdgeInsets.symmetric(vertical: 7, horizontal: 8),
               leading: AccentColorIcon(
-                color: accentColors[index].color,
+                color: SettingsPresets.accentColorPresets[index].color,
               ),
-              title: Text(accentColors[index].title),
+              title: Text(SettingsPresets.accentColorPresets[index].label),
             );
           },
-        )
-        /* Center(
-        child: SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Customization.accentColors(_pref, context),
-        ),
-      ), */
-        );
+        ));
   }
 }
 
@@ -89,14 +68,8 @@ class AccentColorIcon extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Container(
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              boxShadow: [
-                BoxShadow(
-                  spreadRadius: 1,
-                  color: Colors.black.withOpacity(0.25),
-                  blurRadius: 4,
-                )
-              ]),
+            borderRadius: BorderRadius.circular(20),
+          ),
           child: CircleAvatar(
               backgroundColor: color ?? Theme.of(context).colorScheme.secondary,
               child: Icon(

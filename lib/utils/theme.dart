@@ -34,7 +34,12 @@ ThemeData theme(BuildContext context) {
     //hoverColor: Color(_data.accentColor).withOpacity(0.5),
     splashColor: Color(_data.accentColor),
     /* buttonColor: Color(_data.accentColor), */
-    floatingActionButtonTheme: FloatingActionButtonThemeData(),
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      elevation: 0.0,
+      hoverElevation: 0.0,
+      focusElevation: 0.0,
+      highlightElevation: 0.0,
+    ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(
