@@ -17,7 +17,7 @@ limitations under the License.
 import 'package:calculator/calculator.dart';
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:dahlia_clock/main.dart';
-import 'package:files/main.dart';
+/* import 'package:files/main.dart'; */
 import 'package:flutter/material.dart';
 import 'package:graft/main.dart';
 import 'package:media/main.dart';
@@ -25,7 +25,7 @@ import 'package:pangolin/settings/settings.dart';
 import 'package:pangolin/widgets/error_window.dart';
 import 'package:system_logs/main.dart';
 import 'package:task_manager/monitor.dart';
-import 'package:terminal/main.dart';
+/* import 'package:terminal/main.dart'; */
 import 'package:text_editor/editor.dart';
 import 'package:web_browser/main.dart';
 import 'package:welcome/main.dart';
@@ -48,14 +48,14 @@ List<Application> applications = [
       iconName: "calculator",
       category: ApplicationCategory.OFFICE,
       description: "Solve mathematic calculations"),
-  Application(
+  /* Application(
       color: Colors.grey,
       packageName: "io.dahlia.terminal",
       app: Terminal(),
       name: "Terminal",
       iconName: "terminal",
       category: ApplicationCategory.SYSTEM,
-      description: "Execute commands"),
+      description: "Execute commands"), */
   Application(
       color: Colors.amber,
       packageName: "io.dahlia.editor",
@@ -80,14 +80,14 @@ List<Application> applications = [
       iconName: "web",
       category: ApplicationCategory.INTERNET,
       description: "Search and browse the web"),
-  Application(
+  /* Application(
       color: Colors.deepOrange,
       packageName: "io.dahlia.files",
       app: Files(),
       name: "Files",
       iconName: "files",
       category: ApplicationCategory.SYSTEM,
-      description: "Browse your local files"),
+      description: "Browse your local files"), */
   Application(
       color: Colors.blueAccent,
       packageName: "io.dahlia.media",
