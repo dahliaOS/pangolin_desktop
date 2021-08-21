@@ -18,6 +18,7 @@ import 'package:calculator/calculator.dart';
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:dahlia_clock/main.dart';
 import 'package:files/main.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:graft/main.dart';
 import 'package:media/main.dart';
@@ -140,4 +141,11 @@ Application getApp(String packageName) {
 Application get fallbackApp {
   return Application(
       app: ErrorWindow(), name: "Error", packageName: "io.dahlia.error");
+}
+
+extension appWebExtension on Application {
+  bool get canBeOpened {
+    if (breaksWeb) return !kIsWeb;
+    return true;
+  }
 }

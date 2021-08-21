@@ -15,7 +15,6 @@ limitations under the License.
 */
 
 import 'package:dahlia_backend/dahlia_backend.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/utils/app_list.dart';
 import 'package:pangolin/widgets/error_window.dart';
@@ -82,8 +81,8 @@ class WmAPI {
 
   void openApp(String packageName) {
     final application = getApp(packageName);
-    if (application.breaksWeb && kIsWeb) {
-      throw 'Can not open a new application that breaks the web on the web';
+    if (!application.canBeOpened) {
+      throw 'The app couldn not be opened';
     }
     final LiveWindowEntry _window = windowEntry.newInstance(
       application.app ?? ErrorWindow(),

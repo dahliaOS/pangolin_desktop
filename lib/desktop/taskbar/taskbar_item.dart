@@ -64,7 +64,7 @@ class _TaskbarItemState extends State<TaskbarItem>
     final _app = applications
         .firstWhere((element) => element.packageName == widget.packageName);
 
-    if (_app.breaksWeb && kIsWeb) {
+    if (!_app.canBeOpened) {
       return SizedBox.shrink();
     }
 
