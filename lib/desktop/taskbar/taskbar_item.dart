@@ -15,6 +15,7 @@ limitations under the License.
 */
 
 import 'package:dahlia_backend/dahlia_backend.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:pangolin/utils/app_list.dart';
@@ -59,13 +60,18 @@ class _TaskbarItemState extends State<TaskbarItem>
 
   @override
   Widget build(BuildContext context) {
+    //Selected App
+    final _app = applications
+        .firstWhere((element) => element.packageName == widget.packageName);
+
+    if (_app.breaksWeb && kIsWeb) {
+      return SizedBox.shrink();
+    }
+
     //Running apps
     //// ITS FAILING HERE
     final hierarchy = WindowHierarchy.of(context);
     final windows = hierarchy.entries;
-    //Selected App
-    final _app = applications
-        .firstWhere((element) => element.packageName == widget.packageName);
     //Check if App is running or just pinned
     bool appIsRunning = windows.any(
       (element) => element.registry.extra.stableId == widget.packageName,
