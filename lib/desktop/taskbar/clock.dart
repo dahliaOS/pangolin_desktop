@@ -33,8 +33,7 @@ class DateClockWidget extends StatelessWidget {
         builder: (BuildContext context, String time, Widget? child) => SizedBox(
           width: _pref.isTaskbarHorizontal ? date.characters.length * 10 : 48,
           height: _pref.isTaskbarHorizontal ? 48 : time.characters.length * 9,
-          child: Padding(
-            padding: const EdgeInsets.all(4.0),
+          child: Center(
             child: ClipRRect(
               borderRadius:
                   CommonData.of(context).borderRadius(BorderRadiusType.SMALL),
