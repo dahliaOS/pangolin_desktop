@@ -24,17 +24,19 @@ import 'package:pangolin/utils/wm_api.dart';
 import 'package:provider/provider.dart';
 
 class AppLauncherButton extends StatefulWidget {
-  final String packageName;
-  const AppLauncherButton(this.packageName);
+  final Application application;
+  const AppLauncherButton(this.application);
 
   @override
   _AppLauncherButtonState createState() => _AppLauncherButtonState();
 }
 
 class _AppLauncherButtonState extends State<AppLauncherButton> {
+
+  Application get application => widget.application;
+
   @override
   Widget build(BuildContext context) {
-    final Application application = getApp(widget.packageName);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Material(
@@ -53,7 +55,7 @@ class _AppLauncherButtonState extends State<AppLauncherButton> {
               focusColor: CommonData.of(context).textColor(),
               onTap: () {
                 Shell.of(context, listen: false).dismissEverything();
-                WmAPI.of(context).openApp(widget.packageName);
+                WmAPI.of(context).openApp(application.packageName!);
               },
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,

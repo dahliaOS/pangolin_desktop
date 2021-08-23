@@ -99,7 +99,16 @@ class LauncherGrid extends StatelessWidget {
                   crossAxisSpacing: 0,
                 ),
                 itemBuilder: (BuildContext context, int index) {
-                  return AppLauncherButton(page[index].packageName!);
+                  final Application application = getApp(page[index].packageName!);
+                  if (!application.canBeOpened) {
+                    return IgnorePointer(
+                      child: Opacity(
+                        opacity: 0.4,
+                        child: AppLauncherButton(application),
+                      ),
+                    );
+                  }
+                  return AppLauncherButton(application);
                 },
               );
             }),
