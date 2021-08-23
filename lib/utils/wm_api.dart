@@ -80,12 +80,17 @@ class WmAPI {
   }
 
   void openApp(String packageName) {
+    final application = getApp(packageName);
+    if (!application.canBeOpened) {
+      return;
+      // throw 'The app couldn not be opened';
+    }
     final LiveWindowEntry _window = windowEntry.newInstance(
-      getApp(packageName).app ?? ErrorWindow(),
+      application.app ?? ErrorWindow(),
       {
-        WindowEntry.title: getApp(packageName).name,
+        WindowEntry.title: application.name,
         WindowEntry.icon:
-            AssetImage("assets/icons/${getApp(packageName).iconName}.png"),
+            AssetImage("assets/icons/${application.iconName}.png"),
         WindowExtras.stableId: packageName,
         GeometryWindowFeature.size: MediaQuery.of(context).size.width < 1920
             ? Size(720, 480)

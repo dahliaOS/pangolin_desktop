@@ -15,6 +15,7 @@ limitations under the License.
 */
 
 import 'package:dahlia_backend/dahlia_backend.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:pangolin/utils/app_list.dart';
@@ -59,13 +60,14 @@ class _TaskbarItemState extends State<TaskbarItem>
 
   @override
   Widget build(BuildContext context) {
+    //Selected App
+    final _app = applications
+        .firstWhere((element) => element.packageName == widget.packageName);
+
     //Running apps
     //// ITS FAILING HERE
     final hierarchy = WindowHierarchy.of(context);
     final windows = hierarchy.entries;
-    //Selected App
-    final _app = applications
-        .firstWhere((element) => element.packageName == widget.packageName);
     //Check if App is running or just pinned
     bool appIsRunning = windows.any(
       (element) => element.registry.extra.stableId == widget.packageName,
@@ -98,7 +100,7 @@ class _TaskbarItemState extends State<TaskbarItem>
     }
     final _pref = Provider.of<PreferenceProvider>(context);
     //Build Widget
-    return LayoutBuilder(
+    final Widget finalWidget = LayoutBuilder(
       builder: (context, constraints) => Padding(
         padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 3.0),
         child: SizedBox(
@@ -205,6 +207,14 @@ class _TaskbarItemState extends State<TaskbarItem>
         ),
       ),
     );
+    if (!_app.canBeOpened)
+      return IgnorePointer(
+        child: Opacity(
+          opacity: 0.4,
+          child: finalWidget,
+        ),
+      );
+    return finalWidget;
   }
 
   void _onTap(BuildContext context, LiveWindowEntry entry) {
