@@ -57,7 +57,7 @@ List<Application> applications = [
       iconName: "terminal",
       category: ApplicationCategory.SYSTEM,
       description: "Execute commands",
-      breaksWeb: true),
+      supportsWeb: false),
   Application(
       color: Colors.amber,
       packageName: "io.dahlia.editor",
@@ -90,7 +90,7 @@ List<Application> applications = [
       iconName: "files",
       category: ApplicationCategory.SYSTEM,
       description: "Browse your local files",
-      breaksWeb: true),
+      supportsWeb: false),
   Application(
       color: Colors.blueAccent,
       packageName: "io.dahlia.media",
@@ -145,7 +145,7 @@ Application get fallbackApp {
 
 extension appWebExtension on Application {
   bool get canBeOpened {
-    if (breaksWeb) return !kIsWeb;
+    if (kIsWeb) return supportsWeb;
     return true;
   }
 }
