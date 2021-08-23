@@ -143,7 +143,7 @@ Application get fallbackApp {
       app: ErrorWindow(), name: "Error", packageName: "io.dahlia.error");
 }
 
-extension appWebExtension on Application {
+extension AppWebExtension on Application {
   bool get canBeOpened {
     if (kIsWeb) return supportsWeb;
     return true;

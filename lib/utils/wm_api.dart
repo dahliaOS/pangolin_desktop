@@ -82,7 +82,8 @@ class WmAPI {
   void openApp(String packageName) {
     final application = getApp(packageName);
     if (!application.canBeOpened) {
-      throw 'The app couldn not be opened';
+      return;
+      // throw 'The app couldn not be opened';
     }
     final LiveWindowEntry _window = windowEntry.newInstance(
       application.app ?? ErrorWindow(),
