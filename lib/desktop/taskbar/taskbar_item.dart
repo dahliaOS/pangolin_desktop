@@ -64,10 +64,6 @@ class _TaskbarItemState extends State<TaskbarItem>
     final _app = applications
         .firstWhere((element) => element.packageName == widget.packageName);
 
-    if (!_app.canBeOpened) {
-      return SizedBox.shrink();
-    }
-
     //Running apps
     //// ITS FAILING HERE
     final hierarchy = WindowHierarchy.of(context);
@@ -104,7 +100,7 @@ class _TaskbarItemState extends State<TaskbarItem>
     }
     final _pref = Provider.of<PreferenceProvider>(context);
     //Build Widget
-    return LayoutBuilder(
+    final Widget finalWidget = LayoutBuilder(
       builder: (context, constraints) => Padding(
         padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 3.0),
         child: SizedBox(
@@ -211,6 +207,14 @@ class _TaskbarItemState extends State<TaskbarItem>
         ),
       ),
     );
+    if (!_app.canBeOpened)
+      return IgnorePointer(
+        child: Opacity(
+          opacity: 0.4,
+          child: finalWidget,
+        ),
+      );
+    return finalWidget;
   }
 
   void _onTap(BuildContext context, LiveWindowEntry entry) {
