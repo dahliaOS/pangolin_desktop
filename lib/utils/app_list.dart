@@ -14,10 +14,13 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'apps_stub.dart' if (dart.library.io) 'package:files/main.dart';
+// ignore: duplicate_import
+import 'apps_stub.dart' if (dart.library.io) 'package:terminal/main.dart';
+
 import 'package:calculator/calculator.dart';
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:dahlia_clock/main.dart';
-import 'package:files/main.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:graft/main.dart';
@@ -26,7 +29,6 @@ import 'package:pangolin/settings/settings.dart';
 import 'package:pangolin/widgets/error_window.dart';
 import 'package:system_logs/main.dart';
 import 'package:task_manager/monitor.dart';
-import 'package:terminal/main.dart';
 import 'package:text_editor/editor.dart';
 import 'package:web_browser/main.dart';
 import 'package:welcome/main.dart';
