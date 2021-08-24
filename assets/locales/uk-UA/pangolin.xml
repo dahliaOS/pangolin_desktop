@@ -14,7 +14,7 @@
     <string name="app.messages">Повідомлення</string>
     <string name="app.rootterminal">Root Terminal</string>
     <string name="app.settings">Налаштування</string>
-    <string name="app.systemlogs">System Logs</string>
+    <string name="app.systemlogs">Журнал подій в системі</string>
     <string name="app.taskmanager">Диспетчер задач</string>
     <string name="app.terminal">Термінал</string>
     <string name="app.themedemo">Theme Demo</string>
@@ -31,16 +31,16 @@
     <string name="app.media_description">Browse and watch Photos and Videos</string>
     <string name="app.music_description">Listen to local Music</string>
     <string name="app.notes_description">Edit local Text Files</string>
-    <string name="app.notesmobile_description">Notes (Mobile)</string>
+    <string name="app.notesmobile_description">Нотатки (мобільна версія)</string>
     <string name="app.messages_description">Повідомлення</string>
-    <string name="app.rootterminal_description">Run Commands as Superuser</string>
-    <string name="app.settings_description">Adjust System Settings</string>
-    <string name="app.systemlogs_description">Read System Logs</string>
-    <string name="app.taskmanager_description">Manage currently running Applications</string>
-    <string name="app.terminal_description">Access the Commandline</string>
-    <string name="app.themedemo_description">Internal demonstration for app theming</string>
+    <string name="app.rootterminal_description">Запустити команди від імені адміністратора</string>
+    <string name="app.settings_description">Налаштунки параметрів системи</string>
+    <string name="app.systemlogs_description">Відкрити системний журнал</string>
+    <string name="app.taskmanager_description">Керування хапущеними додатками</string>
+    <string name="app.terminal_description">Доступ до командного рядка</string>
+    <string name="app.themedemo_description">Показ персоналізації додатків</string>
     <string name="app.welcome_description">Welcome Application</string>
-    <string name="app.help_description">Faq and Support</string>
+    <string name="app.help_description">ЧЗП та підтримка</string>
     <string name="app.web_description">Browse the Web</string>
     <!-- Feature Not Implemented-->
     <string name="misc.featurenotimplemented_title">Функція в розробці</string>
