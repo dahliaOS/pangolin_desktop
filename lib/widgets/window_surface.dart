@@ -23,7 +23,7 @@ class PangolinWindowSurface extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BoxSurface(
-      outline: false,
+      outline: true,
     );
   }
 }
