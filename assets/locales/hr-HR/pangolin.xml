@@ -25,7 +25,7 @@
     <string name="app.authenticator_description">Dvofaktorska autentifikacija</string>
     <string name="app.calculator_description">Zbrajanje, oduzimanje, množenje i dijeljenje</string>
     <string name="app.clock_description">Upravljanje vremenom, alarmima, štopericama i svjetskim satima</string>
-    <string name="app.containers_description" comment="app.containers_description">Upravljajte svojim spremnicima sustava</string>
+    <string name="app.containers_description">Upravljajte svojim spremnicima sustava</string>
     <string name="app.disks_description">Upravljanje diskovima i particijama</string>
     <string name="app.files_description">Pregledajte datoteke i mape</string>
     <string name="app.media_description">Pregledavajte i gledajte fotografije i videozapise</string>
