@@ -1,0 +1,11 @@
+{
+  "test": "test",
+  "day": {
+    "zero": "{} days",
+    "one": "{} day",
+    "two": "{} days",
+    "few": "{} few days",
+    "many": "{} many days",
+    "other": "{} other days"
+  }
+}
