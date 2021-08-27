@@ -25,7 +25,7 @@
     <string name="app.authenticator_description">Autoryzacja dwuetapowa</string>
     <string name="app.calculator_description">Dodawanie, odejmowanie, mnożenie i dzielenie</string>
     <string name="app.clock_description">Zarządzaj czasem, alarmami, stoperami i zegarami światowymi</string>
-    <string name="app.containers_description" comment="app.containers_description">Zarządzaj kontenerami systemowymi</string>
+    <string name="app.containers_description">Zarządzaj kontenerami systemowymi</string>
     <string name="app.disks_description">Zarządzaj dyskami i partycjami</string>
     <string name="app.files_description">Przeglądaj pliki i foldery</string>
     <string name="app.media_description">Przeglądaj i oglądaj zdjęcia oraz filmy</string>
