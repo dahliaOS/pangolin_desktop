@@ -25,7 +25,7 @@
     <string name="app.authenticator_description">双重验证</string>
     <string name="app.calculator_description">添加、删减、乘法和除法</string>
     <string name="app.clock_description">管理时间、闹钟、拦截器和世界时钟</string>
-    <string name="app.containers_description" comment="app.containers_description">管理你的系统容器</string>
+    <string name="app.containers_description">管理你的系统容器</string>
     <string name="app.disks_description">管理磁盘和分区</string>
     <string name="app.files_description">浏览文件和文件夹</string>
     <string name="app.media_description">浏览和观看照片和视频</string>
