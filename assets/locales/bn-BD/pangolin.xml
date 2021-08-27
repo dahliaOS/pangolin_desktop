@@ -25,7 +25,7 @@
     <string name="app.authenticator_description">দুটি ফ্যাক্টর অনুমোদন</string>
     <string name="app.calculator_description">সংযোজন, বিয়োগ, গুণ এবং বিভাগ</string>
     <string name="app.clock_description">সময়, অ্যালার্ম, স্টপওয়াচ এবং ওয়ার্ল্ড ক্লক</string>
-    <string name="app.containers_description" comment="Do not actually translate this string, just write &quot;Graft&quot; as the translation">পরিচালনা আপনার সিস্টেমের ধারকগুলি</string>
+    <string name="app.containers_description" comment="app.containers_description">পরিচালনা আপনার সিস্টেমের ধারকগুলি</string>
     <string name="app.disks_description">পরিচালনা ডিস্ক এবং পার্টিশন</string>
     <string name="app.files_description">ব্রাউজ ফাইল এবং ফোল্ডারগুলি</string>
     <string name="app.media_description">ব্রাউজ ফটো এবং ভিডিওগুলি</string>
