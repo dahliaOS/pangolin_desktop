@@ -10,9 +10,9 @@
     <string name="app.media">Медіа</string>
     <string name="app.music">Музика</string>
     <string name="app.notes">Текстовий редактор</string>
-    <string name="app.notesmobile">Notes (Mobile)</string>
+    <string name="app.notesmobile">Нотатки</string>
     <string name="app.messages">Повідомлення</string>
-    <string name="app.rootterminal">Root Terminal</string>
+    <string name="app.rootterminal">Командний рядок адміністратора</string>
     <string name="app.settings">Налаштування</string>
     <string name="app.systemlogs">Журнал подій в системі</string>
     <string name="app.taskmanager">Диспетчер задач</string>
