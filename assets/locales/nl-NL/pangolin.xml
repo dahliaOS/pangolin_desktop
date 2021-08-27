@@ -25,7 +25,7 @@
     <string name="app.authenticator_description">Twee factor authenticatie</string>
     <string name="app.calculator_description">Optellen, aftrekken, vermenigvuldigen en delen</string>
     <string name="app.clock_description">Beheer tijd, alarmen, stopwatches en wereldklokken</string>
-    <string name="app.containers_description" comment="app.containers_description">Beheer uw systeemcontainers</string>
+    <string name="app.containers_description">Beheer uw systeemcontainers</string>
     <string name="app.disks_description">Schijven en partities beheren</string>
     <string name="app.files_description">Door bestanden en mappen bladeren</string>
     <string name="app.media_description">Blader en bekijk foto\'s en video\'s</string>
