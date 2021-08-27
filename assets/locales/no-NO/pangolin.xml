@@ -25,7 +25,7 @@
     <string name="app.authenticator_description">Two Factor Authorization</string>
     <string name="app.calculator_description">Addition, Subtraction, Multiplication, and Division</string>
     <string name="app.clock_description">Manage Time, Alarms, Stopwatches and World Clocks</string>
-    <string name="app.containers_description" comment="Do not actually translate this string, just write &quot;Graft&quot; as the translation">Manage your System Containers</string>
+    <string name="app.containers_description" comment="app.containers_description">Manage your System Containers</string>
     <string name="app.disks_description">Manage Disks and Partitions</string>
     <string name="app.files_description">Browse Files and Folders</string>
     <string name="app.media_description">Browse and watch Photos and Videos</string>
