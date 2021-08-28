@@ -2,13 +2,13 @@
 <resources>
     <!-- App Names-->
     <string name="app.authenticator">প্রমাণীকরণকারী</string>
-    <string name="app.calculator">ক্যালকুলেটর</string>
+    <string name="app.calculator">গণন-যন্ত্র</string>
     <string name="app.clock">ঘড়ি</string>
     <string name="app.containers" comment="Do not actually translate this string, just write &quot;Graft&quot; as the translation">গ্র্যাফ্ট</string>
     <string name="app.disks">ডিস্ক</string>
     <string name="app.files">ফাইলস</string>
     <string name="app.media">মিডিয়া</string>
-    <string name="app.music">মাসিক</string>
+    <string name="app.music">সঙ্গীত</string>
     <string name="app.notes">টেক্সট সম্পাদক</string>
     <string name="app.notesmobile">মন্তব্য</string>
     <string name="app.messages">বার্তা</string>
@@ -27,8 +27,8 @@
     <string name="app.clock_description">সময়, অ্যালার্ম, স্টপওয়াচ এবং ওয়ার্ল্ড ক্লক</string>
     <string name="app.containers_description">পরিচালনা আপনার সিস্টেমের ধারকগুলি</string>
     <string name="app.disks_description">পরিচালনা ডিস্ক এবং পার্টিশন</string>
-    <string name="app.files_description">ব্রাউজ ফাইল এবং ফোল্ডারগুলি</string>
-    <string name="app.media_description">ব্রাউজ ফটো এবং ভিডিওগুলি</string>
+    <string name="app.files_description">ফাইল এবং ফোল্ডারগুলি দেখুন</string>
+    <string name="app.media_description">ফটো এবং ভিডিওগুলি দেখুন</string>
     <string name="app.music_description">স্থানীয় সংগীত শুনুন</string>
     <string name="app.notes_description">টেক্সট ফাইলগুলি সম্পাদনা করুন</string>
     <string name="app.notesmobile_description">মন্তব্য (মোবাইল)</string>
@@ -44,10 +44,10 @@
     <string name="app.web_description">ওয়েব ব্রাউজ করুন</string>
     <!-- Feature Not Implemented-->
     <string name="misc.featurenotimplemented_title">বৈশিষ্ট্য প্রয়োগ করা হয়নি</string>
-    <string name="misc.featurenotimplemented_value">এই বৈশিষ্ট্যটি বর্তমানে আপনার পাঙ্গোলিন তৈরিতে উপলভ্য নয়, দয়া করে আপডেটগুলি পরীক্ষা করার জন্য dahliaOS.io দেখুন।.</string>
+    <string name="misc.featurenotimplemented_value">এই বৈশিষ্ট্যটি বর্তমানে আপনার পাঙ্গোলিন তৈরিতে উপলভ্য নয়, দয়া করে আপডেটগুলি পরীক্ষা করার জন্য dahliaOS.io দেখুন।</string>
     <!-- Quicksettings-->
     <string name="qs.quick_controls">দ্রুত নিয়ন্ত্রণ</string>
-    <string name="qs.airplanemode">বিমান মোড</string>
+    <string name="qs.airplanemode">বিমান ধরণ</string>
     <string name="qs.autorotate">স্বয়ংক্রিয় ঘুরান</string>
     <string name="qs.bluetooth">ব্লুটুথ</string>
     <string name="qs.changelanguage" comment="Replace this with the name of the language you're translating to">ইংরেজি</string>
@@ -58,27 +58,27 @@
     <string name="qs.wifi">ওয়াইফাই</string>
     <!-- Launcher-->
     <string name="launcher.search">Search Device, Apps and Web</string>
-    <string name="launcher.categories.all"> All Applications</string>
+    <string name="launcher.categories.all"> সমস্ত অ্যাপ্লিকেশন</string>
     <string name="launcher.categories.internet">ইন্টারনেট</string>
     <string name="launcher.categories.media">মিডিয়া</string>
     <string name="launcher.categories.gaming">গেমিং</string>
     <string name="launcher.categories.development">বিকাশ</string>
     <string name="launcher.categories.office">দপ্তর</string>
-    <string name="launcher.categories.system">System</string>
+    <string name="launcher.categories.system">পদ্ধতি</string>
     <!-- Settings Tabs-->
-    <string name="settings.tabs.connections">Connections</string>
-    <string name="settings.tabs.sound">Volume and Sounds</string>
-    <string name="settings.tabs.display">Display</string>
+    <string name="settings.tabs.connections">সংযোগগুলি</string>
+    <string name="settings.tabs.sound">আয়তন এবং শব্দ</string>
+    <string name="settings.tabs.display">প্রদর্শন</string>
     <string name="settings.tabs.customization">Customization</string>
     <string name="settings.tabs.applications">Applications</string>
-    <string name="settings.tabs.security">Security</string>
+    <string name="settings.tabs.security">নিরাপত্তা</string>
     <string name="settings.tabs.accounts">Accounts</string>
     <string name="settings.tabs.backup">Backup</string>
     <string name="settings.tabs.devoptions">Developer Options</string>
     <string name="settings.tabs.general">General Management</string>
     <string name="settings.tabs.updates">Updates</string>
-    <string name="settings.tabs.about">About Device</string>
-    <string name="settings.tabs.search">Search Settings</string>
+    <string name="settings.tabs.about">যন্ত্রর সম্বন্ধে</string>
+    <string name="settings.tabs.search">অনুসন্ধান নির্দিষ্টকরণ</string>
     <!-- Settings Description-->
     <string name="settings.tabs.connections.description">Wi-Fi, Bluetooth, other Connections</string>
     <string name="settings.tabs.sound.description">Sound, Volume</string>
@@ -112,8 +112,8 @@
     <!-- Settings Sound-->
     <string name="settings.sound.system_volume">System Volume</string>
     <string name="settings.sound.volume_levels">Volume Levels</string>
-    <string name="settings.sound.output">Output</string>
-    <string name="settings.sound.input">Input</string>
+    <string name="settings.sound.output">উত্পাদন</string>
+    <string name="settings.sound.input">নিবেশ</string>
     <string name="settings.sound.system_volume_desc">Adjust the System Volume Level</string>
     <string name="settings.sound.volume_levels_desc">Adjust the Volume Level of individual Apps</string>
     <string name="settings.sound.output_desc">Select Output Device</string>
