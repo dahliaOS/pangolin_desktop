@@ -40,6 +40,7 @@
     <string name="app.terminal_description">Pristupite naredbenom retku</string>
     <string name="app.themedemo_description">Interna demonstracija za tematizaciju aplikacija</string>
     <string name="app.welcome_description">Dobrodošli aplikacija</string>
+    <string name="app.help_description">Često postavljana pitanja i podrška</string>
     <string name="app.web_description">Pregledajte web</string>
     <!-- Feature Not Implemented-->
     <string name="misc.featurenotimplemented_title">Značajka nije implementirana</string>
@@ -57,6 +58,7 @@
     <string name="qs.wifi">Wi-Fi</string>
     <!-- Launcher-->
     <string name="launcher.search">Pretražite uređaj, aplikacije i web</string>
+    <string name="launcher.categories.all">Sve aplikacije</string>
     <string name="launcher.categories.internet">Internet</string>
     <string name="launcher.categories.media">Mediji</string>
     <string name="launcher.categories.gaming">Gaming</string>
