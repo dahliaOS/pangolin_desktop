@@ -40,7 +40,6 @@
     <string name="app.terminal_description">অ্যাক্সেস কমান্ডলাইন</string>
     <string name="app.themedemo_description">অ্যাপ্লিকেশন তাদের জন্য অভ্যন্তরীণ বিক্ষোভ</string>
     <string name="app.welcome_description">স্বাগতম আবেদন</string>
-    <string name="app.help_description">প্রশ্ন এবং সমর্থন</string>
     <string name="app.web_description">ওয়েব ব্রাউজ করুন</string>
     <!-- Feature Not Implemented-->
     <string name="misc.featurenotimplemented_title">বৈশিষ্ট্য প্রয়োগ করা হয়নি</string>
@@ -57,7 +56,6 @@
     <string name="qs.theme">থিম</string>
     <string name="qs.wifi">ওয়াইফাই</string>
     <!-- Launcher-->
-    <string name="launcher.categories.all"> সমস্ত অ্যাপ্লিকেশন</string>
     <string name="launcher.categories.internet">ইন্টারনেট</string>
     <string name="launcher.categories.media">মিডিয়া</string>
     <string name="launcher.categories.gaming">গেমিং</string>
