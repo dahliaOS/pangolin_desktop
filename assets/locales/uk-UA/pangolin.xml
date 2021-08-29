@@ -17,14 +17,12 @@
     <string name="app.systemlogs">Журнал подій в системі</string>
     <string name="app.taskmanager">Диспетчер задач</string>
     <string name="app.terminal">Термінал</string>
-    <string name="app.themedemo">Theme Demo</string>
     <string name="app.welcome">Вітаємо</string>
     <string name="app.help">Довідка</string>
     <string name="app.web">Браузер</string>
     <!-- App Descriptions-->
     <string name="app.authenticator_description">Двофакторна авторизація</string>
     <string name="app.calculator_description">Додавання, віднімання, множення та ділення</string>
-    <string name="app.clock_description">Manage Time, Alarms, Stopwatches and World Clocks</string>
     <string name="app.containers_description">Керування системними контейнерами</string>
     <string name="app.disks_description">Керування дисками та розділами</string>
     <string name="app.files_description">Перегляд файлів та каталогів</string>
@@ -46,7 +44,6 @@
     <string name="misc.featurenotimplemented_title">Функція в розробці</string>
     <string name="misc.featurenotimplemented_value">Ця функція недоступна в цій версії Pangolin. Будь ласка, перевірте офіційний сайт на наявність новішої версії.</string>
     <!-- Quicksettings-->
-    <string name="qs.quick_controls">Quick Controls</string>
     <string name="qs.airplanemode">Режим польоту</string>
     <string name="qs.autorotate">Автоматичний поворот</string>
     <string name="qs.bluetooth">Bluetooth</string>
@@ -91,76 +88,14 @@
     <string name="settings.tabs.devoptions.description">Перемикачі функцій, додаткові налаштування</string>
     <string name="settings.tabs.general.description">Налаштування мови та часу</string>
     <string name="settings.tabs.updates.description">Список змін, оновлення та код</string>
-    <string name="settings.tabs.about.description">Status, Software Information</string>
     <!-- Settings Header-->
-    <string name="settings.header.connections">Connections</string>
-    <string name="settings.header.sound">Sound</string>
-    <string name="settings.header.display">Display</string>
-    <string name="settings.header.customization">Customization</string>
-    <string name="settings.header.applications">Applications</string>
     <string name="settings.header.security">Безпека</string>
-    <string name="settings.header.accounts">Accounts</string>
-    <string name="settings.header.backup">Backup</string>
-    <string name="settings.header.devoptions">Developer Options</string>
-    <string name="settings.header.general">General Management</string>
-    <string name="settings.header.updates">Updates</string>
-    <string name="settings.header.about">About Device</string>
     <!-- Settings Connections-->
-    <string name="settings.connections.wifi_and_bluetooth">Wi-Fi and Bluetooth</string>
-    <string name="settings.connections.enableWifi">Enable Wi-Fi</string>
-    <string name="settings.connections.enableBluetooth">Enable Bluetooth</string>
     <!-- Settings Sound-->
-    <string name="settings.sound.system_volume">System Volume</string>
-    <string name="settings.sound.volume_levels">Volume Levels</string>
-    <string name="settings.sound.output">Output</string>
-    <string name="settings.sound.input">Input</string>
-    <string name="settings.sound.system_volume_desc">Adjust the System Volume Level</string>
-    <string name="settings.sound.volume_levels_desc">Adjust the Volume Level of individual Apps</string>
-    <string name="settings.sound.output_desc">Select Output Device</string>
-    <string name="settings.sound.input_desc">Select Input Device</string>
     <!-- Settings Display-->
-    <string name="settings.display.screen">Screen</string>
-    <string name="settings.display.blue_light_filter">Blue Light Filter</string>
-    <string name="settings.display.resolution">Resolution</string>
-    <string name="settings.display.screen_desc">Set your screen Brightness</string>
-    <string name="settings.display.blue_light_filter_desc">Enable Blue Light Filter to protect your Eyes</string>
-    <string name="settings.display.resolution_desc">Adjust your Screen Resolution</string>
     <!-- Settings Customization-->
-    <string name="settings.customization.accent_color">Accent Color</string>
-    <string name="settings.customization.colored_titlebar">Use colored Titlebar</string>
-    <string name="settings.customization.use_colored_titlebars">Use colored Titlebars</string>
-    <string name="settings.customization.dark_mode">Dark Mode</string>
-    <string name="settings.customization.enable_dark_mode">Enable Dark Mode on the Desktop and all Applications</string>
-    <string name="settings.customization.blur">Blur</string>
-    <string name="settings.customization.enable_blur">Enable Blur Effects on the Desktop</string>
-    <string name="settings.customization.taskbar">Taskbar</string>
-    <string name="settings.customization.enable_centered_taskbar">Center Taskbar</string>
-    <string name="settings.customization.opacity">Opacity</string>
-    <string name="settings.customization.change_opacity">Change the Opacity of Interface Elements</string>
-    <string name="settings.customization.font">Font</string>
-    <string name="settings.customization.choose_font">Choose System Font Family</string>
-    <string name="settings.customization.desktop">Desktop</string>
-    <string name="settings.customization.choose_wallpaper_desc">Choose your Desktop Wallpaper</string>
-    <string name="settings.customization.choose_wallpaper_btn">Choose Wallpaper</string>
     <!-- Settings General-->
-    <string name="settings.general.language_and_region">Language and Region</string>
-    <string name="settings.general.language">Language</string>
-    <string name="settings.general.time">Time</string>
-    <string name="settings.general.time_automatic_time">Automatic Time</string>
-    <string name="settings.general.time_show_seconds">Show Seconds</string>
-    <string name="settings.general.time_enable_twentyfour_hours">Enable 24-hour Time</string>
-    <string name="settings.general.keyboard">Keyboard</string>
     <!-- Settings Updates-->
-    <string name="settings.updates.software_updates">Software Updates</string>
-    <string name="settings.updates.enable_system_updates">Enable System Updates</string>
-    <string name="settings.updates.allow_unsigned_packages">Allow Unsigned Packages</string>
-    <string name="settings.updates.update_package_url">Update Package URL</string>
-    <string name="settings.updates.button_update_system">Update System</string>
-    <string name="settings.updates.button_check_updates">Check for Updates</string>
     <!-- Settings About-->
-    <string name="settings.about.version">Version</string>
     <string name="settings.about.kernel">Ядро</string>
-    <string name="settings.about.pangolin_version">Pangolin Version</string>
-    <string name="settings.about.devoptions">Developer Options</string>
-    <string name="settings.about.enable_dev_options">Enable Developer Options</string>
 </resources>
