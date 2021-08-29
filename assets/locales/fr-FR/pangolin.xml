@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- App Names-->
     <string name="app.authenticator">Authentificateur</string>
     <string name="app.calculator">Calculatrice</string>
     <string name="app.clock">Horloge</string>
+    <string name="app.containers" comment="Do not actually translate this string, just write &quot;Graft&quot; as the translation">Graft</string>
     <string name="app.disks">Disques</string>
     <string name="app.files">Fichiers</string>
     <string name="app.media">Médias</string>
@@ -19,19 +21,14 @@
     <string name="app.welcome">Bienvenue</string>
     <string name="app.help">Aide système</string>
     <string name="app.web">Navigateur Web</string>
-    <string name="app.developeroptions">Options développeurs</string>
+    <!-- App Descriptions-->
+    <string name="app.notesmobile_description">Notes (Mobile)</string>
+    <string name="app.messages_description">Messages</string>
+    <string name="app.settings_description">Ajuster les paramètres système</string>
+    <!-- Feature Not Implemented-->
     <string name="misc.featurenotimplemented_title">Fonctionnalité non implémentée</string>
     <string name="misc.featurenotimplemented_value">Cette fonctionnalité n\'est actuellement pas disponible sur votre version de Pangolin. S\'il vous plaît, consultez https://reddit.com/r/dahliaos pour vérifier si des mises à jour sont disponibles.</string>
-    <string name="launchercard.information_title">Information</string>
-    <string name="launchercard.kernel_title">Noyau</string>
-    <string name="launchercard.kernel_value">Pilotes pour le GPU intégré mis à jour</string>
-    <string name="launchercard.music_title">Musique - En cours de lecture</string>
-    <string name="launchercard.music_value">PNL - Onizuka</string>
-    <string name="launchercard.security_title">Sécurité</string>
-    <string name="launchercard.security_value">Verrouillage de système de fichiers est ON</string>
-    <string name="launchercard.system_title">Système</string>
-    <string name="launchercard.system_value">Bienvenue sur dahliaOS !</string>
-    <string name="launcher_search">Recherchez dans votre appareil, des applications, le web...</string>
+    <!-- Quicksettings-->
     <string name="qs.airplanemode">Mode Avion</string>
     <string name="qs.autorotate">Rotation automatique</string>
     <string name="qs.bluetooth">Bluetooth</string>
@@ -41,6 +38,38 @@
     <string name="qs.invertcolors">Inverser les couleurs</string>
     <string name="qs.theme">Thème</string>
     <string name="qs.wifi">Wi-Fi</string>
-    <string name="app.containers" comment="Do not actually translate this string, just write &quot;Graft&quot; as the translation">Graft</string>
-    <string name="launchercard.information_value">Il fait froid dehors, prends un manteau !</string>
+    <!-- Launcher-->
+    <string name="launcher.categories.media">Médias</string>
+    <string name="launcher.categories.system">Système</string>
+    <!-- Settings Tabs-->
+    <string name="settings.tabs.security">Sécurité</string>
+    <string name="settings.tabs.devoptions">Options développeurs</string>
+    <!-- Settings Description-->
+    <!-- Settings Header-->
+    <string name="settings.header.sound">Son</string>
+    <string name="settings.header.applications">Applications</string>
+    <string name="settings.header.security">Sécurité</string>
+    <string name="settings.header.accounts">Comptes</string>
+    <string name="settings.header.backup">Sauvegarde</string>
+    <string name="settings.header.devoptions">Options développeurs</string>
+    <string name="settings.header.general">Gestion générale</string>
+    <string name="settings.header.updates">Mises à jour</string>
+    <string name="settings.header.about">À propos de l\'appareil</string>
+    <!-- Settings Connections-->
+    <string name="settings.connections.wifi_and_bluetooth">Wi-Fi et Bluetooth</string>
+    <string name="settings.connections.enableWifi">Activer le Wi-Fi</string>
+    <string name="settings.connections.enableBluetooth">Activer le Bluetooth</string>
+    <!-- Settings Sound-->
+    <string name="settings.sound.system_volume">Volume du système</string>
+    <string name="settings.sound.volume_levels">Niveaux de volume</string>
+    <string name="settings.sound.output">Sortie</string>
+    <string name="settings.sound.input">Entrée</string>
+    <string name="settings.sound.system_volume_desc">Ajuster le niveau de volume du système</string>
+    <!-- Settings Display-->
+    <!-- Settings Customization-->
+    <!-- Settings General-->
+    <!-- Settings Updates-->
+    <!-- Settings About-->
+    <string name="settings.about.kernel">Noyau</string>
+    <string name="settings.about.devoptions">Options développeurs</string>
 </resources>

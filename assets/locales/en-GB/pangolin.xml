@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- App Names-->
     <string name="app.authenticator">Authenticator</string>
     <string name="app.calculator">Calculator</string>
     <string name="app.clock">Clock</string>
+    <string name="app.containers" comment="Do not actually translate this string, just write &quot;Graft&quot; as the translation">Graft</string>
     <string name="app.disks">Disks</string>
     <string name="app.files">Files</string>
     <string name="app.media">Media</string>
@@ -19,19 +21,13 @@
     <string name="app.welcome">Welcome</string>
     <string name="app.help">Help</string>
     <string name="app.web">Web Browser</string>
-    <string name="app.developeroptions">Developer Options</string>
+    <!-- App Descriptions-->
+    <string name="app.notesmobile_description">Notes (Mobile)</string>
+    <string name="app.messages_description">Messages</string>
+    <!-- Feature Not Implemented-->
     <string name="misc.featurenotimplemented_title">Feature not implemented</string>
     <string name="misc.featurenotimplemented_value">This feature is currently not available on your build of Pangolin, please see https://reddit.com/r/dahliaos to check for updates.</string>
-    <string name="launchercard.information_title">Information</string>
-    <string name="launchercard.kernel_title">Kernel</string>
-    <string name="launchercard.kernel_value">Drivers for Integrated GPU updated</string>
-    <string name="launchercard.music_title">Music - Now playing</string>
-    <string name="launchercard.music_value">Vance Joy - Georgia</string>
-    <string name="launchercard.security_title">Security</string>
-    <string name="launchercard.security_value">Filesystem lock is ON</string>
-    <string name="launchercard.system_title">System</string>
-    <string name="launchercard.system_value">Welcome to dahliaOS!</string>
-    <string name="launcher_search">Search your device, apps, web...</string>
+    <!-- Quicksettings-->
     <string name="qs.airplanemode">Airplane mode</string>
     <string name="qs.autorotate">Auto rotate</string>
     <string name="qs.bluetooth">Bluetooth</string>
@@ -41,6 +37,23 @@
     <string name="qs.invertcolors">Invert colours</string>
     <string name="qs.theme">Theme</string>
     <string name="qs.wifi">Wi-Fi</string>
-    <string name="app.containers" comment="Do not actually translate this string, just write &quot;Graft&quot; as the translation">Graft</string>
-    <string name="launchercard.information_value">It\'s cold outside, grab a coat!</string>
+    <!-- Launcher-->
+    <string name="launcher.categories.media">Media</string>
+    <string name="launcher.categories.system">System</string>
+    <!-- Settings Tabs-->
+    <string name="settings.tabs.security">Security</string>
+    <string name="settings.tabs.devoptions">Developer Options</string>
+    <!-- Settings Description-->
+    <!-- Settings Header-->
+    <string name="settings.header.security">Security</string>
+    <string name="settings.header.devoptions">Developer Options</string>
+    <!-- Settings Connections-->
+    <!-- Settings Sound-->
+    <!-- Settings Display-->
+    <!-- Settings Customization-->
+    <!-- Settings General-->
+    <!-- Settings Updates-->
+    <!-- Settings About-->
+    <string name="settings.about.kernel">Kernel</string>
+    <string name="settings.about.devoptions">Developer Options</string>
 </resources>
