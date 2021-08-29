@@ -40,7 +40,6 @@
     <string name="app.terminal_description">Accedi alla riga di comando</string>
     <string name="app.themedemo_description">Dimostrazione interna per i temi delle app</string>
     <string name="app.welcome_description">Applicazione di benvenuto</string>
-    <string name="app.help_description">FAQ e supporto</string>
     <string name="app.web_description">Naviga su Internet</string>
     <!-- Feature Not Implemented-->
     <string name="misc.featurenotimplemented_title">Funzionalità non implementata</string>
@@ -58,7 +57,6 @@
     <string name="qs.wifi">Wi-Fi</string>
     <!-- Launcher-->
     <string name="launcher.search">Cerca dispositivo, app e internet</string>
-    <string name="launcher.categories.all">Tutte le app</string>
     <string name="launcher.categories.internet">Internet</string>
     <string name="launcher.categories.media">Multimedia</string>
     <string name="launcher.categories.gaming">Gaming</string>
@@ -130,7 +128,7 @@
     <string name="settings.customization.colored_titlebar">Usa la barra del titolo colorata</string>
     <string name="settings.customization.use_colored_titlebars">Usa le barre del titolo colorate</string>
     <string name="settings.customization.dark_mode">Tema scuro</string>
-    <string name="settings.customization.enable_dark_mode">Abilita il tema scuro sul Destkop e in tutte le app</string>
+    <string name="settings.customization.enable_dark_mode">Abilita il tema scuro sul Desktop e in tutte le app</string>
     <string name="settings.customization.blur">Sfocature</string>
     <string name="settings.customization.enable_blur">Abilita gli effetti di sfocatura sul desktop</string>
     <string name="settings.customization.taskbar">Barra delle app</string>
