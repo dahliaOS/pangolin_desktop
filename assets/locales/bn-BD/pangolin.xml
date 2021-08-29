@@ -57,7 +57,6 @@
     <string name="qs.theme">থিম</string>
     <string name="qs.wifi">ওয়াইফাই</string>
     <!-- Launcher-->
-    <string name="launcher.search">Search Device, Apps and Web</string>
     <string name="launcher.categories.all"> সমস্ত অ্যাপ্লিকেশন</string>
     <string name="launcher.categories.internet">ইন্টারনেট</string>
     <string name="launcher.categories.media">মিডিয়া</string>
@@ -69,97 +68,20 @@
     <string name="settings.tabs.connections">সংযোগগুলি</string>
     <string name="settings.tabs.sound">আয়তন এবং শব্দ</string>
     <string name="settings.tabs.display">প্রদর্শন</string>
-    <string name="settings.tabs.customization">Customization</string>
-    <string name="settings.tabs.applications">Applications</string>
     <string name="settings.tabs.security">নিরাপত্তা</string>
-    <string name="settings.tabs.accounts">Accounts</string>
-    <string name="settings.tabs.backup">Backup</string>
-    <string name="settings.tabs.devoptions">Developer Options</string>
-    <string name="settings.tabs.general">General Management</string>
-    <string name="settings.tabs.updates">Updates</string>
     <string name="settings.tabs.about">যন্ত্রর সম্বন্ধে</string>
     <string name="settings.tabs.search">অনুসন্ধান নির্দিষ্টকরণ</string>
     <!-- Settings Description-->
-    <string name="settings.tabs.connections.description">Wi-Fi, Bluetooth, other Connections</string>
-    <string name="settings.tabs.sound.description">Sound, Volume</string>
-    <string name="settings.tabs.display.description">Brightness, Blue light filter</string>
-    <string name="settings.tabs.customization.description">Customize the look and feel of dahliaOS</string>
-    <string name="settings.tabs.applications.description">Manage Apps and Permissions</string>
-    <string name="settings.tabs.security.description">Security and Privacy</string>
-    <string name="settings.tabs.accounts.description">Manage and add Accounts</string>
-    <string name="settings.tabs.backup.description">Backup and Restore</string>
-    <string name="settings.tabs.devoptions.description">Feature Flags, Advanced Options</string>
-    <string name="settings.tabs.general.description">Language, Keyboard, Clock</string>
-    <string name="settings.tabs.updates.description">Changelog, Updates, Sources</string>
-    <string name="settings.tabs.about.description">Status, Software Information</string>
     <!-- Settings Header-->
-    <string name="settings.header.connections">Connections</string>
-    <string name="settings.header.sound">Sound</string>
-    <string name="settings.header.display">Display</string>
-    <string name="settings.header.customization">Customization</string>
-    <string name="settings.header.applications">Applications</string>
-    <string name="settings.header.security">Security</string>
-    <string name="settings.header.accounts">Accounts</string>
-    <string name="settings.header.backup">Backup</string>
-    <string name="settings.header.devoptions">Developer Options</string>
-    <string name="settings.header.general">General Management</string>
-    <string name="settings.header.updates">Updates</string>
-    <string name="settings.header.about">About Device</string>
     <!-- Settings Connections-->
-    <string name="settings.connections.wifi_and_bluetooth">Wi-Fi and Bluetooth</string>
-    <string name="settings.connections.enableWifi">Enable Wi-Fi</string>
-    <string name="settings.connections.enableBluetooth">Enable Bluetooth</string>
     <!-- Settings Sound-->
-    <string name="settings.sound.system_volume">System Volume</string>
-    <string name="settings.sound.volume_levels">Volume Levels</string>
     <string name="settings.sound.output">উত্পাদন</string>
     <string name="settings.sound.input">নিবেশ</string>
-    <string name="settings.sound.system_volume_desc">Adjust the System Volume Level</string>
-    <string name="settings.sound.volume_levels_desc">Adjust the Volume Level of individual Apps</string>
-    <string name="settings.sound.output_desc">Select Output Device</string>
-    <string name="settings.sound.input_desc">Select Input Device</string>
     <!-- Settings Display-->
-    <string name="settings.display.screen">Screen</string>
-    <string name="settings.display.blue_light_filter">Blue Light Filter</string>
-    <string name="settings.display.resolution">Resolution</string>
-    <string name="settings.display.screen_desc">Set your screen Brightness</string>
-    <string name="settings.display.blue_light_filter_desc">Enable Blue Light Filter to protect your Eyes</string>
-    <string name="settings.display.resolution_desc">Adjust your Screen Resolution</string>
     <!-- Settings Customization-->
-    <string name="settings.customization.accent_color">Accent Color</string>
-    <string name="settings.customization.colored_titlebar">Use colored Titlebar</string>
-    <string name="settings.customization.use_colored_titlebars">Use colored Titlebars</string>
-    <string name="settings.customization.dark_mode">Dark Mode</string>
-    <string name="settings.customization.enable_dark_mode">Enable Dark Mode on the Desktop and all Applications</string>
-    <string name="settings.customization.blur">Blur</string>
-    <string name="settings.customization.enable_blur">Enable Blur Effects on the Desktop</string>
-    <string name="settings.customization.taskbar">Taskbar</string>
-    <string name="settings.customization.enable_centered_taskbar">Center Taskbar</string>
-    <string name="settings.customization.opacity">Opacity</string>
-    <string name="settings.customization.change_opacity">Change the Opacity of Interface Elements</string>
-    <string name="settings.customization.font">Font</string>
-    <string name="settings.customization.choose_font">Choose System Font Family</string>
-    <string name="settings.customization.desktop">Desktop</string>
-    <string name="settings.customization.choose_wallpaper_desc">Choose your Desktop Wallpaper</string>
-    <string name="settings.customization.choose_wallpaper_btn">Choose Wallpaper</string>
     <!-- Settings General-->
-    <string name="settings.general.language_and_region">Language and Region</string>
-    <string name="settings.general.language">Language</string>
-    <string name="settings.general.time">Time</string>
-    <string name="settings.general.time_automatic_time">Automatic Time</string>
-    <string name="settings.general.time_show_seconds">Show Seconds</string>
-    <string name="settings.general.time_enable_twentyfour_hours">Enable 24-hour Time</string>
-    <string name="settings.general.keyboard">Keyboard</string>
     <!-- Settings Updates-->
-    <string name="settings.updates.software_updates">Software Updates</string>
-    <string name="settings.updates.enable_system_updates">Enable System Updates</string>
-    <string name="settings.updates.allow_unsigned_packages">Allow Unsigned Packages</string>
-    <string name="settings.updates.update_package_url">Update Package URL</string>
-    <string name="settings.updates.button_update_system">Update System</string>
-    <string name="settings.updates.button_check_updates">Check for Updates</string>
     <!-- Settings About-->
-    <string name="settings.about.version">Version</string>
-    <string name="settings.about.kernel">Kernel</string>
     <string name="settings.about.pangolin_version">পঙ্গোলিন ভার্সন</string>
     <string name="settings.about.devoptions">বিকাশকারী বিকল্পসমূহ</string>
     <string name="settings.about.enable_dev_options">বিকাশকারী বিকল্পগুলি সক্ষম করুন</string>
