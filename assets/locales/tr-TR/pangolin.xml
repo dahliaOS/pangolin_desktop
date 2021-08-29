@@ -40,7 +40,6 @@
     <string name="app.terminal_description">Komut satırına eriş</string>
     <string name="app.themedemo_description">Uygulama temaları için dahili gösterim</string>
     <string name="app.welcome_description">Hoş geldiniz uygulaması</string>
-    <string name="app.help_description">SSS ve destek</string>
     <string name="app.web_description">Web\'de gezin</string>
     <!-- Feature Not Implemented-->
     <string name="misc.featurenotimplemented_title">Özellik henüz mevcut değil</string>
@@ -58,7 +57,6 @@
     <string name="qs.wifi">Wi-Fi</string>
     <!-- Launcher-->
     <string name="launcher.search">Aygıt, uygulamalar ve Web\'i ara</string>
-    <string name="launcher.categories.all"> Tüm uygulamalar</string>
     <string name="launcher.categories.internet">İnternet</string>
     <string name="launcher.categories.media">Ortam</string>
     <string name="launcher.categories.gaming">Oyunlar</string>
