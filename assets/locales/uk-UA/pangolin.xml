@@ -10,7 +10,7 @@
     <string name="app.media">Медіа</string>
     <string name="app.music">Музика</string>
     <string name="app.notes">Текстовий редактор</string>
-    <string name="app.notesmobile">Нотатки</string>
+    <string name="app.notesmobile">Нотатки (мобільний)</string>
     <string name="app.messages">Повідомлення</string>
     <string name="app.rootterminal">Командний рядок адміністратора</string>
     <string name="app.settings">Налаштування</string>
