@@ -43,7 +43,7 @@
     <string name="app.web_description">Web\'de gezin</string>
     <!-- Feature Not Implemented-->
     <string name="misc.featurenotimplemented_title">Özellik henüz mevcut değil</string>
-    <string name="misc.featurenotimplemented_value">Bu özellik şu anda kullandığınız yapıda mevcut değil, gelişmeler için lütfen https://reddit.com/r/dahliaos adresine bakın.</string>
+    <string name="misc.featurenotimplemented_value">Bu özellik şu anda kullandığınız yapıda mevcut değil, gelişmeler için lütfen https://dahliaOS.io adresine bakın.</string>
     <!-- Quicksettings-->
     <string name="qs.quick_controls">Hızlı denetimler</string>
     <string name="qs.airplanemode">Uçak kipi</string>
