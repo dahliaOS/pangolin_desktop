@@ -40,7 +40,6 @@
     <string name="app.terminal_description">Toegang tot de Commandline</string>
     <string name="app.themedemo_description">Interne demonstratie voor app thema\'s</string>
     <string name="app.welcome_description">Welkom applicatie</string>
-    <string name="app.help_description">Faq en ondersteuning</string>
     <string name="app.web_description">Blader door het web</string>
     <!-- Feature Not Implemented-->
     <string name="misc.featurenotimplemented_title">Functie niet geïmplementeerd</string>
@@ -58,7 +57,6 @@
     <string name="qs.wifi">Wi-Fi</string>
     <!-- Launcher-->
     <string name="launcher.search">Doorzoek apparaat, apps en web</string>
-    <string name="launcher.categories.all"> Alle applicaties</string>
     <string name="launcher.categories.internet">Internet</string>
     <string name="launcher.categories.media">Media</string>
     <string name="launcher.categories.gaming">Gaming</string>
