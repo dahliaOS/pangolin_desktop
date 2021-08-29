@@ -40,7 +40,7 @@
     <string name="app.terminal_description">Access the Commandline</string>
     <string name="app.themedemo_description">Internal demonstration for app theming</string>
     <string name="app.welcome_description">Welcome Application</string>
-    <string name="app.help_description">Faq and Support</string>
+    <string name="app.help_description">F.A.Q. and Support</string>
     <string name="app.web_description">Browse the Web</string>
     <!-- Feature Not Implemented-->
     <string name="misc.featurenotimplemented_title">Feature not implemented</string>
@@ -58,7 +58,7 @@
     <string name="qs.wifi">Wi-Fi</string>
     <!-- Launcher-->
     <string name="launcher.search">Search Device, Apps and Web</string>
-    <string name="launcher.categories.all"> All Applications</string>
+    <string name="launcher.categories.all">All Applications</string>
     <string name="launcher.categories.internet">Internet</string>
     <string name="launcher.categories.media">Media</string>
     <string name="launcher.categories.gaming">Gaming</string>
