@@ -3,7 +3,7 @@ on:
   push:
     paths:
       - '**.xml'
-    branches: [ master ]
+    branches: [ main ]
 jobs:
   locale_gen:
     name: Generate Locales
