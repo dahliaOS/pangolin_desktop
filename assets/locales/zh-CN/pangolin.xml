@@ -4,7 +4,7 @@
     <string name="app.authenticator">身份验证器</string>
     <string name="app.calculator">计算机</string>
     <string name="app.clock">时钟</string>
-    <string name="app.containers" comment="Do not actually translate this string, just write &quot;Graft&quot; as the translation">Graft虚拟机</string>
+    <string name="app.containers" comment="Do not actually translate this string, just write &quot;Graft&quot; as the translation">Graft</string>
     <string name="app.disks">磁盘</string>
     <string name="app.files">文件</string>
     <string name="app.media">媒体库</string>
