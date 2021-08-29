@@ -40,7 +40,6 @@
     <string name="app.terminal_description">Dostęp do wiersza poleceń</string>
     <string name="app.themedemo_description">Wewnętrzna demonstracja dla motywów aplikacji</string>
     <string name="app.welcome_description">Aplikacja Powitalna</string>
-    <string name="app.help_description">Faq i Wsparcie</string>
     <string name="app.web_description">Przeglądaj sieć</string>
     <!-- Feature Not Implemented-->
     <string name="misc.featurenotimplemented_title">Funkcja niezaimplementowana</string>
@@ -58,7 +57,6 @@
     <string name="qs.wifi">Wi-Fi</string>
     <!-- Launcher-->
     <string name="launcher.search">Wyszukaj urządzenia, aplikacje i sieć</string>
-    <string name="launcher.categories.all"> Wszystkie aplikacje</string>
     <string name="launcher.categories.internet">Internet</string>
     <string name="launcher.categories.media">Multimedia</string>
     <string name="launcher.categories.gaming">Granie</string>
