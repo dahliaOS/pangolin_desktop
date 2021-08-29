@@ -27,7 +27,7 @@
     <string name="app.settings_description">Ajuster les paramètres système</string>
     <!-- Feature Not Implemented-->
     <string name="misc.featurenotimplemented_title">Fonctionnalité non implémentée</string>
-    <string name="misc.featurenotimplemented_value">Cette fonctionnalité n\'est actuellement pas disponible sur votre version de Pangolin. S\'il vous plaît, consultez https://reddit.com/r/dahliaos pour vérifier si des mises à jour sont disponibles.</string>
+    <string name="misc.featurenotimplemented_value">Cette fonctionnalité n\'est actuellement pas disponible sur votre version de Pangolin. S\'il vous plaît, consultez https://dahliaos.io pour vérifier si des mises à jour sont disponibles.</string>
     <!-- Quicksettings-->
     <string name="qs.airplanemode">Mode Avion</string>
     <string name="qs.autorotate">Rotation automatique</string>
