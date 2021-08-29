@@ -43,7 +43,7 @@
     <string name="app.web_description">Navegar na Web</string>
     <!-- Feature Not Implemented-->
     <string name="misc.featurenotimplemented_title">Recurso não implementado</string>
-    <string name="misc.featurenotimplemented_value">Este recurso não está disponível na sua versão do Pangolin. favor consulte https://reddit.com/r/dahliaos para verificar se há atualizações.</string>
+    <string name="misc.featurenotimplemented_value">Este recurso não está disponível na sua versão do Pangolin. favor consulte https://dahliaOS.io para verificar se há atualizações.</string>
     <!-- Quicksettings-->
     <string name="qs.quick_controls">Controles rápidos</string>
     <string name="qs.airplanemode">Modo avião</string>
