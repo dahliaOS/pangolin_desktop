@@ -38,7 +38,6 @@
     <string name="app.terminal_description">Доступ до командного рядка</string>
     <string name="app.themedemo_description">Показ персоналізації додатків</string>
     <string name="app.welcome_description">Застосунок привітання</string>
-    <string name="app.help_description">ЧЗП та підтримка</string>
     <string name="app.web_description">Перегляд інтернету</string>
     <!-- Feature Not Implemented-->
     <string name="misc.featurenotimplemented_title">Функція в розробці</string>
@@ -55,7 +54,6 @@
     <string name="qs.wifi">Wi-Fi</string>
     <!-- Launcher-->
     <string name="launcher.search">Пошук в пристрої, додатках та мережі</string>
-    <string name="launcher.categories.all"> Усі додатки</string>
     <string name="launcher.categories.internet">Інтернет</string>
     <string name="launcher.categories.media">Медіа</string>
     <string name="launcher.categories.gaming">Ігри</string>
