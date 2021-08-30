@@ -1,43 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- App Names-->
-    <string name="app.calculator">Sakrekenaar</string>
-    <string name="app.clock">Horlosie</string>
-    <string name="app.containers" comment="Do not actually translate this string, just write &quot;Graft&quot; as the translation">Graft</string>
-    <string name="app.disks">Skywe</string>
-    <string name="app.files">Lêers</string>
-    <string name="app.media">Media</string>
-    <string name="app.music">Musiek</string>
-    <string name="app.messages">Boodskappe</string>
-    <string name="app.settings">Instellings</string>
-    <string name="app.welcome">Welkom</string>
-    <string name="app.help">Help</string>
-    <string name="app.web">Webblaaier</string>
     <!-- App Descriptions-->
-    <string name="app.messages_description">Boodskappe</string>
     <!-- Feature Not Implemented-->
     <!-- Quicksettings-->
-    <string name="qs.bluetooth">Bluetooth</string>
-    <string name="qs.changelanguage" comment="Replace this with the name of the language you're translating to">Engels</string>
-    <string name="qs.flashlight">Flitslig</string>
     <!-- Launcher-->
-    <string name="launcher.categories.internet">Internet</string>
     <!-- Settings Tabs-->
-    <string name="settings.tabs.sound">Volume en Klanke</string>
-    <string name="settings.tabs.display">Skerm</string>
-    <string name="settings.tabs.security">Sekuriteit</string>
     <!-- Settings Description-->
-    <string name="settings.tabs.sound.description">Klank, Volume</string>
-    <string name="settings.tabs.security.description">Sekuriteit en Privaatheid</string>
     <!-- Settings Header-->
-    <string name="settings.header.connections">Konneksies</string>
-    <string name="settings.header.sound">Klank</string>
-    <string name="settings.header.display">Skerm</string>
-    <string name="settings.header.security">Sekuriteit</string>
     <!-- Settings Connections-->
     <!-- Settings Sound-->
     <!-- Settings Display-->
-    <string name="settings.display.screen">Skerm</string>
     <!-- Settings Customization-->
     <!-- Settings General-->
     <!-- Settings Updates-->
