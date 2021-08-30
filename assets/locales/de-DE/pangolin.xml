@@ -40,6 +40,7 @@
     <string name="app.terminal_description">Auf die Kommandozeile zugreifen</string>
     <string name="app.themedemo_description">Interne Demo für App-Theming</string>
     <string name="app.welcome_description">Begrüßungs Anwendung</string>
+    <string name="app.help_description">Häufig gestellte Fragen und Support</string>
     <string name="app.web_description">Internet durchsuchen</string>
     <!-- Feature Not Implemented-->
     <string name="misc.featurenotimplemented_title">Funktion noch nicht Intigriert</string>
@@ -57,6 +58,7 @@
     <string name="qs.wifi">WLAN</string>
     <!-- Launcher-->
     <string name="launcher.search">Geräte, Apps und Web durchsuchen</string>
+    <string name="launcher.categories.all">Alle Anwendungen</string>
     <string name="launcher.categories.internet">Internet</string>
     <string name="launcher.categories.media">Medien</string>
     <string name="launcher.categories.gaming">Spielen</string>
