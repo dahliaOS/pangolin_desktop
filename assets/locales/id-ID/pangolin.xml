@@ -26,7 +26,6 @@
     <string name="app.messages_description">Pesan</string>
     <!-- Feature Not Implemented-->
     <string name="misc.featurenotimplemented_title">Fitur belum di implementasikan</string>
-    <string name="misc.featurenotimplemented_value">Fitur ini saat ini belum tersedia di build Pangolin Kamu. Silahkan periksa https://reddit.com/r/dahliaos untuk perkembangan lebih lanjut.</string>
     <!-- Quicksettings-->
     <string name="qs.airplanemode">Mode pesawat</string>
     <string name="qs.autorotate">Rotasi otomatis</string>
