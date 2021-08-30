@@ -26,7 +26,6 @@
     <string name="app.messages_description">Messages</string>
     <!-- Feature Not Implemented-->
     <string name="misc.featurenotimplemented_title">Feature not implemented</string>
-    <string name="misc.featurenotimplemented_value">This feature is currently not available on your build of Pangolin, please see https://reddit.com/r/dahliaos to check for updates.</string>
     <!-- Quicksettings-->
     <string name="qs.airplanemode">Airplane mode</string>
     <string name="qs.autorotate">Auto rotate</string>
