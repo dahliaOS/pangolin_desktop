@@ -68,18 +68,52 @@
     <string name="settings.tabs.connections">সংযোগগুলি</string>
     <string name="settings.tabs.sound">আয়তন এবং শব্দ</string>
     <string name="settings.tabs.display">প্রদর্শন</string>
+    <string name="settings.tabs.customization">স্বনির্বাচন</string>
+    <string name="settings.tabs.applications">সমস্ত অ্যাপ্লিকেশন</string>
     <string name="settings.tabs.security">নিরাপত্তা</string>
+    <string name="settings.tabs.general">সাধারণ পরিচালন</string>
+    <string name="settings.tabs.updates">আধুনিকরণ</string>
     <string name="settings.tabs.about">যন্ত্রর সম্বন্ধে</string>
     <string name="settings.tabs.search">অনুসন্ধান নির্দিষ্টকরণ</string>
     <!-- Settings Description-->
+    <string name="settings.tabs.security.description">নিরাপত্তা এবং গোপনীয়তা</string>
+    <string name="settings.tabs.general.description">ভাষা, কীবোর্ড, ঘড়ি</string>
+    <string name="settings.tabs.about.description">অবস্থা, সফটওয়্যার তথ্য</string>
     <!-- Settings Header-->
+    <string name="settings.header.connections">সংযোগগুলি</string>
+    <string name="settings.header.sound">শব্দ</string>
+    <string name="settings.header.display">প্রদর্শন</string>
+    <string name="settings.header.customization">স্বনির্বাচন</string>
+    <string name="settings.header.applications">অ্যাপ্লিকেশনগুলি</string>
+    <string name="settings.header.security">নিরাপত্তা</string>
+    <string name="settings.header.devoptions">বিকাশকারী বিকল্পসমূহ</string>
+    <string name="settings.header.general">সাধারণ পরিচালন</string>
+    <string name="settings.header.updates">আধুনিকরণ</string>
+    <string name="settings.header.about">যন্ত্রর সম্বন্ধে</string>
     <!-- Settings Connections-->
+    <string name="settings.connections.enableWifi">ওয়াই-ফাই সক্ষম করুন</string>
+    <string name="settings.connections.enableBluetooth">ব্লুটুথ সক্ষম করুন</string>
     <!-- Settings Sound-->
     <string name="settings.sound.output">উত্পাদন</string>
     <string name="settings.sound.input">নিবেশ</string>
     <!-- Settings Display-->
+    <string name="settings.display.blue_light_filter_desc">আপনার চোখ রক্ষা করতে নীল আলো বিশোধন চালু করুন</string>
     <!-- Settings Customization-->
+    <string name="settings.customization.dark_mode">অন্ধকার ধরন</string>
+    <string name="settings.customization.blur">অস্পষ্টতা</string>
+    <string name="settings.customization.enable_blur">ডেস্কটপে অস্পষ্টতা ঘটান</string>
+    <string name="settings.customization.taskbar">টাস্কবার</string>
+    <string name="settings.customization.enable_centered_taskbar">কেন্দ্রের টাস্কবার</string>
+    <string name="settings.customization.opacity">অস্বচ্ছতা</string>
+    <string name="settings.customization.change_opacity">ইন্টারফেস বস্তুর অস্বচ্ছতা পরিবর্তন করুন</string>
+    <string name="settings.customization.font">হরফ</string>
+    <string name="settings.customization.choose_font">প্রণালী হরফ নির্বাচন করুন</string>
+    <string name="settings.customization.desktop">ডেস্কটপ</string>
+    <string name="settings.customization.choose_wallpaper_desc">আপনার ডেস্কটপের প্রাথমিক চিত্র চয়ন করুন</string>
+    <string name="settings.customization.choose_wallpaper_btn">প্রাথমিক চিত্র চয়ন করুন</string>
     <!-- Settings General-->
+    <string name="settings.general.language_and_region">ভাষা এবং অঞ্চল</string>
+    <string name="settings.general.language">ভাষা</string>
     <!-- Settings Updates-->
     <!-- Settings About-->
     <string name="settings.about.pangolin_version">পঙ্গোলিন ভার্সন</string>
