@@ -4,7 +4,6 @@
     <string name="app.authenticator">प्रमाणक</string>
     <string name="app.calculator">कैलकुलेटर</string>
     <string name="app.clock">घड़ी</string>
-    <string name="app.containers" comment="Do not actually translate this string, just write &quot;Graft&quot; as the translation">Graft</string>
     <string name="app.disks">फ्लैशलाइट</string>
     <string name="app.files">फाइल्स</string>
     <string name="app.media">मीडिया</string>
