@@ -11,10 +11,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         name: Checkout repository
-      - name: Prepare Flutter SDK
-        uses: subosito/flutter-action@v1
-      - name: Checkout submodules
-        uses: textbook/git-checkout-submodule-action@master
+      - run: git submodule update --init --recursive
+        name: Checkout submodules
+      - uses: subosito/flutter-action@v1
+        name: Prepare Flutter SDK
       - run: flutter channel dev
         name: Switch Flutter channel
       - run: flutter pub get
