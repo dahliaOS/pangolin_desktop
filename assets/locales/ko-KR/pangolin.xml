@@ -26,7 +26,6 @@
     <string name="app.messages_description">메시지</string>
     <!-- Feature Not Implemented-->
     <string name="misc.featurenotimplemented_title">기능이 구현되지 않음</string>
-    <string name="misc.featurenotimplemented_value">이 기능은 현재 Pangolin 빌드에 존재하지 않습니다. https://reddit.com/r/dahliaos 을(를) 방문하여 업데이트를 확인해 주세요.</string>
     <!-- Quicksettings-->
     <string name="qs.airplanemode">비행기 모드</string>
     <string name="qs.autorotate">자동 회전</string>
