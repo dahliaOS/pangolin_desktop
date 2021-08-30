@@ -26,7 +26,6 @@
     <string name="app.messages_description">訊息</string>
     <!-- Feature Not Implemented-->
     <string name="misc.featurenotimplemented_title">功能尚未實作</string>
-    <string name="misc.featurenotimplemented_value">此功能在您目前的Pangolin版本無法使用，請至https://reddit.com/r/dahliaos查看更新。</string>
     <!-- Quicksettings-->
     <string name="qs.airplanemode">飛航模式</string>
     <string name="qs.autorotate">自動旋轉</string>
