@@ -46,6 +46,8 @@ class Locales {
     const Locale("sk", "SK"),
     const Locale("sl", "SI"),
     const Locale("sq", "AL"),
+    const Locale("sr", "CY"),
+    const Locale("sr", "SR"),
     const Locale("sv", "SE"),
     const Locale("sw", "KE"),
     const Locale("th", "TH"),
@@ -96,6 +98,8 @@ class Locales {
     _$LocaleSkSK().locale: _$LocaleSkSK().data,
     _$LocaleSlSI().locale: _$LocaleSlSI().data,
     _$LocaleSqAL().locale: _$LocaleSqAL().data,
+    _$LocaleSrCY().locale: _$LocaleSrCY().data,
+    _$LocaleSrSR().locale: _$LocaleSrSR().data,
     _$LocaleSvSE().locale: _$LocaleSvSE().data,
     _$LocaleSwKE().locale: _$LocaleSwKE().data,
     _$LocaleThTH().locale: _$LocaleThTH().data,
@@ -146,6 +150,8 @@ class Locales {
     _$LocaleSkSK().locale: _$LocaleSkSK().translatedStrings,
     _$LocaleSlSI().locale: _$LocaleSlSI().translatedStrings,
     _$LocaleSqAL().locale: _$LocaleSqAL().translatedStrings,
+    _$LocaleSrCY().locale: _$LocaleSrCY().translatedStrings,
+    _$LocaleSrSR().locale: _$LocaleSrSR().translatedStrings,
     _$LocaleSvSE().locale: _$LocaleSvSE().translatedStrings,
     _$LocaleSwKE().locale: _$LocaleSwKE().translatedStrings,
     _$LocaleThTH().locale: _$LocaleThTH().translatedStrings,
@@ -2525,6 +2531,32 @@ class _$LocaleSqAL extends _$LocaleBase {
 
   @override
   int get translatedStrings => 28;
+}
+
+
+class _$LocaleSrCY extends _$LocaleBase {
+  @override
+  String get locale => "sr-CY";
+
+  @override
+  Map<String, String> get data => {
+  };
+
+  @override
+  int get translatedStrings => 0;
+}
+
+
+class _$LocaleSrSR extends _$LocaleBase {
+  @override
+  String get locale => "sr-SR";
+
+  @override
+  Map<String, String> get data => {
+  };
+
+  @override
+  int get translatedStrings => 0;
 }
 
 
