@@ -16,6 +16,7 @@ class _$AppLocaleStrings {
   final String authenticator = "app.authenticator".tr();
   final String calculator = "app.calculator".tr();
   final String clock = "app.clock".tr();
+  /// Do not actually translate this string, just write "Graft" as the translation
   final String containers = "app.containers".tr();
   final String disks = "app.disks".tr();
   final String files = "app.files".tr();
@@ -65,6 +66,7 @@ class _$QsLocaleStrings {
   final String airplanemode = "qs.airplanemode".tr();
   final String autorotate = "qs.autorotate".tr();
   final String bluetooth = "qs.bluetooth".tr();
+  /// Replace this with the name of the language you're translating to
   final String changelanguage = "qs.changelanguage".tr();
   final String dnd = "qs.dnd".tr();
   final String flashlight = "qs.flashlight".tr();

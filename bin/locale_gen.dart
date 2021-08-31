@@ -5,7 +5,7 @@ import 'locale_gen/locale_generator.dart';
 const String _localeFolder = "assets/locales";
 const String _outputFolder = "lib/internal/locales";
 const String _defaultLocale = "en-US";
-void main(List<String> args) async {
+Future<void> main(List<String> args) async {
   final LocaleGenerator _localeGen =
       LocaleGenerator(_localeFolder, _outputFolder);
   await _localeGen.generate();
@@ -19,6 +19,7 @@ void main(List<String> args) async {
   );
   await _keyGen.generate();
 
+  // ignore: avoid_print
   print("Files generated inside $_outputFolder");
   return;
 }

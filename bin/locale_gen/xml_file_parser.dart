@@ -5,30 +5,34 @@ import 'package:xml/xml.dart';
 class XmlFileParser {
   const XmlFileParser._();
 
-  static Future<Map<String, String>> load(File file, String locale) async {
+  static Future<ParseResult> load(File file, String locale) async {
     final Map<String, String> returnMap = {};
+    int stringCount = 0;
 
     final String fileContent = await file.readAsString();
     final XmlDocument document = XmlDocument.parse(fileContent);
     document.normalize();
 
-    XmlElement? base = document.lastElementChild;
+    final XmlElement base = document.lastElementChild!;
 
-    for (XmlNode item in base!.children) {
+    for (final XmlNode item in base.children) {
       if (item is XmlElement) {
-        XmlElement element = item;
+        final XmlElement element = item;
 
-        String? name = element.getAttribute("name");
+        final String? name = element.getAttribute("name");
         if (name == null) continue;
 
         if (element.name.toString() == "string") {
-          returnMap["$name"] = _replacer(element.text);
+          stringCount++;
+          returnMap[name] = _replacer(element.text);
         } else if (element.name.toString() == "plurals") {
-          for (XmlNode plural in element.children) {
+          stringCount++;
+          for (final XmlNode plural in element.children) {
             if (plural is XmlElement) {
-              XmlElement pluralElement = plural;
+              final XmlElement pluralElement = plural;
 
-              String? pluralAttribute = pluralElement.getAttribute("quantity");
+              final String? pluralAttribute =
+                  pluralElement.getAttribute("quantity");
               if (pluralAttribute == null) continue;
 
               returnMap["$name.$pluralAttribute"] =
@@ -39,20 +43,22 @@ class XmlFileParser {
       }
     }
 
-    return returnMap;
+    return ParseResult(data: returnMap, uniqueStrings: stringCount);
   }
 
   static Future<Map<String, Map<String, StringInfo>>> loadWithStringInfo(
-      File file, String locale) async {
+    File file,
+    String locale,
+  ) async {
     final Map<String, Map<String, StringInfo>> returnMap = {};
 
     final String fileContent = await file.readAsString();
     final XmlDocument document = XmlDocument.parse(fileContent);
     document.normalize();
 
-    final XmlElement? base = document.lastElementChild;
+    final XmlElement base = document.lastElementChild!;
 
-    for (XmlNode item in base!.children) {
+    for (final XmlNode item in base.children) {
       if (item is XmlElement) {
         final XmlElement element = item;
 
@@ -62,18 +68,22 @@ class XmlFileParser {
         final String routeName = splittedName.first;
         splittedName.removeAt(0);
         final String normalizedName = splittedName.join(".");
+        final String? comment = element.getAttribute("comment");
 
         returnMap[routeName] ??= {};
 
         if (element.name.toString() == "string") {
           if (element.text.contains("%s")) {
-            returnMap[routeName]?[normalizedName] ??= ArgumentString()
+            returnMap[routeName]![normalizedName] ??= ArgumentString()
+              ..comment = comment
               ..argNum = _argumentNum(element.text);
           } else {
-            returnMap[routeName]?[normalizedName] ??= CommonString();
+            returnMap[routeName]![normalizedName] ??= CommonString()
+              ..comment = comment;
           }
         } else if (element.name.toString() == "plurals") {
-          returnMap[routeName]?[normalizedName] ??= PluralString();
+          returnMap[routeName]![normalizedName] ??= PluralString()
+            ..comment = comment;
         }
       }
     }
@@ -84,8 +94,8 @@ class XmlFileParser {
   static String _replacer(String base) {
     return base
         .replaceAll("%s", "{}")
-        .replaceAll("\\\"", "\"")
-        .replaceAll("\\\'", "\'")
+        .replaceAll('\\"', '"')
+        .replaceAll("\\'", "'")
         .replaceAll("\\n", "\n");
   }
 
@@ -103,12 +113,24 @@ class XmlFileParser {
   }
 }
 
-class StringInfo {}
+class StringInfo {
+  String? comment;
+}
 
 class CommonString extends StringInfo {}
 
 class PluralString extends StringInfo {}
 
 class ArgumentString extends StringInfo {
-  int argNum = 0;
+  late int argNum;
+}
+
+class ParseResult {
+  final Map<String, String> data;
+  final int uniqueStrings;
+
+  const ParseResult({
+    required this.data,
+    required this.uniqueStrings,
+  });
 }

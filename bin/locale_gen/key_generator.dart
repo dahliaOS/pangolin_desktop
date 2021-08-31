@@ -12,8 +12,8 @@ class KeyGenerator {
   KeyGenerator(this.localeDir, this.outputDir, this.defaultLocale);
 
   Future<void> generate() async {
-    late String locale;
-    late File path;
+    String? locale;
+    File? path;
     final Directory providedDir = Directory(localeDir);
     final Directory absoluteOutputDir = Directory(outputDir).absolute;
     final List<FileSystemEntity> files = providedDir.listSync();
@@ -23,15 +23,17 @@ class KeyGenerator {
     final File localeStringsFile =
         File("${absoluteOutputDir.path}/locale_strings.g.dart");
 
-    for (var element in files) {
+    for (final FileSystemEntity element in files) {
       if (element is Directory) {
         final String _locale = getNameFromPath(element.path);
         if (_locale == defaultLocale) {
           locale = _locale;
-          path = File(element.path + "/pangolin.xml");
+          path = File("${element.path}/pangolin.xml");
         }
       }
     }
+
+    if (locale == null || path == null) return;
 
     final Map<String, Map<String, StringInfo>> result =
         await XmlFileParser.loadWithStringInfo(path, locale);
@@ -51,14 +53,18 @@ class KeyGenerator {
 
       currentBuffer.writeln("class ${getClassNameFromRouteFile(routeFile)} {");
       keyStringInfo.forEach((key, stringInfo) {
+        if (stringInfo.comment != null) {
+          currentBuffer.writeln('  /// ${stringInfo.comment}');
+        }
         if (stringInfo is CommonString) {
           final String varName = ReCase(key).camelCase;
           currentBuffer
-              .writeln("  final String $varName = \"$routeFile.$key\".tr();");
+              .writeln('  final String $varName = "$routeFile.$key".tr();');
         } else if (stringInfo is PluralString) {
           final String varName = ReCase(key).camelCase;
           currentBuffer.writeln(
-              "  String $varName(num value) => \"$routeFile.$key\".plural(value);");
+            '  String $varName(num value) => "$routeFile.$key".plural(value);',
+          );
         } else if (stringInfo is ArgumentString) {
           final String varName = ReCase(key).camelCase;
           final int argNum = stringInfo.argNum;
@@ -74,7 +80,7 @@ class KeyGenerator {
               string += "Object arg${i + 1}, ";
             }
           }
-          string += "\"$routeFile.$key\".tr(args: [${args.join(", ")}]);";
+          string += '"$routeFile.$key".tr(args: [${args.join(", ")}]);';
           currentBuffer.writeln(string);
         }
       });
@@ -83,12 +89,13 @@ class KeyGenerator {
 
       final String className = getClassNameFromRouteFile(routeFile);
       commonBuffer.writeln(
-          "  static $className get $recasedRouteFile => $className();");
+        "  static $className get $recasedRouteFile => $className();",
+      );
     });
     commonBuffer.writeln("}");
 
-    await localeStringsFile.writeAsString(
-        commonBuffer.toString() + "\n" + stringClassesBuffer.toString());
+    await localeStringsFile
+        .writeAsString("$commonBuffer\n$stringClassesBuffer");
   }
 }
 

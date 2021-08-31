@@ -12,13 +12,9 @@ class AssetLoaderGenerator {
 }
 
 String _class = """
-// @dart=2.12
-
 import 'dart:ui';
-
 import 'package:easy_localization/easy_localization.dart';
 import './locales.g.dart';
-
 class GeneratedAssetLoader extends AssetLoader {
   @override
   Future<Map<String, dynamic>> load(String path, Locale locale) async {
