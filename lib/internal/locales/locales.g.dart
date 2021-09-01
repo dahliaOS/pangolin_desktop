@@ -1417,6 +1417,7 @@ class _$LocaleItIT extends _$LocaleBase {
     "app.terminal_description": "Accedi alla riga di comando",
     "app.themedemo_description": "Dimostrazione interna per i temi delle app",
     "app.welcome_description": "Applicazione di benvenuto",
+    "app.help_description": "F.A.Q. e supporto",
     "app.web_description": "Naviga su Internet",
     "misc.featurenotimplemented_title": "Funzionalità non implementata",
     "misc.featurenotimplemented_value": "Questa funzionalità non è disponibile nella tua build di Pangolin, controlla su dahliaOS.io per eventuali aggiornamenti.",
@@ -1431,6 +1432,7 @@ class _$LocaleItIT extends _$LocaleBase {
     "qs.theme": "Tema",
     "qs.wifi": "Wi-Fi",
     "launcher.search": "Cerca dispositivo, app e internet",
+    "launcher.categories.all": "Tutte le app",
     "launcher.categories.internet": "Internet",
     "launcher.categories.media": "Multimedia",
     "launcher.categories.gaming": "Gaming",
@@ -1528,7 +1530,7 @@ class _$LocaleItIT extends _$LocaleBase {
   };
 
   @override
-  int get translatedStrings => 146;
+  int get translatedStrings => 148;
 }
 
 
@@ -2675,36 +2677,35 @@ class _$LocaleTrTR extends _$LocaleBase {
 
   @override
   Map<String, String> get data => {
-    "app.authenticator": "Kimlik Doğrulayıcı",
-    "app.calculator": "Hesap Makinesi",
+    "app.authenticator": "Kimlik doğrulayıcı",
+    "app.calculator": "Hesap makinesi",
     "app.clock": "Saat",
     "app.containers": "Graft",
     "app.disks": "Diskler",
     "app.files": "Dosyalar",
     "app.media": "Ortam",
     "app.music": "Müzik",
-    "app.notes": "Metin Düzenleyici",
-    "app.notesmobile": "Notlar (Taşınabilir)",
+    "app.notes": "Metin düzenleyici",
+    "app.notesmobile": "Notlar (Mobil)",
     "app.messages": "İletiler",
-    "app.rootterminal": "Kök Uçbirim",
+    "app.rootterminal": "Kök uçbirim",
     "app.settings": "Ayarlar",
-    "app.systemlogs": "Sistem Günlükleri",
-    "app.taskmanager": "Görev Yöneticisi",
+    "app.systemlogs": "Sistem günlükleri",
+    "app.taskmanager": "Görev yöneticisi",
     "app.terminal": "Uçbirim",
-    "app.themedemo": "Tema Demosu",
     "app.welcome": "Hoş geldiniz",
     "app.help": "Yardım",
-    "app.web": "Web Tarayıcısı",
+    "app.web": "Web tarayıcısı",
     "app.authenticator_description": "İki adımlı kimlik doğrulama",
     "app.calculator_description": "Toplama, çıkarma, çarpma, bölme",
-    "app.clock_description": "Zaman, Alarmlar, Kronometreler ve Dünya Saatlerini yönet",
+    "app.clock_description": "Zaman, alarmlar, kronometreler ve dünya saatlerini yönet",
     "app.containers_description": "Sistem kapsayıcılarını yönet",
     "app.disks_description": "Diskleri ve bölümleri yönet",
     "app.files_description": "Dosyalara ve klasörlere göz at",
     "app.media_description": "Fotoğraflara ve videolara göz at",
     "app.music_description": "Diskteki müzikleri dinle",
     "app.notes_description": "Diskteki metin dosyalarını düzenle",
-    "app.notesmobile_description": "Notlar (Taşınabilir)",
+    "app.notesmobile_description": "Notlar (Mobil)",
     "app.messages_description": "İletiler",
     "app.rootterminal_description": "Komutları Süper Kullanıcı olarak çalıştır",
     "app.settings_description": "Sistem ayarlarını düzenle",
@@ -2713,6 +2714,7 @@ class _$LocaleTrTR extends _$LocaleBase {
     "app.terminal_description": "Komut satırına eriş",
     "app.themedemo_description": "Uygulama temaları için dahili gösterim",
     "app.welcome_description": "Hoş geldiniz uygulaması",
+    "app.help_description": "SSS ve destek",
     "app.web_description": "Web'de gezin",
     "misc.featurenotimplemented_title": "Özellik henüz mevcut değil",
     "misc.featurenotimplemented_value": "Bu özellik şu anda kullandığınız yapıda mevcut değil, gelişmeler için lütfen https://dahliaOS.io adresine bakın.",
@@ -2721,12 +2723,13 @@ class _$LocaleTrTR extends _$LocaleBase {
     "qs.autorotate": "Kendiliğinden döndür",
     "qs.bluetooth": "Bluetooth",
     "qs.changelanguage": "Türk",
-    "qs.dnd": "Rahatsız etmeyin",
+    "qs.dnd": "Rahatsız etme",
     "qs.flashlight": "Fener",
     "qs.invertcolors": "Renkleri ters çevir",
     "qs.theme": "Tema",
     "qs.wifi": "Wi-Fi",
     "launcher.search": "Aygıt, uygulamalar ve Web'i ara",
+    "launcher.categories.all": "Tüm uygulamalar",
     "launcher.categories.internet": "İnternet",
     "launcher.categories.media": "Ortam",
     "launcher.categories.gaming": "Oyunlar",
@@ -2824,7 +2827,7 @@ class _$LocaleTrTR extends _$LocaleBase {
   };
 
   @override
-  int get translatedStrings => 146;
+  int get translatedStrings => 147;
 }
 
 
