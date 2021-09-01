@@ -1,37 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- App Names-->
-    <string name="app.authenticator">Kimlik Doğrulayıcı</string>
-    <string name="app.calculator">Hesap Makinesi</string>
+    <string name="app.authenticator">Kimlik doğrulayıcı</string>
+    <string name="app.calculator">Hesap makinesi</string>
     <string name="app.clock">Saat</string>
     <string name="app.containers" comment="Do not actually translate this string, just write &quot;Graft&quot; as the translation">Graft</string>
     <string name="app.disks">Diskler</string>
     <string name="app.files">Dosyalar</string>
     <string name="app.media">Ortam</string>
     <string name="app.music">Müzik</string>
-    <string name="app.notes">Metin Düzenleyici</string>
-    <string name="app.notesmobile">Notlar (Taşınabilir)</string>
+    <string name="app.notes">Metin düzenleyici</string>
+    <string name="app.notesmobile">Notlar (Mobil)</string>
     <string name="app.messages">İletiler</string>
-    <string name="app.rootterminal">Kök Uçbirim</string>
+    <string name="app.rootterminal">Kök uçbirim</string>
     <string name="app.settings">Ayarlar</string>
-    <string name="app.systemlogs">Sistem Günlükleri</string>
-    <string name="app.taskmanager">Görev Yöneticisi</string>
+    <string name="app.systemlogs">Sistem günlükleri</string>
+    <string name="app.taskmanager">Görev yöneticisi</string>
     <string name="app.terminal">Uçbirim</string>
-    <string name="app.themedemo">Tema Demosu</string>
     <string name="app.welcome">Hoş geldiniz</string>
     <string name="app.help">Yardım</string>
-    <string name="app.web">Web Tarayıcısı</string>
+    <string name="app.web">Web tarayıcısı</string>
     <!-- App Descriptions-->
     <string name="app.authenticator_description">İki adımlı kimlik doğrulama</string>
     <string name="app.calculator_description">Toplama, çıkarma, çarpma, bölme</string>
-    <string name="app.clock_description">Zaman, Alarmlar, Kronometreler ve Dünya Saatlerini yönet</string>
+    <string name="app.clock_description">Zaman, alarmlar, kronometreler ve dünya saatlerini yönet</string>
     <string name="app.containers_description">Sistem kapsayıcılarını yönet</string>
     <string name="app.disks_description">Diskleri ve bölümleri yönet</string>
     <string name="app.files_description">Dosyalara ve klasörlere göz at</string>
     <string name="app.media_description">Fotoğraflara ve videolara göz at</string>
     <string name="app.music_description">Diskteki müzikleri dinle</string>
     <string name="app.notes_description">Diskteki metin dosyalarını düzenle</string>
-    <string name="app.notesmobile_description">Notlar (Taşınabilir)</string>
+    <string name="app.notesmobile_description">Notlar (Mobil)</string>
     <string name="app.messages_description">İletiler</string>
     <string name="app.rootterminal_description">Komutları Süper Kullanıcı olarak çalıştır</string>
     <string name="app.settings_description">Sistem ayarlarını düzenle</string>
@@ -40,6 +39,7 @@
     <string name="app.terminal_description">Komut satırına eriş</string>
     <string name="app.themedemo_description">Uygulama temaları için dahili gösterim</string>
     <string name="app.welcome_description">Hoş geldiniz uygulaması</string>
+    <string name="app.help_description">SSS ve destek</string>
     <string name="app.web_description">Web\'de gezin</string>
     <!-- Feature Not Implemented-->
     <string name="misc.featurenotimplemented_title">Özellik henüz mevcut değil</string>
@@ -50,13 +50,14 @@
     <string name="qs.autorotate">Kendiliğinden döndür</string>
     <string name="qs.bluetooth">Bluetooth</string>
     <string name="qs.changelanguage" comment="Replace this with the name of the language you're translating to">Türk</string>
-    <string name="qs.dnd">Rahatsız etmeyin</string>
+    <string name="qs.dnd">Rahatsız etme</string>
     <string name="qs.flashlight">Fener</string>
     <string name="qs.invertcolors">Renkleri ters çevir</string>
     <string name="qs.theme">Tema</string>
     <string name="qs.wifi">Wi-Fi</string>
     <!-- Launcher-->
     <string name="launcher.search">Aygıt, uygulamalar ve Web\'i ara</string>
+    <string name="launcher.categories.all">Tüm uygulamalar</string>
     <string name="launcher.categories.internet">İnternet</string>
     <string name="launcher.categories.media">Ortam</string>
     <string name="launcher.categories.gaming">Oyunlar</string>
