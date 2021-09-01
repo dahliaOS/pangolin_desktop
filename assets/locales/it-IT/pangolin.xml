@@ -40,6 +40,7 @@
     <string name="app.terminal_description">Accedi alla riga di comando</string>
     <string name="app.themedemo_description">Dimostrazione interna per i temi delle app</string>
     <string name="app.welcome_description">Applicazione di benvenuto</string>
+    <string name="app.help_description">F.A.Q. e supporto</string>
     <string name="app.web_description">Naviga su Internet</string>
     <!-- Feature Not Implemented-->
     <string name="misc.featurenotimplemented_title">Funzionalità non implementata</string>
@@ -57,6 +58,7 @@
     <string name="qs.wifi">Wi-Fi</string>
     <!-- Launcher-->
     <string name="launcher.search">Cerca dispositivo, app e internet</string>
+    <string name="launcher.categories.all">Tutte le app</string>
     <string name="launcher.categories.internet">Internet</string>
     <string name="launcher.categories.media">Multimedia</string>
     <string name="launcher.categories.gaming">Gaming</string>
