@@ -46,23 +46,6 @@ double horizontalPadding(BuildContext context, double size) =>
 double verticalPadding(BuildContext context, double size) =>
     WindowHierarchy.of(context).wmBounds.height / 2 - size / 3.5;
 
-List<String> languages = [
-  "عربى - إيران",
-  "Bosanski - Bosna i Hercegovina",
-  "Hrvatski - Hrvatska",
-  "Nederlands - België",
-  "Nederlands - Nederland",
-  "English - United States",
-  "Français - France",
-  "Deutsch - Deutschland",
-  "bahasa Indonesia - Indonesia",
-  "Polski - Polska",
-  "Português - Brasil",
-  "русский - Россия",
-  "Svenska - Sverige",
-  "Український - Україна",
-];
-
 List<String> timeZones = [];
 
 List<String> wallpapers = [
