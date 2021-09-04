@@ -54,7 +54,7 @@ void main() async {
   runApp(
     EasyLocalization(
       supportedLocales: Locales.supported,
-      fallbackLocale: Locale("en", "US"),
+      fallbackLocale: const Locale("en", "US"),
       useFallbackTranslations: true,
       assetLoader: GeneratedAssetLoader(),
       path: "assets/locales",

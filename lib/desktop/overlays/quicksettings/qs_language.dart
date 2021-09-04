@@ -33,7 +33,7 @@ class QsLanguage extends StatelessWidget {
         itemCount: Locales.supported.length,
         itemBuilder: (context, index) => ListTile(
           title: Text(
-            Locales.supported[index].toString(),
+            Locales.supported[index].toLanguageTag(),
           ),
           onTap: () {
             context.setLocale(Locales.supported[index]);
