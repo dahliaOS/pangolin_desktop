@@ -15,7 +15,6 @@ limitations under the License.
 */
 
 import 'package:dahlia_backend/dahlia_backend.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -38,7 +37,7 @@ class ThemeManager {
           _hsl.withLightness(_hsl.lightness + (_hsl.lightness * 0.5));
     } else {
       accentAltHSL =
-          _hsl.withLightness(_hsl.lightness - (_hsl.lightness * 0.4));
+          _hsl.withLightness(_hsl.lightness - (_hsl.lightness * 0.25));
     }
 
     if (accentAltHSL.saturation > 0.9) {

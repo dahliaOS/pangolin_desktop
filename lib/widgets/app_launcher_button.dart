@@ -16,7 +16,6 @@ limitations under the License.
 
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:pangolin/desktop/shell.dart';
 import 'package:pangolin/utils/app_list.dart';
 import 'package:pangolin/utils/common_data.dart';
@@ -32,7 +31,6 @@ class AppLauncherButton extends StatefulWidget {
 }
 
 class _AppLauncherButtonState extends State<AppLauncherButton> {
-
   Application get application => widget.application;
 
   @override

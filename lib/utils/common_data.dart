@@ -26,13 +26,13 @@ class CommonData {
   // General BorderRadius
   BorderRadius borderRadius(BorderRadiusType elementSize) {
     if (elementSize == BorderRadiusType.SMALL) {
-      return BorderRadius.circular(6);
-    }
-    if (elementSize == BorderRadiusType.MEDIUM) {
       return BorderRadius.circular(8);
     }
+    if (elementSize == BorderRadiusType.MEDIUM) {
+      return BorderRadius.circular(12);
+    }
     if (elementSize == BorderRadiusType.BIG) {
-      return BorderRadius.circular(10);
+      return BorderRadius.circular(16);
     }
     if (elementSize == BorderRadiusType.ROUND) {
       return BorderRadius.circular(200);
@@ -63,7 +63,7 @@ class CommonData {
   Curve animationCurve() => Curves.easeInOut;
 
   //General animation duration
-  Duration animationDuration() => Duration(milliseconds: 250);
+  Duration animationDuration() => Duration(milliseconds: 150);
 
   // Text Color
   Color textColor() => Theme.of(context).brightness == Brightness.light

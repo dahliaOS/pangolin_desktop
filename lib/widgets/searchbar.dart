@@ -16,7 +16,6 @@ limitations under the License.
 
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
 class Searchbar extends StatelessWidget {
   final Widget? leading, trailing;
@@ -33,7 +32,7 @@ class Searchbar extends StatelessWidget {
       required this.trailing,
       required this.hint,
       required this.controller,
-      this.outline = true,
+      this.outline = false,
       this.borderRadius,
       this.focusNode,
       this.text = "",

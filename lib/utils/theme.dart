@@ -98,8 +98,8 @@ ThemeData theme(BuildContext context) {
       thumbColor: Color(_data.accentColor),
       activeTrackColor: Color(_data.accentColor),
       inactiveTrackColor: Color(_data.accentColor).withOpacity(0.5),
-      activeTickMarkColor: Colors.white.withOpacity(0.5),
-      inactiveTickMarkColor: Colors.white.withOpacity(0.5),
+      activeTickMarkColor: Colors.white.withOpacity(0.2),
+      inactiveTickMarkColor: Colors.white.withOpacity(0.2),
     ),
   );
 }

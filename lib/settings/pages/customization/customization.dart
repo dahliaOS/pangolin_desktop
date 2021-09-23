@@ -20,6 +20,7 @@ import 'package:pangolin/settings/widgets/accent_color_button.dart';
 import 'package:pangolin/settings/widgets/settings_card.dart';
 import 'package:pangolin/settings/widgets/settings_content_header.dart';
 import 'package:pangolin/settings/widgets/settings_page.dart';
+import 'package:pangolin/settings/widgets/taskbar_alignment_button.dart';
 import 'package:pangolin/settings/widgets/theme_mode_button.dart';
 
 class SettingsPageCustomization extends StatefulWidget {
@@ -61,6 +62,22 @@ class _SettingsPageCustomizationState extends State<SettingsPageCustomization> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: SettingsPresets.themeModePresets
                     .map((e) => ThemeModeButton(model: e))
+                    .toList(),
+              ),
+            ),
+          ),
+        ),
+        SettingsContentHeader("Taskbar Alignment"),
+        SettingsCard.custom(
+          content: SizedBox(
+            width: double.infinity,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Wrap(
+                alignment: WrapAlignment.spaceEvenly,
+                // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: SettingsPresets.taskbarAlignmentPresets
+                    .map((e) => TaskbarAlignmentButton(model: e))
                     .toList(),
               ),
             ),

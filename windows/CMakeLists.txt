@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.15)
+cmake_minimum_required(VERSION 3.14)
 project(pangolin_desktop LANGUAGES CXX)
 
 set(BINARY_NAME "pangolin_desktop")

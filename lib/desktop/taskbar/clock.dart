@@ -16,12 +16,18 @@ limitations under the License.
 
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:pangolin/utils/common_data.dart';
 import 'package:provider/provider.dart';
 import 'package:pangolin/utils/preference_extension.dart';
 
-class DateClockWidget extends StatelessWidget {
+class DateClockWidget extends StatefulWidget {
+  @override
+  State<DateClockWidget> createState() => _DateClockWidgetState();
+}
+
+class _DateClockWidgetState extends State<DateClockWidget> {
+  bool _hover = false;
+
   @override
   Widget build(BuildContext context) {
     final _pref = Provider.of<PreferenceProvider>(context);
@@ -31,21 +37,27 @@ class DateClockWidget extends StatelessWidget {
           ValueListenableBuilder(
         valueListenable: DateTimeManager.getTimeNotifier()!,
         builder: (BuildContext context, String time, Widget? child) => SizedBox(
-          width: _pref.isTaskbarHorizontal ? date.characters.length * 10 : 48,
+          width: _pref.isTaskbarHorizontal ? time.characters.length * 12 : 40,
           height: _pref.isTaskbarHorizontal ? 48 : time.characters.length * 9,
-          child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(4.0),
             child: ClipRRect(
               borderRadius:
                   CommonData.of(context).borderRadius(BorderRadiusType.SMALL),
               child: Material(
                 color: Colors.transparent,
                 child: InkWell(
+                  onHover: (hover) {
+                    setState(() {
+                      _hover = hover;
+                    });
+                  },
                   hoverColor:
                       Theme.of(context).colorScheme.secondary.withOpacity(0.5),
                   mouseCursor: SystemMouseCursors.click,
                   onTap: () {},
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 1),
+                    padding: EdgeInsets.symmetric(horizontal: 4, vertical: 1),
                     child: Center(
                       child: _pref.isTaskbarHorizontal
                           ? Column(
@@ -53,20 +65,23 @@ class DateClockWidget extends StatelessWidget {
                               children: [
                                 Text(
                                   time,
-                                  style: TextStyle(fontWeight: FontWeight.w500),
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: _hover ? 13 : 14,
+                                  ),
                                   textAlign: TextAlign.center,
                                 ),
-                                SizedBox(
-                                  height: 2,
+                                Offstage(
+                                  offstage: !_hover,
+                                  child: Text(
+                                    date,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 13,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
                                 ),
-                                _pref.isTaskbarHorizontal
-                                    ? Text(
-                                        date,
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                      )
-                                    : SizedBox.shrink(),
                               ],
                             )
                           : Row(

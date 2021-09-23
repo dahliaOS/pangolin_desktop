@@ -20,7 +20,6 @@ import 'package:pangolin/utils/app_list.dart';
 import 'package:pangolin/widgets/error_window.dart';
 import 'package:pangolin/widgets/window_surface.dart';
 import 'package:pangolin/widgets/window_toolbar.dart';
-import 'package:utopia_wm/wm_new.dart';
 
 class WmAPI {
   static const WindowEntry windowEntry = WindowEntry(

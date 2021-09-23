@@ -45,7 +45,7 @@ class _QsAppBarState extends State<QsAppBar> {
           toolbarHeight: widget.preferredSize.height,
           foregroundColor: Theme.of(context).textTheme.bodyText1?.color,
           iconTheme: Theme.of(context).iconTheme,
-          backgroundColor: Theme.of(context).backgroundColor.withOpacity(0.5),
+          backgroundColor: Theme.of(context).backgroundColor.withOpacity(0.0),
           elevation: 0,
           centerTitle: true,
           title: Text(widget.title),

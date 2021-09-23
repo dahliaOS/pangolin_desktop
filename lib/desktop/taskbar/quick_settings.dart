@@ -16,7 +16,6 @@ limitations under the License.
 
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:pangolin/desktop/overlays/quicksettings/quick_settings_overlay.dart';
 import 'package:pangolin/desktop/shell.dart';
 import 'package:pangolin/utils/common_data.dart';

@@ -80,6 +80,7 @@ flutter:
     - assets/locales/
     - assets/json/visualData.json
     - global/assets/
+    - fonts/
 
   fonts:
     - family: CustomIcons
@@ -107,14 +108,7 @@ flutter:
         - asset: fonts/lato/Lato-Italic.ttf
     - family: Inter
       fonts:
-        - asset: fonts/inter/Inter-Black.ttf
-        - asset: fonts/inter/Inter-Bold.ttf
-        - asset: fonts/inter/Inter-ExtraBold.ttf
-        - asset: fonts/inter/Inter-ExtraLight.ttf
         - asset: fonts/inter/Inter-Regular.ttf
-        - asset: fonts/inter/Inter-Light.ttf
-        - asset: fonts/inter/Inter-SemiBold.ttf
-        - asset: fonts/inter/Inter-Thin.ttf
     - family: FiraCode
       fonts:
        - asset: fonts/firacode/FiraCode-Bold.ttf

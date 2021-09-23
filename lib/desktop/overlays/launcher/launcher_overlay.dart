@@ -16,7 +16,6 @@ limitations under the License.
 
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:pangolin/desktop/overlays/launcher/launcher_categories.dart';
 import 'package:pangolin/desktop/overlays/launcher/launcher_grid.dart';
 import 'package:pangolin/desktop/overlays/launcher/power_menu.dart';
@@ -169,7 +168,6 @@ class Search extends StatelessWidget {
         trailing: Icon(Icons.menu),
         hint: "Search Device, Apps and Web",
         controller: TextEditingController(),
-        borderRadius: BorderRadius.circular(8),
       ),
     );
   }

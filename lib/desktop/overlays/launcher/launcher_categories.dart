@@ -12,7 +12,6 @@ limitations under the License.
 */
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:pangolin/internal/locales/locale_strings.g.dart';
 import 'package:pangolin/utils/common_data.dart';
 
@@ -52,8 +51,9 @@ class _LauncherCategoriesState extends State<LauncherCategories> {
             // The row of chips 'test test test test' lol
             margin: const EdgeInsets.only(top: 33 + (1 / 3), bottom: 8),
             child: BoxContainer(
+              outline: false,
               borderRadius:
-                  CommonData.of(context).borderRadius(BorderRadiusType.MEDIUM),
+                  CommonData.of(context).borderRadius(BorderRadiusType.ROUND),
               // have to give explicit size, as the child ListView can't calculate its Y height
               height: 42,
               child: ListView.builder(
@@ -63,38 +63,39 @@ class _LauncherCategoriesState extends State<LauncherCategories> {
                 itemBuilder: (context, index) {
                   return Material(
                     borderRadius: CommonData.of(context)
-                        .borderRadius(BorderRadiusType.SMALL),
+                        .borderRadius(BorderRadiusType.ROUND),
                     color: _selected == index
                         ? Theme.of(context).colorScheme.secondary
                         : Colors.transparent,
                     child: InkWell(
-                        borderRadius: CommonData.of(context)
-                            .borderRadius(BorderRadiusType.SMALL),
-                        onTap: () {
-                          setState(() {
-                            _selected = index;
-                          });
-                          widget.controller?.animateToPage(index,
-                              duration: Duration(milliseconds: 300),
-                              curve: Curves.easeInOut);
-                        },
-                        mouseCursor: SystemMouseCursors.click,
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 8.0, horizontal: 18),
-                          child: Center(
-                            child: Text(
-                              launcherCategories[index],
-                              style: TextStyle(
-                                  fontWeight: _selected == index
-                                      ? FontWeight.bold
-                                      : FontWeight.normal,
-                                  color: _selected == index
-                                      ? CommonData.of(context).textColorAlt()
-                                      : CommonData.of(context).textColor()),
-                            ),
+                      borderRadius: CommonData.of(context)
+                          .borderRadius(BorderRadiusType.ROUND),
+                      onTap: () {
+                        setState(() {
+                          _selected = index;
+                        });
+                        widget.controller?.animateToPage(index,
+                            duration: Duration(milliseconds: 300),
+                            curve: Curves.easeInOut);
+                      },
+                      mouseCursor: SystemMouseCursors.click,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 8.0, horizontal: 18),
+                        child: Center(
+                          child: Text(
+                            launcherCategories[index],
+                            style: TextStyle(
+                                fontWeight: _selected == index
+                                    ? FontWeight.bold
+                                    : FontWeight.normal,
+                                color: _selected == index
+                                    ? CommonData.of(context).textColorAlt()
+                                    : CommonData.of(context).textColor()),
                           ),
-                        )),
+                        ),
+                      ),
+                    ),
                   );
                 },
               ),

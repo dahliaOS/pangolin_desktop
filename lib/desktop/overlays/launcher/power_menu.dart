@@ -13,9 +13,9 @@ limitations under the License.
 
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:pangolin/desktop/overlays/power_overlay.dart';
 import 'package:pangolin/desktop/shell.dart';
+import 'package:pangolin/utils/common_data.dart';
 import 'package:pangolin/utils/wm_api.dart';
 
 class LauncherPowerMenu extends StatefulWidget {
@@ -34,7 +34,8 @@ class _LauncherPowerMenuState extends State<LauncherPowerMenu> {
         width: 28 * 3 + 16 * 4,
         height: 32 + 16,
         child: BoxContainer(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius:
+              CommonData.of(context).borderRadius(BorderRadiusType.MEDIUM),
           child: Material(
             color: Colors.transparent,
             child: Row(
@@ -44,6 +45,8 @@ class _LauncherPowerMenuState extends State<LauncherPowerMenu> {
                   child: SizedBox(
                     height: 32 + 16,
                     child: InkWell(
+                      borderRadius: CommonData.of(context)
+                          .borderRadius(BorderRadiusType.MEDIUM),
                       onTap: () {
                         _shell.showOverlay(PowerOverlay.overlayId,
                             dismissEverything: false);
@@ -61,6 +64,8 @@ class _LauncherPowerMenuState extends State<LauncherPowerMenu> {
                   child: SizedBox(
                     height: 32 + 16,
                     child: InkWell(
+                      borderRadius: CommonData.of(context)
+                          .borderRadius(BorderRadiusType.MEDIUM),
                       onTap: () {},
                       mouseCursor: SystemMouseCursors.click,
                       child: Icon(
@@ -74,6 +79,8 @@ class _LauncherPowerMenuState extends State<LauncherPowerMenu> {
                   child: SizedBox(
                     height: 32 + 16,
                     child: InkWell(
+                      borderRadius: CommonData.of(context)
+                          .borderRadius(BorderRadiusType.MEDIUM),
                       onTap: () {
                         _shell.dismissEverything();
                         WmAPI.of(context).openApp("io.dahlia.settings");

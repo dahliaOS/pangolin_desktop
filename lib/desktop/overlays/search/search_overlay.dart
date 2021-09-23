@@ -15,7 +15,6 @@ limitations under the License.
 */
 
 import 'package:dahlia_backend/dahlia_backend.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/desktop/shell.dart';
 import 'package:pangolin/utils/common_data.dart';
@@ -93,19 +92,22 @@ class _SearchOverlayState extends State<SearchOverlay>
             scale: _animation,
             alignment: FractionalOffset.bottomCenter,
             child: BoxSurface(
+              dropShadow: true,
               borderRadius:
                   CommonData.of(context).borderRadius(BorderRadiusType.BIG),
               width: 500,
               height: 324,
               child: Column(
                 children: [
-                  BoxSurface(
-                    outline: false,
-                    height: 48,
+                  Container(
+                    padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                    //  outline: false,
+                    height: 48 + 10,
                     child: Searchbar(
                       outline: false,
                       color: Theme.of(context).backgroundColor.withOpacity(0.2),
-                      borderRadius: BorderRadius.zero,
+                      borderRadius: CommonData.of(context)
+                          .borderRadius(BorderRadiusType.MEDIUM),
                       focusNode: _focusNode,
                       controller: _controller,
                       hint: 'Search Device, Apps and Web',
@@ -123,7 +125,7 @@ class _SearchOverlayState extends State<SearchOverlay>
                       builder: (_, List<Application>? apps, Widget? child) {
                         return apps!.isNotEmpty
                             ? Container(
-                                height: 270,
+                                height: 240,
                                 child: ListView(
                                   children: [
                                     Container(
@@ -156,7 +158,7 @@ class _SearchOverlayState extends State<SearchOverlay>
                                 ),
                               )
                             : Container(
-                                height: 270,
+                                height: 240,
                                 child: ListView(
                                   children: [
                                     Container(

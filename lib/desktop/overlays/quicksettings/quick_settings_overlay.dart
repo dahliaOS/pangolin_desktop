@@ -18,7 +18,6 @@ import 'dart:async';
 
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:pangolin/desktop/overlays/power_overlay.dart';
 import 'package:pangolin/desktop/overlays/quicksettings/qs_bluetooth.dart';
 import 'package:pangolin/desktop/overlays/quicksettings/qs_language.dart';
@@ -117,6 +116,7 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
               ], borderRadius: BorderRadius.circular(10)), */
               width: 500,
               height: 428,
+              dropShadow: true,
               child: MaterialApp(
                 routes: {
                   "/": (context) => QsMain(),
@@ -151,7 +151,7 @@ class QsMain extends StatelessWidget {
         toolbarHeight: 48,
         foregroundColor: Theme.of(context).textTheme.bodyText1?.color,
         iconTheme: Theme.of(context).iconTheme,
-        backgroundColor: Theme.of(context).backgroundColor.withOpacity(0.2),
+        backgroundColor: Theme.of(context).backgroundColor.withOpacity(0.0),
         elevation: 0,
         title: Row(
           children: [

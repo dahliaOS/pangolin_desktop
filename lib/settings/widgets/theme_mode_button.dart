@@ -68,6 +68,8 @@ class _ThemeModeButtonState extends State<ThemeModeButton> {
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
                       children: [
+                        _cardElement(widget.model),
+                        SizedBox(width: 8),
                         Expanded(
                           flex: 2,
                           child: Column(
@@ -80,8 +82,6 @@ class _ThemeModeButtonState extends State<ThemeModeButton> {
                             ],
                           ),
                         ),
-                        SizedBox(width: 8),
-                        _cardElement(widget.model),
                       ],
                     ),
                   ),

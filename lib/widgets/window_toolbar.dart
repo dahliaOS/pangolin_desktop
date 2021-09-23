@@ -14,9 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 import 'package:dahlia_backend/dahlia_backend.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:pangolin/utils/context_menus/context_menu.dart';
 import 'package:pangolin/utils/context_menus/context_menu_item.dart';
@@ -130,10 +128,7 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
                             child: Icon(Icons.minimize),
                           ),
                           onTap: () => onMinimize(properties),
-                          hoverColor: Theme.of(context)
-                              .colorScheme
-                              .secondary
-                              .withOpacity(0.2),
+                          hoverColor: Theme.of(context).colorScheme.secondary,
                         ),
                         WindowToolbarButton(
                           icon: properties.geometry.maximized
@@ -146,18 +141,12 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
                               entry.windowDock = WindowDock.NORMAL;
                             } */
                           },
-                          hoverColor: Theme.of(context)
-                              .colorScheme
-                              .secondary
-                              .withOpacity(0.2),
+                          hoverColor: Theme.of(context).colorScheme.secondary,
                         ),
                         WindowToolbarButton(
                           icon: Icon(Icons.close),
                           onTap: () => onClose(properties),
-                          hoverColor: Theme.of(context)
-                              .colorScheme
-                              .secondary
-                              .withOpacity(0.2),
+                          hoverColor: Theme.of(context).colorScheme.secondary,
                         ),
                         SizedBox(width: 2),
                       ],

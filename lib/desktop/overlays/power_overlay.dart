@@ -18,7 +18,6 @@ import 'dart:async';
 
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:pangolin/utils/common_data.dart';
 import 'package:pangolin/utils/globals.dart';
 import 'package:pangolin/desktop/shell.dart';
@@ -56,6 +55,7 @@ class _PowerOverlayState extends State<PowerOverlay> with ShellOverlayState {
           },
           child: BoxSurface(
             outline: false,
+            dropShadow: true,
           ),
         ),
         Positioned(
@@ -65,7 +65,7 @@ class _PowerOverlayState extends State<PowerOverlay> with ShellOverlayState {
           bottom: verticalPadding(context, 100),
           child: BoxContainer(
             borderRadius:
-                CommonData.of(context).borderRadius(BorderRadiusType.MEDIUM),
+                CommonData.of(context).borderRadius(BorderRadiusType.BIG),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -74,6 +74,8 @@ class _PowerOverlayState extends State<PowerOverlay> with ShellOverlayState {
                   child: Material(
                     color: Colors.transparent,
                     child: InkWell(
+                      borderRadius: CommonData.of(context)
+                          .borderRadius(BorderRadiusType.BIG),
                       onTap: () {
                         SystemCalls().powerOff();
                         print("Powering off..");
@@ -90,6 +92,8 @@ class _PowerOverlayState extends State<PowerOverlay> with ShellOverlayState {
                   child: Material(
                     color: Colors.transparent,
                     child: InkWell(
+                      borderRadius: CommonData.of(context)
+                          .borderRadius(BorderRadiusType.BIG),
                       onTap: () {
                         SystemCalls().restart();
                       },
@@ -105,6 +109,8 @@ class _PowerOverlayState extends State<PowerOverlay> with ShellOverlayState {
                   child: Material(
                     color: Colors.transparent,
                     child: InkWell(
+                      borderRadius: CommonData.of(context)
+                          .borderRadius(BorderRadiusType.BIG),
                       onTap: () {
                         SystemCalls().terminal();
                       },

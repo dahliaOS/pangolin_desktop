@@ -34,7 +34,6 @@ void main() async {
 
   //initialize scheduler for time and date
   DateTimeManager.initialiseScheduler();
-  DateTimeManager.setDateFormat("yMMMMd");
 
   //Fix old database entries
   if (double.tryParse(DatabaseManager.get("wallpaper")) != null) {

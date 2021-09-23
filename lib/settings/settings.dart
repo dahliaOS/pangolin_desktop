@@ -15,11 +15,7 @@ limitations under the License.
 */
 
 import 'package:animations/animations.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:pangolin/settings/pages/about.dart';
 import 'package:pangolin/settings/pages/applications.dart';
 import 'package:pangolin/settings/pages/connections/connected_devices.dart';
@@ -70,7 +66,7 @@ class _SettingsHomeState extends State<_SettingsHome> {
     return Consumer<_SettingsProvider>(builder: (context, provider, _) {
       return LayoutBuilder(
         builder: (context, constraints) {
-          bool isExpanded = constraints.maxWidth > 768;
+          bool isExpanded = constraints.maxWidth > 1024;
           return Row(
             children: [
               Padding(
@@ -140,7 +136,7 @@ class _SettingsHomeState extends State<_SettingsHome> {
                                                       : null,
                                                 ),
                                               )
-                                            : null,
+                                            : Text(""),
                                         subtitle: isTile
                                             ? isExpanded
                                                 ? Text(
@@ -161,11 +157,13 @@ class _SettingsHomeState extends State<_SettingsHome> {
                                                           : null,
                                                     ),
                                                   )
-                                                : null
+                                                : Text("")
                                             : null,
                                         leading: !isTile
                                             ? null
                                             : Container(
+                                                margin: EdgeInsets.only(
+                                                    left: isExpanded ? 0 : 4),
                                                 width: 40,
                                                 height: 40,
                                                 decoration: BoxDecoration(

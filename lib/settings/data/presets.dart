@@ -16,6 +16,7 @@ limitations under the License.
 
 import 'package:flutter/widgets.dart';
 import 'package:pangolin/settings/models/settings_accent_data_model.dart';
+import 'package:pangolin/settings/models/settings_taskbar_data_model.dart';
 import 'package:pangolin/settings/models/settings_theme_data_model.dart';
 
 class SettingsPresets {
@@ -25,6 +26,9 @@ class SettingsPresets {
   //List with presets for the system theme modes
   //TODO add automatic option based on time / sunrise-sunset
   static late List<ThemeModeDataModel> themeModePresets;
+
+  //List with presets for the taskbar alignment
+  static late List<TaskbarAlignmentModelData> taskbarAlignmentPresets;
 
   static void loadPresets() {
     //load the data for the accent color presets
@@ -48,6 +52,15 @@ class SettingsPresets {
       [
         ThemeModeDataModel(Color(0xffffffff), "Light", false),
         ThemeModeDataModel(Color(0xff0a0a0a), "Dark", true),
+      ],
+      growable: false,
+    );
+
+    //load the data for the taskbar alignment presets
+    taskbarAlignmentPresets = List.from(
+      [
+        TaskbarAlignmentModelData("Start", false),
+        TaskbarAlignmentModelData("Center", true),
       ],
       growable: false,
     );

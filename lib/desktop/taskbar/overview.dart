@@ -15,7 +15,6 @@ limitations under the License.
 */
 
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:pangolin/desktop/overlays/overview_overlay.dart';
 import 'package:pangolin/desktop/shell.dart';
 import 'package:pangolin/utils/common_data.dart';

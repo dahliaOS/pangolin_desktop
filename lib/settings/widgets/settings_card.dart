@@ -14,7 +14,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 import 'package:pangolin/settings/models/settings_element_model.dart';
@@ -91,98 +90,74 @@ class SettingsCard extends SettingsElementModel {
   _SettingsCardState createState() => _SettingsCardState();
 }
 
-class _SettingsCardState extends State<SettingsCard>
-    with TickerProviderStateMixin {
-  //Initialise animation utilities
-  late final AnimationController _controller = AnimationController(
-    duration: const Duration(milliseconds: 300),
-    value: 1.0,
-    vsync: this,
-  );
-  late final Animation<double> _animation = CurvedAnimation(
-    parent: _controller,
-    curve: Curves.fastOutSlowIn,
-  );
-
+class _SettingsCardState extends State<SettingsCard> {
   //Build SettingsCard widget
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 6.0),
       // Slighly increase size on hover
-      child: ScaleTransition(
-        scale: _animation,
-        child: MouseRegion(
-          // Hover event trigger
-          onEnter: (details) => _controller.animateTo(0.92),
-          onExit: (details) => _controller.animateTo(0.9),
-          child: Card(
-            clipBehavior: Clip.antiAlias,
-            margin: EdgeInsets.zero,
-            color: Theme.of(context).cardColor,
-            elevation: 0,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(6),
-              side: BorderSide(
-                  color: Theme.of(context).darkMode
-                      ? Colors.white.withOpacity(0.05)
-                      : Colors.black.withOpacity(0.05),
-                  width: 2),
-            ),
-            child: (widget.type == SettingsElementModelType.CUSTOM)
-                // Custom Content
-                ? widget.content ?? SizedBox.shrink()
-                // Default Content
-                : Column(
-                    children: [
-                      ListTile(
-                        dense: true,
-                        contentPadding: EdgeInsets.symmetric(
-                          horizontal: 28.0,
-                          vertical: widget.subtitle != null ? 6.0 : 8.0,
-                        ),
-                        leading: widget.leading ?? _fallbackLeading,
-                        title: Text(widget.title ?? "ERR: No title"),
-                        subtitle: widget.subtitle != null
-                            ? Text(widget.subtitle!)
-                            : null,
-                        trailing: trailing,
-                        onTap: () {
-                          setState(
-                            () {
-                              if (widget.type ==
-                                      SettingsElementModelType
-                                          .EXPANDABLESWITCH ||
-                                  widget.type ==
-                                      SettingsElementModelType.EXPANDABLE ||
-                                  widget.type ==
-                                      SettingsElementModelType.SWITCH) {
-                                widget.value = !widget.value;
-                              }
-                              if (widget.type ==
-                                  SettingsElementModelType.ROUTER) {
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(_fallbackSnackBar);
-                              }
-                              widget.onToggle?.call(widget.value);
-                              widget.onTap?.call();
-                            },
-                          );
+      child: Card(
+        clipBehavior: Clip.antiAlias,
+        margin: EdgeInsets.zero,
+        color: Theme.of(context).cardColor,
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(6),
+          side: BorderSide(
+              color: Theme.of(context).darkMode
+                  ? Colors.white.withOpacity(0.05)
+                  : Colors.black.withOpacity(0.05),
+              width: 2),
+        ),
+        child: (widget.type == SettingsElementModelType.CUSTOM)
+            // Custom Content
+            ? widget.content ?? SizedBox.shrink()
+            // Default Content
+            : Column(
+                children: [
+                  ListTile(
+                    dense: true,
+                    contentPadding: EdgeInsets.symmetric(
+                      horizontal: 28.0,
+                      vertical: widget.subtitle != null ? 6.0 : 8.0,
+                    ),
+                    leading: widget.leading ?? _fallbackLeading,
+                    title: Text(widget.title ?? "ERR: No title"),
+                    subtitle:
+                        widget.subtitle != null ? Text(widget.subtitle!) : null,
+                    trailing: trailing,
+                    onTap: () {
+                      setState(
+                        () {
+                          if (widget.type ==
+                                  SettingsElementModelType.EXPANDABLESWITCH ||
+                              widget.type ==
+                                  SettingsElementModelType.EXPANDABLE ||
+                              widget.type == SettingsElementModelType.SWITCH) {
+                            widget.value = !widget.value;
+                          }
+                          if (widget.type == SettingsElementModelType.ROUTER) {
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(_fallbackSnackBar);
+                          }
+                          widget.onToggle?.call(widget.value);
+                          widget.onTap?.call();
                         },
-                      ),
-                      // Expandable content
-                      Offstage(
-                          offstage: widget.type ==
-                                      SettingsElementModelType.SWITCH ||
+                      );
+                    },
+                  ),
+                  // Expandable content
+                  Offstage(
+                      offstage:
+                          widget.type == SettingsElementModelType.SWITCH ||
                                   widget.type ==
                                       SettingsElementModelType.CUSTOMTRAILING
                               ? true
                               : !widget.value,
-                          child: widget.content ?? _fallbackContent)
-                    ],
-                  ),
-          ),
-        ),
+                      child: widget.content ?? _fallbackContent)
+                ],
+              ),
       ),
     );
   }
