@@ -75,8 +75,9 @@ String link = "";
 String copyright = "";
 void getBingWallpaper() async {
   Response response = await get(Uri.parse(
-      'https://bing.biturl.top/?resolution=1920&format=json&index=0&mkt=en-US'));
+      'https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US'));
   Map data = jsonDecode(response.body);
-  link = data['url'];
+  print(data['images'][0]['url']);
+  link = "https://bing.com${data['images'][0]['url']}";
   copyright = data['copyright'];
 }
