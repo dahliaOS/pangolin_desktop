@@ -3,7 +3,7 @@ import 'locale_gen/key_generator.dart';
 import 'locale_gen/locale_generator.dart';
 
 const String _localeFolder = "assets/locales";
-const String _outputFolder = "lib/internal/locales";
+const String _outputFolder = "lib/services/locales";
 const String _defaultLocale = "en-US";
 Future<void> main(List<String> args) async {
   final LocaleGenerator _localeGen =

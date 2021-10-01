@@ -17,13 +17,13 @@ limitations under the License.
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:pangolin/desktop/desktop.dart';
-import 'package:pangolin/internal/locales/generated_asset_loader.g.dart';
-import 'package:pangolin/internal/locales/locales.g.dart';
-import 'package:pangolin/settings/data/presets.dart';
-import 'package:pangolin/utils/theme.dart';
+import 'package:pangolin/components/shell/desktop.dart';
+import 'package:pangolin/services/locales/generated_asset_loader.g.dart';
+import 'package:pangolin/services/locales/locales.g.dart';
+import 'package:pangolin/components/settings/data/presets.dart';
+import 'package:pangolin/utils/theme/theme.dart';
 import 'package:provider/provider.dart';
-import 'package:pangolin/internal/visualEngine/visualEngine.dart';
+import 'package:pangolin/services/visual_engine/visual_engine.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

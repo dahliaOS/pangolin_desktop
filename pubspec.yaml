@@ -79,7 +79,7 @@ flutter:
     - assets/icons/
     - assets/locales/
     - assets/json/visualData.json
-    - assets/textures
+    - assets/textures/
     - assets/fonts/
 
   fonts:

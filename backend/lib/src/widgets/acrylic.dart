@@ -84,7 +84,7 @@ class Acrylic extends StatelessWidget {
                     decoration: BoxDecoration(
                       image: DecorationImage(
                         image: AssetImage(
-                            "global/assets/NoiseAsset_256X256_PNG.png"),
+                            "assets/textures/NoiseAsset_256X256_PNG.png"),
                         alignment: Alignment.topLeft,
                         repeat: ImageRepeat.repeat,
                       ),
