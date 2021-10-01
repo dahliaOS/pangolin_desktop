@@ -21,6 +21,8 @@ import 'package:pangolin/utils/accent_color_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
+import 'bing_wallpaper_api_model.dart';
+
 String totalVersionNumber = "210419";
 String headingFeatureString =
     "dahliaOS Linux-Based " + totalVersionNumber + " ...";
@@ -71,13 +73,17 @@ List<AccentColorData> accentColors = [
   AccentColorData(color: null, title: "Custom Accent Color"),
 ];
 
-String link = "";
-String copyright = "";
-void getBingWallpaper() async {
-  Response response = await get(Uri.parse(
-      'https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US'));
-  Map data = jsonDecode(response.body);
-  print(data['images'][0]['url']);
-  link = "https://bing.com${data['images'][0]['url']}";
-  copyright = data['copyright'];
+Future<BingWallpaper> getBingWallpaper() async {
+  final response = await get(
+    Uri.parse('http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US'),
+    headers: {
+      "Access-Control-Allow-Origin": "true",
+      "Access-Control-Allow-Methods": "POST, GET, OPTIONS, PUT, DELETE, HEAD",
+    }
+  );
+  if (response.statusCode == 200) {
+    return bingWallpaperFromJson(response.body);
+  } else {
+    throw Exception("Failed to fetch data from the Bing's Wallpaper of the Day API.");
+  }
 }
