@@ -63,8 +63,8 @@ dependencies:
   http: ^0.13.1
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
+#  flutter_test:
+#    sdk: flutter
 #  integration_test:
 #    sdk: flutter
 
