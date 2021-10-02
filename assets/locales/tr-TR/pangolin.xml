@@ -17,6 +17,7 @@
     <string name="app.systemlogs">Sistem günlükleri</string>
     <string name="app.taskmanager">Görev yöneticisi</string>
     <string name="app.terminal">Uçbirim</string>
+    <string name="app.themedemo">Tema gösterimi</string>
     <string name="app.welcome">Hoş geldiniz</string>
     <string name="app.help">Yardım</string>
     <string name="app.web">Web tarayıcısı</string>
