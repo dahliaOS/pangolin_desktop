@@ -213,9 +213,10 @@ class _WallpaperPickerState extends State<WallpaperPicker>
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    onPressed: () {
-                      _data.wallpaper = link;
-                      _data.addRecentWallpaper(link);
+                    onPressed: () async {
+                      final bingresponse = await getBingWallpaper();
+                      _data.wallpaper = 'https://bing.com' + bingresponse.images[0].url;
+                      _data.addRecentWallpaper('https://bing.com' + bingresponse.images[0].url);
                       Navigator.pop(context);
                     },
                     label: Text(
