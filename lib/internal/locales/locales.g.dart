@@ -305,6 +305,7 @@ class _$LocaleBnBD extends _$LocaleBase {
     "qs.invertcolors": "রং উল্টে",
     "qs.theme": "থিম",
     "qs.wifi": "ওয়াইফাই",
+    "launcher.search": "সার্চ করুন ফোনে, অ্যাপগুলোতে অথবা অনলাইনে",
     "launcher.categories.all": "সমস্ত অ্যাপ্লিকেশন",
     "launcher.categories.internet": "ইন্টারনেট",
     "launcher.categories.media": "মিডিয়া",
@@ -318,16 +319,24 @@ class _$LocaleBnBD extends _$LocaleBase {
     "settings.tabs.customization": "স্বনির্বাচন",
     "settings.tabs.applications": "সমস্ত অ্যাপ্লিকেশন",
     "settings.tabs.security": "নিরাপত্তা",
+    "settings.tabs.accounts": "অ্যাকাউন্টসমূহ",
+    "settings.tabs.backup": "ব্যাকআপ",
+    "settings.tabs.devoptions": "ডেভেলপার অপশনস",
     "settings.tabs.general": "সাধারণ পরিচালন",
     "settings.tabs.updates": "ঙন্নীতকরণ",
     "settings.tabs.about": "যন্ত্রর সম্বন্ধে",
     "settings.tabs.search": "অনুসন্ধান নির্দিষ্টকরণ",
+    "settings.tabs.connections.description": "ওয়াইফাই, ব্লুটুথ, অথবা অন্যান্য কানেকশনসমূহ",
+    "settings.tabs.sound.description": "সাউন্ড, ভলিউম",
     "settings.tabs.display.description": "উজ্জ্বলতা, নীল আলো বিশোধন",
     "settings.tabs.customization.description": "ডাহলিয়াওএসের দৃশ্য এবং অনুভূতি কাস্টমাইজ করুন",
     "settings.tabs.applications.description": "অ্যাপস এবং অনুমতিগুলি পরিচালনা করুন",
     "settings.tabs.security.description": "নিরাপত্তা এবং গোপনীয়তা",
     "settings.tabs.accounts.description": "অ্যাকাউন্ট পরিচালনা এবং যোগ করুন",
+    "settings.tabs.backup.description": "ব্যাকআপ এবং রিস্টোর",
+    "settings.tabs.devoptions.description": "ফিচার ফ্ল্যাগস, অ্যাডভান্সড অপশনস",
     "settings.tabs.general.description": "ভাষা, কীবোর্ড, ঘড়ি",
+    "settings.tabs.updates.description": "চেঞ্জলগ, আপডেট, সোর্সেস",
     "settings.tabs.about.description": "অবস্থা, সফটওয়্যার তথ্য",
     "settings.header.connections": "সংযোগগুলি",
     "settings.header.sound": "শব্দ",
@@ -336,6 +345,7 @@ class _$LocaleBnBD extends _$LocaleBase {
     "settings.header.applications": "অ্যাপ্লিকেশনগুলি",
     "settings.header.security": "নিরাপত্তা",
     "settings.header.accounts": "অ্যাকাউন্টগুলি",
+    "settings.header.backup": "ব্যাকআপ",
     "settings.header.devoptions": "বিকাশকারী বিকল্পসমূহ",
     "settings.header.general": "সাধারণ পরিচালন",
     "settings.header.updates": "ঙন্নীতকরণ",
@@ -343,12 +353,23 @@ class _$LocaleBnBD extends _$LocaleBase {
     "settings.connections.wifi_and_bluetooth": "ওয়াই-ফাই এবং ব্লুটুথ",
     "settings.connections.enableWifi": "ওয়াই-ফাই সক্ষম করুন",
     "settings.connections.enableBluetooth": "ব্লুটুথ সক্ষম করুন",
+    "settings.sound.system_volume": "সিস্টেম ভলিউম",
+    "settings.sound.volume_levels": "ভলিউম লেভেল সমূহ",
     "settings.sound.output": "উত্পাদন",
     "settings.sound.input": "নিবেশ",
+    "settings.sound.system_volume_desc": "সিস্টেম ভলিউম লেভেল এডজাস্ট করুন",
+    "settings.sound.volume_levels_desc": "আলাদা আলাদা করে অ্যাপ্লিকেশন সমূহের ভলিউম এডজাস্ট করুন",
+    "settings.sound.output_desc": "আউটপুট ডিভাইস সিলেক্ট করুন",
+    "settings.sound.input_desc": "ইনপুট ডিভাইস সিলেক্ট করুন",
     "settings.display.screen": "পর্দা",
     "settings.display.blue_light_filter": "নীল আলো বিশোধন",
+    "settings.display.resolution": "রেজুলেশন",
     "settings.display.screen_desc": "আপনার পর্দার উজ্জ্বলতা সেট করুন",
     "settings.display.blue_light_filter_desc": "আপনার চোখ রক্ষা করতে নীল আলো বিশোধন চালু করুন",
+    "settings.display.resolution_desc": "স্ক্রিনের রেজুলেশন এডজাস্ট করুন",
+    "settings.customization.accent_color": "রঙের শেড সমূহ",
+    "settings.customization.colored_titlebar": "টুলবারে রং ইউজ করুন",
+    "settings.customization.use_colored_titlebars": "টুলবারে সমূহে রং ইউজ করুন",
     "settings.customization.dark_mode": "অন্ধকার ধরন",
     "settings.customization.enable_dark_mode": "ডেস্কটপ এবং সমস্ত অ্যাপ্লিকেশনগুলিতে ডার্ক অন্ধকার ধরন সক্ষম করুন",
     "settings.customization.blur": "অস্পষ্টতা",
@@ -370,6 +391,10 @@ class _$LocaleBnBD extends _$LocaleBase {
     "settings.general.time_enable_twentyfour_hours": "২৪-ঘন্টা সময় সক্ষম করুন",
     "settings.general.keyboard": "চাবির সারি",
     "settings.updates.software_updates": "সফটওয়্যার ঙন্নীতকরণ",
+    "settings.updates.enable_system_updates": "সিস্টেম আপডেট চালু করুন",
+    "settings.updates.allow_unsigned_packages": "অপরীক্ষিত প্যাকেজ অ্যালাও করুন",
+    "settings.updates.update_package_url": "প্যাকেজ লিংক আপডেট করুন",
+    "settings.updates.button_update_system": "সিস্টেম আপটেড করুন",
     "settings.updates.button_check_updates": "ঙন্নীতকরণের চেষ্টা করুন",
     "settings.about.version": "সংস্করণ",
     "settings.about.kernel": "কেন্দ্রস্থল",
@@ -379,7 +404,7 @@ class _$LocaleBnBD extends _$LocaleBase {
   };
 
   @override
-  int get translatedStrings => 123;
+  int get translatedStrings => 148;
 }
 
 
@@ -2784,6 +2809,7 @@ class _$LocaleTrTR extends _$LocaleBase {
     "app.systemlogs": "Sistem günlükleri",
     "app.taskmanager": "Görev yöneticisi",
     "app.terminal": "Uçbirim",
+    "app.themedemo": "Tema gösterimi",
     "app.welcome": "Hoş geldiniz",
     "app.help": "Yardım",
     "app.web": "Web tarayıcısı",
@@ -2918,7 +2944,7 @@ class _$LocaleTrTR extends _$LocaleBase {
   };
 
   @override
-  int get translatedStrings => 147;
+  int get translatedStrings => 148;
 }
 
 

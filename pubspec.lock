@@ -675,7 +675,7 @@ packages:
       name: vector_math
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.1"
+    version: "2.1.0"
   web_browser:
     dependency: "direct main"
     description:
@@ -741,5 +741,5 @@ packages:
     source: hosted
     version: "2.5.0-pre"
 sdks:
-  dart: ">=2.14.0 <3.0.0"
+  dart: ">=2.13.0 <3.0.0"
   flutter: ">=2.0.0"
