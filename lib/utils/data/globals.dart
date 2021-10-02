@@ -13,15 +13,14 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import 'dart:convert';
+
 import 'dart:io';
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:http/http.dart';
+import 'package:pangolin/utils/api_models/bing_wallpaper_api_model.dart';
 import 'package:pangolin/utils/data/accent_color_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
-
-import 'bing_wallpaper_api_model.dart';
 
 String totalVersionNumber = "210419";
 String headingFeatureString =
@@ -75,15 +74,16 @@ List<AccentColorData> accentColors = [
 
 Future<BingWallpaper> getBingWallpaper() async {
   final response = await get(
-    Uri.parse('http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US'),
-    headers: {
-      "Access-Control-Allow-Origin": "true",
-      "Access-Control-Allow-Methods": "POST, GET, OPTIONS, PUT, DELETE, HEAD",
-    }
-  );
+      Uri.parse(
+          'http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US'),
+      headers: {
+        "Access-Control-Allow-Origin": "true",
+        "Access-Control-Allow-Methods": "POST, GET, OPTIONS, PUT, DELETE, HEAD",
+      });
   if (response.statusCode == 200) {
     return bingWallpaperFromJson(response.body);
   } else {
-    throw Exception("Failed to fetch data from the Bing's Wallpaper of the Day API.");
+    throw Exception(
+        "Failed to fetch data from the Bing's Wallpaper of the Day API.");
   }
 }
