@@ -19,11 +19,11 @@ dependencies:
     git:
       url: https://github.com/dahliaOS/utopia.git
       ref: utopia
-  provider: ^6.0.0
+  provider: ^6.0.1
   animations: ^2.0.0-nullsafety.0
   easy_localization: ^3.0.0
   recase: ^4.0.0-nullsafety.0
-  xml: ^5.0.2
+  xml: ^5.3.0
   intl: ^0.17.0
   cached_network_image: ^3.0.0-nullsafety
   calculator:
@@ -63,8 +63,8 @@ dependencies:
   http: ^0.13.1
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
+#  flutter_test:
+#    sdk: flutter
 #  integration_test:
 #    sdk: flutter
 
@@ -79,39 +79,39 @@ flutter:
     - assets/icons/
     - assets/locales/
     - assets/json/visualData.json
-    - global/assets/
-    - fonts/
+    - assets/textures/
+    - assets/fonts/
 
   fonts:
     - family: CustomIcons
       fonts:
-        - asset: fonts/CustomIcons.ttf
+        - asset: assets/fonts/CustomIcons.ttf
     - family: DM-Sans
       fonts:
-        - asset: fonts/dm-sans/DMSans-Bold.ttf
-        - asset: fonts/dm-sans/DMSans-BoldItalic.ttf
-        - asset: fonts/dm-sans/DMSans-Italic.ttf
-        - asset: fonts/dm-sans/DMSans-Medium.ttf
-        - asset: fonts/dm-sans/DMSans-MediumItalic.ttf
-        - asset: fonts/dm-sans/DMSans-Regular.ttf
+        - asset: assets/fonts/dm-sans/DMSans-Bold.ttf
+        - asset: assets/fonts/dm-sans/DMSans-BoldItalic.ttf
+        - asset: assets/fonts/dm-sans/DMSans-Italic.ttf
+        - asset: assets/fonts/dm-sans/DMSans-Medium.ttf
+        - asset: assets/fonts/dm-sans/DMSans-MediumItalic.ttf
+        - asset: assets/fonts/dm-sans/DMSans-Regular.ttf
     - family: Lato
       fonts:
-        - asset: fonts/lato/Lato-Black.ttf
-        - asset: fonts/lato/Lato-BlackItalic.ttf
-        - asset: fonts/lato/Lato-Bold.ttf
-        - asset: fonts/lato/Lato-BoldItalic.ttf
-        - asset: fonts/lato/Lato-Italic.ttf
-        - asset: fonts/lato/Lato-Regular.ttf
-        - asset: fonts/lato/Lato-Light.ttf
-        - asset: fonts/lato/Lato-LightItalic.ttf
-        - asset: fonts/lato/Lato-Thin.ttf
-        - asset: fonts/lato/Lato-Italic.ttf
+        - asset: assets/fonts/lato/Lato-Black.ttf
+        - asset: assets/fonts/lato/Lato-BlackItalic.ttf
+        - asset: assets/fonts/lato/Lato-Bold.ttf
+        - asset: assets/fonts/lato/Lato-BoldItalic.ttf
+        - asset: assets/fonts/lato/Lato-Italic.ttf
+        - asset: assets/fonts/lato/Lato-Regular.ttf
+        - asset: assets/fonts/lato/Lato-Light.ttf
+        - asset: assets/fonts/lato/Lato-LightItalic.ttf
+        - asset: assets/fonts/lato/Lato-Thin.ttf
+        - asset: assets/fonts/lato/Lato-Italic.ttf
     - family: Inter
       fonts:
-        - asset: fonts/inter/Inter-Regular.ttf
+        - asset: assets/fonts/inter/Inter-Regular.ttf
     - family: FiraCode
       fonts:
-       - asset: fonts/firacode/FiraCode-Bold.ttf
-       - asset: fonts/firacode/FiraCode-Medium.ttf
-       - asset: fonts/firacode/FiraCode-Retina.ttf
-       - asset: fonts/firacode/FiraCode-Light.ttf
+       - asset: assets/fonts/firacode/FiraCode-Bold.ttf
+       - asset: assets/fonts/firacode/FiraCode-Medium.ttf
+       - asset: assets/fonts/firacode/FiraCode-Retina.ttf
+       - asset: assets/fonts/firacode/FiraCode-Light.ttf
