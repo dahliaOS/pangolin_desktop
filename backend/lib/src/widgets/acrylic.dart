@@ -95,12 +95,9 @@ class Acrylic extends StatelessWidget {
                   ),
                 ),
                 Align(
-                    /* left: 0,
-                    right: 0,
-                    top: 0,
-                    bottom: 0, */
-                    alignment: Alignment.center,
-                    child: child ?? Container()),
+                  alignment: Alignment.center,
+                  child: child ?? Container(),
+                ),
               ],
             ),
           ),
@@ -135,11 +132,11 @@ class _AcrylicPainter extends CustomPainter {
         tintColor,
         tintColor.opacity == 1 ? BlendMode.srcIn : BlendMode.color,
       );
-      canvas.drawColor(
+      /* canvas.drawColor(
           Color(Provider.of<PreferenceProvider>(context, listen: false)
                   .accentColor)
               .withOpacity(0.05),
-          BlendMode.color);
+          BlendMode.srcOver); */
     }
   }
 
