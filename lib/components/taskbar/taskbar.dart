@@ -39,6 +39,7 @@ class Taskbar extends StatefulWidget {
 class _TaskbarState extends State<Taskbar> {
   @override
   Widget build(BuildContext context) {
+    final _shell = Shell.of(context);
     final _pref = Provider.of<PreferenceProvider>(context);
     List<String> _pinnedApps = _pref.pinnedApps;
     List<String> _taskbarApps = _pinnedApps.toList()
@@ -149,75 +150,84 @@ class _TaskbarState extends State<Taskbar> {
               ),
             ],
           ),
-          child: BoxSurface(
-            outline: false,
-            //height: 48,
-            //height: DatabaseManager.get('taskbarHeight').toDouble() ?? 48,
-            child: Stack(
-              children: [
-                _pref.centerTaskbar
-                    ? Positioned.fill(
-                        child: listenerWrapper(Center(child: items)),
-                      )
-                    : SizedBox.shrink(),
-                _pref.isTaskbarHorizontal
-                    ? Row(
-                        children: [
-                          Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: widget.leading ?? [SizedBox.shrink()],
-                          ),
-                          Expanded(
-                            child: _pref.centerTaskbar
-                                ? Container()
-                                : listenerWrapper(items),
-                          ),
-                          Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: widget.trailing ?? [SizedBox.shrink()],
-                          ),
-                        ],
-                      )
-                    : Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: widget.leading ?? [SizedBox.shrink()],
-                          ),
-                          Expanded(
-                            child: _pref.centerTaskbar
-                                ? Container()
-                                : listenerWrapper(items),
-                          ),
-                          Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: widget.trailing ?? [SizedBox.shrink()],
-                          ),
-                        ],
+          child: ValueListenableBuilder<bool>(
+              valueListenable:
+                  _shell.getShowingNotifier(LauncherOverlay.overlayId),
+              builder: (context, shown, child) {
+                return Material(
+                  color: shown
+                      ? Colors.black.withOpacity(0.05)
+                      : Colors.transparent,
+                  child: Stack(
+                    children: [
+                      _pref.centerTaskbar
+                          ? Positioned.fill(
+                              child: listenerWrapper(Center(child: items)),
+                            )
+                          : SizedBox.shrink(),
+                      _pref.isTaskbarHorizontal
+                          ? Row(
+                              children: [
+                                Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children:
+                                      widget.leading ?? [SizedBox.shrink()],
+                                ),
+                                Expanded(
+                                  child: _pref.centerTaskbar
+                                      ? Container()
+                                      : listenerWrapper(items),
+                                ),
+                                Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children:
+                                      widget.trailing ?? [SizedBox.shrink()],
+                                ),
+                              ],
+                            )
+                          : Column(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children:
+                                      widget.leading ?? [SizedBox.shrink()],
+                                ),
+                                Expanded(
+                                  child: _pref.centerTaskbar
+                                      ? Container()
+                                      : listenerWrapper(items),
+                                ),
+                                Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children:
+                                      widget.trailing ?? [SizedBox.shrink()],
+                                ),
+                              ],
+                            ),
+                      /* Positioned(
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        height: DatabaseManager.get('taskbarHeight').toDouble() ?? 48,
+                        child: Row(
+                          children: widget.leading ?? [SizedBox.shrink()],
+                        ),
                       ),
-                /* Positioned(
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    height: DatabaseManager.get('taskbarHeight').toDouble() ?? 48,
-                    child: Row(
-                      children: widget.leading ?? [SizedBox.shrink()],
-                    ),
+                      Positioned(
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        height: DatabaseManager.get('taskbarHeight').toDouble() ?? 48,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: widget.trailing ?? [SizedBox.shrink()],
+                        ),
+                      ) */
+                    ],
                   ),
-                  Positioned(
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    height: DatabaseManager.get('taskbarHeight').toDouble() ?? 48,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: widget.trailing ?? [SizedBox.shrink()],
-                    ),
-                  ) */
-              ],
-            ),
-          ),
+                );
+              }),
         ),
       ),
     );
