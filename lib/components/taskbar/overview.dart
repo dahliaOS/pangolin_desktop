@@ -16,13 +16,47 @@ limitations under the License.
 
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/overlays/overview_overlay.dart';
-import 'package:pangolin/widgets/taskbar/taskbar_element.dart';
+import 'package:pangolin/components/shell/shell.dart';
+import 'package:pangolin/utils/data/common_data.dart';
 
 class OverviewButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return TaskbarElement(
-        overlayID: OverviewOverlay.overlayId,
-        child: Icon(Icons.fullscreen_exit_outlined, size: 20));
+    final _shell = Shell.of(context);
+
+    return SizedBox(
+      width: 48,
+      height: 48,
+      child: Padding(
+        padding: const EdgeInsets.all(4.0),
+        child: ClipRRect(
+          borderRadius:
+              CommonData.of(context).borderRadius(BorderRadiusType.SMALL),
+          child: ValueListenableBuilder<bool>(
+            valueListenable:
+                _shell.getShowingNotifier(OverviewOverlay.overlayId),
+            builder: (context, showing, child) {
+              return Material(
+                color: showing
+                    ? Theme.of(context).colorScheme.secondary
+                    : Colors.transparent,
+                child: child,
+              );
+            },
+            child: InkWell(
+              hoverColor:
+                  Theme.of(context).colorScheme.secondary.withOpacity(0.5),
+              mouseCursor: SystemMouseCursors.click,
+              onTap: () => _shell.toggleOverlay(OverviewOverlay.overlayId),
+              child: Padding(
+                padding: EdgeInsets.all(8),
+                child: Center(
+                    child: Icon(Icons.fullscreen_exit_outlined, size: 20)),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
