@@ -21,10 +21,11 @@ class ContextMenuItem extends StatelessWidget {
     required this.icon,
     required this.title,
     required this.onTap,
-    required this.shortcut,
+    this.shortcut,
   });
 
-  final String title, shortcut;
+  final String title;
+  final String? shortcut;
   final IconData icon;
   final VoidCallback? onTap;
   @override
@@ -57,7 +58,7 @@ class ContextMenuItem extends StatelessWidget {
                 //Spacer(),
                 Align(
                     alignment: Alignment.centerRight,
-                    child: Text(this.shortcut))
+                    child: Text(this.shortcut ?? ""))
               ],
             ),
           ),
