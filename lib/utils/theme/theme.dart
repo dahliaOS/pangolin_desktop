@@ -17,7 +17,6 @@ limitations under the License.
 import 'package:animations/animations.dart';
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/cupertino/theme.dart';
 import 'theme_manager.dart';
 import 'package:provider/provider.dart';
 
@@ -103,47 +102,3 @@ ThemeData theme(BuildContext context) {
     ),
   );
 }
-
-/* class CustomThemeData {
-  final Color backgroundColor,
-      surfaceColor,
-      accentColor,
-      variantColor,
-      textColor,
-      textVariantColor;
-
-  const CustomThemeData({
-    required this.accentColor,
-    required this.backgroundColor,
-    required this.surfaceColor,
-    required this.variantColor,
-    required this.textColor,
-    required this.textVariantColor,
-  });
-
-  static CustomThemeData of(BuildContext context) {
-    final Color _accentColor,
-        _backgroundColor,
-        _surfaceColor,
-        _variantColor,
-        _textColor,
-        _textVariantColor;
-    final _provider = Provider.of<PreferenceProvider>(context);
-    _accentColor = Color(_provider.accentColor);
-    _backgroundColor =
-        _provider.darkMode ? Color(0xff0a0a0a) : Color(0xfff0f0f0);
-    _surfaceColor = _provider.darkMode ? Color(0xff141414) : Color(0xffffffff);
-    _variantColor = _provider.darkMode ? Color(0xfff0f0f0) : Color(0xff0a0a0a);
-    _textColor = _provider.darkMode ? Color(0xfff0f0f0) : Color(0xff0a0a0a);
-    _textVariantColor =
-        _provider.darkMode ? Color(0xff0a0a0a) : Color(0xfff0f0f0);
-    return CustomThemeData(
-        accentColor: _accentColor,
-        backgroundColor: _backgroundColor,
-        surfaceColor: _surfaceColor,
-        variantColor: _variantColor,
-        textColor: _textColor,
-        textVariantColor: _textVariantColor);
-  }
-}
- */
