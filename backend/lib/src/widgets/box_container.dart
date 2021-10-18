@@ -64,15 +64,13 @@ class BoxSurface extends StatelessWidget {
           // Set border radius of the surface area
           borderRadius: borderRadius,
           // Create outline around the surface
-          side: outline
-              ? BorderSide.none
-              : BorderSide.none,
+          side: outline ? BorderSide.none : BorderSide.none,
         ),
       ),
       child: ClipRRect(
         borderRadius: borderRadius,
         child: Acrylic(
-          opacity: 0.65,
+          opacity: 0.6,
           blurRadius: 24,
           color: Theme.of(context).backgroundColor,
           child: child,
