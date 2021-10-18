@@ -16,6 +16,7 @@ limitations under the License.
 
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
+import 'package:pangolin/utils/data/common_data.dart';
 
 class Searchbar extends StatelessWidget {
   final Widget? leading, trailing;
@@ -42,7 +43,8 @@ class Searchbar extends StatelessWidget {
   Widget build(BuildContext context) {
     return BoxContainer(
       outline: outline,
-      borderRadius: borderRadius ?? BorderRadius.circular(8),
+      borderRadius: borderRadius ??
+          CommonData.of(context).borderRadius(BorderRadiusType.MEDIUM),
       width: 800,
       height: 48,
       child: Material(
