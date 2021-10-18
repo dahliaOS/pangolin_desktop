@@ -30,6 +30,7 @@ class PangolinWindowToolbar extends StatefulWidget {
 
 class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
   SystemMouseCursor _cursor = SystemMouseCursors.move;
+  // ignore: unused_field
   late DragUpdateDetails _lastDetails;
 
   @override
