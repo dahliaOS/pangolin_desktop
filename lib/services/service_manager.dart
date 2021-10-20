@@ -14,14 +14,25 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-abstract class Service {
-  final String name;
+import 'package:pangolin/services/service.dart';
 
-  bool isSupported();
+class ServiceManager {
+  List<Service> _registeredServices = [];
+  List<Service> _runningServices = [];
 
-  const Service(this.name);
+  void registerService(Service service) {}
 
-  void start();
+  void startServices() {
+    _registeredServices.forEach((service) {
+      if (service.isSupported()) {
+        service.start();
+        _runningServices.add(service);
+      } else {
+        print(
+            "[Service Manager] Service: ${service.name} is not supported on this runtime");
+      }
+    });
+  }
 
-  void stop();
+  List<Service> get runningServices => _runningServices;
 }

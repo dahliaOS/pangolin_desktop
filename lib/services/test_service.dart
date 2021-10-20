@@ -14,14 +14,24 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-abstract class Service {
-  final String name;
+import 'package:pangolin/services/service.dart';
 
-  bool isSupported();
+class TestService extends Service {
+  const TestService(String name) : super("TestService");
 
-  const Service(this.name);
+  @override
+  bool isSupported() {
+    // TODO: implement isSupported
+    throw UnimplementedError();
+  }
 
-  void start();
+  @override
+  void start() {
+    // TODO: implement start
+  }
 
-  void stop();
+  @override
+  void stop() {
+    // TODO: implement stop
+  }
 }
