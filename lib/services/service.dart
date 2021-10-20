@@ -14,8 +14,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:pangolin/services/service_manager.dart';
-
 abstract class Service {
   final String name;
 
