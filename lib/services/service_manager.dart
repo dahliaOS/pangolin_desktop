@@ -18,7 +18,7 @@ import 'package:pangolin/services/service.dart';
 
 class ServiceManager {
   List<Service> _registeredServices = [];
-  List<Service> _runningServices = [];
+  List<Service> _activeServices = [];
 
   void registerService(Service service) {}
 
@@ -26,7 +26,7 @@ class ServiceManager {
     _registeredServices.forEach((service) {
       if (service.isSupported()) {
         service.start();
-        _runningServices.add(service);
+        _activeServices.add(service);
       } else {
         print(
             "[Service Manager] Service: ${service.name} is not supported on this runtime");
@@ -34,5 +34,9 @@ class ServiceManager {
     });
   }
 
-  List<Service> get runningServices => _runningServices;
+  bool isActive(Service service) {
+    return _activeServices.contains(service);
+  }
+
+  List<Service> get runningServices => _activeServices;
 }
