@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="100%" src="https://github.com/dahliaOS/brand/blob/master/pangolin/svg/logotypeblacktext.svg"
+  <img width="80%" src="https://github.com/dahliaOS/brand/blob/master/pangolin/svg/logotypeblacktext.svg"
 </p>
 
 <p align="center">
