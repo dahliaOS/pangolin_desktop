@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="120%" src="https://github.com/dahliaos/brand/blob/master/Pangolin%20Logo%20SVGs/Pangolin%20logo%20with%20text%20(black)%20on%20a%20white%20background.svg"
+  <img width="100%" src="https://github.com/dahliaOS/brand/blob/master/pangolin/svg/logotypeblacktext.svg"
 </p>
 
 <p align="center">
@@ -49,15 +49,13 @@ If you're wondering how to contribute to the project, please refer to [CONTRIBUT
 ## Translate
 
 If you're interested in translating Pangolin, please click [this link](https://translate.dahliaos.io/pangolin)!
-
 The link above points to Crowdin which we use for translations so please use that for submitting translations!
-
 If your language is not added, let us know and we'll add it!
 
 ## License
 
 <p align="left">
-  <img width="40%" src="https://github.com/dahliaos/brand/blob/master/Logo%20PNGs/dahliaOS%20logo%20with%20text%20(drop%20shadow).png"
+  <img width="40%" src="https://github.com/dahliaOS/brand/blob/master/dahliaOS/svg/logotypeblacktext.svg"
 </p>
 
 Copyright @ 2019-2021 - The dahliaOS Authors - contact@dahliaos.io
