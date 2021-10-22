@@ -48,9 +48,7 @@ If you're wondering how to contribute to the project, please refer to [CONTRIBUT
 
 ## Translate
 
-If you're interested in translating Pangolin, please click [this link](https://translate.dahliaos.io/pangolin)!
-The link above points to Crowdin which we use for translations so please use that for submitting translations!
-If your language is not added, let us know and we'll add it!
+If you're interested in translating Pangolin, click [here](https://github.com/dahliaOS/pangolin_desktop/blob/main/CONTRIBUTING.md#translations) for more information on how to do so!
 
 ## License
 
