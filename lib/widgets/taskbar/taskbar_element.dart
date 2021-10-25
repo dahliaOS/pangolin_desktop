@@ -14,9 +14,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:flutter/material.dart';
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/utils/data/common_data.dart';
+import 'package:pangolin/utils/extensions/extensions.dart';
 
 class TaskbarElement extends StatefulWidget {
   const TaskbarElement({
@@ -24,17 +24,20 @@ class TaskbarElement extends StatefulWidget {
     required this.child,
     this.overlayID,
     this.size,
+    this.iconSize,
   }) : super(key: key);
 
   final Widget child;
   final String? overlayID;
   final Size? size;
+  final double? iconSize;
 
   @override
   _TaskbarElementState createState() => _TaskbarElementState();
 }
 
 class _TaskbarElementState extends State<TaskbarElement> {
+  bool _hover = false;
   @override
   Widget build(BuildContext context) {
     final _theme = Theme.of(context);
@@ -43,36 +46,28 @@ class _TaskbarElementState extends State<TaskbarElement> {
     final _darkMode = _theme.brightness == Brightness.dark;
     final _borderRadius =
         CommonData.of(context).borderRadius(BorderRadiusType.SMALL);
+
     return SizedBox.fromSize(
       size: widget.size ?? Size(48, 48),
-      child: Padding(
-        padding: const EdgeInsets.all(4.0),
-        child: ClipRRect(
-          borderRadius: _borderRadius,
-          child: ValueListenableBuilder<bool>(
-            valueListenable: widget.overlayID != null
-                ? _shell.getShowingNotifier(widget.overlayID!)
-                : ValueNotifier(false),
-            builder: (context, showing, child) {
-              return IconTheme.merge(
-                data: IconThemeData(
-                  color: showing
-                      ? _accentColor.computeLuminance() < 0.3
-                          ? const Color(0xffffffff)
-                          : const Color(0xff000000)
-                      : _darkMode
-                          ? const Color(0xffffffff)
-                          : const Color(0xff000000),
-                ),
-                child: InkWell(
-                  borderRadius: _borderRadius,
-                  hoverColor: _accentColor.withOpacity(0.5),
-                  mouseCursor: SystemMouseCursors.click,
-                  onTap: () => widget.overlayID != null
-                      ? _shell.toggleOverlay(widget.overlayID!)
-                      : {},
-                  child: DefaultTextStyle(
-                    style: TextStyle(
+      child: GestureDetector(
+        onTap: () => widget.overlayID != null
+            ? _shell.toggleOverlay(widget.overlayID!)
+            : {},
+        child: MouseRegion(
+          cursor: SystemMouseCursors.click,
+          onEnter: (state) => setState(() => _hover = true),
+          onExit: (state) => setState(() => _hover = false),
+          child: Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: ClipRRect(
+              borderRadius: _borderRadius,
+              child: ValueListenableBuilder<bool>(
+                valueListenable: widget.overlayID != null
+                    ? _shell.getShowingNotifier(widget.overlayID!)
+                    : ValueNotifier(false),
+                builder: (context, showing, child) {
+                  return IconTheme.merge(
+                    data: IconThemeData(
                       color: showing
                           ? _accentColor.computeLuminance() < 0.3
                               ? const Color(0xffffffff)
@@ -80,17 +75,35 @@ class _TaskbarElementState extends State<TaskbarElement> {
                           : _darkMode
                               ? const Color(0xffffffff)
                               : const Color(0xff000000),
+                      size: widget.iconSize ?? 20,
                     ),
                     child: Material(
-                      clipBehavior: Clip.antiAlias,
-                      color: showing ? _accentColor : Colors.transparent,
-                      child: child,
+                      borderRadius: _borderRadius,
+                      color: _hover
+                          ? context.theme.hoverColor
+                          : Colors.transparent,
+                      child: DefaultTextStyle(
+                        style: TextStyle(
+                          color: showing
+                              ? _accentColor.computeLuminance() < 0.3
+                                  ? const Color(0xffffffff)
+                                  : const Color(0xff000000)
+                              : _darkMode
+                                  ? const Color(0xffffffff)
+                                  : const Color(0xff000000),
+                        ),
+                        child: Material(
+                          clipBehavior: Clip.antiAlias,
+                          color: showing ? _accentColor : Colors.transparent,
+                          child: child,
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-              );
-            },
-            child: widget.child,
+                  );
+                },
+                child: widget.child,
+              ),
+            ),
           ),
         ),
       ),
