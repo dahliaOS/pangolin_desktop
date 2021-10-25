@@ -16,45 +16,16 @@ limitations under the License.
 
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/overlays/search_overlay.dart';
-import 'package:pangolin/components/shell/shell.dart';
-import 'package:pangolin/utils/data/common_data.dart';
+import 'package:pangolin/widgets/taskbar/taskbar_element.dart';
 
 class SearchButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final _shell = Shell.of(context);
-
-    return SizedBox(
-      width: 48,
-      height: 48,
-      child: Padding(
-        padding: const EdgeInsets.all(4.0),
-        child: ClipRRect(
-          borderRadius:
-              CommonData.of(context).borderRadius(BorderRadiusType.SMALL),
-          child: ValueListenableBuilder<bool>(
-            valueListenable: _shell.getShowingNotifier(SearchOverlay.overlayId),
-            builder: (context, showing, child) {
-              return Material(
-                color: showing
-                    ? Theme.of(context).colorScheme.secondary
-                    : Colors.transparent,
-                child: child,
-              );
-            },
-            child: InkWell(
-              hoverColor:
-                  Theme.of(context).colorScheme.secondary.withOpacity(0.5),
-              mouseCursor: SystemMouseCursors.click,
-              onTap: () => _shell.toggleOverlay(SearchOverlay.overlayId),
-              child: Padding(
-                padding: EdgeInsets.all(8),
-                child: Center(child: Icon(Icons.search, size: 20)),
-              ),
-            ),
-          ),
-        ),
+    return TaskbarElement(
+      child: Icon(
+        Icons.search,
       ),
+      overlayID: SearchOverlay.overlayId,
     );
   }
 }
