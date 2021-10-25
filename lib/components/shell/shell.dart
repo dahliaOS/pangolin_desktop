@@ -19,7 +19,6 @@ import 'dart:async';
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/overlays/launcher_overlay.dart';
-import 'package:pangolin/components/taskbar/clock.dart';
 import 'package:pangolin/components/taskbar/launcher.dart';
 import 'package:pangolin/components/taskbar/overview.dart';
 import 'package:pangolin/components/taskbar/quick_settings.dart';
@@ -133,7 +132,6 @@ class _ShellState extends State<Shell> {
                 //TODO: here is the keyboard button
                 //KeyboardButton(),
                 QuickSettingsButton(),
-                DateClockWidget(),
               ],
             ),
             ...widget.overlays,
