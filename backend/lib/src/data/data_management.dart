@@ -60,7 +60,6 @@ class PreferenceProvider extends ChangeNotifier {
   double _themeOpacity = 0.7;
   bool _darkMode = false;
   List<String> _packages = List.empty();
-  String _iconPack = "io.dahlia.icons.default";
   String _wallpaper = "assets/images/wallpapers/Three_Bubbles.png";
   bool _centerTaskbar = true;
   bool _enableBlur = true;
@@ -103,7 +102,6 @@ class PreferenceProvider extends ChangeNotifier {
   double get themeOpacity => _themeOpacity;
   bool get darkMode => _darkMode;
   List<String> get packages => _packages;
-  String get iconPack => _iconPack;
   String get wallpaper => _wallpaper;
   bool get centerTaskbar => _centerTaskbar;
   bool get enableBlur => _enableBlur;
@@ -157,12 +155,6 @@ class PreferenceProvider extends ChangeNotifier {
     _packages = packages;
     notifyListeners();
     DatabaseManager.set("packages", packages);
-  }
-
-  set iconPack(String iconPack) {
-    _iconPack = iconPack;
-    notifyListeners();
-    DatabaseManager.set("iconPack", iconPack);
   }
 
   set wallpaper(String path) {
@@ -314,7 +306,6 @@ class PreferenceProvider extends ChangeNotifier {
     themeOpacity = DatabaseManager.get("themeOpacity") ?? themeOpacity;
     darkMode = DatabaseManager.get("darkMode") ?? darkMode;
     packages = DatabaseManager.get("packages") ?? packages;
-    iconPack = DatabaseManager.get("iconPack") ?? iconPack;
     wallpaper = DatabaseManager.get("wallpaper") ?? wallpaper;
     centerTaskbar = DatabaseManager.get("centerTaskbar") ?? centerTaskbar;
     enableBlur = DatabaseManager.get("enableBlur") ?? enableBlur;
