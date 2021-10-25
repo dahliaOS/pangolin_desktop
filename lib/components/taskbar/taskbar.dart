@@ -107,6 +107,7 @@ class _TaskbarState extends State<Taskbar> {
             }
           }
         },
+        // TODO Fix taskbar background position
         child: ContextMenuRegion(
           contextMenu: ContextMenu(
             items: [
@@ -158,73 +159,57 @@ class _TaskbarState extends State<Taskbar> {
                   color: shown
                       ? Colors.black.withOpacity(0.05)
                       : Colors.transparent,
-                  child: Stack(
-                    children: [
-                      _pref.centerTaskbar
-                          ? Positioned.fill(
-                              child: listenerWrapper(Center(child: items)),
-                            )
-                          : SizedBox.shrink(),
-                      _pref.isTaskbarHorizontal
-                          ? Row(
-                              children: [
-                                Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children:
-                                      widget.leading ?? [SizedBox.shrink()],
-                                ),
-                                Expanded(
-                                  child: _pref.centerTaskbar
-                                      ? Container()
-                                      : listenerWrapper(items),
-                                ),
-                                Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children:
-                                      widget.trailing ?? [SizedBox.shrink()],
-                                ),
-                              ],
-                            )
-                          : Column(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children:
-                                      widget.leading ?? [SizedBox.shrink()],
-                                ),
-                                Expanded(
-                                  child: _pref.centerTaskbar
-                                      ? Container()
-                                      : listenerWrapper(items),
-                                ),
-                                Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children:
-                                      widget.trailing ?? [SizedBox.shrink()],
-                                ),
-                              ],
-                            ),
-                      /* Positioned(
-                        left: 0,
-                        right: 0,
-                        bottom: 0,
-                        height: DatabaseManager.get('taskbarHeight').toDouble() ?? 48,
-                        child: Row(
-                          children: widget.leading ?? [SizedBox.shrink()],
-                        ),
-                      ),
-                      Positioned(
-                        left: 0,
-                        right: 0,
-                        bottom: 0,
-                        height: DatabaseManager.get('taskbarHeight').toDouble() ?? 48,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: widget.trailing ?? [SizedBox.shrink()],
-                        ),
-                      ) */
-                    ],
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                    child: Stack(
+                      children: [
+                        _pref.centerTaskbar
+                            ? Positioned.fill(
+                                child: listenerWrapper(Center(child: items)),
+                              )
+                            : SizedBox.shrink(),
+                        _pref.isTaskbarHorizontal
+                            ? Row(
+                                children: [
+                                  Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children:
+                                        widget.leading ?? [SizedBox.shrink()],
+                                  ),
+                                  Expanded(
+                                    child: _pref.centerTaskbar
+                                        ? Container()
+                                        : listenerWrapper(items),
+                                  ),
+                                  Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children:
+                                        widget.trailing ?? [SizedBox.shrink()],
+                                  ),
+                                ],
+                              )
+                            : Column(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children:
+                                        widget.leading ?? [SizedBox.shrink()],
+                                  ),
+                                  Expanded(
+                                    child: _pref.centerTaskbar
+                                        ? Container()
+                                        : listenerWrapper(items),
+                                  ),
+                                  Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children:
+                                        widget.trailing ?? [SizedBox.shrink()],
+                                  ),
+                                ],
+                              ),
+                      ],
+                    ),
                   ),
                 );
               }),
