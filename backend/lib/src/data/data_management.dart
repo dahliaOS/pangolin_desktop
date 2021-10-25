@@ -337,5 +337,8 @@ class PreferenceProvider extends ChangeNotifier {
     _launcherIcon = DatabaseManager.get("launcherIcon") ?? launcherIcon;
     _recentSearchResults =
         DatabaseManager.get("recentSearchResults") ?? recentSearchResults;
+    if (DatabaseManager.get("iconPack") == "io.dahlia.icons.default") {
+      DatabaseManager.set("iconPack", "material");
+    }
   }
 }
