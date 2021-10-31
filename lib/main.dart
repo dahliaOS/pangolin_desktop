@@ -21,6 +21,8 @@ import 'package:pangolin/components/shell/desktop.dart';
 import 'package:pangolin/services/locales/generated_asset_loader.g.dart';
 import 'package:pangolin/services/locales/locales.g.dart';
 import 'package:pangolin/components/settings/data/presets.dart';
+import 'package:pangolin/utils/providers/icon_provider.dart';
+import 'package:pangolin/utils/providers/io_provider.dart';
 import 'package:pangolin/utils/theme/theme.dart';
 import 'package:provider/provider.dart';
 import 'package:pangolin/services/visual_engine/visual_engine.dart';
@@ -31,6 +33,7 @@ void main() async {
   //initialize the database
   await DatabaseManager.initialseDatabase();
   PreferenceProvider();
+  IconProvider();
 
   //initialize scheduler for time and date
   DateTimeManager.initialiseScheduler();
@@ -65,6 +68,9 @@ void main() async {
           ),
           ChangeNotifierProvider<FeatureFlags>.value(
             value: FeatureFlags(),
+          ),
+          ChangeNotifierProvider<IconProvider>.value(
+            value: IconProvider(),
           ),
         ],
         child: Pangolin(),
