@@ -215,23 +215,17 @@ class _WallpaperPickerState extends State<WallpaperPicker>
                     ),
                     onPressed: () async {
                       final bingresponse = await getBingWallpaper();
-                      _data.wallpaper = 'https://bing.com' + bingresponse.images[0].url;
-                      _data.addRecentWallpaper('https://bing.com' + bingresponse.images[0].url);
+                      _data.wallpaper =
+                          'https://bing.com' + bingresponse.images[0].url;
+                      _data.addRecentWallpaper(
+                          'https://bing.com' + bingresponse.images[0].url);
                       Navigator.pop(context);
                     },
                     label: Text(
                       "Use Bing Wallpaper",
-                      style: TextStyle(
-                        color: _data.darkMode
-                            ? Color(0xff0a0a0a)
-                            : Color(0xffffffff),
-                      ),
                     ),
                     icon: Icon(
                       Icons.image_outlined,
-                      color: _data.darkMode
-                          ? Color(0xff0a0a0a)
-                          : Color(0xffffffff),
                     ),
                   ),
                   SizedBox(
@@ -254,17 +248,10 @@ class _WallpaperPickerState extends State<WallpaperPicker>
                     },
                     label: Text(
                       "Save",
-                      style: TextStyle(
-                        color: _data.darkMode
-                            ? Color(0xff0a0a0a)
-                            : Color(0xffffffff),
-                      ),
+                      style: TextStyle(),
                     ),
                     icon: Icon(
                       Icons.save_outlined,
-                      color: _data.darkMode
-                          ? Color(0xff0a0a0a)
-                          : Color(0xffffffff),
                     ),
                   ),
                 ],
