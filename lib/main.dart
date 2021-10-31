@@ -72,6 +72,9 @@ void main() async {
           ChangeNotifierProvider<IconProvider>.value(
             value: IconProvider(),
           ),
+          ChangeNotifierProvider<IOProvider>.value(
+            value: IOProvider(),
+          ),
         ],
         child: Pangolin(),
       ),
