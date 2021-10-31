@@ -147,6 +147,7 @@ class QsMain extends StatelessWidget {
           fontSize: 14,
           fontWeight: FontWeight.w600,
           height: 1.1,
+          color: context.theme.darkMode ? ColorsX.white : ColorsX.black,
         ),
       ),
       Spacer(),

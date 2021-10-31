@@ -41,6 +41,8 @@ class QsTitlebar extends StatelessWidget implements PreferredSizeWidget {
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
                     height: 1.1,
+                    color:
+                        context.theme.darkMode ? ColorsX.white : ColorsX.black,
                   ),
                 )
               : SizedBox.shrink(),
