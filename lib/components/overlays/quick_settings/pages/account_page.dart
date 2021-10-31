@@ -14,20 +14,28 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:flutter/material.dart';
-import 'package:pangolin/components/overlays/overview_overlay.dart';
-import 'package:pangolin/components/shell/shell.dart';
+import 'package:pangolin/components/overlays/quick_settings/widgets/qs_action_button.dart';
+import 'package:pangolin/components/overlays/quick_settings/widgets/qs_titlebar.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
-import 'package:pangolin/widgets/taskbar/taskbar_element.dart';
 
-class OverviewButton extends StatelessWidget {
+class QsAccountPage extends StatelessWidget {
+  const QsAccountPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    final _shell = Shell.of(context);
-
-    return TaskbarElement(
-      child: Icon(Icons.fullscreen_exit_outlined),
-      overlayID: OverviewOverlay.overlayId,
+    return Scaffold(
+      appBar: QsTitlebar(
+        title: "User Accounts",
+        trailing: [
+          QsActionButton(
+            isCircular: true,
+            leading: Icon(
+              Icons.help_outline_rounded,
+              size: 20,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

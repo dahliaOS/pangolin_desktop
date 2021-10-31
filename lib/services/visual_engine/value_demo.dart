@@ -28,6 +28,7 @@ class ValueDemoApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
         primaryColor: const Color(0xFF2196f3),
+        //TODO get rid of accentColor
         accentColor: const Color(0xFF2196f3),
         canvasColor: const Color(0xFFf0f0f0),
       ),

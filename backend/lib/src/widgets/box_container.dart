@@ -51,10 +51,11 @@ class BoxSurface extends StatelessWidget {
         ),
         shadows: dropShadow
             ? [
+                // TODO Clip the Shadows to only appear outside of the Container
                 BoxShadow(
-                    color: Colors.black.withOpacity(0.10),
+                    color: Colors.black.withOpacity(0.15),
                     blurRadius: 25,
-                    spreadRadius: 10)
+                    spreadRadius: 2),
               ]
             : [],
       ),
@@ -64,18 +65,13 @@ class BoxSurface extends StatelessWidget {
           // Set border radius of the surface area
           borderRadius: borderRadius,
           // Create outline around the surface
-          side: outline
-              ? BorderSide.none
-              : BorderSide.none,
+          side: outline ? BorderSide.none : BorderSide.none,
         ),
       ),
       child: ClipRRect(
         borderRadius: borderRadius,
-        child: Acrylic(
-          opacity: 0.65,
-          blurRadius: 24,
-          color: Theme.of(context).backgroundColor,
-          child: child,
+        child: AcrylicLayer(
+          child: child ?? Container(),
         ),
       ),
     );
@@ -125,11 +121,8 @@ class BoxContainer extends StatelessWidget {
       ),
       child: ClipRRect(
         borderRadius: borderRadius,
-        child: Acrylic(
-          opacity: 0.65,
-          blurRadius: 24,
-          color: Theme.of(context).backgroundColor,
-          child: child,
+        child: AcrylicLayer(
+          child: child ?? Container(),
         ),
       ),
     );

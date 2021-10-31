@@ -19,7 +19,7 @@ import 'package:flutter/material.dart';
 import 'package:pangolin/components/overlays/launcher_overlay.dart';
 import 'package:pangolin/components/overlays/overview_overlay.dart';
 import 'package:pangolin/components/overlays/power_overlay.dart';
-import 'package:pangolin/components/overlays/quick_settings_overlay.dart';
+import 'package:pangolin/components/overlays/quick_settings/quick_settings_overlay.dart';
 import 'package:pangolin/components/overlays/search_overlay.dart';
 import 'shell.dart';
 import 'package:pangolin/components/desktop/wallpaper.dart';

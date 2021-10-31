@@ -14,11 +14,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 import 'package:dahlia_backend/dahlia_backend.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pangolin/utils/context_menus/context_menu.dart';
 import 'package:pangolin/utils/context_menus/context_menu_item.dart';
 import 'package:pangolin/utils/context_menus/core/context_menu_region.dart';
+import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:provider/provider.dart';
 
 class PangolinWindowToolbar extends StatefulWidget {
@@ -30,6 +30,7 @@ class PangolinWindowToolbar extends StatefulWidget {
 
 class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
   SystemMouseCursor _cursor = SystemMouseCursors.move;
+  // ignore: unused_field
   late DragUpdateDetails _lastDetails;
 
   @override
@@ -128,7 +129,6 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
                             child: Icon(Icons.minimize),
                           ),
                           onTap: () => onMinimize(properties),
-                          hoverColor: Theme.of(context).colorScheme.secondary,
                         ),
                         WindowToolbarButton(
                           icon: properties.geometry.maximized
@@ -141,12 +141,10 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
                               entry.windowDock = WindowDock.NORMAL;
                             } */
                           },
-                          hoverColor: Theme.of(context).colorScheme.secondary,
                         ),
                         WindowToolbarButton(
                           icon: Icon(Icons.close),
                           onTap: () => onClose(properties),
-                          hoverColor: Theme.of(context).colorScheme.secondary,
                         ),
                         SizedBox(width: 2),
                       ],

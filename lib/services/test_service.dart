@@ -14,20 +14,24 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:flutter/material.dart';
-import 'package:pangolin/components/overlays/overview_overlay.dart';
-import 'package:pangolin/components/shell/shell.dart';
-import 'package:pangolin/utils/extensions/extensions.dart';
-import 'package:pangolin/widgets/taskbar/taskbar_element.dart';
+import 'package:pangolin/services/service.dart';
 
-class OverviewButton extends StatelessWidget {
+class TestService extends Service {
+  const TestService(String name) : super("TestService");
+
   @override
-  Widget build(BuildContext context) {
-    final _shell = Shell.of(context);
+  bool isSupported() {
+    // TODO: implement isSupported
+    throw UnimplementedError();
+  }
 
-    return TaskbarElement(
-      child: Icon(Icons.fullscreen_exit_outlined),
-      overlayID: OverviewOverlay.overlayId,
-    );
+  @override
+  void start() {
+    // TODO: implement start
+  }
+
+  @override
+  void stop() {
+    // TODO: implement stop
   }
 }
