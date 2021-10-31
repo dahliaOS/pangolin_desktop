@@ -16,12 +16,16 @@ limitations under the License.
 
 import 'package:animations/animations.dart';
 import 'package:dahlia_backend/dahlia_backend.dart';
-import 'package:flutter/material.dart';
+import 'package:pangolin/utils/extensions/extensions.dart';
 import 'theme_manager.dart';
 import 'package:provider/provider.dart';
 
 ThemeData theme(BuildContext context) {
   final _data = context.watch<PreferenceProvider>();
+  final Color _foregroundColor =
+      Color(_data.accentColor).computeLuminance() > 0.4
+          ? ColorsX.black
+          : ColorsX.white;
   return ThemeData(
     //visualDensity: VisualDensity(horizontal: -3.5, vertical: -3.5),
     pageTransitionsTheme: PageTransitionsTheme(
@@ -30,14 +34,15 @@ ThemeData theme(BuildContext context) {
             FadeThroughPageTransitionsBuilder(fillColor: Colors.transparent),
       },
     ),
-    //hoverColor: Color(_data.accentColor).withOpacity(0.5),
-    splashColor: Color(_data.accentColor),
+    hoverColor: context.theme.colorScheme.surface.withOpacity(0.25),
+    //splashColor: Color(_data.accentColor),
     /* buttonColor: Color(_data.accentColor), */
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       elevation: 0.0,
       hoverElevation: 0.0,
       focusElevation: 0.0,
       highlightElevation: 0.0,
+      foregroundColor: _foregroundColor,
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
@@ -61,12 +66,13 @@ ThemeData theme(BuildContext context) {
       onError: Colors.red[900]!,
       onPrimary: Color(_data.accentColor),
       onSecondary: Color(_data.accentColor),
-      onSurface: Color(0xff141414),
+      //TODO changes color of the slider tooltip idk if it breaks anything
+      onSurface: _data.darkMode ? ColorsX.black : ColorsX.white,
       primary: Color(_data.accentColor),
       primaryVariant: Color(_data.accentColor),
       secondary: Color(_data.accentColor),
       secondaryVariant: Color(_data.accentColor),
-      surface: Color(0xff141414),
+      surface: _data.darkMode ? ColorsX.black : ColorsX.white,
     ),
     backgroundColor: ThemeManager.of(context).backgroundColor,
     canvasColor: ThemeManager.of(context).surfaceColor,
@@ -99,6 +105,9 @@ ThemeData theme(BuildContext context) {
       inactiveTrackColor: Color(_data.accentColor).withOpacity(0.5),
       activeTickMarkColor: Colors.white.withOpacity(0.2),
       inactiveTickMarkColor: Colors.white.withOpacity(0.2),
+    ),
+    iconTheme: IconThemeData(
+      color: _data.darkMode ? ColorsX.white : ColorsX.black,
     ),
   );
 }
