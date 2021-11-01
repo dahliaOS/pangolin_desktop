@@ -41,7 +41,7 @@ void main() async {
   //Fix old database entries
   if (double.tryParse(DatabaseManager.get("wallpaper")) != null) {
     DatabaseManager.set(
-        "wallpaper", "assets/images/wallpapers/Three_Bubbles.png");
+        "wallpaper", "assets/images/wallpapers/modern.png");
   }
 
   //initialize the localization engine
