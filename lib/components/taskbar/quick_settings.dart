@@ -127,7 +127,7 @@ class QuickSettingsButton extends StatelessWidget {
       VerticalDivider(
         indent: 8,
         endIndent: 8,
-        color: context.theme.textColor.withOpacity(0.25),
+        color: context.theme.textColor,
       ),
     ];
   }

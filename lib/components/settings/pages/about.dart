@@ -16,6 +16,7 @@ limitations under the License.
 
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/settings/widgets/settings_card.dart';
+import 'package:pangolin/components/settings/widgets/settings_content_header.dart';
 import 'package:pangolin/components/settings/widgets/settings_page.dart';
 import 'package:pangolin/utils/data/globals.dart';
 import 'package:pangolin/utils/theme/theme_manager.dart';
@@ -25,7 +26,7 @@ class SettingsPageAbout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SettingsPage(
+    return /*SettingsPage(
       title: "About",
       cards: [
         SettingsCard.custom(
@@ -76,6 +77,76 @@ class SettingsPageAbout extends StatelessWidget {
           ),
         ),
       ],
-    );
+    )*/
+        SingleChildScrollView(
+            child: Column(
+      children: [
+        Stack(
+          children: [
+            Container(
+              width: double.maxFinite,
+              height: 200,
+              color: ThemeManager.of(context).accentColorAlt,
+            ),
+            Image.asset(
+              "assets/images/other/about-mask.png",
+              width: double.maxFinite,
+              height: 200,
+              fit: BoxFit.fitWidth,
+            ),
+            Center(
+                child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  height: 70,
+                ),
+                Image.asset(
+                  "assets/images/logos/dahliaOS-white.png",
+                  height: 50,
+                ),
+                Text(
+                  "Version " + totalVersionNumber,
+                  style: TextStyle(color: Colors.white),
+                )
+              ],
+            )),
+          ],
+        ),
+        Container(
+          margin: EdgeInsets.all(50),
+          child: Column(
+            children: [
+              SettingsContentHeader("Kernel"),
+              SettingsCard.withExpandable(
+                value: false,
+                leading: Icon(Icons.memory),
+                title: kernel,
+              ),
+              SettingsContentHeader("Desktop"),
+              SettingsCard.withExpandable(
+                value: false,
+                leading: Icon(Icons.desktop_mac),
+                title: "Pangolin "+pangolinCommit,
+              ),
+              SettingsContentHeader("Software Update"),
+              SettingsCard.withCustomTrailing(
+          title: "dahliaOS is up to date - 21XXXX",
+          subtitle: "Last checked: Today at 12:45 AM",
+          leading: Icon(Icons.update),
+          trailing: ElevatedButton(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text("Check for updates"),
+            ),
+            onPressed: () {},
+          ),
+        ),
+            ],
+          ),
+        )
+      ],
+    ));
   }
 }

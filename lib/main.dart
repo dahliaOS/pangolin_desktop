@@ -86,6 +86,7 @@ class Pangolin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      //debugShowCheckedModeBanner: false,
       home: Desktop(),
       theme: theme(context),
       locale: context.locale,

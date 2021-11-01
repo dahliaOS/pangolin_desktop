@@ -22,7 +22,7 @@ import 'package:pangolin/utils/data/accent_color_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
-String totalVersionNumber = "210419";
+String totalVersionNumber = "21XXXX";
 String headingFeatureString =
     "dahliaOS Linux-Based " + totalVersionNumber + " ...";
 String longName = "dahliaOS Linux-Based " + totalVersionNumber + " PRE-RELEASE";
@@ -38,7 +38,7 @@ String get kernel {
     return "Web Build";
 }
 
-String pangolinCommit = "Pangolin - reborn";
+String pangolinCommit = "8c5eea993a89446b3bb0b9e313cdea1d06bf8477";
 String fullPangolinVersion = "$pangolinCommit";
 
 double horizontalPadding(BuildContext context, double size) =>
