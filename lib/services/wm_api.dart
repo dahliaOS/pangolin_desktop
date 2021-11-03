@@ -20,7 +20,6 @@ import 'package:pangolin/utils/data/app_list.dart';
 import 'package:pangolin/components/window/error_window.dart';
 import 'package:pangolin/components/window/window_surface.dart';
 import 'package:pangolin/components/window/window_toolbar.dart';
-import 'package:pangolin/utils/providers/window_customization_provider.dart';
 
 class WmAPI {
   late BuildContext context;
