@@ -41,7 +41,7 @@ class WmAPI {
       SurfaceWindowFeature.elevation: 4.0,
       SurfaceWindowFeature.shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(
-          Radius.circular(DatabaseManager.get("windowBorderRadius") ?? 8.0),
+          Radius.circular(DatabaseManager.get("windowBorderRadius") ?? 12.0),
         ),
       ),
       SurfaceWindowFeature.background: PangolinWindowSurface(),

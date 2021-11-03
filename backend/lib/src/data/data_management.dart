@@ -341,6 +341,6 @@ class PreferenceProvider extends ChangeNotifier {
       DatabaseManager.set("iconPack", "material");
     }
 
-    DatabaseManager.newEntry("windowBorderRadius", 8.0);
+    DatabaseManager.newEntry("windowBorderRadius", 12.0);
   }
 }

@@ -94,7 +94,7 @@ class _SettingsPageCustomizationState extends State<SettingsPageCustomization> {
               return SizedBox(
                 width: 256,
                 child: Slider(
-                  divisions: 2,
+                  divisions: 4,
                   min: 8.0,
                   max: 24.0,
                   onChanged: (double val) {
