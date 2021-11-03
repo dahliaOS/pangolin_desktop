@@ -14,6 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/settings/data/presets.dart';
 import 'package:pangolin/components/settings/widgets/accent_color_button.dart';
@@ -81,6 +82,30 @@ class _SettingsPageCustomizationState extends State<SettingsPageCustomization> {
                     .toList(),
               ),
             ),
+          ),
+        ),
+        SettingsContentHeader("Window options"),
+        SettingsCard.withCustomTrailing(
+          title: "Window rorder radius  -  " +
+              DatabaseManager.get("windowBorderRadius").toString(),
+          trailing: Builder(
+            builder: (context) {
+              var value = DatabaseManager.get("windowBorderRadius");
+              return SizedBox(
+                width: 256,
+                child: Slider(
+                  divisions: 2,
+                  min: 8.0,
+                  max: 24.0,
+                  onChanged: (double val) {
+                    setState(() {
+                      DatabaseManager.set("windowBorderRadius", val);
+                    });
+                  },
+                  value: value,
+                ),
+              );
+            },
           ),
         ),
       ],

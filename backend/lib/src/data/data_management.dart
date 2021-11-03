@@ -340,5 +340,7 @@ class PreferenceProvider extends ChangeNotifier {
     if (DatabaseManager.get("iconPack") == "io.dahlia.icons.default") {
       DatabaseManager.set("iconPack", "material");
     }
+
+    DatabaseManager.newEntry("windowBorderRadius", 8.0);
   }
 }
