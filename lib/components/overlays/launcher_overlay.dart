@@ -401,7 +401,9 @@ class _LauncherPowerMenuState extends State<LauncherPowerMenu> {
                     child: InkWell(
                       borderRadius: CommonData.of(context)
                           .borderRadius(BorderRadiusType.MEDIUM),
-                      onTap: () {
+                      onTap: () async {
+                        _shell.dismissOverlay(LauncherOverlay.overlayId);
+                        await Future.delayed(const Duration(milliseconds: 150));
                         _shell.showOverlay(PowerOverlay.overlayId,
                             dismissEverything: false);
                         setState(() {});
