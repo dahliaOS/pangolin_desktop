@@ -16,6 +16,8 @@ limitations under the License.
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 
+//TODO get rid of this
+@deprecated
 class FeatureFlags extends ChangeNotifier {
   FeatureFlags() {
     _loadData();

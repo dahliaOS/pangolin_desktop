@@ -49,9 +49,12 @@ class DatabaseManager {
   static Box? get getHiveBox => _hivedb;
 }
 
+//TODO get rid of this
+@deprecated
 class PreferenceProvider extends ChangeNotifier {
   PreferenceProvider() {
     loadData();
+    print("test");
   }
 
   //initial values
