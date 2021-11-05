@@ -17,6 +17,7 @@ limitations under the License.
 import 'dart:async';
 
 import 'package:dahlia_backend/dahlia_backend.dart';
+import 'package:pangolin/components/overlays/power_overlay.dart';
 import 'package:pangolin/components/overlays/quick_settings/pages/account_page.dart';
 import 'package:pangolin/components/overlays/quick_settings/widgets/qs_action_button.dart';
 import 'package:pangolin/components/overlays/quick_settings/widgets/qs_shortcut_button.dart';
@@ -25,6 +26,7 @@ import 'package:pangolin/components/overlays/quick_settings/widgets/qs_toggle_bu
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/services/locales/locale_strings.g.dart';
 import 'package:pangolin/services/locales/locales.g.dart';
+import 'package:pangolin/services/wm_api.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/data/common_data.dart';
 import 'package:pangolin/utils/providers/io_provider.dart';
@@ -134,6 +136,7 @@ class QsMain extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _shell = Shell.of(context, listen: false);
     // Action Button Bar
     List<Widget> _qsActionButton = [
       QsActionButton(
@@ -154,6 +157,7 @@ class QsMain extends StatelessWidget {
       QsActionButton(
         leading: Icon(IconsX.of(context).power),
         isCircular: true,
+        onPressed: () => _shell.showOverlay(PowerOverlay.overlayId),
         //title: "Power",
       ),
       QsActionButton(
@@ -171,6 +175,10 @@ class QsMain extends StatelessWidget {
         isCircular: true,
         //title: "Settings",
         margin: EdgeInsets.only(left: 8),
+        onPressed: () {
+          _shell.dismissOverlay(QuickSettingsOverlay.overlayId);
+          WmAPI.of(context).openApp("io.dahlia.settings");
+        },
       ),
     ];
     return Material(
@@ -263,6 +271,7 @@ class QsMain extends StatelessWidget {
                         title: LocaleStrings.qs.theme,
                         icon: Icons.palette_outlined,
                         value: true,
+                        onPressed: () => _pref.darkMode = !_pref.darkMode,
                       ),
                       QsToggleButton(
                         title: LocaleStrings.qs.dnd,
