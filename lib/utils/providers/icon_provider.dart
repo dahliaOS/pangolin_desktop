@@ -19,16 +19,21 @@ import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:provider/provider.dart';
 
 class IconProvider extends ChangeNotifier {
-  IconProvider({Key? key}) {
-    loadData();
-  }
-
   static IconProvider of(BuildContext context, {bool listen: true}) =>
       Provider.of<IconProvider>(context, listen: listen);
+  IconProvider() {
+    _loadData();
+  }
+
+  // Initial Data
 
   String _iconPack = "material";
 
+  // Getter
+
   String get iconPack => _iconPack;
+
+  // Setter
 
   set iconPack(String value) {
     _iconPack = value.toLowerCase();
@@ -36,7 +41,9 @@ class IconProvider extends ChangeNotifier {
     DatabaseManager.set("iconPack", value.toLowerCase());
   }
 
-  loadData() {
+  // Data Loading
+
+  _loadData() {
     var _list = ["material", "fluent", "unicons"];
     if (!_list.contains(iconPack)) {
       iconPack = "material";
