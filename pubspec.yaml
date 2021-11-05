@@ -72,6 +72,9 @@ dev_dependencies:
 #  integration_test:
 #    sdk: flutter
 
+dependency_overrides:
+  material_design_icons_flutter: ^5.0.6295
+
 
 flutter:
   uses-material-design: true
