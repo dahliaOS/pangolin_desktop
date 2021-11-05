@@ -22,15 +22,25 @@ class IOProvider extends ChangeNotifier {
   static IOProvider of(BuildContext context, {bool listen: true}) =>
       Provider.of<IOProvider>(context, listen: listen);
 
+  IOProvider() {
+    _loadData();
+  }
+
+  // Initial Values
+
   double _volume = 0.5;
   double _brightness = 0.75;
   bool _isMuted = false;
   bool _isAutoBrightnessEnabled = true;
 
+  // Getters
+
   double get volume => _volume;
   double get brightness => _brightness;
   bool get isMuted => _isMuted;
   bool get isAutoBrightnessEnabled => _isAutoBrightnessEnabled;
+
+  // Setters / Methods
 
   void set volume(double value) {
     _volume = value;
@@ -58,7 +68,9 @@ class IOProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void loadData() {
+  // Data Loading
+
+  void _loadData() {
     _volume = DatabaseManager.get("volume") ?? volume;
     _brightness = DatabaseManager.get("brightness") ?? volume;
   }
