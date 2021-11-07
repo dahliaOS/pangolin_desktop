@@ -250,9 +250,12 @@ class _LauncherCategoriesState extends State<LauncherCategories> {
                                     : FontWeight.normal,
                                 color: _selected == index
                                     ? context.theme.colorScheme.secondary
-                                                .computeLuminance() >
+                                                .computeLuminance() <
                                             0.4
-                                        ? CommonData.of(context).textColorAlt()
+                                        ? !context.theme.darkMode
+                                            ? CommonData.of(context)
+                                                .textColorAlt()
+                                            : CommonData.of(context).textColor()
                                         : CommonData.of(context).textColor()
                                     : CommonData.of(context).textColor()),
                           ),
