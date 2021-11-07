@@ -15,7 +15,6 @@ limitations under the License.
 */
 
 import 'package:dahlia_backend/dahlia_backend.dart';
-import 'package:flutter/material.dart';
 import 'package:pangolin/components/overlays/power_overlay.dart';
 import 'package:pangolin/components/overlays/search_overlay.dart';
 import 'package:pangolin/components/shell/shell.dart';
@@ -23,10 +22,10 @@ import 'package:pangolin/services/locales/locale_strings.g.dart';
 import 'package:pangolin/utils/data/app_list.dart';
 import 'package:pangolin/utils/data/common_data.dart';
 import 'package:pangolin/services/wm_api.dart';
+import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/widgets/app_launcher/app_launcher_button.dart';
 import 'package:pangolin/widgets/searchbar/searchbar.dart';
 import 'package:provider/provider.dart';
-import 'package:pangolin/utils/extensions/preference_extension.dart';
 
 class LauncherOverlay extends ShellOverlay {
   static const String overlayId = 'launcher';
@@ -249,7 +248,11 @@ class _LauncherCategoriesState extends State<LauncherCategories> {
                                     ? FontWeight.bold
                                     : FontWeight.normal,
                                 color: _selected == index
-                                    ? CommonData.of(context).textColorAlt()
+                                    ? context.theme.colorScheme.secondary
+                                                .computeLuminance() >
+                                            0.4
+                                        ? CommonData.of(context).textColorAlt()
+                                        : CommonData.of(context).textColor()
                                     : CommonData.of(context).textColor()),
                           ),
                         ),
