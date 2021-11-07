@@ -88,12 +88,11 @@ extension BuildContextX on BuildContext {
 }
 
 extension CommonDataX on CommonData {
-  BorderRadiusGeometry get borderRadiusSmall =>
+  BorderRadius get borderRadiusSmall =>
       this.borderRadius(BorderRadiusType.SMALL);
-  BorderRadiusGeometry get borderRadiusMedium =>
+  BorderRadius get borderRadiusMedium =>
       this.borderRadius(BorderRadiusType.MEDIUM);
-  BorderRadiusGeometry get borderRadiusBig =>
-      this.borderRadius(BorderRadiusType.BIG);
-  BorderRadiusGeometry get borderRadiusRound =>
+  BorderRadius get borderRadiusBig => this.borderRadius(BorderRadiusType.BIG);
+  BorderRadius get borderRadiusRound =>
       this.borderRadius(BorderRadiusType.ROUND);
 }

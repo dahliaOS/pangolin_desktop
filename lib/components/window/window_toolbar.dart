@@ -13,13 +13,13 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
+
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/services.dart';
 import 'package:pangolin/utils/context_menus/context_menu.dart';
 import 'package:pangolin/utils/context_menus/context_menu_item.dart';
 import 'package:pangolin/utils/context_menus/core/context_menu_region.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
-import 'package:provider/provider.dart';
 
 class PangolinWindowToolbar extends StatefulWidget {
   const PangolinWindowToolbar();
@@ -36,8 +36,7 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
   @override
   Widget build(BuildContext context) {
     final properties = WindowPropertyRegistry.of(context);
-    final _data = context.watch<PreferenceProvider>();
-    final fgColor = !_data.darkMode ? Colors.grey[900]! : Colors.white;
+    final fgColor = !context.theme.darkMode ? Colors.grey[900]! : Colors.white;
 
     return GestureDetector(
       child: ContextMenuRegion(

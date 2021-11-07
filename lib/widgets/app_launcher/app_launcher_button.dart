@@ -15,11 +15,11 @@ limitations under the License.
 */
 
 import 'package:dahlia_backend/dahlia_backend.dart';
-import 'package:flutter/material.dart';
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/utils/data/common_data.dart';
 import 'package:pangolin/services/wm_api.dart';
-import 'package:provider/provider.dart';
+import 'package:pangolin/utils/extensions/extensions.dart';
+import 'package:pangolin/utils/providers/customization_provider.dart';
 
 class AppLauncherButton extends StatefulWidget {
   final Application application;
@@ -34,6 +34,8 @@ class _AppLauncherButtonState extends State<AppLauncherButton> {
 
   @override
   Widget build(BuildContext context) {
+    final _customizationProvider =
+        CustomizationProvider.of(context, listen: false);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Material(
@@ -43,7 +45,7 @@ class _AppLauncherButtonState extends State<AppLauncherButton> {
           padding: const EdgeInsets.all(8.0),
           child: GestureDetector(
             onSecondaryTap: () {
-              Provider.of<PreferenceProvider>(context, listen: false)
+              _customizationProvider
                   .togglePinnedApp(application.packageName ?? "");
             },
             child: InkWell(

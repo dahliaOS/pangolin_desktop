@@ -14,24 +14,23 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:pangolin/components/overlays/keyboard_overlay.dart';
 import 'package:pangolin/components/overlays/quick_settings/quick_settings_overlay.dart';
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/utils/data/common_data.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
-import 'package:provider/provider.dart';
+import 'package:pangolin/utils/providers/customization_provider.dart';
 
 class KeyboardButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final _pref = Provider.of<PreferenceProvider>(context);
+    final _customizationProvider = CustomizationProvider.of(context);
     final _shell = Shell.of(context);
 
     return SizedBox(
       //width: 96,
-      width: _pref.isTaskbarHorizontal ? null : 48,
-      height: _pref.isTaskbarHorizontal ? 48 : null,
+      width: _customizationProvider.isTaskbarHorizontal ? null : 48,
+      height: _customizationProvider.isTaskbarHorizontal ? 48 : null,
       child: Padding(
         padding: const EdgeInsets.all(4.0),
         child: ClipRRect(
@@ -56,7 +55,7 @@ class KeyboardButton extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                 child: Center(
-                  child: _pref.isTaskbarHorizontal
+                  child: _customizationProvider.isTaskbarHorizontal
                       ? Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [Icon(Icons.keyboard_outlined)])

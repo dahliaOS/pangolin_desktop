@@ -29,9 +29,10 @@ import 'package:pangolin/services/locales/locales.g.dart';
 import 'package:pangolin/services/wm_api.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/data/common_data.dart';
-import 'package:pangolin/utils/providers/io_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:pangolin/utils/providers/connection_provider.dart';
+import 'package:pangolin/utils/providers/customization_provider.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:pangolin/utils/providers/io_provider.dart';
 
 class QuickSettingsOverlay extends ShellOverlay {
   static const String overlayId = 'quicksettings';
@@ -75,7 +76,7 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
 
   @override
   Widget build(BuildContext context) {
-    final _pref = Provider.of<PreferenceProvider>(context);
+    final _customizationProvider = CustomizationProvider.of(context);
     // _getTime(context);
     final Animation<double> _animation = CurvedAnimation(
       parent: ac,
@@ -85,25 +86,27 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
     if (!controller.showing) return SizedBox();
 
     return Positioned(
-      bottom: _pref.isTaskbarRight || _pref.isTaskbarLeft
+      bottom: _customizationProvider.isTaskbarRight ||
+              _customizationProvider.isTaskbarLeft
           ? 8
-          : !_pref.isTaskbarTop
+          : !_customizationProvider.isTaskbarTop
               ? 48 + 8
               : null,
-      top: _pref.isTaskbarTop ? 48 + 8 : null,
-      right: _pref.isTaskbarRight
+      top: _customizationProvider.isTaskbarTop ? 48 + 8 : null,
+      right: _customizationProvider.isTaskbarRight
           ? 48 + 8
-          : _pref.isTaskbarLeft
+          : _customizationProvider.isTaskbarLeft
               ? null
               : 8,
-      left: _pref.isTaskbarLeft ? 48 + 8 : null,
+      left: _customizationProvider.isTaskbarLeft ? 48 + 8 : null,
       child: AnimatedBuilder(
         animation: _animation,
         builder: (context, chilld) => FadeTransition(
           opacity: _animation,
           child: ScaleTransition(
             scale: _animation,
-            alignment: FractionalOffset(0.8, !_pref.isTaskbarTop ? 1.0 : 0.0),
+            alignment: FractionalOffset(
+                0.8, !_customizationProvider.isTaskbarTop ? 1.0 : 0.0),
             child: BoxSurface(
               borderRadius:
                   CommonData.of(context).borderRadius(BorderRadiusType.BIG),
@@ -193,7 +196,8 @@ class QsMain extends StatelessWidget {
             ),
             _qsTitle("Quick Controls"),
             Builder(builder: (context) {
-              final _pref = Provider.of<PreferenceProvider>(context);
+              final _connectionProvider = ConnectionProvider.of(context);
+              final _customizationProvider = CustomizationProvider.of(context);
               return Column(
                 children: [
                   Row(
@@ -201,42 +205,50 @@ class QsMain extends StatelessWidget {
                     children: [
                       QsToggleButton(
                         title: LocaleStrings.qs.wifi,
-                        icon: _pref.wifi
+                        icon: _connectionProvider.wifi
                             ? Icons.wifi_rounded
                             : Icons.wifi_off_rounded,
                         subtitle: "Connected",
-                        value: _pref.wifi,
-                        onPressed: () => _pref.wifi = !_pref.wifi,
+                        value: _connectionProvider.wifi,
+                        onPressed: () => _connectionProvider.wifi =
+                            !_connectionProvider.wifi,
                       ),
                       QsToggleButton(
                         title: LocaleStrings.qs.bluetooth,
-                        subtitle: _pref.bluetooth ? "On" : "Off",
-                        icon: _pref.bluetooth
+                        subtitle: _connectionProvider.bluetooth ? "On" : "Off",
+                        icon: _connectionProvider.bluetooth
                             ? Icons.bluetooth_connected_rounded
                             : Icons.bluetooth_disabled_rounded,
-                        value: _pref.bluetooth,
-                        onPressed: () => _pref.bluetooth = !_pref.bluetooth,
+                        value: _connectionProvider.bluetooth,
+                        onPressed: () => _connectionProvider.bluetooth =
+                            !_connectionProvider.bluetooth,
                       ),
                       QsToggleButton(
                         title: LocaleStrings.qs.airplanemode,
-                        icon: !(!_pref.wifi && !_pref.bluetooth)
+                        icon: !(!_connectionProvider.wifi &&
+                                !_connectionProvider.bluetooth)
                             ? Icons.airplanemode_off_rounded
                             : Icons.airplanemode_active_rounded,
-                        value:
-                            !(!_pref.wifi && !_pref.bluetooth) ? false : true,
+                        value: !(!_connectionProvider.wifi &&
+                                !_connectionProvider.bluetooth)
+                            ? false
+                            : true,
                         onPressed: () {
-                          if (_pref.wifi && _pref.bluetooth) {
-                            _pref.wifi = false;
-                            _pref.bluetooth = false;
-                          } else if (_pref.wifi && !_pref.bluetooth) {
-                            _pref.wifi = false;
-                            _pref.bluetooth = false;
-                          } else if (!_pref.wifi && _pref.bluetooth) {
-                            _pref.wifi = false;
-                            _pref.bluetooth = false;
+                          if (_connectionProvider.wifi &&
+                              _connectionProvider.bluetooth) {
+                            _connectionProvider.wifi = false;
+                            _connectionProvider.bluetooth = false;
+                          } else if (_connectionProvider.wifi &&
+                              !_connectionProvider.bluetooth) {
+                            _connectionProvider.wifi = false;
+                            _connectionProvider.bluetooth = false;
+                          } else if (!_connectionProvider.wifi &&
+                              _connectionProvider.bluetooth) {
+                            _connectionProvider.wifi = false;
+                            _connectionProvider.bluetooth = false;
                           } else {
-                            _pref.wifi = true;
-                            _pref.bluetooth = true;
+                            _connectionProvider.wifi = true;
+                            _connectionProvider.bluetooth = true;
                           }
                         },
                       ),
@@ -271,7 +283,8 @@ class QsMain extends StatelessWidget {
                         title: LocaleStrings.qs.theme,
                         icon: Icons.palette_outlined,
                         value: true,
-                        onPressed: () => _pref.darkMode = !_pref.darkMode,
+                        onPressed: () => _customizationProvider.darkMode =
+                            !_customizationProvider.darkMode,
                       ),
                       QsToggleButton(
                         title: LocaleStrings.qs.dnd,
