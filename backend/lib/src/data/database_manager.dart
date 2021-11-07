@@ -23,6 +23,7 @@ class DatabaseManager {
     await Hive.initFlutter();
     //Hive.init(_dir.path);
     _hivedb = await Hive.openBox('settings');
+    newEntry("windowBorderRadius", 12.0);
   }
 
   //get
