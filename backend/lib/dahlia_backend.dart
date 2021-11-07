@@ -16,12 +16,11 @@ limitations under the License.
 library dahlia_backend;
 
 export 'src/api/data_provider.dart';
-export 'src/data/data_management.dart';
+export 'src/data/database_manager.dart';
 export 'src/api/time_date_manager.dart';
 export 'src/widgets/box_container.dart';
 export 'src/vars/application.dart';
 export 'src/api/system_calls.dart';
-export 'src/data/feature_flags.dart';
 export 'src/api/device_info.dart';
 export 'src/api/wm/wm.dart';
 

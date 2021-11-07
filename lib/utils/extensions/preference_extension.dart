@@ -14,9 +14,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:dahlia_backend/dahlia_backend.dart';
+import 'package:pangolin/utils/providers/customization_provider.dart';
 
-extension PreferenceExtension on PreferenceProvider {
+extension PreferenceExtension on CustomizationProvider {
   bool get isTaskbarLeft {
     if (taskbarPosition == 1) {
       return true;

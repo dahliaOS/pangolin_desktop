@@ -17,27 +17,32 @@ limitations under the License.
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:pangolin/components/overlays/quick_settings/quick_settings_overlay.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
+import 'package:pangolin/utils/providers/connection_provider.dart';
+import 'package:pangolin/utils/providers/customization_provider.dart';
 import 'package:pangolin/widgets/taskbar/taskbar_element.dart';
-import 'package:provider/provider.dart';
 
 class QuickSettingsButton extends StatelessWidget {
   const QuickSettingsButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final _pref = Provider.of<PreferenceProvider>(context);
+    final _customizationProvider = CustomizationProvider.of(context);
+    final _connectionProv = ConnectionProvider.of(context);
     return TaskbarElement(
       iconSize: 18,
-      size: Size.fromWidth(
-          96 + (_pref.wifi ? 28 : 0) + (_pref.bluetooth ? 28 : 0) + 32 + 32),
+      size: Size.fromWidth(96 +
+          (_connectionProv.wifi ? 28 : 0) +
+          (_connectionProv.bluetooth ? 28 : 0) +
+          32 +
+          32),
       overlayID: QuickSettingsOverlay.overlayId,
-      child: _pref.isTaskbarHorizontal
+      child: _customizationProvider.isTaskbarHorizontal
           ? Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: items(context)
                 ..add(
                   Padding(
-                    padding: _pref.isTaskbarHorizontal
+                    padding: _customizationProvider.isTaskbarHorizontal
                         ? EdgeInsets.symmetric(horizontal: 8.0)
                         : EdgeInsets.symmetric(vertical: 8.0),
                     child: ValueListenableBuilder(
@@ -60,7 +65,7 @@ class QuickSettingsButton extends StatelessWidget {
               children: items(context)
                 ..add(
                   Padding(
-                    padding: _pref.isTaskbarHorizontal
+                    padding: _customizationProvider.isTaskbarHorizontal
                         ? EdgeInsets.symmetric(horizontal: 8.0)
                         : EdgeInsets.symmetric(vertical: 8.0),
                     child: ValueListenableBuilder(
@@ -83,11 +88,13 @@ class QuickSettingsButton extends StatelessWidget {
   }
 
   List<Widget> items(BuildContext context) {
-    final _pref = Provider.of<PreferenceProvider>(context);
+    final _customizationProvider = CustomizationProvider.of(context);
+    final _connectionProv = ConnectionProvider.of(context);
+
     return [
-      _pref.wifi
+      _connectionProv.wifi
           ? Padding(
-              padding: _pref.isTaskbarHorizontal
+              padding: _customizationProvider.isTaskbarHorizontal
                   ? EdgeInsets.symmetric(horizontal: 4.0)
                   : EdgeInsets.symmetric(vertical: 4.0),
               child: Icon(
@@ -95,9 +102,9 @@ class QuickSettingsButton extends StatelessWidget {
               ),
             )
           : SizedBox.shrink(),
-      _pref.bluetooth
+      _connectionProv.bluetooth
           ? Padding(
-              padding: _pref.isTaskbarHorizontal
+              padding: _customizationProvider.isTaskbarHorizontal
                   ? EdgeInsets.symmetric(horizontal: 4.0)
                   : EdgeInsets.symmetric(vertical: 4.0),
               child: Icon(
@@ -106,7 +113,7 @@ class QuickSettingsButton extends StatelessWidget {
             )
           : SizedBox.shrink(),
       Padding(
-        padding: _pref.isTaskbarHorizontal
+        padding: _customizationProvider.isTaskbarHorizontal
             ? EdgeInsets.symmetric(horizontal: 4.0)
             : EdgeInsets.symmetric(vertical: 4.0),
         child: Icon(
@@ -114,7 +121,7 @@ class QuickSettingsButton extends StatelessWidget {
         ),
       ),
       Padding(
-        padding: _pref.isTaskbarHorizontal
+        padding: _customizationProvider.isTaskbarHorizontal
             ? EdgeInsets.symmetric(horizontal: 4.0)
             : EdgeInsets.symmetric(vertical: 4.0),
         child: RotatedBox(

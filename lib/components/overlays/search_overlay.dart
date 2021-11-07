@@ -15,13 +15,13 @@ limitations under the License.
 */
 
 import 'package:dahlia_backend/dahlia_backend.dart';
-import 'package:flutter/material.dart';
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/utils/data/common_data.dart';
 import 'package:pangolin/utils/data/globals.dart';
+import 'package:pangolin/utils/extensions/extensions.dart';
+import 'package:pangolin/utils/providers/search_provider.dart';
 import 'package:pangolin/widgets/app_launcher/app_laucher_tile.dart';
 import 'package:pangolin/widgets/searchbar/searchbar.dart';
-import 'package:provider/provider.dart';
 import '../../services/search_service.dart';
 
 class SearchOverlay extends ShellOverlay {
@@ -75,7 +75,7 @@ class _SearchOverlayState extends State<SearchOverlay>
       parent: ac,
       curve: CommonData.of(context).animationCurve(),
     );
-    final _pref = Provider.of<PreferenceProvider>(context, listen: false);
+    final _searchProvider = SearchProvider.of(context);
     _focusNode.requestFocus();
 
     if (!controller.showing) return SizedBox();
@@ -181,12 +181,13 @@ class _SearchOverlayState extends State<SearchOverlay>
                                           horizontal: 16, vertical: 4),
                                       shrinkWrap: true,
                                       reverse: true,
-                                      itemCount:
-                                          _pref.recentSearchResults.length,
+                                      itemCount: _searchProvider
+                                          .recentSearchResults.length,
                                       physics: BouncingScrollPhysics(),
                                       itemBuilder: (_, index) =>
                                           AppLauncherTile(
-                                        _pref.recentSearchResults[index],
+                                        _searchProvider
+                                            .recentSearchResults[index],
                                       ),
                                     ),
                                   ],

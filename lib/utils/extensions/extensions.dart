@@ -21,7 +21,6 @@ export 'package:flutter/material.dart';
 export 'package:pangolin/utils/extensions/extensions.dart';
 export 'package:pangolin/utils/icons/icons_x.dart';
 export 'package:pangolin/utils/extensions/preference_extension.dart';
-export 'package:pangolin/utils/providers/provider_manager.dart';
 
 extension ThemeDataX on ThemeData {
   bool get darkMode => this.brightness == Brightness.dark;
@@ -88,12 +87,11 @@ extension BuildContextX on BuildContext {
 }
 
 extension CommonDataX on CommonData {
-  BorderRadiusGeometry get borderRadiusSmall =>
+  BorderRadius get borderRadiusSmall =>
       this.borderRadius(BorderRadiusType.SMALL);
-  BorderRadiusGeometry get borderRadiusMedium =>
+  BorderRadius get borderRadiusMedium =>
       this.borderRadius(BorderRadiusType.MEDIUM);
-  BorderRadiusGeometry get borderRadiusBig =>
-      this.borderRadius(BorderRadiusType.BIG);
-  BorderRadiusGeometry get borderRadiusRound =>
+  BorderRadius get borderRadiusBig => this.borderRadius(BorderRadiusType.BIG);
+  BorderRadius get borderRadiusRound =>
       this.borderRadius(BorderRadiusType.ROUND);
 }

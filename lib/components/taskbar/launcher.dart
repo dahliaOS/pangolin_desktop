@@ -14,20 +14,19 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:flutter/material.dart';
 import 'package:pangolin/components/overlays/launcher_overlay.dart';
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/utils/context_menus/context_menu.dart';
 import 'package:pangolin/utils/context_menus/context_menu_item.dart';
 import 'package:pangolin/utils/context_menus/core/context_menu_region.dart';
+import 'package:pangolin/utils/extensions/extensions.dart';
+import 'package:pangolin/utils/providers/customization_provider.dart';
 import 'package:pangolin/widgets/taskbar/taskbar_element.dart';
-import 'package:provider/provider.dart';
-import 'package:dahlia_backend/dahlia_backend.dart';
 
 class LauncherButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final _pref = Provider.of<PreferenceProvider>(context);
+    final _customizationProvider = CustomizationProvider.of(context);
     final _shell = Shell.of(context);
 
     return ContextMenuRegion(
@@ -37,7 +36,8 @@ class LauncherButton extends StatelessWidget {
             icon: Icons.apps_rounded,
             title: "Icon 1",
             onTap: () {
-              _pref.launcherIcon = Icons.apps_rounded.codePoint;
+              _customizationProvider.launcherIcon =
+                  Icons.apps_rounded.codePoint;
             },
             shortcut: "",
           ),
@@ -45,7 +45,8 @@ class LauncherButton extends StatelessWidget {
             icon: Icons.panorama_fish_eye,
             title: "Icon 2",
             onTap: () {
-              _pref.launcherIcon = Icons.panorama_fish_eye.codePoint;
+              _customizationProvider.launcherIcon =
+                  Icons.panorama_fish_eye.codePoint;
             },
             shortcut: "",
           ),
@@ -53,7 +54,8 @@ class LauncherButton extends StatelessWidget {
             icon: Icons.brightness_low,
             title: "Icon 3",
             onTap: () {
-              _pref.launcherIcon = Icons.brightness_low.codePoint;
+              _customizationProvider.launcherIcon =
+                  Icons.brightness_low.codePoint;
             },
             shortcut: "",
           ),
@@ -61,7 +63,8 @@ class LauncherButton extends StatelessWidget {
             icon: Icons.radio_button_checked,
             title: "Icon 4",
             onTap: () {
-              _pref.launcherIcon = Icons.radio_button_checked.codePoint;
+              _customizationProvider.launcherIcon =
+                  Icons.radio_button_checked.codePoint;
             },
             shortcut: "",
           ),
@@ -70,7 +73,7 @@ class LauncherButton extends StatelessWidget {
       child: TaskbarElement(
         child: Icon(
           IconData(
-            _pref.launcherIcon,
+            _customizationProvider.launcherIcon,
             fontFamily: "MaterialIcons",
           ),
           //size: 24,

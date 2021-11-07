@@ -1,9 +1,24 @@
-import 'package:dahlia_backend/dahlia_backend.dart';
-import 'package:flutter/material.dart';
+/*
+Copyright 2021 The dahliaOS Authors
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
 import 'package:pangolin/components/settings/models/settings_taskbar_data_model.dart';
 import 'package:pangolin/utils/data/common_data.dart';
+import 'package:pangolin/utils/extensions/extensions.dart';
+import 'package:pangolin/utils/providers/customization_provider.dart';
 import 'package:pangolin/utils/theme/theme_manager.dart';
-import 'package:provider/provider.dart';
 
 class TaskbarAlignmentButton extends StatelessWidget {
   final TaskbarAlignmentModelData model;
@@ -12,8 +27,8 @@ class TaskbarAlignmentButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<PreferenceProvider>(context);
-    bool isCentred = provider.centerTaskbar;
+    final _customizationProvider = CustomizationProvider.of(context);
+    bool isCentred = _customizationProvider.centerTaskbar;
     bool _isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return ClipRRect(
       borderRadius: CommonData.of(context).borderRadius(
@@ -25,7 +40,7 @@ class TaskbarAlignmentButton extends StatelessWidget {
         ),
         mouseCursor: SystemMouseCursors.click,
         onTap: () {
-          provider.centerTaskbar = model.centred;
+          _customizationProvider.centerTaskbar = model.centred;
         },
         child: Container(
           clipBehavior: Clip.antiAlias,
