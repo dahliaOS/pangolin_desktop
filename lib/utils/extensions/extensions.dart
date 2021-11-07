@@ -47,6 +47,7 @@ extension BuildContextX on BuildContext {
   CommonData get commonData => CommonData.of(this);
 
   Color get accentColor => theme.colorScheme.secondary;
+  Color get backgroundColor => theme.darkMode ? ColorsX.black : ColorsX.white;
 
   MediaQueryData get mediaQuery => MediaQuery.of(this);
   Size get mSize => mediaQuery.size;

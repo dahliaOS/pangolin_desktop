@@ -65,12 +65,16 @@ dependencies:
   # Icon Packs
   fluentui_system_icons:  ^1.1.143
   unicons: ^2.0.2
+  battery_plus: ^2.0.1
 
 dev_dependencies:
 #  flutter_test:
 #    sdk: flutter
 #  integration_test:
 #    sdk: flutter
+
+dependency_overrides:
+  material_design_icons_flutter: ^5.0.6295
 
 
 flutter:

@@ -249,7 +249,14 @@ class _LauncherCategoriesState extends State<LauncherCategories> {
                                     ? FontWeight.bold
                                     : FontWeight.normal,
                                 color: _selected == index
-                                    ? CommonData.of(context).textColorAlt()
+                                    ? context.theme.colorScheme.secondary
+                                                .computeLuminance() <
+                                            0.4
+                                        ? !context.theme.darkMode
+                                            ? CommonData.of(context)
+                                                .textColorAlt()
+                                            : CommonData.of(context).textColor()
+                                        : CommonData.of(context).textColor()
                                     : CommonData.of(context).textColor()),
                           ),
                         ),
@@ -401,7 +408,9 @@ class _LauncherPowerMenuState extends State<LauncherPowerMenu> {
                     child: InkWell(
                       borderRadius: CommonData.of(context)
                           .borderRadius(BorderRadiusType.MEDIUM),
-                      onTap: () {
+                      onTap: () async {
+                        _shell.dismissOverlay(LauncherOverlay.overlayId);
+                        await Future.delayed(const Duration(milliseconds: 150));
                         _shell.showOverlay(PowerOverlay.overlayId,
                             dismissEverything: false);
                         setState(() {});

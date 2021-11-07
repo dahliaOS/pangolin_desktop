@@ -15,7 +15,7 @@ limitations under the License.
 */
 
 import 'package:dahlia_backend/src/widgets/acrylic.dart';
-import 'package:flutter/material.dart';
+import 'package:pangolin/utils/extensions/extensions.dart';
 
 class BoxSurface extends StatelessWidget {
   final EdgeInsetsGeometry? padding, margin;
@@ -51,11 +51,12 @@ class BoxSurface extends StatelessWidget {
         ),
         shadows: dropShadow
             ? [
-                // TODO Clip the Shadows to only appear outside of the Container
                 BoxShadow(
-                    color: Colors.black.withOpacity(0.15),
-                    blurRadius: 25,
-                    spreadRadius: 2),
+                  color: Colors.black.withOpacity(0.25),
+                  blurRadius: 20,
+                  spreadRadius: -2,
+                  blurStyle: BlurStyle.outer,
+                ),
               ]
             : [],
       ),
@@ -65,7 +66,13 @@ class BoxSurface extends StatelessWidget {
           // Set border radius of the surface area
           borderRadius: borderRadius,
           // Create outline around the surface
-          side: outline ? BorderSide.none : BorderSide.none,
+          side: outline
+              ? BorderSide(
+                  color:
+                      _darkMode ? ColorsX.white.op(0.1) : ColorsX.black.op(0.2),
+                  width: 2,
+                )
+              : BorderSide.none,
         ),
       ),
       child: ClipRRect(

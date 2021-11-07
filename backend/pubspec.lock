@@ -819,7 +819,7 @@ packages:
     description:
       path: "."
       ref: utopia
-      resolved-ref: a594a9894c152a4f2444d8fcb88a0ce15e918ce8
+      resolved-ref: d14be3223ef5ad4aa80e843f5d4f222ae13082f5
       url: "https://github.com/dahliaOS/utopia.git"
     source: git
     version: "2.0.0+2"

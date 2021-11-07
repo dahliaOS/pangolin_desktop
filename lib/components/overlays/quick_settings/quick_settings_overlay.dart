@@ -16,7 +16,9 @@ limitations under the License.
 
 import 'dart:async';
 
+import 'package:battery_plus/battery_plus.dart';
 import 'package:dahlia_backend/dahlia_backend.dart';
+import 'package:pangolin/components/overlays/power_overlay.dart';
 import 'package:pangolin/components/overlays/quick_settings/pages/account_page.dart';
 import 'package:pangolin/components/overlays/quick_settings/widgets/qs_action_button.dart';
 import 'package:pangolin/components/overlays/quick_settings/widgets/qs_shortcut_button.dart';
@@ -25,6 +27,7 @@ import 'package:pangolin/components/overlays/quick_settings/widgets/qs_toggle_bu
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/services/locales/locale_strings.g.dart';
 import 'package:pangolin/services/locales/locales.g.dart';
+import 'package:pangolin/services/wm_api.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/data/common_data.dart';
 import 'package:pangolin/utils/providers/connection_provider.dart';
@@ -137,6 +140,7 @@ class QsMain extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _shell = Shell.of(context, listen: false);
     // Action Button Bar
     List<Widget> _qsActionButton = [
       QsActionButton(
@@ -157,6 +161,7 @@ class QsMain extends StatelessWidget {
       QsActionButton(
         leading: Icon(IconsX.of(context).power),
         isCircular: true,
+        onPressed: () => _shell.showOverlay(PowerOverlay.overlayId),
         //title: "Power",
       ),
       QsActionButton(
@@ -174,6 +179,10 @@ class QsMain extends StatelessWidget {
         isCircular: true,
         //title: "Settings",
         margin: EdgeInsets.only(left: 8),
+        onPressed: () {
+          _shell.dismissOverlay(QuickSettingsOverlay.overlayId);
+          WmAPI.of(context).openApp("io.dahlia.settings");
+        },
       ),
     ];
     return Material(
@@ -189,6 +198,7 @@ class QsMain extends StatelessWidget {
             _qsTitle("Quick Controls"),
             Builder(builder: (context) {
               final _connectionProvider = ConnectionProvider.of(context);
+              final _customizationProvider = CustomizationProvider.of(context);
               return Column(
                 children: [
                   Row(
@@ -274,6 +284,8 @@ class QsMain extends StatelessWidget {
                         title: LocaleStrings.qs.theme,
                         icon: Icons.palette_outlined,
                         value: true,
+                        onPressed: () => _customizationProvider.darkMode =
+                            !_customizationProvider.darkMode,
                       ),
                       QsToggleButton(
                         title: LocaleStrings.qs.dnd,
@@ -350,16 +362,32 @@ class QsMain extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                QsActionButton(
-                  leading: Icon(Icons.calendar_today),
-                  title: "27.10.2021 - 21:33",
-                  margin: EdgeInsets.zero,
+                ValueListenableBuilder(
+                  valueListenable: DateTimeManager.getDateNotifier()!,
+                  builder: (BuildContext context, String date, child) =>
+                      ValueListenableBuilder(
+                    valueListenable: DateTimeManager.getTimeNotifier()!,
+                    builder: (BuildContext context, String time, child) =>
+                        QsActionButton(
+                      leading: Icon(Icons.calendar_today),
+                      title: "$date - $time",
+                      margin: EdgeInsets.zero,
+                    ),
+                  ),
                 ),
-                QsActionButton(
-                  leading: Icon(Icons.battery_charging_full),
-                  title: "100% - fully charged",
-                  margin: EdgeInsets.zero,
-                ),
+                Builder(builder: (context) {
+                  return FutureBuilder(
+                      future: Battery().batteryLevel,
+                      builder: (context, AsyncSnapshot<int?> data) {
+                        String batteryPercentage =
+                            data.data?.toString() ?? "Energy Mode: Performance";
+                        return QsActionButton(
+                          leading: Icon(Icons.battery_charging_full),
+                          title: "${batteryPercentage}",
+                          margin: EdgeInsets.zero,
+                        );
+                      });
+                }),
               ],
             )
           ],

@@ -7,14 +7,14 @@ packages:
       name: animations
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.1"
+    version: "2.0.2"
   args:
     dependency: transitive
     description:
       name: args
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.2.0"
+    version: "2.3.0"
   async:
     dependency: transitive
     description:
@@ -22,6 +22,48 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.8.2"
+  battery_plus:
+    dependency: "direct main"
+    description:
+      name: battery_plus
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.1"
+  battery_plus_linux:
+    dependency: transitive
+    description:
+      name: battery_plus_linux
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.3"
+  battery_plus_macos:
+    dependency: transitive
+    description:
+      name: battery_plus_macos
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.2"
+  battery_plus_platform_interface:
+    dependency: transitive
+    description:
+      name: battery_plus_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.0"
+  battery_plus_web:
+    dependency: transitive
+    description:
+      name: battery_plus_web
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.2"
+  battery_plus_windows:
+    dependency: transitive
+    description:
+      name: battery_plus_windows
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.2"
   cached_network_image:
     dependency: "direct main"
     description:
@@ -48,7 +90,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "41829b3aebdeb1b9f2c5cad97f6d85febe786bb9"
+      resolved-ref: "6a75dcd2ecd960aca4756c2811a99a5210cb5558"
       url: "https://github.com/dahliaOS/calculator.git"
     source: git
     version: "1.1.0+10"
@@ -113,10 +155,17 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "1bf24fc5e5cc8e5b69d1e1b8ed97a0dfad3c82a0"
+      resolved-ref: "417c24a7181f144dfc7ce628b2c9248f0d69cf46"
       url: "https://github.com/dahliaOS/clock.git"
     source: git
     version: "0.0.1+1"
+  dbus:
+    dependency: transitive
+    description:
+      name: dbus
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.5.6"
   easy_localization:
     dependency: "direct main"
     description:
@@ -171,7 +220,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: d48ef41fb96fa79e8fe813aa8b63fcf608b71cd3
+      resolved-ref: "6b4641f7c6be1e7a2736aacc2f92519d73fd71ab"
       url: "https://github.com/dahliaOS/files.git"
     source: git
     version: "1.0.0+1"
@@ -188,7 +237,7 @@ packages:
       name: fluentui_system_icons
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.143"
+    version: "1.1.146"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -223,7 +272,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "0cf5139db407a4e569d34b276970d34c4ccec692"
+      resolved-ref: "46a390d3328fa768b36c84f57a02234c211e2606"
       url: "https://github.com/dahliaOS/graft.git"
     source: git
     version: "1.0.0+1"
@@ -247,7 +296,7 @@ packages:
       name: http
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.13.3"
+    version: "0.13.4"
   http_parser:
     dependency: transitive
     description:
@@ -291,18 +340,18 @@ packages:
     source: hosted
     version: "0.12.11"
   material_design_icons_flutter:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       name: material_design_icons_flutter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.0.5955-rc.1"
+    version: "5.0.6295"
   media:
     dependency: "direct main"
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "17aa508559514f5d4774871839b756cc3bd94339"
+      resolved-ref: "341ee12d5c19930c2281a45bfe4af214f08040b6"
       url: "https://github.com/dahliaOS/media.git"
     source: git
     version: "1.0.0+1"
@@ -319,7 +368,7 @@ packages:
       name: mime
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.0"
+    version: "1.0.1"
   nested:
     dependency: transitive
     description:
@@ -347,14 +396,14 @@ packages:
       name: path_provider
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.3"
+    version: "2.0.6"
   path_provider_linux:
     dependency: transitive
     description:
       name: path_provider_linux
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.2"
+    version: "2.1.0"
   path_provider_macos:
     dependency: transitive
     description:
@@ -389,7 +438,7 @@ packages:
       name: petitparser
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.3.0"
+    version: "4.4.0"
   platform:
     dependency: transitive
     description:
@@ -410,14 +459,14 @@ packages:
       name: plugin_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.1"
+    version: "2.0.2"
   process:
     dependency: transitive
     description:
       name: process
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.2.3"
+    version: "4.2.4"
   provider:
     dependency: "direct main"
     description:
@@ -438,7 +487,7 @@ packages:
       name: quiver
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.1"
+    version: "3.0.1+1"
   recase:
     dependency: "direct main"
     description:
@@ -459,7 +508,7 @@ packages:
       name: shared_preferences
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.7"
+    version: "2.0.8"
   shared_preferences_linux:
     dependency: transitive
     description:
@@ -520,7 +569,7 @@ packages:
       name: sqflite_common
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.1"
+    version: "2.0.1+1"
   stack_trace:
     dependency: transitive
     description:
@@ -547,7 +596,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "59f07f4d133624837b48d2a1fffa6d29abab08cc"
+      resolved-ref: fa543535ae5b8ea3500956be297738b3ddfcee01
       url: "https://github.com/dahliaOS/system_logs.git"
     source: git
     version: "1.0.0+1"
@@ -556,7 +605,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: b153f509223e17b30e103d482ae38c79704d8ee5
+      resolved-ref: "9dbe8d6298c17d2eb4ad85717801cbcc9242a441"
       url: "https://github.com/dahliaOS/task_manager.git"
     source: git
     version: "1.0.0+1"
@@ -581,7 +630,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "512131334c852516918c9cee3df517a95b22e72d"
+      resolved-ref: "53e901a34e30c7905452576f1f0aaea8a99a171f"
       url: "https://github.com/dahliaOS/text_editor.git"
     source: git
     version: "1.0.0+1"
@@ -605,7 +654,7 @@ packages:
       name: url_launcher
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.0.10"
+    version: "6.0.12"
   url_launcher_linux:
     dependency: transitive
     description:
@@ -646,7 +695,7 @@ packages:
     description:
       path: "."
       ref: utopia
-      resolved-ref: a594a9894c152a4f2444d8fcb88a0ce15e918ce8
+      resolved-ref: d14be3223ef5ad4aa80e843f5d4f222ae13082f5
       url: "https://github.com/dahliaOS/utopia.git"
     source: git
     version: "2.0.0+2"
@@ -656,7 +705,7 @@ packages:
       name: uuid
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.4"
+    version: "3.0.5"
   vector_math:
     dependency: transitive
     description:
@@ -669,7 +718,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "13df4134b712e65f1e6fa89aaa5ff76618039848"
+      resolved-ref: "07537f8121b85c55cb9ea3253b8a9d7cec6279f7"
       url: "https://github.com/dahliaOS/web_browser.git"
     source: git
     version: "1.0.0+1"
@@ -678,7 +727,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: d1c44e53091b39b9a9a8a0544ec15e84d3f8bdb5
+      resolved-ref: f4f737d1abbe3b7d8c8661b08d7ef4061cefb259
       url: "https://github.com/dahliaOS/welcome.git"
     source: git
     version: "1.0.0+1"
@@ -688,7 +737,7 @@ packages:
       name: win32
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.2.8"
+    version: "2.2.10"
   window_size:
     dependency: transitive
     description:
@@ -720,7 +769,7 @@ packages:
       name: xml
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.3.0"
+    version: "5.3.1"
   xterm:
     dependency: transitive
     description:
@@ -730,4 +779,4 @@ packages:
     version: "2.5.0-pre"
 sdks:
   dart: ">=2.14.0 <3.0.0"
-  flutter: ">=2.0.0"
+  flutter: ">=2.5.0"
