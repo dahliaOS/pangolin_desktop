@@ -15,11 +15,11 @@ limitations under the License.
 */
 
 import 'package:dahlia_backend/dahlia_backend.dart';
-import 'package:flutter/material.dart';
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/utils/data/app_list.dart';
 import 'package:pangolin/services/wm_api.dart';
-import 'package:provider/provider.dart';
+import 'package:pangolin/utils/extensions/extensions.dart';
+import 'package:pangolin/utils/providers/search_provider.dart';
 
 class AppLauncherTile extends StatefulWidget {
   final String packageName;
@@ -33,7 +33,7 @@ class _AppLauncherTileState extends State<AppLauncherTile> {
   @override
   Widget build(BuildContext context) {
     final Application application = getApp(widget.packageName);
-    final _pref = Provider.of<PreferenceProvider>(context);
+    final _searchProvider = SearchProvider.of(context);
     return Material(
       borderRadius: BorderRadius.circular(8),
       color: Colors.transparent,
@@ -56,7 +56,7 @@ class _AppLauncherTileState extends State<AppLauncherTile> {
         trailing: Text("App"),
         subtitle: Text(application.description ?? ""),
         onTap: () {
-          _pref.addRecentSearchResult(application.packageName!);
+          _searchProvider.addRecentSearchResult(application.packageName!);
           Shell.of(context, listen: false).dismissEverything();
           WmAPI.of(context).openApp(widget.packageName);
         },

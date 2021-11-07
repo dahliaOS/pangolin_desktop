@@ -14,10 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:dahlia_backend/dahlia_backend.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:pangolin/utils/extensions/preference_extension.dart';
+import 'package:pangolin/utils/extensions/extensions.dart';
+import 'package:pangolin/utils/providers/customization_provider.dart';
 
 class CommonData {
   late BuildContext context;
@@ -42,8 +40,7 @@ class CommonData {
 
   // Global Taskbar margin based on the Taskbar position
   EdgeInsets taskbarMargin() {
-    final _taskbarProvider =
-        Provider.of<PreferenceProvider>(context, listen: false);
+    final _taskbarProvider = CustomizationProvider.of(context);
     if (_taskbarProvider.isTaskbarBottom) {
       return EdgeInsets.only(bottom: 48);
     }

@@ -21,8 +21,14 @@ import 'package:pangolin/components/shell/desktop.dart';
 import 'package:pangolin/services/locales/generated_asset_loader.g.dart';
 import 'package:pangolin/services/locales/locales.g.dart';
 import 'package:pangolin/components/settings/data/presets.dart';
+import 'package:pangolin/utils/extensions/extensions.dart';
+import 'package:pangolin/utils/providers/clock_provider.dart';
+import 'package:pangolin/utils/providers/connection_provider.dart';
+import 'package:pangolin/utils/providers/customization_provider.dart';
 import 'package:pangolin/utils/providers/icon_provider.dart';
 import 'package:pangolin/utils/providers/io_provider.dart';
+import 'package:pangolin/utils/providers/misc_provider.dart';
+import 'package:pangolin/utils/providers/search_provider.dart';
 import 'package:pangolin/utils/theme/theme.dart';
 import 'package:provider/provider.dart';
 import 'package:pangolin/services/visual_engine/visual_engine.dart';
@@ -32,16 +38,14 @@ void main() async {
 
   //initialize the database
   await DatabaseManager.initialseDatabase();
-  PreferenceProvider();
-  IconProvider();
+  //PreferenceProvider();
 
   //initialize scheduler for time and date
   DateTimeManager.initialiseScheduler();
 
   //Fix old database entries
   if (double.tryParse(DatabaseManager.get("wallpaper")) != null) {
-    DatabaseManager.set(
-        "wallpaper", "assets/images/wallpapers/modern.png");
+    DatabaseManager.set("wallpaper", "assets/images/wallpapers/modern.png");
   }
 
   //initialize the localization engine
@@ -63,17 +67,32 @@ void main() async {
       startLocale: Locale("en", "US"),
       child: MultiProvider(
         providers: [
-          ChangeNotifierProvider<PreferenceProvider>.value(
+          /* ChangeNotifierProvider<PreferenceProvider>.value(
             value: PreferenceProvider(),
           ),
           ChangeNotifierProvider<FeatureFlags>.value(
             value: FeatureFlags(),
-          ),
+          ), */
           ChangeNotifierProvider<IconProvider>.value(
             value: IconProvider(),
           ),
           ChangeNotifierProvider<IOProvider>.value(
             value: IOProvider(),
+          ),
+          ChangeNotifierProvider<CustomizationProvider>.value(
+            value: CustomizationProvider(),
+          ),
+          ChangeNotifierProvider<MiscProvider>.value(
+            value: MiscProvider(),
+          ),
+          ChangeNotifierProvider<ClockProvider>.value(
+            value: ClockProvider(),
+          ),
+          ChangeNotifierProvider<ConnectionProvider>.value(
+            value: ConnectionProvider(),
+          ),
+          ChangeNotifierProvider<SearchProvider>.value(
+            value: SearchProvider(),
           ),
         ],
         child: Pangolin(),

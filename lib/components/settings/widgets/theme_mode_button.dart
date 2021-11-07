@@ -14,12 +14,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:dahlia_backend/dahlia_backend.dart';
-import 'package:flutter/material.dart';
 import 'package:pangolin/components/settings/models/settings_theme_data_model.dart';
 import 'package:pangolin/utils/data/common_data.dart';
+import 'package:pangolin/utils/extensions/extensions.dart';
+import 'package:pangolin/utils/providers/customization_provider.dart';
 import 'package:pangolin/utils/theme/theme_manager.dart';
-import 'package:provider/provider.dart';
 
 class ThemeModeButton extends StatefulWidget {
   final ThemeModeDataModel model;
@@ -32,7 +31,7 @@ class ThemeModeButton extends StatefulWidget {
 class _ThemeModeButtonState extends State<ThemeModeButton> {
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<PreferenceProvider>(context, listen: false);
+    final _customizationProvider = CustomizationProvider.of(context);
     return ClipRRect(
       borderRadius: CommonData.of(context).borderRadius(
         BorderRadiusType.SMALL,
@@ -43,12 +42,12 @@ class _ThemeModeButtonState extends State<ThemeModeButton> {
         ),
         mouseCursor: SystemMouseCursors.click,
         onTap: () {
-          provider.darkMode = widget.model.darkMode;
+          _customizationProvider.darkMode = widget.model.darkMode;
         },
         child: Container(
           clipBehavior: Clip.antiAlias,
           decoration: BoxDecoration(
-            color: (widget.model.darkMode == provider.darkMode)
+            color: (widget.model.darkMode == _customizationProvider.darkMode)
                 ? ThemeManager.of(context).accentColor
                 : Colors.transparent,
           ),
@@ -90,7 +89,8 @@ class _ThemeModeButtonState extends State<ThemeModeButton> {
                 Text(
                   widget.model.label,
                   style: Theme.of(context).textTheme.subtitle1?.copyWith(
-                        color: widget.model.darkMode == provider.darkMode
+                        color: widget.model.darkMode ==
+                                _customizationProvider.darkMode
                             ? ThemeManager.of(context)
                                         .accentColor
                                         .computeLuminance() <
