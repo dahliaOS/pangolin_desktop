@@ -16,6 +16,7 @@ limitations under the License.
 
 import 'dart:async';
 
+import 'package:battery_plus/battery_plus.dart';
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:pangolin/components/overlays/power_overlay.dart';
 import 'package:pangolin/components/overlays/quick_settings/pages/account_page.dart';
@@ -361,16 +362,32 @@ class QsMain extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                QsActionButton(
-                  leading: Icon(Icons.calendar_today),
-                  title: "27.10.2021 - 21:33",
-                  margin: EdgeInsets.zero,
+                ValueListenableBuilder(
+                  valueListenable: DateTimeManager.getDateNotifier()!,
+                  builder: (BuildContext context, String date, child) =>
+                      ValueListenableBuilder(
+                    valueListenable: DateTimeManager.getTimeNotifier()!,
+                    builder: (BuildContext context, String time, child) =>
+                        QsActionButton(
+                      leading: Icon(Icons.calendar_today),
+                      title: "$date - $time",
+                      margin: EdgeInsets.zero,
+                    ),
+                  ),
                 ),
-                QsActionButton(
-                  leading: Icon(Icons.battery_charging_full),
-                  title: "100% - fully charged",
-                  margin: EdgeInsets.zero,
-                ),
+                Builder(builder: (context) {
+                  return FutureBuilder(
+                      future: Battery().batteryLevel,
+                      builder: (context, AsyncSnapshot<int?> data) {
+                        String batteryPercentage =
+                            data.data?.toString() ?? "Energy Mode: Performance";
+                        return QsActionButton(
+                          leading: Icon(Icons.battery_charging_full),
+                          title: "${batteryPercentage}",
+                          margin: EdgeInsets.zero,
+                        );
+                      });
+                }),
               ],
             )
           ],
