@@ -44,7 +44,8 @@ void main() async {
   DateTimeManager.initialiseScheduler();
 
   //Fix old database entries
-  if (double.tryParse(DatabaseManager.get("wallpaper")) != null) {
+  if (DatabaseManager.get("wallpaper") != null &&
+      double.tryParse(DatabaseManager.get("wallpaper")) != null) {
     DatabaseManager.set("wallpaper", "assets/images/wallpapers/modern.png");
   }
 
