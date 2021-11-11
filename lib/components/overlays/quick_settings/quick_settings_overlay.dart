@@ -111,8 +111,8 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
             child: BoxSurface(
               borderRadius:
                   CommonData.of(context).borderRadius(BorderRadiusType.BIG),
-              width: 560,
-              height: 490,
+              width: 540,
+              height: 474,
               dropShadow: true,
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
@@ -151,7 +151,7 @@ class QsMain extends StatelessWidget {
         onPressed: () => Navigator.pushNamed(context, "/account_page"),
         margin: EdgeInsets.zero,
         textStyle: TextStyle(
-          fontSize: 14,
+          fontSize: 13,
           fontWeight: FontWeight.w600,
           height: 1.1,
           color: context.theme.darkMode ? ColorsX.white : ColorsX.black,
@@ -205,6 +205,7 @@ class QsMain extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       QsToggleButton(
+                        //TODO change title to "Network"
                         title: LocaleStrings.qs.wifi,
                         icon: _connectionProvider.wifi
                             ? Icons.wifi_rounded
@@ -253,6 +254,14 @@ class QsMain extends StatelessWidget {
                           }
                         },
                       ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 12,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
                       QsToggleButton(
                         title: LocaleStrings.settings.generalLanguage,
                         subtitle: LocaleStrings.qs.changelanguage,
@@ -267,19 +276,13 @@ class QsMain extends StatelessWidget {
                           }
                         },
                       ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 12,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
+                      //TODO remove the provider option for this
+                      /* 
                       QsToggleButton(
                         title: LocaleStrings.qs.autorotate,
                         icon: Icons.screen_lock_rotation_rounded,
                         value: false,
-                      ),
+                      ), */
                       QsToggleButton(
                         title: LocaleStrings.qs.theme,
                         icon: Icons.palette_outlined,
@@ -292,11 +295,13 @@ class QsMain extends StatelessWidget {
                         icon: Icons.do_not_disturb_off_rounded,
                         value: false,
                       ),
+                      //TODO move night light to the brightness control submenu
+                      /* 
                       QsToggleButton(
                         title: "Night light",
                         icon: Icons.brightness_4_rounded,
                         value: false,
-                      ),
+                      ), */
                     ],
                   ),
                 ],
@@ -398,12 +403,12 @@ class QsMain extends StatelessWidget {
 
   Padding _qsTitle(String title) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(4.0, 16.0, 0.0, 12.0),
+      padding: const EdgeInsets.fromLTRB(4.0, 12.0, 0.0, 12.0),
       child: Align(
         alignment: Alignment.centerLeft,
         child: Text(
           title,
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
         ),
       ),
     );
