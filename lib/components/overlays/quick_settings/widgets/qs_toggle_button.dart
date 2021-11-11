@@ -15,6 +15,7 @@ limitations under the License.
 */
 
 import 'package:pangolin/utils/extensions/extensions.dart';
+import 'package:pangolin/utils/theme/theme_manager.dart';
 
 class QsToggleButton extends StatefulWidget {
   QsToggleButton({
@@ -47,7 +48,7 @@ class _QsToggleButtonState extends State<QsToggleButton> {
         : context.theme.backgroundColor.withOpacity(0.5);
     return SizedBox(
       height: 60,
-      width: 124,
+      width: 162,
       child: Material(
         color: _color,
         borderRadius: context.commonData.borderRadiusMedium,
@@ -68,7 +69,7 @@ class _QsToggleButtonState extends State<QsToggleButton> {
                       ? ColorsX.black
                       : ColorsX.white,
                 ),
-                SizedBox(width: 16),
+                SizedBox(width: 12),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -80,7 +81,7 @@ class _QsToggleButtonState extends State<QsToggleButton> {
                             : "Do not \ndisturb",
                         overflow: TextOverflow.visible,
                         style: TextStyle(
-                          fontSize: 14,
+                          fontSize: 13,
                           fontWeight: FontWeight.w500,
                           color: _color.computeLuminance() > 0.4
                               ? ColorsX.black
@@ -92,7 +93,7 @@ class _QsToggleButtonState extends State<QsToggleButton> {
                         ? Text(
                             widget.subtitle!,
                             style: TextStyle(
-                              fontSize: 12,
+                              fontSize: 11,
                               color: _color.computeLuminance() > 0.4
                                   ? ColorsX.black
                                   : ColorsX.white,
@@ -101,6 +102,34 @@ class _QsToggleButtonState extends State<QsToggleButton> {
                         : SizedBox.shrink(),
                   ],
                 ),
+                Spacer(),
+                VerticalDivider(
+                  color: widget.value == true
+                      ? context.theme.backgroundColor.op(0.2)
+                      : ThemeManager.of(context)
+                          .foregroundColorOnSurface
+                          .op(0.2),
+                ),
+                Material(
+                  color: widget.value == true
+                      ? context.theme.backgroundColor.op(0.2)
+                      : Colors.transparent,
+                  shape: CircleBorder(),
+                  clipBehavior: Clip.antiAlias,
+                  child: InkWell(
+                    child: Padding(
+                      padding: const EdgeInsets.all(6.0),
+                      child: Icon(
+                        Icons.chevron_right_rounded,
+                        size: 20,
+                        color: _color.computeLuminance() > 0.4
+                            ? ColorsX.black
+                            : ColorsX.white,
+                      ),
+                    ),
+                    onTap: () {},
+                  ),
+                )
               ],
             ),
           ),
