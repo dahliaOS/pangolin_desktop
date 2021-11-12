@@ -14,11 +14,10 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:dahlia_backend/dahlia_backend.dart';
-import 'package:flutter/material.dart';
 import 'package:pangolin/components/settings/models/settings_accent_data_model.dart';
 import 'package:pangolin/utils/data/common_data.dart';
-import 'package:provider/provider.dart';
+import 'package:pangolin/utils/extensions/extensions.dart';
+import 'package:pangolin/utils/providers/customization_provider.dart';
 
 class AccentColorButton extends StatefulWidget {
   final AccentColorDataModel model;
@@ -31,7 +30,7 @@ class AccentColorButton extends StatefulWidget {
 class _AccentColorButtonState extends State<AccentColorButton> {
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<PreferenceProvider>(context);
+    final _customizationProvider = CustomizationProvider.of(context);
     return Tooltip(
       message: widget.model.label,
       child: InkWell(
@@ -39,7 +38,7 @@ class _AccentColorButtonState extends State<AccentColorButton> {
             CommonData.of(context).borderRadius(BorderRadiusType.SMALL),
         mouseCursor: SystemMouseCursors.click,
         onTap: () {
-          provider.accentColor = widget.model.color.value;
+          _customizationProvider.accentColor = widget.model.color.value;
           setState(() {});
         },
         child: Padding(
@@ -47,10 +46,14 @@ class _AccentColorButtonState extends State<AccentColorButton> {
           child: Column(
             children: [
               Container(
-                height:
-                    provider.accentColor == widget.model.color.value ? 64 : 48,
-                width:
-                    provider.accentColor == widget.model.color.value ? 64 : 48,
+                height: _customizationProvider.accentColor ==
+                        widget.model.color.value
+                    ? 64
+                    : 48,
+                width: _customizationProvider.accentColor ==
+                        widget.model.color.value
+                    ? 64
+                    : 48,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
                   color: Color(widget.model.color.value),

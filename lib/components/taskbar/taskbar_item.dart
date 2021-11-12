@@ -15,13 +15,13 @@ limitations under the License.
 */
 
 import 'package:dahlia_backend/dahlia_backend.dart';
-import 'package:flutter/material.dart';
 import 'package:pangolin/utils/data/app_list.dart';
 import 'package:pangolin/utils/context_menus/context_menu.dart';
 import 'package:pangolin/utils/context_menus/context_menu_item.dart';
 import 'package:pangolin/utils/context_menus/core/context_menu_region.dart';
 import 'package:pangolin/services/wm_api.dart';
-import 'package:provider/provider.dart';
+import 'package:pangolin/utils/extensions/extensions.dart';
+import 'package:pangolin/utils/providers/customization_provider.dart';
 
 class TaskbarItem extends StatefulWidget {
   final String packageName;
@@ -96,7 +96,7 @@ class _TaskbarItemState extends State<TaskbarItem>
     } else {
       _ac.animateBack(0);
     }
-    final _pref = Provider.of<PreferenceProvider>(context);
+    final _customizationProvider = CustomizationProvider.of(context);
     //Build Widget
     final Widget finalWidget = LayoutBuilder(
       builder: (context, constraints) => Padding(
@@ -110,11 +110,13 @@ class _TaskbarItemState extends State<TaskbarItem>
               items: [
                 ContextMenuItem(
                   icon: Icons.push_pin_outlined,
-                  title: _pref.pinnedApps.contains(_app.packageName)
+                  title: _customizationProvider.pinnedApps
+                          .contains(_app.packageName)
                       ? "Unpin from Taskbar"
                       : "Pin to Taskbar",
                   onTap: () {
-                    _pref.togglePinnedApp(_app.packageName ?? "");
+                    _customizationProvider
+                        .togglePinnedApp(_app.packageName ?? "");
                   },
                   shortcut: "",
                 ),

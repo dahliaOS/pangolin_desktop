@@ -22,7 +22,10 @@ import 'package:pangolin/components/window/window_surface.dart';
 import 'package:pangolin/components/window/window_toolbar.dart';
 
 class WmAPI {
-  static const WindowEntry windowEntry = WindowEntry(
+  late BuildContext context;
+  WmAPI.of(this.context);
+
+  static WindowEntry windowEntry = WindowEntry(
     features: [
       MinimizeWindowFeature(),
       GeometryWindowFeature(),
@@ -38,7 +41,7 @@ class WmAPI {
       SurfaceWindowFeature.elevation: 4.0,
       SurfaceWindowFeature.shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(
-          Radius.circular(8),
+          Radius.circular(DatabaseManager.get("windowBorderRadius") ?? 12.0),
         ),
       ),
       SurfaceWindowFeature.background: PangolinWindowSurface(),
@@ -46,33 +49,10 @@ class WmAPI {
       ToolbarWindowFeature.size: 40.0,
     },
   );
-  final BuildContext context;
-  const WmAPI.of(this.context);
-
-  /* void popOverlayEntry(DismissibleOverlayEntry entry) {
-    Provider.of<WindowHierarchyState>(context, listen: false)
-        .popOverlayEntry(entry);
-  } */
-
-  /*  void popCurrentOverlayEntry() {
-    if (Provider.of<WindowHierarchyState>(context, listen: false)
-        .overlays
-        .isNotEmpty) {
-      Provider.of<WindowHierarchyState>(context, listen: false).popOverlayEntry(
-          Provider.of<DismissibleOverlayEntry>(context, listen: false));
-      // ignore: invalid_use_of_protected_member
-      ScaffoldMessenger.of(context).setState(() {});
-    }
-  } */
 
   void popWindowEntry(String id) {
     WindowHierarchy.of(context, listen: false).removeWindowEntry(id);
   }
-
-  /* void pushOverlayEntry(DismissibleOverlayEntry entry) {
-    Provider.of<WindowHierarchyState>(context, listen: false)
-        .pushOverlayEntry(entry);
-  } */
 
   void pushWindowEntry(LiveWindowEntry entry) {
     WindowHierarchy.of(context, listen: false).addWindowEntry(entry);

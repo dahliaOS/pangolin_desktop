@@ -18,7 +18,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/utils/data/globals.dart';
-import 'package:provider/provider.dart';
+import 'package:pangolin/utils/providers/customization_provider.dart';
 
 class WallpaperPicker extends StatefulWidget {
   const WallpaperPicker({
@@ -40,10 +40,11 @@ class _WallpaperPickerState extends State<WallpaperPicker>
 
   @override
   Widget build(BuildContext context) {
-    final _data = Provider.of<PreferenceProvider>(context, listen: false);
+    final _customizationProvider = CustomizationProvider.of(context);
     final _controller = TextEditingController();
-    final _recentWallpapers =
-        List.from(_data.recentWallpapers.reversed, growable: true);
+    final _recentWallpapers = List.from(
+        _customizationProvider.recentWallpapers.reversed,
+        growable: true);
     return GestureDetector(
       onTap: () => Navigator.pop(context),
       child: BoxSurface(
@@ -105,7 +106,8 @@ class _WallpaperPickerState extends State<WallpaperPicker>
                           padding: const EdgeInsets.all(8.0),
                           child: InkWell(
                             onTap: () {
-                              _data.wallpaper = wallpapers[index];
+                              _customizationProvider.wallpaper =
+                                  wallpapers[index];
                             },
                             child: Stack(
                               children: [
@@ -116,7 +118,8 @@ class _WallpaperPickerState extends State<WallpaperPicker>
                                     scale: 1.0,
                                   ),
                                 ),
-                                (_data.wallpaper == wallpapers[index])
+                                (_customizationProvider.wallpaper ==
+                                        wallpapers[index])
                                     ? Positioned(
                                         bottom: 5,
                                         right: 5,
@@ -154,8 +157,8 @@ class _WallpaperPickerState extends State<WallpaperPicker>
                           padding: const EdgeInsets.all(8.0),
                           child: InkWell(
                             mouseCursor: SystemMouseCursors.click,
-                            onTap: () =>
-                                _data.wallpaper = _recentWallpapers[index],
+                            onTap: () => _customizationProvider.wallpaper =
+                                _recentWallpapers[index],
                             child: CachedNetworkImage(
                               errorWidget: (context, string, _) => Container(
                                 color: Theme.of(context).colorScheme.secondary,
@@ -194,8 +197,8 @@ class _WallpaperPickerState extends State<WallpaperPicker>
                       controller: _controller,
                       onSubmitted: (text) {
                         if (text.startsWith("http")) {
-                          _data.wallpaper = text;
-                          _data.addRecentWallpaper(text);
+                          _customizationProvider.wallpaper = text;
+                          _customizationProvider.addRecentWallpaper(text);
                           Navigator.pop(context);
                         } else {
                           Navigator.pop(context);
@@ -215,9 +218,9 @@ class _WallpaperPickerState extends State<WallpaperPicker>
                     ),
                     onPressed: () async {
                       final bingresponse = await getBingWallpaper();
-                      _data.wallpaper =
+                      _customizationProvider.wallpaper =
                           'https://bing.com' + bingresponse.images[0].url;
-                      _data.addRecentWallpaper(
+                      _customizationProvider.addRecentWallpaper(
                           'https://bing.com' + bingresponse.images[0].url);
                       Navigator.pop(context);
                     },
@@ -240,7 +243,7 @@ class _WallpaperPickerState extends State<WallpaperPicker>
                     ),
                     onPressed: () {
                       if (_controller.text.startsWith("http")) {
-                        _data.wallpaper = _controller.text;
+                        _customizationProvider.wallpaper = _controller.text;
                         Navigator.pop(context);
                       } else {
                         Navigator.pop(context);

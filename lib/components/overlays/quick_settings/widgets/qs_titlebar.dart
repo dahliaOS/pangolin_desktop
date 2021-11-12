@@ -65,6 +65,7 @@ class BackButton extends StatelessWidget {
       isCircular: true,
       leading: Icon(Icons.arrow_back),
       onPressed: () => Navigator.pop(context),
+      margin: EdgeInsets.zero,
     );
   }
 }

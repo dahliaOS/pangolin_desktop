@@ -15,16 +15,15 @@ limitations under the License.
 */
 
 import 'package:dahlia_backend/dahlia_backend.dart';
-import 'package:flutter/material.dart';
 import 'package:pangolin/components/overlays/launcher_overlay.dart';
 import 'package:pangolin/components/overlays/overview_overlay.dart';
 import 'package:pangolin/components/overlays/power_overlay.dart';
 import 'package:pangolin/components/overlays/quick_settings/quick_settings_overlay.dart';
 import 'package:pangolin/components/overlays/search_overlay.dart';
+import 'package:pangolin/utils/extensions/extensions.dart';
+import 'package:pangolin/utils/providers/customization_provider.dart';
 import 'shell.dart';
 import 'package:pangolin/components/desktop/wallpaper.dart';
-import 'package:provider/provider.dart';
-import 'package:pangolin/utils/extensions/preference_extension.dart';
 
 // ignore: must_be_immutable
 class Desktop extends StatefulWidget {
@@ -77,19 +76,17 @@ class _DesktopState extends State<Desktop> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    final _pref = Provider.of<PreferenceProvider>(context, listen: false);
+    final _customizationProvider = CustomizationProvider.of(context);
     Desktop.wmController.wmInsets = EdgeInsets.only(
-      left: _pref.isTaskbarLeft ? 48 : 0,
-      top: _pref.isTaskbarTop ? 48 : 0,
-      right: _pref.isTaskbarRight ? 48 : 0,
-      bottom: _pref.isTaskbarBottom ? 48 : 0,
+      left: _customizationProvider.isTaskbarLeft ? 48 : 0,
+      top: _customizationProvider.isTaskbarTop ? 48 : 0,
+      right: _customizationProvider.isTaskbarRight ? 48 : 0,
+      bottom: _customizationProvider.isTaskbarBottom ? 48 : 0,
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    final _pref = Provider.of<PreferenceProvider>(context);
-
     return SizedBox.expand(
       child: WindowHierarchy(
         controller: Desktop.wmController,

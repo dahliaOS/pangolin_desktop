@@ -2245,6 +2245,7 @@ class _$LocalePtBR extends _$LocaleBase {
     "app.terminal_description": "Acessar linha de comando",
     "app.themedemo_description": "Demonstração interna para temas de aplicações",
     "app.welcome_description": "Aplicação de boas-vindas",
+    "app.help_description": "Perguntas freqüentes e Suporte",
     "app.web_description": "Navegar na Web",
     "misc.featurenotimplemented_title": "Recurso não implementado",
     "misc.featurenotimplemented_value": "Este recurso não está disponível na sua versão do Pangolin. favor consulte https://dahliaOS.io para verificar se há atualizações.",
@@ -2259,6 +2260,7 @@ class _$LocalePtBR extends _$LocaleBase {
     "qs.theme": "Tema",
     "qs.wifi": "Wi-Fi",
     "launcher.search": "Pesquisar no dispositivo, aplicativos e web",
+    "launcher.categories.all": "Todos aplicativos",
     "launcher.categories.internet": "Internet",
     "launcher.categories.media": "Mídia",
     "launcher.categories.gaming": "Jogos",
@@ -2356,7 +2358,7 @@ class _$LocalePtBR extends _$LocaleBase {
   };
 
   @override
-  int get translatedStrings => 146;
+  int get translatedStrings => 148;
 }
 
 

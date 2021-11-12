@@ -14,10 +14,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/settings/models/settings_element_model.dart';
-import 'package:provider/provider.dart';
+import 'package:pangolin/utils/extensions/extensions.dart';
 
 class SettingsPage extends StatelessWidget {
   final String title;
@@ -28,7 +27,6 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _provider = Provider.of<PreferenceProvider>(context, listen: false);
     return Stack(
       children: [
         SizedBox.shrink(),

@@ -33,6 +33,7 @@ class QsAccountPage extends StatelessWidget {
               Icons.help_outline_rounded,
               size: 20,
             ),
+            margin: EdgeInsets.zero,
           ),
         ],
       ),

@@ -15,7 +15,6 @@ limitations under the License.
 */
 
 import 'package:dahlia_backend/dahlia_backend.dart';
-import 'package:flutter/material.dart';
 import 'package:pangolin/components/overlays/power_overlay.dart';
 import 'package:pangolin/components/overlays/search_overlay.dart';
 import 'package:pangolin/components/shell/shell.dart';
@@ -23,10 +22,10 @@ import 'package:pangolin/services/locales/locale_strings.g.dart';
 import 'package:pangolin/utils/data/app_list.dart';
 import 'package:pangolin/utils/data/common_data.dart';
 import 'package:pangolin/services/wm_api.dart';
+import 'package:pangolin/utils/extensions/extensions.dart';
+import 'package:pangolin/utils/providers/customization_provider.dart';
 import 'package:pangolin/widgets/app_launcher/app_launcher_button.dart';
 import 'package:pangolin/widgets/searchbar/searchbar.dart';
-import 'package:provider/provider.dart';
-import 'package:pangolin/utils/extensions/preference_extension.dart';
 
 class LauncherOverlay extends ShellOverlay {
   static const String overlayId = 'launcher';
@@ -71,7 +70,7 @@ class _LauncherOverlayState extends State<LauncherOverlay>
   final _focusNode = FocusNode(canRequestFocus: true);
   @override
   Widget build(BuildContext context) {
-    final _pref = Provider.of<PreferenceProvider>(context);
+    final _customizationProvider = CustomizationProvider.of(context);
     final _shell = Shell.of(context);
     final Animation<double> _animation = CurvedAnimation(
       parent: ac,
@@ -84,14 +83,15 @@ class _LauncherOverlayState extends State<LauncherOverlay>
     if (!controller.showing) return SizedBox();
 
     return Positioned(
-      top: !_pref.isTaskbarTop ? 0 : 48,
-      bottom: _pref.isTaskbarTop
+      top: !_customizationProvider.isTaskbarTop ? 0 : 48,
+      bottom: _customizationProvider.isTaskbarTop
           ? 0
-          : _pref.isTaskbarLeft || _pref.isTaskbarRight
+          : _customizationProvider.isTaskbarLeft ||
+                  _customizationProvider.isTaskbarRight
               ? 0
               : 48,
-      left: _pref.isTaskbarLeft ? 48 : 0,
-      right: _pref.isTaskbarRight ? 48 : 0,
+      left: _customizationProvider.isTaskbarLeft ? 48 : 0,
+      right: _customizationProvider.isTaskbarRight ? 48 : 0,
       child: GestureDetector(
         onVerticalDragUpdate: (details) {
           if (details.delta.dy > 0.5) {
@@ -121,7 +121,7 @@ class _LauncherOverlayState extends State<LauncherOverlay>
                 opacity: _animation,
                 child: ScaleTransition(
                   scale: _animation,
-                  alignment: _pref.taskbarPosition != 0
+                  alignment: _customizationProvider.taskbarPosition != 0
                       ? FractionalOffset.bottomCenter
                       : FractionalOffset.topCenter,
                   child: Column(
@@ -249,7 +249,14 @@ class _LauncherCategoriesState extends State<LauncherCategories> {
                                     ? FontWeight.bold
                                     : FontWeight.normal,
                                 color: _selected == index
-                                    ? CommonData.of(context).textColorAlt()
+                                    ? context.theme.colorScheme.secondary
+                                                .computeLuminance() <
+                                            0.4
+                                        ? !context.theme.darkMode
+                                            ? CommonData.of(context)
+                                                .textColorAlt()
+                                            : CommonData.of(context).textColor()
+                                        : CommonData.of(context).textColor()
                                     : CommonData.of(context).textColor()),
                           ),
                         ),
@@ -401,7 +408,9 @@ class _LauncherPowerMenuState extends State<LauncherPowerMenu> {
                     child: InkWell(
                       borderRadius: CommonData.of(context)
                           .borderRadius(BorderRadiusType.MEDIUM),
-                      onTap: () {
+                      onTap: () async {
+                        _shell.dismissOverlay(LauncherOverlay.overlayId);
+                        await Future.delayed(const Duration(milliseconds: 150));
                         _shell.showOverlay(PowerOverlay.overlayId,
                             dismissEverything: false);
                         setState(() {});

@@ -18,15 +18,14 @@ import 'dart:math';
 
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
 import 'package:pangolin/components/overlays/launcher_overlay.dart';
-import '../shell/shell.dart';
+import 'package:pangolin/components/shell/shell.dart';
+import 'package:pangolin/utils/providers/customization_provider.dart';
 import 'package:pangolin/components/taskbar/taskbar_item.dart';
 import 'package:pangolin/utils/context_menus/context_menu.dart';
 import 'package:pangolin/utils/context_menus/context_menu_item.dart';
 import 'package:pangolin/utils/context_menus/core/context_menu_region.dart';
-import 'package:provider/provider.dart';
-import 'package:pangolin/utils/extensions/preference_extension.dart';
+import 'package:pangolin/utils/extensions/extensions.dart';
 
 class Taskbar extends StatefulWidget {
   final List<Widget>? leading, trailing;
@@ -40,8 +39,8 @@ class _TaskbarState extends State<Taskbar> {
   @override
   Widget build(BuildContext context) {
     final _shell = Shell.of(context);
-    final _pref = Provider.of<PreferenceProvider>(context);
-    List<String> _pinnedApps = _pref.pinnedApps;
+    final _customizationProvider = CustomizationProvider.of(context);
+    List<String> _pinnedApps = _customizationProvider.pinnedApps;
     List<String> _taskbarApps = _pinnedApps.toList()
       ..addAll(WindowHierarchy.of(context)
           .entries
@@ -56,8 +55,9 @@ class _TaskbarState extends State<Taskbar> {
       shrinkWrap: true,
       primary: true,
       physics: BouncingScrollPhysics(),
-      scrollDirection:
-          _pref.isTaskbarHorizontal ? Axis.horizontal : Axis.vertical,
+      scrollDirection: _customizationProvider.isTaskbarHorizontal
+          ? Axis.horizontal
+          : Axis.vertical,
       onReorder: (int oldIndex, int newIndex) {
         setState(() {
           if (newIndex > oldIndex) {
@@ -87,12 +87,12 @@ class _TaskbarState extends State<Taskbar> {
     );
     double _scroll = 0;
     return Positioned(
-      left: !_pref.isTaskbarRight ? 0 : null,
-      right: !_pref.isTaskbarLeft ? 0 : null,
-      bottom: !_pref.isTaskbarTop ? 0 : null,
-      top: !_pref.isTaskbarBottom ? 0 : null,
-      height: _pref.isTaskbarHorizontal ? 48 : null,
-      width: _pref.isTaskbarVertical
+      left: !_customizationProvider.isTaskbarRight ? 0 : null,
+      right: !_customizationProvider.isTaskbarLeft ? 0 : null,
+      bottom: !_customizationProvider.isTaskbarTop ? 0 : null,
+      top: !_customizationProvider.isTaskbarBottom ? 0 : null,
+      height: _customizationProvider.isTaskbarHorizontal ? 48 : null,
+      width: _customizationProvider.isTaskbarVertical
           ? 48
           : null, //height: DatabaseManager.get('taskbarHeight').toDouble() ?? 48,
       child: Listener(
@@ -121,7 +121,7 @@ class _TaskbarState extends State<Taskbar> {
                 icon: Icons.arrow_drop_down_rounded,
                 title: "Bottom",
                 onTap: () {
-                  _pref.taskbarPosition = 2.0;
+                  _customizationProvider.taskbarPosition = 2.0;
                 },
                 shortcut: "",
               ),
@@ -129,7 +129,7 @@ class _TaskbarState extends State<Taskbar> {
                 icon: Icons.arrow_drop_up_rounded,
                 title: "Top",
                 onTap: () {
-                  _pref.taskbarPosition = 0.0;
+                  _customizationProvider.taskbarPosition = 0.0;
                 },
                 shortcut: "",
               ),
@@ -137,7 +137,7 @@ class _TaskbarState extends State<Taskbar> {
                 icon: Icons.arrow_left_rounded,
                 title: "Left",
                 onTap: () {
-                  _pref.taskbarPosition = 1.0;
+                  _customizationProvider.taskbarPosition = 1.0;
                 },
                 shortcut: "",
               ),
@@ -145,7 +145,7 @@ class _TaskbarState extends State<Taskbar> {
                 icon: Icons.arrow_right_rounded,
                 title: "Right",
                 onTap: () {
-                  _pref.taskbarPosition = 3.0;
+                  _customizationProvider.taskbarPosition = 3.0;
                 },
                 shortcut: "",
               ),
@@ -157,18 +157,18 @@ class _TaskbarState extends State<Taskbar> {
               builder: (context, shown, child) {
                 return Material(
                   color: shown
-                      ? Colors.black.withOpacity(0.05)
+                      ? ColorsX.black.op(context.theme.darkMode ? 0.1 : 0.05)
                       : Colors.transparent,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 4.0),
                     child: Stack(
                       children: [
-                        _pref.centerTaskbar
+                        _customizationProvider.centerTaskbar
                             ? Positioned.fill(
                                 child: listenerWrapper(Center(child: items)),
                               )
                             : SizedBox.shrink(),
-                        _pref.isTaskbarHorizontal
+                        _customizationProvider.isTaskbarHorizontal
                             ? Row(
                                 children: [
                                   Row(
@@ -177,7 +177,7 @@ class _TaskbarState extends State<Taskbar> {
                                         widget.leading ?? [SizedBox.shrink()],
                                   ),
                                   Expanded(
-                                    child: _pref.centerTaskbar
+                                    child: _customizationProvider.centerTaskbar
                                         ? Container()
                                         : listenerWrapper(items),
                                   ),
@@ -197,7 +197,7 @@ class _TaskbarState extends State<Taskbar> {
                                         widget.leading ?? [SizedBox.shrink()],
                                   ),
                                   Expanded(
-                                    child: _pref.centerTaskbar
+                                    child: _customizationProvider.centerTaskbar
                                         ? Container()
                                         : listenerWrapper(items),
                                   ),

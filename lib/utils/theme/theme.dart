@@ -15,15 +15,14 @@ limitations under the License.
 */
 
 import 'package:animations/animations.dart';
-import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
+import 'package:pangolin/utils/providers/customization_provider.dart';
 import 'theme_manager.dart';
-import 'package:provider/provider.dart';
 
 ThemeData theme(BuildContext context) {
-  final _data = context.watch<PreferenceProvider>();
+  final _customizationProvider = CustomizationProvider.of(context);
   final Color _foregroundColor =
-      Color(_data.accentColor).computeLuminance() > 0.4
+      Color(_customizationProvider.accentColor).computeLuminance() > 0.4
           ? ColorsX.black
           : ColorsX.white;
   return ThemeData(
@@ -47,7 +46,7 @@ ThemeData theme(BuildContext context) {
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(
-          Color(_data.accentColor),
+          Color(_customizationProvider.accentColor),
         ),
         elevation: MaterialStateProperty.all(0.0),
         foregroundColor: MaterialStateProperty.all(
@@ -55,34 +54,36 @@ ThemeData theme(BuildContext context) {
       ),
     ),
 
-    fontFamily: _data.fontFamily,
+    fontFamily: _customizationProvider.fontFamily,
     /* brightness: _data.darkMode ? Brightness.dark : Brightness.light,
     accentColor: Color(_data.accentColor), */
     colorScheme: ColorScheme(
       background: ThemeManager.of(context).backgroundColor,
-      brightness: _data.darkMode ? Brightness.dark : Brightness.light,
+      brightness:
+          _customizationProvider.darkMode ? Brightness.dark : Brightness.light,
       error: Colors.red,
       onBackground: Colors.grey,
       onError: Colors.red[900]!,
-      onPrimary: Color(_data.accentColor),
-      onSecondary: Color(_data.accentColor),
+      onPrimary: Color(_customizationProvider.accentColor),
+      onSecondary: Color(_customizationProvider.accentColor),
       //TODO changes color of the slider tooltip idk if it breaks anything
-      onSurface: _data.darkMode ? ColorsX.black : ColorsX.white,
-      primary: Color(_data.accentColor),
-      primaryVariant: Color(_data.accentColor),
-      secondary: Color(_data.accentColor),
-      secondaryVariant: Color(_data.accentColor),
-      surface: _data.darkMode ? ColorsX.black : ColorsX.white,
+      onSurface:
+          _customizationProvider.darkMode ? ColorsX.black : ColorsX.white,
+      primary: Color(_customizationProvider.accentColor),
+      primaryVariant: Color(_customizationProvider.accentColor),
+      secondary: Color(_customizationProvider.accentColor),
+      secondaryVariant: Color(_customizationProvider.accentColor),
+      surface: _customizationProvider.darkMode ? ColorsX.black : ColorsX.white,
     ),
     backgroundColor: ThemeManager.of(context).backgroundColor,
     canvasColor: ThemeManager.of(context).surfaceColor,
-    primaryColor: Color(_data.accentColor),
-    primaryColorDark: Color(_data.accentColor),
+    primaryColor: Color(_customizationProvider.accentColor),
+    primaryColorDark: Color(_customizationProvider.accentColor),
     cardColor: ThemeManager.of(context).cardColor,
     scaffoldBackgroundColor: ThemeManager.of(context).surfaceColor,
     inputDecorationTheme: InputDecorationTheme(
       labelStyle: TextStyle(
-        color: Color(_data.accentColor),
+        color: Color(_customizationProvider.accentColor),
       ),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
@@ -90,24 +91,25 @@ ThemeData theme(BuildContext context) {
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
         borderSide: BorderSide(
-          color: Color(_data.accentColor),
+          color: Color(_customizationProvider.accentColor),
           width: 2,
         ),
       ),
     ),
     dialogBackgroundColor: ThemeManager.of(context).backgroundColor,
-    toggleableActiveColor: Color(_data.accentColor),
+    toggleableActiveColor: Color(_customizationProvider.accentColor),
     platform: TargetPlatform.android,
     sliderTheme: SliderThemeData(
-      overlayColor: Color(_data.accentColor).withOpacity(0.1),
-      thumbColor: Color(_data.accentColor),
-      activeTrackColor: Color(_data.accentColor),
-      inactiveTrackColor: Color(_data.accentColor).withOpacity(0.5),
+      overlayColor: Color(_customizationProvider.accentColor).withOpacity(0.1),
+      thumbColor: Color(_customizationProvider.accentColor),
+      activeTrackColor: Color(_customizationProvider.accentColor),
+      inactiveTrackColor:
+          Color(_customizationProvider.accentColor).withOpacity(0.5),
       activeTickMarkColor: Colors.white.withOpacity(0.2),
       inactiveTickMarkColor: Colors.white.withOpacity(0.2),
     ),
     iconTheme: IconThemeData(
-      color: _data.darkMode ? ColorsX.white : ColorsX.black,
+      color: _customizationProvider.darkMode ? ColorsX.white : ColorsX.black,
     ),
   );
 }

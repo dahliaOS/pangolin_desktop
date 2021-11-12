@@ -16,7 +16,9 @@ limitations under the License.
 
 import 'dart:async';
 
+import 'package:battery_plus/battery_plus.dart';
 import 'package:dahlia_backend/dahlia_backend.dart';
+import 'package:pangolin/components/overlays/power_overlay.dart';
 import 'package:pangolin/components/overlays/quick_settings/pages/account_page.dart';
 import 'package:pangolin/components/overlays/quick_settings/widgets/qs_action_button.dart';
 import 'package:pangolin/components/overlays/quick_settings/widgets/qs_shortcut_button.dart';
@@ -25,11 +27,13 @@ import 'package:pangolin/components/overlays/quick_settings/widgets/qs_toggle_bu
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/services/locales/locale_strings.g.dart';
 import 'package:pangolin/services/locales/locales.g.dart';
+import 'package:pangolin/services/wm_api.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/data/common_data.dart';
-import 'package:pangolin/utils/providers/io_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:pangolin/utils/providers/connection_provider.dart';
+import 'package:pangolin/utils/providers/customization_provider.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:pangolin/utils/providers/io_provider.dart';
 
 class QuickSettingsOverlay extends ShellOverlay {
   static const String overlayId = 'quicksettings';
@@ -73,7 +77,7 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
 
   @override
   Widget build(BuildContext context) {
-    final _pref = Provider.of<PreferenceProvider>(context);
+    final _customizationProvider = CustomizationProvider.of(context);
     // _getTime(context);
     final Animation<double> _animation = CurvedAnimation(
       parent: ac,
@@ -83,25 +87,27 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
     if (!controller.showing) return SizedBox();
 
     return Positioned(
-      bottom: _pref.isTaskbarRight || _pref.isTaskbarLeft
+      bottom: _customizationProvider.isTaskbarRight ||
+              _customizationProvider.isTaskbarLeft
           ? 8
-          : !_pref.isTaskbarTop
+          : !_customizationProvider.isTaskbarTop
               ? 48 + 8
               : null,
-      top: _pref.isTaskbarTop ? 48 + 8 : null,
-      right: _pref.isTaskbarRight
+      top: _customizationProvider.isTaskbarTop ? 48 + 8 : null,
+      right: _customizationProvider.isTaskbarRight
           ? 48 + 8
-          : _pref.isTaskbarLeft
+          : _customizationProvider.isTaskbarLeft
               ? null
               : 8,
-      left: _pref.isTaskbarLeft ? 48 + 8 : null,
+      left: _customizationProvider.isTaskbarLeft ? 48 + 8 : null,
       child: AnimatedBuilder(
         animation: _animation,
         builder: (context, chilld) => FadeTransition(
           opacity: _animation,
           child: ScaleTransition(
             scale: _animation,
-            alignment: FractionalOffset(0.8, !_pref.isTaskbarTop ? 1.0 : 0.0),
+            alignment: FractionalOffset(
+                0.8, !_customizationProvider.isTaskbarTop ? 1.0 : 0.0),
             child: BoxSurface(
               borderRadius:
                   CommonData.of(context).borderRadius(BorderRadiusType.BIG),
@@ -134,6 +140,7 @@ class QsMain extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _shell = Shell.of(context, listen: false);
     // Action Button Bar
     List<Widget> _qsActionButton = [
       QsActionButton(
@@ -154,6 +161,7 @@ class QsMain extends StatelessWidget {
       QsActionButton(
         leading: Icon(IconsX.of(context).power),
         isCircular: true,
+        onPressed: () => _shell.showOverlay(PowerOverlay.overlayId),
         //title: "Power",
       ),
       QsActionButton(
@@ -171,6 +179,10 @@ class QsMain extends StatelessWidget {
         isCircular: true,
         //title: "Settings",
         margin: EdgeInsets.only(left: 8),
+        onPressed: () {
+          _shell.dismissOverlay(QuickSettingsOverlay.overlayId);
+          WmAPI.of(context).openApp("io.dahlia.settings");
+        },
       ),
     ];
     return Material(
@@ -185,7 +197,8 @@ class QsMain extends StatelessWidget {
             ),
             _qsTitle("Quick Controls"),
             Builder(builder: (context) {
-              final _pref = Provider.of<PreferenceProvider>(context);
+              final _connectionProvider = ConnectionProvider.of(context);
+              final _customizationProvider = CustomizationProvider.of(context);
               return Column(
                 children: [
                   Row(
@@ -193,42 +206,50 @@ class QsMain extends StatelessWidget {
                     children: [
                       QsToggleButton(
                         title: LocaleStrings.qs.wifi,
-                        icon: _pref.wifi
+                        icon: _connectionProvider.wifi
                             ? Icons.wifi_rounded
                             : Icons.wifi_off_rounded,
                         subtitle: "Connected",
-                        value: _pref.wifi,
-                        onPressed: () => _pref.wifi = !_pref.wifi,
+                        value: _connectionProvider.wifi,
+                        onPressed: () => _connectionProvider.wifi =
+                            !_connectionProvider.wifi,
                       ),
                       QsToggleButton(
                         title: LocaleStrings.qs.bluetooth,
-                        subtitle: _pref.bluetooth ? "On" : "Off",
-                        icon: _pref.bluetooth
+                        subtitle: _connectionProvider.bluetooth ? "On" : "Off",
+                        icon: _connectionProvider.bluetooth
                             ? Icons.bluetooth_connected_rounded
                             : Icons.bluetooth_disabled_rounded,
-                        value: _pref.bluetooth,
-                        onPressed: () => _pref.bluetooth = !_pref.bluetooth,
+                        value: _connectionProvider.bluetooth,
+                        onPressed: () => _connectionProvider.bluetooth =
+                            !_connectionProvider.bluetooth,
                       ),
                       QsToggleButton(
                         title: LocaleStrings.qs.airplanemode,
-                        icon: !(!_pref.wifi && !_pref.bluetooth)
+                        icon: !(!_connectionProvider.wifi &&
+                                !_connectionProvider.bluetooth)
                             ? Icons.airplanemode_off_rounded
                             : Icons.airplanemode_active_rounded,
-                        value:
-                            !(!_pref.wifi && !_pref.bluetooth) ? false : true,
+                        value: !(!_connectionProvider.wifi &&
+                                !_connectionProvider.bluetooth)
+                            ? false
+                            : true,
                         onPressed: () {
-                          if (_pref.wifi && _pref.bluetooth) {
-                            _pref.wifi = false;
-                            _pref.bluetooth = false;
-                          } else if (_pref.wifi && !_pref.bluetooth) {
-                            _pref.wifi = false;
-                            _pref.bluetooth = false;
-                          } else if (!_pref.wifi && _pref.bluetooth) {
-                            _pref.wifi = false;
-                            _pref.bluetooth = false;
+                          if (_connectionProvider.wifi &&
+                              _connectionProvider.bluetooth) {
+                            _connectionProvider.wifi = false;
+                            _connectionProvider.bluetooth = false;
+                          } else if (_connectionProvider.wifi &&
+                              !_connectionProvider.bluetooth) {
+                            _connectionProvider.wifi = false;
+                            _connectionProvider.bluetooth = false;
+                          } else if (!_connectionProvider.wifi &&
+                              _connectionProvider.bluetooth) {
+                            _connectionProvider.wifi = false;
+                            _connectionProvider.bluetooth = false;
                           } else {
-                            _pref.wifi = true;
-                            _pref.bluetooth = true;
+                            _connectionProvider.wifi = true;
+                            _connectionProvider.bluetooth = true;
                           }
                         },
                       ),
@@ -263,6 +284,8 @@ class QsMain extends StatelessWidget {
                         title: LocaleStrings.qs.theme,
                         icon: Icons.palette_outlined,
                         value: true,
+                        onPressed: () => _customizationProvider.darkMode =
+                            !_customizationProvider.darkMode,
                       ),
                       QsToggleButton(
                         title: LocaleStrings.qs.dnd,
@@ -339,16 +362,32 @@ class QsMain extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                QsActionButton(
-                  leading: Icon(Icons.calendar_today),
-                  title: "27.10.2021 - 21:33",
-                  margin: EdgeInsets.zero,
+                ValueListenableBuilder(
+                  valueListenable: DateTimeManager.getDateNotifier()!,
+                  builder: (BuildContext context, String date, child) =>
+                      ValueListenableBuilder(
+                    valueListenable: DateTimeManager.getTimeNotifier()!,
+                    builder: (BuildContext context, String time, child) =>
+                        QsActionButton(
+                      leading: Icon(Icons.calendar_today),
+                      title: "$date - $time",
+                      margin: EdgeInsets.zero,
+                    ),
+                  ),
                 ),
-                QsActionButton(
-                  leading: Icon(Icons.battery_charging_full),
-                  title: "100% - fully charged",
-                  margin: EdgeInsets.zero,
-                ),
+                Builder(builder: (context) {
+                  return FutureBuilder(
+                      future: Battery().batteryLevel,
+                      builder: (context, AsyncSnapshot<int?> data) {
+                        String batteryPercentage =
+                            data.data?.toString() ?? "Energy Mode: Performance";
+                        return QsActionButton(
+                          leading: Icon(Icons.battery_charging_full),
+                          title: "${batteryPercentage}",
+                          margin: EdgeInsets.zero,
+                        );
+                      });
+                }),
               ],
             )
           ],

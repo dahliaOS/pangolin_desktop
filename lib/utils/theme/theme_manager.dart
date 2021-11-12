@@ -14,15 +14,14 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:dahlia_backend/dahlia_backend.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:pangolin/utils/extensions/extensions.dart';
+import 'package:pangolin/utils/providers/customization_provider.dart';
 
 class ThemeManager {
   final BuildContext context;
-  late PreferenceProvider _provider;
+  late CustomizationProvider _customizationProvider;
   ThemeManager.of(this.context) {
-    _provider = Provider.of<PreferenceProvider>(context, listen: false);
+    _customizationProvider = CustomizationProvider.of(context);
   }
 
   //Getter: accentColor
@@ -62,13 +61,13 @@ class ThemeManager {
 
   //Getter: surfaceColor
   Color get surfaceColor =>
-      _provider.darkMode ? Color(0xff151515) : Color(0xffffffff);
+      _customizationProvider.darkMode ? Color(0xff151515) : Color(0xffffffff);
 
   //Getter: backgroundColor
   Color get backgroundColor =>
-      _provider.darkMode ? Color(0xff0a0a0a) : Color(0xffffffff);
+      _customizationProvider.darkMode ? Color(0xff0a0a0a) : Color(0xffffffff);
 
   //Getter: cardColor
   Color get cardColor =>
-      _provider.darkMode ? Color(0xff212121) : Color(0xfff0f0f0);
+      _customizationProvider.darkMode ? Color(0xff212121) : Color(0xfff0f0f0);
 }

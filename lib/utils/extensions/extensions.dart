@@ -47,6 +47,7 @@ extension BuildContextX on BuildContext {
   CommonData get commonData => CommonData.of(this);
 
   Color get accentColor => theme.colorScheme.secondary;
+  Color get backgroundColor => theme.darkMode ? ColorsX.black : ColorsX.white;
 
   MediaQueryData get mediaQuery => MediaQuery.of(this);
   Size get mSize => mediaQuery.size;
@@ -87,12 +88,11 @@ extension BuildContextX on BuildContext {
 }
 
 extension CommonDataX on CommonData {
-  BorderRadiusGeometry get borderRadiusSmall =>
+  BorderRadius get borderRadiusSmall =>
       this.borderRadius(BorderRadiusType.SMALL);
-  BorderRadiusGeometry get borderRadiusMedium =>
+  BorderRadius get borderRadiusMedium =>
       this.borderRadius(BorderRadiusType.MEDIUM);
-  BorderRadiusGeometry get borderRadiusBig =>
-      this.borderRadius(BorderRadiusType.BIG);
-  BorderRadiusGeometry get borderRadiusRound =>
+  BorderRadius get borderRadiusBig => this.borderRadius(BorderRadiusType.BIG);
+  BorderRadius get borderRadiusRound =>
       this.borderRadius(BorderRadiusType.ROUND);
 }
