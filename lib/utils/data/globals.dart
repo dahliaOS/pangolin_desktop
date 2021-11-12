@@ -59,6 +59,9 @@ List<String> wallpapers = [
   "assets/images/wallpapers/mountain.jpg",
   "assets/images/wallpapers/forest.jpg",
   "assets/images/wallpapers/modern.png",
+  "assets/images/wallpapers/modern_dark.png",
+  "assets/images/wallpapers/wood.jpg",
+"assets/images/wallpapers/beach.jpg",
 ];
 
 List<AccentColorData> accentColors = [
