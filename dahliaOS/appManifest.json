@@ -1,0 +1,10 @@
+{
+      "id": "io.dahliaos.pangolin_desktop",
+      "altName": "pangolin_desktop",
+      "realName": "Pangolin Desktop",
+      "version": "dahliaOS-latest",
+      "description": "Core utilities and desktop environment for dahliaOS",
+      "sourceCode": "https://github.com/dahliaOS/pangolin_desktop",
+      "hash": "DAP_AUTOMATION_PKGHASH",
+      "architecture": "x86_64"
+},
