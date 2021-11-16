@@ -125,8 +125,8 @@ class _ShellState extends State<Shell> {
             Taskbar(
               leading: [
                 LauncherButton(),
-                SearchButton(),
-                OverviewButton(),
+                //SearchButton(),
+                //OverviewButton(),
               ],
               trailing: [
                 //TODO: here is the keyboard button
