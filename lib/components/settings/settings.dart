@@ -287,12 +287,7 @@ List<_SettingsTileData> _settingsTiles = [
     icon: Icons.color_lens_outlined,
     page: SettingsPageCustomization(),
   ),
-  _SettingsTileData(
-    title: "Developer options",
-    subtitle: "Feature flags, advanced options",
-    icon: Icons.developer_mode_rounded,
-    page: SettingsPageDeveloperOptions(),
-  ),
+  
   //Device & applications HEADER
   _SettingsTileData(
     title: "Device & applications",
@@ -331,6 +326,12 @@ List<_SettingsTileData> _settingsTiles = [
   //System HEADER
   _SettingsTileData(
     title: "System",
+  ),
+  _SettingsTileData(
+    title: "Developer options",
+    subtitle: "Feature flags, advanced options",
+    icon: Icons.developer_mode_rounded,
+    page: SettingsPageDeveloperOptions(),
   ),
   //System TILES
   _SettingsTileData(
