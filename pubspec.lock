@@ -90,7 +90,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "6a75dcd2ecd960aca4756c2811a99a5210cb5558"
+      resolved-ref: "9df602442c9b24e379bc3259b2049a08fedec134"
       url: "https://github.com/dahliaOS/calculator.git"
     source: git
     version: "1.1.0+10"
@@ -155,7 +155,11 @@ packages:
     description:
       path: "."
       ref: HEAD
+<<<<<<< HEAD
       resolved-ref: "884520bc90a0884a5bf0ffbb857449a751730108"
+=======
+      resolved-ref: "760ff9666e8c917e7512a706983d8fb5c1ffc130"
+>>>>>>> f5c57c8a4982e9569b05ca9cf1868fda1da93258
       url: "https://github.com/dahliaOS/clock.git"
     source: git
     version: "0.0.1+1"
@@ -220,7 +224,11 @@ packages:
     description:
       path: "."
       ref: HEAD
+<<<<<<< HEAD
       resolved-ref: "17ae54256e8038cd51c27bd67370137b9f7b4ad5"
+=======
+      resolved-ref: "3496715b33ac6ab308fd24e5dc50d6cb8e393732"
+>>>>>>> f5c57c8a4982e9569b05ca9cf1868fda1da93258
       url: "https://github.com/dahliaOS/files.git"
     source: git
     version: "1.0.0+1"
@@ -272,7 +280,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "46a390d3328fa768b36c84f57a02234c211e2606"
+      resolved-ref: "4d9a2829c0555e26a4fa260a0c0429838b50ab18"
       url: "https://github.com/dahliaOS/graft.git"
     source: git
     version: "1.0.0+1"
@@ -351,7 +359,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "341ee12d5c19930c2281a45bfe4af214f08040b6"
+      resolved-ref: aa40451823e27e1c3f4c0e56216f088f58cd4883
       url: "https://github.com/dahliaOS/media.git"
     source: git
     version: "1.0.0+1"
@@ -394,6 +402,20 @@ packages:
     dependency: transitive
     description:
       name: path_provider
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.7"
+  path_provider_android:
+    dependency: transitive
+    description:
+      name: path_provider_android
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.6"
+  path_provider_ios:
+    dependency: transitive
+    description:
+      name: path_provider_ios
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.6"
@@ -596,7 +618,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: fa543535ae5b8ea3500956be297738b3ddfcee01
+      resolved-ref: fa9ab060f4c6b90f05529a6dfc235aae03cf0548
       url: "https://github.com/dahliaOS/system_logs.git"
     source: git
     version: "1.0.0+1"
@@ -605,7 +627,11 @@ packages:
     description:
       path: "."
       ref: HEAD
+<<<<<<< HEAD
       resolved-ref: ce621c27ab11109a9103b7326d69a7dfb6ecca83
+=======
+      resolved-ref: bb23439195d812fc6b83f7e5f27ed6107705f391
+>>>>>>> f5c57c8a4982e9569b05ca9cf1868fda1da93258
       url: "https://github.com/dahliaOS/task_manager.git"
     source: git
     version: "1.0.0+1"
@@ -630,7 +656,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "53e901a34e30c7905452576f1f0aaea8a99a171f"
+      resolved-ref: "95ac861e45549293254f84b91307a40582484017"
       url: "https://github.com/dahliaOS/text_editor.git"
     source: git
     version: "1.0.0+1"
@@ -695,7 +721,7 @@ packages:
     description:
       path: "."
       ref: utopia
-      resolved-ref: d14be3223ef5ad4aa80e843f5d4f222ae13082f5
+      resolved-ref: "89e25518d57e80e6d2fe0f068a84fe7bed299792"
       url: "https://github.com/dahliaOS/utopia.git"
     source: git
     version: "2.0.0+2"
@@ -718,7 +744,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "07537f8121b85c55cb9ea3253b8a9d7cec6279f7"
+      resolved-ref: "4fddea1b83e907d9c579f1be175ab6c892db29cd"
       url: "https://github.com/dahliaOS/web_browser.git"
     source: git
     version: "1.0.0+1"
@@ -727,7 +753,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: f4f737d1abbe3b7d8c8661b08d7ef4061cefb259
+      resolved-ref: "7556fded961b95240e47faaf53ea74c01038cb4e"
       url: "https://github.com/dahliaOS/welcome.git"
     source: git
     version: "1.0.0+1"
@@ -737,7 +763,7 @@ packages:
       name: win32
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.2.10"
+    version: "2.3.0"
   window_size:
     dependency: transitive
     description:
