@@ -38,8 +38,6 @@ String get kernel {
     return "Web Build";
 }
 
-
-
 String pangolinCommit = "8c5eea993a89446b3bb0b9e313cdea1d06bf8477";
 String fullPangolinVersion = "$pangolinCommit";
 
