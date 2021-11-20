@@ -27,7 +27,7 @@ Future loadVisualEngine() async {
   String jsonString = await _loadDataAsset();
   final jsonResponse = json.decode(jsonString);
   VisualInformation visuals = VisualInformation.fromJson(jsonResponse);
-  /* print(visuals.taskbarHeight);
+   print(visuals.taskbarHeight);
   print(visuals.opaqueTitlebars);
   print(visuals.titleInfo);
   print(visuals.windowRadius);
@@ -45,7 +45,7 @@ Future loadVisualEngine() async {
   print(visuals.searchIcon);
   print(visuals.showDate);
   print(visuals.taskbarOpacity);
-  print(visuals.taskbarRounding); */
+  print(visuals.taskbarRounding);
   DatabaseManager.set('taskbarHeight', visuals.taskbarHeight);
   DatabaseManager.set('opaqueTitlebars', visuals.opaqueTitlebars);
   DatabaseManager.set('titleInfo', visuals.titleInfo);
