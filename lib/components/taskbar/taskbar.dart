@@ -160,7 +160,7 @@ class _TaskbarState extends State<Taskbar> {
                       ? ColorsX.black.op(context.theme.darkMode ? 0.1 : 0.05)
                       : Colors.transparent,
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                    padding: const EdgeInsets.only(left: 4.0),
                     child: Stack(
                       children: [
                         _customizationProvider.centerTaskbar

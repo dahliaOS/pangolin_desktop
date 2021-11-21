@@ -23,6 +23,7 @@ import 'package:pangolin/components/taskbar/launcher.dart';
 import 'package:pangolin/components/taskbar/overview.dart';
 import 'package:pangolin/components/taskbar/quick_settings.dart';
 import 'package:pangolin/components/taskbar/search.dart';
+import 'package:pangolin/components/taskbar/show_desktop.dart';
 import 'package:pangolin/components/taskbar/taskbar.dart';
 import 'package:provider/provider.dart';
 
@@ -136,6 +137,7 @@ class _ShellState extends State<Shell> {
                 //TODO: here is the keyboard button
                 //KeyboardButton(),
                 QuickSettingsButton(),
+                ShowDesktopButton(),
               ],
             ),
             ...widget.overlays,
