@@ -13,10 +13,12 @@ class SearchProvider extends ChangeNotifier {
   // Initial Values
 
   List<String> _recentSearchResults = List.from([], growable: true);
+  String _searchQueryCache = '';
 
   // Getters
 
   List<String> get recentSearchResults => _recentSearchResults;
+  String get searchQueryCache => _searchQueryCache;
 
   // Setters
 
@@ -30,6 +32,11 @@ class SearchProvider extends ChangeNotifier {
     _recentSearchResults = value;
     notifyListeners();
     DatabaseManager.set("recentSearchResults", _recentSearchResults);
+  }
+
+  set searchQueryCache(String value) {
+    _searchQueryCache = value;
+    notifyListeners();
   }
 
   void loadData() {
