@@ -783,21 +783,21 @@ packages:
       name: test
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.17.12"
+    version: "1.19.3"
   test_api:
     dependency: transitive
     description:
       name: test_api
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.4.3"
+    version: "0.4.7"
   test_core:
     dependency: transitive
     description:
       name: test_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.4.2"
+    version: "0.4.8"
   text_editor:
     dependency: transitive
     description:
@@ -868,7 +868,7 @@ packages:
     description:
       path: "."
       ref: utopia
-      resolved-ref: d14be3223ef5ad4aa80e843f5d4f222ae13082f5
+      resolved-ref: "89e25518d57e80e6d2fe0f068a84fe7bed299792"
       url: "https://github.com/dahliaOS/utopia.git"
     source: git
     version: "2.0.0+2"
