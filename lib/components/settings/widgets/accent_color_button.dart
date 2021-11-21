@@ -43,20 +43,22 @@ class _AccentColorButtonState extends State<AccentColorButton> {
         },
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Column(
+          child: Stack(
             children: [
-              Container(
-                height: _customizationProvider.accentColor ==
-                        widget.model.color.value
-                    ? 64
-                    : 48,
-                width: _customizationProvider.accentColor ==
-                        widget.model.color.value
-                    ? 64
-                    : 48,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  color: Color(widget.model.color.value),
+              Center(
+                child: Container(
+                  height: _customizationProvider.accentColor ==
+                          widget.model.color.value
+                      ? 64
+                      : 48,
+                  width: _customizationProvider.accentColor ==
+                          widget.model.color.value
+                      ? 64
+                      : 48,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: Color(widget.model.color.value),
+                  ),
                 ),
               ),
             ],

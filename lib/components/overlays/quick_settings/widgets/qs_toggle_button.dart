@@ -25,6 +25,7 @@ class QsToggleButton extends StatefulWidget {
     this.icon,
     this.value,
     this.onPressed,
+    this.onMenuPressed,
   }) : super(
           key: key,
         ) {
@@ -34,7 +35,7 @@ class QsToggleButton extends StatefulWidget {
   final String? title, subtitle;
   final IconData? icon;
   bool? value;
-  final VoidCallback? onPressed;
+  final VoidCallback? onPressed, onMenuPressed;
 
   @override
   _QsToggleButtonState createState() => _QsToggleButtonState();
@@ -111,9 +112,7 @@ class _QsToggleButtonState extends State<QsToggleButton> {
                           .op(0.2),
                 ),
                 Material(
-                  color: widget.value == true
-                      ? context.theme.backgroundColor.op(0.2)
-                      : Colors.transparent,
+                  color: Colors.transparent,
                   shape: CircleBorder(),
                   clipBehavior: Clip.antiAlias,
                   child: InkWell(
@@ -127,7 +126,7 @@ class _QsToggleButtonState extends State<QsToggleButton> {
                             : ColorsX.white,
                       ),
                     ),
-                    onTap: () {},
+                    onTap: widget.onMenuPressed,
                   ),
                 )
               ],

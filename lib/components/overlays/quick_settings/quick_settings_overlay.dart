@@ -19,7 +19,9 @@ import 'dart:async';
 import 'package:battery_plus/battery_plus.dart';
 import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:pangolin/components/overlays/power_overlay.dart';
-import 'package:pangolin/components/overlays/quick_settings/pages/account_page.dart';
+import 'package:pangolin/components/overlays/quick_settings/pages/qs_account_page.dart';
+import 'package:pangolin/components/overlays/quick_settings/pages/qs_network_page.dart';
+import 'package:pangolin/components/overlays/quick_settings/pages/qs_theme_page.dart';
 import 'package:pangolin/components/overlays/quick_settings/widgets/qs_action_button.dart';
 import 'package:pangolin/components/overlays/quick_settings/widgets/qs_shortcut_button.dart';
 import 'package:pangolin/components/overlays/quick_settings/widgets/qs_slider.dart';
@@ -119,7 +121,9 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
                 child: MaterialApp(
                   routes: {
                     "/": (context) => QsMain(),
-                    "/account_page": (context) => QsAccountPage(),
+                    "/pages/account": (context) => QsAccountPage(),
+                    "/pages/network": (context) => QsNetworkPage(),
+                    "/pages/theme": (context) => QsThemePage(),
                   },
                   theme: Theme.of(context)
                       .copyWith(scaffoldBackgroundColor: Colors.transparent),
@@ -148,10 +152,10 @@ class QsMain extends StatelessWidget {
           size: 18,
         ),
         title: "dahliaOS Live User",
-        onPressed: () => Navigator.pushNamed(context, "/account_page"),
+        onPressed: () => Navigator.pushNamed(context, "/pages/account"),
         margin: EdgeInsets.zero,
         textStyle: TextStyle(
-          fontSize: 13,
+          fontSize: 14,
           fontWeight: FontWeight.w600,
           height: 1.1,
           color: context.theme.darkMode ? ColorsX.white : ColorsX.black,
@@ -214,6 +218,9 @@ class QsMain extends StatelessWidget {
                         value: _connectionProvider.wifi,
                         onPressed: () => _connectionProvider.wifi =
                             !_connectionProvider.wifi,
+                        onMenuPressed: () {
+                          Navigator.pushNamed(context, "/pages/network");
+                        },
                       ),
                       QsToggleButton(
                         title: LocaleStrings.qs.bluetooth,
@@ -289,11 +296,14 @@ class QsMain extends StatelessWidget {
                         value: true,
                         onPressed: () => _customizationProvider.darkMode =
                             !_customizationProvider.darkMode,
+                        onMenuPressed: () =>
+                            Navigator.pushNamed(context, "/pages/theme"),
                       ),
                       QsToggleButton(
                         title: LocaleStrings.qs.dnd,
                         icon: Icons.do_not_disturb_off_rounded,
                         value: false,
+                        onPressed: () {},
                       ),
                       //TODO move night light to the brightness control submenu
                       /* 
