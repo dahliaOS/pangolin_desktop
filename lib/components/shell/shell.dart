@@ -125,9 +125,12 @@ class _ShellState extends State<Shell> {
             Taskbar(
               leading: [
                 LauncherButton(),
-                (DatabaseManager.get('searchIcon')==true)?SearchButton():Container(),
-                (DatabaseManager.get('overviewIcon')==true)?OverviewButton():Container(),
-               
+                (DatabaseManager.get('searchIcon') == true)
+                    ? SearchButton()
+                    : SizedBox(),
+                (DatabaseManager.get('overviewIcon') == true)
+                    ? OverviewButton()
+                    : SizedBox(),
               ],
               trailing: [
                 //TODO: here is the keyboard button
