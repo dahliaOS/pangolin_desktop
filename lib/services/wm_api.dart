@@ -20,10 +20,16 @@ import 'package:pangolin/utils/data/app_list.dart';
 import 'package:pangolin/components/window/error_window.dart';
 import 'package:pangolin/components/window/window_surface.dart';
 import 'package:pangolin/components/window/window_toolbar.dart';
+import 'package:pangolin/utils/providers/misc_provider.dart';
 
 class WmAPI {
   late BuildContext context;
   WmAPI.of(this.context);
+
+  late WindowHierarchyController _windowHierarchy =
+      WindowHierarchy.of(context, listen: false);
+
+  late MiscProvider _miscProvider = MiscProvider.of(context, listen: false);
 
   static WindowEntry windowEntry = WindowEntry(
     features: [
@@ -51,11 +57,11 @@ class WmAPI {
   );
 
   void popWindowEntry(String id) {
-    WindowHierarchy.of(context, listen: false).removeWindowEntry(id);
+    _windowHierarchy.removeWindowEntry(id);
   }
 
   void pushWindowEntry(LiveWindowEntry entry) {
-    WindowHierarchy.of(context, listen: false).addWindowEntry(entry);
+    _windowHierarchy.addWindowEntry(entry);
   }
 
   void openApp(String packageName) {
@@ -80,5 +86,26 @@ class WmAPI {
     );
 
     pushWindowEntry(_window);
+  }
+
+  void minimizeAll() {
+    _miscProvider.minimizedWindowsCache = [];
+    _windowHierarchy.entries.forEach(
+      (e) {
+        if (e.registry.minimize.minimized) {
+          _miscProvider.minimizedWindowsCache.add(e.registry.info.id);
+        } else {
+          e.registry.minimize.minimized = true;
+        }
+      },
+    );
+  }
+
+  void undoMinimizeAll() {
+    _windowHierarchy.entries.forEach((e) {
+      _miscProvider.minimizedWindowsCache.contains(e.registry.info.id)
+          ? e.registry.minimize.minimized = true
+          : e.registry.minimize.minimized = false;
+    });
   }
 }
