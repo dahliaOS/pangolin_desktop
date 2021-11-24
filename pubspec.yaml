@@ -21,6 +21,7 @@ dependencies:
   xml: ^5.3.0
   intl: ^0.17.0
   cached_network_image: ^3.0.0-nullsafety
+  hive_flutter: any
   calculator:
     git:
       url: https://github.com/dahliaOS/calculator.git
