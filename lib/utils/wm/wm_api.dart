@@ -14,13 +14,14 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/utils/data/app_list.dart';
 import 'package:pangolin/components/window/error_window.dart';
 import 'package:pangolin/components/window/window_surface.dart';
 import 'package:pangolin/components/window/window_toolbar.dart';
+import 'package:pangolin/utils/data/database_manager.dart';
 import 'package:pangolin/utils/providers/misc_provider.dart';
+import 'package:pangolin/utils/wm/wm.dart';
 
 class WmAPI {
   late BuildContext context;

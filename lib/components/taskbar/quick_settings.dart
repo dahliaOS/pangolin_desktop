@@ -14,10 +14,10 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:pangolin/components/overlays/quick_settings/quick_settings_overlay.dart';
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
+import 'package:pangolin/utils/other/date_time_manager.dart';
 import 'package:pangolin/utils/providers/connection_provider.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
 import 'package:pangolin/widgets/taskbar/taskbar_element.dart';

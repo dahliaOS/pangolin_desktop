@@ -23,7 +23,15 @@ class DatabaseManager {
     await Hive.initFlutter();
     //Hive.init(_dir.path);
     _hivedb = await Hive.openBox('settings');
+
+    //Default entries
     newEntry("windowBorderRadius", 12.0);
+
+    //Fix old database entries
+    if (DatabaseManager.get("wallpaper") != null &&
+        double.tryParse(DatabaseManager.get("wallpaper")) != null) {
+      DatabaseManager.set("wallpaper", "assets/images/wallpapers/modern.png");
+    }
   }
 
   //get

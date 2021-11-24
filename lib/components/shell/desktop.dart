@@ -14,7 +14,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:pangolin/components/overlays/launcher_overlay.dart';
 import 'package:pangolin/components/overlays/overview_overlay.dart';
 import 'package:pangolin/components/overlays/power_overlay.dart';
@@ -22,6 +21,7 @@ import 'package:pangolin/components/overlays/quick_settings/quick_settings_overl
 import 'package:pangolin/components/overlays/search_overlay.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
+import 'package:pangolin/utils/wm/wm.dart';
 import 'shell.dart';
 import 'package:pangolin/components/desktop/wallpaper.dart';
 

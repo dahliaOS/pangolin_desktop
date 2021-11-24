@@ -14,14 +14,15 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/shell/desktop.dart';
 import 'package:pangolin/services/locales/generated_asset_loader.g.dart';
 import 'package:pangolin/services/locales/locales.g.dart';
 import 'package:pangolin/components/settings/data/presets.dart';
+import 'package:pangolin/utils/data/database_manager.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
+import 'package:pangolin/utils/other/date_time_manager.dart';
 import 'package:pangolin/utils/providers/clock_provider.dart';
 import 'package:pangolin/utils/providers/connection_provider.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
@@ -42,12 +43,6 @@ void main() async {
 
   //initialize scheduler for time and date
   DateTimeManager.initialiseScheduler();
-
-  //Fix old database entries
-  if (DatabaseManager.get("wallpaper") != null &&
-      double.tryParse(DatabaseManager.get("wallpaper")) != null) {
-    DatabaseManager.set("wallpaper", "assets/images/wallpapers/modern.png");
-  }
 
   //initialize the localization engine
   await EasyLocalization.ensureInitialized();

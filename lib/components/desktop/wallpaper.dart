@@ -15,12 +15,12 @@ limitations under the License.
 */
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:pangolin/utils/context_menus/context_menu.dart';
 import 'package:pangolin/utils/context_menus/context_menu_item.dart';
 import 'package:pangolin/utils/context_menus/core/context_menu_region.dart';
 import 'package:pangolin/utils/data/globals.dart';
-import 'package:pangolin/services/wm_api.dart';
+import 'package:pangolin/utils/wm/wm.dart';
+import 'package:pangolin/utils/wm/wm_api.dart';
 import 'package:pangolin/components/desktop/wallpaper_picker.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';

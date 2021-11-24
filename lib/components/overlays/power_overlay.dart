@@ -16,11 +16,11 @@ limitations under the License.
 
 import 'dart:async';
 
-import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:pangolin/utils/data/common_data.dart';
 import 'package:pangolin/utils/data/globals.dart';
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
+import 'package:pangolin/widgets/box/box_container.dart';
 
 class PowerOverlay extends ShellOverlay {
   static const String overlayId = "power";

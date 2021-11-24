@@ -17,7 +17,7 @@ limitations under the License.
 import 'dart:async';
 
 import 'package:battery_plus/battery_plus.dart';
-import 'package:dahlia_backend/dahlia_backend.dart';
+
 import 'package:pangolin/components/overlays/power_overlay.dart';
 import 'package:pangolin/components/overlays/quick_settings/pages/qs_account_page.dart';
 import 'package:pangolin/components/overlays/quick_settings/pages/qs_network_page.dart';
@@ -29,13 +29,15 @@ import 'package:pangolin/components/overlays/quick_settings/widgets/qs_toggle_bu
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/services/locales/locale_strings.g.dart';
 import 'package:pangolin/services/locales/locales.g.dart';
-import 'package:pangolin/services/wm_api.dart';
+import 'package:pangolin/utils/other/date_time_manager.dart';
+import 'package:pangolin/utils/wm/wm_api.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/data/common_data.dart';
 import 'package:pangolin/utils/providers/connection_provider.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:pangolin/utils/providers/io_provider.dart';
+import 'package:pangolin/widgets/box/box_container.dart';
 
 class QuickSettingsOverlay extends ShellOverlay {
   static const String overlayId = 'quicksettings';

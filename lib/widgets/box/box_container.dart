@@ -14,8 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:dahlia_backend/src/widgets/acrylic.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
+import 'package:pangolin/widgets/acrylic/acrylic.dart';
 
 class BoxSurface extends StatelessWidget {
   final EdgeInsetsGeometry? padding, margin;

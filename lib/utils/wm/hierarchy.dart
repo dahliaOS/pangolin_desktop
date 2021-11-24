@@ -1,4 +1,4 @@
-import 'package:dahlia_backend/src/api/wm/wm.dart';
+import 'package:pangolin/utils/wm/wm.dart';
 
 extension ExtraWindowHierarchyController on WindowHierarchyController {
   void removeFromStableId(String stableId) {

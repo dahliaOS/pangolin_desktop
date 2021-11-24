@@ -14,18 +14,19 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:pangolin/components/overlays/power_overlay.dart';
 import 'package:pangolin/components/overlays/search_overlay.dart';
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/services/locales/locale_strings.g.dart';
 import 'package:pangolin/utils/data/app_list.dart';
 import 'package:pangolin/utils/data/common_data.dart';
-import 'package:pangolin/services/wm_api.dart';
+import 'package:pangolin/utils/data/models/application.dart';
+import 'package:pangolin/utils/wm/wm_api.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
 import 'package:pangolin/utils/providers/search_provider.dart';
 import 'package:pangolin/widgets/app_launcher/app_launcher_button.dart';
+import 'package:pangolin/widgets/box/box_container.dart';
 import 'package:pangolin/widgets/searchbar/searchbar.dart';
 
 class LauncherOverlay extends ShellOverlay {
