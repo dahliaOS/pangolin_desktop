@@ -16,14 +16,17 @@ limitations under the License.
 
 import 'dart:async';
 
-import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/overlays/launcher_overlay.dart';
 import 'package:pangolin/components/taskbar/launcher.dart';
 import 'package:pangolin/components/taskbar/overview.dart';
 import 'package:pangolin/components/taskbar/quick_settings.dart';
 import 'package:pangolin/components/taskbar/search.dart';
+import 'package:pangolin/components/taskbar/show_desktop.dart';
 import 'package:pangolin/components/taskbar/taskbar.dart';
+import 'package:pangolin/utils/data/database_manager.dart';
+import 'package:pangolin/utils/wm/wm.dart';
+import 'package:pangolin/widgets/box/box_container.dart';
 import 'package:provider/provider.dart';
 
 class Shell extends StatefulWidget {
@@ -125,14 +128,18 @@ class _ShellState extends State<Shell> {
             Taskbar(
               leading: [
                 LauncherButton(),
-                (DatabaseManager.get('searchIcon')==true)?SearchButton():Container(),
-                (DatabaseManager.get('overviewIcon')==true)?OverviewButton():Container(),
-               
+                (DatabaseManager.get('searchIcon') == true)
+                    ? SearchButton()
+                    : SizedBox(),
+                (DatabaseManager.get('overviewIcon') == true)
+                    ? OverviewButton()
+                    : SizedBox(),
               ],
               trailing: [
                 //TODO: here is the keyboard button
                 //KeyboardButton(),
                 QuickSettingsButton(),
+                ShowDesktopButton(),
               ],
             ),
             ...widget.overlays,

@@ -14,17 +14,19 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:pangolin/components/overlays/power_overlay.dart';
 import 'package:pangolin/components/overlays/search_overlay.dart';
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/services/locales/locale_strings.g.dart';
 import 'package:pangolin/utils/data/app_list.dart';
 import 'package:pangolin/utils/data/common_data.dart';
-import 'package:pangolin/services/wm_api.dart';
+import 'package:pangolin/utils/data/models/application.dart';
+import 'package:pangolin/utils/wm/wm_api.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
+import 'package:pangolin/utils/providers/search_provider.dart';
 import 'package:pangolin/widgets/app_launcher/app_launcher_button.dart';
+import 'package:pangolin/widgets/box/box_container.dart';
 import 'package:pangolin/widgets/searchbar/searchbar.dart';
 
 class LauncherOverlay extends ShellOverlay {
@@ -58,12 +60,14 @@ class _LauncherOverlayState extends State<LauncherOverlay>
   @override
   Future<void> requestShow(Map<String, dynamic> args) async {
     controller.showing = true;
+    WmAPI.of(context).minimizeAll();
     await ac.forward();
   }
 
   @override
   Future<void> requestDismiss(Map<String, dynamic> args) async {
     await ac.reverse();
+    WmAPI.of(context).undoMinimizeAll();
     controller.showing = false;
   }
 
@@ -143,30 +147,53 @@ class _LauncherOverlayState extends State<LauncherOverlay>
   }
 }
 
-class Search extends StatelessWidget {
+class Search extends StatefulWidget {
   const Search({
     Key? key,
   }) : super(key: key);
 
   @override
+  State<Search> createState() => _SearchState();
+}
+
+class _SearchState extends State<Search> {
+  @override
   Widget build(BuildContext context) {
     final _shell = Shell.of(context);
+    final FocusNode _focusNode = FocusNode(canRequestFocus: true);
+    _focusNode.requestFocus();
 
-    return Container(
-      padding: EdgeInsets.only(top: 50),
-      child: Searchbar(
-        onTextChanged: (change) {
-          _shell.dismissOverlay(LauncherOverlay.overlayId);
-          _shell.showOverlay(
-            SearchOverlay.overlayId,
-            args: {"searchQuery": change},
-            dismissEverything: false,
-          );
-        },
-        leading: Icon(Icons.search),
-        trailing: Icon(Icons.menu),
-        hint: "Search Device, Apps and Web",
-        controller: TextEditingController(),
+    return RawKeyboardListener(
+      focusNode: _focusNode,
+      onKey: (_) async {
+        final _searchProvider = SearchProvider.of(context, listen: false);
+        if (_.character != null) {
+          _searchProvider.searchQueryCache = _.character!;
+        }
+        _shell.dismissOverlay(LauncherOverlay.overlayId);
+        await Future.delayed(const Duration(milliseconds: 150));
+        _shell.showOverlay(
+          SearchOverlay.overlayId,
+          args: {"searchQuery": _searchProvider.searchQueryCache},
+          dismissEverything: false,
+        );
+      },
+      child: Container(
+        padding: EdgeInsets.only(top: 50),
+        child: Searchbar(
+          onTextChanged: (change) {
+            _shell.dismissOverlay(LauncherOverlay.overlayId);
+            _shell.showOverlay(
+              SearchOverlay.overlayId,
+              args: {"searchQuery": change},
+              dismissEverything: false,
+            );
+          },
+          leading: Icon(Icons.search),
+          trailing: Icon(Icons.menu),
+          hint: "Search Device, Apps and Web",
+          controller: TextEditingController(),
+        ),
       ),
     );
   }

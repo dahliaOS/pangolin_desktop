@@ -16,16 +16,17 @@ limitations under the License.
 
 import 'dart:math';
 
-import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/gestures.dart';
 import 'package:pangolin/components/overlays/launcher_overlay.dart';
 import 'package:pangolin/components/shell/shell.dart';
+import 'package:pangolin/utils/data/database_manager.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
 import 'package:pangolin/components/taskbar/taskbar_item.dart';
 import 'package:pangolin/utils/context_menus/context_menu.dart';
 import 'package:pangolin/utils/context_menus/context_menu_item.dart';
 import 'package:pangolin/utils/context_menus/core/context_menu_region.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
+import 'package:pangolin/utils/wm/wm.dart';
 
 class Taskbar extends StatefulWidget {
   final List<Widget>? leading, trailing;
@@ -160,7 +161,7 @@ class _TaskbarState extends State<Taskbar> {
                       ? ColorsX.black.op(context.theme.darkMode ? 0.1 : 0.05)
                       : Colors.transparent,
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                    padding: const EdgeInsets.only(left: 4.0),
                     child: Stack(
                       children: [
                         _customizationProvider.centerTaskbar

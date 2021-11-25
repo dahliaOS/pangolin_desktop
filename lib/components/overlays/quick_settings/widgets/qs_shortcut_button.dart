@@ -54,7 +54,12 @@ class _QsShortcutButtonState extends State<QsShortcutButton> {
                   size: 16,
                 ),
                 widget.title != null ? SizedBox(width: 8) : SizedBox.shrink(),
-                widget.title != null ? Text(widget.title!) : SizedBox.shrink(),
+                widget.title != null
+                    ? Text(
+                        widget.title!,
+                        style: TextStyle(fontSize: 13),
+                      )
+                    : SizedBox.shrink(),
               ],
             ),
           ),

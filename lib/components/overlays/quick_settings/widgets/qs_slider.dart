@@ -56,6 +56,7 @@ class _QsSliderState extends State<QsSlider> {
               child: InkWell(
                 child: Icon(
                   widget.icon,
+                  size: 20,
                 ),
                 onTap: widget.onIconTap,
               ),
@@ -82,6 +83,7 @@ class _QsSliderState extends State<QsSlider> {
               child: InkWell(
                 child: Icon(
                   Icons.chevron_right,
+                  size: 22,
                 ),
                 onTap: () {},
               ),

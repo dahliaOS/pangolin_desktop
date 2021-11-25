@@ -14,9 +14,10 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:pangolin/components/overlays/quick_settings/quick_settings_overlay.dart';
+import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
+import 'package:pangolin/utils/other/date_time_manager.dart';
 import 'package:pangolin/utils/providers/connection_provider.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
 import 'package:pangolin/widgets/taskbar/taskbar_element.dart';
@@ -30,7 +31,7 @@ class QuickSettingsButton extends StatelessWidget {
     final _connectionProv = ConnectionProvider.of(context);
     return TaskbarElement(
       iconSize: 18,
-      size: Size.fromWidth(96 +
+      size: Size.fromWidth(88 +
           (_connectionProv.wifi ? 28 : 0) +
           (_connectionProv.bluetooth ? 28 : 0) +
           32 +
@@ -45,17 +46,29 @@ class QuickSettingsButton extends StatelessWidget {
                     padding: _customizationProvider.isTaskbarHorizontal
                         ? EdgeInsets.symmetric(horizontal: 8.0)
                         : EdgeInsets.symmetric(vertical: 8.0),
-                    child: ValueListenableBuilder(
-                      valueListenable: DateTimeManager.getTimeNotifier()!,
-                      builder: (BuildContext context, String time, child) {
-                        return Text(
-                          time,
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 14,
-                          ),
-                        );
-                      },
+                    child: ValueListenableBuilder<bool>(
+                      valueListenable: Shell.of(context)
+                          .getShowingNotifier(QuickSettingsOverlay.overlayId),
+                      builder: (context, showing, child) =>
+                          ValueListenableBuilder(
+                        valueListenable: DateTimeManager.getTimeNotifier()!,
+                        builder: (BuildContext context, String time, child) {
+                          return Text(
+                            time,
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 13,
+                              color: showing
+                                  ? context.accentColor.computeLuminance() < 0.3
+                                      ? const Color(0xffffffff)
+                                      : const Color(0xff000000)
+                                  : context.theme.darkMode
+                                      ? const Color(0xffffffff)
+                                      : const Color(0xff000000),
+                            ),
+                          );
+                        },
+                      ),
                     ),
                   ),
                 ),
@@ -76,7 +89,6 @@ class QuickSettingsButton extends StatelessWidget {
                           style: TextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize: 14,
-                            color: Colors.red,
                           ),
                         );
                       },

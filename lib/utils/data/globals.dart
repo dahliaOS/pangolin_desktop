@@ -15,12 +15,13 @@ limitations under the License.
 */
 
 import 'dart:io';
-import 'package:dahlia_backend/dahlia_backend.dart';
+
 import 'package:http/http.dart';
 import 'package:pangolin/utils/api_models/bing_wallpaper_api_model.dart';
-import 'package:pangolin/utils/data/accent_color_data.dart';
+import 'package:pangolin/utils/data/models/accent_color_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:pangolin/utils/wm/wm.dart';
 
 String totalVersionNumber = "21XXXX";
 String headingFeatureString =
@@ -61,7 +62,7 @@ List<String> wallpapers = [
   "assets/images/wallpapers/modern.png",
   "assets/images/wallpapers/modern_dark.png",
   "assets/images/wallpapers/wood.jpg",
-"assets/images/wallpapers/beach.jpg",
+  "assets/images/wallpapers/beach.jpg",
 ];
 
 List<AccentColorData> accentColors = [

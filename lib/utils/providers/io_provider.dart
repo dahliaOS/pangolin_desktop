@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:dahlia_backend/dahlia_backend.dart';
+import 'package:pangolin/utils/data/database_manager.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:provider/provider.dart';
 
@@ -73,5 +73,7 @@ class IOProvider extends ChangeNotifier {
   void _loadData() {
     _volume = DatabaseManager.get("volume") ?? volume;
     _brightness = DatabaseManager.get("brightness") ?? volume;
+    DatabaseManager.newEntry("alt_volume", volume);
+    DatabaseManager.newEntry("alt_brightness", brightness);
   }
 }

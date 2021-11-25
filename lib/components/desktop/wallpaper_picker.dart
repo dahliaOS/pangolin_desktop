@@ -15,10 +15,11 @@ limitations under the License.
 */
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:dahlia_backend/dahlia_backend.dart';
+
 import 'package:flutter/material.dart';
 import 'package:pangolin/utils/data/globals.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
+import 'package:pangolin/widgets/box/box_container.dart';
 
 class WallpaperPicker extends StatefulWidget {
   const WallpaperPicker({

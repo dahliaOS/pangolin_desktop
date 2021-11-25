@@ -17,9 +17,11 @@ limitations under the License.
 import 'dart:async';
 
 import 'package:battery_plus/battery_plus.dart';
-import 'package:dahlia_backend/dahlia_backend.dart';
+
 import 'package:pangolin/components/overlays/power_overlay.dart';
-import 'package:pangolin/components/overlays/quick_settings/pages/account_page.dart';
+import 'package:pangolin/components/overlays/quick_settings/pages/qs_account_page.dart';
+import 'package:pangolin/components/overlays/quick_settings/pages/qs_network_page.dart';
+import 'package:pangolin/components/overlays/quick_settings/pages/qs_theme_page.dart';
 import 'package:pangolin/components/overlays/quick_settings/widgets/qs_action_button.dart';
 import 'package:pangolin/components/overlays/quick_settings/widgets/qs_shortcut_button.dart';
 import 'package:pangolin/components/overlays/quick_settings/widgets/qs_slider.dart';
@@ -27,13 +29,15 @@ import 'package:pangolin/components/overlays/quick_settings/widgets/qs_toggle_bu
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/services/locales/locale_strings.g.dart';
 import 'package:pangolin/services/locales/locales.g.dart';
-import 'package:pangolin/services/wm_api.dart';
+import 'package:pangolin/utils/other/date_time_manager.dart';
+import 'package:pangolin/utils/wm/wm_api.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/data/common_data.dart';
 import 'package:pangolin/utils/providers/connection_provider.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:pangolin/utils/providers/io_provider.dart';
+import 'package:pangolin/widgets/box/box_container.dart';
 
 class QuickSettingsOverlay extends ShellOverlay {
   static const String overlayId = 'quicksettings';
@@ -111,15 +115,17 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
             child: BoxSurface(
               borderRadius:
                   CommonData.of(context).borderRadius(BorderRadiusType.BIG),
-              width: 560,
-              height: 490,
+              width: 540,
+              height: 474,
               dropShadow: true,
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: MaterialApp(
                   routes: {
                     "/": (context) => QsMain(),
-                    "/account_page": (context) => QsAccountPage(),
+                    "/pages/account": (context) => QsAccountPage(),
+                    "/pages/network": (context) => QsNetworkPage(),
+                    "/pages/theme": (context) => QsThemePage(),
                   },
                   theme: Theme.of(context)
                       .copyWith(scaffoldBackgroundColor: Colors.transparent),
@@ -148,7 +154,7 @@ class QsMain extends StatelessWidget {
           size: 18,
         ),
         title: "dahliaOS Live User",
-        onPressed: () => Navigator.pushNamed(context, "/account_page"),
+        onPressed: () => Navigator.pushNamed(context, "/pages/account"),
         margin: EdgeInsets.zero,
         textStyle: TextStyle(
           fontSize: 14,
@@ -205,6 +211,7 @@ class QsMain extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       QsToggleButton(
+                        //TODO change title to "Network"
                         title: LocaleStrings.qs.wifi,
                         icon: _connectionProvider.wifi
                             ? Icons.wifi_rounded
@@ -213,6 +220,9 @@ class QsMain extends StatelessWidget {
                         value: _connectionProvider.wifi,
                         onPressed: () => _connectionProvider.wifi =
                             !_connectionProvider.wifi,
+                        onMenuPressed: () {
+                          Navigator.pushNamed(context, "/pages/network");
+                        },
                       ),
                       QsToggleButton(
                         title: LocaleStrings.qs.bluetooth,
@@ -253,6 +263,14 @@ class QsMain extends StatelessWidget {
                           }
                         },
                       ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 12,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
                       QsToggleButton(
                         title: LocaleStrings.settings.generalLanguage,
                         subtitle: LocaleStrings.qs.changelanguage,
@@ -267,36 +285,35 @@ class QsMain extends StatelessWidget {
                           }
                         },
                       ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 12,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
+                      //TODO remove the provider option for this
+                      /* 
                       QsToggleButton(
                         title: LocaleStrings.qs.autorotate,
                         icon: Icons.screen_lock_rotation_rounded,
                         value: false,
-                      ),
+                      ), */
                       QsToggleButton(
                         title: LocaleStrings.qs.theme,
                         icon: Icons.palette_outlined,
                         value: true,
                         onPressed: () => _customizationProvider.darkMode =
                             !_customizationProvider.darkMode,
+                        onMenuPressed: () =>
+                            Navigator.pushNamed(context, "/pages/theme"),
                       ),
                       QsToggleButton(
                         title: LocaleStrings.qs.dnd,
                         icon: Icons.do_not_disturb_off_rounded,
                         value: false,
+                        onPressed: () {},
                       ),
+                      //TODO move night light to the brightness control submenu
+                      /* 
                       QsToggleButton(
                         title: "Night light",
                         icon: Icons.brightness_4_rounded,
                         value: false,
-                      ),
+                      ), */
                     ],
                   ),
                 ],
@@ -398,12 +415,12 @@ class QsMain extends StatelessWidget {
 
   Padding _qsTitle(String title) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(4.0, 16.0, 0.0, 12.0),
+      padding: const EdgeInsets.fromLTRB(4.0, 12.0, 0.0, 12.0),
       child: Align(
         alignment: Alignment.centerLeft,
         child: Text(
           title,
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
         ),
       ),
     );

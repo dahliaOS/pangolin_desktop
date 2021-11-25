@@ -14,7 +14,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/settings/data/presets.dart';
 import 'package:pangolin/components/settings/widgets/accent_color_button.dart';
@@ -23,6 +22,7 @@ import 'package:pangolin/components/settings/widgets/settings_content_header.dar
 import 'package:pangolin/components/settings/widgets/settings_page.dart';
 import 'package:pangolin/components/settings/widgets/taskbar_alignment_button.dart';
 import 'package:pangolin/components/settings/widgets/theme_mode_button.dart';
+import 'package:pangolin/utils/data/database_manager.dart';
 
 class SettingsPageCustomization extends StatefulWidget {
   const SettingsPageCustomization({Key? key}) : super(key: key);

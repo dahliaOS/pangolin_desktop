@@ -12,8 +12,16 @@ class MiscProvider extends ChangeNotifier {
   // Initial Values
   bool enableBlueLightFilter = false;
   bool enableDeveloperOptions = false;
+  List<String> _minimizedWindowsCache = [];
 
   String keyboardLayout = 'en_US';
+
+  List<String> get minimizedWindowsCache => _minimizedWindowsCache;
+
+  set minimizedWindowsCache(List<String> value) {
+    _minimizedWindowsCache = value;
+    notifyListeners();
+  }
 
   //TODO fix data loading
   void _loadData() {}

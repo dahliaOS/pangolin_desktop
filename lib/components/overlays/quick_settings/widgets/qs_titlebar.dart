@@ -36,9 +36,9 @@ class QsTitlebar extends StatelessWidget implements PreferredSizeWidget {
               : leading!,
           title != null
               ? QsActionButton(
-                  title: 'User Accouns',
+                  title: title,
                   textStyle: TextStyle(
-                    fontSize: 16,
+                    fontSize: 14,
                     fontWeight: FontWeight.w600,
                     height: 1.1,
                     color:

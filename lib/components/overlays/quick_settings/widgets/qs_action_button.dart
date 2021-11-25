@@ -70,7 +70,7 @@ class _QsActionButtonState extends State<QsActionButton> {
                 child: DefaultTextStyle(
                   style: widget.textStyle ??
                       context.theme.textTheme.bodyText1!.copyWith(
-                          fontSize: 14, fontWeight: FontWeight.normal),
+                          fontSize: 13, fontWeight: FontWeight.normal),
                   child: !(widget.isCircular == true)
                       ? Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
