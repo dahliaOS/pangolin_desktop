@@ -37,7 +37,7 @@ class Application {
   const Application.testing(
       {required this.app,
       required this.packageName,
-      this.category = ApplicationCategory.TESTING,
+      this.category = ApplicationCategory.testing,
       this.description = "TESING APP",
       this.iconName,
       required this.name,
@@ -48,11 +48,11 @@ class Application {
 }
 
 enum ApplicationCategory {
-  INTERNET,
-  MEDIA,
-  GAMING,
-  DEVELOPMENT,
-  SYSTEM,
-  OFFICE,
-  TESTING
+  internet,
+  media,
+  gaming,
+  development,
+  system,
+  office,
+  testing
 }

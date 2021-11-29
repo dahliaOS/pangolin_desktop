@@ -76,16 +76,16 @@ class _QsActionButtonState extends State<QsActionButton> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            widget.leading ?? SizedBox.shrink(),
+                            widget.leading ?? const SizedBox.shrink(),
                             !(titleIsNull || leadingIsNull)
-                                ? SizedBox(width: 8)
-                                : SizedBox.shrink(),
+                                ? const SizedBox(width: 8)
+                                : const SizedBox.shrink(),
                             !titleIsNull
                                 ? Text(widget.title!)
-                                : SizedBox.shrink(),
+                                : const SizedBox.shrink(),
                           ],
                         )
-                      : widget.leading ?? SizedBox.shrink(),
+                      : widget.leading ?? const SizedBox.shrink(),
                 ),
               ),
             ),

@@ -18,6 +18,7 @@ import 'package:flutter/material.dart';
 import 'dart:math' as math;
 import 'package:pangolin/components/settings/models/settings_element_model.dart';
 
+// ignore: must_be_immutable
 class SettingsCard extends SettingsElementModel {
   Widget? content, trailing, leading;
   String? title, subtitle;
@@ -36,7 +37,7 @@ class SettingsCard extends SettingsElementModel {
     this.onToggle,
     required this.value,
   }) : super(type: SettingsElementModelType.SWITCH, key: key) {
-    this.content = null;
+    content = null;
   }
 
   // Exandable with switch
@@ -67,8 +68,8 @@ class SettingsCard extends SettingsElementModel {
     this.subtitle,
     required this.title,
   }) : super(type: SettingsElementModelType.ROUTER, key: key) {
-    this.content = null;
-    this.value = false;
+    content = null;
+    value = false;
   }
 
   // Custom trailing
@@ -79,8 +80,8 @@ class SettingsCard extends SettingsElementModel {
     required this.title,
     required this.trailing,
   }) : super(type: SettingsElementModelType.CUSTOMTRAILING, key: key) {
-    this.content = null;
-    this.value = false;
+    content = null;
+    value = false;
   }
 
   SettingsCard.custom({Key? key, this.content})
@@ -112,7 +113,7 @@ class _SettingsCardState extends State<SettingsCard> {
         ),
         child: (widget.type == SettingsElementModelType.CUSTOM)
             // Custom Content
-            ? widget.content ?? SizedBox.shrink()
+            ? widget.content ?? const SizedBox.shrink()
             // Default Content
             : Column(
                 children: [
@@ -167,7 +168,7 @@ class _SettingsCardState extends State<SettingsCard> {
   }
 
   SnackBar get _fallbackSnackBar {
-    return SnackBar(
+    return const SnackBar(
       content: Text(
         "Router has not been implemented yet",
         style: TextStyle(
@@ -178,8 +179,8 @@ class _SettingsCardState extends State<SettingsCard> {
   }
 
   Widget get _fallbackContent {
-    return Padding(
-      padding: const EdgeInsets.all(48.0),
+    return const Padding(
+      padding: EdgeInsets.all(48.0),
       child: FlutterLogo(
         size: 48,
       ),
@@ -218,7 +219,7 @@ class _SettingsCardState extends State<SettingsCard> {
         padding: const EdgeInsets.only(right: 12.0),
         child: Transform.rotate(
           angle: !widget.value ? math.pi / 2 : -math.pi / 2,
-          child: Icon(
+          child: const Icon(
             Icons.chevron_right_rounded,
             size: 24,
           ),
@@ -228,8 +229,8 @@ class _SettingsCardState extends State<SettingsCard> {
 
     // Router
     if (widget.type == SettingsElementModelType.ROUTER) {
-      return Padding(
-        padding: const EdgeInsets.only(right: 12.0),
+      return const Padding(
+        padding: EdgeInsets.only(right: 12.0),
         child: Icon(
           Icons.chevron_right_rounded,
           size: 24,
@@ -243,7 +244,7 @@ class _SettingsCardState extends State<SettingsCard> {
     }
 
     // none
-    return SizedBox.shrink();
+    return const SizedBox.shrink();
   }
 }
 
@@ -251,7 +252,8 @@ extension on ThemeData {
   bool get darkMode {
     if (brightness == Brightness.dark) {
       return true;
-    } else
+    } else {
       return false;
+    }
   }
 }

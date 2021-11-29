@@ -6,7 +6,7 @@ class QsNetworkPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       appBar: QsTitlebar(
         title: 'Network Settings',
       ),

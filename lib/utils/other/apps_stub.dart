@@ -4,15 +4,19 @@ library stub;
 import 'package:flutter/widgets.dart';
 
 class Files extends StatelessWidget {
+  const Files({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return SizedBox.shrink();
+    return const SizedBox.shrink();
   }
 }
 
 class Terminal extends StatelessWidget {
+  const Terminal({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return SizedBox.shrink();
+    return const SizedBox.shrink();
   }
 }

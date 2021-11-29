@@ -17,7 +17,7 @@ class SettingsTile extends StatelessWidget {
   final Widget? child;
   final String? title;
   final EdgeInsetsGeometry? margin;
-  SettingsTile({
+  const SettingsTile({
     Key? key,
     @required this.child,
     this.margin,
@@ -41,17 +41,17 @@ class SettingsTile extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Container(
-            margin: this.margin,
+            margin: margin,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                title != null ? Text(title!) : SizedBox.shrink(),
+                title != null ? Text(title!) : const SizedBox.shrink(),
                 title != null
-                    ? SizedBox(
+                    ? const SizedBox(
                         height: 8,
                       )
-                    : SizedBox.shrink(),
-                child ?? SizedBox.shrink(),
+                    : const SizedBox.shrink(),
+                child ?? const SizedBox.shrink(),
               ],
             ),
           ),

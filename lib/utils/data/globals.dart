@@ -33,14 +33,16 @@ String get kernel {
       ProcessResult result = Process.runSync('uname', ['-sr']);
       var kernelString = result.stdout;
       return kernelString.toString().replaceAll('\n', '');
-    } else
+    } else {
       return "Windows";
-  } else
+    }
+  } else {
     return "Web Build";
+  }
 }
 
 String pangolinCommit = "8c5eea993a89446b3bb0b9e313cdea1d06bf8477";
-String fullPangolinVersion = "$pangolinCommit";
+String fullPangolinVersion = pangolinCommit;
 
 double horizontalPadding(BuildContext context, double size) =>
     WindowHierarchy.of(context).wmBounds.width / 2 - size / 2;
@@ -66,14 +68,14 @@ List<String> wallpapers = [
 ];
 
 List<AccentColorData> accentColors = [
-  AccentColorData(color: Colors.deepOrange, title: "Orange"),
+  const AccentColorData(color: Colors.deepOrange, title: "Orange"),
   AccentColorData(color: Colors.red.shade700, title: "Red"),
   AccentColorData(color: Colors.greenAccent.shade700, title: "Green"),
-  AccentColorData(color: Colors.blue, title: "Blue"),
-  AccentColorData(color: Colors.purple, title: "Purple"),
-  AccentColorData(color: Colors.cyan, title: "Cyan"),
-  AccentColorData(color: Colors.amber, title: "Amber"),
-  AccentColorData(color: null, title: "Custom Accent Color"),
+  const AccentColorData(color: Colors.blue, title: "Blue"),
+  const AccentColorData(color: Colors.purple, title: "Purple"),
+  const AccentColorData(color: Colors.cyan, title: "Cyan"),
+  const AccentColorData(color: Colors.amber, title: "Amber"),
+  const AccentColorData(color: null, title: "Custom Accent Color"),
 ];
 
 Future<BingWallpaper> getBingWallpaper() async {

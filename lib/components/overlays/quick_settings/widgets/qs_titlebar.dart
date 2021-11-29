@@ -32,7 +32,7 @@ class QsTitlebar extends StatelessWidget implements PreferredSizeWidget {
       child: Row(
         children: [
           (leading == null && Navigator.canPop(context))
-              ? BackButton()
+              ? const BackButton()
               : leading!,
           title != null
               ? QsActionButton(
@@ -45,15 +45,16 @@ class QsTitlebar extends StatelessWidget implements PreferredSizeWidget {
                         context.theme.darkMode ? ColorsX.white : ColorsX.black,
                   ),
                 )
-              : SizedBox.shrink(),
-          Spacer(),
-        ]..addAll(trailing ?? []),
+              : const SizedBox.shrink(),
+          const Spacer(),
+          ...?trailing,
+        ],
       ),
     );
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(40);
+  Size get preferredSize => const Size.fromHeight(40);
 }
 
 class BackButton extends StatelessWidget {
@@ -63,7 +64,7 @@ class BackButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return QsActionButton(
       isCircular: true,
-      leading: Icon(Icons.arrow_back),
+      leading: const Icon(Icons.arrow_back),
       onPressed: () => Navigator.pop(context),
       margin: EdgeInsets.zero,
     );

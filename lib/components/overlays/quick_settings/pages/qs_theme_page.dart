@@ -11,7 +11,7 @@ class QsThemePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: QsTitlebar(
+      appBar: const QsTitlebar(
         title: "Theme Settings",
       ),
       body: Padding(
@@ -21,14 +21,14 @@ class QsThemePage extends StatelessWidget {
             children: [
               SwitchListTile(
                 hoverColor: Colors.transparent,
-                secondary: Icon(Icons.brightness_6_rounded),
-                title: Text("System Dark Mode"),
+                secondary: const Icon(Icons.brightness_6_rounded),
+                title: const Text("System Dark Mode"),
                 value: provider.darkMode,
                 onChanged: (value) => provider.darkMode = value,
               ),
               Expanded(
                 child: GridView(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 5,
                   ),
                   shrinkWrap: true,

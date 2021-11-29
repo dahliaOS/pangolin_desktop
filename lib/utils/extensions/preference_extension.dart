@@ -20,42 +20,48 @@ extension PreferenceExtension on CustomizationProvider {
   bool get isTaskbarLeft {
     if (taskbarPosition == 1) {
       return true;
-    } else
+    } else {
       return false;
+    }
   }
 
   bool get isTaskbarRight {
     if (taskbarPosition == 3) {
       return true;
-    } else
+    } else {
       return false;
+    }
   }
 
   bool get isTaskbarTop {
     if (taskbarPosition == 0) {
       return true;
-    } else
+    } else {
       return false;
+    }
   }
 
   bool get isTaskbarBottom {
     if (taskbarPosition == 2) {
       return true;
-    } else
+    } else {
       return false;
+    }
   }
 
   bool get isTaskbarVertical {
     if (taskbarPosition == 1 || taskbarPosition == 3) {
       return true;
-    } else
+    } else {
       return false;
+    }
   }
 
   bool get isTaskbarHorizontal {
     if (taskbarPosition == 2 || taskbarPosition == 0) {
       return true;
-    } else
+    } else {
       return false;
+    }
   }
 }

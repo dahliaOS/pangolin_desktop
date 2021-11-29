@@ -44,8 +44,8 @@ class QuickSettingsButton extends StatelessWidget {
                 ..add(
                   Padding(
                     padding: _customizationProvider.isTaskbarHorizontal
-                        ? EdgeInsets.symmetric(horizontal: 8.0)
-                        : EdgeInsets.symmetric(vertical: 8.0),
+                        ? const EdgeInsets.symmetric(horizontal: 8.0)
+                        : const EdgeInsets.symmetric(vertical: 8.0),
                     child: ValueListenableBuilder<bool>(
                       valueListenable: Shell.of(context)
                           .getShowingNotifier(QuickSettingsOverlay.overlayId),
@@ -79,14 +79,14 @@ class QuickSettingsButton extends StatelessWidget {
                 ..add(
                   Padding(
                     padding: _customizationProvider.isTaskbarHorizontal
-                        ? EdgeInsets.symmetric(horizontal: 8.0)
-                        : EdgeInsets.symmetric(vertical: 8.0),
+                        ? const EdgeInsets.symmetric(horizontal: 8.0)
+                        : const EdgeInsets.symmetric(vertical: 8.0),
                     child: ValueListenableBuilder(
                       valueListenable: DateTimeManager.getTimeNotifier()!,
                       builder: (BuildContext context, String time, child) {
                         return Text(
                           time,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize: 14,
                           ),
@@ -107,36 +107,36 @@ class QuickSettingsButton extends StatelessWidget {
       _connectionProv.wifi
           ? Padding(
               padding: _customizationProvider.isTaskbarHorizontal
-                  ? EdgeInsets.symmetric(horizontal: 4.0)
-                  : EdgeInsets.symmetric(vertical: 4.0),
-              child: Icon(
+                  ? const EdgeInsets.symmetric(horizontal: 4.0)
+                  : const EdgeInsets.symmetric(vertical: 4.0),
+              child: const Icon(
                 Icons.wifi,
               ),
             )
-          : SizedBox.shrink(),
+          : const SizedBox.shrink(),
       _connectionProv.bluetooth
           ? Padding(
               padding: _customizationProvider.isTaskbarHorizontal
-                  ? EdgeInsets.symmetric(horizontal: 4.0)
-                  : EdgeInsets.symmetric(vertical: 4.0),
-              child: Icon(
+                  ? const EdgeInsets.symmetric(horizontal: 4.0)
+                  : const EdgeInsets.symmetric(vertical: 4.0),
+              child: const Icon(
                 Icons.bluetooth,
               ),
             )
-          : SizedBox.shrink(),
+          : const SizedBox.shrink(),
       Padding(
         padding: _customizationProvider.isTaskbarHorizontal
-            ? EdgeInsets.symmetric(horizontal: 4.0)
-            : EdgeInsets.symmetric(vertical: 4.0),
-        child: Icon(
+            ? const EdgeInsets.symmetric(horizontal: 4.0)
+            : const EdgeInsets.symmetric(vertical: 4.0),
+        child: const Icon(
           Icons.settings_ethernet,
         ),
       ),
       Padding(
         padding: _customizationProvider.isTaskbarHorizontal
-            ? EdgeInsets.symmetric(horizontal: 4.0)
-            : EdgeInsets.symmetric(vertical: 4.0),
-        child: RotatedBox(
+            ? const EdgeInsets.symmetric(horizontal: 4.0)
+            : const EdgeInsets.symmetric(vertical: 4.0),
+        child: const RotatedBox(
           quarterTurns: 1,
           child: Icon(
             Icons.battery_charging_full,

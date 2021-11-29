@@ -22,7 +22,7 @@ class SettingsPageSound extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SettingsPage(
+    return const SettingsPage(
       title: "Sound",
       cards: [],
     );

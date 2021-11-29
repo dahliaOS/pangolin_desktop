@@ -29,27 +29,27 @@ class SettingsPageDeveloperOptions extends StatefulWidget {
 
 class _SettingsPageDeveloperOptionsState
     extends State<SettingsPageDeveloperOptions> {
-      bool _devModeEnabled = false;
+  bool _devModeEnabled = false;
   @override
   Widget build(BuildContext context) {
     return SettingsPage(
       title: "Developer Options",
       cards: [
- //${_devModeEnabled ? "enabled" : "disabled"}
+        //${_devModeEnabled ? "enabled" : "disabled"}
         SettingsCard.withSwitch(
           title: "Developer Mode",
           subtitle: "Activate advanced debugging features",
-          leading: Icon(Icons.developer_mode),
+          leading: const Icon(Icons.developer_mode),
           value: _devModeEnabled,
           onToggle: (val) {
             setState(() => _devModeEnabled = val);
           },
         ),
-SettingsContentHeader(""),
- SettingsCard.withSwitch(
+        const SettingsContentHeader(""),
+        SettingsCard.withSwitch(
           title: "Developer Mode",
           subtitle: "Activate advanced debugging features",
-          leading: Icon(Icons.developer_mode),
+          leading: const Icon(Icons.developer_mode),
           value: _devModeEnabled,
           onToggle: (val) {
             setState(() => _devModeEnabled = val);

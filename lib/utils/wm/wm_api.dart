@@ -27,13 +27,14 @@ class WmAPI {
   late BuildContext context;
   WmAPI.of(this.context);
 
-  late WindowHierarchyController _windowHierarchy =
+  late final WindowHierarchyController _windowHierarchy =
       WindowHierarchy.of(context, listen: false);
 
-  late MiscProvider _miscProvider = MiscProvider.of(context, listen: false);
+  late final MiscProvider _miscProvider =
+      MiscProvider.of(context, listen: false);
 
   static WindowEntry windowEntry = WindowEntry(
-    features: [
+    features: const [
       MinimizeWindowFeature(),
       GeometryWindowFeature(),
       ResizeWindowFeature(),
@@ -42,17 +43,17 @@ class WmAPI {
       ToolbarWindowFeature(),
     ],
     properties: {
-      GeometryWindowFeature.position: Offset(32, 32),
-      GeometryWindowFeature.size: Size(1280, 720),
-      ResizeWindowFeature.minSize: Size(480, 360),
+      GeometryWindowFeature.position: const Offset(32, 32),
+      GeometryWindowFeature.size: const Size(1280, 720),
+      ResizeWindowFeature.minSize: const Size(480, 360),
       SurfaceWindowFeature.elevation: 4.0,
       SurfaceWindowFeature.shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(
           Radius.circular(DatabaseManager.get("windowBorderRadius") ?? 12.0),
         ),
       ),
-      SurfaceWindowFeature.background: PangolinWindowSurface(),
-      ToolbarWindowFeature.widget: PangolinWindowToolbar(),
+      SurfaceWindowFeature.background: const PangolinWindowSurface(),
+      ToolbarWindowFeature.widget: const PangolinWindowToolbar(),
       ToolbarWindowFeature.size: 40.0,
     },
   );
@@ -72,17 +73,17 @@ class WmAPI {
       // throw 'The app couldn not be opened';
     }
     final LiveWindowEntry _window = windowEntry.newInstance(
-      application.app ?? ErrorWindow(),
+      application.app ?? const ErrorWindow(),
       {
         WindowEntry.title: application.name,
         WindowEntry.icon:
             AssetImage("assets/icons/${application.iconName}.png"),
         WindowExtras.stableId: packageName,
         GeometryWindowFeature.size: MediaQuery.of(context).size.width < 1920
-            ? Size(720, 480)
+            ? const Size(720, 480)
             : MediaQuery.of(context).size.width < 1921
-                ? Size(1280, 720)
-                : Size(1920, 1080),
+                ? const Size(1280, 720)
+                : const Size(1920, 1080),
       },
     );
 
@@ -91,22 +92,20 @@ class WmAPI {
 
   void minimizeAll() {
     _miscProvider.minimizedWindowsCache = [];
-    _windowHierarchy.entries.forEach(
-      (e) {
-        if (e.registry.minimize.minimized) {
-          _miscProvider.minimizedWindowsCache.add(e.registry.info.id);
-        } else {
-          e.registry.minimize.minimized = true;
-        }
-      },
-    );
+    for (var e in _windowHierarchy.entries) {
+      if (e.registry.minimize.minimized) {
+        _miscProvider.minimizedWindowsCache.add(e.registry.info.id);
+      } else {
+        e.registry.minimize.minimized = true;
+      }
+    }
   }
 
   void undoMinimizeAll() {
-    _windowHierarchy.entries.forEach((e) {
+    for (var e in _windowHierarchy.entries) {
       _miscProvider.minimizedWindowsCache.contains(e.registry.info.id)
           ? e.registry.minimize.minimized = true
           : e.registry.minimize.minimized = false;
-    });
+    }
   }
 }

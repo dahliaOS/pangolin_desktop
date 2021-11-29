@@ -45,10 +45,10 @@ class _TaskbarElementState extends State<TaskbarElement> {
     final _shell = Shell.of(context);
     final _darkMode = _theme.brightness == Brightness.dark;
     final _borderRadius =
-        CommonData.of(context).borderRadius(BorderRadiusType.SMALL);
+        CommonData.of(context).borderRadius(BorderRadiusType.small);
 
     return SizedBox.fromSize(
-      size: widget.size ?? Size(48, 48),
+      size: widget.size ?? const Size(48, 48),
       child: GestureDetector(
         onTap: () => widget.overlayID != null
             ? _shell.toggleOverlay(widget.overlayID!)

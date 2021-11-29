@@ -25,7 +25,7 @@ import 'package:pangolin/utils/data/common_data.dart';
 class OverviewOverlay extends ShellOverlay {
   static const String overlayId = "overview";
 
-  OverviewOverlay() : super(id: overlayId);
+  OverviewOverlay({Key? key}) : super(key: key, id: overlayId);
 
   @override
   _OverviewOverlayState createState() => _OverviewOverlayState();
@@ -47,7 +47,7 @@ class _OverviewOverlayState extends State<OverviewOverlay>
   Widget build(BuildContext context) {
     final _hierarchy = WindowHierarchy.of(context);
 
-    if (!controller.showing) return SizedBox();
+    if (!controller.showing) return const SizedBox();
 
     return Positioned.fromRect(
       rect: _hierarchy.wmBounds,
@@ -74,7 +74,7 @@ class _OverviewOverlayState extends State<OverviewOverlay>
                         padding: const EdgeInsets.all(12.0),
                         child: BoxSurface(
                           borderRadius: CommonData.of(context)
-                              .borderRadius(BorderRadiusType.SMALL),
+                              .borderRadius(BorderRadiusType.small),
                           /* decoration: BoxDecoration(
                             boxShadow: [
                               BoxShadow(
@@ -97,8 +97,8 @@ class _OverviewOverlayState extends State<OverviewOverlay>
                           highlightElevation: 2,
                           onPressed: () {},
                           hoverColor: Theme.of(context).backgroundColor,
-                          label: Text("New Desktop"),
-                          icon: Icon(Icons.add),
+                          label: const Text("New Desktop"),
+                          icon: const Icon(Icons.add),
                           hoverElevation: 1,
                           foregroundColor:
                               Theme.of(context).textTheme.bodyText1?.color,

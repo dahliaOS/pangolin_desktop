@@ -18,6 +18,8 @@ import 'package:flutter/material.dart';
 import 'package:pangolin/widgets/box/box_container.dart';
 
 class ErrorWindow extends StatelessWidget {
+  const ErrorWindow({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return BoxSurface(
@@ -27,7 +29,7 @@ class ErrorWindow extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
+            children: const [
               Text(
                 "ERROR",
                 style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),

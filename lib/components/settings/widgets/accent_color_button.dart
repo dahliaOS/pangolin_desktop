@@ -35,7 +35,7 @@ class _AccentColorButtonState extends State<AccentColorButton> {
       message: widget.model.label,
       child: InkWell(
         borderRadius:
-            CommonData.of(context).borderRadius(BorderRadiusType.SMALL),
+            CommonData.of(context).borderRadius(BorderRadiusType.small),
         mouseCursor: SystemMouseCursors.click,
         onTap: () {
           _customizationProvider.accentColor = widget.model.color.value;

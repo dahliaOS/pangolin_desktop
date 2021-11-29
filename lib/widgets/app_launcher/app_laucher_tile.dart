@@ -23,7 +23,7 @@ import 'package:pangolin/utils/providers/search_provider.dart';
 
 class AppLauncherTile extends StatefulWidget {
   final String packageName;
-  const AppLauncherTile(this.packageName);
+  const AppLauncherTile(this.packageName, {Key? key}) : super(key: key);
 
   @override
   _AppLauncherTileState createState() => _AppLauncherTileState();
@@ -38,13 +38,13 @@ class _AppLauncherTileState extends State<AppLauncherTile> {
       borderRadius: BorderRadius.circular(8),
       color: Colors.transparent,
       child: ListTile(
-        contentPadding: EdgeInsets.fromLTRB(16, 0, 16, 2),
+        contentPadding: const EdgeInsets.fromLTRB(16, 0, 16, 2),
         autofocus: true,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         title: Text(application.name ?? ""),
         leading: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Image.asset(
@@ -53,7 +53,7 @@ class _AppLauncherTileState extends State<AppLauncherTile> {
             ),
           ],
         ),
-        trailing: Text("App"),
+        trailing: const Text("App"),
         subtitle: Text(application.description ?? ""),
         onTap: () {
           _searchProvider.addRecentSearchResult(application.packageName!);

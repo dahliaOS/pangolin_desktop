@@ -16,7 +16,7 @@ limitations under the License.
 
 import 'package:flutter/material.dart';
 
-void ShowKeyboard(context) {
+void showKeyboard(BuildContext context) {
   List<String> row1 = [
     "~\n`",
     "!\n1",
@@ -93,7 +93,7 @@ void ShowKeyboard(context) {
     barrierLabel: "Barrier",
     barrierDismissible: true,
     barrierColor: Colors.black.withOpacity(0),
-    transitionDuration: Duration(milliseconds: 120),
+    transitionDuration: const Duration(milliseconds: 120),
     context: context,
     pageBuilder: (_, __, ___) {
       return Align(
@@ -104,8 +104,8 @@ void ShowKeyboard(context) {
           child: Scaffold(
               backgroundColor: Colors.transparent,
               body: SizedBox.expand(
-                child: new Center(
-                    child: new Column(
+                child: Center(
+                    child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -146,7 +146,7 @@ void ShowKeyboard(context) {
                       ),
                     ])),
               )),
-          margin: EdgeInsets.only(bottom: 75, left: 12, right: 12),
+          margin: const EdgeInsets.only(bottom: 75, left: 12, right: 12),
           decoration: BoxDecoration(
             color: Colors.white.withOpacity(0.7),
             borderRadius: BorderRadius.circular(5),
@@ -167,9 +167,9 @@ Widget keyboardKey(String letter) {
   return Container(
     height: 50,
     child: Padding(
-        padding: EdgeInsets.only(left: 25, right: 25),
+        padding: const EdgeInsets.only(left: 25, right: 25),
         child: Center(child: Text(letter.toUpperCase()))),
-    margin: EdgeInsets.only(left: 2.5, right: 2.5, top: 2.5, bottom: 2.5),
+    margin: const EdgeInsets.only(left: 2.5, right: 2.5, top: 2.5, bottom: 2.5),
     decoration: BoxDecoration(
       color: Colors.white.withOpacity(0.7),
       borderRadius: BorderRadius.circular(5),

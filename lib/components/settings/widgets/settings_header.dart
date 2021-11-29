@@ -16,7 +16,7 @@ import 'package:flutter/material.dart';
 class SettingsHeader extends StatelessWidget {
   final String? heading;
 
-  const SettingsHeader({@required this.heading});
+  const SettingsHeader({@required this.heading, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +24,8 @@ class SettingsHeader extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.fromLTRB(10, 20, 0, 5),
-          child: Text(this.heading ?? "NULL",
-              style: TextStyle(
+          child: Text(heading ?? "NULL",
+              style: const TextStyle(
                   fontSize: 17,
                   letterSpacing: 0.2,
                   fontWeight: FontWeight.bold)),

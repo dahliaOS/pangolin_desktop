@@ -30,7 +30,8 @@ import 'package:pangolin/utils/wm/wm.dart';
 
 class Taskbar extends StatefulWidget {
   final List<Widget>? leading, trailing;
-  Taskbar({@required this.leading, @required this.trailing});
+  const Taskbar({@required this.leading, @required this.trailing, Key? key})
+      : super(key: key);
 
   @override
   _TaskbarState createState() => _TaskbarState();
@@ -55,7 +56,7 @@ class _TaskbarState extends State<Taskbar> {
     Widget items = ReorderableListView(
       shrinkWrap: true,
       primary: true,
-      physics: BouncingScrollPhysics(),
+      physics: const BouncingScrollPhysics(),
       scrollDirection: _customizationProvider.isTaskbarHorizontal
           ? Axis.horizontal
           : Axis.vertical,
@@ -168,14 +169,14 @@ class _TaskbarState extends State<Taskbar> {
                             ? Positioned.fill(
                                 child: listenerWrapper(Center(child: items)),
                               )
-                            : SizedBox.shrink(),
+                            : const SizedBox.shrink(),
                         _customizationProvider.isTaskbarHorizontal
                             ? Row(
                                 children: [
                                   Row(
                                     mainAxisSize: MainAxisSize.min,
-                                    children:
-                                        widget.leading ?? [SizedBox.shrink()],
+                                    children: widget.leading ??
+                                        [const SizedBox.shrink()],
                                   ),
                                   Expanded(
                                     child: _customizationProvider.centerTaskbar
@@ -184,8 +185,8 @@ class _TaskbarState extends State<Taskbar> {
                                   ),
                                   Row(
                                     mainAxisSize: MainAxisSize.min,
-                                    children:
-                                        widget.trailing ?? [SizedBox.shrink()],
+                                    children: widget.trailing ??
+                                        [const SizedBox.shrink()],
                                   ),
                                 ],
                               )
@@ -194,8 +195,8 @@ class _TaskbarState extends State<Taskbar> {
                                 children: [
                                   Column(
                                     mainAxisSize: MainAxisSize.min,
-                                    children:
-                                        widget.leading ?? [SizedBox.shrink()],
+                                    children: widget.leading ??
+                                        [const SizedBox.shrink()],
                                   ),
                                   Expanded(
                                     child: _customizationProvider.centerTaskbar
@@ -204,8 +205,8 @@ class _TaskbarState extends State<Taskbar> {
                                   ),
                                   Column(
                                     mainAxisSize: MainAxisSize.min,
-                                    children:
-                                        widget.trailing ?? [SizedBox.shrink()],
+                                    children: widget.trailing ??
+                                        [const SizedBox.shrink()],
                                   ),
                                 ],
                               ),

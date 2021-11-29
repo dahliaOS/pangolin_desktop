@@ -81,7 +81,7 @@ class _QsSliderState extends State<QsSlider> {
               clipBehavior: Clip.antiAlias,
               borderRadius: BorderRadius.circular(20),
               child: InkWell(
-                child: Icon(
+                child: const Icon(
                   Icons.chevron_right,
                   size: 22,
                 ),

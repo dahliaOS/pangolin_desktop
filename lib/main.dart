@@ -60,7 +60,7 @@ void main() async {
       useFallbackTranslations: true,
       assetLoader: GeneratedAssetLoader(),
       path: "assets/locales",
-      startLocale: Locale("en", "US"),
+      startLocale: const Locale("en", "US"),
       child: MultiProvider(
         providers: [
           /* ChangeNotifierProvider<PreferenceProvider>.value(
@@ -91,18 +91,20 @@ void main() async {
             value: SearchProvider(),
           ),
         ],
-        child: Pangolin(),
+        child: const Pangolin(),
       ),
     ),
   );
 }
 
 class Pangolin extends StatelessWidget {
+  const Pangolin({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       //debugShowCheckedModeBanner: false,
-      home: Desktop(),
+      home: const Desktop(),
       theme: theme(context),
       locale: context.locale,
       localizationsDelegates: context.localizationDelegates,

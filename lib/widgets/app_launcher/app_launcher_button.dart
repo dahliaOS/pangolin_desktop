@@ -23,7 +23,7 @@ import 'package:pangolin/utils/providers/customization_provider.dart';
 
 class AppLauncherButton extends StatefulWidget {
   final Application application;
-  const AppLauncherButton(this.application);
+  const AppLauncherButton(this.application, {Key? key}) : super(key: key);
 
   @override
   _AppLauncherButtonState createState() => _AppLauncherButtonState();
@@ -59,13 +59,10 @@ class _AppLauncherButtonState extends State<AppLauncherButton> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
-                    // color: Colors.yellow,
-                    child: Image.asset(
-                      "assets/icons/${application.iconName}.png",
-                    ),
+                  Image.asset(
+                    "assets/icons/${application.iconName}.png",
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 18,
                   ),
                   Text(

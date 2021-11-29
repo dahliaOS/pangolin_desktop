@@ -17,21 +17,22 @@ limitations under the License.
 import 'package:pangolin/services/service.dart';
 
 class ServiceManager {
-  List<Service> _registeredServices = [];
-  List<Service> _activeServices = [];
+  final List<Service> _registeredServices = [];
+  final List<Service> _activeServices = [];
 
   void registerService(Service service) {}
 
   void startServices() {
-    _registeredServices.forEach((service) {
+    for (var service in _registeredServices) {
       if (service.isSupported()) {
         service.start();
         _activeServices.add(service);
       } else {
+        // ignore: avoid_print
         print(
             "[Service Manager] Service: ${service.name} is not supported on this runtime");
       }
-    });
+    }
   }
 
   bool isActive(Service service) {

@@ -38,7 +38,7 @@ class _SettingsPageCustomizationState extends State<SettingsPageCustomization> {
     return SettingsPage(
       title: "Customization",
       cards: [
-        SettingsContentHeader("Accent color"),
+        const SettingsContentHeader("Accent color"),
         SettingsCard.custom(
           content: SizedBox(
             width: double.infinity,
@@ -53,7 +53,7 @@ class _SettingsPageCustomizationState extends State<SettingsPageCustomization> {
             ),
           ),
         ),
-        SettingsContentHeader("Theme Mode"),
+        const SettingsContentHeader("Theme Mode"),
         SettingsCard.custom(
           content: SizedBox(
             width: double.infinity,
@@ -68,7 +68,7 @@ class _SettingsPageCustomizationState extends State<SettingsPageCustomization> {
             ),
           ),
         ),
-        SettingsContentHeader("Taskbar Alignment"),
+        const SettingsContentHeader("Taskbar Alignment"),
         SettingsCard.custom(
           content: SizedBox(
             width: double.infinity,
@@ -84,7 +84,7 @@ class _SettingsPageCustomizationState extends State<SettingsPageCustomization> {
             ),
           ),
         ),
-        SettingsContentHeader("Window options"),
+        const SettingsContentHeader("Window options"),
         SettingsCard.withCustomTrailing(
           title: "Window rorder radius  -  " +
               DatabaseManager.get("windowBorderRadius").toString(),

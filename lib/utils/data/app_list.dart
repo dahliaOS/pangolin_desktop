@@ -39,10 +39,10 @@ List<Application> applications = [
   Application(
     color: Colors.deepOrange.shade500,
     packageName: "io.dahlia.settings",
-    app: Settings(),
+    app: const Settings(),
     name: "Settings",
     iconName: "settings",
-    category: ApplicationCategory.SYSTEM,
+    category: ApplicationCategory.system,
     description: "Change system setting",
   ),
   Application(
@@ -51,15 +51,15 @@ List<Application> applications = [
       app: Calculator(),
       name: "Calculator",
       iconName: "calculator",
-      category: ApplicationCategory.OFFICE,
+      category: ApplicationCategory.office,
       description: "Solve mathematic calculations"),
-  Application(
+  const Application(
       color: Colors.grey,
       packageName: "io.dahlia.terminal",
       app: Terminal(),
       name: "Terminal",
       iconName: "terminal",
-      category: ApplicationCategory.SYSTEM,
+      category: ApplicationCategory.system,
       description: "Execute commands",
       supportsWeb: false),
   Application(
@@ -68,7 +68,7 @@ List<Application> applications = [
       app: TextEditorApp(),
       name: "Text Editor",
       iconName: "notes",
-      category: ApplicationCategory.OFFICE,
+      category: ApplicationCategory.office,
       description: "Write texts and notes"),
   Application(
       color: Colors.blue,
@@ -76,7 +76,7 @@ List<Application> applications = [
       app: Graft(),
       name: "Graft",
       iconName: "graft",
-      category: ApplicationCategory.SYSTEM,
+      category: ApplicationCategory.system,
       description: "Manager your containers"),
   Application(
       color: Colors.deepOrange,
@@ -84,15 +84,15 @@ List<Application> applications = [
       app: Browser(),
       name: "Web Browser",
       iconName: "web",
-      category: ApplicationCategory.INTERNET,
+      category: ApplicationCategory.internet,
       description: "Search and browse the web"),
-  Application(
+  const Application(
       color: Colors.deepOrange,
       packageName: "io.dahlia.files",
       app: Files(),
       name: "Files",
       iconName: "files",
-      category: ApplicationCategory.SYSTEM,
+      category: ApplicationCategory.system,
       description: "Browse your local files",
       supportsWeb: false),
   Application(
@@ -101,7 +101,7 @@ List<Application> applications = [
       app: Media(),
       name: "Media",
       iconName: "photos",
-      category: ApplicationCategory.MEDIA,
+      category: ApplicationCategory.media,
       description: "View photos and play videos"),
   Application(
       color: Colors.lightBlue,
@@ -109,7 +109,7 @@ List<Application> applications = [
       app: Clock(),
       name: "Clock",
       iconName: "clock",
-      category: ApplicationCategory.SYSTEM,
+      category: ApplicationCategory.system,
       description: "Manage timers"),
   Application(
       color: Colors.red,
@@ -117,7 +117,7 @@ List<Application> applications = [
       app: Logs(),
       name: "System Logs",
       iconName: "logs",
-      category: ApplicationCategory.SYSTEM,
+      category: ApplicationCategory.system,
       description: "Check the system logs"),
   Application(
       color: Colors.lime,
@@ -125,7 +125,7 @@ List<Application> applications = [
       app: Welcome(),
       name: "Welcome",
       iconName: "welcome-info",
-      category: ApplicationCategory.SYSTEM,
+      category: ApplicationCategory.system,
       description: "Welcome screen with more information"),
   Application(
       color: Colors.cyanAccent,
@@ -133,7 +133,7 @@ List<Application> applications = [
       app: Tasks(),
       name: "Task Manager",
       iconName: "task",
-      category: ApplicationCategory.SYSTEM,
+      category: ApplicationCategory.system,
       description: "Manager running apps"),
 ];
 
@@ -143,7 +143,7 @@ Application getApp(String packageName) {
 }
 
 Application get fallbackApp {
-  return Application(
+  return const Application(
       app: ErrorWindow(), name: "Error", packageName: "io.dahlia.error");
 }
 

@@ -27,7 +27,7 @@ ThemeData theme(BuildContext context) {
           : ColorsX.white;
   return ThemeData(
     //visualDensity: VisualDensity(horizontal: -3.5, vertical: -3.5),
-    pageTransitionsTheme: PageTransitionsTheme(
+    pageTransitionsTheme: const PageTransitionsTheme(
       builders: {
         TargetPlatform.android:
             FadeThroughPageTransitionsBuilder(fillColor: Colors.transparent),

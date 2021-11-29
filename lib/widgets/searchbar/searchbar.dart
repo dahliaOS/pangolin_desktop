@@ -28,23 +28,25 @@ class Searchbar extends StatelessWidget {
   final BorderRadius? borderRadius;
   final FocusNode? focusNode;
   final void Function(String)? onTextChanged;
-  const Searchbar(
-      {required this.leading,
-      required this.trailing,
-      required this.hint,
-      required this.controller,
-      this.outline = false,
-      this.borderRadius,
-      this.focusNode,
-      this.text = "",
-      this.color,
-      this.onTextChanged});
+  const Searchbar({
+    Key? key,
+    required this.leading,
+    required this.trailing,
+    required this.hint,
+    required this.controller,
+    this.outline = false,
+    this.borderRadius,
+    this.focusNode,
+    this.text = "",
+    this.color,
+    this.onTextChanged,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return BoxContainer(
       outline: outline,
       borderRadius: borderRadius ??
-          CommonData.of(context).borderRadius(BorderRadiusType.MEDIUM),
+          CommonData.of(context).borderRadius(BorderRadiusType.medium),
       width: 800,
       height: 48,
       child: Material(
@@ -57,8 +59,8 @@ class Searchbar extends StatelessWidget {
               width: 56,
               child: InkWell(
                 mouseCursor: SystemMouseCursors.click,
-                child: this.leading ??
-                    SizedBox(
+                child: leading ??
+                    const SizedBox(
                       height: 48,
                       width: 48,
                     ),
@@ -82,8 +84,8 @@ class Searchbar extends StatelessWidget {
               width: 56,
               child: InkWell(
                 mouseCursor: SystemMouseCursors.click,
-                child: this.trailing ??
-                    SizedBox(
+                child: trailing ??
+                    const SizedBox(
                       height: 48,
                       width: 48,
                     ),
