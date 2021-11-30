@@ -26,13 +26,12 @@ abstract class SettingsElementModel extends StatefulWidget {
 }
 
 // Types of SettingsCards
-// ignore_for_file: constant_identifier_names
 enum SettingsElementModelType {
-  toggle_switch,
+  toggleSwitch,
   expandable,
-  expandable_switch,
+  expandableSwitch,
   router,
-  custom_trailing,
-  content_header,
+  customTrailing,
+  contentHeader,
   custom
 }

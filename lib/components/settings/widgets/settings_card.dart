@@ -38,7 +38,7 @@ class SettingsCard extends SettingsElementModel {
   })  : content = null,
         onTap = null,
         trailing = null,
-        super(type: SettingsElementModelType.toggle_switch, key: key);
+        super(type: SettingsElementModelType.toggleSwitch, key: key);
   // Exandable with switch
   SettingsCard.withExpandableSwitch({
     Key? key,
@@ -50,7 +50,7 @@ class SettingsCard extends SettingsElementModel {
     this.value = false,
   })  : onTap = null,
         trailing = null,
-        super(type: SettingsElementModelType.expandable_switch, key: key);
+        super(type: SettingsElementModelType.expandableSwitch, key: key);
 
   // Expandabled
   SettingsCard.withExpandable({
@@ -89,7 +89,7 @@ class SettingsCard extends SettingsElementModel {
         value = false,
         onTap = null,
         onToggle = null,
-        super(type: SettingsElementModelType.custom_trailing, key: key);
+        super(type: SettingsElementModelType.customTrailing, key: key);
 
   SettingsCard.custom({Key? key, this.content})
       : leading = null,
@@ -145,11 +145,11 @@ class _SettingsCardState extends State<SettingsCard> {
                       setState(
                         () {
                           if (widget.type ==
-                                  SettingsElementModelType.expandable_switch ||
+                                  SettingsElementModelType.expandableSwitch ||
                               widget.type ==
                                   SettingsElementModelType.expandable ||
                               widget.type ==
-                                  SettingsElementModelType.toggle_switch) {
+                                  SettingsElementModelType.toggleSwitch) {
                             widget.value = !widget.value;
                           }
                           if (widget.type == SettingsElementModelType.router) {
@@ -165,9 +165,9 @@ class _SettingsCardState extends State<SettingsCard> {
                   // Expandable content
                   Offstage(
                       offstage: widget.type ==
-                                  SettingsElementModelType.toggle_switch ||
+                                  SettingsElementModelType.toggleSwitch ||
                               widget.type ==
-                                  SettingsElementModelType.custom_trailing
+                                  SettingsElementModelType.customTrailing
                           ? true
                           : !widget.value,
                       child: widget.content ?? _fallbackContent)
@@ -204,7 +204,7 @@ class _SettingsCardState extends State<SettingsCard> {
   // Define trailing based on type
   Widget get trailing {
     // Expandable with switch
-    if (widget.type == SettingsElementModelType.expandable_switch) {
+    if (widget.type == SettingsElementModelType.expandableSwitch) {
       return Switch(
         onChanged: (val) {
           setState(() {
@@ -216,7 +216,7 @@ class _SettingsCardState extends State<SettingsCard> {
     }
 
     // Switch
-    if (widget.type == SettingsElementModelType.toggle_switch) {
+    if (widget.type == SettingsElementModelType.toggleSwitch) {
       return Switch(
         onChanged: (val) {
           setState(() {
@@ -253,7 +253,7 @@ class _SettingsCardState extends State<SettingsCard> {
     }
 
     // Custom trailing
-    if (widget.type == SettingsElementModelType.custom_trailing) {
+    if (widget.type == SettingsElementModelType.customTrailing) {
       return widget.trailing!;
     }
 
