@@ -35,7 +35,6 @@ class _SettingsPageDeveloperOptionsState
     return SettingsPage(
       title: "Developer Options",
       cards: [
-        //${_devModeEnabled ? "enabled" : "disabled"}
         SettingsCard.withSwitch(
           title: "Developer Mode",
           subtitle: "Activate advanced debugging features",

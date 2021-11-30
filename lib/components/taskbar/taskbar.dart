@@ -30,7 +30,7 @@ import 'package:pangolin/utils/wm/wm.dart';
 
 class Taskbar extends StatefulWidget {
   final List<Widget>? leading, trailing;
-  const Taskbar({@required this.leading, @required this.trailing, Key? key})
+  const Taskbar({required this.leading, required this.trailing, Key? key})
       : super(key: key);
 
   @override
@@ -113,7 +113,7 @@ class _TaskbarState extends State<Taskbar> {
         child: ContextMenuRegion(
           contextMenu: ContextMenu(
             items: [
-              ContextMenuItem(
+              const ContextMenuItem(
                 icon: Icons.power_input_sharp,
                 title: "Taskbar Position",
                 onTap: null,

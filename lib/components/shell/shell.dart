@@ -88,14 +88,14 @@ class _ShellState extends State<Shell> {
 
   List<String> get currentlyShownOverlays {
     final List<String> shownIds = [];
-    for (var o in widget.overlays) {
+    for (final ShellOverlay o in widget.overlays) {
       if (o._controller.showing) shownIds.add(o.id);
     }
     return shownIds;
   }
 
   void dismissEverything() {
-    for (var id in currentlyShownOverlays) {
+    for (final String id in currentlyShownOverlays) {
       dismissOverlay(id);
     }
     setState(() {});
@@ -131,7 +131,7 @@ class _ShellState extends State<Shell> {
               leading: [
                 const LauncherButton(),
                 (DatabaseManager.get('searchIcon') == true)
-                    ? SearchButton()
+                    ? const SearchButton()
                     : const SizedBox(),
                 (DatabaseManager.get('overviewIcon') == true)
                     ? const OverviewButton()

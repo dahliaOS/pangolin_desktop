@@ -23,7 +23,7 @@ class ServiceManager {
   void registerService(Service service) {}
 
   void startServices() {
-    for (var service in _registeredServices) {
+    for (final Service service in _registeredServices) {
       if (service.isSupported()) {
         service.start();
         _activeServices.add(service);

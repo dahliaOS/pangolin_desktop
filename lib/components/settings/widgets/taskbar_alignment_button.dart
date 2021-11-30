@@ -74,20 +74,20 @@ class TaskbarAlignmentButton extends StatelessWidget {
                             _taskbarElement(context),
                             const SizedBox(width: 8),
                             _taskbarElement(context),
-                            ...model.centred
-                                ? []
-                                : [
-                                    const SizedBox(width: 16),
-                                    _taskbarElement(context, shaded: true),
-                                    const SizedBox(width: 8),
-                                    _taskbarElement(context, shaded: true),
-                                    const SizedBox(width: 8),
-                                    _taskbarElement(context, shaded: true),
-                                    const SizedBox(width: 8),
-                                    _taskbarElement(context, shaded: true),
-                                    const SizedBox(width: 8),
-                                    _taskbarElement(context, shaded: true),
-                                  ],
+                            if (model.centred)
+                              ...[]
+                            else ...[
+                              const SizedBox(width: 16),
+                              _taskbarElement(context, shaded: true),
+                              const SizedBox(width: 8),
+                              _taskbarElement(context, shaded: true),
+                              const SizedBox(width: 8),
+                              _taskbarElement(context, shaded: true),
+                              const SizedBox(width: 8),
+                              _taskbarElement(context, shaded: true),
+                              const SizedBox(width: 8),
+                              _taskbarElement(context, shaded: true),
+                            ],
                           ],
                         ),
                         Row(
@@ -158,10 +158,11 @@ class TaskbarAlignmentButton extends StatelessWidget {
       height: 20,
       decoration: BoxDecoration(
         border: Border.all(
-            color: !_isDarkMode
-                ? Colors.black.withOpacity(0.2)
-                : Colors.white.withOpacity(0.2),
-            width: 2),
+          color: !_isDarkMode
+              ? Colors.black.withOpacity(0.2)
+              : Colors.white.withOpacity(0.2),
+          width: 2,
+        ),
         color: shaded
             ? hslBgc
                 .withLightness(hslBgc.lightness > 0.5

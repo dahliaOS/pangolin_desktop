@@ -92,7 +92,7 @@ class WmAPI {
 
   void minimizeAll() {
     _miscProvider.minimizedWindowsCache = [];
-    for (var e in _windowHierarchy.entries) {
+    for (final LiveWindowEntry e in _windowHierarchy.entries) {
       if (e.registry.minimize.minimized) {
         _miscProvider.minimizedWindowsCache.add(e.registry.info.id);
       } else {
@@ -102,7 +102,7 @@ class WmAPI {
   }
 
   void undoMinimizeAll() {
-    for (var e in _windowHierarchy.entries) {
+    for (final LiveWindowEntry e in _windowHierarchy.entries) {
       _miscProvider.minimizedWindowsCache.contains(e.registry.info.id)
           ? e.registry.minimize.minimized = true
           : e.registry.minimize.minimized = false;

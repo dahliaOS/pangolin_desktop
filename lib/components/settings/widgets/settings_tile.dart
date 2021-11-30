@@ -19,7 +19,7 @@ class SettingsTile extends StatelessWidget {
   final EdgeInsetsGeometry? margin;
   const SettingsTile({
     Key? key,
-    @required this.child,
+    required this.child,
     this.margin,
     this.title,
   }) : super(key: key);

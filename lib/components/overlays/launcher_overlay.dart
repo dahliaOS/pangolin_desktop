@@ -307,11 +307,11 @@ class _LauncherCategoriesState extends State<LauncherCategories> {
 
 class LauncherGrid extends StatelessWidget {
   final PageController? controller;
-  const LauncherGrid({@required this.controller, Key? key}) : super(key: key);
+  const LauncherGrid({required this.controller, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    const minWidth = 512;
+    const double minWidth = 512;
     final double width = MediaQuery.of(context).size.width;
     // Calculate horizontal padding moultiplier based off of window width
     double horizontalWidgetPaddingMultiplier;
@@ -328,13 +328,13 @@ class LauncherGrid extends StatelessWidget {
     }
 
     final _applications = applications;
-    final List<Application> _internet = List.empty(growable: true);
-    final List<Application> _media = List.empty(growable: true);
-    final List<Application> _gaming = List.empty(growable: true);
-    final List<Application> _development = List.empty(growable: true);
-    final List<Application> _office = List.empty(growable: true);
-    final List<Application> _system = List.empty(growable: true);
-    for (final element in _applications) {
+    final List<Application> _internet = [];
+    final List<Application> _media = [];
+    final List<Application> _gaming = [];
+    final List<Application> _development = [];
+    final List<Application> _office = [];
+    final List<Application> _system = [];
+    for (final Application element in _applications) {
       if (element.category == ApplicationCategory.internet) {
         _internet.add(element);
       }

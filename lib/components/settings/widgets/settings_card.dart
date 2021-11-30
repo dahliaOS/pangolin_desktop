@@ -18,12 +18,11 @@ import 'package:flutter/material.dart';
 import 'dart:math' as math;
 import 'package:pangolin/components/settings/models/settings_element_model.dart';
 
-// ignore: must_be_immutable
 class SettingsCard extends SettingsElementModel {
-  Widget? content, trailing, leading;
-  String? title, subtitle;
-  ValueChanged<bool>? onToggle;
-  VoidCallback? onTap;
+  final Widget? content, trailing, leading;
+  final String? title, subtitle;
+  final ValueChanged<bool>? onToggle;
+  final VoidCallback? onTap;
 
   ///Default value for either the switch or the expansion state
   late bool value;
@@ -36,10 +35,10 @@ class SettingsCard extends SettingsElementModel {
     this.leading,
     this.onToggle,
     required this.value,
-  }) : super(type: SettingsElementModelType.SWITCH, key: key) {
-    content = null;
-  }
-
+  })  : content = null,
+        onTap = null,
+        trailing = null,
+        super(type: SettingsElementModelType.toggle_switch, key: key);
   // Exandable with switch
   SettingsCard.withExpandableSwitch({
     Key? key,
@@ -49,7 +48,9 @@ class SettingsCard extends SettingsElementModel {
     this.content,
     this.onToggle,
     this.value = false,
-  }) : super(type: SettingsElementModelType.EXPANDABLESWITCH, key: key);
+  })  : onTap = null,
+        trailing = null,
+        super(type: SettingsElementModelType.expandable_switch, key: key);
 
   // Expandabled
   SettingsCard.withExpandable({
@@ -59,7 +60,10 @@ class SettingsCard extends SettingsElementModel {
     required this.title,
     this.content,
     this.value = false,
-  }) : super(type: SettingsElementModelType.EXPANDABLE, key: key);
+  })  : onTap = null,
+        onToggle = null,
+        trailing = null,
+        super(type: SettingsElementModelType.expandable, key: key);
 
   // Router
   SettingsCard.withRouter({
@@ -67,10 +71,12 @@ class SettingsCard extends SettingsElementModel {
     this.leading,
     this.subtitle,
     required this.title,
-  }) : super(type: SettingsElementModelType.ROUTER, key: key) {
-    content = null;
-    value = false;
-  }
+  })  : content = null,
+        value = false,
+        onTap = null,
+        onToggle = null,
+        trailing = null,
+        super(type: SettingsElementModelType.router, key: key);
 
   // Custom trailing
   SettingsCard.withCustomTrailing({
@@ -79,13 +85,20 @@ class SettingsCard extends SettingsElementModel {
     this.subtitle,
     required this.title,
     required this.trailing,
-  }) : super(type: SettingsElementModelType.CUSTOMTRAILING, key: key) {
-    content = null;
-    value = false;
-  }
+  })  : content = null,
+        value = false,
+        onTap = null,
+        onToggle = null,
+        super(type: SettingsElementModelType.custom_trailing, key: key);
 
   SettingsCard.custom({Key? key, this.content})
-      : super(type: SettingsElementModelType.CUSTOM, key: key);
+      : leading = null,
+        onTap = null,
+        onToggle = null,
+        subtitle = null,
+        title = null,
+        trailing = null,
+        super(type: SettingsElementModelType.custom, key: key);
 
   @override
   _SettingsCardState createState() => _SettingsCardState();
@@ -111,7 +124,7 @@ class _SettingsCardState extends State<SettingsCard> {
                   : Colors.black.withOpacity(0.05),
               width: 2),
         ),
-        child: (widget.type == SettingsElementModelType.CUSTOM)
+        child: (widget.type == SettingsElementModelType.custom)
             // Custom Content
             ? widget.content ?? const SizedBox.shrink()
             // Default Content
@@ -132,13 +145,14 @@ class _SettingsCardState extends State<SettingsCard> {
                       setState(
                         () {
                           if (widget.type ==
-                                  SettingsElementModelType.EXPANDABLESWITCH ||
+                                  SettingsElementModelType.expandable_switch ||
                               widget.type ==
-                                  SettingsElementModelType.EXPANDABLE ||
-                              widget.type == SettingsElementModelType.SWITCH) {
+                                  SettingsElementModelType.expandable ||
+                              widget.type ==
+                                  SettingsElementModelType.toggle_switch) {
                             widget.value = !widget.value;
                           }
-                          if (widget.type == SettingsElementModelType.ROUTER) {
+                          if (widget.type == SettingsElementModelType.router) {
                             ScaffoldMessenger.of(context)
                                 .showSnackBar(_fallbackSnackBar);
                           }
@@ -150,12 +164,12 @@ class _SettingsCardState extends State<SettingsCard> {
                   ),
                   // Expandable content
                   Offstage(
-                      offstage:
-                          widget.type == SettingsElementModelType.SWITCH ||
-                                  widget.type ==
-                                      SettingsElementModelType.CUSTOMTRAILING
-                              ? true
-                              : !widget.value,
+                      offstage: widget.type ==
+                                  SettingsElementModelType.toggle_switch ||
+                              widget.type ==
+                                  SettingsElementModelType.custom_trailing
+                          ? true
+                          : !widget.value,
                       child: widget.content ?? _fallbackContent)
                 ],
               ),
@@ -190,7 +204,7 @@ class _SettingsCardState extends State<SettingsCard> {
   // Define trailing based on type
   Widget get trailing {
     // Expandable with switch
-    if (widget.type == SettingsElementModelType.EXPANDABLESWITCH) {
+    if (widget.type == SettingsElementModelType.expandable_switch) {
       return Switch(
         onChanged: (val) {
           setState(() {
@@ -202,7 +216,7 @@ class _SettingsCardState extends State<SettingsCard> {
     }
 
     // Switch
-    if (widget.type == SettingsElementModelType.SWITCH) {
+    if (widget.type == SettingsElementModelType.toggle_switch) {
       return Switch(
         onChanged: (val) {
           setState(() {
@@ -214,7 +228,7 @@ class _SettingsCardState extends State<SettingsCard> {
     }
 
     // Expandable
-    if (widget.type == SettingsElementModelType.EXPANDABLE) {
+    if (widget.type == SettingsElementModelType.expandable) {
       return Padding(
         padding: const EdgeInsets.only(right: 12.0),
         child: Transform.rotate(
@@ -228,7 +242,7 @@ class _SettingsCardState extends State<SettingsCard> {
     }
 
     // Router
-    if (widget.type == SettingsElementModelType.ROUTER) {
+    if (widget.type == SettingsElementModelType.router) {
       return const Padding(
         padding: EdgeInsets.only(right: 12.0),
         child: Icon(
@@ -239,7 +253,7 @@ class _SettingsCardState extends State<SettingsCard> {
     }
 
     // Custom trailing
-    if (widget.type == SettingsElementModelType.CUSTOMTRAILING) {
+    if (widget.type == SettingsElementModelType.custom_trailing) {
       return widget.trailing!;
     }
 

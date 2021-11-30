@@ -16,7 +16,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 class SizeMeasureWidget extends SingleChildRenderObjectWidget {
-  // ignore: annotate_overrides, overridden_fields
   final Widget child;
   final SizeMeasureCallback onSizeMeasure;
 

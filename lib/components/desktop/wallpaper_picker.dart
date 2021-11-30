@@ -101,7 +101,9 @@ class _WallpaperPickerState extends State<WallpaperPicker>
                     physics: const BouncingScrollPhysics(),
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 4, childAspectRatio: 16 / 9),
+                      crossAxisCount: 4,
+                      childAspectRatio: 16 / 9,
+                    ),
                     itemCount: wallpapers.length,
                     itemBuilder: (BuildContext context, int index) {
                       //_index = index;
@@ -156,7 +158,9 @@ class _WallpaperPickerState extends State<WallpaperPicker>
                       itemCount: _recentWallpapers.length,
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 4, childAspectRatio: 16 / 9),
+                        crossAxisCount: 4,
+                        childAspectRatio: 16 / 9,
+                      ),
                       itemBuilder: (context, index) {
                         return Padding(
                           padding: const EdgeInsets.all(8.0),

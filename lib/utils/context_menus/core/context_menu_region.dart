@@ -13,6 +13,7 @@ limitations under the License.
 
 import 'package:flutter/material.dart';
 import 'package:pangolin/utils/context_menus/context_menu.dart';
+import 'package:pangolin/utils/context_menus/context_menu_item.dart';
 import 'package:pangolin/utils/wm/wm.dart';
 
 class ContextMenuRegion extends StatefulWidget {
@@ -65,7 +66,7 @@ class _ContextMenuRegionState extends State<ContextMenuRegion> {
 
   void showOverlay(BuildContext context, dynamic details) {
     List<int> _length = List.empty(growable: true);
-    for (var element in widget.contextMenu.items) {
+    for (final ContextMenuItem element in widget.contextMenu.items) {
       _length.add(element.title.characters.length);
     }
     _length.sort();
