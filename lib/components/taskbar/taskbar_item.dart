@@ -105,7 +105,7 @@ class _TaskbarItemState extends State<TaskbarItem>
           height: 44,
           width: 42,
           child: ContextMenuRegion(
-            useLongPress: false,
+            useLongPress: true,
             contextMenu: ContextMenu(
               items: [
                 ContextMenuItem(
