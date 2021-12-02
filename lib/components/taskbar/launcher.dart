@@ -23,6 +23,7 @@ import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
 import 'package:pangolin/widgets/taskbar/taskbar_element.dart';
 
+//TODO: Context menu for changing the taskbar's icon is cut off.
 class LauncherButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
