@@ -143,10 +143,13 @@ class QuickSettingsButton extends StatelessWidget {
           ),
         ),
       ),
-      VerticalDivider(
-        indent: 8,
-        endIndent: 8,
-        color: context.theme.textColor,
+      Container(width: 5),
+      ClipRRect(
+        borderRadius: BorderRadius.all(Radius.circular(4)),
+        child: Container(
+            color: context.theme.darkMode ? Colors.white : Colors.black,
+            width: 4,
+            height: 16),
       ),
     ];
   }

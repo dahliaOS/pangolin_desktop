@@ -57,14 +57,17 @@ class _ShowDesktopButtonState extends State<ShowDesktopButton> {
             children: [
               Align(
                 alignment: Alignment.centerLeft,
-                child: Container(
-                  height: 20,
-                  width: 1.25,
-                  color: isHovered
-                      ? context.theme.textTheme.bodyText1?.color
-                      : Colors.transparent,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(4),
+                  child: Container(
+                    height: 16,
+                    width: 4,
+                    color: isHovered
+                        ? context.theme.textTheme.bodyText1?.color
+                        : Colors.transparent,
+                  ),
                 ),
-              ),
+              )
             ],
           ),
         ),
