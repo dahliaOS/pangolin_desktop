@@ -10,8 +10,6 @@ linter:
     implementation_imports: false
     use_build_context_synchronously: false
     avoid_multiple_declarations_per_line: false
-    prefer_if_elements_to_conditional_expressions: false
-    invalid_assignment: false
 
 analyzer:
   exclude:

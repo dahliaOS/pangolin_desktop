@@ -25,10 +25,10 @@ class SettingsCard extends SettingsElementModel {
   final VoidCallback? onTap;
 
   ///Default value for either the switch or the expansion state
-  late bool value;
+  final bool value;
 
   // Switchable
-  SettingsCard.withSwitch({
+  const SettingsCard.withSwitch({
     Key? key,
     required this.title,
     this.subtitle,
@@ -40,7 +40,7 @@ class SettingsCard extends SettingsElementModel {
         trailing = null,
         super(type: SettingsElementModelType.toggleSwitch, key: key);
   // Exandable with switch
-  SettingsCard.withExpandableSwitch({
+  const SettingsCard.withExpandableSwitch({
     Key? key,
     this.leading,
     this.subtitle,
@@ -53,7 +53,7 @@ class SettingsCard extends SettingsElementModel {
         super(type: SettingsElementModelType.expandableSwitch, key: key);
 
   // Expandabled
-  SettingsCard.withExpandable({
+  const SettingsCard.withExpandable({
     Key? key,
     this.leading,
     this.subtitle,
@@ -66,7 +66,7 @@ class SettingsCard extends SettingsElementModel {
         super(type: SettingsElementModelType.expandable, key: key);
 
   // Router
-  SettingsCard.withRouter({
+  const SettingsCard.withRouter({
     Key? key,
     this.leading,
     this.subtitle,
@@ -79,7 +79,7 @@ class SettingsCard extends SettingsElementModel {
         super(type: SettingsElementModelType.router, key: key);
 
   // Custom trailing
-  SettingsCard.withCustomTrailing({
+  const SettingsCard.withCustomTrailing({
     Key? key,
     this.leading,
     this.subtitle,
@@ -91,13 +91,14 @@ class SettingsCard extends SettingsElementModel {
         onToggle = null,
         super(type: SettingsElementModelType.customTrailing, key: key);
 
-  SettingsCard.custom({Key? key, this.content})
+  const SettingsCard.custom({Key? key, this.content})
       : leading = null,
         onTap = null,
         onToggle = null,
         subtitle = null,
         title = null,
         trailing = null,
+        value = false,
         super(type: SettingsElementModelType.custom, key: key);
 
   @override
@@ -105,9 +106,11 @@ class SettingsCard extends SettingsElementModel {
 }
 
 class _SettingsCardState extends State<SettingsCard> {
+  late bool _value;
   //Build SettingsCard widget
   @override
   Widget build(BuildContext context) {
+    _value = widget.value;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 6.0),
       // Slighly increase size on hover
@@ -150,7 +153,7 @@ class _SettingsCardState extends State<SettingsCard> {
                                   SettingsElementModelType.expandable ||
                               widget.type ==
                                   SettingsElementModelType.toggleSwitch) {
-                            widget.value = !widget.value;
+                            _value = !_value;
                           }
                           if (widget.type == SettingsElementModelType.router) {
                             ScaffoldMessenger.of(context)
@@ -208,10 +211,10 @@ class _SettingsCardState extends State<SettingsCard> {
       return Switch(
         onChanged: (val) {
           setState(() {
-            widget.value = !widget.value;
+            _value = !_value;
           });
         },
-        value: widget.value,
+        value: _value,
       );
     }
 
@@ -220,10 +223,10 @@ class _SettingsCardState extends State<SettingsCard> {
       return Switch(
         onChanged: (val) {
           setState(() {
-            widget.value = !widget.value;
+            _value = !_value;
           });
         },
-        value: widget.value,
+        value: _value,
       );
     }
 
@@ -232,7 +235,7 @@ class _SettingsCardState extends State<SettingsCard> {
       return Padding(
         padding: const EdgeInsets.only(right: 12.0),
         child: Transform.rotate(
-          angle: !widget.value ? math.pi / 2 : -math.pi / 2,
+          angle: !_value ? math.pi / 2 : -math.pi / 2,
           child: const Icon(
             Icons.chevron_right_rounded,
             size: 24,
