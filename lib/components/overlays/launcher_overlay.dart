@@ -335,23 +335,27 @@ class LauncherGrid extends StatelessWidget {
     final List<Application> _office = [];
     final List<Application> _system = [];
     for (final Application element in _applications) {
-      if (element.category == ApplicationCategory.internet) {
-        _internet.add(element);
-      }
-      if (element.category == ApplicationCategory.media) {
-        _media.add(element);
-      }
-      if (element.category == ApplicationCategory.gaming) {
-        _gaming.add(element);
-      }
-      if (element.category == ApplicationCategory.development) {
-        _development.add(element);
-      }
-      if (element.category == ApplicationCategory.office) {
-        _office.add(element);
-      }
-      if (element.category == ApplicationCategory.system) {
-        _system.add(element);
+      switch (element.category) {
+        case ApplicationCategory.internet:
+          _internet.add(element);
+          break;
+        case ApplicationCategory.media:
+          _media.add(element);
+          break;
+        case ApplicationCategory.gaming:
+          _gaming.add(element);
+          break;
+        case ApplicationCategory.development:
+          _development.add(element);
+          break;
+        case ApplicationCategory.office:
+          _office.add(element);
+          break;
+        case ApplicationCategory.system:
+          _system.add(element);
+          break;
+        default:
+          break;
       }
     }
 
