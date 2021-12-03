@@ -23,7 +23,9 @@ class SettingsCard extends SettingsElementModel {
   final Widget? trailing;
   final Widget? leading;
 
-  final String? title, subtitle;
+  final String? title;
+  final String? subtitle;
+
   final ValueChanged<bool>? onToggle;
   final VoidCallback? onTap;
 
