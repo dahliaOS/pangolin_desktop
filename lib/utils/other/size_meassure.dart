@@ -16,12 +16,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 class SizeMeasureWidget extends SingleChildRenderObjectWidget {
-  final Widget child;
   final SizeMeasureCallback onSizeMeasure;
 
   const SizeMeasureWidget({
     Key? key,
-    required this.child,
+    required Widget child,
     required this.onSizeMeasure,
   }) : super(key: key, child: child);
 
