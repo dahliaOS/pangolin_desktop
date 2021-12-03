@@ -19,7 +19,10 @@ import 'dart:math' as math;
 import 'package:pangolin/components/settings/models/settings_element_model.dart';
 
 class SettingsCard extends SettingsElementModel {
-  final Widget? content, trailing, leading;
+  final Widget? content;
+  final Widget? trailing;
+  final Widget? leading;
+
   final String? title, subtitle;
   final ValueChanged<bool>? onToggle;
   final VoidCallback? onTap;
