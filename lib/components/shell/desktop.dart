@@ -25,10 +25,11 @@ import 'package:pangolin/utils/wm/wm.dart';
 import 'shell.dart';
 import 'package:pangolin/components/desktop/wallpaper.dart';
 
-// ignore: must_be_immutable
 class Desktop extends StatefulWidget {
   static final WindowHierarchyController wmController =
       WindowHierarchyController();
+
+  const Desktop({Key? key}) : super(key: key);
 
   @override
   _DesktopState createState() => _DesktopState();
@@ -69,6 +70,7 @@ class _DesktopState extends State<Desktop> {
           PowerOverlay(),
         ])),
       );
+      // ignore: avoid_print
       print("Initilized Desktop Shell");
     });
   }

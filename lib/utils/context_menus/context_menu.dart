@@ -18,7 +18,7 @@ import 'package:pangolin/utils/other/size_meassure.dart';
 import 'package:pangolin/widgets/box/box_container.dart';
 
 class ContextMenu extends StatefulWidget {
-  ContextMenu({Key? key, required this.items});
+  const ContextMenu({Key? key, required this.items}) : super(key: key);
   final List<ContextMenuItem> items;
 
   @override
@@ -30,7 +30,7 @@ class _ContextMenuState extends State<ContextMenu> {
   @override
   Widget build(BuildContext context) {
     return BoxSurface(
-      borderRadius: CommonData.of(context).borderRadius(BorderRadiusType.SMALL),
+      borderRadius: CommonData.of(context).borderRadius(BorderRadiusType.small),
       child: SingleChildScrollView(
         child: SizeMeasureWidget(
           onSizeMeasure: (size) =>

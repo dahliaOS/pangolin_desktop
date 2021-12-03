@@ -22,7 +22,7 @@ class SettingsPageApplications extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SettingsPage(
+    return const SettingsPage(
       title: "Applications",
       cards: [],
     );

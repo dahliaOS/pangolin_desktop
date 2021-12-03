@@ -23,16 +23,16 @@ class CommonData {
 
   // General BorderRadius
   BorderRadius borderRadius(BorderRadiusType elementSize) {
-    if (elementSize == BorderRadiusType.SMALL) {
+    if (elementSize == BorderRadiusType.small) {
       return BorderRadius.circular(8);
     }
-    if (elementSize == BorderRadiusType.MEDIUM) {
+    if (elementSize == BorderRadiusType.medium) {
       return BorderRadius.circular(12);
     }
-    if (elementSize == BorderRadiusType.BIG) {
+    if (elementSize == BorderRadiusType.big) {
       return BorderRadius.circular(16);
     }
-    if (elementSize == BorderRadiusType.ROUND) {
+    if (elementSize == BorderRadiusType.round) {
       return BorderRadius.circular(200);
     }
     return BorderRadius.circular(0);
@@ -42,25 +42,26 @@ class CommonData {
   EdgeInsets taskbarMargin() {
     final _taskbarProvider = CustomizationProvider.of(context);
     if (_taskbarProvider.isTaskbarBottom) {
-      return EdgeInsets.only(bottom: 48);
+      return const EdgeInsets.only(bottom: 48);
     }
     if (_taskbarProvider.isTaskbarLeft) {
-      return EdgeInsets.only(left: 48);
+      return const EdgeInsets.only(left: 48);
     }
     if (_taskbarProvider.isTaskbarRight) {
-      return EdgeInsets.only(right: 48);
+      return const EdgeInsets.only(right: 48);
     }
     if (_taskbarProvider.isTaskbarTop) {
-      return EdgeInsets.only(top: 48);
-    } else
-      return EdgeInsets.only(bottom: 48);
+      return const EdgeInsets.only(top: 48);
+    } else {
+      return const EdgeInsets.only(bottom: 48);
+    }
   }
 
   // General animation curve
   Curve animationCurve() => Curves.easeInOut;
 
   //General animation duration
-  Duration animationDuration() => Duration(milliseconds: 150);
+  Duration animationDuration() => const Duration(milliseconds: 150);
 
   // Text Color
   Color textColor() => Theme.of(context).brightness == Brightness.light
@@ -73,4 +74,4 @@ class CommonData {
       : Colors.white;
 }
 
-enum BorderRadiusType { SMALL, MEDIUM, BIG, ROUND }
+enum BorderRadiusType { small, medium, big, round }

@@ -35,11 +35,11 @@ class _SettingsPageNetworkState extends State<SettingsPageNetwork> {
     return SettingsPage(
       title: "Network & internet",
       cards: [
-        SettingsContentHeader("Wi-Fi"),
+        const SettingsContentHeader("Wi-Fi"),
         SettingsCard.withExpandableSwitch(
           title: "Wi-Fi",
           subtitle: "Wi-Fi is ${_wifiEnabled ? "enabled" : "disabled"}",
-          leading: Icon(
+          leading: const Icon(
             Icons.wifi_rounded,
           ),
           value: _wifiEnabled,
@@ -53,24 +53,24 @@ class _SettingsPageNetworkState extends State<SettingsPageNetwork> {
           value: false,
           title: "Wi-Fi prefernces",
           subtitle: "Smart Wi-Fi connection, scanning options",
-          leading: Icon(Icons.online_prediction_rounded),
+          leading: const Icon(Icons.online_prediction_rounded),
         ),
         SettingsCard.withExpandable(
           value: false,
           title: "Saved networks",
           subtitle: "8 networks",
-          leading: Icon(Icons.save_rounded),
+          leading: const Icon(Icons.save_rounded),
         ),
         SettingsCard.withRouter(
           title: "Wi-Fi data usage",
           subtitle: "Data usage for this month",
-          leading: Icon(Icons.data_saver_on_rounded),
+          leading: const Icon(Icons.data_saver_on_rounded),
         ),
-        SettingsContentHeader("Ethernet"),
+        const SettingsContentHeader("Ethernet"),
         SettingsCard.withSwitch(
           title: "Ethernet",
           subtitle: "Ethernet is ${_ethernetEnabled ? "enabled" : "disabled"}",
-          leading: Icon(Icons.settings_ethernet_rounded),
+          leading: const Icon(Icons.settings_ethernet_rounded),
           value: _ethernetEnabled,
           onToggle: (val) {
             setState(() => _ethernetEnabled = val);
@@ -79,16 +79,16 @@ class _SettingsPageNetworkState extends State<SettingsPageNetwork> {
         SettingsCard.withRouter(
           title: "Ethernet data usage",
           subtitle: "Data usage for this month",
-          leading: Icon(Icons.data_saver_on_rounded),
+          leading: const Icon(Icons.data_saver_on_rounded),
         ),
-        SettingsContentHeader("Network options"),
+        const SettingsContentHeader("Network options"),
         SettingsCard.withCustomTrailing(
           title: "Virtual Private Network (VPN)",
           subtitle: "None",
-          leading: Icon(Icons.vpn_lock_rounded),
+          leading: const Icon(Icons.vpn_lock_rounded),
           trailing: ElevatedButton(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
+            child: const Padding(
+              padding: EdgeInsets.all(8.0),
               child: Text("VPN options"),
             ),
             onPressed: () {},
@@ -97,10 +97,10 @@ class _SettingsPageNetworkState extends State<SettingsPageNetwork> {
         SettingsCard.withCustomTrailing(
           title: "Private DNS",
           subtitle: "Automatic",
-          leading: Icon(Icons.dns_rounded),
+          leading: const Icon(Icons.dns_rounded),
           trailing: ElevatedButton(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
+            child: const Padding(
+              padding: EdgeInsets.all(8.0),
               child: Text("DNS options"),
             ),
             onPressed: () {},

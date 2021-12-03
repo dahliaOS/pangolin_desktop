@@ -19,28 +19,33 @@ import 'dart:math' as math;
 import 'package:pangolin/components/settings/models/settings_element_model.dart';
 
 class SettingsCard extends SettingsElementModel {
-  Widget? content, trailing, leading;
-  String? title, subtitle;
-  ValueChanged<bool>? onToggle;
-  VoidCallback? onTap;
+  final Widget? content;
+  final Widget? trailing;
+  final Widget? leading;
+
+  final String? title;
+  final String? subtitle;
+
+  final ValueChanged<bool>? onToggle;
+  final VoidCallback? onTap;
 
   ///Default value for either the switch or the expansion state
-  late bool value;
+  final bool value;
 
   // Switchable
-  SettingsCard.withSwitch({
+  const SettingsCard.withSwitch({
     Key? key,
     required this.title,
     this.subtitle,
     this.leading,
     this.onToggle,
     required this.value,
-  }) : super(type: SettingsElementModelType.SWITCH, key: key) {
-    this.content = null;
-  }
-
+  })  : content = null,
+        onTap = null,
+        trailing = null,
+        super(type: SettingsElementModelType.toggleSwitch, key: key);
   // Exandable with switch
-  SettingsCard.withExpandableSwitch({
+  const SettingsCard.withExpandableSwitch({
     Key? key,
     this.leading,
     this.subtitle,
@@ -48,49 +53,92 @@ class SettingsCard extends SettingsElementModel {
     this.content,
     this.onToggle,
     this.value = false,
-  }) : super(type: SettingsElementModelType.EXPANDABLESWITCH, key: key);
+  })  : onTap = null,
+        trailing = null,
+        super(type: SettingsElementModelType.expandableSwitch, key: key);
 
   // Expandabled
-  SettingsCard.withExpandable({
+  const SettingsCard.withExpandable({
     Key? key,
     this.leading,
     this.subtitle,
     required this.title,
     this.content,
     this.value = false,
-  }) : super(type: SettingsElementModelType.EXPANDABLE, key: key);
+  })  : onTap = null,
+        onToggle = null,
+        trailing = null,
+        super(type: SettingsElementModelType.expandable, key: key);
 
   // Router
-  SettingsCard.withRouter({
+  const SettingsCard.withRouter({
     Key? key,
     this.leading,
     this.subtitle,
     required this.title,
-  }) : super(type: SettingsElementModelType.ROUTER, key: key) {
-    this.content = null;
-    this.value = false;
-  }
+  })  : content = null,
+        value = false,
+        onTap = null,
+        onToggle = null,
+        trailing = null,
+        super(type: SettingsElementModelType.router, key: key);
 
   // Custom trailing
-  SettingsCard.withCustomTrailing({
+  const SettingsCard.withCustomTrailing({
     Key? key,
     this.leading,
     this.subtitle,
     required this.title,
     required this.trailing,
-  }) : super(type: SettingsElementModelType.CUSTOMTRAILING, key: key) {
-    this.content = null;
-    this.value = false;
-  }
+  })  : content = null,
+        value = false,
+        onTap = null,
+        onToggle = null,
+        super(type: SettingsElementModelType.customTrailing, key: key);
 
-  SettingsCard.custom({Key? key, this.content})
-      : super(type: SettingsElementModelType.CUSTOM, key: key);
+  const SettingsCard.custom({Key? key, this.content})
+      : leading = null,
+        onTap = null,
+        onToggle = null,
+        subtitle = null,
+        title = null,
+        trailing = null,
+        value = false,
+        super(type: SettingsElementModelType.custom, key: key);
 
   @override
   _SettingsCardState createState() => _SettingsCardState();
 }
 
 class _SettingsCardState extends State<SettingsCard> {
+  late bool _value;
+
+  bool get isSwitch =>
+      widget.type == SettingsElementModelType.expandableSwitch ||
+      widget.type == SettingsElementModelType.toggleSwitch;
+
+  bool get isExpandable => widget.type == SettingsElementModelType.expandable;
+
+  bool get isRouter => widget.type == SettingsElementModelType.router;
+
+  bool get isSwitchOrCustomTrailing =>
+      widget.type == SettingsElementModelType.toggleSwitch ||
+      widget.type == SettingsElementModelType.customTrailing;
+
+  @override
+  void didUpdateWidget(covariant SettingsCard oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.value != oldWidget.value) {
+      _value = widget.value;
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _value = widget.value;
+  }
+
   //Build SettingsCard widget
   @override
   Widget build(BuildContext context) {
@@ -110,9 +158,9 @@ class _SettingsCardState extends State<SettingsCard> {
                   : Colors.black.withOpacity(0.05),
               width: 2),
         ),
-        child: (widget.type == SettingsElementModelType.CUSTOM)
+        child: (widget.type == SettingsElementModelType.custom)
             // Custom Content
-            ? widget.content ?? SizedBox.shrink()
+            ? widget.content ?? const SizedBox.shrink()
             // Default Content
             : Column(
                 children: [
@@ -128,34 +176,24 @@ class _SettingsCardState extends State<SettingsCard> {
                         widget.subtitle != null ? Text(widget.subtitle!) : null,
                     trailing: trailing,
                     onTap: () {
-                      setState(
-                        () {
-                          if (widget.type ==
-                                  SettingsElementModelType.EXPANDABLESWITCH ||
-                              widget.type ==
-                                  SettingsElementModelType.EXPANDABLE ||
-                              widget.type == SettingsElementModelType.SWITCH) {
-                            widget.value = !widget.value;
-                          }
-                          if (widget.type == SettingsElementModelType.ROUTER) {
-                            ScaffoldMessenger.of(context)
-                                .showSnackBar(_fallbackSnackBar);
-                          }
-                          widget.onToggle?.call(widget.value);
-                          widget.onTap?.call();
-                        },
-                      );
+                      if (isExpandable) {
+                        setState(() {
+                          _value = !_value;
+                        });
+                      } else if (isRouter) {
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(_fallbackSnackBar);
+                      } else if (isSwitch) {
+                        widget.onToggle?.call(!_value);
+                      }
+                      widget.onTap?.call();
                     },
                   ),
                   // Expandable content
                   Offstage(
-                      offstage:
-                          widget.type == SettingsElementModelType.SWITCH ||
-                                  widget.type ==
-                                      SettingsElementModelType.CUSTOMTRAILING
-                              ? true
-                              : !widget.value,
-                      child: widget.content ?? _fallbackContent)
+                    offstage: isSwitchOrCustomTrailing || !_value,
+                    child: widget.content ?? _fallbackContent,
+                  )
                 ],
               ),
       ),
@@ -167,7 +205,7 @@ class _SettingsCardState extends State<SettingsCard> {
   }
 
   SnackBar get _fallbackSnackBar {
-    return SnackBar(
+    return const SnackBar(
       content: Text(
         "Router has not been implemented yet",
         style: TextStyle(
@@ -178,8 +216,8 @@ class _SettingsCardState extends State<SettingsCard> {
   }
 
   Widget get _fallbackContent {
-    return Padding(
-      padding: const EdgeInsets.all(48.0),
+    return const Padding(
+      padding: EdgeInsets.all(48.0),
       child: FlutterLogo(
         size: 48,
       ),
@@ -189,36 +227,28 @@ class _SettingsCardState extends State<SettingsCard> {
   // Define trailing based on type
   Widget get trailing {
     // Expandable with switch
-    if (widget.type == SettingsElementModelType.EXPANDABLESWITCH) {
+    if (widget.type == SettingsElementModelType.expandableSwitch) {
       return Switch(
-        onChanged: (val) {
-          setState(() {
-            widget.value = !widget.value;
-          });
-        },
-        value: widget.value,
+        onChanged: widget.onToggle,
+        value: _value,
       );
     }
 
     // Switch
-    if (widget.type == SettingsElementModelType.SWITCH) {
+    if (widget.type == SettingsElementModelType.toggleSwitch) {
       return Switch(
-        onChanged: (val) {
-          setState(() {
-            widget.value = !widget.value;
-          });
-        },
-        value: widget.value,
+        onChanged: widget.onToggle,
+        value: _value,
       );
     }
 
     // Expandable
-    if (widget.type == SettingsElementModelType.EXPANDABLE) {
+    if (widget.type == SettingsElementModelType.expandable) {
       return Padding(
         padding: const EdgeInsets.only(right: 12.0),
         child: Transform.rotate(
-          angle: !widget.value ? math.pi / 2 : -math.pi / 2,
-          child: Icon(
+          angle: !_value ? math.pi / 2 : -math.pi / 2,
+          child: const Icon(
             Icons.chevron_right_rounded,
             size: 24,
           ),
@@ -227,9 +257,9 @@ class _SettingsCardState extends State<SettingsCard> {
     }
 
     // Router
-    if (widget.type == SettingsElementModelType.ROUTER) {
-      return Padding(
-        padding: const EdgeInsets.only(right: 12.0),
+    if (widget.type == SettingsElementModelType.router) {
+      return const Padding(
+        padding: EdgeInsets.only(right: 12.0),
         child: Icon(
           Icons.chevron_right_rounded,
           size: 24,
@@ -238,12 +268,12 @@ class _SettingsCardState extends State<SettingsCard> {
     }
 
     // Custom trailing
-    if (widget.type == SettingsElementModelType.CUSTOMTRAILING) {
+    if (widget.type == SettingsElementModelType.customTrailing) {
       return widget.trailing!;
     }
 
     // none
-    return SizedBox.shrink();
+    return const SizedBox.shrink();
   }
 }
 
@@ -251,7 +281,8 @@ extension on ThemeData {
   bool get darkMode {
     if (brightness == Brightness.dark) {
       return true;
-    } else
+    } else {
       return false;
+    }
   }
 }

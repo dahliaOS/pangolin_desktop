@@ -32,11 +32,11 @@ class TaskbarAlignmentButton extends StatelessWidget {
     bool _isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return ClipRRect(
       borderRadius: CommonData.of(context).borderRadius(
-        BorderRadiusType.SMALL,
+        BorderRadiusType.small,
       ),
       child: InkWell(
         borderRadius: CommonData.of(context).borderRadius(
-          BorderRadiusType.SMALL,
+          BorderRadiusType.small,
         ),
         mouseCursor: SystemMouseCursors.click,
         onTap: () {
@@ -70,37 +70,36 @@ class TaskbarAlignmentButton extends StatelessWidget {
                         Row(
                           children: [
                             _taskbarElement(context),
-                            SizedBox(width: 8),
+                            const SizedBox(width: 8),
                             _taskbarElement(context),
-                            SizedBox(width: 8),
+                            const SizedBox(width: 8),
                             _taskbarElement(context),
-                          ]..addAll(model.centred
-                              ? []
-                              : [
-                                  SizedBox(width: 16),
-                                  _taskbarElement(context, shaded: true),
-                                  SizedBox(width: 8),
-                                  _taskbarElement(context, shaded: true),
-                                  SizedBox(width: 8),
-                                  _taskbarElement(context, shaded: true),
-                                  SizedBox(width: 8),
-                                  _taskbarElement(context, shaded: true),
-                                  SizedBox(width: 8),
-                                  _taskbarElement(context, shaded: true),
-                                ]),
+                            if (!model.centred) ...[
+                              const SizedBox(width: 16),
+                              _taskbarElement(context, shaded: true),
+                              const SizedBox(width: 8),
+                              _taskbarElement(context, shaded: true),
+                              const SizedBox(width: 8),
+                              _taskbarElement(context, shaded: true),
+                              const SizedBox(width: 8),
+                              _taskbarElement(context, shaded: true),
+                              const SizedBox(width: 8),
+                              _taskbarElement(context, shaded: true),
+                            ],
+                          ],
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: model.centred
                               ? [
                                   _taskbarElement(context, shaded: true),
-                                  SizedBox(width: 8),
+                                  const SizedBox(width: 8),
                                   _taskbarElement(context, shaded: true),
-                                  SizedBox(width: 8),
+                                  const SizedBox(width: 8),
                                   _taskbarElement(context, shaded: true),
-                                  SizedBox(width: 8),
+                                  const SizedBox(width: 8),
                                   _taskbarElement(context, shaded: true),
-                                  SizedBox(width: 8),
+                                  const SizedBox(width: 8),
                                   _taskbarElement(context, shaded: true),
                                 ]
                               : [],
@@ -109,7 +108,7 @@ class TaskbarAlignmentButton extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             _taskbarElement(context, multiplier: 1.75),
-                            SizedBox(width: 8),
+                            const SizedBox(width: 8),
                             _taskbarElement(context, multiplier: 1.75),
                           ],
                         ),
@@ -117,7 +116,7 @@ class TaskbarAlignmentButton extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 Text(
                   model.label,
                   style: Theme.of(context).textTheme.subtitle1?.copyWith(
@@ -153,24 +152,23 @@ class TaskbarAlignmentButton extends StatelessWidget {
     final hslBgc =
         HSLColor.fromColor(Theme.of(context).scaffoldBackgroundColor);
     return Container(
-      child: Container(
-        width: 20 * multiplier,
-        height: 20,
-        decoration: BoxDecoration(
-          border: Border.all(
-              color: !_isDarkMode
-                  ? Colors.black.withOpacity(0.2)
-                  : Colors.white.withOpacity(0.2),
-              width: 2),
-          color: shaded
-              ? hslBgc
-                  .withLightness(hslBgc.lightness > 0.5
-                      ? hslBgc.lightness - 0.2
-                      : hslBgc.lightness + 0.2)
-                  .toColor()
-              : hslBgc.toColor(),
-          borderRadius: BorderRadius.circular(4),
+      width: 20 * multiplier,
+      height: 20,
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: !_isDarkMode
+              ? Colors.black.withOpacity(0.2)
+              : Colors.white.withOpacity(0.2),
+          width: 2,
         ),
+        color: shaded
+            ? hslBgc
+                .withLightness(hslBgc.lightness > 0.5
+                    ? hslBgc.lightness - 0.2
+                    : hslBgc.lightness + 0.2)
+                .toColor()
+            : hslBgc.toColor(),
+        borderRadius: BorderRadius.circular(4),
       ),
     );
   }

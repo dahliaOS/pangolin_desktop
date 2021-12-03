@@ -35,7 +35,7 @@ class AcrylicLayer extends StatelessWidget {
             Opacity(
               opacity: 0.025,
               child: DecoratedBox(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage(
                         "assets/textures/NoiseAsset_256X256_PNG.png"),
@@ -70,8 +70,8 @@ class AcrylicLayerPainter extends CustomPainter {
   // painter
   @override
   Future<void> paint(Canvas canvas, Size size) async {
-    var _darkModeColor = Color(0xff0a0a0a).withOpacity(0.6);
-    var _lightModeColor = Color(0xfffafafa).withOpacity(0.6);
+    var _darkModeColor = const Color(0xff0a0a0a).withOpacity(0.6);
+    var _lightModeColor = const Color(0xfffafafa).withOpacity(0.6);
 
     canvas.drawColor(
         darkMode ? _darkModeColor : _lightModeColor, BlendMode.luminosity);
@@ -80,6 +80,6 @@ class AcrylicLayerPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant AcrylicLayerPainter oldDelegate) {
-    return this.darkMode != oldDelegate.darkMode;
+    return darkMode != oldDelegate.darkMode;
   }
 }

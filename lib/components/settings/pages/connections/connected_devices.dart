@@ -27,21 +27,21 @@ class SettingsPageConnectedDevices extends StatelessWidget {
     return SettingsPage(
       title: "Connected Devices",
       cards: [
-        SettingsContentHeader("Bluetooth"),
+        const SettingsContentHeader("Bluetooth"),
         SettingsCard.withExpandableSwitch(
           value: false,
           title: "Bluetooth",
-          leading: Icon(Icons.bluetooth_rounded),
+          leading: const Icon(Icons.bluetooth_rounded),
           subtitle: "Enable bluetooth service",
         ),
         SettingsCard.withRouter(
           title: "Files received via Bluetooth",
-          leading: Icon(Icons.file_copy_rounded),
+          leading: const Icon(Icons.file_copy_rounded),
         ),
-        SettingsContentHeader("Phone integration"),
+        const SettingsContentHeader("Phone integration"),
         SettingsCard.withExpandable(
           value: false,
-          leading: Icon(Icons.devices_other_rounded),
+          leading: const Icon(Icons.devices_other_rounded),
           title: "Phone connection",
         ),
       ],

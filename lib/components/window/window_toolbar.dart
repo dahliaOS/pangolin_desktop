@@ -22,7 +22,7 @@ import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/wm/wm.dart';
 
 class PangolinWindowToolbar extends StatefulWidget {
-  const PangolinWindowToolbar();
+  const PangolinWindowToolbar({Key? key}) : super(key: key);
 
   @override
   _PangolinWindowToolbarState createState() => _PangolinWindowToolbarState();
@@ -68,8 +68,8 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
                       children: [
                         properties.info.icon != null
                             ? Image(image: properties.info.icon!)
-                            : Icon(Icons.apps),
-                        SizedBox(
+                            : const Icon(Icons.apps),
+                        const SizedBox(
                           height: 16,
                         ),
                         Text(properties.info.title)
@@ -80,8 +80,8 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                        child: const Padding(
+                          padding: EdgeInsets.all(8.0),
                           child: Text("Close"),
                         ),
                       )
@@ -108,7 +108,7 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
                     alignment: Alignment.center,
                     child: Row(
                       children: [
-                        SizedBox(width: 12),
+                        const SizedBox(width: 12),
                         properties.info.icon != null
                             ? Image(
                                 image: properties.info.icon!,
@@ -120,19 +120,19 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
                                 size: 20,
                                 color: fgColor,
                               ),
-                        SizedBox(width: 8),
-                        Spacer(),
+                        const SizedBox(width: 8),
+                        const Spacer(),
                         WindowToolbarButton(
-                          icon: Padding(
-                            padding: const EdgeInsets.only(bottom: 8.0),
+                          icon: const Padding(
+                            padding: EdgeInsets.only(bottom: 8.0),
                             child: Icon(Icons.minimize),
                           ),
                           onTap: () => onMinimize(properties),
                         ),
                         WindowToolbarButton(
                           icon: properties.geometry.maximized
-                              ? Icon(_ToolbarIcons.minimize)
-                              : Icon(_ToolbarIcons.maximize),
+                              ? const Icon(_ToolbarIcons.minimize)
+                              : const Icon(_ToolbarIcons.maximize),
                           onTap: () {
                             properties.geometry.maximized =
                                 !properties.geometry.maximized;
@@ -142,10 +142,10 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
                           },
                         ),
                         WindowToolbarButton(
-                          icon: Icon(Icons.close),
+                          icon: const Icon(Icons.close),
                           onTap: () => onClose(properties),
                         ),
-                        SizedBox(width: 2),
+                        const SizedBox(width: 2),
                       ],
                     ),
                   ),
@@ -330,23 +330,24 @@ class WindowToolbarButton extends StatelessWidget {
   final VoidCallback onTap;
   final Color? hoverColor;
 
-  WindowToolbarButton({
+  const WindowToolbarButton({
+    Key? key,
     required this.icon,
     required this.onTap,
     this.hoverColor,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SizedBox.fromSize(
-      size: Size.square(40),
+      size: const Size.square(40),
       child: Center(
         child: SizedBox.fromSize(
-          size: Size.square(32),
+          size: const Size.square(32),
           child: Material(
             color: Colors.transparent,
             child: InkWell(
-              customBorder: CircleBorder(),
+              customBorder: const CircleBorder(),
               hoverColor: hoverColor,
               splashColor: hoverColor,
               onTap: onTap,

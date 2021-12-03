@@ -19,7 +19,7 @@ import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:provider/provider.dart';
 
 class IconProvider extends ChangeNotifier {
-  static IconProvider of(BuildContext context, {bool listen: true}) =>
+  static IconProvider of(BuildContext context, {bool listen = true}) =>
       Provider.of<IconProvider>(context, listen: listen);
   IconProvider() {
     _loadData();

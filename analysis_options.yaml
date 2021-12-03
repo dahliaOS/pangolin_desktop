@@ -1,21 +1,17 @@
-# Defines a default set of lint rules enforced for
-# projects at Google. For details and rationale,
-# see https://github.com/dart-lang/pedantic#enabled-lints.
-#include: package:pedantic/analysis_options.yaml
+include: package:flutter_lints/flutter.yaml
 
-# For lint rules and documentation, see http://dart-lang.github.io/linter/lints.
-# Uncomment to specify additional rules.
-# linter:
-#   rules:
-#     - prefer_single_quotes
+linter:
+  rules:
+    avoid_bool_literals_in_conditional_expressions: false
+    avoid_catching_errors: false
+    avoid_positional_boolean_parameters: false
+    avoid_setters_without_getters: false
+    empty_catches: false
+    implementation_imports: false
+    use_build_context_synchronously: false
+    avoid_multiple_declarations_per_line: false
 
 analyzer:
-  errors:
-    prefer_single_quotes: ignore
-    unnecessary_this: ignore
-    unused_local_variable: ignore
-    omit_local_variable_types: ignore
-    todo: ignore
-    must_be_immutable: ignore
-#   exclude:
-#     - path/to/excluded/files/**
+  exclude:
+    - lib/**/*.g.dart
+    - lib/generated_plugin_registrant.dart

@@ -25,7 +25,7 @@ import 'package:pangolin/utils/providers/customization_provider.dart';
 
 class TaskbarItem extends StatefulWidget {
   final String packageName;
-  TaskbarItem({required this.packageName, Key? key}) : super(key: key);
+  const TaskbarItem({required this.packageName, Key? key}) : super(key: key);
 
   @override
   _TaskbarItemState createState() => _TaskbarItemState();
@@ -41,7 +41,7 @@ class _TaskbarItemState extends State<TaskbarItem>
     super.initState();
     _ac = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 150),
+      duration: const Duration(milliseconds: 150),
     );
     _anim = CurvedAnimation(
       parent: _ac,
@@ -162,7 +162,7 @@ class _TaskbarItemState extends State<TaskbarItem>
                             child: Image(
                               image: appIsRunning
                                   ? entry?.registry.info.icon ??
-                                      NetworkImage("")
+                                      const NetworkImage("")
                                   : AssetImage(
                                       "assets/icons/${_app.iconName}.png",
                                     ),
@@ -170,7 +170,7 @@ class _TaskbarItemState extends State<TaskbarItem>
                           ),
                         ),
                         AnimatedPositioned(
-                          duration: Duration(milliseconds: 150),
+                          duration: const Duration(milliseconds: 150),
                           curve: Curves.ease,
                           bottom: 1,
                           left: appIsRunning
@@ -207,13 +207,14 @@ class _TaskbarItemState extends State<TaskbarItem>
         ),
       ),
     );
-    if (!_app.canBeOpened)
+    if (!_app.canBeOpened) {
       return IgnorePointer(
         child: Opacity(
           opacity: 0.4,
           child: finalWidget,
         ),
       );
+    }
     return finalWidget;
   }
 

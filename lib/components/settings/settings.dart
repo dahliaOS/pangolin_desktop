@@ -32,6 +32,8 @@ import 'package:pangolin/widgets/searchbar/searchbar.dart';
 import 'package:provider/provider.dart';
 
 class Settings extends StatelessWidget {
+  const Settings({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -42,7 +44,7 @@ class Settings extends StatelessWidget {
       ],
       child: MaterialApp(
         theme: theme(context),
-        home: Scaffold(
+        home: const Scaffold(
           backgroundColor: Colors.transparent,
           body: _SettingsHome(),
         ),
@@ -75,7 +77,7 @@ class _SettingsHomeState extends State<_SettingsHome> {
                   width: isExpanded ? 340 : 90,
                   child: ListView.builder(
                     scrollDirection: Axis.vertical,
-                    physics: BouncingScrollPhysics(),
+                    physics: const BouncingScrollPhysics(),
                     itemCount: _settingsTiles.length,
                     itemBuilder: (context, index) {
                       //check if tile is a header
@@ -84,16 +86,16 @@ class _SettingsHomeState extends State<_SettingsHome> {
                       bool isSelected = provider._pageIndex == index;
 
                       return !isTile && !isExpanded
-                          ? SizedBox(
+                          ? const SizedBox(
                               height: 16,
                             )
                           : SizedBox(
                               height: !isTile ? 40 : 60,
                               child: Padding(
                                 padding: isTile
-                                    ? EdgeInsets.symmetric(
+                                    ? const EdgeInsets.symmetric(
                                         vertical: 2.0, horizontal: 8)
-                                    : EdgeInsets.only(left: 8),
+                                    : const EdgeInsets.only(left: 8),
                                 child: isSearch
                                     ? _SettingsSearchBar(
                                         isExpanded: isExpanded,
@@ -136,7 +138,7 @@ class _SettingsHomeState extends State<_SettingsHome> {
                                                       : null,
                                                 ),
                                               )
-                                            : Text(""),
+                                            : const Text(""),
                                         subtitle: isTile
                                             ? isExpanded
                                                 ? Text(
@@ -157,7 +159,7 @@ class _SettingsHomeState extends State<_SettingsHome> {
                                                           : null,
                                                     ),
                                                   )
-                                                : Text("")
+                                                : const Text("")
                                             : null,
                                         leading: !isTile
                                             ? null
@@ -205,12 +207,12 @@ class _SettingsHomeState extends State<_SettingsHome> {
                   child: ClipRRect(
                     key: ValueKey(provider.pageIndex),
                     borderRadius:
-                        BorderRadius.only(topLeft: Radius.circular(8)),
+                        const BorderRadius.only(topLeft: Radius.circular(8)),
                     child: Scaffold(
                       backgroundColor:
                           Theme.of(context).scaffoldBackgroundColor,
                       body: _settingsTiles[provider.pageIndex].page ??
-                          SizedBox.shrink(),
+                          const SizedBox.shrink(),
                     ),
                   ),
                 ),
@@ -234,8 +236,8 @@ class _SettingsSearchBar extends StatelessWidget {
         ? Searchbar(
             controller: TextEditingController(),
             hint: 'Search settings',
-            leading: Icon(Icons.search_rounded),
-            trailing: Icon(Icons.close_rounded),
+            leading: const Icon(Icons.search_rounded),
+            trailing: const Icon(Icons.close_rounded),
           )
         : Container(
             height: 16,
@@ -256,85 +258,85 @@ class _SettingsTileData {
 
 List<_SettingsTileData> _settingsTiles = [
   //Search HEADER
-  _SettingsTileData(
+  const _SettingsTileData(
     title: "Search",
   ),
   //Connectivity HEADER
-  _SettingsTileData(
+  const _SettingsTileData(
     title: "Connectivity",
   ),
   //Connectivity TILES
-  _SettingsTileData(
+  const _SettingsTileData(
     title: "Network & internet",
     subtitle: "Wi-Fi, ethernet, data usage",
     icon: Icons.wifi,
     page: SettingsPageNetwork(),
   ),
-  _SettingsTileData(
+  const _SettingsTileData(
     title: "Connected devices",
     subtitle: "Bluetooth, printer, USB devices",
     icon: Icons.devices_rounded,
     page: SettingsPageConnectedDevices(),
   ),
   //Personalize HEADER
-  _SettingsTileData(
+  const _SettingsTileData(
     title: "Personalize",
   ),
   //Personalize TILES
-  _SettingsTileData(
+  const _SettingsTileData(
     title: "Customization",
     subtitle: "Personalize your experience",
     icon: Icons.color_lens_outlined,
     page: SettingsPageCustomization(),
   ),
-  
+
   //Device & applications HEADER
-  _SettingsTileData(
+  const _SettingsTileData(
     title: "Device & applications",
   ),
   //Device & applications TILES
-  _SettingsTileData(
+  const _SettingsTileData(
     title: "Display",
     subtitle: "Resolution, screen timeout, scaling",
     icon: Icons.desktop_windows,
     page: SettingsPageDisplay(),
   ),
-  _SettingsTileData(
+  const _SettingsTileData(
     title: "Sound",
     subtitle: "Volume, Do Not Disturb, startup sound",
     icon: Icons.volume_up_rounded,
     page: SettingsPageSound(),
   ),
-  _SettingsTileData(
+  const _SettingsTileData(
     title: "Locale",
     subtitle: "Language, time and date, keyboard layout",
     icon: Icons.translate_rounded,
     page: SettingsPageLocale(),
   ),
-  _SettingsTileData(
+  const _SettingsTileData(
     title: "Notifications",
     subtitle: "Notification sound, app selection",
     icon: Icons.notifications_none_rounded,
     page: SettingsPageNotifications(),
   ),
-  _SettingsTileData(
+  const _SettingsTileData(
     title: "Applications",
     subtitle: "Installed apps, default apps",
     icon: Icons.apps_rounded,
     page: SettingsPageApplications(),
   ),
   //System HEADER
-  _SettingsTileData(
+  const _SettingsTileData(
     title: "System",
   ),
-  _SettingsTileData(
+  const _SettingsTileData(
     title: "Developer options",
     subtitle: "Feature flags, advanced options",
     icon: Icons.developer_mode_rounded,
     page: SettingsPageDeveloperOptions(),
   ),
   //System TILES
-  _SettingsTileData(
+  const _SettingsTileData(
     title: "About device",
     subtitle: "System version, device information",
     icon: Icons.laptop_mac_rounded,

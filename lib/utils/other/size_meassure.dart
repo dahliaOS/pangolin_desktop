@@ -16,14 +16,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 class SizeMeasureWidget extends SingleChildRenderObjectWidget {
-  final Widget child;
   final SizeMeasureCallback onSizeMeasure;
 
-  SizeMeasureWidget({
+  const SizeMeasureWidget({
     Key? key,
-    required this.child,
+    required Widget child,
     required this.onSizeMeasure,
-  }) : super(child: child);
+  }) : super(key: key, child: child);
 
   @override
   RenderObject createRenderObject(BuildContext context) {
@@ -35,7 +34,7 @@ class SizeMeasureWidget extends SingleChildRenderObjectWidget {
     BuildContext context,
     _SizeMeasureRenderBox renderObject,
   ) {
-    renderObject..onSizeMeasure = onSizeMeasure;
+    renderObject.onSizeMeasure = onSizeMeasure;
   }
 }
 
@@ -51,4 +50,4 @@ class _SizeMeasureRenderBox extends RenderProxyBox {
   }
 }
 
-typedef void SizeMeasureCallback(Size size);
+typedef SizeMeasureCallback = void Function(Size size);

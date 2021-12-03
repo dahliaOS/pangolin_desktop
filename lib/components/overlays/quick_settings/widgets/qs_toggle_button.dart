@@ -17,6 +17,7 @@ limitations under the License.
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/theme/theme_manager.dart';
 
+// ignore: must_be_immutable
 class QsToggleButton extends StatefulWidget {
   QsToggleButton({
     Key? key,
@@ -70,7 +71,7 @@ class _QsToggleButtonState extends State<QsToggleButton> {
                       ? ColorsX.black
                       : ColorsX.white,
                 ),
-                SizedBox(width: 12),
+                const SizedBox(width: 12),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -100,10 +101,10 @@ class _QsToggleButtonState extends State<QsToggleButton> {
                                   : ColorsX.white,
                             ),
                           )
-                        : SizedBox.shrink(),
+                        : const SizedBox.shrink(),
                   ],
                 ),
-                Spacer(),
+                const Spacer(),
                 VerticalDivider(
                   color: widget.value == true
                       ? context.theme.backgroundColor.op(0.2)
@@ -113,7 +114,7 @@ class _QsToggleButtonState extends State<QsToggleButton> {
                 ),
                 Material(
                   color: Colors.transparent,
-                  shape: CircleBorder(),
+                  shape: const CircleBorder(),
                   clipBehavior: Clip.antiAlias,
                   child: InkWell(
                     child: Padding(

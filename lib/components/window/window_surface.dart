@@ -18,11 +18,11 @@ import 'package:flutter/material.dart';
 import 'package:pangolin/widgets/box/box_container.dart';
 
 class PangolinWindowSurface extends StatelessWidget {
-  const PangolinWindowSurface();
+  const PangolinWindowSurface({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BoxSurface(
+    return const BoxSurface(
       outline: false,
       dropShadow: true,
     );

@@ -15,6 +15,7 @@ limitations under the License.
 */
 import 'dart:async' show Future;
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:pangolin/utils/data/database_manager.dart';
 import 'dart:convert';
 import 'visual_data.dart';
@@ -27,25 +28,27 @@ Future loadVisualEngine() async {
   String jsonString = await _loadDataAsset();
   final jsonResponse = json.decode(jsonString);
   VisualInformation visuals = VisualInformation.fromJson(jsonResponse);
-  print(visuals.taskbarHeight);
-  print(visuals.opaqueTitlebars);
-  print(visuals.titleInfo);
-  print(visuals.windowRadius);
-  print(visuals.activeAppsPosition);
-  print(visuals.userName);
-  print(visuals.launcherCategories);
-  print(visuals.launcherIndicator);
-  print(visuals.launcherSystemOptions);
-  print(visuals.notificationsIcon);
-  print(visuals.overlayButtonRounding);
-  print(visuals.overlayOpacity);
-  print(visuals.overviewIcon);
-  print(visuals.qsTileRounding);
-  print(visuals.searchBarString);
-  print(visuals.searchIcon);
-  print(visuals.showDate);
-  print(visuals.taskbarOpacity);
-  print(visuals.taskbarRounding);
+  if (kDebugMode) {
+    print(visuals.taskbarHeight);
+    print(visuals.opaqueTitlebars);
+    print(visuals.titleInfo);
+    print(visuals.windowRadius);
+    print(visuals.activeAppsPosition);
+    print(visuals.userName);
+    print(visuals.launcherCategories);
+    print(visuals.launcherIndicator);
+    print(visuals.launcherSystemOptions);
+    print(visuals.notificationsIcon);
+    print(visuals.overlayButtonRounding);
+    print(visuals.overlayOpacity);
+    print(visuals.overviewIcon);
+    print(visuals.qsTileRounding);
+    print(visuals.searchBarString);
+    print(visuals.searchIcon);
+    print(visuals.showDate);
+    print(visuals.taskbarOpacity);
+    print(visuals.taskbarRounding);
+  }
   DatabaseManager.set('taskbarHeight', visuals.taskbarHeight);
   DatabaseManager.set('opaqueTitlebars', visuals.opaqueTitlebars);
   DatabaseManager.set('titleInfo', visuals.titleInfo);

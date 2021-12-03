@@ -28,7 +28,7 @@ import '../../services/search_service.dart';
 class SearchOverlay extends ShellOverlay {
   static const String overlayId = "search";
 
-  SearchOverlay() : super(id: overlayId);
+  SearchOverlay({Key? key}) : super(key: key, id: overlayId);
 
   @override
   _SearchOverlayState createState() => _SearchOverlayState();
@@ -58,8 +58,8 @@ class _SearchOverlayState extends State<SearchOverlay>
   }
 
   @override
-  Future<void> requestShow(Map<String, dynamic> args) async {
-    _controller.text = args['searchQuery'] ?? "";
+  Future<void> requestShow(Map<String, Object?> args) async {
+    _controller.text = args['searchQuery'] as String? ?? "";
     controller.showing = true;
     await ac.forward();
   }
@@ -79,7 +79,7 @@ class _SearchOverlayState extends State<SearchOverlay>
     final _searchProvider = SearchProvider.of(context);
     _focusNode.requestFocus();
 
-    if (!controller.showing) return SizedBox();
+    if (!controller.showing) return const SizedBox();
 
     return Positioned(
       top: 64,
@@ -95,25 +95,24 @@ class _SearchOverlayState extends State<SearchOverlay>
             child: BoxSurface(
               dropShadow: true,
               borderRadius:
-                  CommonData.of(context).borderRadius(BorderRadiusType.BIG),
+                  CommonData.of(context).borderRadius(BorderRadiusType.big),
               width: 500,
               height: 324,
               child: Column(
                 children: [
                   Container(
-                    padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                    padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                     //  outline: false,
                     height: 48 + 10,
                     child: Searchbar(
-                      outline: false,
                       color: Theme.of(context).backgroundColor.withOpacity(0.2),
                       borderRadius: CommonData.of(context)
-                          .borderRadius(BorderRadiusType.MEDIUM),
+                          .borderRadius(BorderRadiusType.medium),
                       focusNode: _focusNode,
                       controller: _controller,
                       hint: 'Search Device, Apps and Web',
-                      leading: Icon(Icons.search),
-                      trailing: Icon(Icons.menu_rounded),
+                      leading: const Icon(Icons.search),
+                      trailing: const Icon(Icons.menu_rounded),
                       onTextChanged: searchService.globalSearch,
                     ),
                   ),
@@ -125,12 +124,12 @@ class _SearchOverlayState extends State<SearchOverlay>
                     child: ValueListenableBuilder(
                       builder: (_, List<Application>? apps, Widget? child) {
                         return apps!.isNotEmpty
-                            ? Container(
+                            ? SizedBox(
                                 height: 240,
                                 child: ListView(
                                   children: [
                                     Container(
-                                      padding: EdgeInsets.only(
+                                      padding: const EdgeInsets.only(
                                         top: 16,
                                         left: 24,
                                         right: 24,
@@ -145,11 +144,11 @@ class _SearchOverlayState extends State<SearchOverlay>
                                       ),
                                     ),
                                     ListView.builder(
-                                      padding: EdgeInsets.symmetric(
+                                      padding: const EdgeInsets.symmetric(
                                           horizontal: 16, vertical: 4),
                                       shrinkWrap: true,
                                       itemCount: apps.length,
-                                      physics: BouncingScrollPhysics(),
+                                      physics: const BouncingScrollPhysics(),
                                       itemBuilder: (_, index) =>
                                           AppLauncherTile(
                                         apps[index].packageName!,
@@ -158,12 +157,12 @@ class _SearchOverlayState extends State<SearchOverlay>
                                   ],
                                 ),
                               )
-                            : Container(
+                            : SizedBox(
                                 height: 240,
                                 child: ListView(
                                   children: [
                                     Container(
-                                      padding: EdgeInsets.only(
+                                      padding: const EdgeInsets.only(
                                         top: 16,
                                         left: 24,
                                         right: 24,
@@ -178,13 +177,13 @@ class _SearchOverlayState extends State<SearchOverlay>
                                       ),
                                     ),
                                     ListView.builder(
-                                      padding: EdgeInsets.symmetric(
+                                      padding: const EdgeInsets.symmetric(
                                           horizontal: 16, vertical: 4),
                                       shrinkWrap: true,
                                       reverse: true,
                                       itemCount: _searchProvider
                                           .recentSearchResults.length,
-                                      physics: BouncingScrollPhysics(),
+                                      physics: const BouncingScrollPhysics(),
                                       itemBuilder: (_, index) =>
                                           AppLauncherTile(
                                         _searchProvider

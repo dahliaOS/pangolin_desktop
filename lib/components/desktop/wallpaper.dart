@@ -31,6 +31,7 @@ class WallpaperWindowFeature extends WindowFeature {
   @override
   Widget build(BuildContext context, Widget content) {
     // get properties
+    // ignore: unused_local_variable
     final WindowPropertyRegistry properties =
         WindowPropertyRegistry.of(context);
 
@@ -69,7 +70,7 @@ class _WallpaperContextMenu extends StatelessWidget {
                 barrierColor: Colors.transparent,
                 context: context,
                 builder: (context) {
-                  return WallpaperPicker();
+                  return const WallpaperPicker();
                 },
               );
             },
@@ -99,8 +100,8 @@ Widget wallpaperImage(String source) {
       fit: BoxFit.cover,
       cacheKey: source,
       useOldImageOnUrlChange: true,
-      fadeInDuration: Duration(milliseconds: 1000),
-      fadeOutDuration: Duration(milliseconds: 1000),
+      fadeInDuration: const Duration(milliseconds: 1000),
+      fadeOutDuration: const Duration(milliseconds: 1000),
       fadeInCurve: Curves.easeInOut,
       fadeOutCurve: Curves.easeInOut,
     );

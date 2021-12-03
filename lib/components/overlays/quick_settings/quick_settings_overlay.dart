@@ -42,7 +42,7 @@ import 'package:pangolin/widgets/box/box_container.dart';
 class QuickSettingsOverlay extends ShellOverlay {
   static const String overlayId = 'quicksettings';
 
-  QuickSettingsOverlay() : super(id: overlayId);
+  QuickSettingsOverlay({Key? key}) : super(key: key, id: overlayId);
 
   @override
   _QuickSettingsOverlayState createState() => _QuickSettingsOverlayState();
@@ -88,7 +88,7 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
       curve: CommonData.of(context).animationCurve(),
     );
 
-    if (!controller.showing) return SizedBox();
+    if (!controller.showing) return const SizedBox();
 
     return Positioned(
       bottom: _customizationProvider.isTaskbarRight ||
@@ -114,7 +114,7 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
                 0.8, !_customizationProvider.isTaskbarTop ? 1.0 : 0.0),
             child: BoxSurface(
               borderRadius:
-                  CommonData.of(context).borderRadius(BorderRadiusType.BIG),
+                  CommonData.of(context).borderRadius(BorderRadiusType.big),
               width: 540,
               height: 474,
               dropShadow: true,
@@ -122,10 +122,10 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
                 padding: const EdgeInsets.all(16.0),
                 child: MaterialApp(
                   routes: {
-                    "/": (context) => QsMain(),
-                    "/pages/account": (context) => QsAccountPage(),
-                    "/pages/network": (context) => QsNetworkPage(),
-                    "/pages/theme": (context) => QsThemePage(),
+                    "/": (context) => const QsMain(),
+                    "/pages/account": (context) => const QsAccountPage(),
+                    "/pages/network": (context) => const QsNetworkPage(),
+                    "/pages/theme": (context) => const QsThemePage(),
                   },
                   theme: Theme.of(context)
                       .copyWith(scaffoldBackgroundColor: Colors.transparent),
@@ -150,7 +150,7 @@ class QsMain extends StatelessWidget {
     // Action Button Bar
     List<Widget> _qsActionButton = [
       QsActionButton(
-        leading: FlutterLogo(
+        leading: const FlutterLogo(
           size: 18,
         ),
         title: "dahliaOS Live User",
@@ -163,7 +163,7 @@ class QsMain extends StatelessWidget {
           color: context.theme.darkMode ? ColorsX.white : ColorsX.black,
         ),
       ),
-      Spacer(),
+      const Spacer(),
       QsActionButton(
         leading: Icon(IconsX.of(context).power),
         isCircular: true,
@@ -184,7 +184,7 @@ class QsMain extends StatelessWidget {
         leading: Icon(IconsX.of(context).settings),
         isCircular: true,
         //title: "Settings",
-        margin: EdgeInsets.only(left: 8),
+        margin: const EdgeInsets.only(left: 8),
         onPressed: () {
           _shell.dismissOverlay(QuickSettingsOverlay.overlayId);
           WmAPI.of(context).openApp("io.dahlia.settings");
@@ -265,7 +265,7 @@ class QsMain extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 12,
                   ),
                   Row(
@@ -321,7 +321,7 @@ class QsMain extends StatelessWidget {
             }),
             _qsTitle("Shortcuts"),
             Row(
-              children: [
+              children: const [
                 QsShortcutButton(
                   title: "New event",
                   icon: Icons.calendar_today_rounded,
@@ -337,7 +337,7 @@ class QsMain extends StatelessWidget {
                 QsShortcutButton(),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 12,
             ),
             Builder(
@@ -373,7 +373,7 @@ class QsMain extends StatelessWidget {
                 );
               },
             ),
-            SizedBox(
+            const SizedBox(
               height: 8,
             ),
             Row(
@@ -386,7 +386,7 @@ class QsMain extends StatelessWidget {
                     valueListenable: DateTimeManager.getTimeNotifier()!,
                     builder: (BuildContext context, String time, child) =>
                         QsActionButton(
-                      leading: Icon(Icons.calendar_today),
+                      leading: const Icon(Icons.calendar_today),
                       title: "$date - $time",
                       margin: EdgeInsets.zero,
                     ),
@@ -399,8 +399,8 @@ class QsMain extends StatelessWidget {
                         String batteryPercentage =
                             data.data?.toString() ?? "Energy Mode: Performance";
                         return QsActionButton(
-                          leading: Icon(Icons.battery_charging_full),
-                          title: "${batteryPercentage}",
+                          leading: const Icon(Icons.battery_charging_full),
+                          title: batteryPercentage,
                           margin: EdgeInsets.zero,
                         );
                       });
@@ -420,7 +420,7 @@ class QsMain extends StatelessWidget {
         alignment: Alignment.centerLeft,
         child: Text(
           title,
-          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+          style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
         ),
       ),
     );

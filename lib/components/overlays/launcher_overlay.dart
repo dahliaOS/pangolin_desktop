@@ -21,10 +21,10 @@ import 'package:pangolin/services/locales/locale_strings.g.dart';
 import 'package:pangolin/utils/data/app_list.dart';
 import 'package:pangolin/utils/data/common_data.dart';
 import 'package:pangolin/utils/data/models/application.dart';
-import 'package:pangolin/utils/wm/wm_api.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
 import 'package:pangolin/utils/providers/search_provider.dart';
+import 'package:pangolin/utils/wm/wm_api.dart';
 import 'package:pangolin/widgets/app_launcher/app_launcher_button.dart';
 import 'package:pangolin/widgets/box/box_container.dart';
 import 'package:pangolin/widgets/searchbar/searchbar.dart';
@@ -32,7 +32,7 @@ import 'package:pangolin/widgets/searchbar/searchbar.dart';
 class LauncherOverlay extends ShellOverlay {
   static const String overlayId = 'launcher';
 
-  LauncherOverlay() : super(id: overlayId);
+  LauncherOverlay({Key? key}) : super(key: key, id: overlayId);
 
   @override
   _LauncherOverlayState createState() => _LauncherOverlayState();
@@ -71,7 +71,7 @@ class _LauncherOverlayState extends State<LauncherOverlay>
     controller.showing = false;
   }
 
-  final _focusNode = FocusNode(canRequestFocus: true);
+  final _focusNode = FocusNode();
   @override
   Widget build(BuildContext context) {
     final _customizationProvider = CustomizationProvider.of(context);
@@ -84,7 +84,7 @@ class _LauncherOverlayState extends State<LauncherOverlay>
 
     _focusNode.requestFocus();
 
-    if (!controller.showing) return SizedBox();
+    if (!controller.showing) return const SizedBox();
 
     return Positioned(
       top: !_customizationProvider.isTaskbarTop ? 0 : 48,
@@ -129,12 +129,11 @@ class _LauncherOverlayState extends State<LauncherOverlay>
                       ? FractionalOffset.bottomCenter
                       : FractionalOffset.topCenter,
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Search(),
+                      const Search(),
                       LauncherCategories(controller: _controller),
                       LauncherGrid(controller: _controller),
-                      LauncherPowerMenu(),
+                      const LauncherPowerMenu(),
                     ],
                   ),
                 ),
@@ -160,7 +159,7 @@ class _SearchState extends State<Search> {
   @override
   Widget build(BuildContext context) {
     final _shell = Shell.of(context);
-    final FocusNode _focusNode = FocusNode(canRequestFocus: true);
+    final FocusNode _focusNode = FocusNode();
     _focusNode.requestFocus();
 
     return RawKeyboardListener(
@@ -179,7 +178,7 @@ class _SearchState extends State<Search> {
         );
       },
       child: Container(
-        padding: EdgeInsets.only(top: 50),
+        padding: const EdgeInsets.only(top: 50),
         child: Searchbar(
           onTextChanged: (change) {
             _shell.dismissOverlay(LauncherOverlay.overlayId);
@@ -189,8 +188,8 @@ class _SearchState extends State<Search> {
               dismissEverything: false,
             );
           },
-          leading: Icon(Icons.search),
-          trailing: Icon(Icons.menu),
+          leading: const Icon(Icons.search),
+          trailing: const Icon(Icons.menu),
           hint: "Search Device, Apps and Web",
           controller: TextEditingController(),
         ),
@@ -204,7 +203,7 @@ class _SearchState extends State<Search> {
 class LauncherCategories extends StatefulWidget {
   final PageController? controller;
 
-  LauncherCategories({this.controller});
+  const LauncherCategories({this.controller, Key? key}) : super(key: key);
 
   @override
   _LauncherCategoriesState createState() => _LauncherCategoriesState();
@@ -217,7 +216,7 @@ class _LauncherCategoriesState extends State<LauncherCategories> {
 
   @override
   Widget build(BuildContext context) {
-    List<String> launcherCategories = [
+    final List<String> launcherCategories = [
       LocaleStrings.launcher.categoriesAll,
       LocaleStrings.launcher.categoriesInternet,
       LocaleStrings.launcher.categoriesMedia,
@@ -237,9 +236,8 @@ class _LauncherCategoriesState extends State<LauncherCategories> {
             // The row of chips 'test test test test' lol
             margin: const EdgeInsets.only(top: 33 + (1 / 3), bottom: 8),
             child: BoxContainer(
-              outline: false,
               borderRadius:
-                  CommonData.of(context).borderRadius(BorderRadiusType.ROUND),
+                  CommonData.of(context).borderRadius(BorderRadiusType.round),
               // have to give explicit size, as the child ListView can't calculate its Y height
               height: 42,
               child: ListView.builder(
@@ -249,42 +247,47 @@ class _LauncherCategoriesState extends State<LauncherCategories> {
                 itemBuilder: (context, index) {
                   return Material(
                     borderRadius: CommonData.of(context)
-                        .borderRadius(BorderRadiusType.ROUND),
+                        .borderRadius(BorderRadiusType.round),
                     color: _selected == index
                         ? Theme.of(context).colorScheme.secondary
                         : Colors.transparent,
                     child: InkWell(
                       borderRadius: CommonData.of(context)
-                          .borderRadius(BorderRadiusType.ROUND),
+                          .borderRadius(BorderRadiusType.round),
                       onTap: () {
                         setState(() {
                           _selected = index;
                         });
-                        widget.controller?.animateToPage(index,
-                            duration: Duration(milliseconds: 300),
-                            curve: Curves.easeInOut);
+                        widget.controller?.animateToPage(
+                          index,
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.easeInOut,
+                        );
                       },
                       mouseCursor: SystemMouseCursors.click,
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
-                            vertical: 8.0, horizontal: 18),
+                          vertical: 8.0,
+                          horizontal: 18,
+                        ),
                         child: Center(
                           child: Text(
                             launcherCategories[index],
                             style: TextStyle(
-                                fontWeight: _selected == index
-                                    ? FontWeight.bold
-                                    : FontWeight.normal,
-                                color: _selected == index
-                                    ? context.theme.colorScheme.secondary
-                                                .computeLuminance() <
-                                            0.4
-                                        ? !context.theme.darkMode
-                                            ? CommonData.of(context)
-                                                .textColorAlt()
-                                            : CommonData.of(context).textColor()
-                                        : CommonData.of(context).textColor()
-                                    : CommonData.of(context).textColor()),
+                              fontWeight: _selected == index
+                                  ? FontWeight.bold
+                                  : FontWeight.normal,
+                              color: _selected == index
+                                  ? context.theme.colorScheme.secondary
+                                              .computeLuminance() <
+                                          0.4
+                                      ? !context.theme.darkMode
+                                          ? CommonData.of(context)
+                                              .textColorAlt()
+                                          : CommonData.of(context).textColor()
+                                      : CommonData.of(context).textColor()
+                                  : CommonData.of(context).textColor(),
+                            ),
                           ),
                         ),
                       ),
@@ -304,12 +307,12 @@ class _LauncherCategoriesState extends State<LauncherCategories> {
 
 class LauncherGrid extends StatelessWidget {
   final PageController? controller;
-  LauncherGrid({@required this.controller});
+  const LauncherGrid({required this.controller, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final minWidth = 512;
-    double width = MediaQuery.of(context).size.width;
+    const double minWidth = 512;
+    final double width = MediaQuery.of(context).size.width;
     // Calculate horizontal padding moultiplier based off of window width
     double horizontalWidgetPaddingMultiplier;
     if (width < minWidth) {
@@ -325,34 +328,38 @@ class LauncherGrid extends StatelessWidget {
     }
 
     final _applications = applications;
-    List<Application> _internet = List.empty(growable: true);
-    List<Application> _media = List.empty(growable: true);
-    List<Application> _gaming = List.empty(growable: true);
-    List<Application> _development = List.empty(growable: true);
-    List<Application> _office = List.empty(growable: true);
-    List<Application> _system = List.empty(growable: true);
-    _applications.forEach((element) {
-      if (element.category == ApplicationCategory.INTERNET) {
-        _internet.add(element);
+    final List<Application> _internet = [];
+    final List<Application> _media = [];
+    final List<Application> _gaming = [];
+    final List<Application> _development = [];
+    final List<Application> _office = [];
+    final List<Application> _system = [];
+    for (final Application element in _applications) {
+      switch (element.category) {
+        case ApplicationCategory.internet:
+          _internet.add(element);
+          break;
+        case ApplicationCategory.media:
+          _media.add(element);
+          break;
+        case ApplicationCategory.gaming:
+          _gaming.add(element);
+          break;
+        case ApplicationCategory.development:
+          _development.add(element);
+          break;
+        case ApplicationCategory.office:
+          _office.add(element);
+          break;
+        case ApplicationCategory.system:
+          _system.add(element);
+          break;
+        default:
+          break;
       }
-      if (element.category == ApplicationCategory.MEDIA) {
-        _media.add(element);
-      }
-      if (element.category == ApplicationCategory.GAMING) {
-        _gaming.add(element);
-      }
-      if (element.category == ApplicationCategory.DEVELOPMENT) {
-        _development.add(element);
-      }
-      if (element.category == ApplicationCategory.OFFICE) {
-        _office.add(element);
-      }
-      if (element.category == ApplicationCategory.SYSTEM) {
-        _system.add(element);
-      }
-    });
+    }
 
-    List<List> pages = [
+    final List<List<Application>> pages = [
       _applications,
       _internet,
       _media,
@@ -368,37 +375,35 @@ class LauncherGrid extends StatelessWidget {
           horizontal: horizontalWidgetPaddingMultiplier * 200,
         ),
         child: PageView.builder(
-            physics: NeverScrollableScrollPhysics(),
-            controller: controller,
-            itemCount: pages.length,
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (context, pvindex) {
-              final page = pages[pvindex];
-              return GridView.builder(
-                physics: BouncingScrollPhysics(),
-                itemCount: pages[pvindex].length,
-                gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                  // Flutter automatically calculates the optimal number of horizontal
-                  // items with a MaxCrossAxisExtent in the app launcher grid
-                  maxCrossAxisExtent: 175,
-                  mainAxisSpacing: 0,
-                  crossAxisSpacing: 0,
-                ),
-                itemBuilder: (BuildContext context, int index) {
-                  final Application application =
-                      getApp(page[index].packageName!);
-                  if (!application.canBeOpened) {
-                    return IgnorePointer(
-                      child: Opacity(
-                        opacity: 0.4,
-                        child: AppLauncherButton(application),
-                      ),
-                    );
-                  }
-                  return AppLauncherButton(application);
-                },
-              );
-            }),
+          physics: const NeverScrollableScrollPhysics(),
+          controller: controller,
+          itemCount: pages.length,
+          itemBuilder: (context, int pvindex) {
+            final List<Application> page = pages[pvindex];
+            return GridView.builder(
+              physics: const BouncingScrollPhysics(),
+              itemCount: pages[pvindex].length,
+              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                // Flutter automatically calculates the optimal number of horizontal
+                // items with a MaxCrossAxisExtent in the app launcher grid
+                maxCrossAxisExtent: 175,
+              ),
+              itemBuilder: (BuildContext context, int index) {
+                final Application application =
+                    getApp(page[index].packageName!);
+                if (!application.canBeOpened) {
+                  return IgnorePointer(
+                    child: Opacity(
+                      opacity: 0.4,
+                      child: AppLauncherButton(application),
+                    ),
+                  );
+                }
+                return AppLauncherButton(application);
+              },
+            );
+          },
+        ),
       ),
     );
   }
@@ -407,6 +412,8 @@ class LauncherGrid extends StatelessWidget {
 // Power Menu
 
 class LauncherPowerMenu extends StatefulWidget {
+  const LauncherPowerMenu({Key? key}) : super(key: key);
+
   @override
   _LauncherPowerMenuState createState() => _LauncherPowerMenuState();
 }
@@ -423,7 +430,7 @@ class _LauncherPowerMenuState extends State<LauncherPowerMenu> {
         height: 32 + 16,
         child: BoxContainer(
           borderRadius:
-              CommonData.of(context).borderRadius(BorderRadiusType.MEDIUM),
+              CommonData.of(context).borderRadius(BorderRadiusType.medium),
           child: Material(
             color: Colors.transparent,
             child: Row(
@@ -434,16 +441,18 @@ class _LauncherPowerMenuState extends State<LauncherPowerMenu> {
                     height: 32 + 16,
                     child: InkWell(
                       borderRadius: CommonData.of(context)
-                          .borderRadius(BorderRadiusType.MEDIUM),
+                          .borderRadius(BorderRadiusType.medium),
                       onTap: () async {
                         _shell.dismissOverlay(LauncherOverlay.overlayId);
                         await Future.delayed(const Duration(milliseconds: 150));
-                        _shell.showOverlay(PowerOverlay.overlayId,
-                            dismissEverything: false);
+                        _shell.showOverlay(
+                          PowerOverlay.overlayId,
+                          dismissEverything: false,
+                        );
                         setState(() {});
                       },
                       mouseCursor: SystemMouseCursors.click,
-                      child: Icon(
+                      child: const Icon(
                         Icons.power_settings_new,
                         size: 28,
                       ),
@@ -455,10 +464,10 @@ class _LauncherPowerMenuState extends State<LauncherPowerMenu> {
                     height: 32 + 16,
                     child: InkWell(
                       borderRadius: CommonData.of(context)
-                          .borderRadius(BorderRadiusType.MEDIUM),
+                          .borderRadius(BorderRadiusType.medium),
                       onTap: () {},
                       mouseCursor: SystemMouseCursors.click,
-                      child: Icon(
+                      child: const Icon(
                         Icons.person,
                         size: 28,
                       ),
@@ -470,14 +479,14 @@ class _LauncherPowerMenuState extends State<LauncherPowerMenu> {
                     height: 32 + 16,
                     child: InkWell(
                       borderRadius: CommonData.of(context)
-                          .borderRadius(BorderRadiusType.MEDIUM),
+                          .borderRadius(BorderRadiusType.medium),
                       onTap: () {
                         _shell.dismissEverything();
                         WmAPI.of(context).openApp("io.dahlia.settings");
                         setState(() {});
                       },
                       mouseCursor: SystemMouseCursors.click,
-                      child: Icon(
+                      child: const Icon(
                         Icons.settings_outlined,
                         size: 28,
                       ),

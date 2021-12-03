@@ -13,15 +13,16 @@ limitations under the License.
 
 import 'package:flutter/material.dart';
 import 'package:pangolin/utils/context_menus/context_menu.dart';
+import 'package:pangolin/utils/context_menus/context_menu_item.dart';
 import 'package:pangolin/utils/wm/wm.dart';
 
 class ContextMenuRegion extends StatefulWidget {
-  ContextMenuRegion({
+  const ContextMenuRegion({
     Key? key,
     required this.contextMenu,
     this.child,
     this.useLongPress = true,
-  });
+  }) : super(key: key);
   final ContextMenu contextMenu;
   final Widget? child;
   final bool useLongPress;
@@ -31,7 +32,7 @@ class ContextMenuRegion extends StatefulWidget {
 }
 
 class _ContextMenuRegionState extends State<ContextMenuRegion> {
-  static final contextMenuEntry = WindowEntry(
+  static const contextMenuEntry = WindowEntry(
     features: [
       GeometryWindowFeature(),
       ResizeWindowFeature(),
@@ -59,15 +60,15 @@ class _ContextMenuRegionState extends State<ContextMenuRegion> {
         }
       },
       onSecondaryTapDown: (details) => showOverlay(context, details),
-      child: widget.child ?? SizedBox.shrink(),
+      child: widget.child ?? const SizedBox.shrink(),
     );
   }
 
   void showOverlay(BuildContext context, dynamic details) {
     List<int> _length = List.empty(growable: true);
-    widget.contextMenu.items.forEach((element) {
+    for (final ContextMenuItem element in widget.contextMenu.items) {
       _length.add(element.title.characters.length);
-    });
+    }
     _length.sort();
     final Size size =
         Size(_length.last * 13, widget.contextMenu.items.length * 44);

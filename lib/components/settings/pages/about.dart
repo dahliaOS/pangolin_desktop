@@ -107,36 +107,36 @@ class SettingsPageAbout extends StatelessWidget {
                 ),
                 Text(
                   "Version " + totalVersionNumber,
-                  style: TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Colors.white),
                 )
               ],
             )),
           ],
         ),
         Container(
-          margin: EdgeInsets.all(50),
+          margin: const EdgeInsets.all(50),
           child: Column(
             children: [
-              SettingsContentHeader("Kernel"),
+              const SettingsContentHeader("Kernel"),
               SettingsCard.withExpandable(
                 value: false,
-                leading: Icon(Icons.memory),
+                leading: const Icon(Icons.memory),
                 title: kernel,
               ),
-              SettingsContentHeader("Desktop"),
+              const SettingsContentHeader("Desktop"),
               SettingsCard.withExpandable(
                 value: false,
-                leading: Icon(Icons.desktop_mac),
+                leading: const Icon(Icons.desktop_mac),
                 title: "Pangolin " + pangolinCommit,
               ),
-              SettingsContentHeader("Software Update"),
+              const SettingsContentHeader("Software Update"),
               SettingsCard.withCustomTrailing(
                 title: "dahliaOS is up to date - 21XXXX",
                 subtitle: "Last checked: Today at 12:45 AM",
-                leading: Icon(Icons.update),
+                leading: const Icon(Icons.update),
                 trailing: ElevatedButton(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
                     child: Text("Check for updates"),
                   ),
                   onPressed: () {},

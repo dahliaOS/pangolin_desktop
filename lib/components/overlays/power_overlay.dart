@@ -25,7 +25,7 @@ import 'package:pangolin/widgets/box/box_container.dart';
 class PowerOverlay extends ShellOverlay {
   static const String overlayId = "power";
 
-  PowerOverlay() : super(id: overlayId);
+  PowerOverlay({Key? key}) : super(key: key, id: overlayId);
 
   @override
   _PowerOverlayState createState() => _PowerOverlayState();
@@ -65,7 +65,7 @@ class _PowerOverlayState extends State<PowerOverlay>
 
   @override
   Widget build(BuildContext context) {
-    if (!controller.showing) return SizedBox();
+    if (!controller.showing) return const SizedBox();
 
     final Animation<double> _animation = CurvedAnimation(
       parent: ac,
@@ -98,7 +98,7 @@ class _PowerOverlayState extends State<PowerOverlay>
                     dropShadow: true,
                     outline: false,
                     borderRadius: CommonData.of(context)
-                        .borderRadius(BorderRadiusType.BIG),
+                        .borderRadius(BorderRadiusType.big),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -106,7 +106,7 @@ class _PowerOverlayState extends State<PowerOverlay>
                           padding: const EdgeInsets.all(24.0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
+                            children: const [
                               Text(
                                 "Power Menu",
                                 style: TextStyle(
@@ -119,7 +119,7 @@ class _PowerOverlayState extends State<PowerOverlay>
                             ],
                           ),
                         ),
-                        Spacer(),
+                        const Spacer(),
                         Container(
                           width: double.infinity,
                           height: 224,
@@ -168,7 +168,7 @@ class _PowerOverlayState extends State<PowerOverlay>
                   Icon(
                     icon,
                   ),
-                  SizedBox(width: 12),
+                  const SizedBox(width: 12),
                   Text(
                     title,
                     style:
