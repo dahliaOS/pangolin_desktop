@@ -85,8 +85,7 @@ class TaskbarAlignmentButton extends StatelessWidget {
                               _taskbarElement(context, shaded: true),
                               const SizedBox(width: 8),
                               _taskbarElement(context, shaded: true),
-                            ] else
-                              ...[],
+                            ],
                           ],
                         ),
                         Row(
