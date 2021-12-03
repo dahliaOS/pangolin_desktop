@@ -111,9 +111,15 @@ class SettingsCard extends SettingsElementModel {
 class _SettingsCardState extends State<SettingsCard> {
   late bool _value;
   //Build SettingsCard widget
+
+  @override
+  void initState() {
+    _value = widget.value;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    _value = widget.value;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 6.0),
       // Slighly increase size on hover
