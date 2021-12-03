@@ -110,11 +110,28 @@ class SettingsCard extends SettingsElementModel {
 
 class _SettingsCardState extends State<SettingsCard> {
   late bool _value;
+
+  late bool isMutable;
+
+  late bool isRouter;
+
+  late bool isSwitchOrCustomTrailing;
   //Build SettingsCard widget
 
   @override
   void initState() {
     _value = widget.value;
+
+    isMutable = widget.type == SettingsElementModelType.expandableSwitch ||
+        widget.type == SettingsElementModelType.expandable ||
+        widget.type == SettingsElementModelType.toggleSwitch;
+
+    isRouter = widget.type == SettingsElementModelType.router;
+
+    isSwitchOrCustomTrailing =
+        widget.type == SettingsElementModelType.toggleSwitch ||
+            widget.type == SettingsElementModelType.customTrailing;
+
     super.initState();
   }
 
@@ -156,15 +173,10 @@ class _SettingsCardState extends State<SettingsCard> {
                     onTap: () {
                       setState(
                         () {
-                          if (widget.type ==
-                                  SettingsElementModelType.expandableSwitch ||
-                              widget.type ==
-                                  SettingsElementModelType.expandable ||
-                              widget.type ==
-                                  SettingsElementModelType.toggleSwitch) {
+                          if (isMutable) {
                             _value = !_value;
                           }
-                          if (widget.type == SettingsElementModelType.router) {
+                          if (isRouter) {
                             ScaffoldMessenger.of(context)
                                 .showSnackBar(_fallbackSnackBar);
                           }
@@ -176,13 +188,9 @@ class _SettingsCardState extends State<SettingsCard> {
                   ),
                   // Expandable content
                   Offstage(
-                      offstage: widget.type ==
-                                  SettingsElementModelType.toggleSwitch ||
-                              widget.type ==
-                                  SettingsElementModelType.customTrailing
-                          ? true
-                          : !widget.value,
-                      child: widget.content ?? _fallbackContent)
+                    offstage: isSwitchOrCustomTrailing ? true : !widget.value,
+                    child: widget.content ?? _fallbackContent,
+                  )
                 ],
               ),
       ),
