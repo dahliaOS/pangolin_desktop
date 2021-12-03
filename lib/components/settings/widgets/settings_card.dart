@@ -128,7 +128,7 @@ class _SettingsCardState extends State<SettingsCard> {
   @override
   void didUpdateWidget(covariant SettingsCard oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget != oldWidget) {
+    if (widget.value != oldWidget.value) {
       _value = widget.value;
     }
   }
