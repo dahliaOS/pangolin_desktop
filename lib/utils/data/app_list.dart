@@ -53,11 +53,9 @@ List<Application> applications = [
       iconName: "calculator",
       category: ApplicationCategory.office,
       description: "Solve mathematic calculations"),
-  // ignore: prefer_const_constructors
-  Application(
+  const Application(
       color: Colors.grey,
       packageName: "io.dahlia.terminal",
-      // ignore: prefer_const_constructors
       app: Terminal(),
       name: "Terminal",
       iconName: "terminal",
@@ -88,11 +86,9 @@ List<Application> applications = [
       iconName: "web",
       category: ApplicationCategory.internet,
       description: "Search and browse the web"),
-  // ignore: prefer_const_constructors
-  Application(
+  const Application(
       color: Colors.deepOrange,
       packageName: "io.dahlia.files",
-      // ignore: prefer_const_constructors
       app: Files(),
       name: "Files",
       iconName: "files",
