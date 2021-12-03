@@ -180,7 +180,7 @@ class _SettingsCardState extends State<SettingsCard> {
                             ScaffoldMessenger.of(context)
                                 .showSnackBar(_fallbackSnackBar);
                           }
-                          widget.onToggle?.call(widget.value);
+                          widget.onToggle?.call(_value);
                           widget.onTap?.call();
                         },
                       );
@@ -188,7 +188,7 @@ class _SettingsCardState extends State<SettingsCard> {
                   ),
                   // Expandable content
                   Offstage(
-                    offstage: isSwitchOrCustomTrailing ? true : !widget.value,
+                    offstage: isSwitchOrCustomTrailing ? true : !_value,
                     child: widget.content ?? _fallbackContent,
                   )
                 ],
