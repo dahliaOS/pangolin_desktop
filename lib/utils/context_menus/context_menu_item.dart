@@ -47,7 +47,9 @@ class ContextMenuItem extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 2),
             child: Row(
               children: [
-                Icon(icon),
+                Icon(
+                  icon,
+                ),
                 const SizedBox(
                   width: 16,
                 ),

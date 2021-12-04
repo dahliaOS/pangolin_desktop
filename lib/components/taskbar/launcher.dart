@@ -31,6 +31,7 @@ class LauncherButton extends StatelessWidget {
     final _customizationProvider = CustomizationProvider.of(context);
 
     return ContextMenuRegion(
+      centerAboveElement: true,
       contextMenu: ContextMenu(
         items: [
           ContextMenuItem(

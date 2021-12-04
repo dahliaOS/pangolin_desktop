@@ -32,18 +32,11 @@ class _ContextMenuState extends State<ContextMenu> {
     return BoxSurface(
       borderRadius: CommonData.of(context).borderRadius(BorderRadiusType.small),
       child: SingleChildScrollView(
-        child: SizeMeasureWidget(
-          onSizeMeasure: (size) =>
-              WidgetsBinding.instance!.addPostFrameCallback(
-            (_) => setState(() => this.size = size),
-          ),
-          child: SizedBox(
-            width: size != Size.zero ? size.width : null,
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: widget.items,
-            ),
+        child: SizedBox(
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: widget.items,
           ),
         ),
       ),

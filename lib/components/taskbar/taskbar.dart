@@ -110,7 +110,7 @@ class _TaskbarState extends State<Taskbar> {
           }
         },
         // TODO Fix taskbar background position
-        child: ContextMenuRegion(
+        /* child: ContextMenuRegion(
           contextMenu: ContextMenu(
             items: [
               const ContextMenuItem(
@@ -152,71 +152,71 @@ class _TaskbarState extends State<Taskbar> {
                 shortcut: "",
               ),
             ],
-          ),
-          child: ValueListenableBuilder<bool>(
-              valueListenable:
-                  _shell.getShowingNotifier(LauncherOverlay.overlayId),
-              builder: (context, shown, child) {
-                return Material(
-                  color: shown
-                      ? ColorsX.black.op(context.theme.darkMode ? 0.1 : 0.05)
-                      : Colors.transparent,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 4.0),
-                    child: Stack(
-                      children: [
-                        _customizationProvider.centerTaskbar
-                            ? Positioned.fill(
-                                child: listenerWrapper(Center(child: items)),
-                              )
-                            : const SizedBox.shrink(),
-                        _customizationProvider.isTaskbarHorizontal
-                            ? Row(
-                                children: [
-                                  Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: widget.leading ??
-                                        [const SizedBox.shrink()],
-                                  ),
-                                  Expanded(
-                                    child: _customizationProvider.centerTaskbar
-                                        ? Container()
-                                        : listenerWrapper(items),
-                                  ),
-                                  Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: widget.trailing ??
-                                        [const SizedBox.shrink()],
-                                  ),
-                                ],
-                              )
-                            : Column(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: widget.leading ??
-                                        [const SizedBox.shrink()],
-                                  ),
-                                  Expanded(
-                                    child: _customizationProvider.centerTaskbar
-                                        ? Container()
-                                        : listenerWrapper(items),
-                                  ),
-                                  Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: widget.trailing ??
-                                        [const SizedBox.shrink()],
-                                  ),
-                                ],
-                              ),
-                      ],
-                    ),
+          ), */
+        child: ValueListenableBuilder<bool>(
+            valueListenable:
+                _shell.getShowingNotifier(LauncherOverlay.overlayId),
+            builder: (context, shown, child) {
+              return Material(
+                color: shown
+                    ? ColorsX.black.op(context.theme.darkMode ? 0.1 : 0.05)
+                    : Colors.transparent,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 4.0),
+                  child: Stack(
+                    children: [
+                      _customizationProvider.centerTaskbar
+                          ? Positioned.fill(
+                              child: listenerWrapper(Center(child: items)),
+                            )
+                          : const SizedBox.shrink(),
+                      _customizationProvider.isTaskbarHorizontal
+                          ? Row(
+                              children: [
+                                Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: widget.leading ??
+                                      [const SizedBox.shrink()],
+                                ),
+                                Expanded(
+                                  child: _customizationProvider.centerTaskbar
+                                      ? Container()
+                                      : listenerWrapper(items),
+                                ),
+                                Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: widget.trailing ??
+                                      [const SizedBox.shrink()],
+                                ),
+                              ],
+                            )
+                          : Column(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: widget.leading ??
+                                      [const SizedBox.shrink()],
+                                ),
+                                Expanded(
+                                  child: _customizationProvider.centerTaskbar
+                                      ? Container()
+                                      : listenerWrapper(items),
+                                ),
+                                Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: widget.trailing ??
+                                      [const SizedBox.shrink()],
+                                ),
+                              ],
+                            ),
+                    ],
                   ),
-                );
-              }),
-        ),
+                ),
+              );
+            }),
       ),
+      /* ), */
     );
   }
 
