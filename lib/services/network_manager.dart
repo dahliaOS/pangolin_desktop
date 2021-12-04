@@ -26,7 +26,7 @@ IconData wifiBars(String nmcliIn, String security) {
       return Icons.signal_wifi_4_bar;
     }
   } else {
-    return Icons.signal_wifi_0_bar;
+    return Icons.signal_wifi_bad;
   }
 }
 
