@@ -62,10 +62,10 @@ String get username {
       var architechtureString = result.stdout;
       return architechtureString.toString().replaceAll('\n', '');
     } else {
-      return "x86_64 / ARM64 based Windows operating system";
+      return "Windows user";
     }
   } else {
-    return "Unkown architecture";
+    return "dahliaOS Live user";
   }
 }
 
