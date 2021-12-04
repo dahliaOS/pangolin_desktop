@@ -55,6 +55,20 @@ String get architecture {
   }
 }
 
+String get username {
+  if (!kIsWeb) {
+    if (!Platform.isWindows) {
+      ProcessResult result = Process.runSync('whoami', []);
+      var architechtureString = result.stdout;
+      return architechtureString.toString().replaceAll('\n', '');
+    } else {
+      return "Windows user";
+    }
+  } else {
+    return "dahliaOS Live user";
+  }
+}
+
 String pangolinCommit = "8c5eea993a89446b3bb0b9e313cdea1d06bf8477";
 String fullPangolinVersion = pangolinCommit;
 
