@@ -41,6 +41,20 @@ String get kernel {
   }
 }
 
+String get architecture {
+  if (!kIsWeb) {
+    if (!Platform.isWindows) {
+      ProcessResult result = Process.runSync('uname', ['-p']);
+      var architechtureString = result.stdout;
+      return architechtureString.toString().replaceAll('\n', '');
+    } else {
+      return "x86_64 / ARM64 based Windows operating system";
+    }
+  } else {
+    return "Unkown architecture";
+  }
+}
+
 String pangolinCommit = "8c5eea993a89446b3bb0b9e313cdea1d06bf8477";
 String fullPangolinVersion = pangolinCommit;
 

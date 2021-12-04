@@ -123,6 +123,12 @@ class SettingsPageAbout extends StatelessWidget {
                 leading: const Icon(Icons.memory),
                 title: kernel,
               ),
+              const SettingsContentHeader("Architecture"),
+              SettingsCard.withExpandable(
+                value: false,
+                leading: const Icon(Icons.architecture),
+                title: architecture,
+              ),
               const SettingsContentHeader("Desktop"),
               SettingsCard.withExpandable(
                 value: false,
