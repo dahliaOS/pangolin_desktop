@@ -38,6 +38,7 @@ import 'package:pangolin/utils/providers/customization_provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:pangolin/utils/providers/io_provider.dart';
 import 'package:pangolin/widgets/box/box_container.dart';
+import 'package:pangolin/utils/data/globals.dart';
 
 class QuickSettingsOverlay extends ShellOverlay {
   static const String overlayId = 'quicksettings';
@@ -153,7 +154,7 @@ class QsMain extends StatelessWidget {
         leading: const FlutterLogo(
           size: 18,
         ),
-        title: "dahliaOS Live User",
+        title: username,
         onPressed: () => Navigator.pushNamed(context, "/pages/account"),
         margin: EdgeInsets.zero,
         textStyle: TextStyle(
