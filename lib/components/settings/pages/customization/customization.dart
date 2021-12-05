@@ -23,6 +23,7 @@ import 'package:pangolin/components/settings/widgets/settings_page.dart';
 import 'package:pangolin/components/settings/widgets/taskbar_alignment_button.dart';
 import 'package:pangolin/components/settings/widgets/theme_mode_button.dart';
 import 'package:pangolin/utils/data/database_manager.dart';
+import 'package:pangolin/utils/providers/customization_provider.dart';
 
 class SettingsPageCustomization extends StatefulWidget {
   const SettingsPageCustomization({Key? key}) : super(key: key);
@@ -35,6 +36,7 @@ class SettingsPageCustomization extends StatefulWidget {
 class _SettingsPageCustomizationState extends State<SettingsPageCustomization> {
   @override
   Widget build(BuildContext context) {
+    final _provider = CustomizationProvider.of(context);
     return SettingsPage(
       title: "Customization",
       cards: [
@@ -107,6 +109,13 @@ class _SettingsPageCustomizationState extends State<SettingsPageCustomization> {
               );
             },
           ),
+        ),
+        SettingsCard.withSwitch(
+          title: "Use colored window titlebars",
+          value: _provider.coloredTitlebars,
+          onToggle: (value) {
+            _provider.coloredTitlebars = value;
+          },
         ),
       ],
     );

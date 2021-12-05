@@ -19,6 +19,7 @@ import 'package:pangolin/utils/context_menus/context_menu.dart';
 import 'package:pangolin/utils/context_menus/context_menu_item.dart';
 import 'package:pangolin/utils/context_menus/core/context_menu_region.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
+import 'package:pangolin/utils/providers/customization_provider.dart';
 import 'package:pangolin/utils/wm/wm.dart';
 
 class PangolinWindowToolbar extends StatefulWidget {
@@ -37,6 +38,7 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
   Widget build(BuildContext context) {
     final properties = WindowPropertyRegistry.of(context);
     final fgColor = !context.theme.darkMode ? Colors.grey[900]! : Colors.white;
+    final _customizationProvider = CustomizationProvider.of(context);
 
     return GestureDetector(
       child: ContextMenuRegion(
@@ -96,7 +98,9 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
         child: SizedBox(
           height: 40,
           child: Material(
-            color: Colors.transparent,
+            color: _customizationProvider.coloredTitlebars
+                ? context.accentColor
+                : Colors.transparent,
             child: IconTheme.merge(
               data: IconThemeData(
                 color: fgColor,

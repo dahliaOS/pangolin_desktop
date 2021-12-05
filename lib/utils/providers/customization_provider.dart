@@ -15,6 +15,7 @@ class CustomizationProvider extends ChangeNotifier {
   bool _darkMode = true;
   bool _centerTaskbar = true;
   bool _enableBlur = true;
+  bool _coloredTitlebars = false;
 
   List<String> _pinnedApps = List.from([
     "io.dahlia.calculator",
@@ -37,6 +38,7 @@ class CustomizationProvider extends ChangeNotifier {
   bool get darkMode => _darkMode;
   bool get centerTaskbar => _centerTaskbar;
   bool get enableBlur => _enableBlur;
+  bool get coloredTitlebars => _coloredTitlebars;
 
   List<String> get pinnedApps => _pinnedApps;
   List<String> get recentWallpapers => _recentWallpapers;
@@ -66,6 +68,12 @@ class CustomizationProvider extends ChangeNotifier {
     _enableBlur = value;
     notifyListeners();
     DatabaseManager.set("enableBlur", value);
+  }
+
+  set coloredTitlebars(bool value) {
+    _coloredTitlebars = value;
+    notifyListeners();
+    DatabaseManager.set("coloredTitlebars", value);
   }
 
   void togglePinnedApp(String packageName) {
@@ -118,6 +126,8 @@ class CustomizationProvider extends ChangeNotifier {
     darkMode = DatabaseManager.get("darkMode") ?? _darkMode;
     centerTaskbar = DatabaseManager.get("centerTaskbar") ?? _centerTaskbar;
     enableBlur = DatabaseManager.get("enableBlur") ?? _enableBlur;
+    coloredTitlebars =
+        DatabaseManager.get("coloredTitlebars") ?? _coloredTitlebars;
 
     _pinnedApps = List.from(DatabaseManager.get("pinnedApps") ?? _pinnedApps);
     _recentWallpapers =
