@@ -14,6 +14,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/settings/widgets/settings_card.dart';
 import 'package:pangolin/components/settings/widgets/settings_content_header.dart';
@@ -40,9 +43,13 @@ class _SettingsPageNetworkState extends State<SettingsPageNetwork> {
         SettingsCard.withExpandableSwitch(
           content: SizedBox(
             height: 200,
-            child: ListView(
-              children: parseNetworks(context),
-            ),
+            child: (Platform.isLinux)
+                ? (kIsWeb)
+                    ? ListView(
+                        children: parseNetworks(context),
+                      )
+                    : const Text("Not supported on this platform")
+                : const Text("Not supported on this platform"),
           ),
           title: "Wi-Fi",
           subtitle: "Wi-Fi is ${_wifiEnabled ? "enabled" : "disabled"}",
@@ -56,22 +63,22 @@ class _SettingsPageNetworkState extends State<SettingsPageNetwork> {
             });
           },
         ),
-        SettingsCard.withExpandable(
+        const SettingsCard.withExpandable(
           value: false,
           title: "Wi-Fi prefernces",
           subtitle: "Smart Wi-Fi connection, scanning options",
-          leading: const Icon(Icons.online_prediction_rounded),
+          leading: Icon(Icons.online_prediction_rounded),
         ),
-        SettingsCard.withExpandable(
+        const SettingsCard.withExpandable(
           value: false,
           title: "Saved networks",
           subtitle: "8 networks",
-          leading: const Icon(Icons.save_rounded),
+          leading: Icon(Icons.save_rounded),
         ),
-        SettingsCard.withRouter(
+        const SettingsCard.withRouter(
           title: "Wi-Fi data usage",
           subtitle: "Data usage for this month",
-          leading: const Icon(Icons.data_saver_on_rounded),
+          leading: Icon(Icons.data_saver_on_rounded),
         ),
         const SettingsContentHeader("Ethernet"),
         SettingsCard.withSwitch(
@@ -83,10 +90,10 @@ class _SettingsPageNetworkState extends State<SettingsPageNetwork> {
             setState(() => _ethernetEnabled = val);
           },
         ),
-        SettingsCard.withRouter(
+        const SettingsCard.withRouter(
           title: "Ethernet data usage",
           subtitle: "Data usage for this month",
-          leading: const Icon(Icons.data_saver_on_rounded),
+          leading: Icon(Icons.data_saver_on_rounded),
         ),
         const SettingsContentHeader("Network options"),
         SettingsCard.withCustomTrailing(
