@@ -52,7 +52,7 @@ class _ShowDesktopButtonState extends State<ShowDesktopButton> {
           }
         },
         child: SizedBox(
-          width: 4,
+          width: 8,
           child: Stack(
             children: [
               Align(
@@ -60,8 +60,8 @@ class _ShowDesktopButtonState extends State<ShowDesktopButton> {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(4),
                   child: Container(
-                    height: 16,
-                    width: 4,
+                    height: 20,
+                    width: 2,
                     color: isHovered
                         ? context.theme.textTheme.bodyText1?.color
                         : Colors.transparent,
