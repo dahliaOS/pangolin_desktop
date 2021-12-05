@@ -18,6 +18,7 @@ import 'package:flutter/material.dart';
 import 'package:pangolin/components/settings/widgets/settings_card.dart';
 import 'package:pangolin/components/settings/widgets/settings_content_header.dart';
 import 'package:pangolin/components/settings/widgets/settings_page.dart';
+import 'package:pangolin/services/network_manager.dart';
 
 class SettingsPageNetwork extends StatefulWidget {
   const SettingsPageNetwork({Key? key}) : super(key: key);
@@ -37,6 +38,12 @@ class _SettingsPageNetworkState extends State<SettingsPageNetwork> {
       cards: [
         const SettingsContentHeader("Wi-Fi"),
         SettingsCard.withExpandableSwitch(
+          content: SizedBox(
+            height: 200,
+            child: ListView(
+              children: parseNetworks(context),
+            ),
+          ),
           title: "Wi-Fi",
           subtitle: "Wi-Fi is ${_wifiEnabled ? "enabled" : "disabled"}",
           leading: const Icon(
