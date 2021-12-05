@@ -43,8 +43,8 @@ class _SettingsPageNetworkState extends State<SettingsPageNetwork> {
         SettingsCard.withExpandableSwitch(
           content: SizedBox(
             height: 200,
-            child: (Platform.isLinux)
-                ? (kIsWeb)
+            child: (kIsWeb)
+                ? (Platform.isLinux)
                     ? ListView(
                         children: parseNetworks(context),
                       )
