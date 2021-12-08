@@ -13,9 +13,10 @@ limitations under the License.
 
 import 'package:pangolin/utils/data/models/application.dart';
 
-import '../other/apps_stub.dart' if (dart.library.io) 'package:files/main.dart';
+import 'package:pangolin/utils/other/apps_stub.dart'
+    if (dart.library.io) 'package:files/main.dart';
 // ignore: duplicate_import
-import '../other/apps_stub.dart'
+import 'package:pangolin/utils/other/apps_stub.dart'
     if (dart.library.io) 'package:terminal/main.dart';
 
 import 'package:calculator/calculator.dart';
