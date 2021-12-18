@@ -22,20 +22,25 @@ import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
 import 'package:pangolin/utils/wm/wm.dart';
 
+
 class PangolinWindowToolbar extends StatefulWidget {
-  const PangolinWindowToolbar({Key? key}) : super(key: key);
+  
+  const PangolinWindowToolbar({Key? key, required this.barColor}) : super(key: key);
+final Color barColor;
 
   @override
   _PangolinWindowToolbarState createState() => _PangolinWindowToolbarState();
 }
 
 class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
+  
   SystemMouseCursor _cursor = SystemMouseCursors.move;
   // ignore: unused_field
   late DragUpdateDetails _lastDetails;
 
   @override
   Widget build(BuildContext context) {
+    
     final properties = WindowPropertyRegistry.of(context);
     final fgColor = !context.theme.darkMode ? Colors.grey[900]! : Colors.white;
     final _customizationProvider = CustomizationProvider.of(context);
@@ -99,7 +104,7 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
           height: 40,
           child: Material(
             color: _customizationProvider.coloredTitlebars
-                ? context.accentColor
+                ? widget.barColor
                 : Colors.transparent,
             child: IconTheme.merge(
               data: IconThemeData(

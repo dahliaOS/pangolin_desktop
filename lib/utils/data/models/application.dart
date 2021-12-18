@@ -21,7 +21,7 @@ class Application {
   final ApplicationCategory? category;
   final bool isTest;
   final String? iconName;
-  final Color? color;
+  final Color color;
   final bool supportsWeb;
   const Application(
       {required this.app,
@@ -30,7 +30,7 @@ class Application {
       this.description,
       this.iconName,
       required this.name,
-      this.color,
+      required this.color,
       this.isTest = false,
       this.version,
       this.supportsWeb = true});
@@ -42,7 +42,7 @@ class Application {
       this.iconName,
       required this.name,
       this.isTest = true,
-      this.color,
+      required this.color,
       this.version = "TEST",
       this.supportsWeb = true});
 }

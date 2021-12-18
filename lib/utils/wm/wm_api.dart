@@ -53,7 +53,7 @@ class WmAPI {
         ),
       ),
       SurfaceWindowFeature.background: const PangolinWindowSurface(),
-      ToolbarWindowFeature.widget: const PangolinWindowToolbar(),
+      ToolbarWindowFeature.widget: const PangolinWindowToolbar(barColor:Colors.transparent),
       ToolbarWindowFeature.size: 40.0,
     },
   );
@@ -76,6 +76,9 @@ class WmAPI {
       application.app ?? const ErrorWindow(),
       {
         WindowEntry.title: application.name,
+        ToolbarWindowFeature.widget: PangolinWindowToolbar(
+          barColor: application.color,
+        ),
         WindowEntry.icon:
             AssetImage("assets/icons/${application.iconName}.png"),
         WindowExtras.stableId: packageName,
