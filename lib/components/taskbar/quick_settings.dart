@@ -31,7 +31,7 @@ class QuickSettingsButton extends StatelessWidget {
     final _connectionProv = ConnectionProvider.of(context);
     return TaskbarElement(
       iconSize: 18,
-      size: Size.fromWidth(66 +
+      size: Size.fromWidth(70 +
           24 +
           6 +
           (_connectionProv.wifi ? 26 : 0) +
@@ -40,68 +40,45 @@ class QuickSettingsButton extends StatelessWidget {
           26),
       overlayID: QuickSettingsOverlay.overlayId,
       child: Padding(
-        padding: const EdgeInsets.only(left: 8.0, right: 4.0),
-        child: _customizationProvider.isTaskbarHorizontal
-            ? Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: items(context)
-                  ..add(
-                    Padding(
-                      padding: _customizationProvider.isTaskbarHorizontal
-                          ? const EdgeInsets.symmetric(horizontal: 8.0)
-                          : const EdgeInsets.symmetric(vertical: 8.0),
-                      child: ValueListenableBuilder<bool>(
-                        valueListenable: Shell.of(context)
-                            .getShowingNotifier(QuickSettingsOverlay.overlayId),
-                        builder: (context, showing, child) =>
-                            ValueListenableBuilder(
-                          valueListenable: DateTimeManager.getTimeNotifier()!,
-                          builder: (BuildContext context, String time, child) {
-                            return Text(
-                              time,
-                              style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                fontSize: 13,
-                                color: showing
-                                    ? context.accentColor.computeLuminance() <
-                                            0.3
-                                        ? const Color(0xffffffff)
-                                        : const Color(0xff000000)
-                                    : context.theme.darkMode
-                                        ? const Color(0xffffffff)
-                                        : const Color(0xff000000),
-                              ),
-                            );
-                          },
-                        ),
-                      ),
-                    ),
-                  ),
-              )
-            : Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: items(context)
-                  ..add(
-                    Padding(
-                      padding: _customizationProvider.isTaskbarHorizontal
-                          ? const EdgeInsets.symmetric(horizontal: 8.0)
-                          : const EdgeInsets.symmetric(vertical: 8.0),
-                      child: ValueListenableBuilder(
+          padding: const EdgeInsets.only(left: 8.0, right: 4.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: items(context)
+              ..add(
+                SizedBox(
+                  width: 72,
+                  child: Padding(
+                    padding: _customizationProvider.isTaskbarHorizontal
+                        ? const EdgeInsets.symmetric(horizontal: 8.0)
+                        : const EdgeInsets.symmetric(vertical: 8.0),
+                    child: ValueListenableBuilder<bool>(
+                      valueListenable: Shell.of(context)
+                          .getShowingNotifier(QuickSettingsOverlay.overlayId),
+                      builder: (context, showing, child) =>
+                          ValueListenableBuilder(
                         valueListenable: DateTimeManager.getTimeNotifier()!,
                         builder: (BuildContext context, String time, child) {
                           return Text(
                             time,
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontWeight: FontWeight.w600,
-                              fontSize: 14,
+                              fontSize: 13,
+                              color: showing
+                                  ? context.accentColor.computeLuminance() < 0.3
+                                      ? const Color(0xffffffff)
+                                      : const Color(0xff000000)
+                                  : context.theme.darkMode
+                                      ? const Color(0xffffffff)
+                                      : const Color(0xff000000),
                             ),
                           );
                         },
                       ),
                     ),
                   ),
+                ),
               ),
-      ),
+          )),
     );
   }
 
