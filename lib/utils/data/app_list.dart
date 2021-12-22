@@ -143,7 +143,10 @@ Application getApp(String packageName) {
 Application get fallbackApp {
   return const Application(
     color: Colors.red,
-      app: ErrorWindow(), name: "Error", packageName: "io.dahlia.error",);
+    app: ErrorWindow(),
+    name: "Error",
+    packageName: "io.dahlia.error",
+  );
 }
 
 extension AppWebExtension on Application {
