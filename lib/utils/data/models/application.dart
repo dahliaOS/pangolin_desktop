@@ -23,7 +23,7 @@ class Application {
   final String? iconName;
   final Color color;
   final bool supportsWeb;
-  const Application(
+  Application(
       {required this.app,
       required this.packageName,
       this.category,
