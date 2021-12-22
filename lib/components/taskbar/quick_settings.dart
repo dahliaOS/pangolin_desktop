@@ -61,7 +61,7 @@ class QuickSettingsButton extends StatelessWidget {
                               time,
                               style: TextStyle(
                                 fontWeight: FontWeight.w600,
-                                fontSize: 13,
+                                fontSize: 12,
                                 color: showing
                                     ? context.accentColor.computeLuminance() <
                                             0.3
