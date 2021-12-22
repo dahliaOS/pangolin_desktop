@@ -88,7 +88,7 @@ class _SettingsPageCustomizationState extends State<SettingsPageCustomization> {
         ),
         const SettingsContentHeader("Window options"),
         SettingsCard.withCustomTrailing(
-          title: "Window rorder radius  -  " +
+          title: "Window border radius  -  " +
               DatabaseManager.get("windowBorderRadius").toString(),
           trailing: Builder(
             builder: (context) {
