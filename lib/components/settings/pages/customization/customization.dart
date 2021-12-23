@@ -118,7 +118,7 @@ class _SettingsPageCustomizationState extends State<SettingsPageCustomization> {
             ),
             SwitchListTile(
               title: const Text("Colored window titlebars"),
-              subtitle: Text("Use colored titlebars for the windows"),
+              subtitle: const Text("Use colored titlebars for the windows"),
               value: _provider.coloredTitlebars,
               onChanged: (value) {
                 _provider.coloredTitlebars = value;
