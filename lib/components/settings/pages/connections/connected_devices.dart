@@ -15,6 +15,7 @@ limitations under the License.
 */
 
 import 'package:flutter/material.dart';
+import 'package:pangolin/components/settings/widgets/list_tiles.dart';
 import 'package:pangolin/components/settings/widgets/settings_card.dart';
 import 'package:pangolin/components/settings/widgets/settings_content_header.dart';
 import 'package:pangolin/components/settings/widgets/settings_page.dart';
@@ -28,21 +29,31 @@ class SettingsPageConnectedDevices extends StatelessWidget {
       title: "Connected Devices",
       cards: [
         const SettingsContentHeader("Bluetooth"),
-        SettingsCard.withExpandableSwitch(
-          value: false,
-          title: "Bluetooth",
-          leading: const Icon(Icons.bluetooth_rounded),
-          subtitle: "Enable bluetooth service",
-        ),
-        SettingsCard.withRouter(
-          title: "Files received via Bluetooth",
-          leading: const Icon(Icons.file_copy_rounded),
+        SettingsCard(
+          children: [
+            ExpandableSwitchListTile(
+              value: false,
+              onChanged: (val) {},
+              title: const Text("Bluetooth"),
+              subtitle: const Text("Disabled"),
+              leading: const Icon(Icons.bluetooth_rounded),
+            ),
+            const RouterListTile(
+              title: Text("Files received via Bluetooth"),
+              leading: Icon(Icons.file_copy_rounded),
+            ),
+          ],
         ),
         const SettingsContentHeader("Phone integration"),
-        SettingsCard.withExpandable(
-          value: false,
-          leading: const Icon(Icons.devices_other_rounded),
-          title: "Phone connection",
+        const SettingsCard(
+          children: [
+            ExpandableListTile(
+              value: false,
+              title: Text("Phone integration"),
+              subtitle: Text("Disabled"),
+              leading: Icon(Icons.phone_android_rounded),
+            ),
+          ],
         ),
       ],
     );

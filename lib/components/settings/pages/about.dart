@@ -28,7 +28,7 @@ class SettingsPageAbout extends StatelessWidget {
     return /*SettingsPage(
       title: "About",
       cards: [
-        SettingsCard.custom(
+        SettingsCardOld.custom(
           content: SizedBox(
             width: double.infinity,
             child: Padding(
@@ -117,36 +117,42 @@ class SettingsPageAbout extends StatelessWidget {
           margin: const EdgeInsets.all(50),
           child: Column(
             children: [
-              const SettingsContentHeader("Kernel"),
-              SettingsCard.withExpandable(
-                value: false,
-                leading: const Icon(Icons.memory),
-                title: kernel,
-              ),
-              const SettingsContentHeader("Architecture"),
-              SettingsCard.withExpandable(
-                value: false,
-                leading: const Icon(Icons.architecture),
-                title: architecture,
-              ),
-              const SettingsContentHeader("Desktop"),
-              SettingsCard.withExpandable(
-                value: false,
-                leading: const Icon(Icons.desktop_mac),
-                title: "Pangolin " + pangolinCommit,
+              const SettingsContentHeader("System Information"),
+              SettingsCard(
+                children: [
+                  ListTile(
+                    title: const Text("Environment"),
+                    subtitle: Text(kernel),
+                    leading: const Icon(Icons.memory),
+                  ),
+                  ListTile(
+                    title: const Text("Architecture"),
+                    subtitle: Text(architecture),
+                    leading: const Icon(Icons.architecture),
+                  ),
+                  ListTile(
+                    title: const Text("Desktop"),
+                    subtitle: Text("Pangolin " + pangolinCommit),
+                    leading: const Icon(Icons.desktop_mac),
+                  )
+                ],
               ),
               const SettingsContentHeader("Software Update"),
-              SettingsCard.withCustomTrailing(
-                title: "dahliaOS is up to date - 21XXXX",
-                subtitle: "Last checked: Today at 12:45 AM",
-                leading: const Icon(Icons.update),
-                trailing: ElevatedButton(
-                  child: const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text("Check for updates"),
+              SettingsCard(
+                children: [
+                  ListTile(
+                    title: const Text("dahliaOS is up to date - 21XXXX"),
+                    subtitle: const Text("Last checked: Today at 12:45 AM"),
+                    leading: const Icon(Icons.update),
+                    trailing: ElevatedButton(
+                      child: const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Text("Check for updates"),
+                      ),
+                      onPressed: () {},
+                    ),
                   ),
-                  onPressed: () {},
-                ),
+                ],
               ),
             ],
           ),

@@ -20,7 +20,7 @@ import 'package:pangolin/utils/extensions/extensions.dart';
 
 class SettingsPage extends StatelessWidget {
   final String title;
-  final List<SettingsElementModel> cards;
+  final List<Widget> cards;
 
   const SettingsPage({required this.title, required this.cards, Key? key})
       : super(key: key);
@@ -44,10 +44,9 @@ class SettingsPage extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(64, 96, 64, 24),
           child: SizedBox(
             width: MediaQuery.of(context).size.width - 500,
-            child: SingleChildScrollView(
-              child: Column(
-                children: cards,
-              ),
+            child: ListView(
+              physics: const BouncingScrollPhysics(),
+              children: cards,
             ),
           ),
         ),

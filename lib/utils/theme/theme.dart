@@ -96,6 +96,11 @@ ThemeData theme(BuildContext context) {
         ),
       ),
     ),
+    snackBarTheme: SnackBarThemeData(
+      contentTextStyle: TextStyle(
+        color: _customizationProvider.darkMode ? ColorsX.white : ColorsX.black,
+      ),
+    ),
     dialogBackgroundColor: ThemeManager.of(context).backgroundColor,
     toggleableActiveColor: Color(_customizationProvider.accentColor),
     platform: TargetPlatform.android,
