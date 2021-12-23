@@ -46,7 +46,7 @@ class QuickSettingsButton extends StatelessWidget {
             children: items(context)
               ..add(
                 SizedBox(
-                  width: 72,
+                  width: 74,
                   child: Padding(
                     padding: _customizationProvider.isTaskbarHorizontal
                         ? const EdgeInsets.symmetric(horizontal: 8.0)
