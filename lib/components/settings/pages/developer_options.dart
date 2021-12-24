@@ -16,7 +16,6 @@ limitations under the License.
 
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/settings/widgets/settings_card.dart';
-import 'package:pangolin/components/settings/widgets/settings_content_header.dart';
 import 'package:pangolin/components/settings/widgets/settings_page.dart';
 
 class SettingsPageDeveloperOptions extends StatefulWidget {
@@ -35,24 +34,18 @@ class _SettingsPageDeveloperOptionsState
     return SettingsPage(
       title: "Developer Options",
       cards: [
-        SettingsCard.withSwitch(
-          title: "Developer Mode",
-          subtitle: "Activate advanced debugging features",
-          leading: const Icon(Icons.developer_mode),
-          value: _devModeEnabled,
-          onToggle: (val) {
-            setState(() => _devModeEnabled = val);
-          },
-        ),
-        const SettingsContentHeader(""),
-        SettingsCard.withSwitch(
-          title: "Developer Mode",
-          subtitle: "Activate advanced debugging features",
-          leading: const Icon(Icons.developer_mode),
-          value: _devModeEnabled,
-          onToggle: (val) {
-            setState(() => _devModeEnabled = val);
-          },
+        SettingsCard(
+          children: [
+            SwitchListTile(
+              title: const Text("Developer Mode"),
+              subtitle: const Text("Activate advanced debugging features"),
+              secondary: const Icon(Icons.developer_mode),
+              value: _devModeEnabled,
+              onChanged: (val) {
+                setState(() => _devModeEnabled = val);
+              },
+            ),
+          ],
         ),
       ],
     );
