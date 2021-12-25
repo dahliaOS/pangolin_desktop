@@ -31,18 +31,23 @@ class QuickSettingsButton extends StatelessWidget {
     final _connectionProv = ConnectionProvider.of(context);
     return TaskbarElement(
       iconSize: 18,
-      size: Size.fromWidth(88 +
-          (_connectionProv.wifi ? 28 : 0) +
-          (_connectionProv.bluetooth ? 28 : 0) +
-          32 +
-          32),
+      size: Size.fromWidth(70 +
+          24 +
+          6 +
+          (_connectionProv.wifi ? 26 : 0) +
+          (_connectionProv.bluetooth ? 26 : 0) +
+          26 +
+          26),
       overlayID: QuickSettingsOverlay.overlayId,
-      child: _customizationProvider.isTaskbarHorizontal
-          ? Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: items(context)
-                ..add(
-                  Padding(
+      child: Padding(
+          padding: const EdgeInsets.only(left: 8.0, right: 4.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: items(context)
+              ..add(
+                SizedBox(
+                  width: 74,
+                  child: Padding(
                     padding: _customizationProvider.isTaskbarHorizontal
                         ? const EdgeInsets.symmetric(horizontal: 8.0)
                         : const EdgeInsets.symmetric(vertical: 8.0),
@@ -72,30 +77,8 @@ class QuickSettingsButton extends StatelessWidget {
                     ),
                   ),
                 ),
-            )
-          : Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: items(context)
-                ..add(
-                  Padding(
-                    padding: _customizationProvider.isTaskbarHorizontal
-                        ? const EdgeInsets.symmetric(horizontal: 8.0)
-                        : const EdgeInsets.symmetric(vertical: 8.0),
-                    child: ValueListenableBuilder(
-                      valueListenable: DateTimeManager.getTimeNotifier()!,
-                      builder: (BuildContext context, String time, child) {
-                        return Text(
-                          time,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 14,
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                ),
-            ),
+              ),
+          )),
     );
   }
 
@@ -143,13 +126,14 @@ class QuickSettingsButton extends StatelessWidget {
           ),
         ),
       ),
-      Container(width: 5),
-      ClipRRect(
-        borderRadius: BorderRadius.all(Radius.circular(4)),
-        child: Container(
-            color: context.theme.darkMode ? Colors.white : Colors.black,
-            width: 4,
-            height: 16),
+      const SizedBox(width: 4),
+      Container(
+        width: 2,
+        height: 16,
+        decoration: BoxDecoration(
+          color: context.theme.darkMode ? Colors.white : Colors.black,
+          borderRadius: const BorderRadius.all(Radius.circular(4)),
+        ),
       ),
     ];
   }

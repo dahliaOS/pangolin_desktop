@@ -83,7 +83,7 @@ Widget networkTile(
                     "password",
                     passwordController.text
                   ]);
-                  print("Connecting to: " + title);
+                  // print("Connecting to: " + title);
                   Navigator.of(ctx).pop();
                   var networkConnection = Process.runSync('curl', [
                     'https://packages.dahliaos.io/validation.get'
@@ -132,7 +132,7 @@ List<Widget> parseNetworks(context) {
   input.forEach((network) {
     //TODO: Remove channel and frequency duplicate networks
     if (network.toString().split(":").length > 1) {
-      print(network);
+      //print(network);
       if (network.toString().split(":")[0] == "*") {
         tiles.add(networkTile(
             network.toString().split(":")[7],

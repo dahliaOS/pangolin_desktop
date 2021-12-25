@@ -14,11 +14,15 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:pangolin/components/settings/widgets/settings_card.dart';
+import 'package:pangolin/components/settings/widgets/list_tiles.dart';
 import 'package:pangolin/components/settings/widgets/settings_content_header.dart';
 import 'package:pangolin/components/settings/widgets/settings_page.dart';
 import 'package:pangolin/services/network_manager.dart';
+import 'package:pangolin/components/settings/widgets/settings_card.dart';
 
 class SettingsPageNetwork extends StatefulWidget {
   const SettingsPageNetwork({Key? key}) : super(key: key);
@@ -35,85 +39,115 @@ class _SettingsPageNetworkState extends State<SettingsPageNetwork> {
   Widget build(BuildContext context) {
     return SettingsPage(
       title: "Network & internet",
-      cards: [
-        const SettingsContentHeader("Wi-Fi"),
-        SettingsCard.withExpandableSwitch(
-          content: SizedBox(
-            height: 200,
-            child: ListView(
-              children: parseNetworks(context),
-            ),
-          ),
-          title: "Wi-Fi",
-          subtitle: "Wi-Fi is ${_wifiEnabled ? "enabled" : "disabled"}",
-          leading: const Icon(
-            Icons.wifi_rounded,
-          ),
-          value: _wifiEnabled,
-          onToggle: (val) {
-            setState(() {
-              _wifiEnabled = val;
-            });
-          },
-        ),
-        SettingsCard.withExpandable(
-          value: false,
-          title: "Wi-Fi prefernces",
-          subtitle: "Smart Wi-Fi connection, scanning options",
-          leading: const Icon(Icons.online_prediction_rounded),
-        ),
-        SettingsCard.withExpandable(
-          value: false,
-          title: "Saved networks",
-          subtitle: "8 networks",
-          leading: const Icon(Icons.save_rounded),
-        ),
-        SettingsCard.withRouter(
-          title: "Wi-Fi data usage",
-          subtitle: "Data usage for this month",
-          leading: const Icon(Icons.data_saver_on_rounded),
-        ),
-        const SettingsContentHeader("Ethernet"),
-        SettingsCard.withSwitch(
-          title: "Ethernet",
-          subtitle: "Ethernet is ${_ethernetEnabled ? "enabled" : "disabled"}",
-          leading: const Icon(Icons.settings_ethernet_rounded),
-          value: _ethernetEnabled,
-          onToggle: (val) {
-            setState(() => _ethernetEnabled = val);
-          },
-        ),
-        SettingsCard.withRouter(
-          title: "Ethernet data usage",
-          subtitle: "Data usage for this month",
-          leading: const Icon(Icons.data_saver_on_rounded),
-        ),
-        const SettingsContentHeader("Network options"),
-        SettingsCard.withCustomTrailing(
-          title: "Virtual Private Network (VPN)",
-          subtitle: "None",
-          leading: const Icon(Icons.vpn_lock_rounded),
-          trailing: ElevatedButton(
-            child: const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Text("VPN options"),
-            ),
-            onPressed: () {},
-          ),
-        ),
-        SettingsCard.withCustomTrailing(
-          title: "Private DNS",
-          subtitle: "Automatic",
-          leading: const Icon(Icons.dns_rounded),
-          trailing: ElevatedButton(
-            child: const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Text("DNS options"),
-            ),
-            onPressed: () {},
-          ),
-        ),
-      ],
+      cards: (kIsWeb)
+          ? [
+              const SettingsCard(
+                children: [
+                  ListTile(
+                    title: Text("Not supported on this platform"),
+                  ),
+                ],
+              ),
+            ]
+          : [
+              const SettingsContentHeader("Wi-Fi"),
+              SettingsCard(
+                children: [
+                  ExpandableSwitchListTile(
+                    title: Text("Wi-Fi"),
+                    subtitle: Text(
+                        "Wi-Fi is ${_wifiEnabled ? "enabled" : "disabled"}"),
+                    value: _wifiEnabled,
+                    leading: const Icon(Icons.wifi),
+                    onChanged: (val) {
+                      setState(() {
+                        _wifiEnabled = val;
+                      });
+                    },
+                    content: SizedBox(
+                      height: 200,
+                      child: ListView(
+                        children: (Platform.isLinux)
+                            ? parseNetworks(context)
+                            : const [
+                                Center(
+                                    child:
+                                        Text("Not supported on this platform"))
+                              ],
+                      ),
+                    ),
+                  ),
+                  const ExpandableListTile(
+                    value: false,
+                    title: Text("Wi-Fi prefernces"),
+                    subtitle: Text("Smart Wi-Fi connection, scanning options"),
+                    leading: Icon(
+                      Icons.online_prediction_rounded,
+                    ),
+                  ),
+                  const ExpandableListTile(
+                    value: false,
+                    title: Text("Saved networks"),
+                    subtitle: Text("8 networks"),
+                    leading: Icon(Icons.save_rounded),
+                  ),
+                  const RouterListTile(
+                    title: Text("Wi-Fi data usage"),
+                    subtitle: Text("Data usage for this month"),
+                    leading: Icon(Icons.data_saver_on_rounded),
+                  )
+                ],
+              ),
+              const SettingsContentHeader("Ethernet"),
+              SettingsCard(
+                children: [
+                  SwitchListTile(
+                    title: Text("Ethernet"),
+                    subtitle: Text(
+                        "Ethernet is ${_ethernetEnabled ? "enabled" : "disabled"}"),
+                    secondary: const Icon(Icons.settings_ethernet_rounded),
+                    value: _ethernetEnabled,
+                    onChanged: (val) {
+                      setState(() => _ethernetEnabled = val);
+                    },
+                  ),
+                  const RouterListTile(
+                    title: Text("Ethernet data usage"),
+                    subtitle: Text("Data usage for this month"),
+                    leading: Icon(Icons.data_saver_on_rounded),
+                  ),
+                ],
+              ),
+              const SettingsContentHeader("Network options"),
+              SettingsCard(
+                children: [
+                  ListTile(
+                    title: const Text("Virtual Private Network (VPN)"),
+                    subtitle: const Text("None"),
+                    leading: const Icon(Icons.vpn_lock_rounded),
+                    trailing: ElevatedButton(
+                      child: const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Text("VPN options"),
+                      ),
+                      onPressed: () {},
+                    ),
+                  ),
+                  ListTile(
+                    title: const Text("Private DNS"),
+                    subtitle: const Text("Automatic"),
+                    leading: const Icon(Icons.dns_rounded),
+                    trailing: ElevatedButton(
+                      child: const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Text("DNS options"),
+                      ),
+                      onPressed: () {},
+                    ),
+                  ),
+                ],
+              ),
+            ],
     );
   }
 }

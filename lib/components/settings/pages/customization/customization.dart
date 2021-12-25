@@ -23,6 +23,7 @@ import 'package:pangolin/components/settings/widgets/settings_page.dart';
 import 'package:pangolin/components/settings/widgets/taskbar_alignment_button.dart';
 import 'package:pangolin/components/settings/widgets/theme_mode_button.dart';
 import 'package:pangolin/utils/data/database_manager.dart';
+import 'package:pangolin/utils/providers/customization_provider.dart';
 
 class SettingsPageCustomization extends StatefulWidget {
   const SettingsPageCustomization({Key? key}) : super(key: key);
@@ -35,78 +36,95 @@ class SettingsPageCustomization extends StatefulWidget {
 class _SettingsPageCustomizationState extends State<SettingsPageCustomization> {
   @override
   Widget build(BuildContext context) {
+    final _provider = CustomizationProvider.of(context);
     return SettingsPage(
       title: "Customization",
       cards: [
-        const SettingsContentHeader("Accent color"),
-        SettingsCard.custom(
-          content: SizedBox(
-            width: double.infinity,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: SettingsPresets.accentColorPresets
-                    .map((e) => AccentColorButton(model: e))
-                    .toList(),
+        const SettingsContentHeader("Theme"),
+        SettingsCard(
+          children: [
+            SizedBox(
+              width: double.infinity,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: SettingsPresets.themeModePresets
+                      .map((e) => ThemeModeButton(model: e))
+                      .toList(),
+                ),
               ),
             ),
-          ),
-        ),
-        const SettingsContentHeader("Theme Mode"),
-        SettingsCard.custom(
-          content: SizedBox(
-            width: double.infinity,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: SettingsPresets.themeModePresets
-                    .map((e) => ThemeModeButton(model: e))
-                    .toList(),
+            SizedBox(
+              width: double.infinity,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: SettingsPresets.accentColorPresets
+                      .map((e) => AccentColorButton(model: e))
+                      .toList(),
+                ),
               ),
             ),
-          ),
+          ],
         ),
         const SettingsContentHeader("Taskbar Alignment"),
-        SettingsCard.custom(
-          content: SizedBox(
-            width: double.infinity,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Wrap(
-                alignment: WrapAlignment.spaceEvenly,
-                // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: SettingsPresets.taskbarAlignmentPresets
-                    .map((e) => TaskbarAlignmentButton(model: e))
-                    .toList(),
+        SettingsCard(
+          children: [
+            SizedBox(
+              width: double.infinity,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Wrap(
+                  alignment: WrapAlignment.spaceEvenly,
+                  // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: SettingsPresets.taskbarAlignmentPresets
+                      .map((e) => TaskbarAlignmentButton(model: e))
+                      .toList(),
+                ),
               ),
             ),
-          ),
+          ],
         ),
         const SettingsContentHeader("Window options"),
-        SettingsCard.withCustomTrailing(
-          title: "Window rorder radius  -  " +
-              DatabaseManager.get("windowBorderRadius").toString(),
-          trailing: Builder(
-            builder: (context) {
-              var value = DatabaseManager.get("windowBorderRadius");
-              return SizedBox(
-                width: 256,
-                child: Slider(
-                  divisions: 4,
-                  min: 8.0,
-                  max: 24.0,
-                  onChanged: (double val) {
-                    setState(() {
-                      DatabaseManager.set("windowBorderRadius", val);
-                    });
-                  },
-                  value: value,
-                ),
-              );
-            },
-          ),
+        SettingsCard(
+          children: [
+            ListTile(
+              title: Text(
+                "Window rorder radius  -  " +
+                    DatabaseManager.get("windowBorderRadius").toString(),
+              ),
+              subtitle: const Text("Change the window border radius"),
+              trailing: Builder(
+                builder: (context) {
+                  var value = DatabaseManager.get("windowBorderRadius");
+                  return SizedBox(
+                    width: 256,
+                    child: Slider(
+                      divisions: 4,
+                      min: 8.0,
+                      max: 24.0,
+                      onChanged: (double val) {
+                        setState(() {
+                          DatabaseManager.set("windowBorderRadius", val);
+                        });
+                      },
+                      value: value,
+                    ),
+                  );
+                },
+              ),
+            ),
+            SwitchListTile(
+              title: const Text("Colored window titlebars"),
+              subtitle: const Text("Use colored titlebars for the windows"),
+              value: _provider.coloredTitlebars,
+              onChanged: (value) {
+                _provider.coloredTitlebars = value;
+              },
+            ),
+          ],
         ),
       ],
     );

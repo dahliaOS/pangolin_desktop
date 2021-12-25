@@ -13,9 +13,10 @@ limitations under the License.
 
 import 'package:pangolin/utils/data/models/application.dart';
 
-import '../other/apps_stub.dart' if (dart.library.io) 'package:files/main.dart';
+import 'package:pangolin/utils/other/apps_stub.dart'
+    if (dart.library.io) 'package:files/main.dart';
 // ignore: duplicate_import
-import '../other/apps_stub.dart'
+import 'package:pangolin/utils/other/apps_stub.dart'
     if (dart.library.io) 'package:terminal/main.dart';
 
 import 'package:calculator/calculator.dart';
@@ -34,9 +35,9 @@ import 'package:welcome/main.dart';
 
 List<Application> applications = [
   Application(
-    color: Colors.deepOrange.shade500,
+    color: Colors.transparent,
     packageName: "io.dahlia.settings",
-    app: const Settings(),
+    app: Settings(),
     name: "Settings",
     iconName: "settings",
     category: ApplicationCategory.system,
@@ -50,8 +51,8 @@ List<Application> applications = [
       iconName: "calculator",
       category: ApplicationCategory.office,
       description: "Solve mathematic calculations"),
-  const Application(
-      color: Colors.grey,
+  Application(
+      color: Colors.grey.shade900,
       packageName: "io.dahlia.terminal",
       app: Terminal(),
       name: "Terminal",
@@ -60,7 +61,7 @@ List<Application> applications = [
       description: "Execute commands",
       supportsWeb: false),
   Application(
-      color: Colors.amber,
+      color: Colors.amber.shade800,
       packageName: "io.dahlia.editor",
       app: TextEditorApp(),
       name: "Text Editor",
@@ -68,7 +69,7 @@ List<Application> applications = [
       category: ApplicationCategory.office,
       description: "Write texts and notes"),
   Application(
-      color: Colors.blue,
+      color: Colors.blue.shade800,
       packageName: "io.dahlia.graft",
       app: Graft(),
       name: "Graft",
@@ -83,8 +84,8 @@ List<Application> applications = [
       iconName: "web",
       category: ApplicationCategory.internet,
       description: "Search and browse the web"),
-  const Application(
-      color: Colors.deepOrange,
+  Application(
+      color: Colors.deepOrange.shade800,
       packageName: "io.dahlia.files",
       app: Files(),
       name: "Files",
@@ -109,7 +110,7 @@ List<Application> applications = [
       category: ApplicationCategory.system,
       description: "Manage timers"),
   Application(
-      color: Colors.red,
+      color: Colors.red.shade800,
       packageName: "io.dahlia.logs",
       app: Logs(),
       name: "System Logs",
@@ -117,7 +118,7 @@ List<Application> applications = [
       category: ApplicationCategory.system,
       description: "Check the system logs"),
   Application(
-      color: Colors.lime,
+      color: Colors.deepOrange,
       packageName: "io.dahlia.welcome",
       app: Welcome(),
       name: "Welcome",
@@ -125,7 +126,7 @@ List<Application> applications = [
       category: ApplicationCategory.system,
       description: "Welcome screen with more information"),
   Application(
-      color: Colors.cyanAccent,
+      color: Colors.cyan.shade900,
       packageName: "io.dahlia.taskmanager",
       app: Tasks(),
       name: "Task Manager",
@@ -140,8 +141,12 @@ Application getApp(String packageName) {
 }
 
 Application get fallbackApp {
-  return const Application(
-      app: ErrorWindow(), name: "Error", packageName: "io.dahlia.error");
+  return Application(
+    color: Colors.red,
+    app: ErrorWindow(),
+    name: "Error",
+    packageName: "io.dahlia.error",
+  );
 }
 
 extension AppWebExtension on Application {
