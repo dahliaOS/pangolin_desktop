@@ -16,6 +16,7 @@ limitations under the License.
 
 import 'dart:async';
 
+import 'package:pangolin/utils/action_manager/action_manager.dart';
 import 'package:pangolin/utils/data/common_data.dart';
 import 'package:pangolin/utils/data/globals.dart';
 import 'package:pangolin/components/shell/shell.dart';
@@ -128,12 +129,24 @@ class _PowerOverlayState extends State<PowerOverlay>
                             padding: const EdgeInsets.all(16.0),
                             child: Column(
                               children: [
-                                _powerMenuButton("Power off",
-                                    Icons.power_settings_new_rounded, context),
-                                _powerMenuButton("Sleep",
-                                    Icons.brightness_4_outlined, context),
                                 _powerMenuButton(
-                                    "Restart", Icons.replay_rounded, context),
+                                  "Power off",
+                                  Icons.power_settings_new_rounded,
+                                  context,
+                                  onPressed: () => ActionManager.powerOff(),
+                                ),
+                                _powerMenuButton(
+                                  "Sleep",
+                                  Icons.brightness_4_outlined,
+                                  context,
+                                  onPressed: () => ActionManager.suspend(),
+                                ),
+                                _powerMenuButton(
+                                  "Restart",
+                                  Icons.replay_rounded,
+                                  context,
+                                  onPressed: () => ActionManager.reboot(),
+                                ),
                               ],
                             ),
                           ),
@@ -150,7 +163,8 @@ class _PowerOverlayState extends State<PowerOverlay>
     );
   }
 
-  Padding _powerMenuButton(String title, IconData icon, BuildContext context) {
+  Padding _powerMenuButton(String title, IconData icon, BuildContext context,
+      {VoidCallback? onPressed}) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: SizedBox(
@@ -177,7 +191,7 @@ class _PowerOverlayState extends State<PowerOverlay>
                 ],
               ),
             ),
-            onTap: () {},
+            onTap: onPressed,
           ),
         ),
       ),

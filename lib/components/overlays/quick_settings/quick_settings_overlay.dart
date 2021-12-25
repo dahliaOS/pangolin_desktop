@@ -18,7 +18,6 @@ import 'dart:async';
 
 import 'package:battery_plus/battery_plus.dart';
 
-import 'package:pangolin/components/overlays/power_overlay.dart';
 import 'package:pangolin/components/overlays/quick_settings/pages/qs_account_page.dart';
 import 'package:pangolin/components/overlays/quick_settings/pages/qs_network_page.dart';
 import 'package:pangolin/components/overlays/quick_settings/pages/qs_theme_page.dart';
@@ -28,8 +27,8 @@ import 'package:pangolin/components/overlays/quick_settings/widgets/qs_toggle_bu
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/services/locales/locale_strings.g.dart';
 import 'package:pangolin/services/locales/locales.g.dart';
+import 'package:pangolin/utils/action_manager/action_manager.dart';
 import 'package:pangolin/utils/other/date_time_manager.dart';
-import 'package:pangolin/utils/wm/wm_api.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/data/common_data.dart';
 import 'package:pangolin/utils/providers/connection_provider.dart';
@@ -169,7 +168,7 @@ class QsMain extends StatelessWidget {
       QuickActionButton(
         leading: Icon(IconsX.of(context).power),
         isCircular: true,
-        onPressed: () => _shell.showOverlay(PowerOverlay.overlayId),
+        onPressed: () => ActionManager.showPowerMenu(context),
         //title: "Power",
       ),
       QuickActionButton(
@@ -187,10 +186,7 @@ class QsMain extends StatelessWidget {
         isCircular: true,
         //title: "Settings",
         margin: const EdgeInsets.only(left: 8),
-        onPressed: () {
-          _shell.dismissOverlay(QuickSettingsOverlay.overlayId);
-          WmAPI.of(context).openApp("io.dahlia.settings");
-        },
+        onPressed: () => ActionManager.openSettings(context),
       ),
     ];
     return Material(
