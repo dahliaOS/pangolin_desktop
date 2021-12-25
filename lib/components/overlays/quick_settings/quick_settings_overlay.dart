@@ -388,6 +388,7 @@ class QsMain extends StatelessWidget {
                     valueListenable: DateTimeManager.getTimeNotifier()!,
                     builder: (BuildContext context, String time, child) =>
                         QuickActionButton(
+                      isCircular: false,
                       leading: const Icon(Icons.calendar_today),
                       title: "$date - $time",
                       margin: EdgeInsets.zero,
@@ -404,6 +405,7 @@ class QsMain extends StatelessWidget {
                           leading: const Icon(Icons.battery_charging_full),
                           title: batteryPercentage,
                           margin: EdgeInsets.zero,
+                          isCircular: false,
                         );
                       });
                 }),
