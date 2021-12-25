@@ -22,7 +22,6 @@ import 'package:pangolin/components/overlays/power_overlay.dart';
 import 'package:pangolin/components/overlays/quick_settings/pages/qs_account_page.dart';
 import 'package:pangolin/components/overlays/quick_settings/pages/qs_network_page.dart';
 import 'package:pangolin/components/overlays/quick_settings/pages/qs_theme_page.dart';
-import 'package:pangolin/components/overlays/quick_settings/widgets/qs_action_button.dart';
 import 'package:pangolin/components/overlays/quick_settings/widgets/qs_shortcut_button.dart';
 import 'package:pangolin/components/overlays/quick_settings/widgets/qs_slider.dart';
 import 'package:pangolin/components/overlays/quick_settings/widgets/qs_toggle_button.dart';
@@ -39,6 +38,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:pangolin/utils/providers/io_provider.dart';
 import 'package:pangolin/widgets/box/box_container.dart';
 import 'package:pangolin/utils/data/globals.dart';
+import 'package:pangolin/widgets/quick_button.dart';
 
 class QuickSettingsOverlay extends ShellOverlay {
   static const String overlayId = 'quicksettings';
@@ -150,13 +150,14 @@ class QsMain extends StatelessWidget {
     final _shell = Shell.of(context, listen: false);
     // Action Button Bar
     List<Widget> _qsActionButton = [
-      QsActionButton(
+      QuickActionButton(
         leading: const FlutterLogo(
           size: 18,
         ),
         title: username,
         onPressed: () => Navigator.pushNamed(context, "/pages/account"),
         margin: EdgeInsets.zero,
+        isCircular: false,
         textStyle: TextStyle(
           fontSize: 14,
           fontWeight: FontWeight.w600,
@@ -165,23 +166,23 @@ class QsMain extends StatelessWidget {
         ),
       ),
       const Spacer(),
-      QsActionButton(
+      QuickActionButton(
         leading: Icon(IconsX.of(context).power),
         isCircular: true,
         onPressed: () => _shell.showOverlay(PowerOverlay.overlayId),
         //title: "Power",
       ),
-      QsActionButton(
+      QuickActionButton(
         leading: Icon(IconsX.of(context).sign_out),
         isCircular: true,
         //title: "Sign out",
       ),
-      QsActionButton(
+      QuickActionButton(
         leading: Icon(IconsX.of(context).edit),
         isCircular: true,
         //title: "Edit panel",
       ),
-      QsActionButton(
+      QuickActionButton(
         leading: Icon(IconsX.of(context).settings),
         isCircular: true,
         //title: "Settings",
@@ -386,7 +387,7 @@ class QsMain extends StatelessWidget {
                       ValueListenableBuilder(
                     valueListenable: DateTimeManager.getTimeNotifier()!,
                     builder: (BuildContext context, String time, child) =>
-                        QsActionButton(
+                        QuickActionButton(
                       leading: const Icon(Icons.calendar_today),
                       title: "$date - $time",
                       margin: EdgeInsets.zero,
@@ -399,7 +400,7 @@ class QsMain extends StatelessWidget {
                       builder: (context, AsyncSnapshot<int?> data) {
                         String batteryPercentage =
                             data.data?.toString() ?? "Energy Mode: Performance";
-                        return QsActionButton(
+                        return QuickActionButton(
                           leading: const Icon(Icons.battery_charging_full),
                           title: batteryPercentage,
                           margin: EdgeInsets.zero,

@@ -14,6 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'package:pangolin/components/overlays/compact_launcher_overlay.dart';
 import 'package:pangolin/components/overlays/launcher_overlay.dart';
 import 'package:pangolin/utils/context_menus/context_menu.dart';
 import 'package:pangolin/utils/context_menus/context_menu_item.dart';
@@ -80,7 +81,7 @@ class LauncherButton extends StatelessWidget {
           ),
           //size: 24,
         ),
-        overlayID: LauncherOverlay.overlayId,
+        overlayID: CompactLauncherOverlay.overlayId,
       ),
     );
   }

@@ -14,6 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'package:pangolin/components/overlays/compact_launcher_overlay.dart';
 import 'package:pangolin/components/overlays/launcher_overlay.dart';
 import 'package:pangolin/components/overlays/overview_overlay.dart';
 import 'package:pangolin/components/overlays/power_overlay.dart';
@@ -64,6 +65,7 @@ class _DesktopState extends State<Desktop> {
       Desktop.wmController.addWindowEntry(
         shellEntry.newInstance(Shell(overlays: [
           LauncherOverlay(),
+          CompactLauncherOverlay(),
           SearchOverlay(),
           OverviewOverlay(),
           QuickSettingsOverlay(),

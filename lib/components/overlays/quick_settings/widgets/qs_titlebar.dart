@@ -14,8 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:pangolin/components/overlays/quick_settings/widgets/qs_action_button.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
+import 'package:pangolin/widgets/quick_button.dart';
 
 class QsTitlebar extends StatelessWidget implements PreferredSizeWidget {
   const QsTitlebar({Key? key, this.leading, this.title, this.trailing})
@@ -35,7 +35,7 @@ class QsTitlebar extends StatelessWidget implements PreferredSizeWidget {
               ? const BackButton()
               : leading!,
           title != null
-              ? QsActionButton(
+              ? QuickActionButton(
                   title: title,
                   textStyle: TextStyle(
                     fontSize: 14,
@@ -62,7 +62,7 @@ class BackButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return QsActionButton(
+    return QuickActionButton(
       isCircular: true,
       leading: const Icon(Icons.arrow_back),
       onPressed: () => Navigator.pop(context),
