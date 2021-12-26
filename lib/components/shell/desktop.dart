@@ -14,8 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:pangolin/components/overlays/compact_launcher_overlay.dart';
-import 'package:pangolin/components/overlays/launcher_overlay.dart';
+import 'package:pangolin/components/overlays/launcher/compact_launcher_overlay.dart';
+import 'package:pangolin/components/overlays/launcher/launcher_overlay.dart';
 import 'package:pangolin/components/overlays/overview_overlay.dart';
 import 'package:pangolin/components/overlays/power_overlay.dart';
 import 'package:pangolin/components/overlays/quick_settings/quick_settings_overlay.dart';

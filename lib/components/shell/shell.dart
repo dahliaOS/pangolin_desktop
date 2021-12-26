@@ -17,7 +17,7 @@ limitations under the License.
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:pangolin/components/overlays/launcher_overlay.dart';
+import 'package:pangolin/components/overlays/launcher/launcher_overlay.dart';
 import 'package:pangolin/components/taskbar/launcher.dart';
 import 'package:pangolin/components/taskbar/overview.dart';
 import 'package:pangolin/components/taskbar/quick_settings.dart';

@@ -17,14 +17,14 @@ limitations under the License.
 import 'dart:math';
 
 import 'package:flutter/gestures.dart';
-import 'package:pangolin/components/overlays/launcher_overlay.dart';
+import 'package:pangolin/components/overlays/launcher/launcher_overlay.dart';
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/utils/data/database_manager.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
 import 'package:pangolin/components/taskbar/taskbar_item.dart';
-import 'package:pangolin/utils/context_menus/context_menu.dart';
+/* import 'package:pangolin/utils/context_menus/context_menu.dart';
 import 'package:pangolin/utils/context_menus/context_menu_item.dart';
-import 'package:pangolin/utils/context_menus/core/context_menu_region.dart';
+import 'package:pangolin/utils/context_menus/core/context_menu_region.dart'; */
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/wm/wm.dart';
 
