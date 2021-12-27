@@ -146,7 +146,6 @@ class QsMain extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _shell = Shell.of(context, listen: false);
     // Action Button Bar
     List<Widget> _qsActionButton = [
       QuickActionButton(

@@ -24,14 +24,12 @@ import 'package:pangolin/utils/data/common_data.dart';
 import 'package:pangolin/utils/data/models/application.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
-import 'package:pangolin/utils/providers/misc_provider.dart';
 import 'package:pangolin/utils/providers/search_provider.dart';
 import 'package:pangolin/utils/wm/wm_api.dart';
 import 'package:pangolin/components/overlays/launcher/widgets/app_launcher_button.dart';
 import 'package:pangolin/widgets/box/box_container.dart';
 import 'package:pangolin/widgets/quick_button.dart';
 import 'package:pangolin/widgets/searchbar/searchbar.dart';
-import 'package:provider/provider.dart';
 
 class LauncherOverlay extends ShellOverlay {
   static const String overlayId = 'launcher';
