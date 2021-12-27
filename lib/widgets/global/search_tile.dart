@@ -21,15 +21,15 @@ import 'package:pangolin/utils/wm/wm_api.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/search_provider.dart';
 
-class AppLauncherTile extends StatefulWidget {
+class SearchTile extends StatefulWidget {
   final String packageName;
-  const AppLauncherTile(this.packageName, {Key? key}) : super(key: key);
+  const SearchTile(this.packageName, {Key? key}) : super(key: key);
 
   @override
-  _AppLauncherTileState createState() => _AppLauncherTileState();
+  _SearchTileState createState() => _SearchTileState();
 }
 
-class _AppLauncherTileState extends State<AppLauncherTile> {
+class _SearchTileState extends State<SearchTile> {
   @override
   Widget build(BuildContext context) {
     final Application application = getApp(widget.packageName);
@@ -57,8 +57,7 @@ class _AppLauncherTileState extends State<AppLauncherTile> {
         subtitle: Text(application.description ?? ""),
         onTap: () {
           _searchProvider.addRecentSearchResult(application.packageName!);
-          Shell.of(context, listen: false).dismissEverything();
-          WmAPI.of(context).openApp(widget.packageName);
+          application.launch(context);
         },
       ),
     );

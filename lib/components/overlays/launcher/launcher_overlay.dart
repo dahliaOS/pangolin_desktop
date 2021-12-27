@@ -25,7 +25,7 @@ import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
 import 'package:pangolin/utils/providers/search_provider.dart';
 import 'package:pangolin/utils/wm/wm_api.dart';
-import 'package:pangolin/widgets/app_launcher/app_launcher_button.dart';
+import 'package:pangolin/components/overlays/launcher/widgets/app_launcher_button.dart';
 import 'package:pangolin/widgets/box/box_container.dart';
 import 'package:pangolin/widgets/searchbar/searchbar.dart';
 

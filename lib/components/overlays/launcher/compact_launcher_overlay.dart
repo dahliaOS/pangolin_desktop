@@ -15,6 +15,7 @@ limitations under the License.
 */
 
 import 'dart:async';
+import 'package:pangolin/components/overlays/launcher/widgets/app_launcher_tile.dart';
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/utils/action_manager/action_manager.dart';
 import 'package:pangolin/utils/data/app_list.dart';
@@ -24,7 +25,6 @@ import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/data/common_data.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:pangolin/widgets/app_launcher/app_laucher_tile.dart';
 import 'package:pangolin/widgets/box/box_container.dart';
 import 'package:pangolin/widgets/quick_button.dart';
 
@@ -206,7 +206,7 @@ class CompactLauncher extends StatelessWidget {
                       .sort((a, b) => a.packageName!.compareTo(b.packageName!));
                   return ListView(
                     children: applications
-                        .map((Application e) => AppLauncherTile(e.packageName!))
+                        .map((Application e) => AppLauncherTile(e))
                         .toList(),
                   );
                 }),

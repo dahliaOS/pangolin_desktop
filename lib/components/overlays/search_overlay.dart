@@ -20,7 +20,7 @@ import 'package:pangolin/utils/data/globals.dart';
 import 'package:pangolin/utils/data/models/application.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/search_provider.dart';
-import 'package:pangolin/widgets/app_launcher/app_laucher_tile.dart';
+import 'package:pangolin/widgets/global/search_tile.dart';
 import 'package:pangolin/widgets/box/box_container.dart';
 import 'package:pangolin/widgets/searchbar/searchbar.dart';
 import '../../services/search_service.dart';
@@ -149,8 +149,7 @@ class _SearchOverlayState extends State<SearchOverlay>
                                       shrinkWrap: true,
                                       itemCount: apps.length,
                                       physics: const BouncingScrollPhysics(),
-                                      itemBuilder: (_, index) =>
-                                          AppLauncherTile(
+                                      itemBuilder: (_, index) => SearchTile(
                                         apps[index].packageName!,
                                       ),
                                     ),
@@ -184,8 +183,7 @@ class _SearchOverlayState extends State<SearchOverlay>
                                       itemCount: _searchProvider
                                           .recentSearchResults.length,
                                       physics: const BouncingScrollPhysics(),
-                                      itemBuilder: (_, index) =>
-                                          AppLauncherTile(
+                                      itemBuilder: (_, index) => SearchTile(
                                         _searchProvider
                                             .recentSearchResults[index],
                                       ),

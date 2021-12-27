@@ -15,6 +15,7 @@ limitations under the License.
 */
 
 import 'package:pangolin/components/shell/shell.dart';
+import 'package:pangolin/utils/data/app_list.dart';
 import 'package:pangolin/utils/data/common_data.dart';
 import 'package:pangolin/utils/data/models/application.dart';
 import 'package:pangolin/utils/wm/wm_api.dart';
@@ -53,8 +54,7 @@ class _AppLauncherButtonState extends State<AppLauncherButton> {
               hoverColor: CommonData.of(context).textColor().withOpacity(0.2),
               focusColor: CommonData.of(context).textColor(),
               onTap: () {
-                Shell.of(context, listen: false).dismissEverything();
-                WmAPI.of(context).openApp(application.packageName!);
+                application.launch(context);
               },
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,

@@ -26,6 +26,7 @@ class QuickActionButton extends StatefulWidget {
     this.isCircular = true,
     this.textStyle,
     this.margin,
+    this.size,
   }) : super(key: key);
 
   final VoidCallback? onPressed;
@@ -35,6 +36,7 @@ class QuickActionButton extends StatefulWidget {
   final bool? isCircular;
   final TextStyle? textStyle;
   final EdgeInsetsGeometry? margin;
+  final double? size;
 
   @override
   _QuickActionButtonState createState() => _QuickActionButtonState();
@@ -48,8 +50,8 @@ class _QuickActionButtonState extends State<QuickActionButton> {
     return Padding(
       padding: widget.margin ?? const EdgeInsets.symmetric(horizontal: 8.0),
       child: SizedBox(
-        height: 40,
-        width: widget.isCircular == true ? 40 : null,
+        height: widget.size ?? 40,
+        width: widget.isCircular == true ? widget.size ?? 40 : null,
         child: Material(
           clipBehavior: Clip.antiAlias,
           color: context.theme.darkMode
