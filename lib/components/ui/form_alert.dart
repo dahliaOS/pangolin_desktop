@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 Widget formAlert(Color color, String text, Color textColor, IconData icon) {
   return ClipRRect(
-    borderRadius: BorderRadius.all(Radius.circular(5)),
+    borderRadius: const BorderRadius.all(Radius.circular(5)),
     child: Container(
         color: color,
         height: 40,
@@ -10,7 +10,7 @@ Widget formAlert(Color color, String text, Color textColor, IconData icon) {
         child: Row(
           children: [
             Padding(
-                padding: EdgeInsets.only(left: 8, right: 8),
+                padding: const EdgeInsets.only(left: 8, right: 8),
                 child: Icon(
                   icon,
                   color: textColor,

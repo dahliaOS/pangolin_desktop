@@ -14,9 +14,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:pangolin/components/overlays/quick_settings/widgets/qs_action_button.dart';
 import 'package:pangolin/components/overlays/quick_settings/widgets/qs_titlebar.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
+import 'package:pangolin/widgets/quick_button.dart';
 
 class QsAccountPage extends StatelessWidget {
   const QsAccountPage({Key? key}) : super(key: key);
@@ -27,7 +27,7 @@ class QsAccountPage extends StatelessWidget {
       appBar: QsTitlebar(
         title: "User Accounts",
         trailing: [
-          QsActionButton(
+          QuickActionButton(
             isCircular: true,
             leading: Icon(
               Icons.help_outline_rounded,

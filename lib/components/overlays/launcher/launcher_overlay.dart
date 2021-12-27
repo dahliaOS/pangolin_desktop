@@ -18,6 +18,7 @@ import 'package:pangolin/components/overlays/power_overlay.dart';
 import 'package:pangolin/components/overlays/search_overlay.dart';
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/services/locales/locale_strings.g.dart';
+import 'package:pangolin/utils/action_manager/action_manager.dart';
 import 'package:pangolin/utils/data/app_list.dart';
 import 'package:pangolin/utils/data/common_data.dart';
 import 'package:pangolin/utils/data/models/application.dart';
@@ -25,8 +26,9 @@ import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
 import 'package:pangolin/utils/providers/search_provider.dart';
 import 'package:pangolin/utils/wm/wm_api.dart';
-import 'package:pangolin/widgets/app_launcher/app_launcher_button.dart';
+import 'package:pangolin/components/overlays/launcher/widgets/app_launcher_button.dart';
 import 'package:pangolin/widgets/box/box_container.dart';
+import 'package:pangolin/widgets/quick_button.dart';
 import 'package:pangolin/widgets/searchbar/searchbar.dart';
 
 class LauncherOverlay extends ShellOverlay {
@@ -128,12 +130,26 @@ class _LauncherOverlayState extends State<LauncherOverlay>
                   alignment: _customizationProvider.taskbarPosition != 0
                       ? FractionalOffset.bottomCenter
                       : FractionalOffset.topCenter,
-                  child: Column(
+                  child: Stack(
                     children: [
-                      const Search(),
-                      LauncherCategories(controller: _controller),
-                      LauncherGrid(controller: _controller),
-                      const LauncherPowerMenu(),
+                      Positioned(
+                        top: 56,
+                        right: 56,
+                        child: QuickActionButton(
+                          leading: const Icon(Icons.close_fullscreen_rounded),
+                          onPressed: () {
+                            ActionManager.switchLauncher(context);
+                          },
+                        ),
+                      ),
+                      Column(
+                        children: [
+                          const Search(),
+                          LauncherCategories(controller: _controller),
+                          LauncherGrid(controller: _controller),
+                          const LauncherPowerMenu(),
+                        ],
+                      ),
                     ],
                   ),
                 ),
@@ -389,8 +405,7 @@ class LauncherGrid extends StatelessWidget {
                 maxCrossAxisExtent: 175,
               ),
               itemBuilder: (BuildContext context, int index) {
-                final Application application =
-                    getApp(page[index].packageName!);
+                final Application application = getApp(page[index].packageName);
                 if (!application.canBeOpened) {
                   return IgnorePointer(
                     child: Opacity(

@@ -15,8 +15,6 @@ limitations under the License.
 */
 
 import 'package:flutter/material.dart';
-import 'package:pangolin/components/settings/widgets/list_tiles.dart';
-import 'package:pangolin/components/settings/widgets/settings_card.dart';
 import 'package:pangolin/components/settings/widgets/settings_page.dart';
 
 class SettingsPageDisplay extends StatefulWidget {

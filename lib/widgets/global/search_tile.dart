@@ -14,22 +14,20 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/utils/data/app_list.dart';
 import 'package:pangolin/utils/data/models/application.dart';
-import 'package:pangolin/utils/wm/wm_api.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/search_provider.dart';
 
-class AppLauncherTile extends StatefulWidget {
+class SearchTile extends StatefulWidget {
   final String packageName;
-  const AppLauncherTile(this.packageName, {Key? key}) : super(key: key);
+  const SearchTile(this.packageName, {Key? key}) : super(key: key);
 
   @override
-  _AppLauncherTileState createState() => _AppLauncherTileState();
+  _SearchTileState createState() => _SearchTileState();
 }
 
-class _AppLauncherTileState extends State<AppLauncherTile> {
+class _SearchTileState extends State<SearchTile> {
   @override
   Widget build(BuildContext context) {
     final Application application = getApp(widget.packageName);
@@ -56,9 +54,8 @@ class _AppLauncherTileState extends State<AppLauncherTile> {
         trailing: const Text("App"),
         subtitle: Text(application.description ?? ""),
         onTap: () {
-          _searchProvider.addRecentSearchResult(application.packageName!);
-          Shell.of(context, listen: false).dismissEverything();
-          WmAPI.of(context).openApp(widget.packageName);
+          _searchProvider.addRecentSearchResult(application.packageName);
+          application.launch(context);
         },
       ),
     );

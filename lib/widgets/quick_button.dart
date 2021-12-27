@@ -16,16 +16,17 @@ limitations under the License.
 
 import 'package:pangolin/utils/extensions/extensions.dart';
 
-class QsActionButton extends StatefulWidget {
-  const QsActionButton({
+class QuickActionButton extends StatefulWidget {
+  const QuickActionButton({
     Key? key,
     this.onPressed,
     this.title,
     this.leading,
     this.padding,
-    this.isCircular,
+    this.isCircular = true,
     this.textStyle,
     this.margin,
+    this.size,
   }) : super(key: key);
 
   final VoidCallback? onPressed;
@@ -35,12 +36,13 @@ class QsActionButton extends StatefulWidget {
   final bool? isCircular;
   final TextStyle? textStyle;
   final EdgeInsetsGeometry? margin;
+  final double? size;
 
   @override
-  _QsActionButtonState createState() => _QsActionButtonState();
+  _QuickActionButtonState createState() => _QuickActionButtonState();
 }
 
-class _QsActionButtonState extends State<QsActionButton> {
+class _QuickActionButtonState extends State<QuickActionButton> {
   @override
   Widget build(BuildContext context) {
     bool titleIsNull = widget.title == null;
@@ -48,8 +50,8 @@ class _QsActionButtonState extends State<QsActionButton> {
     return Padding(
       padding: widget.margin ?? const EdgeInsets.symmetric(horizontal: 8.0),
       child: SizedBox(
-        height: 40,
-        width: widget.isCircular == true ? 40 : null,
+        height: widget.size ?? 40,
+        width: widget.isCircular == true ? widget.size ?? 40 : null,
         child: Material(
           clipBehavior: Clip.antiAlias,
           color: context.theme.darkMode

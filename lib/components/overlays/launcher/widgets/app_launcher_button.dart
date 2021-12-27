@@ -14,10 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/utils/data/common_data.dart';
 import 'package:pangolin/utils/data/models/application.dart';
-import 'package:pangolin/utils/wm/wm_api.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
 
@@ -45,16 +43,14 @@ class _AppLauncherButtonState extends State<AppLauncherButton> {
           padding: const EdgeInsets.all(8.0),
           child: GestureDetector(
             onSecondaryTap: () {
-              _customizationProvider
-                  .togglePinnedApp(application.packageName ?? "");
+              _customizationProvider.togglePinnedApp(application.packageName);
             },
             child: InkWell(
               borderRadius: BorderRadius.circular(12),
               hoverColor: CommonData.of(context).textColor().withOpacity(0.2),
               focusColor: CommonData.of(context).textColor(),
               onTap: () {
-                Shell.of(context, listen: false).dismissEverything();
-                WmAPI.of(context).openApp(application.packageName!);
+                application.launch(context);
               },
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,

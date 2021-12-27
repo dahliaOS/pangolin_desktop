@@ -15,7 +15,6 @@ limitations under the License.
 */
 
 import 'package:flutter/material.dart';
-import 'package:pangolin/components/settings/models/settings_element_model.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 
 class SettingsPage extends StatelessWidget {

@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'dart:io';
-import '../components/ui/alert_confirm.dart';
-import '../components/ui/form_alert.dart';
-import 'dart:convert';
 
 List getNetworks() {
   ProcessResult result =
@@ -37,15 +33,15 @@ Widget networkTile(
     leading: Icon(wifiBars(strength, security)),
     title: Text(title),
     subtitle: connected
-        ? Text("Connected", style: TextStyle(color: Colors.green))
-        : Text("Not connected"),
+        ? const Text("Connected", style: TextStyle(color: Colors.green))
+        : const Text("Not connected"),
     onTap: () {
       final passwordController = TextEditingController();
       if (security == "WPA2" || security == "WPA1 WPA2" || security == "") {
         showDialog(
           context: context,
           builder: (ctx) => AlertDialog(
-            title: Text("Join Wi-Fi network"),
+            title: const Text("Join Wi-Fi network"),
             content: SizedBox(
               height: 125,
               child: Column(
@@ -53,7 +49,7 @@ Widget networkTile(
                   TextFormField(
                     enabled: false,
                     initialValue: title,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
 
                         //prefixIcon: Icon(Icons.person),
                         border: OutlineInputBorder(),
@@ -66,7 +62,7 @@ Widget networkTile(
                     controller: passwordController,
                     obscureText: true,
                     enabled: true,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                         border: OutlineInputBorder(), labelText: 'Password'),
                   ),
                 ],
@@ -102,7 +98,7 @@ Widget networkTile(
                   }
                   //TODO: Set state here to indicate connection/fail
                 },
-                child: Text("Connect"),
+                child: const Text("Connect"),
               ),
             ],
           ),
@@ -129,7 +125,7 @@ List<Widget> parseNetworks(context) {
       height: 10,
     ),
   ];
-  input.forEach((network) {
+  for (var network in input) {
     //TODO: Remove channel and frequency duplicate networks
     if (network.toString().split(":").length > 1) {
       //print(network);
@@ -149,7 +145,7 @@ List<Widget> parseNetworks(context) {
             context));
       }
     }
-  });
+  }
 
   return tiles;
 }

@@ -14,9 +14,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 import 'package:flutter/widgets.dart';
+import 'package:pangolin/components/shell/shell.dart';
+import 'package:pangolin/utils/wm/wm_api.dart';
 
 class Application {
-  final String? name, version, description, packageName;
+  final String? name, version, description;
+  final String packageName;
   final Widget? app;
   final ApplicationCategory? category;
   final bool isTest;
@@ -45,6 +48,11 @@ class Application {
       required this.color,
       this.version = "TEST",
       this.supportsWeb = true});
+
+  void launch(BuildContext context) {
+    Shell.of(context, listen: false).dismissEverything();
+    WmAPI.of(context).openApp(packageName);
+  }
 }
 
 enum ApplicationCategory {
