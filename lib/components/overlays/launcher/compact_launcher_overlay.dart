@@ -25,8 +25,10 @@ import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/data/common_data.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:pangolin/utils/providers/misc_provider.dart';
 import 'package:pangolin/widgets/box/box_container.dart';
 import 'package:pangolin/widgets/quick_button.dart';
+import 'package:provider/provider.dart';
 
 class CompactLauncherOverlay extends ShellOverlay {
   static const String overlayId = 'compactlauncher';
@@ -190,10 +192,13 @@ class CompactLauncher extends StatelessWidget {
                         ],
                       ),
                     ),
-                    const QuickActionButton(
-                      margin: EdgeInsets.all(16.0),
+                    QuickActionButton(
+                      margin: const EdgeInsets.all(16.0),
                       isCircular: true,
-                      leading: Icon(Icons.open_in_full_rounded),
+                      leading: const Icon(Icons.open_in_full_rounded),
+                      onPressed: () {
+                        ActionManager.switchLauncher(context);
+                      },
                     ),
                   ],
                 ),

@@ -18,22 +18,37 @@ limitations under the License.
 
 import 'dart:io';
 
+import 'package:pangolin/components/overlays/launcher/compact_launcher_overlay.dart';
+import 'package:pangolin/components/overlays/launcher/launcher_overlay.dart';
 import 'package:pangolin/components/overlays/power_overlay.dart';
 import 'package:pangolin/components/shell/shell.dart';
+import 'package:pangolin/utils/data/common_data.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
+import 'package:pangolin/utils/providers/misc_provider.dart';
 import 'package:pangolin/utils/wm/wm_api.dart';
 
 class ActionManager {
   static void showPowerMenu(BuildContext context) async {
     final shell = Shell.of(context, listen: false);
     shell.dismissEverything();
-    await Future.delayed(const Duration(milliseconds: 150));
+    await Future.delayed(CommonData.of(context).animationDuration());
     shell.showOverlay(
       PowerOverlay.overlayId,
       dismissEverything: false,
     );
     // ignore: invalid_use_of_protected_member
     ScaffoldMessenger.of(context).setState(() {});
+  }
+
+  static void switchLauncher(BuildContext context) async {
+    final shell = Shell.of(context, listen: false);
+    final MiscProvider _miscProvider = MiscProvider.of(context, listen: false);
+    shell.dismissEverything();
+    _miscProvider.compactLauncher = !_miscProvider.compactLauncher;
+    await Future.delayed(CommonData.of(context).animationDuration());
+    shell.showOverlay(_miscProvider.compactLauncher
+        ? CompactLauncherOverlay.overlayId
+        : LauncherOverlay.overlayId);
   }
 
   static void openSettings(BuildContext context) async {
