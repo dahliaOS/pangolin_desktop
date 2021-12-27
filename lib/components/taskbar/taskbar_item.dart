@@ -116,8 +116,7 @@ class _TaskbarItemState extends State<TaskbarItem>
                       ? "Unpin from Taskbar"
                       : "Pin to Taskbar",
                   onTap: () {
-                    _customizationProvider
-                        .togglePinnedApp(_app.packageName ?? "");
+                    _customizationProvider.togglePinnedApp(_app.packageName);
                   },
                   shortcut: "",
                 ),

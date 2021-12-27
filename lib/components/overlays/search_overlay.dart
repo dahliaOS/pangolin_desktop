@@ -150,7 +150,7 @@ class _SearchOverlayState extends State<SearchOverlay>
                                       itemCount: apps.length,
                                       physics: const BouncingScrollPhysics(),
                                       itemBuilder: (_, index) => SearchTile(
-                                        apps[index].packageName!,
+                                        apps[index].packageName,
                                       ),
                                     ),
                                   ],

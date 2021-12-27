@@ -208,7 +208,7 @@ class CompactLauncher extends StatelessWidget {
                 width: 380,
                 child: Builder(builder: (context) {
                   applications
-                      .sort((a, b) => a.packageName!.compareTo(b.packageName!));
+                      .sort((a, b) => a.packageName.compareTo(b.packageName));
                   return ListView(
                     children: applications
                         .map((Application e) => AppLauncherTile(e))

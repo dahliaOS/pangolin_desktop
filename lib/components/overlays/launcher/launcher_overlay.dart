@@ -407,8 +407,7 @@ class LauncherGrid extends StatelessWidget {
                 maxCrossAxisExtent: 175,
               ),
               itemBuilder: (BuildContext context, int index) {
-                final Application application =
-                    getApp(page[index].packageName!);
+                final Application application = getApp(page[index].packageName);
                 if (!application.canBeOpened) {
                   return IgnorePointer(
                     child: Opacity(
