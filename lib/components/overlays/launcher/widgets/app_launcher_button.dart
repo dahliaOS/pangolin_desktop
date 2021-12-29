@@ -14,6 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'dart:io';
+
 import 'package:pangolin/utils/data/common_data.dart';
 import 'package:pangolin/utils/data/models/application.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
@@ -50,6 +52,10 @@ class _AppLauncherButtonState extends State<AppLauncherButton> {
               hoverColor: CommonData.of(context).textColor().withOpacity(0.2),
               focusColor: CommonData.of(context).textColor(),
               onTap: () {
+                if (application.systemExecutable == true) {
+                  print(application.runtimeFlags.toString());
+                  Process.run('web_runtime', application.runtimeFlags);
+                }
                 application.launch(context);
               },
               child: Column(
