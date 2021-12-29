@@ -14,6 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'dart:io';
+
 import 'package:pangolin/utils/data/models/application.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
@@ -88,6 +90,10 @@ class _AppLauncherTileState extends State<AppLauncherTile> {
                 ],
               )),
           onTap: () {
+            if (widget.application.systemExecutable == true) {
+              print(widget.application.runtimeFlags.toString());
+              Process.run('web_runtime', widget.application.runtimeFlags);
+            }
             widget.application.launch(context);
           },
         ),

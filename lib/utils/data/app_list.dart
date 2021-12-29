@@ -31,6 +31,7 @@ import 'package:system_logs/main.dart';
 import 'package:task_manager/monitor.dart';
 import 'package:text_editor/editor.dart';
 import 'package:web_browser/main.dart';
+import 'dart:io';
 import 'package:welcome/main.dart';
 
 List<Application> applications = [
@@ -133,6 +134,23 @@ List<Application> applications = [
       iconName: "task",
       category: ApplicationCategory.system,
       description: "View and manage processes"),
+  Application(
+    app: Container(),
+    packageName: "io.dahliaos.web_runtime",
+    name: "Discord",
+    color: Colors.deepOrange,
+    runtimeFlags: [
+      '--accent=#7289da',
+      '--title=Discord',
+      '--windowbar=#282b30',
+      '--bg=#36393e',
+      '--mode=dark',
+      '--source=https://discord.com/app',
+      '--icon=discord-icon.png'
+    ],
+    systemExecutable: true,
+    supportsWeb: false,
+  )
 ];
 
 Application getApp(String packageName) {

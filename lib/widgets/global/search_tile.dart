@@ -18,6 +18,7 @@ import 'package:pangolin/utils/data/app_list.dart';
 import 'package:pangolin/utils/data/models/application.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/search_provider.dart';
+import 'dart:io';
 
 class SearchTile extends StatefulWidget {
   final String packageName;
@@ -55,6 +56,10 @@ class _SearchTileState extends State<SearchTile> {
         subtitle: Text(application.description ?? ""),
         onTap: () {
           _searchProvider.addRecentSearchResult(application.packageName);
+          if (application.systemExecutable == true) {
+            print(application.runtimeFlags.toString());
+            Process.run('web_runtime', application.runtimeFlags);
+          }
           application.launch(context);
         },
       ),
