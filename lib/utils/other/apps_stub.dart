@@ -1,4 +1,4 @@
-/// This is made to support apps that depends on dart:io or dart:ffi
+/// This is made to support apps that depend on dart:io or dart:ffi
 library stub;
 
 import 'package:flutter/widgets.dart';

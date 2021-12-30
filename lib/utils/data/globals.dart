@@ -18,7 +18,6 @@ import 'dart:io';
 
 import 'package:http/http.dart';
 import 'package:pangolin/utils/api_models/bing_wallpaper_api_model.dart';
-import 'package:pangolin/utils/data/models/accent_color_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:pangolin/utils/wm/wm.dart';
@@ -93,17 +92,6 @@ List<String> wallpapers = [
   "assets/images/wallpapers/modern_dark.png",
   "assets/images/wallpapers/wood.jpg",
   "assets/images/wallpapers/beach.jpg",
-];
-
-List<AccentColorData> accentColors = [
-  const AccentColorData(color: Colors.deepOrange, title: "Orange"),
-  AccentColorData(color: Colors.red.shade700, title: "Red"),
-  AccentColorData(color: Colors.greenAccent.shade700, title: "Green"),
-  const AccentColorData(color: Colors.blue, title: "Blue"),
-  const AccentColorData(color: Colors.purple, title: "Purple"),
-  const AccentColorData(color: Colors.cyan, title: "Cyan"),
-  const AccentColorData(color: Colors.amber, title: "Amber"),
-  const AccentColorData(color: null, title: "Custom Accent Color"),
 ];
 
 Future<BingWallpaper> getBingWallpaper() async {

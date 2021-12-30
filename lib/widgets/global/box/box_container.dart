@@ -15,7 +15,7 @@ limitations under the License.
 */
 
 import 'package:pangolin/utils/extensions/extensions.dart';
-import 'package:pangolin/widgets/acrylic/acrylic.dart';
+import 'package:pangolin/widgets/global/acrylic/acrylic.dart';
 
 class BoxSurface extends StatelessWidget {
   final EdgeInsetsGeometry? padding, margin;

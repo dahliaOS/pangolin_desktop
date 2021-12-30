@@ -9,6 +9,7 @@ typedef _ServiceBuilder = Widget Function(
   Widget? child,
 );
 
+@Deprecated("Not usable at the moment")
 class ServiceBuilder extends StatefulWidget {
   final Service service;
   final _ServiceBuilder builder;

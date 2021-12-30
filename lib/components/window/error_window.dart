@@ -15,7 +15,7 @@ limitations under the License.
 */
 
 import 'package:flutter/material.dart';
-import 'package:pangolin/widgets/box/box_container.dart';
+import 'package:pangolin/widgets/global/box/box_container.dart';
 
 class ErrorWindow extends StatelessWidget {
   const ErrorWindow({Key? key}) : super(key: key);

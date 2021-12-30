@@ -19,7 +19,7 @@ import 'dart:io';
 import 'package:pangolin/utils/data/models/application.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
-import 'package:pangolin/widgets/quick_button.dart';
+import 'package:pangolin/widgets/global/quick_button.dart';
 import 'package:provider/provider.dart';
 
 class AppLauncherTile extends StatefulWidget {

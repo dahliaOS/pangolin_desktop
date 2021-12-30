@@ -15,7 +15,7 @@ limitations under the License.
 */
 
 import 'package:pangolin/utils/extensions/extensions.dart';
-import 'package:pangolin/widgets/quick_button.dart';
+import 'package:pangolin/widgets/global/quick_button.dart';
 
 class QsTitlebar extends StatelessWidget implements PreferredSizeWidget {
   const QsTitlebar({Key? key, this.leading, this.title, this.trailing})
