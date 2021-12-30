@@ -138,6 +138,7 @@ List<Application> applications = [
     app: Container(),
     packageName: "io.dahliaos.web_runtime",
     name: "Discord",
+    iconName: "/home/nmcain/Desktop/pkgbuild/icons/pangolin/PNG/social.png",
     color: Colors.deepOrange,
     runtimeFlags: [
       '--accent=#7289da',

@@ -14,6 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:pangolin/utils/data/app_list.dart';
 import 'package:pangolin/components/window/error_window.dart';
@@ -53,7 +55,8 @@ class WmAPI {
         ),
       ),
       SurfaceWindowFeature.background: const PangolinWindowSurface(),
-      ToolbarWindowFeature.widget: const PangolinWindowToolbar(barColor:Colors.transparent),
+      ToolbarWindowFeature.widget:
+          const PangolinWindowToolbar(barColor: Colors.transparent),
       ToolbarWindowFeature.size: 40.0,
     },
   );
@@ -64,6 +67,17 @@ class WmAPI {
 
   void pushWindowEntry(LiveWindowEntry entry) {
     _windowHierarchy.addWindowEntry(entry);
+  }
+
+  AppIcon(bool UsesRuntime, String? iconPath) {
+    if (iconPath == null) {
+      return AssetImage('assets/icons/null.png');
+    }
+    if (UsesRuntime == true) {
+      return FileImage(File(iconPath));
+    } else {
+      return AssetImage("assets/icons/${iconPath}.png");
+    }
   }
 
   void openApp(String packageName) {
@@ -80,7 +94,7 @@ class WmAPI {
           barColor: application.color,
         ),
         WindowEntry.icon:
-            AssetImage("assets/icons/${application.iconName}.png"),
+            AppIcon(application.systemExecutable, application.iconName),
         WindowExtras.stableId: packageName,
         GeometryWindowFeature.size: MediaQuery.of(context).size.width < 1920
             ? const Size(720, 480)

@@ -30,6 +30,17 @@ class AppLauncherButton extends StatefulWidget {
 }
 
 class _AppLauncherButtonState extends State<AppLauncherButton> {
+  Widget AppIcon(bool UsesRuntime, String? iconPath) {
+    if (iconPath == null) {
+      return Image.asset('assets/icons/null.png');
+    }
+    if (UsesRuntime == true) {
+      return Image.file(File(iconPath));
+    } else {
+      return Image.asset("assets/icons/${iconPath}.png");
+    }
+  }
+
   Application get application => widget.application;
 
   @override
@@ -61,9 +72,7 @@ class _AppLauncherButtonState extends State<AppLauncherButton> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset(
-                    "assets/icons/${application.iconName}.png",
-                  ),
+                  AppIcon(application.systemExecutable, application.iconName),
                   const SizedBox(
                     height: 18,
                   ),

@@ -35,6 +35,26 @@ class AppLauncherTile extends StatefulWidget {
 }
 
 class _AppLauncherTileState extends State<AppLauncherTile> {
+  Widget AppIcon(bool UsesRuntime, String? iconPath, double height) {
+    if (iconPath == null) {
+      return Image.asset(
+        'assets/icons/null.png',
+        height: height,
+      );
+    }
+    if (UsesRuntime == true) {
+      return Image.file(
+        File(iconPath),
+        height: height,
+      );
+    } else {
+      return Image.asset(
+        "assets/icons/${iconPath}.png",
+        height: height,
+      );
+    }
+  }
+
   bool _hover = false;
   @override
   Widget build(BuildContext context) {
@@ -47,10 +67,8 @@ class _AppLauncherTileState extends State<AppLauncherTile> {
             borderRadius: BorderRadius.circular(8),
           ),
           dense: true,
-          leading: Image.asset(
-            "assets/icons/${widget.application.iconName}.png",
-            height: 32,
-          ),
+          leading: AppIcon(widget.application.systemExecutable,
+              widget.application.iconName, 32),
           title: Text(widget.application.name ?? "Unknown"),
           subtitle: Text(
             widget.application.description ?? "Unknown",
