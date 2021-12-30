@@ -92,7 +92,7 @@ class _SettingsPageCustomizationState extends State<SettingsPageCustomization> {
           children: [
             ListTile(
               title: Text(
-                "Window rorder radius  -  " +
+                "Window border radius  -  " +
                     DatabaseManager.get("windowBorderRadius").toString(),
               ),
               subtitle: const Text("Change the window border radius"),

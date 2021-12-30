@@ -26,6 +26,8 @@ class Application {
   final String? iconName;
   final Color color;
   final bool supportsWeb;
+  final bool systemExecutable;
+  final List<String> runtimeFlags;
   Application(
       {required this.app,
       required this.packageName,
@@ -36,7 +38,9 @@ class Application {
       required this.color,
       this.isTest = false,
       this.version,
-      this.supportsWeb = true});
+      this.supportsWeb = true,
+      this.runtimeFlags = const [],
+      this.systemExecutable = false});
   const Application.testing(
       {required this.app,
       required this.packageName,
@@ -47,7 +51,9 @@ class Application {
       this.isTest = true,
       required this.color,
       this.version = "TEST",
-      this.supportsWeb = true});
+      this.supportsWeb = true,
+      this.runtimeFlags = const [],
+      this.systemExecutable = false});
 
   void launch(BuildContext context) {
     Shell.of(context, listen: false).dismissEverything();
