@@ -26,7 +26,7 @@ import 'package:pangolin/components/taskbar/show_desktop.dart';
 import 'package:pangolin/components/taskbar/taskbar.dart';
 import 'package:pangolin/utils/data/database_manager.dart';
 import 'package:pangolin/utils/wm/wm.dart';
-import 'package:pangolin/widgets/box/box_container.dart';
+import 'package:pangolin/widgets/global/box/box_container.dart';
 import 'package:provider/provider.dart';
 
 class Shell extends StatefulWidget {

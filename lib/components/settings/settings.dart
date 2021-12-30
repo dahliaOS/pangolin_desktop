@@ -28,7 +28,7 @@ import 'package:pangolin/components/settings/pages/notifications.dart';
 import 'package:pangolin/components/settings/pages/sound.dart';
 import 'package:pangolin/utils/theme/theme.dart';
 import 'package:pangolin/utils/theme/theme_manager.dart';
-import 'package:pangolin/widgets/searchbar/searchbar.dart';
+import 'package:pangolin/components/overlays/search/widgets/searchbar.dart';
 import 'package:provider/provider.dart';
 
 class Settings extends StatelessWidget {

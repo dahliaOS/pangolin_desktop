@@ -19,7 +19,7 @@ import 'package:pangolin/components/overlays/launcher/launcher_overlay.dart';
 import 'package:pangolin/components/overlays/overview_overlay.dart';
 import 'package:pangolin/components/overlays/power_overlay.dart';
 import 'package:pangolin/components/overlays/quick_settings/quick_settings_overlay.dart';
-import 'package:pangolin/components/overlays/search_overlay.dart';
+import 'package:pangolin/components/overlays/search/search_overlay.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
 import 'package:pangolin/utils/wm/wm.dart';

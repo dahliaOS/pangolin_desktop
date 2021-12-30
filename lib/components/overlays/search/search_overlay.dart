@@ -15,15 +15,15 @@ limitations under the License.
 */
 
 import 'package:pangolin/components/shell/shell.dart';
+import 'package:pangolin/services/search_service.dart';
 import 'package:pangolin/utils/data/common_data.dart';
 import 'package:pangolin/utils/data/globals.dart';
 import 'package:pangolin/utils/data/models/application.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/search_provider.dart';
-import 'package:pangolin/widgets/global/search_tile.dart';
-import 'package:pangolin/widgets/box/box_container.dart';
-import 'package:pangolin/widgets/searchbar/searchbar.dart';
-import '../../services/search_service.dart';
+import 'package:pangolin/components/overlays/search/widgets/search_tile.dart';
+import 'package:pangolin/widgets/global/box/box_container.dart';
+import 'package:pangolin/components/overlays/search/widgets/searchbar.dart';
 
 class SearchOverlay extends ShellOverlay {
   static const String overlayId = "search";

@@ -22,7 +22,7 @@ import 'package:pangolin/utils/context_menus/core/context_menu_region.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
 import 'package:pangolin/utils/providers/misc_provider.dart';
-import 'package:pangolin/widgets/taskbar/taskbar_element.dart';
+import 'package:pangolin/components/taskbar/taskbar_element.dart';
 import 'package:provider/provider.dart';
 
 //TODO: Context menu for changing the taskbar's icon is cut off.

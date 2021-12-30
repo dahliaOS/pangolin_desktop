@@ -16,7 +16,7 @@ limitations under the License.
 
 import 'package:flutter/material.dart';
 import 'package:pangolin/utils/data/common_data.dart';
-import 'package:pangolin/widgets/box/box_container.dart';
+import 'package:pangolin/widgets/global/box/box_container.dart';
 
 class Searchbar extends StatelessWidget {
   final Widget? leading, trailing;

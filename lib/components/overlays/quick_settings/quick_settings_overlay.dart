@@ -35,9 +35,9 @@ import 'package:pangolin/utils/providers/connection_provider.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:pangolin/utils/providers/io_provider.dart';
-import 'package:pangolin/widgets/box/box_container.dart';
+import 'package:pangolin/widgets/global/box/box_container.dart';
 import 'package:pangolin/utils/data/globals.dart';
-import 'package:pangolin/widgets/quick_button.dart';
+import 'package:pangolin/widgets/global/quick_button.dart';
 
 class QuickSettingsOverlay extends ShellOverlay {
   static const String overlayId = 'quicksettings';

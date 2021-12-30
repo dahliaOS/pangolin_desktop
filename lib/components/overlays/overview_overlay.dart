@@ -18,7 +18,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:pangolin/utils/wm/wm.dart';
-import 'package:pangolin/widgets/box/box_container.dart';
+import 'package:pangolin/widgets/global/box/box_container.dart';
 import '../shell/shell.dart';
 import 'package:pangolin/utils/data/common_data.dart';
 

@@ -20,7 +20,7 @@ import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/other/date_time_manager.dart';
 import 'package:pangolin/utils/providers/connection_provider.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
-import 'package:pangolin/widgets/taskbar/taskbar_element.dart';
+import 'package:pangolin/components/taskbar/taskbar_element.dart';
 
 class QuickSettingsButton extends StatelessWidget {
   const QuickSettingsButton({Key? key}) : super(key: key);
