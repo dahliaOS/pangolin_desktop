@@ -233,13 +233,13 @@ class _LauncherCategoriesState extends State<LauncherCategories> {
   @override
   Widget build(BuildContext context) {
     final List<String> launcherCategories = [
-      LocaleStrings.desktop.overlaysLauncherCategoriesAllApplications,
-      LocaleStrings.desktop.overlaysLauncherCategoriesInternet,
-      LocaleStrings.desktop.overlaysLauncherCategoriesMedia,
-      LocaleStrings.desktop.overlaysLauncherCategoriesGaming,
-      LocaleStrings.desktop.overlaysLauncherCategoriesDevelopment,
-      LocaleStrings.desktop.overlaysLauncherCategoriesOffice,
-      LocaleStrings.desktop.overlaysLauncherCategoriesSystem
+      LocaleStrings.launcherOverlay.categoriesAllApplications,
+      LocaleStrings.launcherOverlay.categoriesInternet,
+      LocaleStrings.launcherOverlay.categoriesMedia,
+      LocaleStrings.launcherOverlay.categoriesGaming,
+      LocaleStrings.launcherOverlay.categoriesDevelopment,
+      LocaleStrings.launcherOverlay.categoriesOffice,
+      LocaleStrings.launcherOverlay.categoriesSystem
     ];
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
