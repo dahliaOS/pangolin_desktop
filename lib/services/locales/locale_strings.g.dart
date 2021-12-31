@@ -8,6 +8,11 @@ class LocaleStrings {
   static _$GlobalLocaleStrings get global => _$GlobalLocaleStrings();
   static _$AppsLocaleStrings get apps => _$AppsLocaleStrings();
   static _$MiscLocaleStrings get misc => _$MiscLocaleStrings();
+  static _$OverviewOverlayLocaleStrings get overviewOverlay => _$OverviewOverlayLocaleStrings();
+  static _$PowerOverlayLocaleStrings get powerOverlay => _$PowerOverlayLocaleStrings();
+  static _$SearchOverlayLocaleStrings get searchOverlay => _$SearchOverlayLocaleStrings();
+  static _$LauncherOverlayLocaleStrings get launcherOverlay => _$LauncherOverlayLocaleStrings();
+  static _$QuicksettingsOverlayLocaleStrings get quicksettingsOverlay => _$QuicksettingsOverlayLocaleStrings();
   static _$DesktopLocaleStrings get desktop => _$DesktopLocaleStrings();
   static _$SettingsLocaleStrings get settings => _$SettingsLocaleStrings();
 }
@@ -72,41 +77,56 @@ class _$MiscLocaleStrings {
   final String featurenotimplementedValue = "misc.featurenotimplemented_value".tr();
 }
 
+class _$OverviewOverlayLocaleStrings {
+  final String newDesktop = "overviewOverlay.new_desktop".tr();
+}
+
+class _$PowerOverlayLocaleStrings {
+  final String title = "powerOverlay.title".tr();
+  final String subtitle = "powerOverlay.subtitle".tr();
+  final String poweroff = "powerOverlay.poweroff".tr();
+  final String sleep = "powerOverlay.sleep".tr();
+  final String restart = "powerOverlay.restart".tr();
+}
+
+class _$SearchOverlayLocaleStrings {
+  final String hint = "searchOverlay.hint".tr();
+  final String results = "searchOverlay.results".tr();
+  final String recent = "searchOverlay.recent".tr();
+  final String app = "searchOverlay.app".tr();
+}
+
+class _$LauncherOverlayLocaleStrings {
+  final String categoriesAllApplications = "launcherOverlay.categories.all_applications".tr();
+  final String categoriesInternet = "launcherOverlay.categories.internet".tr();
+  final String categoriesMedia = "launcherOverlay.categories.media".tr();
+  final String categoriesGaming = "launcherOverlay.categories.gaming".tr();
+  final String categoriesDevelopment = "launcherOverlay.categories.development".tr();
+  final String categoriesOffice = "launcherOverlay.categories.office".tr();
+  final String categoriesSystem = "launcherOverlay.categories.system".tr();
+}
+
+class _$QuicksettingsOverlayLocaleStrings {
+  final String quickControls = "quicksettingsOverlay.quick_controls".tr();
+  final String quickControlsNetworkTitle = "quicksettingsOverlay.quick_controls.network.title".tr();
+  final String quickControlsNetworkSubtitleConnected = "quicksettingsOverlay.quick_controls.network.subtitle_connected".tr();
+  final String quickControlsNetworkSubtitleDisconnected = "quicksettingsOverlay.quick_controls.network.subtitle_disconnected".tr();
+  final String quickControlsBluetoothTitle = "quicksettingsOverlay.quick_controls.bluetooth.title".tr();
+  final String quickControlsBlueoothSubtitleConnected = "quicksettingsOverlay.quick_controls.blueooth.subtitle_connected".tr();
+  final String quickControlsBlueoothSubtitleDisconnected = "quicksettingsOverlay.quick_controls.blueooth.subtitle_disconnected".tr();
+  final String quickControlsAirplaneModeTitle = "quicksettingsOverlay.quick_controls.airplane_mode.title".tr();
+  final String quickControlsLanguageTitle = "quicksettingsOverlay.quick_controls.language.title".tr();
+  final String quickControlsThemeTitle = "quicksettingsOverlay.quick_controls.theme.title".tr();
+  final String quickControlsDonotdisturbTitle = "quicksettingsOverlay.quick_controls.donotdisturb.title".tr();
+  final String shortcutsTitle = "quicksettingsOverlay.shortcuts.title".tr();
+  final String shortcutsNewEvent = "quicksettingsOverlay.shortcuts.new_event".tr();
+  final String shortcutsAlphaBuild = "quicksettingsOverlay.shortcuts.alpha_build".tr();
+  final String shortcutsEnergyMode = "quicksettingsOverlay.shortcuts.energy_mode".tr();
+  final String pagesNetworkTitle = "quicksettingsOverlay.pages.network.title".tr();
+  final String pagesThemeTitle = "quicksettingsOverlay.pages.theme.title".tr();
+}
+
 class _$DesktopLocaleStrings {
-  final String overlaysOverviewNewDesktop = "desktop.overlays.overview.new_desktop".tr();
-  final String overlaysPowerTitle = "desktop.overlays.power.title".tr();
-  final String overlaysPowerSubtitle = "desktop.overlays.power.subtitle".tr();
-  final String overlaysPowerPoweroff = "desktop.overlays.power.poweroff".tr();
-  final String overlaysPowerSleep = "desktop.overlays.power.sleep".tr();
-  final String overlaysPowerRestart = "desktop.overlays.power.restart".tr();
-  final String overlaysSearchHint = "desktop.overlays.search.hint".tr();
-  final String overlaysSearchResults = "desktop.overlays.search.results".tr();
-  final String overlaysSearchRecent = "desktop.overlays.search.recent".tr();
-  final String overlaysSearchApp = "desktop.overlays.search.app".tr();
-  final String overlaysLauncherCategoriesAllApplications = "desktop.overlays.launcher.categories.all_applications".tr();
-  final String overlaysLauncherCategoriesInternet = "desktop.overlays.launcher.categories.internet".tr();
-  final String overlaysLauncherCategoriesMedia = "desktop.overlays.launcher.categories.media".tr();
-  final String overlaysLauncherCategoriesGaming = "desktop.overlays.launcher.categories.gaming".tr();
-  final String overlaysLauncherCategoriesDevelopment = "desktop.overlays.launcher.categories.development".tr();
-  final String overlaysLauncherCategoriesOffice = "desktop.overlays.launcher.categories.office".tr();
-  final String overlaysLauncherCategoriesSystem = "desktop.overlays.launcher.categories.system".tr();
-  final String overlaysQuicksettingsQuickControls = "desktop.overlays.quicksettings.quick_controls".tr();
-  final String overlaysQuicksettingsQuickControlsNetworkTitle = "desktop.overlays.quicksettings.quick_controls.network.title".tr();
-  final String overlaysQuicksettingsQuickControlsNetworkSubtitleConnected = "desktop.overlays.quicksettings.quick_controls.network.subtitle_connected".tr();
-  final String overlaysQuicksettingsQuickControlsNetworkSubtitleDisconnected = "desktop.overlays.quicksettings.quick_controls.network.subtitle_disconnected".tr();
-  final String overlaysQuicksettingsQuickControlsBluetoothTitle = "desktop.overlays.quicksettings.quick_controls.bluetooth.title".tr();
-  final String overlaysQuicksettingsQuickControlsBlueoothSubtitleConnected = "desktop.overlays.quicksettings.quick_controls.blueooth.subtitle_connected".tr();
-  final String overlaysQuicksettingsQuickControlsBlueoothSubtitleDisconnected = "desktop.overlays.quicksettings.quick_controls.blueooth.subtitle_disconnected".tr();
-  final String overlaysQuicksettingsQuickControlsAirplaneModeTitle = "desktop.overlays.quicksettings.quick_controls.airplane_mode.title".tr();
-  final String overlaysQuicksettingsQuickControlsLanguageTitle = "desktop.overlays.quicksettings.quick_controls.language.title".tr();
-  final String overlaysQuicksettingsQuickControlsThemeTitle = "desktop.overlays.quicksettings.quick_controls.theme.title".tr();
-  final String overlaysQuicksettingsQuickControlsDonotdisturbTitle = "desktop.overlays.quicksettings.quick_controls.donotdisturb.title".tr();
-  final String overlaysQuicksettingsShortcutsTitle = "desktop.overlays.quicksettings.shortcuts.title".tr();
-  final String overlaysQuicksettingsShortcutsNewEvent = "desktop.overlays.quicksettings.shortcuts.new_event".tr();
-  final String overlaysQuicksettingsShortcutsAlphaBuild = "desktop.overlays.quicksettings.shortcuts.alpha_build".tr();
-  final String overlaysQuicksettingsShortcutsEnergyMode = "desktop.overlays.quicksettings.shortcuts.energy_mode".tr();
-  final String overlaysQuicksettingsPagesNetworkTitle = "desktop.overlays.quicksettings.pages.network.title".tr();
-  final String overlaysQuicksettingsPagesThemeTitle = "desktop.overlays.quicksettings.pages.theme.title".tr();
   final String wallpaperPickerGone = "desktop.wallpaper_picker.gone".tr();
   final String wallpaperPickerUrlWallpaperHint = "desktop.wallpaper_picker.url_wallpaper.hint".tr();
   final String wallpaperPickerUrlWallpaperLabel = "desktop.wallpaper_picker.url_wallpaper.label".tr();

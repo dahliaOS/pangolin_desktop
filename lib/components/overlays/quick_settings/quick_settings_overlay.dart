@@ -209,7 +209,8 @@ class QsMain extends StatelessWidget {
                     children: [
                       QsToggleButton(
                         //TODO change title to "Network"
-                        title: LocaleStrings.qs.wifi,
+                        title: LocaleStrings
+                            .quicksettingsOverlay.quickControlsNetworkTitle,
                         icon: _connectionProvider.wifi
                             ? Icons.wifi_rounded
                             : Icons.wifi_off_rounded,
@@ -222,7 +223,8 @@ class QsMain extends StatelessWidget {
                         },
                       ),
                       QsToggleButton(
-                        title: LocaleStrings.qs.bluetooth,
+                        title: LocaleStrings
+                            .quicksettingsOverlay.quickControlsBluetoothTitle,
                         subtitle: _connectionProvider.bluetooth ? "On" : "Off",
                         icon: _connectionProvider.bluetooth
                             ? Icons.bluetooth_connected_rounded
@@ -232,7 +234,8 @@ class QsMain extends StatelessWidget {
                             !_connectionProvider.bluetooth,
                       ),
                       QsToggleButton(
-                        title: LocaleStrings.qs.airplanemode,
+                        title: LocaleStrings.quicksettingsOverlay
+                            .quickControlsAirplaneModeTitle,
                         icon: !(!_connectionProvider.wifi &&
                                 !_connectionProvider.bluetooth)
                             ? Icons.airplanemode_off_rounded
@@ -269,8 +272,10 @@ class QsMain extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       QsToggleButton(
-                        title: LocaleStrings.settings.generalLanguage,
-                        subtitle: LocaleStrings.qs.changelanguage,
+                        title: LocaleStrings
+                            .quicksettingsOverlay.quickControlsLanguageTitle,
+                        //TODO Fix this
+                        subtitle: "FIX THIS",
                         icon: Icons.language_rounded,
                         value: true,
                         onPressed: () {
@@ -290,7 +295,8 @@ class QsMain extends StatelessWidget {
                         value: false,
                       ), */
                       QsToggleButton(
-                        title: LocaleStrings.qs.theme,
+                        title: LocaleStrings
+                            .quicksettingsOverlay.quickControlsThemeTitle,
                         icon: Icons.palette_outlined,
                         value: true,
                         onPressed: () => _customizationProvider.darkMode =
@@ -299,7 +305,8 @@ class QsMain extends StatelessWidget {
                             Navigator.pushNamed(context, "/pages/theme"),
                       ),
                       QsToggleButton(
-                        title: LocaleStrings.qs.dnd,
+                        title: LocaleStrings.quicksettingsOverlay
+                            .quickControlsDonotdisturbTitle,
                         icon: Icons.do_not_disturb_off_rounded,
                         value: false,
                         onPressed: () {},
