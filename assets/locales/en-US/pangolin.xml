@@ -70,68 +70,68 @@
 
     <!-- Overview -->
     
-    <string name="desktop.overlays.overview.new_desktop">New Desktop</string>
+    <string name="overviewOverlay.new_desktop">New Desktop</string>
 
 
 
     <!-- Power menu -->
 
-    <string name="desktop.overlays.power.title">Power Menu</string>
-    <string name="desktop.overlays.power.subtitle">Choose what you want to do</string>
-    <string name="desktop.overlays.power.poweroff">Power off</string>
-    <string name="desktop.overlays.power.sleep">Sleep</string>
-    <string name="desktop.overlays.power.restart">Restart</string>
+    <string name="powerOverlay.title">Power Menu</string>
+    <string name="powerOverlay.subtitle">Choose what you want to do</string>
+    <string name="powerOverlay.poweroff">Power off</string>
+    <string name="powerOverlay.sleep">Sleep</string>
+    <string name="powerOverlay.restart">Restart</string>
 
 
 
     <!-- Search -->
 
-    <string name="desktop.overlays.search.hint">Search Device, Apps and Web</string>
-    <string name="desktop.overlays.search.results">Results</string>
-    <string name="desktop.overlays.search.recent">Recent</string>
-    <string name="desktop.overlays.search.app">App</string>
+    <string name="searchOverlay.hint">Search Device, Apps and Web</string>
+    <string name="searchOverlay.results">Results</string>
+    <string name="searchOverlay.recent">Recent</string>
+    <string name="searchOverlay.app">App</string>
 
 
 
     <!-- Launcher -->
 
-    <string name="desktop.overlays.launcher.categories.all_applications">All Applications</string>
-    <string name="desktop.overlays.launcher.categories.internet">Internet</string>
-    <string name="desktop.overlays.launcher.categories.media">Media</string>
-    <string name="desktop.overlays.launcher.categories.gaming">gaming</string>
-    <string name="desktop.overlays.launcher.categories.development">Development</string>
-    <string name="desktop.overlays.launcher.categories.office">Office</string>
-    <string name="desktop.overlays.launcher.categories.system">System</string>
+    <string name="launcherOverlay.categories.all_applications">All Applications</string>
+    <string name="launcherOverlay.categories.internet">Internet</string>
+    <string name="launcherOverlay.categories.media">Media</string>
+    <string name="launcherOverlay.categories.gaming">gaming</string>
+    <string name="launcherOverlay.categories.development">Development</string>
+    <string name="launcherOverlay.categories.office">Office</string>
+    <string name="launcherOverlay.categories.system">System</string>
     
 
 
     <!-- Quick Settings -->
 
-    <string name="desktop.overlays.quicksettings.quick_controls">Quick Controls</string>
+    <string name="quicksettingsOverlay.quick_controls">Quick Controls</string>
 
-    <string name="desktop.overlays.quicksettings.quick_controls.network.title">Network</string>
-    <string name="desktop.overlays.quicksettings.quick_controls.network.subtitle_connected">connected</string>
-    <string name="desktop.overlays.quicksettings.quick_controls.network.subtitle_disconnected">disconnected</string>
+    <string name="quicksettingsOverlay.quick_controls.network.title">Network</string>
+    <string name="quicksettingsOverlay.quick_controls.network.subtitle_connected">connected</string>
+    <string name="quicksettingsOverlay.quick_controls.network.subtitle_disconnected">disconnected</string>
 
-    <string name="desktop.overlays.quicksettings.quick_controls.bluetooth.title">Bluetooth</string>
-    <string name="desktop.overlays.quicksettings.quick_controls.blueooth.subtitle_connected">connected</string>
-    <string name="desktop.overlays.quicksettings.quick_controls.blueooth.subtitle_disconnected">disconnected</string>
+    <string name="quicksettingsOverlay.quick_controls.bluetooth.title">Bluetooth</string>
+    <string name="quicksettingsOverlay.quick_controls.blueooth.subtitle_connected">connected</string>
+    <string name="quicksettingsOverlay.quick_controls.blueooth.subtitle_disconnected">disconnected</string>
 
-    <string name="desktop.overlays.quicksettings.quick_controls.airplane_mode.title">Airplane mode</string>
+    <string name="quicksettingsOverlay.quick_controls.airplane_mode.title">Airplane mode</string>
 
-    <string name="desktop.overlays.quicksettings.quick_controls.language.title">Language</string>
+    <string name="quicksettingsOverlay.quick_controls.language.title">Language</string>
 
-    <string name="desktop.overlays.quicksettings.quick_controls.theme.title">Theme</string>
+    <string name="quicksettingsOverlay.quick_controls.theme.title">Theme</string>
 
-    <string name="desktop.overlays.quicksettings.quick_controls.donotdisturb.title">Do not disturb</string>
+    <string name="quicksettingsOverlay.quick_controls.donotdisturb.title">Do not disturb</string>
 
-    <string name="desktop.overlays.quicksettings.shortcuts.title">Shortcuts</string>
-    <string name="desktop.overlays.quicksettings.shortcuts.new_event">New Event</string>
-    <string name="desktop.overlays.quicksettings.shortcuts.alpha_build">Alpha Build</string>
-    <string name="desktop.overlays.quicksettings.shortcuts.energy_mode">Energy Mode: Performance</string>
+    <string name="quicksettingsOverlay.shortcuts.title">Shortcuts</string>
+    <string name="quicksettingsOverlay.shortcuts.new_event">New Event</string>
+    <string name="quicksettingsOverlay.shortcuts.alpha_build">Alpha Build</string>
+    <string name="quicksettingsOverlay.shortcuts.energy_mode">Energy Mode: Performance</string>
 
-    <string name="desktop.overlays.quicksettings.pages.network.title">Network Settings</string>
-    <string name="desktop.overlays.quicksettings.pages.theme.title">Theme Settings</string>
+    <string name="quicksettingsOverlay.pages.network.title">Network Settings</string>
+    <string name="quicksettingsOverlay.pages.theme.title">Theme Settings</string>
 
 
 
