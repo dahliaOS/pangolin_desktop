@@ -57,6 +57,6 @@ If you're interested in translating Pangolin, click [here](https://github.com/da
   <img width="40%" src="https://raw.githubusercontent.com/dahliaOS/brand/master/dahliaOS/svg/logotypewhitetext.svg#gh-dark-mode-only"
 <p>
 
-Copyright @ 2019-2021 - The dahliaOS Authors - contact@dahliaos.io
+Copyright @ 2019-2022 - The dahliaOS Authors - contact@dahliaos.io
 
 This project is licensed under the [Apache 2.0 license](/LICENSE)
