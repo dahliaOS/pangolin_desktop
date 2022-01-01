@@ -13,7 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/shell/desktop.dart';
@@ -55,8 +55,9 @@ void main() async {
 
   //load visual engine
   await loadVisualEngine();
-
-  indexApplications();
+  if (kIsWeb == false) {
+    indexApplications();
+  }
 
   runApp(
     EasyLocalization(
