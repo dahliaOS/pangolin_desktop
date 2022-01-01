@@ -55,8 +55,10 @@ class WmAPI {
         ),
       ),
       SurfaceWindowFeature.background: const PangolinWindowSurface(),
-      ToolbarWindowFeature.widget:
-          const PangolinWindowToolbar(barColor: Colors.transparent),
+      ToolbarWindowFeature.widget: const PangolinWindowToolbar(
+        barColor: Colors.transparent,
+        textColor: Colors.black,
+      ),
       ToolbarWindowFeature.size: 40.0,
     },
   );
@@ -92,6 +94,9 @@ class WmAPI {
         WindowEntry.title: application.name,
         ToolbarWindowFeature.widget: PangolinWindowToolbar(
           barColor: application.color,
+          textColor: (application.appBarTextColor != null)
+              ? application.appBarTextColor
+              : Colors.white,
         ),
         WindowEntry.icon:
             AppIcon(application.systemExecutable, application.iconName),

@@ -13,6 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/utils/wm/wm_api.dart';
@@ -25,6 +26,7 @@ class Application {
   final bool isTest;
   final String? iconName;
   final Color color;
+  final Color appBarTextColor;
   final bool supportsWeb;
   final bool systemExecutable;
   final List<String> runtimeFlags;
@@ -37,6 +39,7 @@ class Application {
       required this.name,
       required this.color,
       this.isTest = false,
+      this.appBarTextColor = Colors.white,
       this.version,
       this.supportsWeb = true,
       this.runtimeFlags = const [],
@@ -50,6 +53,7 @@ class Application {
       required this.name,
       this.isTest = true,
       required this.color,
+      this.appBarTextColor = Colors.white,
       this.version = "TEST",
       this.supportsWeb = true,
       this.runtimeFlags = const [],

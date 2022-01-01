@@ -20,7 +20,10 @@ import 'package:pangolin/components/shell/desktop.dart';
 import 'package:pangolin/services/locales/generated_asset_loader.g.dart';
 import 'package:pangolin/services/locales/locales.g.dart';
 import 'package:pangolin/components/settings/data/presets.dart';
+import 'package:pangolin/utils/data/app_list.dart';
+import 'package:pangolin/utils/data/dap_index.dart';
 import 'package:pangolin/utils/data/database_manager.dart';
+import 'package:pangolin/utils/data/models/application.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/other/date_time_manager.dart';
 import 'package:pangolin/utils/providers/clock_provider.dart';
@@ -52,6 +55,8 @@ void main() async {
 
   //load visual engine
   await loadVisualEngine();
+
+  indexApplications();
 
   runApp(
     EasyLocalization(

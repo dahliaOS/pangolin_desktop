@@ -33,6 +33,7 @@ import 'package:text_editor/editor.dart';
 import 'package:web_browser/main.dart';
 import 'dart:io';
 import 'package:welcome/main.dart';
+import 'dap_index.dart';
 
 List<Application> applications = [
   Application(
@@ -119,7 +120,8 @@ List<Application> applications = [
       category: ApplicationCategory.system,
       description: "View and report system information"),
   Application(
-      color: Colors.deepOrange,
+      color: Colors.white,
+      appBarTextColor: Colors.black,
       packageName: "io.dahlia.welcome",
       app: Welcome(),
       name: "Welcome",
@@ -134,24 +136,6 @@ List<Application> applications = [
       iconName: "task",
       category: ApplicationCategory.system,
       description: "View and manage processes"),
-  Application(
-    app: Container(),
-    packageName: "io.dahliaos.web_runtime",
-    name: "Discord",
-    iconName: "/home/nmcain/Desktop/pkgbuild/icons/pangolin/PNG/social.png",
-    color: Colors.deepOrange,
-    runtimeFlags: [
-      '--accent=#7289da',
-      '--title=Discord',
-      '--windowbar=#282b30',
-      '--bg=#36393e',
-      '--mode=dark',
-      '--source=https://discord.com/app',
-      '--icon=discord-icon.png'
-    ],
-    systemExecutable: true,
-    supportsWeb: false,
-  )
 ];
 
 Application getApp(String packageName) {
