@@ -36,6 +36,7 @@ import 'package:pangolin/utils/providers/search_provider.dart';
 import 'package:pangolin/utils/theme/theme.dart';
 import 'package:provider/provider.dart';
 import 'package:pangolin/services/visual_engine/visual_engine.dart';
+import 'dart:io' show Platform;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -56,8 +57,9 @@ void main() async {
   //load visual engine
   await loadVisualEngine();
   if (kIsWeb == false) {
+      if (Platform.isLinux){
     indexApplications();
-  }
+  }}
 
   runApp(
     EasyLocalization(
