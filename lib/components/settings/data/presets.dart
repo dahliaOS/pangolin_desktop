@@ -20,6 +20,8 @@ import 'package:pangolin/components/settings/models/settings_taskbar_data_model.
 import 'package:pangolin/components/settings/models/settings_theme_data_model.dart';
 
 class SettingsPresets {
+  const SettingsPresets._();
+
   //List with presets for the system accent colors
   static late List<AccentColorDataModel> accentColorPresets;
 
@@ -34,15 +36,15 @@ class SettingsPresets {
     //load the data for the accent color presets
     accentColorPresets = List.from(
       [
-        AccentColorDataModel(Color(0xFFFF5722), "Orange"),
-        AccentColorDataModel(Color(0xFFD32F2F), "Red"),
-        AccentColorDataModel(Color(0xFF078D48), "Green"),
-        AccentColorDataModel(Color(0xFF0067C0), "Blue"),
-        AccentColorDataModel(Color(0xFF00594F), "Teal"),
-        AccentColorDataModel(Color(0xFF6200EE), "Purple"),
-        AccentColorDataModel(Color(0xFF00BCD4), "Aqua"),
-        AccentColorDataModel(Color(0xFFFFC107), "Gold"),
-        AccentColorDataModel(Color(0xFF455a64), "Anthracite"),
+        const AccentColorDataModel(Color(0xFFFF5722), "Orange"),
+        const AccentColorDataModel(Color(0xFFD32F2F), "Red"),
+        const AccentColorDataModel(Color(0xFF078D48), "Green"),
+        const AccentColorDataModel(Color(0xFF0067C0), "Blue"),
+        const AccentColorDataModel(Color(0xFF00594F), "Teal"),
+        const AccentColorDataModel(Color(0xFF6200EE), "Purple"),
+        const AccentColorDataModel(Color(0xFF00BCD4), "Aqua"),
+        const AccentColorDataModel(Color(0xFFFFC107), "Gold"),
+        const AccentColorDataModel(Color(0xFF455a64), "Anthracite"),
       ],
       growable: false,
     );
@@ -50,8 +52,8 @@ class SettingsPresets {
     //load the data for the theme mode presets
     themeModePresets = List.from(
       [
-        ThemeModeDataModel(Color(0xffffffff), "Light", false),
-        ThemeModeDataModel(Color(0xff0a0a0a), "Dark", true),
+        const ThemeModeDataModel(Color(0xffffffff), "Light", false),
+        const ThemeModeDataModel(Color(0xff0a0a0a), "Dark", true),
       ],
       growable: false,
     );
@@ -59,8 +61,8 @@ class SettingsPresets {
     //load the data for the taskbar alignment presets
     taskbarAlignmentPresets = List.from(
       [
-        TaskbarAlignmentModelData("Start", false),
-        TaskbarAlignmentModelData("Center", true),
+        const TaskbarAlignmentModelData("Start", false),
+        const TaskbarAlignmentModelData("Center", true),
       ],
       growable: false,
     );

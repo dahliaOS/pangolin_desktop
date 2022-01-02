@@ -14,8 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:pangolin/components/overlays/quick_settings/widgets/qs_action_button.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
+import 'package:pangolin/widgets/global/quick_button.dart';
 
 class QsTitlebar extends StatelessWidget implements PreferredSizeWidget {
   const QsTitlebar({Key? key, this.leading, this.title, this.trailing})
@@ -31,29 +31,32 @@ class QsTitlebar extends StatelessWidget implements PreferredSizeWidget {
       size: preferredSize,
       child: Row(
         children: [
-          (leading == null && Navigator.canPop(context))
-              ? BackButton()
-              : leading!,
-          title != null
-              ? QsActionButton(
-                  title: 'User Accouns',
-                  textStyle: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    height: 1.1,
-                    color:
-                        context.theme.darkMode ? ColorsX.white : ColorsX.black,
-                  ),
-                )
-              : SizedBox.shrink(),
-          Spacer(),
-        ]..addAll(trailing ?? []),
+          if (leading == null && Navigator.canPop(context))
+            const BackButton()
+          else
+            leading!,
+          if (title != null)
+            QuickActionButton(
+              title: title,
+              isCircular: false,
+              textStyle: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+                height: 1.1,
+                color: context.theme.darkMode ? ColorsX.white : ColorsX.black,
+              ),
+            )
+          else
+            const SizedBox.shrink(),
+          const Spacer(),
+          ...?trailing,
+        ],
       ),
     );
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(40);
+  Size get preferredSize => const Size.fromHeight(40);
 }
 
 class BackButton extends StatelessWidget {
@@ -61,9 +64,8 @@ class BackButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return QsActionButton(
-      isCircular: true,
-      leading: Icon(Icons.arrow_back),
+    return QuickActionButton(
+      leading: const Icon(Icons.arrow_back),
       onPressed: () => Navigator.pop(context),
       margin: EdgeInsets.zero,
     );

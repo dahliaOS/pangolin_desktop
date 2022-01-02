@@ -16,25 +16,28 @@ limitations under the License.
 
 import 'dart:async';
 
-import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
-import 'package:pangolin/components/overlays/launcher_overlay.dart';
+import 'package:pangolin/components/overlays/launcher/launcher_overlay.dart';
 import 'package:pangolin/components/taskbar/launcher.dart';
 import 'package:pangolin/components/taskbar/overview.dart';
 import 'package:pangolin/components/taskbar/quick_settings.dart';
 import 'package:pangolin/components/taskbar/search.dart';
+import 'package:pangolin/components/taskbar/show_desktop.dart';
 import 'package:pangolin/components/taskbar/taskbar.dart';
+import 'package:pangolin/utils/data/database_manager.dart';
+import 'package:pangolin/utils/wm/wm.dart';
+import 'package:pangolin/widgets/global/box/box_container.dart';
 import 'package:provider/provider.dart';
 
 class Shell extends StatefulWidget {
   final List<ShellOverlay> overlays;
 
-  const Shell({required this.overlays});
+  const Shell({required this.overlays, Key? key}) : super(key: key);
 
   @override
   _ShellState createState() => _ShellState();
 
-  static _ShellState of(BuildContext context, {bool listen: true}) {
+  static _ShellState of(BuildContext context, {bool listen = true}) {
     return Provider.of<_ShellState>(context, listen: listen);
   }
 }
@@ -85,14 +88,16 @@ class _ShellState extends State<Shell> {
 
   List<String> get currentlyShownOverlays {
     final List<String> shownIds = [];
-    widget.overlays.forEach((o) {
+    for (final ShellOverlay o in widget.overlays) {
       if (o._controller.showing) shownIds.add(o.id);
-    });
+    }
     return shownIds;
   }
 
   void dismissEverything() {
-    currentlyShownOverlays.forEach((id) => dismissOverlay(id));
+    for (final String id in currentlyShownOverlays) {
+      dismissOverlay(id);
+    }
     setState(() {});
   }
 
@@ -119,19 +124,26 @@ class _ShellState extends State<Shell> {
                 bottom: 0,
                 right: 0,
                 left: 0,
-                child: BoxSurface(),
+                child: const BoxSurface(),
               ),
             ),
             Taskbar(
               leading: [
-                LauncherButton(),
-                SearchButton(),
-                OverviewButton(),
+                const LauncherButton(),
+                if (DatabaseManager.get<bool>('searchIcon'))
+                  const SearchButton()
+                else
+                  const SizedBox(),
+                if (DatabaseManager.get<bool>('overviewIcon'))
+                  const OverviewButton()
+                else
+                  const SizedBox(),
               ],
-              trailing: [
+              trailing: const [
                 //TODO: here is the keyboard button
                 //KeyboardButton(),
                 QuickSettingsButton(),
+                ShowDesktopButton(),
               ],
             ),
             ...widget.overlays,

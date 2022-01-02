@@ -16,18 +16,17 @@ limitations under the License.
 
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/overlays/overview_overlay.dart';
-import 'package:pangolin/components/shell/shell.dart';
+import 'package:pangolin/components/taskbar/taskbar_element.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
-import 'package:pangolin/widgets/taskbar/taskbar_element.dart';
 
 class OverviewButton extends StatelessWidget {
+  const OverviewButton({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    final _shell = Shell.of(context);
-
-    return TaskbarElement(
-      child: Icon(Icons.fullscreen_exit_outlined),
+    return const TaskbarElement(
       overlayID: OverviewOverlay.overlayId,
+      child: Icon(Icons.fullscreen_exit_outlined),
     );
   }
 }

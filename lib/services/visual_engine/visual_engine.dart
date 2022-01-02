@@ -14,38 +14,43 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 import 'dart:async' show Future;
-import 'package:dahlia_backend/dahlia_backend.dart';
-import 'package:flutter/services.dart' show rootBundle;
 import 'dart:convert';
-import 'visual_data.dart';
 
-Future<String> _loadDataAsset() async {
-  return await rootBundle.loadString('assets/json/visualData.json');
+import 'package:flutter/foundation.dart' show kDebugMode;
+import 'package:flutter/services.dart' show rootBundle;
+import 'package:pangolin/services/visual_engine/visual_data.dart';
+import 'package:pangolin/utils/data/database_manager.dart';
+
+Future<String> _loadDataAsset() {
+  return rootBundle.loadString('assets/json/visualData.json');
 }
 
 Future loadVisualEngine() async {
-  String jsonString = await _loadDataAsset();
-  final jsonResponse = json.decode(jsonString);
-  VisualInformation visuals = VisualInformation.fromJson(jsonResponse);
-  /* print(visuals.taskbarHeight);
-  print(visuals.opaqueTitlebars);
-  print(visuals.titleInfo);
-  print(visuals.windowRadius);
-  print(visuals.activeAppsPosition);
-  print(visuals.userName);
-  print(visuals.launcherCategories);
-  print(visuals.launcherIndicator);
-  print(visuals.launcherSystemOptions);
-  print(visuals.notificationsIcon);
-  print(visuals.overlayButtonRounding);
-  print(visuals.overlayOpacity);
-  print(visuals.overviewIcon);
-  print(visuals.qsTileRounding);
-  print(visuals.searchBarString);
-  print(visuals.searchIcon);
-  print(visuals.showDate);
-  print(visuals.taskbarOpacity);
-  print(visuals.taskbarRounding); */
+  final String jsonString = await _loadDataAsset();
+  final Map<String, dynamic> jsonResponse =
+      json.decode(jsonString) as Map<String, dynamic>;
+  final VisualInformation visuals = VisualInformation.fromJson(jsonResponse);
+  if (kDebugMode) {
+    print(visuals.taskbarHeight);
+    print(visuals.opaqueTitlebars);
+    print(visuals.titleInfo);
+    print(visuals.windowRadius);
+    print(visuals.activeAppsPosition);
+    print(visuals.userName);
+    print(visuals.launcherCategories);
+    print(visuals.launcherIndicator);
+    print(visuals.launcherSystemOptions);
+    print(visuals.notificationsIcon);
+    print(visuals.overlayButtonRounding);
+    print(visuals.overlayOpacity);
+    print(visuals.overviewIcon);
+    print(visuals.qsTileRounding);
+    print(visuals.searchBarString);
+    print(visuals.searchIcon);
+    print(visuals.showDate);
+    print(visuals.taskbarOpacity);
+    print(visuals.taskbarRounding);
+  }
   DatabaseManager.set('taskbarHeight', visuals.taskbarHeight);
   DatabaseManager.set('opaqueTitlebars', visuals.opaqueTitlebars);
   DatabaseManager.set('titleInfo', visuals.titleInfo);

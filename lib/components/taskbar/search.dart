@@ -15,17 +15,19 @@ limitations under the License.
 */
 
 import 'package:flutter/material.dart';
-import 'package:pangolin/components/overlays/search_overlay.dart';
-import 'package:pangolin/widgets/taskbar/taskbar_element.dart';
+import 'package:pangolin/components/overlays/search/search_overlay.dart';
+import 'package:pangolin/components/taskbar/taskbar_element.dart';
 
 class SearchButton extends StatelessWidget {
+  const SearchButton({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return TaskbarElement(
+    return const TaskbarElement(
+      overlayID: SearchOverlay.overlayId,
       child: Icon(
         Icons.search,
       ),
-      overlayID: SearchOverlay.overlayId,
     );
   }
 }

@@ -17,12 +17,18 @@ limitations under the License.
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/settings/widgets/settings_page.dart';
 
-class SettingsPageDisplay extends StatelessWidget {
+class SettingsPageDisplay extends StatefulWidget {
   const SettingsPageDisplay({Key? key}) : super(key: key);
 
   @override
+  State<SettingsPageDisplay> createState() => _SettingsPageDisplayState();
+}
+
+class _SettingsPageDisplayState extends State<SettingsPageDisplay> {
+  bool test = false;
+  @override
   Widget build(BuildContext context) {
-    return SettingsPage(
+    return const SettingsPage(
       title: "Display",
       cards: [],
     );

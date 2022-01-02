@@ -15,31 +15,60 @@ limitations under the License.
 */
 
 import 'dart:io';
-import 'package:dahlia_backend/dahlia_backend.dart';
+
+import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:pangolin/utils/api_models/bing_wallpaper_api_model.dart';
-import 'package:pangolin/utils/data/accent_color_data.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:pangolin/utils/wm/wm.dart';
 
 String totalVersionNumber = "21XXXX";
-String headingFeatureString =
-    "dahliaOS Linux-Based " + totalVersionNumber + " ...";
-String longName = "dahliaOS Linux-Based " + totalVersionNumber + " PRE-RELEASE";
+String headingFeatureString = "dahliaOS Linux-Based $totalVersionNumber ...";
+String longName = "dahliaOS Linux-Based $totalVersionNumber PRE-RELEASE";
 String get kernel {
   if (!kIsWeb) {
     if (!Platform.isWindows) {
-      ProcessResult result = Process.runSync('uname', ['-sr']);
-      var kernelString = result.stdout;
-      return kernelString.toString().replaceAll('\n', '');
-    } else
+      final ProcessResult result = Process.runSync('uname', ['-sr']);
+      final String kernelString = result.stdout.toString();
+      return kernelString.replaceAll('\n', '');
+    } else {
       return "Windows";
-  } else
+    }
+  } else {
     return "Web Build";
+  }
+}
+
+String get architecture {
+  if (!kIsWeb) {
+    if (!Platform.isWindows) {
+      final ProcessResult result = Process.runSync('uname', ['-p']);
+      final String architechtureString = result.stdout.toString();
+      return architechtureString.replaceAll('\n', '');
+    } else {
+      return "x86_64 / ARM64 based Windows operating system";
+    }
+  } else {
+    return "Unkown architecture";
+  }
+}
+
+String get username {
+  if (!kIsWeb) {
+    if (!Platform.isWindows) {
+      final ProcessResult result = Process.runSync('whoami', []);
+      final String architechtureString = result.stdout.toString();
+      return architechtureString.replaceAll('\n', '');
+    } else {
+      return "Windows user";
+    }
+  } else {
+    return "dahliaOS Live user";
+  }
 }
 
 String pangolinCommit = "8c5eea993a89446b3bb0b9e313cdea1d06bf8477";
-String fullPangolinVersion = "$pangolinCommit";
+String fullPangolinVersion = pangolinCommit;
 
 double horizontalPadding(BuildContext context, double size) =>
     WindowHierarchy.of(context).wmBounds.width / 2 - size / 2;
@@ -59,31 +88,26 @@ List<String> wallpapers = [
   "assets/images/wallpapers/mountain.jpg",
   "assets/images/wallpapers/forest.jpg",
   "assets/images/wallpapers/modern.png",
-];
-
-List<AccentColorData> accentColors = [
-  AccentColorData(color: Colors.deepOrange, title: "Orange"),
-  AccentColorData(color: Colors.red.shade700, title: "Red"),
-  AccentColorData(color: Colors.greenAccent.shade700, title: "Green"),
-  AccentColorData(color: Colors.blue, title: "Blue"),
-  AccentColorData(color: Colors.purple, title: "Purple"),
-  AccentColorData(color: Colors.cyan, title: "Cyan"),
-  AccentColorData(color: Colors.amber, title: "Amber"),
-  AccentColorData(color: null, title: "Custom Accent Color"),
+  "assets/images/wallpapers/modern_dark.png",
+  "assets/images/wallpapers/wood.jpg",
+  "assets/images/wallpapers/beach.jpg",
 ];
 
 Future<BingWallpaper> getBingWallpaper() async {
   final response = await get(
-      Uri.parse(
-          'http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US'),
-      headers: {
-        "Access-Control-Allow-Origin": "true",
-        "Access-Control-Allow-Methods": "POST, GET, OPTIONS, PUT, DELETE, HEAD",
-      });
+    Uri.parse(
+      'http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US',
+    ),
+    headers: {
+      "Access-Control-Allow-Origin": "true",
+      "Access-Control-Allow-Methods": "POST, GET, OPTIONS, PUT, DELETE, HEAD",
+    },
+  );
   if (response.statusCode == 200) {
     return bingWallpaperFromJson(response.body);
   } else {
     throw Exception(
-        "Failed to fetch data from the Bing's Wallpaper of the Day API.");
+      "Failed to fetch data from the Bing's Wallpaper of the Day API.",
+    );
   }
 }

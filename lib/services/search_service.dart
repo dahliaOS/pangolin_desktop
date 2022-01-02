@@ -14,9 +14,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/widgets.dart';
 import 'package:pangolin/utils/data/app_list.dart';
+import 'package:pangolin/utils/data/models/application.dart';
 
 class SearchNotifier {
   final termSearchResult = ValueNotifier<List<Application>>(<Application>[]);
@@ -25,7 +25,7 @@ class SearchNotifier {
     final _searchInputResult = <Application>[];
     // await Future.delayed(Duration(milliseconds: 250));
     if (searchInputTerm.isNotEmpty) {
-      for (var app in applications) {
+      for (final Application app in applications) {
         if (app.name!.toLowerCase().contains(searchInputTerm.toLowerCase())) {
           _searchInputResult.add(app);
           termSearchResult.value = _searchInputResult;

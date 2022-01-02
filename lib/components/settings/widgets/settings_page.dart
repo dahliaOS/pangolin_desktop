@@ -15,12 +15,11 @@ limitations under the License.
 */
 
 import 'package:flutter/material.dart';
-import 'package:pangolin/components/settings/models/settings_element_model.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 
 class SettingsPage extends StatelessWidget {
   final String title;
-  final List<SettingsElementModel> cards;
+  final List<Widget> cards;
 
   const SettingsPage({required this.title, required this.cards, Key? key})
       : super(key: key);
@@ -29,25 +28,24 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        SizedBox.shrink(),
+        const SizedBox.shrink(),
         Padding(
-          padding: EdgeInsets.only(left: 64, top: 42),
+          padding: const EdgeInsets.only(left: 64, top: 42),
           child: Text(
-            this.title,
-            style: TextStyle(
+            title,
+            style: const TextStyle(
               fontSize: 30,
               fontWeight: FontWeight.w300,
             ),
           ),
         ),
         Padding(
-          padding: EdgeInsets.fromLTRB(64, 96, 64, 24),
+          padding: const EdgeInsets.fromLTRB(64, 96, 64, 24),
           child: SizedBox(
             width: MediaQuery.of(context).size.width - 500,
-            child: SingleChildScrollView(
-              child: Column(
-                children: this.cards,
-              ),
+            child: ListView(
+              physics: const BouncingScrollPhysics(),
+              children: cards,
             ),
           ),
         ),

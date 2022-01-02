@@ -48,11 +48,11 @@ class ThemeManager {
 
   //Getter forgreoundColor on accent
   Color get foregroundColorOnAccentColor =>
-      this.accentColor.computeLuminance() < 0.4 ? Colors.white : Colors.black;
+      accentColor.computeLuminance() < 0.4 ? Colors.white : Colors.black;
 
   //Getter forgreoundColor on accent
   Color get foregroundColorOnSurface =>
-      this.surfaceColor.computeLuminance() < 0.4 ? Colors.white : Colors.black;
+      surfaceColor.computeLuminance() < 0.4 ? Colors.white : Colors.black;
 
   //TODO check usage of the following var
   //Getter forgreoundColor on accent
@@ -60,14 +60,17 @@ class ThemeManager {
       this.accentColor.computeLuminance() < 0.4 ? Colors.white : Colors.black; */
 
   //Getter: surfaceColor
-  Color get surfaceColor =>
-      _customizationProvider.darkMode ? Color(0xff151515) : Color(0xffffffff);
+  Color get surfaceColor => _customizationProvider.darkMode
+      ? const Color(0xff151515)
+      : const Color(0xffffffff);
 
   //Getter: backgroundColor
-  Color get backgroundColor =>
-      _customizationProvider.darkMode ? Color(0xff0a0a0a) : Color(0xffffffff);
+  Color get backgroundColor => _customizationProvider.darkMode
+      ? const Color(0xff0a0a0a)
+      : const Color(0xffffffff);
 
   //Getter: cardColor
-  Color get cardColor =>
-      _customizationProvider.darkMode ? Color(0xff212121) : Color(0xfff0f0f0);
+  Color get cardColor => _customizationProvider.darkMode
+      ? const Color(0xff212121)
+      : const Color(0xfff0f0f0);
 }

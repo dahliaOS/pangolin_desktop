@@ -19,25 +19,26 @@ import 'package:pangolin/utils/data/common_data.dart';
 
 export 'package:flutter/material.dart';
 export 'package:pangolin/utils/extensions/extensions.dart';
-export 'package:pangolin/utils/icons/icons_x.dart';
 export 'package:pangolin/utils/extensions/preference_extension.dart';
+export 'package:pangolin/utils/icons/icons_x.dart';
 
 extension ThemeDataX on ThemeData {
-  bool get darkMode => this.brightness == Brightness.dark;
-  Color get elementColor => darkMode ? Color(0xff0a0a0a) : Color(0xfffafafa);
+  bool get darkMode => brightness == Brightness.dark;
+  Color get elementColor =>
+      darkMode ? const Color(0xff0a0a0a) : const Color(0xfffafafa);
   Color get elementHoverColor => darkMode
-      ? Color(0xff0a0a0a).withOpacity(0.2)
-      : Color(0xfffafafa).withOpacity(0.2);
+      ? const Color(0xff0a0a0a).withOpacity(0.2)
+      : const Color(0xfffafafa).withOpacity(0.2);
 
   Color get textColor => darkMode ? ColorsX.white : ColorsX.black;
 }
 
 extension ColorsX on Color {
-  static Color get white => Color(0xfffafafa);
-  static Color get black => Color(0xff0a0a0a);
+  static Color get white => const Color(0xfffafafa);
+  static Color get black => const Color(0xff0a0a0a);
   static Color get transparent => Colors.transparent;
   Color op(double opacity) {
-    return this.withOpacity(opacity);
+    return withOpacity(opacity);
   }
 }
 
@@ -88,11 +89,8 @@ extension BuildContextX on BuildContext {
 }
 
 extension CommonDataX on CommonData {
-  BorderRadius get borderRadiusSmall =>
-      this.borderRadius(BorderRadiusType.SMALL);
-  BorderRadius get borderRadiusMedium =>
-      this.borderRadius(BorderRadiusType.MEDIUM);
-  BorderRadius get borderRadiusBig => this.borderRadius(BorderRadiusType.BIG);
-  BorderRadius get borderRadiusRound =>
-      this.borderRadius(BorderRadiusType.ROUND);
+  BorderRadius get borderRadiusSmall => borderRadius(BorderRadiusType.small);
+  BorderRadius get borderRadiusMedium => borderRadius(BorderRadiusType.medium);
+  BorderRadius get borderRadiusBig => borderRadius(BorderRadiusType.big);
+  BorderRadius get borderRadiusRound => borderRadius(BorderRadiusType.round);
 }

@@ -34,11 +34,11 @@ class _ThemeModeButtonState extends State<ThemeModeButton> {
     final _customizationProvider = CustomizationProvider.of(context);
     return ClipRRect(
       borderRadius: CommonData.of(context).borderRadius(
-        BorderRadiusType.SMALL,
+        BorderRadiusType.small,
       ),
       child: InkWell(
         borderRadius: CommonData.of(context).borderRadius(
-          BorderRadiusType.SMALL,
+          BorderRadiusType.small,
         ),
         mouseCursor: SystemMouseCursors.click,
         onTap: () {
@@ -68,15 +68,15 @@ class _ThemeModeButtonState extends State<ThemeModeButton> {
                     child: Row(
                       children: [
                         _cardElement(widget.model),
-                        SizedBox(width: 8),
+                        const SizedBox(width: 8),
                         Expanded(
                           flex: 2,
                           child: Column(
                             children: [
                               _cardElement(widget.model),
-                              SizedBox(height: 8),
+                              const SizedBox(height: 8),
                               _cardElement(widget.model),
-                              SizedBox(height: 8),
+                              const SizedBox(height: 8),
                               _cardElement(widget.model),
                             ],
                           ),
@@ -85,7 +85,7 @@ class _ThemeModeButtonState extends State<ThemeModeButton> {
                     ),
                   ),
                 ),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 Text(
                   widget.model.label,
                   style: Theme.of(context).textTheme.subtitle1?.copyWith(
@@ -110,15 +110,17 @@ class _ThemeModeButtonState extends State<ThemeModeButton> {
 
   Expanded _cardElement(ThemeModeDataModel model) {
     return Expanded(
-      flex: 1,
       child: Container(
         decoration: BoxDecoration(
           border: Border.all(
-              color: model.darkMode
-                  ? Colors.white.withOpacity(0.05)
-                  : Colors.black.withOpacity(0.05),
-              width: 2),
-          color: model.darkMode ? Color(0xff212121) : Color(0xfff0f0f0),
+            color: model.darkMode
+                ? Colors.white.withOpacity(0.05)
+                : Colors.black.withOpacity(0.05),
+            width: 2,
+          ),
+          color: model.darkMode
+              ? const Color(0xff212121)
+              : const Color(0xfff0f0f0),
           borderRadius: BorderRadius.circular(4),
         ),
       ),

@@ -28,7 +28,7 @@ class SettingsPageAbout extends StatelessWidget {
     return /*SettingsPage(
       title: "About",
       cards: [
-        SettingsCard.custom(
+        SettingsCardOld.custom(
           content: SizedBox(
             width: double.infinity,
             child: Padding(
@@ -78,74 +78,87 @@ class SettingsPageAbout extends StatelessWidget {
       ],
     )*/
         SingleChildScrollView(
-            child: Column(
-      children: [
-        Stack(
-          children: [
-            Container(
-              width: double.maxFinite,
-              height: 200,
-              color: ThemeManager.of(context).accentColorAlt,
-            ),
-            Image.asset(
-              "assets/images/other/about-mask.png",
-              width: double.maxFinite,
-              height: 200,
-              fit: BoxFit.fitWidth,
-            ),
-            Center(
-                child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  height: 70,
-                ),
-                Image.asset(
-                  "assets/images/logos/dahliaOS-white.png",
-                  height: 50,
-                ),
-                Text(
-                  "Version " + totalVersionNumber,
-                  style: TextStyle(color: Colors.white),
-                )
-              ],
-            )),
-          ],
-        ),
-        Container(
-          margin: EdgeInsets.all(50),
-          child: Column(
+      child: Column(
+        children: [
+          Stack(
             children: [
-              SettingsContentHeader("Kernel"),
-              SettingsCard.withExpandable(
-                value: false,
-                leading: Icon(Icons.memory),
-                title: kernel,
+              Container(
+                width: double.maxFinite,
+                height: 200,
+                color: ThemeManager.of(context).accentColorAlt,
               ),
-              SettingsContentHeader("Desktop"),
-              SettingsCard.withExpandable(
-                value: false,
-                leading: Icon(Icons.desktop_mac),
-                title: "Pangolin " + pangolinCommit,
+              Image.asset(
+                "assets/images/other/about-mask.png",
+                width: double.maxFinite,
+                height: 200,
+                fit: BoxFit.fitWidth,
               ),
-              SettingsContentHeader("Software Update"),
-              SettingsCard.withCustomTrailing(
-                title: "dahliaOS is up to date - 21XXXX",
-                subtitle: "Last checked: Today at 12:45 AM",
-                leading: Icon(Icons.update),
-                trailing: ElevatedButton(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text("Check for updates"),
-                  ),
-                  onPressed: () {},
+              Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      height: 70,
+                    ),
+                    Image.asset(
+                      "assets/images/logos/dahliaOS-white.png",
+                      height: 50,
+                    ),
+                    Text(
+                      "Version $totalVersionNumber",
+                      style: const TextStyle(color: Colors.white),
+                    )
+                  ],
                 ),
               ),
             ],
           ),
-        )
-      ],
-    ));
+          Container(
+            margin: const EdgeInsets.all(50),
+            child: Column(
+              children: [
+                const SettingsContentHeader("System Information"),
+                SettingsCard(
+                  children: [
+                    ListTile(
+                      title: const Text("Environment"),
+                      subtitle: Text(kernel),
+                      leading: const Icon(Icons.memory),
+                    ),
+                    ListTile(
+                      title: const Text("Architecture"),
+                      subtitle: Text(architecture),
+                      leading: const Icon(Icons.architecture),
+                    ),
+                    ListTile(
+                      title: const Text("Desktop"),
+                      subtitle: Text("Pangolin $pangolinCommit"),
+                      leading: const Icon(Icons.desktop_mac),
+                    )
+                  ],
+                ),
+                const SettingsContentHeader("Software Update"),
+                SettingsCard(
+                  children: [
+                    ListTile(
+                      title: const Text("dahliaOS is up to date - 21XXXX"),
+                      subtitle: const Text("Last checked: Today at 12:45 AM"),
+                      leading: const Icon(Icons.update),
+                      trailing: ElevatedButton(
+                        child: const Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Text("Check for updates"),
+                        ),
+                        onPressed: () {},
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          )
+        ],
+      ),
+    );
   }
 }

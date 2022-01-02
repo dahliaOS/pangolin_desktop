@@ -13,15 +13,20 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
+import 'dart:io' show Platform;
 
-import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
+import 'package:pangolin/components/settings/data/presets.dart';
 import 'package:pangolin/components/shell/desktop.dart';
 import 'package:pangolin/services/locales/generated_asset_loader.g.dart';
 import 'package:pangolin/services/locales/locales.g.dart';
-import 'package:pangolin/components/settings/data/presets.dart';
+import 'package:pangolin/services/visual_engine/visual_engine.dart';
+import 'package:pangolin/utils/data/dap_index.dart';
+import 'package:pangolin/utils/data/database_manager.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
+import 'package:pangolin/utils/other/date_time_manager.dart';
 import 'package:pangolin/utils/providers/clock_provider.dart';
 import 'package:pangolin/utils/providers/connection_provider.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
@@ -31,9 +36,8 @@ import 'package:pangolin/utils/providers/misc_provider.dart';
 import 'package:pangolin/utils/providers/search_provider.dart';
 import 'package:pangolin/utils/theme/theme.dart';
 import 'package:provider/provider.dart';
-import 'package:pangolin/services/visual_engine/visual_engine.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   //initialize the database
@@ -43,12 +47,6 @@ void main() async {
   //initialize scheduler for time and date
   DateTimeManager.initialiseScheduler();
 
-  //Fix old database entries
-  if (DatabaseManager.get("wallpaper") != null &&
-      double.tryParse(DatabaseManager.get("wallpaper")) != null) {
-    DatabaseManager.set("wallpaper", "assets/images/wallpapers/modern.png");
-  }
-
   //initialize the localization engine
   await EasyLocalization.ensureInitialized();
 
@@ -57,6 +55,11 @@ void main() async {
 
   //load visual engine
   await loadVisualEngine();
+  if (kIsWeb == false) {
+    if (Platform.isLinux) {
+      indexApplications();
+    }
+  }
 
   runApp(
     EasyLocalization(
@@ -65,7 +68,7 @@ void main() async {
       useFallbackTranslations: true,
       assetLoader: GeneratedAssetLoader(),
       path: "assets/locales",
-      startLocale: Locale("en", "US"),
+      startLocale: const Locale("en", "US"),
       child: MultiProvider(
         providers: [
           /* ChangeNotifierProvider<PreferenceProvider>.value(
@@ -96,18 +99,20 @@ void main() async {
             value: SearchProvider(),
           ),
         ],
-        child: Pangolin(),
+        child: const Pangolin(),
       ),
     ),
   );
 }
 
 class Pangolin extends StatelessWidget {
+  const Pangolin({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       //debugShowCheckedModeBanner: false,
-      home: Desktop(),
+      home: const Desktop(),
       theme: theme(context),
       locale: context.locale,
       localizationsDelegates: context.localizationDelegates,

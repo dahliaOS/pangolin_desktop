@@ -1,4 +1,4 @@
-import 'package:dahlia_backend/dahlia_backend.dart';
+import 'package:pangolin/utils/data/database_manager.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:provider/provider.dart';
 
@@ -13,10 +13,12 @@ class SearchProvider extends ChangeNotifier {
   // Initial Values
 
   List<String> _recentSearchResults = List.from([], growable: true);
+  String _searchQueryCache = '';
 
   // Getters
 
   List<String> get recentSearchResults => _recentSearchResults;
+  String get searchQueryCache => _searchQueryCache;
 
   // Setters
 
@@ -30,6 +32,11 @@ class SearchProvider extends ChangeNotifier {
     _recentSearchResults = value;
     notifyListeners();
     DatabaseManager.set("recentSearchResults", _recentSearchResults);
+  }
+
+  set searchQueryCache(String value) {
+    _searchQueryCache = value;
+    notifyListeners();
   }
 
   void loadData() {

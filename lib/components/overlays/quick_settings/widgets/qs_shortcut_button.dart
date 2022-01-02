@@ -47,14 +47,22 @@ class _QsShortcutButtonState extends State<QsShortcutButton> {
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12),
             child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Icon(
                   widget.icon ?? Icons.add,
                   size: 16,
                 ),
-                widget.title != null ? SizedBox(width: 8) : SizedBox.shrink(),
-                widget.title != null ? Text(widget.title!) : SizedBox.shrink(),
+                if (widget.title != null)
+                  const SizedBox(width: 8)
+                else
+                  const SizedBox.shrink(),
+                if (widget.title != null)
+                  Text(
+                    widget.title!,
+                    style: const TextStyle(fontSize: 13),
+                  )
+                else
+                  const SizedBox.shrink(),
               ],
             ),
           ),

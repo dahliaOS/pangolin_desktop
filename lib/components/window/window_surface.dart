@@ -14,17 +14,14 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
+import 'package:pangolin/widgets/global/box/box_container.dart';
 
 class PangolinWindowSurface extends StatelessWidget {
-  const PangolinWindowSurface();
+  const PangolinWindowSurface({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BoxSurface(
-      outline: false,
-      dropShadow: true,
-    );
+    return const BoxSurface(dropShadow: true);
   }
 }

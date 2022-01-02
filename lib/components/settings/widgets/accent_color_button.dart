@@ -35,7 +35,7 @@ class _AccentColorButtonState extends State<AccentColorButton> {
       message: widget.model.label,
       child: InkWell(
         borderRadius:
-            CommonData.of(context).borderRadius(BorderRadiusType.SMALL),
+            CommonData.of(context).borderRadius(BorderRadiusType.small),
         mouseCursor: SystemMouseCursors.click,
         onTap: () {
           _customizationProvider.accentColor = widget.model.color.value;
@@ -43,20 +43,22 @@ class _AccentColorButtonState extends State<AccentColorButton> {
         },
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Column(
+          child: Stack(
             children: [
-              Container(
-                height: _customizationProvider.accentColor ==
-                        widget.model.color.value
-                    ? 64
-                    : 48,
-                width: _customizationProvider.accentColor ==
-                        widget.model.color.value
-                    ? 64
-                    : 48,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  color: Color(widget.model.color.value),
+              Center(
+                child: Container(
+                  height: _customizationProvider.accentColor ==
+                          widget.model.color.value
+                      ? 64
+                      : 48,
+                  width: _customizationProvider.accentColor ==
+                          widget.model.color.value
+                      ? 64
+                      : 48,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: Color(widget.model.color.value),
+                  ),
                 ),
               ),
             ],

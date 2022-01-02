@@ -14,22 +14,27 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:pangolin/components/overlays/launcher_overlay.dart';
-import 'package:pangolin/components/shell/shell.dart';
+import 'package:pangolin/components/overlays/launcher/compact_launcher_overlay.dart';
+import 'package:pangolin/components/overlays/launcher/launcher_overlay.dart';
+import 'package:pangolin/components/taskbar/taskbar_element.dart';
 import 'package:pangolin/utils/context_menus/context_menu.dart';
 import 'package:pangolin/utils/context_menus/context_menu_item.dart';
 import 'package:pangolin/utils/context_menus/core/context_menu_region.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
-import 'package:pangolin/widgets/taskbar/taskbar_element.dart';
+import 'package:pangolin/utils/providers/misc_provider.dart';
+import 'package:provider/provider.dart';
 
+//TODO: Context menu for changing the taskbar's icon is cut off.
 class LauncherButton extends StatelessWidget {
+  const LauncherButton({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final _customizationProvider = CustomizationProvider.of(context);
-    final _shell = Shell.of(context);
 
     return ContextMenuRegion(
+      centerAboveElement: true,
       contextMenu: ContextMenu(
         items: [
           ContextMenuItem(
@@ -70,15 +75,21 @@ class LauncherButton extends StatelessWidget {
           ),
         ],
       ),
-      child: TaskbarElement(
-        child: Icon(
-          IconData(
-            _customizationProvider.launcherIcon,
-            fontFamily: "MaterialIcons",
-          ),
-          //size: 24,
-        ),
-        overlayID: LauncherOverlay.overlayId,
+      child: Consumer(
+        builder: (context, MiscProvider provider, _) {
+          return TaskbarElement(
+            overlayID: provider.compactLauncher
+                ? CompactLauncherOverlay.overlayId
+                : LauncherOverlay.overlayId,
+            child: Icon(
+              IconData(
+                _customizationProvider.launcherIcon,
+                fontFamily: "MaterialIcons",
+              ),
+              //size: 24,
+            ),
+          );
+        },
       ),
     );
   }

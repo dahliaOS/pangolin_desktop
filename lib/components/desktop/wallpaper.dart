@@ -15,38 +15,35 @@ limitations under the License.
 */
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:dahlia_backend/dahlia_backend.dart';
+import 'package:pangolin/components/desktop/wallpaper_picker.dart';
+import 'package:pangolin/components/shell/desktop.dart';
 import 'package:pangolin/utils/context_menus/context_menu.dart';
 import 'package:pangolin/utils/context_menus/context_menu_item.dart';
 import 'package:pangolin/utils/context_menus/core/context_menu_region.dart';
 import 'package:pangolin/utils/data/globals.dart';
-import 'package:pangolin/services/wm_api.dart';
-import 'package:pangolin/components/desktop/wallpaper_picker.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
+import 'package:pangolin/utils/wm/wm_api.dart';
+import 'package:provider/provider.dart';
 
-class WallpaperWindowFeature extends WindowFeature {
-  const WallpaperWindowFeature();
+class WallpaperLayer extends StatelessWidget {
+  const WallpaperLayer({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, Widget content) {
-    // get properties
-    final WindowPropertyRegistry properties =
-        WindowPropertyRegistry.of(context);
-
+  Widget build(BuildContext context) {
     // fetch image from properties
-    final String? image = CustomizationProvider.of(context).wallpaper;
+    final String image = CustomizationProvider.of(context).wallpaper;
 
     //get Bing Wallpaper of the Day data
     getBingWallpaper();
-
+    //return const SizedBox();
     return SizedBox.expand(
-      child: _WallpaperContextMenu(child: wallpaperImage(image!)),
+      child: ChangeNotifierProvider.value(
+        value: Desktop.wmController,
+        child: _WallpaperContextMenu(child: wallpaperImage(image)),
+      ),
     );
   }
-
-  @override
-  List<WindowPropertyKey> get requiredProperties => [];
 }
 
 class _WallpaperContextMenu extends StatelessWidget {
@@ -69,7 +66,7 @@ class _WallpaperContextMenu extends StatelessWidget {
                 barrierColor: Colors.transparent,
                 context: context,
                 builder: (context) {
-                  return WallpaperPicker();
+                  return const WallpaperPicker();
                 },
               );
             },
@@ -99,8 +96,7 @@ Widget wallpaperImage(String source) {
       fit: BoxFit.cover,
       cacheKey: source,
       useOldImageOnUrlChange: true,
-      fadeInDuration: Duration(milliseconds: 1000),
-      fadeOutDuration: Duration(milliseconds: 1000),
+      fadeInDuration: const Duration(milliseconds: 1000),
       fadeInCurve: Curves.easeInOut,
       fadeOutCurve: Curves.easeInOut,
     );

@@ -22,6 +22,8 @@ import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
 
 class KeyboardButton extends StatelessWidget {
+  const KeyboardButton({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final _customizationProvider = CustomizationProvider.of(context);
@@ -35,7 +37,7 @@ class KeyboardButton extends StatelessWidget {
         padding: const EdgeInsets.all(4.0),
         child: ClipRRect(
           borderRadius:
-              CommonData.of(context).borderRadius(BorderRadiusType.SMALL),
+              CommonData.of(context).borderRadius(BorderRadiusType.small),
           child: ValueListenableBuilder<bool>(
             valueListenable:
                 _shell.getShowingNotifier(QuickSettingsOverlay.overlayId),
@@ -51,17 +53,18 @@ class KeyboardButton extends StatelessWidget {
               hoverColor:
                   Theme.of(context).colorScheme.secondary.withOpacity(0.5),
               mouseCursor: SystemMouseCursors.click,
-              onTap: () => ShowKeyboard(context),
+              onTap: () => showKeyboard(context),
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                 child: Center(
                   child: _customizationProvider.isTaskbarHorizontal
                       ? Row(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: [Icon(Icons.keyboard_outlined)])
+                          children: const [Icon(Icons.keyboard_outlined)],
+                        )
                       : Column(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: [Icon(Icons.keyboard_outlined)],
+                          children: const [Icon(Icons.keyboard_outlined)],
                         ),
                 ),
               ),

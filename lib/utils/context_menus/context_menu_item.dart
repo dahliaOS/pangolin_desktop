@@ -12,17 +12,17 @@ limitations under the License.
 */
 
 import 'package:flutter/material.dart';
-import 'package:pangolin/services/wm_api.dart';
+import 'package:pangolin/utils/wm/wm_api.dart';
 import 'package:utopia_wm/wm_new.dart';
 
 class ContextMenuItem extends StatelessWidget {
-  ContextMenuItem({
+  const ContextMenuItem({
     Key? key,
     required this.icon,
     required this.title,
     required this.onTap,
     this.shortcut,
-  });
+  }) : super(key: key);
 
   final String title;
   final String? shortcut;
@@ -44,21 +44,24 @@ class ContextMenuItem extends StatelessWidget {
                 }
               : null,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 2),
+            padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 2),
             child: Row(
               children: [
-                Icon(this.icon),
-                SizedBox(
+                Icon(
+                  icon,
+                ),
+                const SizedBox(
                   width: 16,
                 ),
                 Text(
-                  this.title,
+                  title,
                   style: Theme.of(context).textTheme.subtitle1,
                 ),
                 //Spacer(),
                 Align(
-                    alignment: Alignment.centerRight,
-                    child: Text(this.shortcut ?? ""))
+                  alignment: Alignment.centerRight,
+                  child: Text(shortcut ?? ""),
+                )
               ],
             ),
           ),

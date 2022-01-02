@@ -16,20 +16,27 @@ limitations under the License.
 
 import 'dart:math';
 
-import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/gestures.dart';
-import 'package:pangolin/components/overlays/launcher_overlay.dart';
+import 'package:pangolin/components/overlays/launcher/launcher_overlay.dart';
 import 'package:pangolin/components/shell/shell.dart';
-import 'package:pangolin/utils/providers/customization_provider.dart';
 import 'package:pangolin/components/taskbar/taskbar_item.dart';
-import 'package:pangolin/utils/context_menus/context_menu.dart';
-import 'package:pangolin/utils/context_menus/context_menu_item.dart';
-import 'package:pangolin/utils/context_menus/core/context_menu_region.dart';
+import 'package:pangolin/utils/data/database_manager.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
+import 'package:pangolin/utils/providers/customization_provider.dart';
+/* import 'package:pangolin/utils/context_menus/context_menu.dart';
+import 'package:pangolin/utils/context_menus/context_menu_item.dart';
+import 'package:pangolin/utils/context_menus/core/context_menu_region.dart'; */
+import 'package:pangolin/utils/wm/wm.dart';
 
 class Taskbar extends StatefulWidget {
-  final List<Widget>? leading, trailing;
-  Taskbar({@required this.leading, @required this.trailing});
+  final List<Widget>? leading;
+  final List<Widget>? trailing;
+
+  const Taskbar({
+    required this.leading,
+    required this.trailing,
+    Key? key,
+  }) : super(key: key);
 
   @override
   _TaskbarState createState() => _TaskbarState();
@@ -40,21 +47,23 @@ class _TaskbarState extends State<Taskbar> {
   Widget build(BuildContext context) {
     final _shell = Shell.of(context);
     final _customizationProvider = CustomizationProvider.of(context);
-    List<String> _pinnedApps = _customizationProvider.pinnedApps;
-    List<String> _taskbarApps = _pinnedApps.toList()
-      ..addAll(WindowHierarchy.of(context)
-          .entries
-          .map<String>(
-            (e) => _pinnedApps.contains(e.registry.extra.stableId)
-                ? ""
-                : e.registry.extra.stableId,
-          )
-          .toList());
+    final List<String> _pinnedApps = _customizationProvider.pinnedApps;
+    final List<String> _taskbarApps = _pinnedApps.toList()
+      ..addAll(
+        WindowHierarchy.of(context)
+            .entries
+            .map<String>(
+              (e) => _pinnedApps.contains(e.registry.extra.stableId)
+                  ? ""
+                  : e.registry.extra.stableId,
+            )
+            .toList(),
+      );
 
-    Widget items = ReorderableListView(
+    final Widget items = ReorderableListView(
       shrinkWrap: true,
       primary: true,
-      physics: BouncingScrollPhysics(),
+      physics: const BouncingScrollPhysics(),
       scrollDirection: _customizationProvider.isTaskbarHorizontal
           ? Axis.horizontal
           : Axis.vertical,
@@ -108,10 +117,10 @@ class _TaskbarState extends State<Taskbar> {
           }
         },
         // TODO Fix taskbar background position
-        child: ContextMenuRegion(
+        /* child: ContextMenuRegion(
           contextMenu: ContextMenu(
             items: [
-              ContextMenuItem(
+              const ContextMenuItem(
                 icon: Icons.power_input_sharp,
                 title: "Taskbar Position",
                 onTap: null,
@@ -150,71 +159,73 @@ class _TaskbarState extends State<Taskbar> {
                 shortcut: "",
               ),
             ],
-          ),
-          child: ValueListenableBuilder<bool>(
-              valueListenable:
-                  _shell.getShowingNotifier(LauncherOverlay.overlayId),
-              builder: (context, shown, child) {
-                return Material(
-                  color: shown
-                      ? ColorsX.black.op(context.theme.darkMode ? 0.1 : 0.05)
-                      : Colors.transparent,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                    child: Stack(
-                      children: [
-                        _customizationProvider.centerTaskbar
-                            ? Positioned.fill(
-                                child: listenerWrapper(Center(child: items)),
-                              )
-                            : SizedBox.shrink(),
-                        _customizationProvider.isTaskbarHorizontal
-                            ? Row(
-                                children: [
-                                  Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children:
-                                        widget.leading ?? [SizedBox.shrink()],
-                                  ),
-                                  Expanded(
-                                    child: _customizationProvider.centerTaskbar
-                                        ? Container()
-                                        : listenerWrapper(items),
-                                  ),
-                                  Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children:
-                                        widget.trailing ?? [SizedBox.shrink()],
-                                  ),
-                                ],
-                              )
-                            : Column(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children:
-                                        widget.leading ?? [SizedBox.shrink()],
-                                  ),
-                                  Expanded(
-                                    child: _customizationProvider.centerTaskbar
-                                        ? Container()
-                                        : listenerWrapper(items),
-                                  ),
-                                  Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children:
-                                        widget.trailing ?? [SizedBox.shrink()],
-                                  ),
-                                ],
-                              ),
-                      ],
-                    ),
-                  ),
-                );
-              }),
+          ), */
+        child: ValueListenableBuilder<bool>(
+          valueListenable: _shell.getShowingNotifier(LauncherOverlay.overlayId),
+          builder: (context, shown, child) {
+            return Material(
+              color: shown
+                  ? ColorsX.black.op(context.theme.darkMode ? 0.1 : 0.05)
+                  : Colors.transparent,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 4.0),
+                child: Stack(
+                  children: [
+                    if (_customizationProvider.centerTaskbar)
+                      Positioned.fill(
+                        child: listenerWrapper(Center(child: items)),
+                      )
+                    else
+                      const SizedBox.shrink(),
+                    if (_customizationProvider.isTaskbarHorizontal)
+                      Row(
+                        children: [
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children:
+                                widget.leading ?? [const SizedBox.shrink()],
+                          ),
+                          Expanded(
+                            child: _customizationProvider.centerTaskbar
+                                ? Container()
+                                : listenerWrapper(items),
+                          ),
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children:
+                                widget.trailing ?? [const SizedBox.shrink()],
+                          ),
+                        ],
+                      )
+                    else
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children:
+                                widget.leading ?? [const SizedBox.shrink()],
+                          ),
+                          Expanded(
+                            child: _customizationProvider.centerTaskbar
+                                ? Container()
+                                : listenerWrapper(items),
+                          ),
+                          Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children:
+                                widget.trailing ?? [const SizedBox.shrink()],
+                          ),
+                        ],
+                      ),
+                  ],
+                ),
+              ),
+            );
+          },
         ),
       ),
+      /* ), */
     );
   }
 
@@ -228,21 +239,5 @@ class _TaskbarState extends State<Taskbar> {
         child: SizedBox.shrink(child: child),
       ),
     );
-  }
-}
-
-extension JoinList<T> on List<T> {
-  List<T> joinType(T separator) {
-    List<T> workList = [];
-
-    for (int i = 0; i < (length * 2) - 1; i++) {
-      if (i % 2 == 0) {
-        workList.add(this[i ~/ 2]);
-      } else {
-        workList.add(separator);
-      }
-    }
-
-    return workList;
   }
 }

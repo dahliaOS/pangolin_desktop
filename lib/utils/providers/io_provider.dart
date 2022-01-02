@@ -14,12 +14,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:dahlia_backend/dahlia_backend.dart';
+import 'package:pangolin/utils/data/database_manager.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:provider/provider.dart';
 
 class IOProvider extends ChangeNotifier {
-  static IOProvider of(BuildContext context, {bool listen: true}) =>
+  static IOProvider of(BuildContext context, {bool listen = true}) =>
       Provider.of<IOProvider>(context, listen: listen);
 
   IOProvider() {
@@ -42,27 +42,27 @@ class IOProvider extends ChangeNotifier {
 
   // Setters / Methods
 
-  void set volume(double value) {
+  set volume(double value) {
     _volume = value;
     DatabaseManager.set("volume", value);
     if (value > 0) DatabaseManager.set("alt_volume", value);
     notifyListeners();
   }
 
-  void set brightness(double value) {
+  set brightness(double value) {
     _brightness = value;
     DatabaseManager.set("brightness", value);
     if (value > 0) DatabaseManager.set("alt_brightness", value);
     notifyListeners();
   }
 
-  void set isMuted(bool value) {
+  set isMuted(bool value) {
     _isMuted = value;
     value == true ? volume = 0 : volume = DatabaseManager.get("alt_volume");
     notifyListeners();
   }
 
-  void set isAutoBrightnessEnabled(bool value) {
+  set isAutoBrightnessEnabled(bool value) {
     _isAutoBrightnessEnabled = value;
     DatabaseManager.set("auto_brightness", value);
     notifyListeners();
@@ -73,5 +73,7 @@ class IOProvider extends ChangeNotifier {
   void _loadData() {
     _volume = DatabaseManager.get("volume") ?? volume;
     _brightness = DatabaseManager.get("brightness") ?? volume;
+    DatabaseManager.newEntry("alt_volume", volume);
+    DatabaseManager.newEntry("alt_brightness", brightness);
   }
 }

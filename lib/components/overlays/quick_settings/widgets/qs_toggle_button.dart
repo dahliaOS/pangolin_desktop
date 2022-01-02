@@ -15,25 +15,26 @@ limitations under the License.
 */
 
 import 'package:pangolin/utils/extensions/extensions.dart';
+import 'package:pangolin/utils/theme/theme_manager.dart';
 
+// ignore: must_be_immutable
 class QsToggleButton extends StatefulWidget {
-  QsToggleButton({
+  final String? title;
+  final String? subtitle;
+  final IconData? icon;
+  final bool value;
+  final VoidCallback? onPressed;
+  final VoidCallback? onMenuPressed;
+
+  const QsToggleButton({
     Key? key,
     this.title,
     this.subtitle,
     this.icon,
-    this.value,
+    this.value = false,
     this.onPressed,
-  }) : super(
-          key: key,
-        ) {
-    value = value ?? false;
-  }
-
-  final String? title, subtitle;
-  final IconData? icon;
-  bool? value;
-  final VoidCallback? onPressed;
+    this.onMenuPressed,
+  }) : super(key: key);
 
   @override
   _QsToggleButtonState createState() => _QsToggleButtonState();
@@ -45,9 +46,10 @@ class _QsToggleButtonState extends State<QsToggleButton> {
     final _color = widget.value == true
         ? context.theme.primaryColor
         : context.theme.backgroundColor.withOpacity(0.5);
+
     return SizedBox(
       height: 60,
-      width: 124,
+      width: 162,
       child: Material(
         color: _color,
         borderRadius: context.commonData.borderRadiusMedium,
@@ -68,7 +70,7 @@ class _QsToggleButtonState extends State<QsToggleButton> {
                       ? ColorsX.black
                       : ColorsX.white,
                 ),
-                SizedBox(width: 16),
+                const SizedBox(width: 12),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -80,7 +82,7 @@ class _QsToggleButtonState extends State<QsToggleButton> {
                             : "Do not \ndisturb",
                         overflow: TextOverflow.visible,
                         style: TextStyle(
-                          fontSize: 14,
+                          fontSize: 13,
                           fontWeight: FontWeight.w500,
                           color: _color.computeLuminance() > 0.4
                               ? ColorsX.black
@@ -88,19 +90,46 @@ class _QsToggleButtonState extends State<QsToggleButton> {
                         ),
                       ),
                     ),
-                    (widget.subtitle != null)
-                        ? Text(
-                            widget.subtitle!,
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: _color.computeLuminance() > 0.4
-                                  ? ColorsX.black
-                                  : ColorsX.white,
-                            ),
-                          )
-                        : SizedBox.shrink(),
+                    if (widget.subtitle != null)
+                      Text(
+                        widget.subtitle!,
+                        style: TextStyle(
+                          fontSize: 11,
+                          color: _color.computeLuminance() > 0.4
+                              ? ColorsX.black
+                              : ColorsX.white,
+                        ),
+                      )
+                    else
+                      const SizedBox.shrink(),
                   ],
                 ),
+                const Spacer(),
+                VerticalDivider(
+                  color: widget.value == true
+                      ? context.theme.backgroundColor.op(0.2)
+                      : ThemeManager.of(context)
+                          .foregroundColorOnSurface
+                          .op(0.2),
+                ),
+                Material(
+                  color: Colors.transparent,
+                  shape: const CircleBorder(),
+                  clipBehavior: Clip.antiAlias,
+                  child: InkWell(
+                    onTap: widget.onMenuPressed,
+                    child: Padding(
+                      padding: const EdgeInsets.all(6.0),
+                      child: Icon(
+                        Icons.chevron_right_rounded,
+                        size: 20,
+                        color: _color.computeLuminance() > 0.4
+                            ? ColorsX.black
+                            : ColorsX.white,
+                      ),
+                    ),
+                  ),
+                )
               ],
             ),
           ),

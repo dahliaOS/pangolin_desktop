@@ -24,7 +24,7 @@ class SettingsContentHeader extends SettingsElementModel {
     Key? key,
   }) : super(
           key: key,
-          type: SettingsElementModelType.CONTENTHEADER,
+          type: SettingsElementModelType.contentHeader,
         );
 
   @override

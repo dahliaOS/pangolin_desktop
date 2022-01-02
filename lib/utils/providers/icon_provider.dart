@@ -14,12 +14,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:dahlia_backend/dahlia_backend.dart';
+import 'package:pangolin/utils/data/database_manager.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:provider/provider.dart';
 
 class IconProvider extends ChangeNotifier {
-  static IconProvider of(BuildContext context, {bool listen: true}) =>
+  static IconProvider of(BuildContext context, {bool listen = true}) =>
       Provider.of<IconProvider>(context, listen: listen);
   IconProvider() {
     _loadData();
@@ -43,8 +43,8 @@ class IconProvider extends ChangeNotifier {
 
   // Data Loading
 
-  _loadData() {
-    var _list = ["material", "fluent", "unicons"];
+  void _loadData() {
+    final List<String> _list = ["material", "fluent", "unicons"];
     if (!_list.contains(iconPack)) {
       iconPack = "material";
     }

@@ -1,6 +1,9 @@
 <p align="center">
-  <img width="80%" src="https://github.com/dahliaOS/brand/blob/master/pangolin/svg/logotypeblacktext.svg"
-</p>
+  <img width="80%" src="https://github.com/dahliaOS/brand/blob/master/pangolin/svg/logotypeblacktext.svg#gh-light-mode-only"
+<p>
+<p align="center">
+  <img width="80%" src="https://github.com/dahliaOS/brand/blob/master/pangolin/svg/logotypewhitetext.svg#gh-dark-mode-only"
+<p>
 
 <p align="center">
 <a href="https://dahliaos.io">Website</a> ●
@@ -48,9 +51,12 @@ If you're interested in translating Pangolin, click [here](https://github.com/da
 ## License
 
 <p align="left">
-  <img width="40%" src="https://github.com/dahliaOS/brand/blob/master/dahliaOS/svg/logotypeblacktext.svg"
-</p>
+  <img width="40%" src="https://raw.githubusercontent.com/dahliaOS/brand/master/dahliaOS/svg/logotypeblacktext.svg#gh-light-mode-only"
+<p>
+<p align="left">
+  <img width="40%" src="https://raw.githubusercontent.com/dahliaOS/brand/master/dahliaOS/svg/logotypewhitetext.svg#gh-dark-mode-only"
+<p>
 
-Copyright @ 2019-2021 - The dahliaOS Authors - contact@dahliaos.io
+Copyright @ 2019-2022 - The dahliaOS Authors - contact@dahliaos.io
 
 This project is licensed under the [Apache 2.0 license](/LICENSE)

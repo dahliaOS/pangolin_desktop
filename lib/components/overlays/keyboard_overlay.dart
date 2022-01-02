@@ -16,8 +16,8 @@ limitations under the License.
 
 import 'package:flutter/material.dart';
 
-void ShowKeyboard(context) {
-  List<String> row1 = [
+void showKeyboard(BuildContext context) {
+  const List<String> row1 = [
     "~\n`",
     "!\n1",
     "@\n2",
@@ -33,7 +33,7 @@ void ShowKeyboard(context) {
     "+\n=",
     "delete"
   ];
-  List<String> row2 = [
+  const List<String> row2 = [
     "tab",
     "q",
     "w",
@@ -49,7 +49,7 @@ void ShowKeyboard(context) {
     "}\n]",
     "|\n\\"
   ];
-  List<String> row3 = [
+  const List<String> row3 = [
     "caps",
     "a",
     "s",
@@ -64,7 +64,7 @@ void ShowKeyboard(context) {
     "\"\n'",
     "enter"
   ];
-  List<String> row4 = [
+  const List<String> row4 = [
     "shift",
     "z",
     "x",
@@ -78,7 +78,7 @@ void ShowKeyboard(context) {
     "?\n/",
     "shift"
   ];
-  List<String> row5 = [
+  const List<String> row5 = [
     "fn",
     "control",
     "alt",
@@ -93,7 +93,7 @@ void ShowKeyboard(context) {
     barrierLabel: "Barrier",
     barrierDismissible: true,
     barrierColor: Colors.black.withOpacity(0),
-    transitionDuration: Duration(milliseconds: 120),
+    transitionDuration: const Duration(milliseconds: 120),
     context: context,
     pageBuilder: (_, __, ___) {
       return Align(
@@ -101,55 +101,55 @@ void ShowKeyboard(context) {
         child: Container(
           height: 350,
           width: double.maxFinite,
-          child: Scaffold(
-              backgroundColor: Colors.transparent,
-              body: SizedBox.expand(
-                child: new Center(
-                    child: new Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: List.generate(row1.length, (index) {
-                          return keyboardKey(row1[index].toString());
-                        }),
-                      ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: List.generate(row2.length, (index) {
-                          return keyboardKey(row2[index].toString());
-                        }),
-                      ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: List.generate(row3.length, (index) {
-                          return keyboardKey(row3[index].toString());
-                        }),
-                      ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: List.generate(row4.length, (index) {
-                          return keyboardKey(row4[index].toString());
-                        }),
-                      ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: List.generate(row5.length, (index) {
-                          return keyboardKey(row5[index].toString());
-                        }),
-                      ),
-                    ])),
-              )),
-          margin: EdgeInsets.only(bottom: 75, left: 12, right: 12),
+          margin: const EdgeInsets.only(bottom: 75, left: 12, right: 12),
           decoration: BoxDecoration(
             color: Colors.white.withOpacity(0.7),
             borderRadius: BorderRadius.circular(5),
+          ),
+          child: Scaffold(
+            backgroundColor: Colors.transparent,
+            body: SizedBox.expand(
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: List.generate(row1.length, (index) {
+                        return keyboardKey(row1[index]);
+                      }),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: List.generate(row2.length, (index) {
+                        return keyboardKey(row2[index]);
+                      }),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: List.generate(row3.length, (index) {
+                        return keyboardKey(row3[index]);
+                      }),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: List.generate(row4.length, (index) {
+                        return keyboardKey(row4[index]);
+                      }),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: List.generate(
+                        row5.length,
+                        (index) {
+                          return keyboardKey(row5[index]);
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ),
         ),
       );
@@ -166,13 +166,18 @@ void ShowKeyboard(context) {
 Widget keyboardKey(String letter) {
   return Container(
     height: 50,
-    child: Padding(
-        padding: EdgeInsets.only(left: 25, right: 25),
-        child: Center(child: Text(letter.toUpperCase()))),
-    margin: EdgeInsets.only(left: 2.5, right: 2.5, top: 2.5, bottom: 2.5),
+    margin: const EdgeInsets.only(left: 2.5, right: 2.5, top: 2.5, bottom: 2.5),
     decoration: BoxDecoration(
       color: Colors.white.withOpacity(0.7),
       borderRadius: BorderRadius.circular(5),
+    ),
+    child: Padding(
+      padding: const EdgeInsets.only(left: 25, right: 25),
+      child: Center(
+        child: Text(
+          letter.toUpperCase(),
+        ),
+      ),
     ),
   );
 }

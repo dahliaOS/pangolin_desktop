@@ -17,10 +17,12 @@ limitations under the License.
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(ValueDemoApp());
+  runApp(const ValueDemoApp());
 }
 
 class ValueDemoApp extends StatelessWidget {
+  const ValueDemoApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -34,13 +36,13 @@ class ValueDemoApp extends StatelessWidget {
           secondary: const Color(0xFF2196f3),
         ),
       ),
-      home: ValueDemoHomePage(),
+      home: const ValueDemoHomePage(),
     );
   }
 }
 
 class ValueDemoHomePage extends StatefulWidget {
-  ValueDemoHomePage({Key? key}) : super(key: key);
+  const ValueDemoHomePage({Key? key}) : super(key: key);
   @override
   _ValueDemoHomePageState createState() => _ValueDemoHomePageState();
 }
@@ -50,13 +52,9 @@ class _ValueDemoHomePageState extends State<ValueDemoHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('App Name'),
+        title: const Text('App Name'),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        mainAxisSize: MainAxisSize.max,
-        crossAxisAlignment: CrossAxisAlignment.center,
-      ),
+      body: Column(),
     );
   }
 }
