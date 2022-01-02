@@ -20,6 +20,8 @@ import 'package:pangolin/components/settings/models/settings_taskbar_data_model.
 import 'package:pangolin/components/settings/models/settings_theme_data_model.dart';
 
 class SettingsPresets {
+  const SettingsPresets._();
+
   //List with presets for the system accent colors
   static late List<AccentColorDataModel> accentColorPresets;
 

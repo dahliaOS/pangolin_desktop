@@ -14,13 +14,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:pangolin/utils/data/app_list.dart';
 import 'package:pangolin/components/window/error_window.dart';
 import 'package:pangolin/components/window/window_surface.dart';
 import 'package:pangolin/components/window/window_toolbar.dart';
+import 'package:pangolin/utils/data/app_list.dart';
 import 'package:pangolin/utils/data/database_manager.dart';
 import 'package:pangolin/utils/providers/misc_provider.dart';
 import 'package:pangolin/utils/wm/wm.dart';
@@ -71,17 +69,6 @@ class WmAPI {
     _windowHierarchy.addWindowEntry(entry);
   }
 
-  AppIcon(bool UsesRuntime, String? iconPath) {
-    if (iconPath == null) {
-      return AssetImage('assets/icons/null.png');
-    }
-    if (UsesRuntime == true) {
-      return FileImage(File(iconPath));
-    } else {
-      return AssetImage("assets/icons/${iconPath}.png");
-    }
-  }
-
   void openApp(String packageName) {
     final application = getApp(packageName);
     if (!application.canBeOpened) {
@@ -94,12 +81,12 @@ class WmAPI {
         WindowEntry.title: application.name,
         ToolbarWindowFeature.widget: PangolinWindowToolbar(
           barColor: application.color,
-          textColor: (application.appBarTextColor != null)
-              ? application.appBarTextColor
-              : Colors.white,
+          textColor: application.appBarTextColor,
         ),
-        WindowEntry.icon:
-            AppIcon(application.systemExecutable, application.iconName),
+        WindowEntry.icon: getAppIconProvider(
+          application.systemExecutable,
+          application.iconName,
+        ),
         WindowExtras.stableId: packageName,
       },
       overrideLayout: (info) => info.copyWith(

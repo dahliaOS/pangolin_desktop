@@ -1,5 +1,6 @@
-import 'package:pangolin/utils/extensions/extensions.dart';
 import 'dart:math' as math;
+
+import 'package:pangolin/utils/extensions/extensions.dart';
 
 class ExpandableSwitchListTile extends StatelessWidget {
   final Widget? content;
@@ -8,6 +9,7 @@ class ExpandableSwitchListTile extends StatelessWidget {
   final Widget? leading;
   final bool value;
   final ValueChanged<bool> onChanged;
+
   const ExpandableSwitchListTile({
     Key? key,
     this.content,
@@ -146,9 +148,11 @@ class RouterListTile extends StatelessWidget {
     return ListTile(
       onTap: () {
         //TODO implement router navigation
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text("Not implemented yet"),
-        ));
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text("Not implemented yet"),
+          ),
+        );
       },
       onLongPress: onLongPress,
       title: title ?? const Text("Router List Tile"),

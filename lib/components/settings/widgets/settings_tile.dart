@@ -34,7 +34,6 @@ class SettingsTile extends StatelessWidget {
           borderRadius: BorderRadius.circular(10.0),
           side: BorderSide(
             color: Colors.grey.withOpacity(0.2),
-            width: 1,
           ),
         ),
         color: Theme.of(context).cardColor,
@@ -45,12 +44,13 @@ class SettingsTile extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                title != null ? Text(title!) : const SizedBox.shrink(),
-                title != null
-                    ? const SizedBox(
-                        height: 8,
-                      )
-                    : const SizedBox.shrink(),
+                if (title != null) Text(title!) else const SizedBox.shrink(),
+                if (title != null)
+                  const SizedBox(
+                    height: 8,
+                  )
+                else
+                  const SizedBox.shrink(),
                 child ?? const SizedBox.shrink(),
               ],
             ),

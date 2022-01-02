@@ -17,6 +17,8 @@ limitations under the License.
 import 'package:hive_flutter/hive_flutter.dart';
 
 class DatabaseManager {
+  const DatabaseManager();
+
   static late Box _hivedb;
   static Future<void> initialseDatabase() async {
     //final _dir = await getApplicationDocumentsDirectory();
@@ -36,17 +38,16 @@ class DatabaseManager {
 
   //get
   ///Get the Value of a Key
-  static dynamic get<T>(String key) => _hivedb.get(key);
+  static T get<T>(String key) => _hivedb.get(key) as T;
 
   //set
   ///Set the Value of a Key
-  static void set(String key, dynamic value) async =>
-      await _hivedb.put(key, value);
+  static Future<void> set(String key, dynamic value) => _hivedb.put(key, value);
 
   //new entry
   ///Checks if the Database already contains the entry and creates a new one if it doesn't
   static void newEntry(String key, dynamic value) {
-    if (!(_hivedb.containsKey(key))) {
+    if (!_hivedb.containsKey(key)) {
       set(key, value);
     }
   }

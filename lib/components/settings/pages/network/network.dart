@@ -19,10 +19,10 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/settings/widgets/list_tiles.dart';
+import 'package:pangolin/components/settings/widgets/settings_card.dart';
 import 'package:pangolin/components/settings/widgets/settings_content_header.dart';
 import 'package:pangolin/components/settings/widgets/settings_page.dart';
 import 'package:pangolin/services/network_manager.dart';
-import 'package:pangolin/components/settings/widgets/settings_card.dart';
 
 class SettingsPageNetwork extends StatefulWidget {
   const SettingsPageNetwork({Key? key}) : super(key: key);
@@ -39,7 +39,7 @@ class _SettingsPageNetworkState extends State<SettingsPageNetwork> {
   Widget build(BuildContext context) {
     return SettingsPage(
       title: "Network & internet",
-      cards: (kIsWeb)
+      cards: kIsWeb
           ? [
               const SettingsCard(
                 children: [
@@ -54,9 +54,10 @@ class _SettingsPageNetworkState extends State<SettingsPageNetwork> {
               SettingsCard(
                 children: [
                   ExpandableSwitchListTile(
-                    title: Text("Wi-Fi"),
+                    title: const Text("Wi-Fi"),
                     subtitle: Text(
-                        "Wi-Fi is ${_wifiEnabled ? "enabled" : "disabled"}"),
+                      "Wi-Fi is ${_wifiEnabled ? "enabled" : "disabled"}",
+                    ),
                     value: _wifiEnabled,
                     leading: const Icon(Icons.wifi),
                     onChanged: (val) {
@@ -71,8 +72,8 @@ class _SettingsPageNetworkState extends State<SettingsPageNetwork> {
                             ? parseNetworks(context)
                             : const [
                                 Center(
-                                    child:
-                                        Text("Not supported on this platform"))
+                                  child: Text("Not supported on this platform"),
+                                ),
                               ],
                       ),
                     ),
@@ -102,9 +103,10 @@ class _SettingsPageNetworkState extends State<SettingsPageNetwork> {
               SettingsCard(
                 children: [
                   SwitchListTile(
-                    title: Text("Ethernet"),
+                    title: const Text("Ethernet"),
                     subtitle: Text(
-                        "Ethernet is ${_ethernetEnabled ? "enabled" : "disabled"}"),
+                      "Ethernet is ${_ethernetEnabled ? "enabled" : "disabled"}",
+                    ),
                     secondary: const Icon(Icons.settings_ethernet_rounded),
                     value: _ethernetEnabled,
                     onChanged: (val) {

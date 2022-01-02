@@ -15,11 +15,13 @@ limitations under the License.
 */
 import 'dart:async';
 
-import 'package:pangolin/utils/data/database_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:pangolin/utils/data/database_manager.dart';
 
 class DateTimeManager {
+  const DateTimeManager._();
+
   /// Current time [ValueNotifier]
   ///
   /// Notifies about the current time according to the [DateFormat]
@@ -33,7 +35,7 @@ class DateTimeManager {
   static String? _time;
   static String? _date;
 
-  static void initialiseScheduler() async {
+  static Future<void> initialiseScheduler() async {
     //TODO create an initalisation for the default format
     //setTimeFormat('12h+S');
     setDateFormat("dd.MM.yyyy");
@@ -41,7 +43,8 @@ class DateTimeManager {
     _timeNotifier = ValueNotifier(_getTimeFormat().format(DateTime.now()));
 
     _dateNotifier = ValueNotifier(
-        DateFormat(DatabaseManager.get('dateFormat')).format(DateTime.now()));
+      DateFormat(DatabaseManager.get('dateFormat')).format(DateTime.now()),
+    );
 
     while (true) {
       formatTime();

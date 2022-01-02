@@ -23,9 +23,12 @@ import 'package:pangolin/utils/providers/customization_provider.dart';
 import 'package:pangolin/utils/wm/wm.dart';
 
 class PangolinWindowToolbar extends StatefulWidget {
-  const PangolinWindowToolbar(
-      {Key? key, required this.barColor, required this.textColor})
-      : super(key: key);
+  const PangolinWindowToolbar({
+    Key? key,
+    required this.barColor,
+    required this.textColor,
+  }) : super(key: key);
+
   final Color barColor;
   final Color textColor;
 
@@ -73,9 +76,10 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
                     content: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        properties.info.icon != null
-                            ? Image(image: properties.info.icon!)
-                            : const Icon(Icons.apps),
+                        if (properties.info.icon != null)
+                          Image(image: properties.info.icon!)
+                        else
+                          const Icon(Icons.apps),
                         const SizedBox(
                           height: 16,
                         ),
@@ -115,22 +119,22 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
               ),
               child: Stack(
                 children: [
-                  Align(
-                    alignment: Alignment.center,
+                  Center(
                     child: Row(
                       children: [
                         const SizedBox(width: 12),
-                        properties.info.icon != null
-                            ? Image(
-                                image: properties.info.icon!,
-                                width: 20,
-                                height: 20,
-                              )
-                            : Icon(
-                                Icons.apps,
-                                size: 20,
-                                color: fgColor,
-                              ),
+                        if (properties.info.icon != null)
+                          Image(
+                            image: properties.info.icon!,
+                            width: 20,
+                            height: 20,
+                          )
+                        else
+                          Icon(
+                            Icons.apps,
+                            size: 20,
+                            color: fgColor,
+                          ),
                         const SizedBox(width: 8),
                         const Spacer(),
                         WindowToolbarButton(
@@ -163,8 +167,7 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
                       ],
                     ),
                   ),
-                  Align(
-                    alignment: Alignment.center,
+                  Center(
                     child: Text(
                       properties.info.title,
                       style: TextStyle(
@@ -229,7 +232,11 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
     }
   }
 
-  void onDrag(details, WindowPropertyRegistry properties, LayoutState layout) {
+  void onDrag(
+    DragUpdateDetails details,
+    WindowPropertyRegistry properties,
+    LayoutState layout,
+  ) {
     final hierarchy = WindowHierarchy.of(context, listen: false);
     setState(() {
       _cursor = SystemMouseCursors.move;
@@ -282,7 +289,7 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
     setState(() {});
   }
 
-  void onDragEnd(details) {
+  void onDragEnd(DragEndDetails details) {
     setState(() {
       _cursor = SystemMouseCursors.click;
     });

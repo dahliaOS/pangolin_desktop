@@ -15,9 +15,9 @@ limitations under the License.
 */
 
 import 'package:pangolin/components/shell/shell.dart';
+import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/wm/wm.dart';
 import 'package:pangolin/utils/wm/wm_api.dart';
-import 'package:pangolin/utils/extensions/extensions.dart';
 
 class ShowDesktopButton extends StatefulWidget {
   const ShowDesktopButton({Key? key}) : super(key: key);

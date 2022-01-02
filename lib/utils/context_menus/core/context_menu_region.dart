@@ -41,7 +41,6 @@ class _ContextMenuRegionState extends State<ContextMenuRegion> {
     features: [],
     layoutInfo: FreeformLayoutInfo(
       size: Size(200, 300),
-      position: Offset.zero,
       alwaysOnTop: true,
       alwaysOnTopMode: AlwaysOnTopMode.systemOverlay,
     ),
@@ -61,33 +60,37 @@ class _ContextMenuRegionState extends State<ContextMenuRegion> {
         behavior: HitTestBehavior.opaque,
         onLongPressStart: (details) {
           if (widget.useLongPress) {
-            showOverlay(context, details, constraints);
+            showOverlay(context, details.globalPosition, constraints);
           } else {
             return;
           }
         },
         onSecondaryTapDown: (details) =>
-            showOverlay(context, details, constraints),
+            showOverlay(context, details.globalPosition, constraints),
         child: widget.child ?? const SizedBox.shrink(),
       ),
     );
   }
 
   void showOverlay(
-      BuildContext context, dynamic details, BoxConstraints constraints) {
-    RenderBox _box = _globalKey.currentContext!.findRenderObject() as RenderBox;
+    BuildContext context,
+    Offset globalPosition,
+    BoxConstraints constraints,
+  ) {
+    final RenderBox _box =
+        _globalKey.currentContext!.findRenderObject()! as RenderBox;
     final buttonRect = _box.localToGlobal(Offset.zero);
-    bool centerAboveElement = widget.centerAboveElement ?? false;
+    final bool centerAboveElement = widget.centerAboveElement ?? false;
 
-    List<int> _length = List.empty(growable: true);
+    final List<int> _length = List.empty(growable: true);
     for (final ContextMenuItem element in widget.contextMenu.items) {
       _length.add(element.title.characters.length);
     }
     _length.sort();
-    late Size size =
+    final Size size =
         Size(64 + (_length.last * 8.8), widget.contextMenu.items.length * 44);
-    late double x;
-    late double y;
+    final double x;
+    final double y;
 
     if (centerAboveElement) {
       x = max(
@@ -97,12 +100,12 @@ class _ContextMenuRegionState extends State<ContextMenuRegion> {
           buttonRect.dx - 100 + (constraints.maxHeight / 2),
         ),
       );
-      y = details.globalPosition.dy
+      y = globalPosition.dy
           .clamp(56.0, MediaQuery.of(context).size.height - size.height - 56.0);
     } else {
-      x = details.globalPosition.dx
+      x = globalPosition.dx
           .clamp(8.0, MediaQuery.of(context).size.width - size.width - 8.0);
-      y = details.globalPosition.dy
+      y = globalPosition.dy
           .clamp(8.0, MediaQuery.of(context).size.height - size.height - 8.0);
     }
 

@@ -7,66 +7,79 @@ environment:
   sdk: ">=2.12.0-0 <3.0.0"
 
 dependencies:
+  animations: ^2.0.0-nullsafety.0
+
+  battery_plus: ^2.0.1
+
+  cached_network_image: ^3.0.0-nullsafety
+  calculator:
+    git:
+      url: https://github.com/dahliaOS/calculator.git
+
+  dahlia_clock:
+    git:
+      url: https://github.com/dahliaOS/clock.git
+
+  easy_localization: ^3.0.0
+  
+  files:
+    git:
+      url: https://github.com/dahliaOS/files.git
+      ref: old-base
+  fluentui_system_icons:  ^1.1.143
   flutter:
     sdk: flutter
+
+  graft:
+    git:
+      url: https://github.com/dahliaOS/graft.git
+
+  hive_flutter: any
+  http: ^0.13.0
+  
+  intl: ^0.17.0
+
+  media:
+    git:
+      url: https://github.com/dahliaOS/media.git
+
+  provider: ^6.0.1
+
+  recase: ^4.0.0-nullsafety.0
+
+  system_logs:
+    git:
+      url: https://github.com/dahliaOS/system_logs.git
+
+  task_manager:
+    git:
+      url: https://github.com/dahliaOS/task_manager.git
+  terminal:
+    git:
+      url: https://github.com/dahliaOS/terminal.git
+      ref: v2
+  text_editor:
+    git:
+      url: https://github.com/dahliaOS/text_editor.git
+
+  unicons: ^2.0.2
   utopia_wm:
     #path: ../utopia/
     git:
       url: https://github.com/dahliaOS/utopia.git
       ref: utopia
 
-  provider: ^6.0.1
-  animations: ^2.0.0-nullsafety.0
-  easy_localization: ^3.0.0
-  recase: ^4.0.0-nullsafety.0
-  xml: ^5.3.0
-  intl: ^0.17.0
-  cached_network_image: ^3.0.0-nullsafety
-  hive_flutter: any
-  calculator:
-    git:
-      url: https://github.com/dahliaOS/calculator.git
-  graft:
-    git:
-      url: https://github.com/dahliaOS/graft.git
-  text_editor:
-    git:
-      url: https://github.com/dahliaOS/text_editor.git
-  files:
-    git:
-      url: https://github.com/dahliaOS/files.git
-      ref: old-base
   web_browser:
     git:
       url: https://github.com/dahliaOS/web_browser.git
-  task_manager:
-    git:
-      url: https://github.com/dahliaOS/task_manager.git
-  media:
-    git:
-      url: https://github.com/dahliaOS/media.git
-  dahlia_clock:
-    git:
-      url: https://github.com/dahliaOS/clock.git
-  system_logs:
-    git:
-      url: https://github.com/dahliaOS/system_logs.git
-  terminal:
-    git:
-      url: https://github.com/dahliaOS/terminal.git
-      ref: v2
   welcome:
     git:
       url: https://github.com/dahliaOS/welcome.git
-  http: ^0.13.1
 
-  # Icon Packs
-  fluentui_system_icons:  ^1.1.143
-  unicons: ^2.0.2
-  battery_plus: ^2.0.1
-  flutter_lints: ^1.0.4 
+  xml: ^5.3.0
 
 dev_dependencies:
+  lint: ^1.8.1
 #  flutter_test:
 #    sdk: flutter
 #  integration_test:

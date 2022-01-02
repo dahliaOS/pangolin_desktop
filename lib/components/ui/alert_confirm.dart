@@ -13,7 +13,7 @@ limitations under the License.
 
 import 'package:flutter/material.dart';
 
-bool alertConfirm(String title, String text, context) {
+bool alertConfirm(String title, String text, BuildContext context) {
   showDialog(
     context: context,
     builder: (BuildContext context) {

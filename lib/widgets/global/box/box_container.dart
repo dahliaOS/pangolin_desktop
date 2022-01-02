@@ -18,12 +18,15 @@ import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/widgets/global/acrylic/acrylic.dart';
 
 class BoxSurface extends StatelessWidget {
-  final EdgeInsetsGeometry? padding, margin;
+  final EdgeInsetsGeometry? padding;
+  final EdgeInsetsGeometry? margin;
   final BorderRadius borderRadius;
   final Widget? child;
-  final double? width, height;
+  final double? width;
+  final double? height;
   final bool outline;
   final bool dropShadow;
+
   const BoxSurface({
     Key? key,
     this.child,
@@ -86,11 +89,14 @@ class BoxSurface extends StatelessWidget {
 }
 
 class BoxContainer extends StatelessWidget {
-  final EdgeInsetsGeometry? padding, margin;
+  final EdgeInsetsGeometry? padding;
+  final EdgeInsetsGeometry? margin;
   final BorderRadius borderRadius;
   final Widget? child;
-  final double? width, height;
+  final double? width;
+  final double? height;
   final bool outline;
+
   const BoxContainer({
     Key? key,
     this.child,

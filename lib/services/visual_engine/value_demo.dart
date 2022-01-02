@@ -52,11 +52,7 @@ class _ValueDemoHomePageState extends State<ValueDemoHomePage> {
       appBar: AppBar(
         title: const Text('App Name'),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        mainAxisSize: MainAxisSize.max,
-        crossAxisAlignment: CrossAxisAlignment.center,
-      ),
+      body: Column(),
     );
   }
 }

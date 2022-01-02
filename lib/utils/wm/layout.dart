@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pangolin/utils/wm/wm.dart';
-import 'package:utopia_wm/wm_new.dart';
 
 class PangolinLayoutDelegate extends LayoutDelegate<FreeformLayoutInfo> {
   const PangolinLayoutDelegate();
@@ -12,10 +11,10 @@ class PangolinLayoutDelegate extends LayoutDelegate<FreeformLayoutInfo> {
     List<String> focusHierarchy,
   ) {
     return Stack(
+      clipBehavior: Clip.none,
       children: WindowEntryUtils.getEntriesByFocus(entries, focusHierarchy)
           .map((e) => _buildWindow(context, e))
           .toList(),
-      clipBehavior: Clip.none,
     );
   }
 
@@ -49,7 +48,9 @@ class PangolinLayoutDelegate extends LayoutDelegate<FreeformLayoutInfo> {
   }
 
   static Rect _getRectForDock(
-      WindowDock dock, WindowHierarchyController hierarchy) {
+    WindowDock dock,
+    WindowHierarchyController hierarchy,
+  ) {
     switch (dock) {
       case WindowDock.maximized:
         return hierarchy.wmBounds;

@@ -17,10 +17,11 @@ class SettingsCard extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(6),
           side: BorderSide(
-              color: Theme.of(context).darkMode
-                  ? Colors.white.withOpacity(0.05)
-                  : Colors.black.withOpacity(0.05),
-              width: 2),
+            color: Theme.of(context).darkMode
+                ? Colors.white.withOpacity(0.05)
+                : Colors.black.withOpacity(0.05),
+            width: 2,
+          ),
         ),
         child: ListTileTheme.merge(
           dense: true,
@@ -47,10 +48,10 @@ class SettingsCard extends StatelessWidget {
 
 extension JoinList<T> on List<T> {
   List<T> joinType(T separator) {
-    List<T> workList = [];
+    final List<T> workList = [];
 
     for (int i = 0; i < (length * 2) - 1; i++) {
-      if (i % 2 == 0) {
+      if (i.isEven) {
         workList.add(this[i ~/ 2]);
       } else {
         workList.add(separator);

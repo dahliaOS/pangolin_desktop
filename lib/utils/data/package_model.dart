@@ -5,14 +5,17 @@ class PackageManifest {
   PackageManifest({required this.enabled, required this.package});
 
   factory PackageManifest.fromJson(Map<String, dynamic> parsedJson) {
-    var list = parsedJson['package'] as List;
+    final List<dynamic> list = parsedJson['package']! as List<dynamic>;
 
     // print(list.runtimeType);
-    List<IndividualPackage> packageList =
-        list.map((i) => IndividualPackage.fromJson(i)).toList();
+    final List<IndividualPackage> packageList = list
+        .map((i) => IndividualPackage.fromJson(i as Map<String, dynamic>))
+        .toList();
 
     return PackageManifest(
-        enabled: parsedJson['enabled'], package: packageList);
+      enabled: parsedJson['enabled']! as bool,
+      package: packageList,
+    );
   }
 }
 
@@ -29,7 +32,7 @@ class IndividualPackage {
   final String titleBarColor;
   final String themeMode;
 
-  IndividualPackage({
+  const IndividualPackage({
     required this.id, //e.g. "com.google.android.apps.docs"
     required this.altName, //e.g. "gdocs"
     required this.realName, //e.g. "Google Docs"
@@ -44,16 +47,17 @@ class IndividualPackage {
   });
   factory IndividualPackage.fromJson(Map<String, dynamic> parsedJson) {
     return IndividualPackage(
-        id: parsedJson['id'],
-        altName: parsedJson['altName'],
-        realName: parsedJson['realName'],
-        version: parsedJson['version'],
-        description: parsedJson['description'],
-        url: parsedJson['url'],
-        iconURL: parsedJson['iconURL'],
-        accentColor: parsedJson['accentColor'],
-        backgroundColor: parsedJson['backgroundColor'],
-        themeMode: parsedJson['themeMode'],
-        titleBarColor: parsedJson['titleBarColor']);
+      id: parsedJson['id']! as String,
+      altName: parsedJson['altName']! as String,
+      realName: parsedJson['realName']! as String,
+      version: parsedJson['version']! as String,
+      description: parsedJson['description']! as String,
+      url: parsedJson['url']! as String,
+      iconURL: parsedJson['iconURL']! as String,
+      accentColor: parsedJson['accentColor']! as String,
+      backgroundColor: parsedJson['backgroundColor']! as String,
+      themeMode: parsedJson['themeMode']! as String,
+      titleBarColor: parsedJson['titleBarColor']! as String,
+    );
   }
 }

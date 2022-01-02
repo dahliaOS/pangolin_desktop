@@ -14,8 +14,10 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'package:pangolin/components/overlays/launcher/widgets/app_launcher_button.dart';
 import 'package:pangolin/components/overlays/power_overlay.dart';
 import 'package:pangolin/components/overlays/search/search_overlay.dart';
+import 'package:pangolin/components/overlays/search/widgets/searchbar.dart';
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/services/locales/locale_strings.g.dart';
 import 'package:pangolin/utils/action_manager/action_manager.dart';
@@ -26,10 +28,8 @@ import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
 import 'package:pangolin/utils/providers/search_provider.dart';
 import 'package:pangolin/utils/wm/wm_api.dart';
-import 'package:pangolin/components/overlays/launcher/widgets/app_launcher_button.dart';
 import 'package:pangolin/widgets/global/box/box_container.dart';
 import 'package:pangolin/widgets/global/quick_button.dart';
-import 'package:pangolin/components/overlays/search/widgets/searchbar.dart';
 
 class LauncherOverlay extends ShellOverlay {
   static const String overlayId = 'launcher';

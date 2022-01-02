@@ -45,8 +45,9 @@ class QuickActionButton extends StatefulWidget {
 class _QuickActionButtonState extends State<QuickActionButton> {
   @override
   Widget build(BuildContext context) {
-    bool titleIsNull = widget.title == null;
-    bool leadingIsNull = widget.leading == null;
+    final bool titleIsNull = widget.title == null;
+    final bool leadingIsNull = widget.leading == null;
+
     return Padding(
       padding: widget.margin ?? const EdgeInsets.symmetric(horizontal: 8.0),
       child: SizedBox(
@@ -63,7 +64,9 @@ class _QuickActionButtonState extends State<QuickActionButton> {
             child: Padding(
               padding: widget.padding ??
                   EdgeInsets.symmetric(
-                      horizontal: !titleIsNull ? 12.0 : 8.0, vertical: 8.0),
+                    horizontal: !titleIsNull ? 12.0 : 8.0,
+                    vertical: 8.0,
+                  ),
               child: IconTheme.merge(
                 data: IconThemeData(
                   color: context.theme.darkMode ? ColorsX.white : ColorsX.black,
@@ -72,19 +75,22 @@ class _QuickActionButtonState extends State<QuickActionButton> {
                 child: DefaultTextStyle(
                   style: widget.textStyle ??
                       context.theme.textTheme.bodyText1!.copyWith(
-                          fontSize: 13, fontWeight: FontWeight.normal),
+                        fontSize: 13,
+                        fontWeight: FontWeight.normal,
+                      ),
                   child: !(widget.isCircular == true)
                       ? Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             widget.leading ?? const SizedBox.shrink(),
-                            !(titleIsNull || leadingIsNull)
-                                ? const SizedBox(width: 8)
-                                : const SizedBox.shrink(),
-                            !titleIsNull
-                                ? Text(widget.title!)
-                                : const SizedBox.shrink(),
+                            if (!(titleIsNull || leadingIsNull))
+                              const SizedBox(width: 8)
+                            else
+                              const SizedBox.shrink(),
+                            if (!titleIsNull)
+                              Text(widget.title!)
+                            else
+                              const SizedBox.shrink(),
                           ],
                         )
                       : widget.leading ?? const SizedBox.shrink(),

@@ -15,16 +15,17 @@ limitations under the License.
 */
 
 import 'dart:async';
+
+import 'package:easy_localization/easy_localization.dart';
 import 'package:pangolin/components/overlays/launcher/widgets/app_launcher_tile.dart';
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/utils/action_manager/action_manager.dart';
 import 'package:pangolin/utils/data/app_list.dart';
+import 'package:pangolin/utils/data/common_data.dart';
 import 'package:pangolin/utils/data/globals.dart';
 import 'package:pangolin/utils/data/models/application.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
-import 'package:pangolin/utils/data/common_data.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:pangolin/widgets/global/box/box_container.dart';
 import 'package:pangolin/widgets/global/quick_button.dart';
 
@@ -100,7 +101,9 @@ class _CompactLauncherOverlayState extends State<CompactLauncherOverlay>
           child: ScaleTransition(
             scale: _animation,
             alignment: FractionalOffset(
-                0.025, !_customizationProvider.isTaskbarTop ? 1.0 : 0.0),
+              0.025,
+              !_customizationProvider.isTaskbarTop ? 1.0 : 0.0,
+            ),
             child: BoxSurface(
               borderRadius:
                   CommonData.of(context).borderRadius(BorderRadiusType.big),
@@ -109,7 +112,7 @@ class _CompactLauncherOverlayState extends State<CompactLauncherOverlay>
               dropShadow: true,
               child: Padding(
                 //yeah this used to be 16, just a lil reminder
-                padding: const EdgeInsets.all(0.0),
+                padding: EdgeInsets.zero,
                 child: MaterialApp(
                   home: const CompactLauncher(),
                   theme: Theme.of(context)
@@ -152,7 +155,9 @@ class CompactLauncher extends StatelessWidget {
                 ),
                 QuickActionButton(
                   margin: const EdgeInsets.symmetric(
-                      horizontal: 16.0, vertical: 8.0),
+                    horizontal: 16.0,
+                    vertical: 8.0,
+                  ),
                   leading: const Icon(Icons.settings_outlined),
                   onPressed: () => ActionManager.openSettings(context),
                 ),
@@ -162,7 +167,11 @@ class CompactLauncher extends StatelessWidget {
                 ),
                 QuickActionButton(
                   margin: const EdgeInsets.only(
-                      left: 16.0, right: 16.0, bottom: 16.0, top: 8.0),
+                    left: 16.0,
+                    right: 16.0,
+                    bottom: 16.0,
+                    top: 8.0,
+                  ),
                   leading: const Icon(Icons.power_settings_new_rounded),
                   onPressed: () => ActionManager.showPowerMenu(context),
                 ),
@@ -192,7 +201,6 @@ class CompactLauncher extends StatelessWidget {
                     ),
                     QuickActionButton(
                       margin: const EdgeInsets.all(16.0),
-                      isCircular: true,
                       leading: const Icon(Icons.open_in_full_rounded),
                       onPressed: () {
                         ActionManager.switchLauncher(context);
@@ -204,15 +212,17 @@ class CompactLauncher extends StatelessWidget {
               SizedBox(
                 height: 460,
                 width: 380,
-                child: Builder(builder: (context) {
-                  applications
-                      .sort((a, b) => a.packageName.compareTo(b.packageName));
-                  return ListView(
-                    children: applications
-                        .map((Application e) => AppLauncherTile(e))
-                        .toList(),
-                  );
-                }),
+                child: Builder(
+                  builder: (context) {
+                    applications
+                        .sort((a, b) => a.packageName.compareTo(b.packageName));
+                    return ListView(
+                      children: applications
+                          .map((Application e) => AppLauncherTile(e))
+                          .toList(),
+                    );
+                  },
+                ),
               ),
             ],
           ),

@@ -16,10 +16,10 @@ limitations under the License.
 
 import 'dart:async';
 
+import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/utils/action_manager/action_manager.dart';
 import 'package:pangolin/utils/data/common_data.dart';
 import 'package:pangolin/utils/data/globals.dart';
-import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/widgets/global/box/box_container.dart';
 
@@ -97,7 +97,6 @@ class _PowerOverlayState extends State<PowerOverlay>
                   color: Colors.transparent,
                   child: BoxSurface(
                     dropShadow: true,
-                    outline: false,
                     borderRadius: CommonData.of(context)
                         .borderRadius(BorderRadiusType.big),
                     child: Column(
@@ -163,8 +162,12 @@ class _PowerOverlayState extends State<PowerOverlay>
     );
   }
 
-  Padding _powerMenuButton(String title, IconData icon, BuildContext context,
-      {VoidCallback? onPressed}) {
+  Padding _powerMenuButton(
+    String title,
+    IconData icon,
+    BuildContext context, {
+    VoidCallback? onPressed,
+  }) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: SizedBox(
@@ -175,6 +178,7 @@ class _PowerOverlayState extends State<PowerOverlay>
           borderRadius: context.commonData.borderRadiusSmall,
           color: context.accentColor,
           child: InkWell(
+            onTap: onPressed,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Row(
@@ -191,7 +195,6 @@ class _PowerOverlayState extends State<PowerOverlay>
                 ],
               ),
             ),
-            onTap: onPressed,
           ),
         ),
       ),

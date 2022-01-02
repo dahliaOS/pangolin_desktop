@@ -118,25 +118,25 @@ class _WallpaperPickerState extends State<WallpaperPicker>
                             children: [
                               Positioned.fill(
                                 child: Image.asset(
-                                  wallpapers[index].toString(),
+                                  wallpapers[index],
                                   fit: BoxFit.cover,
                                   scale: 1.0,
                                 ),
                               ),
-                              (_customizationProvider.wallpaper ==
-                                      wallpapers[index])
-                                  ? Positioned(
-                                      bottom: 5,
-                                      right: 5,
-                                      child: CircleAvatar(
-                                        backgroundColor: Theme.of(context)
-                                            .colorScheme
-                                            .secondary,
-                                        foregroundColor: Colors.white,
-                                        child: const Icon(Icons.check),
-                                      ),
-                                    )
-                                  : const SizedBox.shrink(),
+                              if (_customizationProvider.wallpaper ==
+                                  wallpapers[index])
+                                Positioned(
+                                  bottom: 5,
+                                  right: 5,
+                                  child: CircleAvatar(
+                                    backgroundColor:
+                                        Theme.of(context).colorScheme.secondary,
+                                    foregroundColor: Colors.white,
+                                    child: const Icon(Icons.check),
+                                  ),
+                                )
+                              else
+                                const SizedBox.shrink(),
                             ],
                           ),
                         ),
@@ -154,37 +154,38 @@ class _WallpaperPickerState extends State<WallpaperPicker>
                   //Recent Wallpapers
                   //
                   GridView.builder(
-                      physics: const BouncingScrollPhysics(),
-                      itemCount: _recentWallpapers.length,
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 4,
-                        childAspectRatio: 16 / 9,
-                      ),
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: InkWell(
-                            mouseCursor: SystemMouseCursors.click,
-                            onTap: () => _customizationProvider.wallpaper =
-                                _recentWallpapers[index],
-                            child: CachedNetworkImage(
-                              errorWidget: (context, string, _) => Container(
-                                color: Theme.of(context).colorScheme.secondary,
-                                child: const Center(
-                                  child: Text(
-                                    "Error\nImage does not exist anymore",
-                                    textAlign: TextAlign.center,
-                                  ),
+                    physics: const BouncingScrollPhysics(),
+                    itemCount: _recentWallpapers.length,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 4,
+                      childAspectRatio: 16 / 9,
+                    ),
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: InkWell(
+                          mouseCursor: SystemMouseCursors.click,
+                          onTap: () => _customizationProvider.wallpaper =
+                              _recentWallpapers[index],
+                          child: CachedNetworkImage(
+                            errorWidget: (context, string, _) => Container(
+                              color: Theme.of(context).colorScheme.secondary,
+                              child: const Center(
+                                child: Text(
+                                  "Error\nImage does not exist anymore",
+                                  textAlign: TextAlign.center,
                                 ),
                               ),
-                              imageUrl: _recentWallpapers[index],
-                              cacheKey: _recentWallpapers[index],
-                              fit: BoxFit.cover,
                             ),
+                            imageUrl: _recentWallpapers[index],
+                            cacheKey: _recentWallpapers[index],
+                            fit: BoxFit.cover,
                           ),
-                        );
-                      })
+                        ),
+                      );
+                    },
+                  )
                 ],
               ),
             ),
@@ -202,7 +203,6 @@ class _WallpaperPickerState extends State<WallpaperPicker>
                         hintText: "Set wallpaper from URL",
                         labelText: "Wallpaper URL",
                       ),
-                      maxLines: 1,
                       controller: _controller,
                       onSubmitted: (text) {
                         if (text.startsWith("http")) {
@@ -228,9 +228,10 @@ class _WallpaperPickerState extends State<WallpaperPicker>
                     onPressed: () async {
                       final bingresponse = await getBingWallpaper();
                       _customizationProvider.wallpaper =
-                          'https://bing.com' + bingresponse.images[0].url;
+                          'https://bing.com${bingresponse.images.first.url}';
                       _customizationProvider.addRecentWallpaper(
-                          'https://bing.com' + bingresponse.images[0].url);
+                        'https://bing.com${bingresponse.images.first.url}',
+                      );
                       Navigator.pop(context);
                     },
                     label: const Text(

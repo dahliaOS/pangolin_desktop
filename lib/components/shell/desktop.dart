@@ -14,18 +14,18 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'package:pangolin/components/desktop/wallpaper.dart';
 import 'package:pangolin/components/overlays/launcher/compact_launcher_overlay.dart';
 import 'package:pangolin/components/overlays/launcher/launcher_overlay.dart';
 import 'package:pangolin/components/overlays/overview_overlay.dart';
 import 'package:pangolin/components/overlays/power_overlay.dart';
 import 'package:pangolin/components/overlays/quick_settings/quick_settings_overlay.dart';
 import 'package:pangolin/components/overlays/search/search_overlay.dart';
+import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
 import 'package:pangolin/utils/wm/layout.dart';
 import 'package:pangolin/utils/wm/wm.dart';
-import 'shell.dart';
-import 'package:pangolin/components/desktop/wallpaper.dart';
 
 class Desktop extends StatefulWidget {
   static final WindowHierarchyController wmController =
@@ -41,8 +41,6 @@ class _DesktopState extends State<Desktop> {
   static const shellEntry = WindowEntry(
     features: [],
     layoutInfo: FreeformLayoutInfo(
-      size: Size.zero,
-      position: Offset.zero,
       alwaysOnTop: true,
       alwaysOnTopMode: AlwaysOnTopMode.systemOverlay,
     ),
