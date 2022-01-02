@@ -22,6 +22,7 @@ import 'package:pangolin/components/overlays/quick_settings/quick_settings_overl
 import 'package:pangolin/components/overlays/search/search_overlay.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
+import 'package:pangolin/utils/wm/layout.dart';
 import 'package:pangolin/utils/wm/wm.dart';
 import 'shell.dart';
 import 'package:pangolin/components/desktop/wallpaper.dart';
@@ -39,21 +40,17 @@ class Desktop extends StatefulWidget {
 class _DesktopState extends State<Desktop> {
   static const shellEntry = WindowEntry(
     features: [],
+    layoutInfo: FreeformLayoutInfo(
+      size: Size.zero,
+      position: Offset.zero,
+      alwaysOnTop: true,
+      alwaysOnTopMode: AlwaysOnTopMode.systemOverlay,
+    ),
     properties: {
       WindowEntry.title: "shell",
       WindowExtras.stableId: "shell",
       WindowEntry.showOnTaskbar: false,
       WindowEntry.icon: null,
-      WindowEntry.alwaysOnTop: true,
-      WindowEntry.alwaysOnTopMode: AlwaysOnTopMode.systemOverlay,
-    },
-  );
-  static const wallpaperEntry = WindowEntry(
-    features: [WallpaperWindowFeature()],
-    properties: {
-      WindowEntry.showOnTaskbar: false,
-      WindowEntry.icon: null,
-      WindowEntry.title: "wallpaper",
     },
   );
 
@@ -61,16 +58,20 @@ class _DesktopState extends State<Desktop> {
   void initState() {
     super.initState();
     WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
-      Desktop.wmController.addWindowEntry(wallpaperEntry.newInstance());
+      //Desktop.wmController.addWindowEntry(wallpaperEntry.newInstance());
       Desktop.wmController.addWindowEntry(
-        shellEntry.newInstance(Shell(overlays: [
-          LauncherOverlay(),
-          CompactLauncherOverlay(),
-          SearchOverlay(),
-          OverviewOverlay(),
-          QuickSettingsOverlay(),
-          PowerOverlay(),
-        ])),
+        shellEntry.newInstance(
+          content: Shell(
+            overlays: [
+              LauncherOverlay(),
+              CompactLauncherOverlay(),
+              SearchOverlay(),
+              OverviewOverlay(),
+              QuickSettingsOverlay(),
+              PowerOverlay(),
+            ],
+          ),
+        ),
       );
       // ignore: avoid_print
       print("Initilized Desktop Shell");
@@ -92,8 +93,16 @@ class _DesktopState extends State<Desktop> {
   @override
   Widget build(BuildContext context) {
     return SizedBox.expand(
-      child: WindowHierarchy(
-        controller: Desktop.wmController,
+      child: Stack(
+        children: [
+          const WallpaperLayer(),
+          Positioned.fill(
+            child: WindowHierarchy(
+              controller: Desktop.wmController,
+              layoutDelegate: const PangolinLayoutDelegate(),
+            ),
+          ),
+        ],
       ),
     );
   }

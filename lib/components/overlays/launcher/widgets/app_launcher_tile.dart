@@ -67,8 +67,14 @@ class _AppLauncherTileState extends State<AppLauncherTile> {
             borderRadius: BorderRadius.circular(8),
           ),
           dense: true,
-          leading: AppIcon(widget.application.systemExecutable,
-              widget.application.iconName, 32),
+          leading: SizedBox.fromSize(
+            size: const Size.square(32),
+            child: AppIcon(
+              widget.application.systemExecutable,
+              widget.application.iconName,
+              32,
+            ),
+          ),
           title: Text(widget.application.name ?? "Unknown"),
           subtitle: Text(
             widget.application.description ?? "Unknown",

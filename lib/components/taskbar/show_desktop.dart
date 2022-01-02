@@ -45,7 +45,7 @@ class _ShowDesktopButtonState extends State<ShowDesktopButton> {
           Shell.of(context, listen: false).dismissEverything();
           if (WindowHierarchy.of(context, listen: false)
               .entries
-              .any((element) => element.registry.minimize.minimized == false)) {
+              .any((e) => e.layoutState.minimized == false)) {
             WmAPI.of(context).minimizeAll();
           } else {
             WmAPI.of(context).undoMinimizeAll();

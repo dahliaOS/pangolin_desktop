@@ -38,20 +38,21 @@ class ContextMenuRegion extends StatefulWidget {
 class _ContextMenuRegionState extends State<ContextMenuRegion> {
   final GlobalKey _globalKey = GlobalKey();
   static const contextMenuEntry = WindowEntry(
-    features: [
-      GeometryWindowFeature(),
-    ],
+    features: [],
+    layoutInfo: FreeformLayoutInfo(
+      size: Size(200, 300),
+      position: Offset.zero,
+      alwaysOnTop: true,
+      alwaysOnTopMode: AlwaysOnTopMode.systemOverlay,
+    ),
     properties: {
       WindowExtras.stableId: "shell:context_menu",
       WindowEntry.title: "Context menu",
       WindowEntry.showOnTaskbar: false,
-      GeometryWindowFeature.size: Size(200, 300),
-      GeometryWindowFeature.position: Offset.zero,
       WindowEntry.icon: null,
-      WindowEntry.alwaysOnTop: true,
-      WindowEntry.alwaysOnTopMode: AlwaysOnTopMode.systemOverlay,
     },
   );
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -107,11 +108,11 @@ class _ContextMenuRegionState extends State<ContextMenuRegion> {
 
     WindowHierarchy.of(context, listen: false).addWindowEntry(
       contextMenuEntry.newInstance(
-        widget.contextMenu,
-        {
-          GeometryWindowFeature.position: Offset(x, y),
-          GeometryWindowFeature.size: size,
-        },
+        content: widget.contextMenu,
+        overrideLayout: (info) => info.copyWith(
+          position: Offset(x, y),
+          size: size,
+        ),
       ),
     );
     setState(() {});

@@ -81,16 +81,16 @@ class _TaskbarItemState extends State<TaskbarItem>
         ? windows.firstWhere(
             (element) =>
                 element.registry.extra.stableId ==
-                hierarchy.normalEntries.last.registry.extra.stableId,
+                hierarchy.sortedEntries.last.registry.extra.stableId,
           )
         : null;
     bool focused = windows.length > 1
         ? focusedEntry?.registry.extra.stableId == widget.packageName &&
-            !windows.last.registry.minimize.minimized
+            !windows.last.layoutState.minimized
         : true;
 
     bool showSelected =
-        appIsRunning ? focused && !entry!.registry.minimize.minimized : false;
+        appIsRunning ? focused && !entry!.layoutState.minimized : false;
     if (showSelected) {
       _ac.animateTo(1);
     } else {
@@ -224,8 +224,8 @@ class _TaskbarItemState extends State<TaskbarItem>
 
     bool focused = hierarchy.isFocused(entry.registry.info.id);
     setState(() {});
-    if (focused && !entry.registry.minimize.minimized) {
-      entry.registry.minimize.minimized = true;
+    if (focused && !entry.layoutState.minimized) {
+      entry.layoutState.minimized = true;
       if (windows.length > 1) {
         hierarchy.requestEntryFocus(
           windows[windows.length - 2].registry.info.id,
@@ -233,7 +233,7 @@ class _TaskbarItemState extends State<TaskbarItem>
       }
       setState(() {});
     } else {
-      entry.registry.minimize.minimized = false;
+      entry.layoutState.minimized = false;
       hierarchy.requestEntryFocus(entry.registry.info.id);
       setState(() {});
     }

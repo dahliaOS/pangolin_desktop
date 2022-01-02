@@ -37,16 +37,16 @@ class WmAPI {
 
   static WindowEntry windowEntry = WindowEntry(
     features: const [
-      MinimizeWindowFeature(),
-      GeometryWindowFeature(),
       ResizeWindowFeature(),
       SurfaceWindowFeature(),
       FocusableWindowFeature(),
       ToolbarWindowFeature(),
     ],
+    layoutInfo: const FreeformLayoutInfo(
+      position: Offset(32, 32),
+      size: Size(1280, 720),
+    ),
     properties: {
-      GeometryWindowFeature.position: const Offset(32, 32),
-      GeometryWindowFeature.size: const Size(1280, 720),
       ResizeWindowFeature.minSize: const Size(480, 360),
       SurfaceWindowFeature.elevation: 4.0,
       SurfaceWindowFeature.shape: RoundedRectangleBorder(
@@ -89,8 +89,8 @@ class WmAPI {
       // throw 'The app couldn not be opened';
     }
     final LiveWindowEntry _window = windowEntry.newInstance(
-      application.app ?? const ErrorWindow(),
-      {
+      content: application.app ?? const ErrorWindow(),
+      overrideProperties: {
         WindowEntry.title: application.name,
         ToolbarWindowFeature.widget: PangolinWindowToolbar(
           barColor: application.color,
@@ -101,12 +101,14 @@ class WmAPI {
         WindowEntry.icon:
             AppIcon(application.systemExecutable, application.iconName),
         WindowExtras.stableId: packageName,
-        GeometryWindowFeature.size: MediaQuery.of(context).size.width < 1920
+      },
+      overrideLayout: (info) => info.copyWith(
+        size: MediaQuery.of(context).size.width < 1920
             ? const Size(720, 480)
             : MediaQuery.of(context).size.width < 1921
                 ? const Size(1280, 720)
                 : const Size(1920, 1080),
-      },
+      ),
     );
 
     pushWindowEntry(_window);
@@ -115,10 +117,10 @@ class WmAPI {
   void minimizeAll() {
     _miscProvider.minimizedWindowsCache = [];
     for (final LiveWindowEntry e in _windowHierarchy.entries) {
-      if (e.registry.minimize.minimized) {
+      if (e.layoutState.minimized) {
         _miscProvider.minimizedWindowsCache.add(e.registry.info.id);
       } else {
-        e.registry.minimize.minimized = true;
+        e.layoutState.minimized = true;
       }
     }
   }
@@ -126,8 +128,8 @@ class WmAPI {
   void undoMinimizeAll() {
     for (final LiveWindowEntry e in _windowHierarchy.entries) {
       _miscProvider.minimizedWindowsCache.contains(e.registry.info.id)
-          ? e.registry.minimize.minimized = true
-          : e.registry.minimize.minimized = false;
+          ? e.layoutState.minimized = true
+          : e.layoutState.minimized = false;
     }
   }
 }

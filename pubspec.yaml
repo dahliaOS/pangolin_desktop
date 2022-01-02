@@ -13,7 +13,7 @@ dependencies:
     #path: ../utopia/
     git:
       url: https://github.com/dahliaOS/utopia.git
-      ref: 5cbf421278fdb4eaf59e18ad6e6796ee730c98b4
+      ref: utopia
 
   provider: ^6.0.1
   animations: ^2.0.0-nullsafety.0
