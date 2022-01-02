@@ -112,7 +112,7 @@ Widget appInfoPage(String title, Color accentColor, PackageManifest manifest) {
                 Container(
                   height: 16,
                 ),
-                RaisedButton.icon(
+                ElevatedButton.icon(
                   onPressed: () {
                     Process.run(
                       'web_runtime',
@@ -128,7 +128,6 @@ Widget appInfoPage(String title, Color accentColor, PackageManifest manifest) {
                     );
                   },
                   icon: const Icon(Icons.autorenew),
-                  color: accentColor,
                   label: Text(
                     'RESTART ${manifest.package.first.realName.toUpperCase()}',
                   ),

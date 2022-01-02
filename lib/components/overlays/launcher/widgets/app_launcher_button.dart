@@ -16,6 +16,7 @@ limitations under the License.
 
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:pangolin/utils/data/app_list.dart';
 import 'package:pangolin/utils/data/common_data.dart';
 import 'package:pangolin/utils/data/models/application.dart';
@@ -54,7 +55,9 @@ class _AppLauncherButtonState extends State<AppLauncherButton> {
               focusColor: CommonData.of(context).textColor(),
               onTap: () {
                 if (application.systemExecutable == true) {
-                  print(application.runtimeFlags.toString());
+                  if (kDebugMode) {
+                    print(application.runtimeFlags.toString());
+                  }
                   Process.run('web_runtime', application.runtimeFlags);
                 }
                 application.launch(context);

@@ -73,6 +73,9 @@ ThemeData theme(BuildContext context) {
       primary: Color(_customizationProvider.accentColor),
       secondary: Color(_customizationProvider.accentColor),
       surface: _customizationProvider.darkMode ? ColorsX.black : ColorsX.white,
+      primaryVariant: Color(_customizationProvider.accentColor).withAlpha(127),
+      secondaryVariant:
+          Color(_customizationProvider.accentColor).withAlpha(127),
     ),
     backgroundColor: ThemeManager.of(context).backgroundColor,
     canvasColor: ThemeManager.of(context).surfaceColor,

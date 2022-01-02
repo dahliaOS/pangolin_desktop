@@ -16,6 +16,7 @@ limitations under the License.
 
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:pangolin/utils/data/app_list.dart';
 import 'package:pangolin/utils/data/models/application.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
@@ -103,7 +104,9 @@ class _AppLauncherTileState extends State<AppLauncherTile> {
           ),
           onTap: () {
             if (widget.application.systemExecutable == true) {
-              print(widget.application.runtimeFlags.toString());
+              if (kDebugMode) {
+                print(widget.application.runtimeFlags.toString());
+              }
               Process.run('web_runtime', widget.application.runtimeFlags);
             }
             widget.application.launch(context);

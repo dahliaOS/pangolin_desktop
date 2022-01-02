@@ -16,6 +16,7 @@ limitations under the License.
 
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:pangolin/utils/data/app_list.dart';
 import 'package:pangolin/utils/data/models/application.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
@@ -55,7 +56,9 @@ class _SearchTileState extends State<SearchTile> {
         onTap: () {
           _searchProvider.addRecentSearchResult(application.packageName);
           if (application.systemExecutable == true) {
-            print(application.runtimeFlags.toString());
+            if (kDebugMode) {
+              print(application.runtimeFlags.toString());
+            }
             Process.run('web_runtime', application.runtimeFlags);
           }
           application.launch(context);
