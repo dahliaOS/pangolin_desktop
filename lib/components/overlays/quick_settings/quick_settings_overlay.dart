@@ -310,7 +310,6 @@ class QsMain extends StatelessWidget {
                           title: LocaleStrings.quicksettingsOverlay
                               .quickControlsDonotdisturbTitle,
                           icon: Icons.do_not_disturb_off_rounded,
-                          value: false,
                           onPressed: () {},
                         ),
                         //TODO move night light to the brightness control submenu

@@ -30,9 +30,7 @@ class ValueDemoApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: const Color(0xFF2196f3),
         canvasColor: const Color(0xFFf0f0f0),
-        colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: Colors.blue,
-        ).copyWith(
+        colorScheme: ColorScheme.fromSwatch().copyWith(
           secondary: const Color(0xFF2196f3),
         ),
       ),
