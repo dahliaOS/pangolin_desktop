@@ -79,11 +79,11 @@ dependencies:
   xml: ^5.3.0
 
 dev_dependencies:
-  flutter_lints: ^1.0.4
   flutter_test:
     sdk: flutter
   integration_test:
     sdk: flutter
+  lint: ^1.8.1
 
 dependency_overrides:
   material_design_icons_flutter: ^5.0.6295
