@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Global Strings -->
+    <string name="global.account.local">Lokaal Account</string>
+    <string name="global.account.user_accounts">Gebruiker Accounts</string>
+    <string name="global.on">Aan</string>
+    <string name="global.off">Uit</string>
+    <string name="global.settings">Instellingen</string>
+    <string name="global.coming_soon">Binnenkort Beschikbaar</string>
+    <string name="global.save">Opslaan</string>
+    <string name="global.search">Zoeken</string>
+    <!-- App Names-->
+    <string name="apps.authenticator">Authenticator</string>
+    <string name="apps.calculator">Rekenmachine</string>
+    <string name="apps.clock">Klok</string>
+    <string name="apps.containers" comment="Do not actually translate this string, just write &quot;Graft&quot; as the translation">Graft</string>
+    <string name="apps.disks">Schijven</string>
+    <string name="apps.files">Bestanden</string>
+    <string name="apps.media">Media</string>
+    <string name="apps.music">Muziek</string>
+    <string name="apps.notes">Tekstverwerker</string>
+    <string name="apps.notesmobile">Notities (Mobiel)</string>
+    <string name="apps.messages">Berichten</string>
+    <string name="apps.rootterminal">Root Terminal</string>
+    <string name="apps.settings">Instellingen</string>
+    <string name="apps.systemlogs">Systeem Logboeken</string>
+    <string name="apps.taskmanager">Taakbeheer</string>
+    <string name="apps.terminal">Terminal</string>
+    <string name="apps.themedemo">Thema Demo</string>
+    <string name="apps.welcome">Welkom</string>
+    <string name="apps.help">Hulp</string>
+    <string name="apps.web">Web Browser</string>
+    <!-- App Descriptions-->
+    <string name="apps.authenticator_description">Twee-staps Autorisatie</string>
+    <string name="apps.calculator_description">Optellen, aftrekken, vermenigvuldigen en delen</string>
+    <string name="apps.clock_description">Beheer tijd, alarmen, Stopwatches en Wereld Klokken</string>
+    <string name="apps.containers_description">Beheer uw Systeemcontainers</string>
+    <string name="apps.disks_description">Beheer schijven en partities</string>
+    <string name="apps.files_description">Blader door bestanden en mappen</string>
+    <string name="apps.media_description">Blader en bekijk foto\'s en video\'s</string>
+    <string name="apps.music_description">Luister naar lokale muziek</string>
+    <string name="apps.notes_description">Bewerk lokale tekstbestanden</string>
+    <string name="apps.notesmobile_description">Notities (Mobiel)</string>
+    <string name="apps.messages_description">Berichten</string>
+    <string name="apps.rootterminal_description">Voer opdrachten uit als Superuser</string>
+    <string name="apps.settings_description">Systeeminstellingen aanpassen</string>
+    <string name="apps.systemlogs_description">Systeemlogboeken lezen</string>
+    <string name="apps.taskmanager_description">Toepassingen beheren die momenteel worden uitgevoerd</string>
+    <string name="apps.terminal_description">Toegang tot de opdrachtlijn</string>
+    <string name="apps.themedemo_description">Interne demonstratie voor app thema\'s</string>
+    <string name="apps.welcome_description">Welkom Applicatie</string>
+    <string name="apps.help_description">F.A.Q. en Ondersteuning</string>
+    <string name="apps.web_description">Blader door het web</string>
+    <!-- Feature Not Implemented-->
+    <string name="misc.featurenotimplemented_title">Functie niet geïmplementeerd</string>
+    <string name="misc.featurenotimplemented_value">Deze functie is momenteel niet geïmplementeerd op je build van Pangolin, zie dahliaOS.io om te controleren op updates.</string>
+    <!-- Overlays -->
+    <!-- Overview -->
+    <string name="overviewOverlay.new_desktop">Nieuw Bureaublad</string>
+    <!-- Power menu -->
+    <string name="powerOverlay.title">Afsluit Menu</string>
+    <string name="powerOverlay.subtitle">Kies wat je wilt doen</string>
+    <string name="powerOverlay.poweroff">Schakel uit</string>
+    <string name="powerOverlay.sleep">Slaapstand</string>
+    <string name="powerOverlay.restart">Herstart</string>
+    <!-- Search -->
+    <string name="searchOverlay.hint">Doorzoek apparaat, apps en web</string>
+    <string name="searchOverlay.results">Resultaten</string>
+    <string name="searchOverlay.recent">Recent</string>
+    <string name="searchOverlay.app">App</string>
+    <!-- Launcher -->
+    <string name="launcherOverlay.categories.all_applications">Alle applicaties</string>
+    <string name="launcherOverlay.categories.internet">Internet</string>
+    <string name="launcherOverlay.categories.media">Media</string>
+    <string name="launcherOverlay.categories.gaming">gaming</string>
+    <string name="launcherOverlay.categories.development">Ontwikkeling</string>
+    <string name="launcherOverlay.categories.office">Kantoor</string>
+    <string name="launcherOverlay.categories.system">Systeem</string>
+    <!-- Quick Settings -->
+    <string name="quicksettingsOverlay.quick_controls">Snelle Bedieningen</string>
+    <string name="quicksettingsOverlay.quick_controls.network.title">Netwerk</string>
+    <string name="quicksettingsOverlay.quick_controls.network.subtitle_connected">verbonden</string>
+    <string name="quicksettingsOverlay.quick_controls.network.subtitle_disconnected">losgekoppeld</string>
+    <string name="quicksettingsOverlay.quick_controls.bluetooth.title">Bluetooth</string>
+    <string name="quicksettingsOverlay.quick_controls.blueooth.subtitle_connected">verbonden</string>
+    <string name="quicksettingsOverlay.quick_controls.blueooth.subtitle_disconnected">losgekoppeld</string>
+    <string name="quicksettingsOverlay.quick_controls.airplane_mode.title">Vliegtuig modus</string>
+    <string name="quicksettingsOverlay.quick_controls.language.title">Taal</string>
+    <string name="quicksettingsOverlay.quick_controls.theme.title">Thema</string>
+    <string name="quicksettingsOverlay.quick_controls.donotdisturb.title">Niet storen</string>
+    <string name="quicksettingsOverlay.shortcuts.title">Snelkoppelingen</string>
+    <string name="quicksettingsOverlay.shortcuts.new_event">Nieuwe gebeurtenis</string>
+    <string name="quicksettingsOverlay.shortcuts.alpha_build">Alpha Build</string>
+    <string name="quicksettingsOverlay.shortcuts.energy_mode">Energiemodus: prestatie</string>
+    <string name="quicksettingsOverlay.pages.network.title">Netwerk instellingen</string>
+    <string name="quicksettingsOverlay.pages.theme.title">Thema instellingen</string>
+    <!-- Wallpaper Picker -->
+    <string name="desktop.wallpaper_picker.gone">Fout\nAfbeelding bestaat niet meer</string>
+    <string name="desktop.wallpaper_picker.url_wallpaper.hint">Achtergrond instellen van URL</string>
+    <string name="desktop.wallpaper_picker.url_wallpaper.label">Achtergrond URL</string>
+    <string name="desktop.wallpaper_picker.bing_wallpaper_button">Gebruik Bing Achtergrond</string>
+    <!-- Desktop Context Menu -->
+    <string name="desktop.desktop_context_menu.change_wallpaper">Wijzig achtergrond</string>
+    <string name="desktop.desktop_context_menu.settings">Instellingen</string>
+    <!-- Misc -->
+    <string name="desktop.misc.show_desktop">Bureaublad tonen</string>
+    <!-- Settings -->
+    <!-- Headers -->
+    <string name="settings.headers.connectivity">Connectiviteit</string>
+    <string name="settings.headers.personalize">Personaliseren</string>
+    <string name="settings.headers.device">Apparaat &amp; applicaties</string>
+    <string name="settings.headers.system">Systeem</string>
+    <!-- Network & internet -->
+    <string name="settings.pages.network.title">Netwerk &amp; internet</string>
+    <string name="settings.pages.network.subtitle">Wi-Fi, ethernet, gegevensverbruik</string>
+    <string name="settings.pages.network.wifi">Wi-Fi</string>
+    <string name="settings.pages.network.wifi_switch_tile.title">Wi-Fi</string>
+    <string name="settings.pages.network.wifi_switch_tile.subtitle_enabled">Wi-Fi is ingeschakeld</string>
+    <string name="settings.pages.network.wifi_switch_tile.subtitle_disabled">Wi-Fi is uitgeschakeld</string>
+    <string name="settings.pages.network.wifi_preferences_tile.title">Wi-Fi voorkeuren</string>
+    <string name="settings.pages.network.wifi_preferences_tile.subtitle">Slimme wifi-verbinding, scanner opties</string>
+    <string name="settings.pages.network.wifi_saved_networks_tile.title">Opgeslagen netwerken</string>
+    <string name="settings.pages.network.wifi_saved_networks_tile.subtitle">%s netwerken</string>
+    <string name="settings.pages.network.wifi_data_usage_tile.title">Wi-Fi gegevensverbruik</string>
+    <string name="settings.pages.network.wifi_data_usage_tile.subtitle">Gegevensverbruik voor deze maand</string>
+    <string name="settings.pages.network.ethernet">Ethernet</string>
+    <string name="settings.pages.network.ethernet_switch_tile.title">Ethernet</string>
+    <string name="settings.pages.network.ethernet_switch_tile.subtitle_enabled">Ethernet is ingeschakeld</string>
+    <string name="settings.pages.network.ethernet_switch_tile.subtitle_disabled">Ethernet is uitgeschakeld</string>
+    <string name="settings.pages.network.ethernet_data_usage_tile.title">Wi-Fi gegevensverbruik</string>
+    <string name="settings.pages.network.ethernet_data_usage_tile.subtitle">Gegevensverbruik voor deze maand</string>
+    <string name="settings.pages.network.network_options">Netwerk opties</string>
+    <string name="settings.pages.network.network_options.vpn_tile.title">Virtueel Privé Netwerk (VPN)</string>
+    <string name="settings.pages.network.network_options.vpn_tile.subtitle">Geen</string>
+    <string name="settings.pages.network.network_options.vpn_tile.button">VPN opties</string>
+    <string name="settings.pages.network.network_options.dns_tile.title">Privé DNS</string>
+    <string name="settings.pages.network.network_options.dns_tile.subtitle">Automatisch</string>
+    <string name="settings.pages.network.network_options.dns_tile.button">DNS opties</string>
+    <!-- Connected devices -->
+    <string name="settings.pages.connections.title">Verbonden apparaten</string>
+    <string name="settings.pages.connections.subtitle">Bluetooth, printer, USB apparaten</string>
+    <string name="settings.pages.connections.bluetooth">Bluetooth</string>
+    <string name="settings.pages.connections.bluetooth_switch_tile.title">Bluetooth</string>
+    <string name="settings.pages.connections.bluetooth_switch_tile.subtitle_enabled">Bluetooth is ingeschakeld</string>
+    <string name="settings.pages.connections.bluetooth_switch_tile.subtitle_disabled">Bluetooth is uitgeschakeld</string>
+    <string name="settings.pages.connections.bluetooth_file_transfer_tile.title">Ontvangen bestanden via Bluetooth</string>
+    <string name="settings.pages.connections.phone_integration">Telefoon integratie</string>
+    <string name="settings.pages.connections.phone_integration_tile.title">Telefoon integratie</string>
+    <string name="settings.pages.connections.phone_integration_tile.subtitle">Telefoon integratie is uitgeschakeld</string>
+    <!-- Customization -->
+    <string name="settings.pages.customization.title">Aanpassen</string>
+    <string name="settings.pages.customization.subtitle">Personaliseer uw ervaring</string>
+    <string name="settings.pages.customization.theme">Thema</string>
+    <string name="settings.pages.customization.theme_mode_light">Licht</string>
+    <string name="settings.pages.customization.theme_mode_dark">Donker</string>
+    <string name="settings.pages.customization.theme_color_orange">Oranje</string>
+    <string name="settings.pages.customization.theme_color_red">Rood</string>
+    <string name="settings.pages.customization.theme_color_green">Groen</string>
+    <string name="settings.pages.customization.theme_color_blue">Blauw</string>
+    <string name="settings.pages.customization.theme_color_teal">Groenblauw</string>
+    <string name="settings.pages.customization.theme_color_pruple" comment="settings.pages.customization.theme_color_purple">Purper</string>
+    <string name="settings.pages.customization.theme_color_aqua">Aqua</string>
+    <string name="settings.pages.customization.theme_color_gold">Goud</string>
+    <string name="settings.pages.customization.theme_color_anthracite">Anthracite</string>
+    <string name="settings.pages.customization.taskbar_alignment">Taakbalk uitlijning</string>
+    <string name="settings.pages.customization.taskbar_alignment_start">Start</string>
+    <string name="settings.pages.customization.taskbar_alignment_center">Midden</string>
+    <string name="settings.pages.customization.window_options">Opties voor venster</string>
+    <string name="settings.pages.customization.window_options_border_radius.title">Venster rand radius - %s</string>
+    <string name="settings.pages.customization.window_options_border_radius.subtitle">Wijzig de rand van het venster radius</string>
+    <string name="settings.pages.customization.window_options_colored_titlebars.title">Gekleurde titelbalken</string>
+    <string name="settings.pages.customization.window_options_colored_titlebars.subtitle">Gebruik gekleurde titelbalken voor de vensters</string>
+    <!-- Display -->
+    <string name="settings.pages.display.title">Scherm</string>
+    <string name="settings.pages.display.subtitle">Resolutie, scherm time-out, schalen</string>
+    <!-- Sound -->
+    <string name="settings.pages.sound.title">Geluid</string>
+    <string name="settings.pages.sound.subtitle">Volume, Niet storen, opstart geluid</string>
+    <!-- Locale -->
+    <string name="settings.pages.locale.title">Lokalisatie</string>
+    <string name="settings.pages.locale.subtitle">Taal, tijd en datum, toetsenbord lay-out</string>
+    <!-- Notifications -->
+    <string name="settings.pages.notifications.title">Notificaties</string>
+    <string name="settings.pages.notifications.subtitle">Meldingsgeluid, app selectie</string>
+    <!-- Applications -->
+    <string name="settings.pages.applications.title">Applicaties</string>
+    <string name="settings.pages.applications.subtitle">Geïnstalleerde apps, standaard apps</string>
+    <!-- Developer options -->
+    <string name="settings.pages.developer_options.title">Ontwikkelaarsopties</string>
+    <string name="settings.pages.developer_options.subtitle">Functievlaggen, geavanceerde opties</string>
+    <string name="settings.pages.developer_options.developer_mode_tile.title">Ontwikkelaars modus</string>
+    <string name="settings.pages.developer_options.developer_mode_tile.subtitle">Geavanceerde foutopsporingsfuncties activeren</string>
+    <!-- About device -->
+    <string name="settings.pages.about.title">Over apparaat</string>
+    <string name="settings.pages.about.subtitle">Systeem versie, apparaatinformatie</string>
+    <string name="settings.pages.about.system_information">Systeem informatie</string>
+    <string name="settings.pages.about.system_information_environment">Omgeving</string>
+    <string name="settings.pages.about.system_information_architecture">Architectuur</string>
+    <string name="settings.pages.about.system_information_desktop">Bureaublad</string>
+    <string name="settings.pages.about.software_update">Software update</string>
+    <string name="settings.pages.about.software_update_tile.title">dahliaOS is up to date - %s</string>
+    <string name="settings.pages.about.software_update_tile.subtitle">Laatst gecontroleerd: %s</string>
+    <string name="settings.pages.about.software_update_tile.button">Controleer voor updates</string>
+</resources>
