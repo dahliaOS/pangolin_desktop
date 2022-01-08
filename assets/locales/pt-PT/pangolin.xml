@@ -158,7 +158,7 @@
     <string name="settings.pages.customization.theme_color_green">Verde</string>
     <string name="settings.pages.customization.theme_color_blue">Azul</string>
     <string name="settings.pages.customization.theme_color_teal">Turquesa</string>
-    <string name="settings.pages.customization.theme_color_pruple">Púrpura</string>
+    <string name="settings.pages.customization.theme_color_pruple" comment="settings.pages.customization.theme_color_purple">Púrpura</string>
     <string name="settings.pages.customization.theme_color_aqua">Água</string>
     <string name="settings.pages.customization.theme_color_gold">Dourado</string>
     <string name="settings.pages.customization.theme_color_anthracite">Antracite</string>
