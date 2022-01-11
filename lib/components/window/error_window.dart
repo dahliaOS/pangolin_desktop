@@ -28,7 +28,6 @@ class ErrorWindow extends StatelessWidget {
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: const [
               Text(
                 "ERROR",

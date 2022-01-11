@@ -30,7 +30,8 @@ class ServiceManager {
       } else {
         // ignore: avoid_print
         print(
-            "[Service Manager] Service: ${service.name} is not supported on this runtime");
+          "[Service Manager] Service: ${service.name} is not supported on this runtime",
+        );
       }
     }
   }

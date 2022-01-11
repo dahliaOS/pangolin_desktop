@@ -14,73 +14,75 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 class VisualInformation {
-  double taskbarHeight;
-  bool opaqueTitlebars;
-  bool titleInfo;
-  double windowRadius;
-  double taskbarRounding;
-  double taskbarOpacity;
-  String activeAppsPosition;
-  bool showDate;
-  bool searchIcon;
-  bool overviewIcon;
-  bool notificationsIcon;
-  String launcherIndicator;
-  bool launcherCategories;
-  String searchBarString;
-  bool launcherSystemOptions;
-  double searchbarRounding;
-  double qsTileRounding;
-  double qsRounding;
-  double overlayOpacity;
-  double overlayButtonRounding;
-  String userName;
+  final double taskbarHeight;
+  final bool opaqueTitlebars;
+  final bool titleInfo;
+  final double windowRadius;
+  final double taskbarRounding;
+  final double taskbarOpacity;
+  final String activeAppsPosition;
+  final bool showDate;
+  final bool searchIcon;
+  final bool overviewIcon;
+  final bool notificationsIcon;
+  final String launcherIndicator;
+  final bool launcherCategories;
+  final String searchBarString;
+  final bool launcherSystemOptions;
+  final double searchbarRounding;
+  final double qsTileRounding;
+  final double qsRounding;
+  final double overlayOpacity;
+  final double overlayButtonRounding;
+  final String userName;
 
-  VisualInformation(
-      {required this.taskbarHeight,
-      required this.opaqueTitlebars,
-      required this.titleInfo,
-      required this.windowRadius,
-      required this.taskbarRounding,
-      required this.taskbarOpacity,
-      required this.activeAppsPosition,
-      required this.showDate,
-      required this.searchIcon,
-      required this.overviewIcon,
-      required this.notificationsIcon,
-      required this.launcherIndicator,
-      required this.launcherCategories,
-      required this.searchBarString,
-      required this.launcherSystemOptions,
-      required this.searchbarRounding,
-      required this.qsTileRounding,
-      required this.overlayOpacity,
-      required this.qsRounding,
-      required this.overlayButtonRounding,
-      required this.userName});
+  const VisualInformation({
+    required this.taskbarHeight,
+    required this.opaqueTitlebars,
+    required this.titleInfo,
+    required this.windowRadius,
+    required this.taskbarRounding,
+    required this.taskbarOpacity,
+    required this.activeAppsPosition,
+    required this.showDate,
+    required this.searchIcon,
+    required this.overviewIcon,
+    required this.notificationsIcon,
+    required this.launcherIndicator,
+    required this.launcherCategories,
+    required this.searchBarString,
+    required this.launcherSystemOptions,
+    required this.searchbarRounding,
+    required this.qsTileRounding,
+    required this.overlayOpacity,
+    required this.qsRounding,
+    required this.overlayButtonRounding,
+    required this.userName,
+  });
 
   factory VisualInformation.fromJson(Map<String, dynamic> parsedJson) {
     return VisualInformation(
-        taskbarHeight: parsedJson['taskbarHeight'], //complete
-        opaqueTitlebars: parsedJson['opaqueTitlebars'],
-        titleInfo: parsedJson['titleInfo'],
-        windowRadius: parsedJson['windowRadius'],
-        activeAppsPosition: parsedJson['activeAppsPosition'],
-        userName: parsedJson['userName'],
-        launcherCategories: parsedJson['launcherCategories'],
-        launcherIndicator: parsedJson['launcherIndicator'],
-        launcherSystemOptions: parsedJson['launcherSystemOptions'],
-        notificationsIcon: parsedJson['notificationsIcon'],
-        overlayButtonRounding: parsedJson['overlayButtonRounding'],
-        overlayOpacity: parsedJson['overlayOpacity'],
-        overviewIcon: parsedJson['overviewIcon'],
-        qsRounding: parsedJson['qsRounding'],
-        qsTileRounding: parsedJson['qsTileRounding'],
-        searchbarRounding: parsedJson['searchbarRounding'],
-        searchBarString: parsedJson['searchBarString'],
-        searchIcon: parsedJson['searchIcon'],
-        showDate: parsedJson['showDate'],
-        taskbarOpacity: parsedJson['taskbarOpacity'],
-        taskbarRounding: parsedJson['taskbarRounding']); //complete
+      taskbarHeight: parsedJson['taskbarHeight']! as double, //complete
+      opaqueTitlebars: parsedJson['opaqueTitlebars']! as bool,
+      titleInfo: parsedJson['titleInfo']! as bool,
+      windowRadius: parsedJson['windowRadius']! as double,
+      activeAppsPosition: parsedJson['activeAppsPosition']! as String,
+      userName: parsedJson['userName']! as String,
+      launcherCategories: parsedJson['launcherCategories']! as bool,
+      launcherIndicator: parsedJson['launcherIndicator']! as String,
+      launcherSystemOptions: parsedJson['launcherSystemOptions']! as bool,
+      notificationsIcon: parsedJson['notificationsIcon']! as bool,
+      overlayButtonRounding: parsedJson['overlayButtonRounding']! as double,
+      overlayOpacity: parsedJson['overlayOpacity']! as double,
+      overviewIcon: parsedJson['overviewIcon']! as bool,
+      qsRounding: parsedJson['qsRounding']! as double,
+      qsTileRounding: parsedJson['qsTileRounding']! as double,
+      searchbarRounding: parsedJson['searchbarRounding']! as double,
+      searchBarString: parsedJson['searchBarString']! as String,
+      searchIcon: parsedJson['searchIcon']! as bool,
+      showDate: parsedJson['showDate']! as bool,
+      taskbarOpacity: parsedJson['taskbarOpacity']! as double,
+      taskbarRounding: parsedJson['taskbarRounding']! as double,
+    ); //complete
   }
 }

@@ -16,6 +16,7 @@ limitations under the License.
 
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
+import 'package:pangolin/components/overlays/search/widgets/searchbar.dart';
 import 'package:pangolin/components/settings/pages/about.dart';
 import 'package:pangolin/components/settings/pages/applications.dart';
 import 'package:pangolin/components/settings/pages/connections/connected_devices.dart';
@@ -28,7 +29,6 @@ import 'package:pangolin/components/settings/pages/notifications.dart';
 import 'package:pangolin/components/settings/pages/sound.dart';
 import 'package:pangolin/utils/theme/theme.dart';
 import 'package:pangolin/utils/theme/theme_manager.dart';
-import 'package:pangolin/components/overlays/search/widgets/searchbar.dart';
 import 'package:provider/provider.dart';
 
 class Settings extends StatelessWidget {
@@ -65,170 +65,186 @@ class _SettingsHome extends StatefulWidget {
 class _SettingsHomeState extends State<_SettingsHome> {
   @override
   Widget build(BuildContext context) {
-    return Consumer<_SettingsProvider>(builder: (context, provider, _) {
-      return LayoutBuilder(
-        builder: (context, constraints) {
-          bool isExpanded = constraints.maxWidth > 1024;
-          return Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SizedBox(
-                  width: isExpanded ? 340 : 90,
-                  child: ListView.builder(
-                    scrollDirection: Axis.vertical,
-                    physics: const BouncingScrollPhysics(),
-                    itemCount: _settingsTiles.length,
-                    itemBuilder: (context, index) {
-                      //check if tile is a header
-                      bool isTile = _settingsTiles[index].subtitle != null;
-                      bool isSearch = _settingsTiles[index].title == "Search";
-                      bool isSelected = provider._pageIndex == index;
+    return Consumer<_SettingsProvider>(
+      builder: (context, provider, _) {
+        return LayoutBuilder(
+          builder: (context, constraints) {
+            final bool isExpanded = constraints.maxWidth > 1024;
 
-                      return !isTile && !isExpanded
-                          ? const SizedBox(
-                              height: 16,
-                            )
-                          : SizedBox(
-                              height: !isTile ? 40 : 60,
-                              child: Padding(
-                                padding: isTile
-                                    ? const EdgeInsets.symmetric(
-                                        vertical: 2.0, horizontal: 8)
-                                    : const EdgeInsets.only(left: 8),
-                                child: isSearch
-                                    ? _SettingsSearchBar(
-                                        isExpanded: isExpanded,
-                                      )
-                                    : ListTile(
-                                        dense: true,
-                                        onTap: !isTile
-                                            ? null
-                                            : () {
-                                                setState(() {
-                                                  provider.pageIndex = index;
-                                                });
-                                              },
-                                        shape: RoundedRectangleBorder(
+            return Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: SizedBox(
+                    width: isExpanded ? 340 : 90,
+                    child: ListView.builder(
+                      physics: const BouncingScrollPhysics(),
+                      itemCount: _settingsTiles.length,
+                      itemBuilder: (context, index) {
+                        //check if tile is a header
+                        final bool isTile =
+                            _settingsTiles[index].subtitle != null;
+                        final bool isSearch =
+                            _settingsTiles[index].title == "Search";
+                        final bool isSelected = provider._pageIndex == index;
+
+                        return !isTile && !isExpanded
+                            ? const SizedBox(
+                                height: 16,
+                              )
+                            : SizedBox(
+                                height: !isTile ? 40 : 60,
+                                child: Padding(
+                                  padding: isTile
+                                      ? const EdgeInsets.symmetric(
+                                          vertical: 2.0,
+                                          horizontal: 8,
+                                        )
+                                      : const EdgeInsets.only(left: 8),
+                                  child: isSearch
+                                      ? _SettingsSearchBar(
+                                          isExpanded: isExpanded,
+                                        )
+                                      : ListTile(
+                                          dense: true,
+                                          onTap: !isTile
+                                              ? null
+                                              : () {
+                                                  setState(() {
+                                                    provider.pageIndex = index;
+                                                  });
+                                                },
+                                          shape: RoundedRectangleBorder(
                                             borderRadius:
-                                                BorderRadius.circular(8)),
-                                        tileColor: isTile
-                                            ? isSelected
-                                                ? ThemeManager.of(context)
-                                                    .accentColorAlt
-                                                : Colors.transparent
-                                            : Colors.transparent,
-                                        contentPadding: EdgeInsets.symmetric(
+                                                BorderRadius.circular(8),
+                                          ),
+                                          tileColor: isTile
+                                              ? isSelected
+                                                  ? ThemeManager.of(context)
+                                                      .accentColorAlt
+                                                  : Colors.transparent
+                                              : Colors.transparent,
+                                          contentPadding: EdgeInsets.symmetric(
                                             vertical: isTile ? 0.0 : 0,
-                                            horizontal: 12),
-                                        title: isExpanded
-                                            ? Text(
-                                                _settingsTiles[index].title,
-                                                style: TextStyle(
-                                                  fontWeight: isSelected
-                                                      ? FontWeight.bold
-                                                      : FontWeight.normal,
-                                                  color: isSelected
-                                                      ? ThemeManager.of(context)
-                                                                  .accentColorAlt
-                                                                  .computeLuminance() <
-                                                              0.4
-                                                          ? Colors.white
-                                                          : Colors.black
-                                                      : null,
+                                            horizontal: 12,
+                                          ),
+                                          title: isExpanded
+                                              ? Text(
+                                                  _settingsTiles[index].title,
+                                                  style: TextStyle(
+                                                    fontWeight: isSelected
+                                                        ? FontWeight.bold
+                                                        : FontWeight.normal,
+                                                    color: isSelected
+                                                        ? ThemeManager.of(
+                                                                  context,
+                                                                )
+                                                                    .accentColorAlt
+                                                                    .computeLuminance() <
+                                                                0.4
+                                                            ? Colors.white
+                                                            : Colors.black
+                                                        : null,
+                                                  ),
+                                                )
+                                              : const Text(""),
+                                          subtitle: isTile
+                                              ? isExpanded
+                                                  ? Text(
+                                                      _settingsTiles[index]
+                                                          .subtitle!,
+                                                      style: TextStyle(
+                                                        fontWeight: isSelected
+                                                            ? FontWeight.bold
+                                                            : FontWeight.normal,
+                                                        color: isSelected
+                                                            ? ThemeManager.of(
+                                                                      context,
+                                                                    )
+                                                                        .accentColorAlt
+                                                                        .computeLuminance() <
+                                                                    0.4
+                                                                ? Colors.white
+                                                                : Colors.black
+                                                            : null,
+                                                      ),
+                                                    )
+                                                  : const Text("")
+                                              : null,
+                                          leading: !isTile
+                                              ? null
+                                              : Container(
+                                                  margin: EdgeInsets.only(
+                                                    left: isExpanded ? 0 : 4,
+                                                  ),
+                                                  width: 40,
+                                                  height: 40,
+                                                  decoration: BoxDecoration(
+                                                    color:
+                                                        ThemeManager.of(context)
+                                                            .accentColor,
+                                                    shape: BoxShape.circle,
+                                                  ),
+                                                  child: Icon(
+                                                    _settingsTiles[index].icon,
+                                                    color: ThemeManager.of(
+                                                              context,
+                                                            )
+                                                                .accentColor
+                                                                .computeLuminance() <
+                                                            0.4
+                                                        ? Colors.white
+                                                        : Colors.black,
+                                                    size: 20,
+                                                  ),
                                                 ),
-                                              )
-                                            : const Text(""),
-                                        subtitle: isTile
-                                            ? isExpanded
-                                                ? Text(
-                                                    _settingsTiles[index]
-                                                        .subtitle!,
-                                                    style: TextStyle(
-                                                      fontWeight: isSelected
-                                                          ? FontWeight.bold
-                                                          : FontWeight.normal,
-                                                      color: isSelected
-                                                          ? ThemeManager.of(
-                                                                          context)
-                                                                      .accentColorAlt
-                                                                      .computeLuminance() <
-                                                                  0.4
-                                                              ? Colors.white
-                                                              : Colors.black
-                                                          : null,
-                                                    ),
-                                                  )
-                                                : const Text("")
-                                            : null,
-                                        leading: !isTile
-                                            ? null
-                                            : Container(
-                                                margin: EdgeInsets.only(
-                                                    left: isExpanded ? 0 : 4),
-                                                width: 40,
-                                                height: 40,
-                                                decoration: BoxDecoration(
-                                                  color:
-                                                      ThemeManager.of(context)
-                                                          .accentColor,
-                                                  shape: BoxShape.circle,
-                                                ),
-                                                child: Icon(
-                                                  _settingsTiles[index].icon,
-                                                  color: ThemeManager.of(
-                                                                  context)
-                                                              .accentColor
-                                                              .computeLuminance() <
-                                                          0.4
-                                                      ? Colors.white
-                                                      : Colors.black,
-                                                  size: 20,
-                                                ),
-                                              ),
-                                      ),
-                              ),
-                            );
-                    },
-                  ),
-                ),
-              ),
-              Expanded(
-                child: PageTransitionSwitcher(
-                  transitionBuilder:
-                      (child, primaryAnimation, secondaryAnimation) {
-                    return FadeThroughTransition(
-                      animation: primaryAnimation,
-                      secondaryAnimation: secondaryAnimation,
-                      fillColor: Colors.transparent,
-                      child: child,
-                    );
-                  },
-                  child: ClipRRect(
-                    key: ValueKey(provider.pageIndex),
-                    borderRadius:
-                        const BorderRadius.only(topLeft: Radius.circular(8)),
-                    child: Scaffold(
-                      backgroundColor:
-                          Theme.of(context).scaffoldBackgroundColor,
-                      body: _settingsTiles[provider.pageIndex].page ??
-                          const SizedBox.shrink(),
+                                        ),
+                                ),
+                              );
+                      },
                     ),
                   ),
                 ),
-              ),
-            ],
-          );
-        },
-      );
-    });
+                Expanded(
+                  child: PageTransitionSwitcher(
+                    transitionBuilder:
+                        (child, primaryAnimation, secondaryAnimation) {
+                      return FadeThroughTransition(
+                        animation: primaryAnimation,
+                        secondaryAnimation: secondaryAnimation,
+                        fillColor: Colors.transparent,
+                        child: child,
+                      );
+                    },
+                    child: ClipRRect(
+                      key: ValueKey(provider.pageIndex),
+                      borderRadius:
+                          const BorderRadius.only(topLeft: Radius.circular(8)),
+                      child: Scaffold(
+                        backgroundColor:
+                            Theme.of(context).scaffoldBackgroundColor,
+                        body: _settingsTiles[provider.pageIndex].page ??
+                            const SizedBox.shrink(),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            );
+          },
+        );
+      },
+    );
   }
 }
 
 class _SettingsSearchBar extends StatelessWidget {
   final bool isExpanded;
-  const _SettingsSearchBar({Key? key, required this.isExpanded})
-      : super(key: key);
+
+  const _SettingsSearchBar({
+    Key? key,
+    required this.isExpanded,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -252,8 +268,13 @@ class _SettingsTileData {
   final String? subtitle;
   final IconData? icon;
   final Widget? page;
-  const _SettingsTileData(
-      {required this.title, this.subtitle, this.icon, this.page});
+
+  const _SettingsTileData({
+    required this.title,
+    this.subtitle,
+    this.icon,
+    this.page,
+  });
 }
 
 List<_SettingsTileData> _settingsTiles = [

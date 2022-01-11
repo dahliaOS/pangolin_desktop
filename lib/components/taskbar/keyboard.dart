@@ -60,7 +60,8 @@ class KeyboardButton extends StatelessWidget {
                   child: _customizationProvider.isTaskbarHorizontal
                       ? Row(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [Icon(Icons.keyboard_outlined)])
+                          children: const [Icon(Icons.keyboard_outlined)],
+                        )
                       : Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: const [Icon(Icons.keyboard_outlined)],

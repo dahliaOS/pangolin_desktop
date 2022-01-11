@@ -28,7 +28,9 @@ import 'package:pangolin/utils/providers/misc_provider.dart';
 import 'package:pangolin/utils/wm/wm_api.dart';
 
 class ActionManager {
-  static void showPowerMenu(BuildContext context) async {
+  const ActionManager._();
+
+  static Future<void> showPowerMenu(BuildContext context) async {
     final shell = Shell.of(context, listen: false);
     shell.dismissEverything();
     await Future.delayed(CommonData.of(context).animationDuration());
@@ -40,18 +42,20 @@ class ActionManager {
     ScaffoldMessenger.of(context).setState(() {});
   }
 
-  static void switchLauncher(BuildContext context) async {
+  static Future<void> switchLauncher(BuildContext context) async {
     final shell = Shell.of(context, listen: false);
     final MiscProvider _miscProvider = MiscProvider.of(context, listen: false);
     shell.dismissEverything();
     _miscProvider.compactLauncher = !_miscProvider.compactLauncher;
     await Future.delayed(CommonData.of(context).animationDuration());
-    shell.showOverlay(_miscProvider.compactLauncher
-        ? CompactLauncherOverlay.overlayId
-        : LauncherOverlay.overlayId);
+    shell.showOverlay(
+      _miscProvider.compactLauncher
+          ? CompactLauncherOverlay.overlayId
+          : LauncherOverlay.overlayId,
+    );
   }
 
-  static void openSettings(BuildContext context) async {
+  static Future<void> openSettings(BuildContext context) async {
     final shell = Shell.of(context, listen: false);
     shell.dismissEverything();
     await Future.delayed(const Duration(milliseconds: 150));

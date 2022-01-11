@@ -14,14 +14,14 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:pangolin/utils/data/app_list.dart';
 import 'package:pangolin/utils/context_menus/context_menu.dart';
 import 'package:pangolin/utils/context_menus/context_menu_item.dart';
 import 'package:pangolin/utils/context_menus/core/context_menu_region.dart';
-import 'package:pangolin/utils/wm/wm.dart';
-import 'package:pangolin/utils/wm/wm_api.dart';
+import 'package:pangolin/utils/data/app_list.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
+import 'package:pangolin/utils/wm/wm.dart';
+import 'package:pangolin/utils/wm/wm_api.dart';
 
 class TaskbarItem extends StatefulWidget {
   final String packageName;
@@ -67,11 +67,11 @@ class _TaskbarItemState extends State<TaskbarItem>
     final hierarchy = WindowHierarchy.of(context);
     final windows = hierarchy.entries;
     //Check if App is running or just pinned
-    bool appIsRunning = windows.any(
+    final bool appIsRunning = windows.any(
       (element) => element.registry.extra.stableId == widget.packageName,
     );
     //get the WindowEntry when the App is running
-    late LiveWindowEntry? entry = appIsRunning
+    final LiveWindowEntry? entry = appIsRunning
         ? windows.firstWhere(
             (element) => element.registry.extra.stableId == widget.packageName,
           )
@@ -81,21 +81,23 @@ class _TaskbarItemState extends State<TaskbarItem>
         ? windows.firstWhere(
             (element) =>
                 element.registry.extra.stableId ==
-                hierarchy.normalEntries.last.registry.extra.stableId,
+                hierarchy.sortedEntries.last.registry.extra.stableId,
           )
         : null;
-    bool focused = windows.length > 1
+    final bool focused = windows.length > 1
         ? focusedEntry?.registry.extra.stableId == widget.packageName &&
-            !windows.last.registry.minimize.minimized
+            !windows.last.layoutState.minimized
         : true;
 
-    bool showSelected =
-        appIsRunning ? focused && !entry!.registry.minimize.minimized : false;
+    final bool showSelected =
+        appIsRunning ? focused && !entry!.layoutState.minimized : false;
+
     if (showSelected) {
       _ac.animateTo(1);
     } else {
       _ac.animateBack(0);
     }
+
     final _customizationProvider = CustomizationProvider.of(context);
     //Build Widget
     final Widget finalWidget = LayoutBuilder(
@@ -155,8 +157,7 @@ class _TaskbarItemState extends State<TaskbarItem>
                     animation: _anim,
                     builder: (context, child) => Stack(
                       children: [
-                        Align(
-                          alignment: Alignment.center,
+                        Center(
                           child: Padding(
                             padding: const EdgeInsets.fromLTRB(6.0, 5, 6, 7),
                             child: Image(
@@ -222,10 +223,10 @@ class _TaskbarItemState extends State<TaskbarItem>
     final hierarchy = WindowHierarchy.of(context, listen: false);
     final windows = hierarchy.entriesByFocus;
 
-    bool focused = hierarchy.isFocused(entry.registry.info.id);
+    final bool focused = hierarchy.isFocused(entry.registry.info.id);
     setState(() {});
-    if (focused && !entry.registry.minimize.minimized) {
-      entry.registry.minimize.minimized = true;
+    if (focused && !entry.layoutState.minimized) {
+      entry.layoutState.minimized = true;
       if (windows.length > 1) {
         hierarchy.requestEntryFocus(
           windows[windows.length - 2].registry.info.id,
@@ -233,7 +234,7 @@ class _TaskbarItemState extends State<TaskbarItem>
       }
       setState(() {});
     } else {
-      entry.registry.minimize.minimized = false;
+      entry.layoutState.minimized = false;
       hierarchy.requestEntryFocus(entry.registry.info.id);
       setState(() {});
     }

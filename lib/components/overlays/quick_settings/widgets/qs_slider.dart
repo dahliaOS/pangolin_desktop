@@ -43,7 +43,6 @@ class _QsSliderState extends State<QsSlider> {
       color: Colors.transparent,
       clipBehavior: Clip.antiAlias,
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SizedBox.square(
             dimension: 40,
@@ -54,11 +53,8 @@ class _QsSliderState extends State<QsSlider> {
               clipBehavior: Clip.antiAlias,
               borderRadius: BorderRadius.circular(20),
               child: InkWell(
-                child: Icon(
-                  widget.icon,
-                  size: 20,
-                ),
                 onTap: widget.onIconTap,
+                child: Icon(widget.icon, size: 20),
               ),
             ),
           ),
@@ -68,7 +64,7 @@ class _QsSliderState extends State<QsSlider> {
               value: widget.value ?? 0,
               divisions: widget.steps,
               label: widget.value != null
-                  ? (widget.value! * 100).toStringAsFixed(0) + '%'
+                  ? '${(widget.value! * 100).toStringAsFixed(0)}%'
                   : null,
             ),
           ),

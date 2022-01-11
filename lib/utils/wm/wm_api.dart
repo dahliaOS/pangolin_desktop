@@ -14,13 +14,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:pangolin/utils/data/app_list.dart';
 import 'package:pangolin/components/window/error_window.dart';
 import 'package:pangolin/components/window/window_surface.dart';
 import 'package:pangolin/components/window/window_toolbar.dart';
+import 'package:pangolin/utils/data/app_list.dart';
 import 'package:pangolin/utils/data/database_manager.dart';
 import 'package:pangolin/utils/providers/misc_provider.dart';
 import 'package:pangolin/utils/wm/wm.dart';
@@ -37,16 +35,16 @@ class WmAPI {
 
   static WindowEntry windowEntry = WindowEntry(
     features: const [
-      MinimizeWindowFeature(),
-      GeometryWindowFeature(),
       ResizeWindowFeature(),
       SurfaceWindowFeature(),
       FocusableWindowFeature(),
       ToolbarWindowFeature(),
     ],
+    layoutInfo: const FreeformLayoutInfo(
+      position: Offset(32, 32),
+      size: Size(1280, 720),
+    ),
     properties: {
-      GeometryWindowFeature.position: const Offset(32, 32),
-      GeometryWindowFeature.size: const Size(1280, 720),
       ResizeWindowFeature.minSize: const Size(480, 360),
       SurfaceWindowFeature.elevation: 4.0,
       SurfaceWindowFeature.shape: RoundedRectangleBorder(
@@ -55,8 +53,10 @@ class WmAPI {
         ),
       ),
       SurfaceWindowFeature.background: const PangolinWindowSurface(),
-      ToolbarWindowFeature.widget:
-          const PangolinWindowToolbar(barColor: Colors.transparent),
+      ToolbarWindowFeature.widget: const PangolinWindowToolbar(
+        barColor: Colors.transparent,
+        textColor: Colors.black,
+      ),
       ToolbarWindowFeature.size: 40.0,
     },
   );
@@ -69,17 +69,6 @@ class WmAPI {
     _windowHierarchy.addWindowEntry(entry);
   }
 
-  AppIcon(bool UsesRuntime, String? iconPath) {
-    if (iconPath == null) {
-      return AssetImage('assets/icons/null.png');
-    }
-    if (UsesRuntime == true) {
-      return FileImage(File(iconPath));
-    } else {
-      return AssetImage("assets/icons/${iconPath}.png");
-    }
-  }
-
   void openApp(String packageName) {
     final application = getApp(packageName);
     if (!application.canBeOpened) {
@@ -87,21 +76,26 @@ class WmAPI {
       // throw 'The app couldn not be opened';
     }
     final LiveWindowEntry _window = windowEntry.newInstance(
-      application.app ?? const ErrorWindow(),
-      {
+      content: application.app ?? const ErrorWindow(),
+      overrideProperties: {
         WindowEntry.title: application.name,
         ToolbarWindowFeature.widget: PangolinWindowToolbar(
           barColor: application.color,
+          textColor: application.appBarTextColor,
         ),
-        WindowEntry.icon:
-            AppIcon(application.systemExecutable, application.iconName),
+        WindowEntry.icon: getAppIconProvider(
+          application.systemExecutable,
+          application.iconName,
+        ),
         WindowExtras.stableId: packageName,
-        GeometryWindowFeature.size: MediaQuery.of(context).size.width < 1920
+      },
+      overrideLayout: (info) => info.copyWith(
+        size: MediaQuery.of(context).size.width < 1920
             ? const Size(720, 480)
             : MediaQuery.of(context).size.width < 1921
                 ? const Size(1280, 720)
                 : const Size(1920, 1080),
-      },
+      ),
     );
 
     pushWindowEntry(_window);
@@ -110,10 +104,10 @@ class WmAPI {
   void minimizeAll() {
     _miscProvider.minimizedWindowsCache = [];
     for (final LiveWindowEntry e in _windowHierarchy.entries) {
-      if (e.registry.minimize.minimized) {
+      if (e.layoutState.minimized) {
         _miscProvider.minimizedWindowsCache.add(e.registry.info.id);
       } else {
-        e.registry.minimize.minimized = true;
+        e.layoutState.minimized = true;
       }
     }
   }
@@ -121,8 +115,8 @@ class WmAPI {
   void undoMinimizeAll() {
     for (final LiveWindowEntry e in _windowHierarchy.entries) {
       _miscProvider.minimizedWindowsCache.contains(e.registry.info.id)
-          ? e.registry.minimize.minimized = true
-          : e.registry.minimize.minimized = false;
+          ? e.layoutState.minimized = true
+          : e.layoutState.minimized = false;
     }
   }
 }

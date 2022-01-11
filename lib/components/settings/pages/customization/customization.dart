@@ -92,13 +92,13 @@ class _SettingsPageCustomizationState extends State<SettingsPageCustomization> {
           children: [
             ListTile(
               title: Text(
-                "Window border radius  -  " +
-                    DatabaseManager.get("windowBorderRadius").toString(),
+                "Window border radius  -  ${DatabaseManager.get("windowBorderRadius")}",
               ),
               subtitle: const Text("Change the window border radius"),
               trailing: Builder(
                 builder: (context) {
-                  var value = DatabaseManager.get("windowBorderRadius");
+                  final double value =
+                      DatabaseManager.get<double>("windowBorderRadius");
                   return SizedBox(
                     width: 256,
                     child: Slider(

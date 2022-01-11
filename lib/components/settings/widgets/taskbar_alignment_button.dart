@@ -28,8 +28,9 @@ class TaskbarAlignmentButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _customizationProvider = CustomizationProvider.of(context);
-    bool isCentred = _customizationProvider.centerTaskbar;
-    bool _isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final bool isCentred = _customizationProvider.centerTaskbar;
+    final bool _isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
     return ClipRRect(
       borderRadius: CommonData.of(context).borderRadius(
         BorderRadiusType.small,
@@ -140,15 +141,19 @@ class TaskbarAlignmentButton extends StatelessWidget {
 
   Border borderStyle(bool _isDarkMode) {
     return Border.all(
-        color: _isDarkMode
-            ? Colors.white.withOpacity(0.2)
-            : Colors.black.withOpacity(0.2),
-        width: 2);
+      color: _isDarkMode
+          ? Colors.white.withOpacity(0.2)
+          : Colors.black.withOpacity(0.2),
+      width: 2,
+    );
   }
 
-  Container _taskbarElement(BuildContext context,
-      {double multiplier = 1, bool shaded = false}) {
-    bool _isDarkMode = Theme.of(context).brightness == Brightness.dark;
+  Container _taskbarElement(
+    BuildContext context, {
+    double multiplier = 1,
+    bool shaded = false,
+  }) {
+    final bool _isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final hslBgc =
         HSLColor.fromColor(Theme.of(context).scaffoldBackgroundColor);
     return Container(
@@ -163,9 +168,11 @@ class TaskbarAlignmentButton extends StatelessWidget {
         ),
         color: shaded
             ? hslBgc
-                .withLightness(hslBgc.lightness > 0.5
-                    ? hslBgc.lightness - 0.2
-                    : hslBgc.lightness + 0.2)
+                .withLightness(
+                  hslBgc.lightness > 0.5
+                      ? hslBgc.lightness - 0.2
+                      : hslBgc.lightness + 0.2,
+                )
                 .toColor()
             : hslBgc.toColor(),
         borderRadius: BorderRadius.circular(4),

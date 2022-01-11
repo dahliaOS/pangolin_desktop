@@ -22,9 +22,6 @@ class PangolinWindowSurface extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const BoxSurface(
-      outline: false,
-      dropShadow: true,
-    );
+    return const BoxSurface(dropShadow: true);
   }
 }

@@ -14,6 +14,8 @@ class ServiceBuilder extends StatefulWidget {
   final Service service;
   final _ServiceBuilder builder;
   final Widget? child;
+
+  @Deprecated("Not usable at the moment")
   const ServiceBuilder({
     Key? key,
     required this.service,
@@ -25,6 +27,7 @@ class ServiceBuilder extends StatefulWidget {
   _ServiceBuilderState createState() => _ServiceBuilderState();
 }
 
+// ignore: deprecated_member_use_from_same_package
 class _ServiceBuilderState extends State<ServiceBuilder> {
   @override
   Widget build(BuildContext context) {

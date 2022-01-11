@@ -5,7 +5,7 @@
 import 'dart:convert';
 
 BingWallpaper bingWallpaperFromJson(String str) =>
-    BingWallpaper.fromJson(json.decode(str));
+    BingWallpaper.fromJson(json.decode(str) as Map<String, dynamic>);
 
 String bingWallpaperToJson(BingWallpaper data) => json.encode(data.toJson());
 
@@ -19,8 +19,14 @@ class BingWallpaper {
   final Tooltips tooltips;
 
   factory BingWallpaper.fromJson(Map<String, dynamic> json) => BingWallpaper(
-        images: List<Image>.from(json["images"].map((x) => Image.fromJson(x))),
-        tooltips: Tooltips.fromJson(json["tooltips"]),
+        images: List<Image>.from(
+          (json["images"] as List<dynamic>).map(
+            (x) => Image.fromJson(
+              x as Map<String, dynamic>,
+            ),
+          ),
+        ),
+        tooltips: Tooltips.fromJson(json["tooltips"] as Map<String, dynamic>),
       );
 
   Map<String, dynamic> toJson() => {
@@ -65,21 +71,21 @@ class Image {
   final List<dynamic> hs;
 
   factory Image.fromJson(Map<String, dynamic> json) => Image(
-        startdate: json["startdate"],
-        fullstartdate: json["fullstartdate"],
-        enddate: json["enddate"],
-        url: json["url"],
-        urlbase: json["urlbase"],
-        copyright: json["copyright"],
-        copyrightlink: json["copyrightlink"],
-        title: json["title"],
-        quiz: json["quiz"],
-        wp: json["wp"],
-        hsh: json["hsh"],
-        drk: json["drk"],
-        top: json["top"],
-        bot: json["bot"],
-        hs: List<dynamic>.from(json["hs"].map((x) => x)),
+        startdate: json["startdate"]! as String,
+        fullstartdate: json["fullstartdate"]! as String,
+        enddate: json["enddate"]! as String,
+        url: json["url"]! as String,
+        urlbase: json["urlbase"]! as String,
+        copyright: json["copyright"]! as String,
+        copyrightlink: json["copyrightlink"]! as String,
+        title: json["title"]! as String,
+        quiz: json["quiz"]! as String,
+        wp: json["wp"]! as bool,
+        hsh: json["hsh"]! as String,
+        drk: json["drk"]! as int,
+        top: json["top"]! as int,
+        bot: json["bot"]! as int,
+        hs: json["hs"]! as List<dynamic>,
       );
 
   Map<String, dynamic> toJson() => {
@@ -117,11 +123,11 @@ class Tooltips {
   final String walls;
 
   factory Tooltips.fromJson(Map<String, dynamic> json) => Tooltips(
-        loading: json["loading"],
-        previous: json["previous"],
-        next: json["next"],
-        walle: json["walle"],
-        walls: json["walls"],
+        loading: json["loading"]! as String,
+        previous: json["previous"]! as String,
+        next: json["next"]! as String,
+        walle: json["walle"]! as String,
+        walls: json["walls"]! as String,
       );
 
   Map<String, dynamic> toJson() => {

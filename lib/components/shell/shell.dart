@@ -130,12 +130,14 @@ class _ShellState extends State<Shell> {
             Taskbar(
               leading: [
                 const LauncherButton(),
-                (DatabaseManager.get('searchIcon') == true)
-                    ? const SearchButton()
-                    : const SizedBox(),
-                (DatabaseManager.get('overviewIcon') == true)
-                    ? const OverviewButton()
-                    : const SizedBox(),
+                if (DatabaseManager.get<bool>('searchIcon'))
+                  const SearchButton()
+                else
+                  const SizedBox(),
+                if (DatabaseManager.get<bool>('overviewIcon'))
+                  const OverviewButton()
+                else
+                  const SizedBox(),
               ],
               trailing: const [
                 //TODO: here is the keyboard button

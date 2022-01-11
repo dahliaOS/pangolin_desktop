@@ -28,7 +28,6 @@ class QsAccountPage extends StatelessWidget {
         title: "User Accounts",
         trailing: [
           QuickActionButton(
-            isCircular: true,
             leading: Icon(
               Icons.help_outline_rounded,
               size: 20,

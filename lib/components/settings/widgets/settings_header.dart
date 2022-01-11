@@ -24,11 +24,14 @@ class SettingsHeader extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.fromLTRB(10, 20, 0, 5),
-          child: Text(heading ?? "NULL",
-              style: const TextStyle(
-                  fontSize: 17,
-                  letterSpacing: 0.2,
-                  fontWeight: FontWeight.bold)),
+          child: Text(
+            heading ?? "NULL",
+            style: const TextStyle(
+              fontSize: 17,
+              letterSpacing: 0.2,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ),
       ],
     );
