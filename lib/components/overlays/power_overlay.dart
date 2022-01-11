@@ -106,16 +106,16 @@ class _PowerOverlayState extends State<PowerOverlay>
                           padding: const EdgeInsets.all(24.0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
+                            children: [
                               Text(
-                                "Power Menu",
-                                style: TextStyle(
+                                LSX.powerOverlay.title,
+                                style: const TextStyle(
                                   fontSize: 24,
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
-                              SizedBox(height: 12),
-                              Text("Choose what you want to do"),
+                              const SizedBox(height: 12),
+                              Text(LSX.powerOverlay.subtitle),
                             ],
                           ),
                         ),
@@ -129,19 +129,19 @@ class _PowerOverlayState extends State<PowerOverlay>
                             child: Column(
                               children: [
                                 _powerMenuButton(
-                                  "Power off",
+                                  LSX.powerOverlay.poweroff,
                                   Icons.power_settings_new_rounded,
                                   context,
                                   onPressed: () => ActionManager.powerOff(),
                                 ),
                                 _powerMenuButton(
-                                  "Sleep",
+                                  LSX.powerOverlay.sleep,
                                   Icons.brightness_4_outlined,
                                   context,
                                   onPressed: () => ActionManager.suspend(),
                                 ),
                                 _powerMenuButton(
-                                  "Restart",
+                                  LSX.powerOverlay.restart,
                                   Icons.replay_rounded,
                                   context,
                                   onPressed: () => ActionManager.reboot(),

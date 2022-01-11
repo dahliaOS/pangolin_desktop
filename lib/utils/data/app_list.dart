@@ -15,12 +15,11 @@ import 'dart:io';
 import 'package:calculator/calculator.dart';
 import 'package:dahlia_clock/main.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:graft/main.dart';
 import 'package:media/main.dart';
 import 'package:pangolin/components/settings/settings.dart';
-import 'package:pangolin/components/window/error_window.dart';
 import 'package:pangolin/utils/data/models/application.dart';
+import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/other/apps_stub.dart'
     if (dart.library.io) 'package:files/main.dart';
 // ignore: duplicate_import
@@ -33,116 +32,116 @@ import 'package:web_browser/main.dart';
 import 'package:welcome/main.dart';
 
 List<Application> applications = [
-  const Application(
+  Application(
     color: Colors.transparent,
     packageName: "io.dahlia.settings",
-    app: Settings(),
-    name: "Settings",
+    app: const Settings(),
+    name: LSX.apps.settings,
+    description: LSX.apps.settingsDescription,
     iconName: "settings",
     category: ApplicationCategory.system,
-    description: "Manage and customize the system",
   ),
   Application(
     color: Colors.green,
     packageName: "io.dahlia.calculator",
     app: Calculator(),
-    name: "Calculator",
+    name: LSX.apps.calculator,
+    description: LSX.apps.calculatorDescription,
     iconName: "calculator",
     category: ApplicationCategory.office,
-    description: "Perform arithmetic and scientific calculations",
   ),
   Application(
     color: Colors.grey.shade900,
     packageName: "io.dahlia.terminal",
     app: const Terminal(),
-    name: "Terminal",
+    name: LSX.apps.terminal,
+    description: LSX.apps.terminalDescription,
     iconName: "terminal",
     category: ApplicationCategory.system,
-    description: "Access the system shell",
     supportsWeb: false,
   ),
   Application(
     color: Colors.amber.shade800,
     packageName: "io.dahlia.editor",
     app: TextEditorApp(),
-    name: "Text Editor",
+    name: LSX.apps.notes,
+    description: LSX.apps.notesDescription,
     iconName: "notes",
     category: ApplicationCategory.office,
-    description: "View and edit documents",
   ),
   Application(
     color: Colors.blue.shade800,
     packageName: "io.dahlia.graft",
     app: Graft(),
-    name: "Graft",
+    name: LSX.apps.containers,
+    description: LSX.apps.containersDescription,
     iconName: "graft",
     category: ApplicationCategory.system,
-    description: "Manage virtual machines and containers",
   ),
   Application(
     color: Colors.deepOrange,
     packageName: "io.dahlia.web",
     app: Browser(),
-    name: "Web Browser",
+    name: LSX.apps.web,
+    description: LSX.apps.webDescription,
     iconName: "web",
     category: ApplicationCategory.internet,
-    description: "Browse the web",
   ),
   Application(
     color: Colors.deepOrange.shade800,
     packageName: "io.dahlia.files",
     app: const Files(),
-    name: "Files",
+    name: LSX.apps.files,
+    description: LSX.apps.filesDescription,
     iconName: "files",
     category: ApplicationCategory.system,
-    description: "Browse and manage files",
     supportsWeb: false,
   ),
   Application(
     color: Colors.blueAccent,
     packageName: "io.dahlia.media",
     app: Media(),
-    name: "Media",
+    name: LSX.apps.media,
+    description: LSX.apps.mediaDescription,
     iconName: "photos",
     category: ApplicationCategory.media,
-    description: "View and edit media",
   ),
   Application(
     color: Colors.lightBlue,
     packageName: "io.dahlia.clock",
     app: Clock(),
-    name: "Clock",
+    name: LSX.apps.clock,
+    description: LSX.apps.clockDescription,
     iconName: "clock",
     category: ApplicationCategory.system,
-    description: "Manage timers and clocks",
   ),
   Application(
     color: Colors.red.shade800,
     packageName: "io.dahlia.logs",
     app: Logs(),
-    name: "System Logs",
+    name: LSX.apps.systemlogs,
+    description: LSX.apps.systemlogsDescription,
     iconName: "logs",
     category: ApplicationCategory.system,
-    description: "View and report system information",
   ),
-  const Application(
+  Application(
     color: Colors.white,
     appBarTextColor: Colors.black,
     packageName: "io.dahlia.welcome",
-    app: Welcome(),
-    name: "Welcome",
+    app: const Welcome(),
+    name: LSX.apps.welcome,
+    description: LSX.apps.welcomeDescription,
     iconName: "welcome-info",
     category: ApplicationCategory.system,
-    description: "Get started with dahliaOS",
   ),
   Application(
     color: Colors.cyan.shade900,
     packageName: "io.dahlia.taskmanager",
     app: Tasks(),
-    name: "Task Manager",
+    name: LSX.apps.taskmanager,
+    description: LSX.apps.taskmanagerDescription,
     iconName: "task",
     category: ApplicationCategory.system,
-    description: "View and manage processes",
   ),
 ];
 
@@ -150,13 +149,6 @@ Application getApp(String packageName) {
   return applications
       .firstWhere((element) => element.packageName == packageName);
 }
-
-const Application fallbackApp = Application(
-  color: Colors.red,
-  app: ErrorWindow(),
-  name: "Error",
-  packageName: "io.dahlia.error",
-);
 
 Widget getAppIcon(bool usesRuntime, String? iconPath, double height) {
   return Image(

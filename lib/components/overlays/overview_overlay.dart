@@ -16,9 +16,9 @@ limitations under the License.
 
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/utils/data/common_data.dart';
+import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/wm/wm.dart';
 import 'package:pangolin/widgets/global/box/box_container.dart';
 
@@ -95,7 +95,7 @@ class _OverviewOverlayState extends State<OverviewOverlay>
                           highlightElevation: 2,
                           onPressed: () {},
                           hoverColor: Theme.of(context).backgroundColor,
-                          label: const Text("New Desktop"),
+                          label: Text(LSX.overviewOverlay.newDesktop),
                           icon: const Icon(Icons.add),
                           hoverElevation: 1,
                           foregroundColor:

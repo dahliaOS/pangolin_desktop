@@ -27,6 +27,7 @@ import 'package:pangolin/components/settings/pages/locale.dart';
 import 'package:pangolin/components/settings/pages/network/network.dart';
 import 'package:pangolin/components/settings/pages/notifications.dart';
 import 'package:pangolin/components/settings/pages/sound.dart';
+import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/theme/theme.dart';
 import 'package:pangolin/utils/theme/theme_manager.dart';
 import 'package:provider/provider.dart';
@@ -251,6 +252,7 @@ class _SettingsSearchBar extends StatelessWidget {
     return isExpanded
         ? Searchbar(
             controller: TextEditingController(),
+            //TODO Localize
             hint: 'Search settings',
             leading: const Icon(Icons.search_rounded),
             trailing: const Icon(Icons.close_rounded),
@@ -283,85 +285,85 @@ List<_SettingsTileData> _settingsTiles = [
     title: "Search",
   ),
   //Connectivity HEADER
-  const _SettingsTileData(
-    title: "Connectivity",
+  _SettingsTileData(
+    title: LSX.settings.headersConnectivity,
   ),
   //Connectivity TILES
-  const _SettingsTileData(
-    title: "Network & internet",
-    subtitle: "Wi-Fi, ethernet, data usage",
+  _SettingsTileData(
+    title: LSX.settings.pagesNetworkTitle,
+    subtitle: LSX.settings.pagesNetworkSubtitle,
     icon: Icons.wifi,
-    page: SettingsPageNetwork(),
+    page: const SettingsPageNetwork(),
   ),
-  const _SettingsTileData(
-    title: "Connected devices",
-    subtitle: "Bluetooth, printer, USB devices",
+  _SettingsTileData(
+    title: LSX.settings.pagesConnectionsTitle,
+    subtitle: LSX.settings.pagesConnectionsSubtitle,
     icon: Icons.devices_rounded,
-    page: SettingsPageConnectedDevices(),
+    page: const SettingsPageConnectedDevices(),
   ),
   //Personalize HEADER
-  const _SettingsTileData(
-    title: "Personalize",
+  _SettingsTileData(
+    title: LSX.settings.headersPersonalize,
   ),
   //Personalize TILES
-  const _SettingsTileData(
-    title: "Customization",
-    subtitle: "Personalize your experience",
+  _SettingsTileData(
+    title: LSX.settings.pagesCustomizationTitle,
+    subtitle: LSX.settings.pagesCustomizationSubtitle,
     icon: Icons.color_lens_outlined,
-    page: SettingsPageCustomization(),
+    page: const SettingsPageCustomization(),
   ),
 
   //Device & applications HEADER
-  const _SettingsTileData(
-    title: "Device & applications",
+  _SettingsTileData(
+    title: LSX.settings.headersDevice,
   ),
   //Device & applications TILES
-  const _SettingsTileData(
-    title: "Display",
-    subtitle: "Resolution, screen timeout, scaling",
+  _SettingsTileData(
+    title: LSX.settings.pagesDisplayTitle,
+    subtitle: LSX.settings.pagesDisplaySubtitle,
     icon: Icons.desktop_windows,
-    page: SettingsPageDisplay(),
+    page: const SettingsPageDisplay(),
   ),
-  const _SettingsTileData(
-    title: "Sound",
-    subtitle: "Volume, Do Not Disturb, startup sound",
+  _SettingsTileData(
+    title: LSX.settings.pagesSoundTitle,
+    subtitle: LSX.settings.pagesSoundSubtitle,
     icon: Icons.volume_up_rounded,
-    page: SettingsPageSound(),
+    page: const SettingsPageSound(),
   ),
-  const _SettingsTileData(
-    title: "Locale",
-    subtitle: "Language, time and date, keyboard layout",
+  _SettingsTileData(
+    title: LSX.settings.pagesLocaleTitle,
+    subtitle: LSX.settings.pagesLocaleSubtitle,
     icon: Icons.translate_rounded,
-    page: SettingsPageLocale(),
+    page: const SettingsPageLocale(),
   ),
-  const _SettingsTileData(
-    title: "Notifications",
-    subtitle: "Notification sound, app selection",
+  _SettingsTileData(
+    title: LSX.settings.pagesNotificationsTitle,
+    subtitle: LSX.settings.pagesNotificationsSubtitle,
     icon: Icons.notifications_none_rounded,
-    page: SettingsPageNotifications(),
+    page: const SettingsPageNotifications(),
   ),
-  const _SettingsTileData(
-    title: "Applications",
-    subtitle: "Installed apps, default apps",
+  _SettingsTileData(
+    title: LSX.settings.pagesApplicationsTitle,
+    subtitle: LSX.settings.pagesApplicationsSubtitle,
     icon: Icons.apps_rounded,
-    page: SettingsPageApplications(),
+    page: const SettingsPageApplications(),
   ),
   //System HEADER
-  const _SettingsTileData(
-    title: "System",
+  _SettingsTileData(
+    title: LSX.settings.headersSystem,
   ),
-  const _SettingsTileData(
-    title: "Developer options",
-    subtitle: "Feature flags, advanced options",
+  _SettingsTileData(
+    title: LSX.settings.pagesDeveloperOptionsTitle,
+    subtitle: LSX.settings.pagesDeveloperOptionsSubtitle,
     icon: Icons.developer_mode_rounded,
-    page: SettingsPageDeveloperOptions(),
+    page: const SettingsPageDeveloperOptions(),
   ),
   //System TILES
-  const _SettingsTileData(
-    title: "About device",
-    subtitle: "System version, device information",
+  _SettingsTileData(
+    title: LSX.settings.pagesAboutTitle,
+    subtitle: LSX.settings.pagesAboutSubtitle,
     icon: Icons.laptop_mac_rounded,
-    page: SettingsPageAbout(),
+    page: const SettingsPageAbout(),
   ),
 ];
 

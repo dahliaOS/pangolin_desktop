@@ -15,7 +15,6 @@ limitations under the License.
 */
 
 import 'package:flutter/material.dart';
-import 'package:pangolin/components/window/error_window.dart';
 import 'package:pangolin/components/window/window_surface.dart';
 import 'package:pangolin/components/window/window_toolbar.dart';
 import 'package:pangolin/utils/data/app_list.dart';
@@ -76,7 +75,7 @@ class WmAPI {
       // throw 'The app couldn not be opened';
     }
     final LiveWindowEntry _window = windowEntry.newInstance(
-      content: application.app ?? const ErrorWindow(),
+      content: application.app,
       overrideProperties: {
         WindowEntry.title: application.name,
         ToolbarWindowFeature.widget: PangolinWindowToolbar(

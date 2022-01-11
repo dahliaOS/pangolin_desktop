@@ -14,8 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:flutter/material.dart';
 import 'package:pangolin/components/settings/widgets/settings_page.dart';
+import 'package:pangolin/utils/extensions/extensions.dart';
 
 class SettingsPageDisplay extends StatefulWidget {
   const SettingsPageDisplay({Key? key}) : super(key: key);
@@ -28,9 +28,9 @@ class _SettingsPageDisplayState extends State<SettingsPageDisplay> {
   bool test = false;
   @override
   Widget build(BuildContext context) {
-    return const SettingsPage(
-      title: "Display",
-      cards: [],
+    return SettingsPage(
+      title: LSX.settings.pagesDisplayTitle,
+      cards: const [],
     );
   }
 }

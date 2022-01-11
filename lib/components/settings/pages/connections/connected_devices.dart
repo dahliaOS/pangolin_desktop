@@ -14,11 +14,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:flutter/material.dart';
 import 'package:pangolin/components/settings/widgets/list_tiles.dart';
 import 'package:pangolin/components/settings/widgets/settings_card.dart';
 import 'package:pangolin/components/settings/widgets/settings_content_header.dart';
 import 'package:pangolin/components/settings/widgets/settings_page.dart';
+import 'package:pangolin/utils/extensions/extensions.dart';
 
 class SettingsPageConnectedDevices extends StatelessWidget {
   const SettingsPageConnectedDevices({Key? key}) : super(key: key);
@@ -26,32 +26,41 @@ class SettingsPageConnectedDevices extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SettingsPage(
-      title: "Connected Devices",
+      title: LSX.settings.pagesConnectionsTitle,
       cards: [
-        const SettingsContentHeader("Bluetooth"),
+        SettingsContentHeader(LSX.settings.pagesConnectionsBluetooth),
         SettingsCard(
           children: [
             ExpandableSwitchListTile(
               value: false,
               onChanged: (val) {},
-              title: const Text("Bluetooth"),
-              subtitle: const Text("Disabled"),
+              title:
+                  Text(LSX.settings.pagesConnectionsBluetoothSwitchTileTitle),
+              subtitle: Text(
+                LSX.settings
+                    .pagesConnectionsBluetoothSwitchTileSubtitleDisabled,
+              ),
               leading: const Icon(Icons.bluetooth_rounded),
             ),
-            const RouterListTile(
-              title: Text("Files received via Bluetooth"),
-              leading: Icon(Icons.file_copy_rounded),
+            RouterListTile(
+              title: Text(
+                LSX.settings.pagesConnectionsBluetoothFileTransferTileTitle,
+              ),
+              leading: const Icon(Icons.file_copy_rounded),
             ),
           ],
         ),
-        const SettingsContentHeader("Phone integration"),
-        const SettingsCard(
+        SettingsContentHeader(LSX.settings.pagesConnectionsPhoneIntegration),
+        SettingsCard(
           children: [
             ExpandableListTile(
               value: false,
-              title: Text("Phone integration"),
-              subtitle: Text("Disabled"),
-              leading: Icon(Icons.phone_android_rounded),
+              title:
+                  Text(LSX.settings.pagesConnectionsPhoneIntegrationTileTitle),
+              subtitle: Text(
+                LSX.settings.pagesConnectionsPhoneIntegrationTileSubtitle,
+              ),
+              leading: const Icon(Icons.phone_android_rounded),
             ),
           ],
         ),
