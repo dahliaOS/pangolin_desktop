@@ -186,6 +186,7 @@ class _$SettingsLocaleStrings {
   final String pagesCustomizationThemeColorGreen = "settings.pages.customization.theme_color_green".tr();
   final String pagesCustomizationThemeColorBlue = "settings.pages.customization.theme_color_blue".tr();
   final String pagesCustomizationThemeColorTeal = "settings.pages.customization.theme_color_teal".tr();
+  /// settings.pages.customization.theme_color_purple
   final String pagesCustomizationThemeColorPruple = "settings.pages.customization.theme_color_pruple".tr();
   final String pagesCustomizationThemeColorAqua = "settings.pages.customization.theme_color_aqua".tr();
   final String pagesCustomizationThemeColorGold = "settings.pages.customization.theme_color_gold".tr();
