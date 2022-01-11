@@ -87,6 +87,7 @@ dev_dependencies:
 
 dependency_overrides:
   material_design_icons_flutter: ^5.0.6295
+  path: 1.8.0
 
 
 flutter:
