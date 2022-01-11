@@ -23,6 +23,7 @@ import 'package:pangolin/components/settings/widgets/settings_card.dart';
 import 'package:pangolin/components/settings/widgets/settings_content_header.dart';
 import 'package:pangolin/components/settings/widgets/settings_page.dart';
 import 'package:pangolin/services/network_manager.dart';
+import 'package:pangolin/utils/extensions/extensions.dart';
 
 class SettingsPageNetwork extends StatefulWidget {
   const SettingsPageNetwork({Key? key}) : super(key: key);
@@ -38,25 +39,30 @@ class _SettingsPageNetworkState extends State<SettingsPageNetwork> {
   @override
   Widget build(BuildContext context) {
     return SettingsPage(
-      title: "Network & internet",
+      title: LSX.settings.pagesNetworkTitle,
       cards: kIsWeb
           ? [
               const SettingsCard(
                 children: [
                   ListTile(
+                    //TODO add localization String
                     title: Text("Not supported on this platform"),
                   ),
                 ],
               ),
             ]
           : [
-              const SettingsContentHeader("Wi-Fi"),
+              SettingsContentHeader(LSX.settings.pagesNetworkWifi),
               SettingsCard(
                 children: [
                   ExpandableSwitchListTile(
-                    title: const Text("Wi-Fi"),
+                    title: Text(LSX.settings.pagesNetworkWifiSwitchTileTitle),
                     subtitle: Text(
-                      "Wi-Fi is ${_wifiEnabled ? "enabled" : "disabled"}",
+                      _wifiEnabled
+                          ? LSX.settings
+                              .pagesNetworkWifiSwitchTileSubtitleEnabled
+                          : LSX.settings
+                              .pagesNetworkWifiSwitchTileSubtitleDisabled,
                     ),
                     value: _wifiEnabled,
                     leading: const Icon(Icons.wifi),
@@ -72,40 +78,57 @@ class _SettingsPageNetworkState extends State<SettingsPageNetwork> {
                             ? parseNetworks(context)
                             : const [
                                 Center(
+                                  //TODO same as above
                                   child: Text("Not supported on this platform"),
                                 ),
                               ],
                       ),
                     ),
                   ),
-                  const ExpandableListTile(
+                  ExpandableListTile(
                     value: false,
-                    title: Text("Wi-Fi prefernces"),
-                    subtitle: Text("Smart Wi-Fi connection, scanning options"),
-                    leading: Icon(
+                    title:
+                        Text(LSX.settings.pagesNetworkWifiPreferencesTileTitle),
+                    subtitle: Text(
+                      LSX.settings.pagesNetworkWifiPreferencesTileSubtitle,
+                    ),
+                    leading: const Icon(
                       Icons.online_prediction_rounded,
                     ),
                   ),
-                  const ExpandableListTile(
+                  ExpandableListTile(
                     value: false,
-                    title: Text("Saved networks"),
-                    subtitle: Text("8 networks"),
-                    leading: Icon(Icons.save_rounded),
+                    title: Text(
+                      LSX.settings.pagesNetworkWifiSavedNetworksTileTitle,
+                    ),
+                    subtitle: Text(
+                      LSX.settings
+                          .pagesNetworkWifiSavedNetworksTileSubtitle("8"),
+                    ),
+                    leading: const Icon(Icons.save_rounded),
                   ),
-                  const RouterListTile(
-                    title: Text("Wi-Fi data usage"),
-                    subtitle: Text("Data usage for this month"),
-                    leading: Icon(Icons.data_saver_on_rounded),
+                  RouterListTile(
+                    title:
+                        Text(LSX.settings.pagesNetworkWifiDataUsageTileTitle),
+                    subtitle: Text(
+                      LSX.settings.pagesNetworkWifiDataUsageTileSubtitle,
+                    ),
+                    leading: const Icon(Icons.data_saver_on_rounded),
                   )
                 ],
               ),
-              const SettingsContentHeader("Ethernet"),
+              SettingsContentHeader(LSX.settings.pagesNetworkEthernet),
               SettingsCard(
                 children: [
                   SwitchListTile(
-                    title: const Text("Ethernet"),
+                    title:
+                        Text(LSX.settings.pagesNetworkEthernetSwitchTileTitle),
                     subtitle: Text(
-                      "Ethernet is ${_ethernetEnabled ? "enabled" : "disabled"}",
+                      _ethernetEnabled
+                          ? LSX.settings
+                              .pagesNetworkEthernetSwitchTileSubtitleEnabled
+                          : LSX.settings
+                              .pagesNetworkEthernetSwitchTileSubtitleDisabled,
                     ),
                     secondary: const Icon(Icons.settings_ethernet_rounded),
                     value: _ethernetEnabled,
@@ -113,36 +136,49 @@ class _SettingsPageNetworkState extends State<SettingsPageNetwork> {
                       setState(() => _ethernetEnabled = val);
                     },
                   ),
-                  const RouterListTile(
-                    title: Text("Ethernet data usage"),
-                    subtitle: Text("Data usage for this month"),
-                    leading: Icon(Icons.data_saver_on_rounded),
+                  RouterListTile(
+                    title: Text(
+                      LSX.settings.pagesNetworkEthernetDataUsageTileTitle,
+                    ),
+                    subtitle: Text(
+                      LSX.settings.pagesNetworkEthernetDataUsageTileSubtitle,
+                    ),
+                    leading: const Icon(Icons.data_saver_on_rounded),
                   ),
                 ],
               ),
-              const SettingsContentHeader("Network options"),
+              SettingsContentHeader(LSX.settings.pagesNetworkNetworkOptions),
               SettingsCard(
                 children: [
                   ListTile(
-                    title: const Text("Virtual Private Network (VPN)"),
-                    subtitle: const Text("None"),
+                    title: Text(
+                      LSX.settings.pagesNetworkNetworkOptionsVpnTileTitle,
+                    ),
+                    subtitle: Text(
+                      LSX.settings.pagesNetworkNetworkOptionsVpnTileSubtitle,
+                    ),
                     leading: const Icon(Icons.vpn_lock_rounded),
                     trailing: ElevatedButton(
-                      child: const Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text("VPN options"),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          LSX.settings.pagesNetworkNetworkOptionsVpnTileButton,
+                        ),
                       ),
                       onPressed: () {},
                     ),
                   ),
                   ListTile(
-                    title: const Text("Private DNS"),
-                    subtitle: const Text("Automatic"),
+                    title: Text(
+                        LSX.settings.pagesNetworkNetworkOptionsDnsTileTitle),
+                    subtitle: Text(
+                        LSX.settings.pagesNetworkNetworkOptionsDnsTileSubtitle),
                     leading: const Icon(Icons.dns_rounded),
                     trailing: ElevatedButton(
-                      child: const Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text("DNS options"),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(LSX
+                            .settings.pagesNetworkNetworkOptionsDnsTileButton),
                       ),
                       onPressed: () {},
                     ),

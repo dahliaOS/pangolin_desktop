@@ -50,7 +50,7 @@ class _SearchTileState extends State<SearchTile> {
             getAppIcon(application.systemExecutable, application.iconName, 34),
           ],
         ),
-        trailing: const Text("App"),
+        trailing: Text(LSX.searchOverlay.app),
         subtitle: Text(application.description ?? ""),
         onTap: () {
           _searchProvider.addRecentSearchResult(application.packageName);

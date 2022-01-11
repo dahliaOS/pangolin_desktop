@@ -110,7 +110,7 @@ class _SearchOverlayState extends State<SearchOverlay>
                           .borderRadius(BorderRadiusType.medium),
                       focusNode: _focusNode,
                       controller: _controller,
-                      hint: 'Search Device, Apps and Web',
+                      hint: LSX.searchOverlay.hint,
                       leading: const Icon(Icons.search),
                       trailing: const Icon(Icons.menu_rounded),
                       onTextChanged: searchService.globalSearch,
@@ -135,7 +135,7 @@ class _SearchOverlayState extends State<SearchOverlay>
                                         right: 24,
                                       ),
                                       child: Text(
-                                        'Results',
+                                        LSX.searchOverlay.results,
                                         style: TextStyle(
                                           fontSize: 17,
                                           fontWeight: FontWeight.w600,
@@ -170,7 +170,7 @@ class _SearchOverlayState extends State<SearchOverlay>
                                         right: 24,
                                       ),
                                       child: Text(
-                                        'Recent',
+                                        LSX.searchOverlay.recent,
                                         style: TextStyle(
                                           fontSize: 17,
                                           fontWeight: FontWeight.w600,

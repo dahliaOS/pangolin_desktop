@@ -18,6 +18,7 @@ import 'package:flutter/widgets.dart';
 import 'package:pangolin/components/settings/models/settings_accent_data_model.dart';
 import 'package:pangolin/components/settings/models/settings_taskbar_data_model.dart';
 import 'package:pangolin/components/settings/models/settings_theme_data_model.dart';
+import 'package:pangolin/utils/extensions/extensions.dart';
 
 class SettingsPresets {
   const SettingsPresets._();
@@ -36,15 +37,42 @@ class SettingsPresets {
     //load the data for the accent color presets
     accentColorPresets = List.from(
       [
-        const AccentColorDataModel(Color(0xFFFF5722), "Orange"),
-        const AccentColorDataModel(Color(0xFFD32F2F), "Red"),
-        const AccentColorDataModel(Color(0xFF078D48), "Green"),
-        const AccentColorDataModel(Color(0xFF0067C0), "Blue"),
-        const AccentColorDataModel(Color(0xFF00594F), "Teal"),
-        const AccentColorDataModel(Color(0xFF6200EE), "Purple"),
-        const AccentColorDataModel(Color(0xFF00BCD4), "Aqua"),
-        const AccentColorDataModel(Color(0xFFFFC107), "Gold"),
-        const AccentColorDataModel(Color(0xFF455a64), "Anthracite"),
+        AccentColorDataModel(
+          const Color(0xFFFF5722),
+          LSX.settings.pagesCustomizationThemeColorOrange,
+        ),
+        AccentColorDataModel(
+          const Color(0xFFD32F2F),
+          LSX.settings.pagesCustomizationThemeColorRed,
+        ),
+        AccentColorDataModel(
+          const Color(0xFF078D48),
+          LSX.settings.pagesCustomizationThemeColorGreen,
+        ),
+        AccentColorDataModel(
+          const Color(0xFF0067C0),
+          LSX.settings.pagesCustomizationThemeColorBlue,
+        ),
+        AccentColorDataModel(
+          const Color(0xFF00594F),
+          LSX.settings.pagesCustomizationThemeColorTeal,
+        ),
+        AccentColorDataModel(
+          const Color(0xFF6200EE),
+          LSX.settings.pagesCustomizationThemeColorPruple,
+        ),
+        AccentColorDataModel(
+          const Color(0xFF00BCD4),
+          LSX.settings.pagesCustomizationThemeColorAqua,
+        ),
+        AccentColorDataModel(
+          const Color(0xFFFFC107),
+          LSX.settings.pagesCustomizationThemeColorGold,
+        ),
+        AccentColorDataModel(
+          const Color(0xFF455a64),
+          LSX.settings.pagesCustomizationThemeColorAnthracite,
+        ),
       ],
       growable: false,
     );
@@ -52,8 +80,16 @@ class SettingsPresets {
     //load the data for the theme mode presets
     themeModePresets = List.from(
       [
-        const ThemeModeDataModel(Color(0xffffffff), "Light", false),
-        const ThemeModeDataModel(Color(0xff0a0a0a), "Dark", true),
+        ThemeModeDataModel(
+          const Color(0xffffffff),
+          LSX.settings.pagesCustomizationThemeModeLight,
+          false,
+        ),
+        ThemeModeDataModel(
+          const Color(0xff0a0a0a),
+          LSX.settings.pagesCustomizationThemeModeDark,
+          true,
+        ),
       ],
       growable: false,
     );
@@ -61,8 +97,14 @@ class SettingsPresets {
     //load the data for the taskbar alignment presets
     taskbarAlignmentPresets = List.from(
       [
-        const TaskbarAlignmentModelData("Start", false),
-        const TaskbarAlignmentModelData("Center", true),
+        TaskbarAlignmentModelData(
+          LSX.settings.pagesCustomizationTaskbarAlignmentStart,
+          false,
+        ),
+        TaskbarAlignmentModelData(
+          LSX.settings.pagesCustomizationTaskbarAlignmentCenter,
+          true,
+        ),
       ],
       growable: false,
     );

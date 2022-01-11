@@ -32,7 +32,7 @@ class _ShowDesktopButtonState extends State<ShowDesktopButton> {
   @override
   Widget build(BuildContext context) {
     return Tooltip(
-      message: 'Show Desktop',
+      message: LSX.desktop.miscShowDesktop,
       child: InkWell(
         hoverColor: Colors.transparent,
         splashColor: Colors.transparent,

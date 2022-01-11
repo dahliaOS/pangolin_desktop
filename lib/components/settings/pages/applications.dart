@@ -16,15 +16,16 @@ limitations under the License.
 
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/settings/widgets/settings_page.dart';
+import 'package:pangolin/utils/extensions/extensions.dart';
 
 class SettingsPageApplications extends StatelessWidget {
   const SettingsPageApplications({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const SettingsPage(
-      title: "Applications",
-      cards: [],
+    return SettingsPage(
+      title: LSX.settings.pagesApplicationsTitle,
+      cards: const [],
     );
   }
 }

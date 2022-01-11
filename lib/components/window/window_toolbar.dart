@@ -54,18 +54,21 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
           items: [
             ContextMenuItem(
               icon: Icons.close,
+              //TODO Localize
               title: "Close Window",
               onTap: () => onClose(properties),
               shortcut: "",
             ),
             ContextMenuItem(
               icon: Icons.minimize,
+              //TODO Localize
               title: "Minimize Window",
               onTap: () => onMinimize(properties, layout),
               shortcut: "",
             ),
             ContextMenuItem(
               icon: Icons.info_outline_rounded,
+              //TODO Localize
               title: "App Info",
               onTap: () {
                 showDialog(

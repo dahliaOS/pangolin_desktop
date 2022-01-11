@@ -18,6 +18,7 @@ import 'package:flutter/material.dart';
 import 'package:pangolin/components/settings/widgets/settings_card.dart';
 import 'package:pangolin/components/settings/widgets/settings_content_header.dart';
 import 'package:pangolin/utils/data/globals.dart';
+import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/theme/theme_manager.dart';
 
 class SettingsPageAbout extends StatelessWidget {
@@ -25,59 +26,7 @@ class SettingsPageAbout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return /*SettingsPage(
-      title: "About",
-      cards: [
-        SettingsCardOld.custom(
-          content: SizedBox(
-            width: double.infinity,
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Row(
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        width: 2,
-                        color: Colors.black.withOpacity(0.2),
-                      ),
-                      shape: BoxShape.circle,
-                    ),
-                    child: Image.asset(
-                      "assets/images/logos/dahliaOS-logo.png",
-                      height: 128,
-                    ),
-                  ),
-                  SizedBox(width: 16),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        longName,
-                        style: Theme.of(context).textTheme.headline5?.copyWith(
-                              color: ThemeManager.of(context)
-                                  .foregroundColorOnSurface,
-                            ),
-                      ),
-                      SizedBox(height: 8),
-                      Text(
-                        kernel,
-                        style: Theme.of(context).textTheme.headline6?.copyWith(
-                              color: ThemeManager.of(context)
-                                  .foregroundColorOnSurface
-                                  .withOpacity(0.7),
-                            ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ],
-    )*/
-        SingleChildScrollView(
+    return SingleChildScrollView(
       child: Column(
         children: [
           Stack(
@@ -105,6 +54,7 @@ class SettingsPageAbout extends StatelessWidget {
                       height: 50,
                     ),
                     Text(
+                      //TODO Localize
                       "Version $totalVersionNumber",
                       style: const TextStyle(color: Colors.white),
                     )
@@ -117,37 +67,53 @@ class SettingsPageAbout extends StatelessWidget {
             margin: const EdgeInsets.all(50),
             child: Column(
               children: [
-                const SettingsContentHeader("System Information"),
+                SettingsContentHeader(
+                  LSX.settings.pagesAboutSystemInformation,
+                ),
                 SettingsCard(
                   children: [
                     ListTile(
-                      title: const Text("Environment"),
+                      title: Text(
+                        LSX.settings.pagesAboutSystemInformationEnvironment,
+                      ),
                       subtitle: Text(kernel),
                       leading: const Icon(Icons.memory),
                     ),
                     ListTile(
-                      title: const Text("Architecture"),
+                      title: Text(
+                        LSX.settings.pagesAboutSystemInformationArchitecture,
+                      ),
                       subtitle: Text(architecture),
                       leading: const Icon(Icons.architecture),
                     ),
                     ListTile(
-                      title: const Text("Desktop"),
+                      title:
+                          Text(LSX.settings.pagesAboutSystemInformationDesktop),
                       subtitle: Text("Pangolin $pangolinCommit"),
                       leading: const Icon(Icons.desktop_mac),
                     )
                   ],
                 ),
-                const SettingsContentHeader("Software Update"),
+                SettingsContentHeader(LSX.settings.pagesAboutSoftwareUpdate),
                 SettingsCard(
                   children: [
                     ListTile(
-                      title: const Text("dahliaOS is up to date - 21XXXX"),
-                      subtitle: const Text("Last checked: Today at 12:45 AM"),
+                      title: Text(
+                        LSX.settings
+                            .pagesAboutSoftwareUpdateTileTitle("22XXXX"),
+                      ),
+                      subtitle: Text(
+                        LSX.settings.pagesAboutSoftwareUpdateTileSubtitle(
+                          "Today at 12:45 AM",
+                        ),
+                      ),
                       leading: const Icon(Icons.update),
                       trailing: ElevatedButton(
-                        child: const Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text("Check for updates"),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            LSX.settings.pagesAboutSoftwareUpdateTileButton,
+                          ),
                         ),
                         onPressed: () {},
                       ),
