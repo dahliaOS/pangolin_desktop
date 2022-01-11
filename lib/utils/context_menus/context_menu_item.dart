@@ -59,8 +59,9 @@ class ContextMenuItem extends StatelessWidget {
                 ),
                 //Spacer(),
                 Align(
-                    alignment: Alignment.centerRight,
-                    child: Text(shortcut ?? ""))
+                  alignment: Alignment.centerRight,
+                  child: Text(shortcut ?? ""),
+                )
               ],
             ),
           ),

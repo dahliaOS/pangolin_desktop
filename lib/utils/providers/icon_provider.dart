@@ -43,8 +43,8 @@ class IconProvider extends ChangeNotifier {
 
   // Data Loading
 
-  _loadData() {
-    var _list = ["material", "fluent", "unicons"];
+  void _loadData() {
+    final List<String> _list = ["material", "fluent", "unicons"];
     if (!_list.contains(iconPack)) {
       iconPack = "material";
     }

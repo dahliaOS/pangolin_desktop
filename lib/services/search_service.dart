@@ -25,7 +25,7 @@ class SearchNotifier {
     final _searchInputResult = <Application>[];
     // await Future.delayed(Duration(milliseconds: 250));
     if (searchInputTerm.isNotEmpty) {
-      for (var app in applications) {
+      for (final Application app in applications) {
         if (app.name!.toLowerCase().contains(searchInputTerm.toLowerCase())) {
           _searchInputResult.add(app);
           termSearchResult.value = _searchInputResult;

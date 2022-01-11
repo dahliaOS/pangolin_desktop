@@ -17,12 +17,14 @@ class CustomizationProvider extends ChangeNotifier {
   bool _enableBlur = true;
   bool _coloredTitlebars = false;
 
-  List<String> _pinnedApps = List.from([
-    "io.dahlia.calculator",
-    "io.dahlia.terminal",
-    "io.dahlia.settings",
-    "io.dahlia.files"
-  ], growable: true);
+  List<String> _pinnedApps = List.from(
+    [
+      "io.dahlia.calculator",
+      "io.dahlia.terminal",
+      "io.dahlia.settings",
+      "io.dahlia.files"
+    ],
+  );
   List<String> _recentWallpapers = List.from([], growable: true);
 
   double _taskbarPosition = 2;

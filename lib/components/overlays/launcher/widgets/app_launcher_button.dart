@@ -16,6 +16,7 @@ limitations under the License.
 
 import 'dart:io';
 
+import 'package:pangolin/utils/data/app_list.dart';
 import 'package:pangolin/utils/data/common_data.dart';
 import 'package:pangolin/utils/data/models/application.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
@@ -30,17 +31,6 @@ class AppLauncherButton extends StatefulWidget {
 }
 
 class _AppLauncherButtonState extends State<AppLauncherButton> {
-  Widget AppIcon(bool UsesRuntime, String? iconPath) {
-    if (iconPath == null) {
-      return Image.asset('assets/icons/null.png');
-    }
-    if (UsesRuntime == true) {
-      return Image.file(File(iconPath));
-    } else {
-      return Image.asset("assets/icons/${iconPath}.png");
-    }
-  }
-
   Application get application => widget.application;
 
   @override
@@ -72,15 +62,20 @@ class _AppLauncherButtonState extends State<AppLauncherButton> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  AppIcon(application.systemExecutable, application.iconName),
+                  getAppIcon(
+                    application.systemExecutable,
+                    application.iconName,
+                    64,
+                  ),
                   const SizedBox(
                     height: 18,
                   ),
                   Text(
                     application.name ?? "",
                     style: TextStyle(
-                        fontSize: 17,
-                        color: CommonData.of(context).textColor()),
+                      fontSize: 17,
+                      color: CommonData.of(context).textColor(),
+                    ),
                   )
                 ],
               ),

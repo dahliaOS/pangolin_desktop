@@ -17,7 +17,7 @@ limitations under the License.
 import 'package:animations/animations.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
-import 'theme_manager.dart';
+import 'package:pangolin/utils/theme/theme_manager.dart';
 
 ThemeData theme(BuildContext context) {
   final _customizationProvider = CustomizationProvider.of(context);
@@ -50,7 +50,8 @@ ThemeData theme(BuildContext context) {
         ),
         elevation: MaterialStateProperty.all(0.0),
         foregroundColor: MaterialStateProperty.all(
-            ThemeManager.of(context).foregroundColorOnAccentColor),
+          ThemeManager.of(context).foregroundColorOnAccentColor,
+        ),
       ),
     ),
 
@@ -70,9 +71,7 @@ ThemeData theme(BuildContext context) {
       onSurface:
           _customizationProvider.darkMode ? ColorsX.black : ColorsX.white,
       primary: Color(_customizationProvider.accentColor),
-      primaryVariant: Color(_customizationProvider.accentColor),
       secondary: Color(_customizationProvider.accentColor),
-      secondaryVariant: Color(_customizationProvider.accentColor),
       surface: _customizationProvider.darkMode ? ColorsX.black : ColorsX.white,
     ),
     backgroundColor: ThemeManager.of(context).backgroundColor,

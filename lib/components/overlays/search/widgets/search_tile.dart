@@ -14,11 +14,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'dart:io';
+
 import 'package:pangolin/utils/data/app_list.dart';
 import 'package:pangolin/utils/data/models/application.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/search_provider.dart';
-import 'dart:io';
 
 class SearchTile extends StatefulWidget {
   final String packageName;
@@ -29,26 +30,6 @@ class SearchTile extends StatefulWidget {
 }
 
 class _SearchTileState extends State<SearchTile> {
-  Widget AppIcon(bool UsesRuntime, String? iconPath, double height) {
-    if (iconPath == null) {
-      return Image.asset(
-        'assets/icons/null.png',
-        height: height,
-      );
-    }
-    if (UsesRuntime == true) {
-      return Image.file(
-        File(iconPath),
-        height: height,
-      );
-    } else {
-      return Image.asset(
-        "assets/icons/${iconPath}.png",
-        height: height,
-      );
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     final Application application = getApp(widget.packageName);
@@ -66,10 +47,10 @@ class _SearchTileState extends State<SearchTile> {
             const SizedBox(
               height: 10,
             ),
-            AppIcon(application.systemExecutable, application.iconName, 34),
+            getAppIcon(application.systemExecutable, application.iconName, 34),
           ],
         ),
-        trailing: const Text("App"),
+        trailing: Text(LSX.searchOverlay.app),
         subtitle: Text(application.description ?? ""),
         onTap: () {
           _searchProvider.addRecentSearchResult(application.packageName);

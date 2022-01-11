@@ -17,7 +17,7 @@ limitations under the License.
 import 'package:pangolin/services/service.dart';
 
 class TestService extends Service {
-  const TestService(String name) : super("TestService");
+  const TestService() : super("TestService");
 
   @override
   bool isSupported() {

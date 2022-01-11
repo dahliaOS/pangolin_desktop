@@ -18,6 +18,7 @@ import 'dart:async';
 
 import 'package:battery_plus/battery_plus.dart';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:pangolin/components/overlays/quick_settings/pages/qs_account_page.dart';
 import 'package:pangolin/components/overlays/quick_settings/pages/qs_network_page.dart';
 import 'package:pangolin/components/overlays/quick_settings/pages/qs_theme_page.dart';
@@ -25,18 +26,15 @@ import 'package:pangolin/components/overlays/quick_settings/widgets/qs_shortcut_
 import 'package:pangolin/components/overlays/quick_settings/widgets/qs_slider.dart';
 import 'package:pangolin/components/overlays/quick_settings/widgets/qs_toggle_button.dart';
 import 'package:pangolin/components/shell/shell.dart';
-import 'package:pangolin/services/locales/locale_strings.g.dart';
-import 'package:pangolin/services/locales/locales.g.dart';
 import 'package:pangolin/utils/action_manager/action_manager.dart';
-import 'package:pangolin/utils/other/date_time_manager.dart';
-import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/data/common_data.dart';
+import 'package:pangolin/utils/data/globals.dart';
+import 'package:pangolin/utils/extensions/extensions.dart';
+import 'package:pangolin/utils/other/date_time_manager.dart';
 import 'package:pangolin/utils/providers/connection_provider.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:pangolin/utils/providers/io_provider.dart';
 import 'package:pangolin/widgets/global/box/box_container.dart';
-import 'package:pangolin/utils/data/globals.dart';
 import 'package:pangolin/widgets/global/quick_button.dart';
 
 class QuickSettingsOverlay extends ShellOverlay {
@@ -111,7 +109,9 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
           child: ScaleTransition(
             scale: _animation,
             alignment: FractionalOffset(
-                0.8, !_customizationProvider.isTaskbarTop ? 1.0 : 0.0),
+              0.8,
+              !_customizationProvider.isTaskbarTop ? 1.0 : 0.0,
+            ),
             child: BoxSurface(
               borderRadius:
                   CommonData.of(context).borderRadius(BorderRadiusType.big),
@@ -147,7 +147,7 @@ class QsMain extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Action Button Bar
-    List<Widget> _qsActionButton = [
+    final List<Widget> _qsActionButton = [
       QuickActionButton(
         leading: const FlutterLogo(
           size: 18,
@@ -165,27 +165,23 @@ class QsMain extends StatelessWidget {
       ),
       const Spacer(),
       QuickActionButton(
-        leading: Icon(IconsX.of(context).power),
-        isCircular: true,
-        onPressed: () => ActionManager.showPowerMenu(context),
-        //title: "Power",
-      ),
-      QuickActionButton(
-        leading: Icon(IconsX.of(context).sign_out),
-        isCircular: true,
-        //title: "Sign out",
+        leading: Icon(IconsX.of(context).settings),
+        //title: "Settings",
+        onPressed: () => ActionManager.openSettings(context),
       ),
       QuickActionButton(
         leading: Icon(IconsX.of(context).edit),
-        isCircular: true,
         //title: "Edit panel",
       ),
       QuickActionButton(
-        leading: Icon(IconsX.of(context).settings),
-        isCircular: true,
-        //title: "Settings",
+        leading: Icon(IconsX.of(context).sign_out),
+        //title: "Sign out",
+      ),
+      QuickActionButton(
+        leading: Icon(IconsX.of(context).power),
         margin: const EdgeInsets.only(left: 8),
-        onPressed: () => ActionManager.openSettings(context),
+        onPressed: () => ActionManager.showPowerMenu(context),
+        //title: "Power",
       ),
     ];
     return Material(
@@ -198,147 +194,154 @@ class QsMain extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: _qsActionButton,
             ),
-            _qsTitle("Quick Controls"),
-            Builder(builder: (context) {
-              final _connectionProvider = ConnectionProvider.of(context);
-              final _customizationProvider = CustomizationProvider.of(context);
-              return Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
+            _qsTitle(LSX.quicksettingsOverlay.quickControls),
+            Builder(
+              builder: (context) {
+                final _connectionProvider = ConnectionProvider.of(context);
+                final _customizationProvider =
+                    CustomizationProvider.of(context);
+                return Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        QsToggleButton(
+                          //TODO change title to "Network"
+                          title: LSX
+                              .quicksettingsOverlay.quickControlsNetworkTitle,
+                          icon: _connectionProvider.wifi
+                              ? Icons.wifi_rounded
+                              : Icons.wifi_off_rounded,
+                          //TODO Capitalise
+                          subtitle: LSX.quicksettingsOverlay
+                              .quickControlsNetworkSubtitleConnected,
+                          value: _connectionProvider.wifi,
+                          onPressed: () => _connectionProvider.wifi =
+                              !_connectionProvider.wifi,
+                          onMenuPressed: () {
+                            Navigator.pushNamed(context, "/pages/network");
+                          },
+                        ),
+                        QsToggleButton(
+                          title: LSX
+                              .quicksettingsOverlay.quickControlsBluetoothTitle,
+                          subtitle: _connectionProvider.bluetooth
+                              ? LSX.global.on
+                              : LSX.global.off,
+                          icon: _connectionProvider.bluetooth
+                              ? Icons.bluetooth_connected_rounded
+                              : Icons.bluetooth_disabled_rounded,
+                          value: _connectionProvider.bluetooth,
+                          onPressed: () => _connectionProvider.bluetooth =
+                              !_connectionProvider.bluetooth,
+                        ),
+                        QsToggleButton(
+                          title: LSX.quicksettingsOverlay
+                              .quickControlsAirplaneModeTitle,
+                          icon: !(!_connectionProvider.wifi &&
+                                  !_connectionProvider.bluetooth)
+                              ? Icons.airplanemode_off_rounded
+                              : Icons.airplanemode_active_rounded,
+                          value: !(!_connectionProvider.wifi &&
+                                  !_connectionProvider.bluetooth)
+                              ? false
+                              : true,
+                          onPressed: () {
+                            if (_connectionProvider.wifi &&
+                                _connectionProvider.bluetooth) {
+                              _connectionProvider.wifi = false;
+                              _connectionProvider.bluetooth = false;
+                            } else if (_connectionProvider.wifi &&
+                                !_connectionProvider.bluetooth) {
+                              _connectionProvider.wifi = false;
+                              _connectionProvider.bluetooth = false;
+                            } else if (!_connectionProvider.wifi &&
+                                _connectionProvider.bluetooth) {
+                              _connectionProvider.wifi = false;
+                              _connectionProvider.bluetooth = false;
+                            } else {
+                              _connectionProvider.wifi = true;
+                              _connectionProvider.bluetooth = true;
+                            }
+                          },
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 12,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        QsToggleButton(
+                          title: LSX
+                              .quicksettingsOverlay.quickControlsLanguageTitle,
+                          //TODO Fix this
+                          subtitle: context.locale.toLanguageTag(),
+                          icon: Icons.language_rounded,
+                          value: true,
+                          onPressed: () {
+                            final int index =
+                                Locales.supported.indexOf(context.locale);
+                            if (index + 1 < Locales.supported.length) {
+                              context.setLocale(Locales.supported[index + 1]);
+                            } else {
+                              context.setLocale(Locales.supported[0]);
+                            }
+                          },
+                        ),
+                        //TODO remove the provider option for this
+                        /* 
                       QsToggleButton(
-                        //TODO change title to "Network"
-                        title: LocaleStrings
-                            .quicksettingsOverlay.quickControlsNetworkTitle,
-                        icon: _connectionProvider.wifi
-                            ? Icons.wifi_rounded
-                            : Icons.wifi_off_rounded,
-                        subtitle: "Connected",
-                        value: _connectionProvider.wifi,
-                        onPressed: () => _connectionProvider.wifi =
-                            !_connectionProvider.wifi,
-                        onMenuPressed: () {
-                          Navigator.pushNamed(context, "/pages/network");
-                        },
-                      ),
-                      QsToggleButton(
-                        title: LocaleStrings
-                            .quicksettingsOverlay.quickControlsBluetoothTitle,
-                        subtitle: _connectionProvider.bluetooth ? "On" : "Off",
-                        icon: _connectionProvider.bluetooth
-                            ? Icons.bluetooth_connected_rounded
-                            : Icons.bluetooth_disabled_rounded,
-                        value: _connectionProvider.bluetooth,
-                        onPressed: () => _connectionProvider.bluetooth =
-                            !_connectionProvider.bluetooth,
-                      ),
-                      QsToggleButton(
-                        title: LocaleStrings.quicksettingsOverlay
-                            .quickControlsAirplaneModeTitle,
-                        icon: !(!_connectionProvider.wifi &&
-                                !_connectionProvider.bluetooth)
-                            ? Icons.airplanemode_off_rounded
-                            : Icons.airplanemode_active_rounded,
-                        value: !(!_connectionProvider.wifi &&
-                                !_connectionProvider.bluetooth)
-                            ? false
-                            : true,
-                        onPressed: () {
-                          if (_connectionProvider.wifi &&
-                              _connectionProvider.bluetooth) {
-                            _connectionProvider.wifi = false;
-                            _connectionProvider.bluetooth = false;
-                          } else if (_connectionProvider.wifi &&
-                              !_connectionProvider.bluetooth) {
-                            _connectionProvider.wifi = false;
-                            _connectionProvider.bluetooth = false;
-                          } else if (!_connectionProvider.wifi &&
-                              _connectionProvider.bluetooth) {
-                            _connectionProvider.wifi = false;
-                            _connectionProvider.bluetooth = false;
-                          } else {
-                            _connectionProvider.wifi = true;
-                            _connectionProvider.bluetooth = true;
-                          }
-                        },
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 12,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      QsToggleButton(
-                        title: LocaleStrings
-                            .quicksettingsOverlay.quickControlsLanguageTitle,
-                        //TODO Fix this
-                        subtitle: "FIX THIS",
-                        icon: Icons.language_rounded,
-                        value: true,
-                        onPressed: () {
-                          int index = Locales.supported.indexOf(context.locale);
-                          if (index + 1 < Locales.supported.length) {
-                            context.setLocale(Locales.supported[index + 1]);
-                          } else {
-                            context.setLocale(Locales.supported[0]);
-                          }
-                        },
-                      ),
-                      //TODO remove the provider option for this
-                      /* 
-                      QsToggleButton(
-                        title: LocaleStrings.qs.autorotate,
+                        title: LSX.qs.autorotate,
                         icon: Icons.screen_lock_rotation_rounded,
                         value: false,
                       ), */
-                      QsToggleButton(
-                        title: LocaleStrings
-                            .quicksettingsOverlay.quickControlsThemeTitle,
-                        icon: Icons.palette_outlined,
-                        value: true,
-                        onPressed: () => _customizationProvider.darkMode =
-                            !_customizationProvider.darkMode,
-                        onMenuPressed: () =>
-                            Navigator.pushNamed(context, "/pages/theme"),
-                      ),
-                      QsToggleButton(
-                        title: LocaleStrings.quicksettingsOverlay
-                            .quickControlsDonotdisturbTitle,
-                        icon: Icons.do_not_disturb_off_rounded,
-                        value: false,
-                        onPressed: () {},
-                      ),
-                      //TODO move night light to the brightness control submenu
-                      /* 
+                        QsToggleButton(
+                          title:
+                              LSX.quicksettingsOverlay.quickControlsThemeTitle,
+                          icon: Icons.palette_outlined,
+                          value: true,
+                          onPressed: () => _customizationProvider.darkMode =
+                              !_customizationProvider.darkMode,
+                          onMenuPressed: () =>
+                              Navigator.pushNamed(context, "/pages/theme"),
+                        ),
+                        QsToggleButton(
+                          title: LSX.quicksettingsOverlay
+                              .quickControlsDonotdisturbTitle,
+                          icon: Icons.do_not_disturb_off_rounded,
+                          onPressed: () {},
+                        ),
+                        //TODO move night light to the brightness control submenu
+                        /* 
                       QsToggleButton(
                         title: "Night light",
                         icon: Icons.brightness_4_rounded,
                         value: false,
                       ), */
-                    ],
-                  ),
-                ],
-              );
-            }),
-            _qsTitle("Shortcuts"),
+                      ],
+                    ),
+                  ],
+                );
+              },
+            ),
+            _qsTitle(LSX.quicksettingsOverlay.shortcutsTitle),
             Row(
-              children: const [
+              children: [
                 QsShortcutButton(
-                  title: "New event",
+                  title: LSX.quicksettingsOverlay.shortcutsNewEvent,
                   icon: Icons.calendar_today_rounded,
                 ),
                 QsShortcutButton(
-                  title: "Alpha Build",
+                  title: LSX.quicksettingsOverlay.shortcutsAlphaBuild,
                   icon: Icons.info_outline_rounded,
                 ),
-                QsShortcutButton(
+                const QsShortcutButton(
                   title: "dahliaos.io",
                   icon: Icons.language_rounded,
                 ),
-                QsShortcutButton(),
+                const QsShortcutButton(),
               ],
             ),
             const SizedBox(
@@ -397,20 +400,24 @@ class QsMain extends StatelessWidget {
                     ),
                   ),
                 ),
-                Builder(builder: (context) {
-                  return FutureBuilder(
+                Builder(
+                  builder: (context) {
+                    return FutureBuilder(
                       future: Battery().batteryLevel,
                       builder: (context, AsyncSnapshot<int?> data) {
-                        String batteryPercentage =
-                            data.data?.toString() ?? "Energy Mode: Performance";
+                        final String batteryPercentage =
+                            data.data?.toString() ??
+                                LSX.quicksettingsOverlay.shortcutsEnergyMode;
                         return QuickActionButton(
                           leading: const Icon(Icons.battery_charging_full),
                           title: batteryPercentage,
                           margin: EdgeInsets.zero,
                           isCircular: false,
                         );
-                      });
-                }),
+                      },
+                    );
+                  },
+                ),
               ],
             )
           ],

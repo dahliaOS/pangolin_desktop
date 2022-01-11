@@ -14,7 +14,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:flutter/material.dart';
 import 'package:pangolin/components/settings/data/presets.dart';
 import 'package:pangolin/components/settings/widgets/accent_color_button.dart';
 import 'package:pangolin/components/settings/widgets/settings_card.dart';
@@ -23,6 +22,7 @@ import 'package:pangolin/components/settings/widgets/settings_page.dart';
 import 'package:pangolin/components/settings/widgets/taskbar_alignment_button.dart';
 import 'package:pangolin/components/settings/widgets/theme_mode_button.dart';
 import 'package:pangolin/utils/data/database_manager.dart';
+import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
 
 class SettingsPageCustomization extends StatefulWidget {
@@ -38,9 +38,9 @@ class _SettingsPageCustomizationState extends State<SettingsPageCustomization> {
   Widget build(BuildContext context) {
     final _provider = CustomizationProvider.of(context);
     return SettingsPage(
-      title: "Customization",
+      title: LSX.settings.pagesCustomizationTitle,
       cards: [
-        const SettingsContentHeader("Theme"),
+        SettingsContentHeader(LSX.settings.pagesCustomizationTheme),
         SettingsCard(
           children: [
             SizedBox(
@@ -69,7 +69,7 @@ class _SettingsPageCustomizationState extends State<SettingsPageCustomization> {
             ),
           ],
         ),
-        const SettingsContentHeader("Taskbar Alignment"),
+        SettingsContentHeader(LSX.settings.pagesCustomizationTaskbarAlignment),
         SettingsCard(
           children: [
             SizedBox(
@@ -87,18 +87,23 @@ class _SettingsPageCustomizationState extends State<SettingsPageCustomization> {
             ),
           ],
         ),
-        const SettingsContentHeader("Window options"),
+        SettingsContentHeader(LSX.settings.pagesCustomizationWindowOptions),
         SettingsCard(
           children: [
             ListTile(
               title: Text(
-                "Window border radius  -  " +
-                    DatabaseManager.get("windowBorderRadius").toString(),
+                LSX.settings.pagesCustomizationWindowOptionsBorderRadiusTitle(
+                  DatabaseManager.get("windowBorderRadius"),
+                ),
               ),
-              subtitle: const Text("Change the window border radius"),
+              subtitle: Text(
+                LSX.settings
+                    .pagesCustomizationWindowOptionsBorderRadiusSubtitle,
+              ),
               trailing: Builder(
                 builder: (context) {
-                  var value = DatabaseManager.get("windowBorderRadius");
+                  final double value =
+                      DatabaseManager.get<double>("windowBorderRadius");
                   return SizedBox(
                     width: 256,
                     child: Slider(
@@ -117,8 +122,14 @@ class _SettingsPageCustomizationState extends State<SettingsPageCustomization> {
               ),
             ),
             SwitchListTile(
-              title: const Text("Colored window titlebars"),
-              subtitle: const Text("Use colored titlebars for the windows"),
+              title: Text(
+                LSX.settings
+                    .pagesCustomizationWindowOptionsColoredTitlebarsTitle,
+              ),
+              subtitle: Text(
+                LSX.settings
+                    .pagesCustomizationWindowOptionsColoredTitlebarsSubtitle,
+              ),
               value: _provider.coloredTitlebars,
               onChanged: (value) {
                 _provider.coloredTitlebars = value;

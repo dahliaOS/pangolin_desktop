@@ -31,22 +31,23 @@ class QsTitlebar extends StatelessWidget implements PreferredSizeWidget {
       size: preferredSize,
       child: Row(
         children: [
-          (leading == null && Navigator.canPop(context))
-              ? const BackButton()
-              : leading!,
-          title != null
-              ? QuickActionButton(
-                  title: title,
-                  isCircular: false,
-                  textStyle: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    height: 1.1,
-                    color:
-                        context.theme.darkMode ? ColorsX.white : ColorsX.black,
-                  ),
-                )
-              : const SizedBox.shrink(),
+          if (leading == null && Navigator.canPop(context))
+            const BackButton()
+          else
+            leading!,
+          if (title != null)
+            QuickActionButton(
+              title: title,
+              isCircular: false,
+              textStyle: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+                height: 1.1,
+                color: context.theme.darkMode ? ColorsX.white : ColorsX.black,
+              ),
+            )
+          else
+            const SizedBox.shrink(),
           const Spacer(),
           ...?trailing,
         ],
@@ -64,7 +65,6 @@ class BackButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return QuickActionButton(
-      isCircular: true,
       leading: const Icon(Icons.arrow_back),
       onPressed: () => Navigator.pop(context),
       margin: EdgeInsets.zero,

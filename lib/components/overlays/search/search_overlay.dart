@@ -14,6 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'package:pangolin/components/overlays/search/widgets/search_tile.dart';
+import 'package:pangolin/components/overlays/search/widgets/searchbar.dart';
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/services/search_service.dart';
 import 'package:pangolin/utils/data/common_data.dart';
@@ -21,9 +23,7 @@ import 'package:pangolin/utils/data/globals.dart';
 import 'package:pangolin/utils/data/models/application.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/search_provider.dart';
-import 'package:pangolin/components/overlays/search/widgets/search_tile.dart';
 import 'package:pangolin/widgets/global/box/box_container.dart';
-import 'package:pangolin/components/overlays/search/widgets/searchbar.dart';
 
 class SearchOverlay extends ShellOverlay {
   static const String overlayId = "search";
@@ -110,7 +110,7 @@ class _SearchOverlayState extends State<SearchOverlay>
                           .borderRadius(BorderRadiusType.medium),
                       focusNode: _focusNode,
                       controller: _controller,
-                      hint: 'Search Device, Apps and Web',
+                      hint: LSX.searchOverlay.hint,
                       leading: const Icon(Icons.search),
                       trailing: const Icon(Icons.menu_rounded),
                       onTextChanged: searchService.globalSearch,
@@ -135,17 +135,20 @@ class _SearchOverlayState extends State<SearchOverlay>
                                         right: 24,
                                       ),
                                       child: Text(
-                                        'Results',
+                                        LSX.searchOverlay.results,
                                         style: TextStyle(
-                                            fontSize: 17,
-                                            fontWeight: FontWeight.w600,
-                                            color: CommonData.of(context)
-                                                .textColor()),
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.w600,
+                                          color: CommonData.of(context)
+                                              .textColor(),
+                                        ),
                                       ),
                                     ),
                                     ListView.builder(
                                       padding: const EdgeInsets.symmetric(
-                                          horizontal: 16, vertical: 4),
+                                        horizontal: 16,
+                                        vertical: 4,
+                                      ),
                                       shrinkWrap: true,
                                       itemCount: apps.length,
                                       physics: const BouncingScrollPhysics(),
@@ -167,17 +170,20 @@ class _SearchOverlayState extends State<SearchOverlay>
                                         right: 24,
                                       ),
                                       child: Text(
-                                        'Recent',
+                                        LSX.searchOverlay.recent,
                                         style: TextStyle(
-                                            fontSize: 17,
-                                            fontWeight: FontWeight.w600,
-                                            color: CommonData.of(context)
-                                                .textColor()),
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.w600,
+                                          color: CommonData.of(context)
+                                              .textColor(),
+                                        ),
                                       ),
                                     ),
                                     ListView.builder(
                                       padding: const EdgeInsets.symmetric(
-                                          horizontal: 16, vertical: 4),
+                                        horizontal: 16,
+                                        vertical: 4,
+                                      ),
                                       shrinkWrap: true,
                                       reverse: true,
                                       itemCount: _searchProvider

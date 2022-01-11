@@ -14,20 +14,22 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 import 'dart:async' show Future;
-import 'package:flutter/services.dart' show rootBundle;
-import 'package:flutter/foundation.dart' show kDebugMode;
-import 'package:pangolin/utils/data/database_manager.dart';
 import 'dart:convert';
-import 'visual_data.dart';
 
-Future<String> _loadDataAsset() async {
-  return await rootBundle.loadString('assets/json/visualData.json');
+import 'package:flutter/foundation.dart' show kDebugMode;
+import 'package:flutter/services.dart' show rootBundle;
+import 'package:pangolin/services/visual_engine/visual_data.dart';
+import 'package:pangolin/utils/data/database_manager.dart';
+
+Future<String> _loadDataAsset() {
+  return rootBundle.loadString('assets/json/visualData.json');
 }
 
 Future loadVisualEngine() async {
-  String jsonString = await _loadDataAsset();
-  final jsonResponse = json.decode(jsonString);
-  VisualInformation visuals = VisualInformation.fromJson(jsonResponse);
+  final String jsonString = await _loadDataAsset();
+  final Map<String, dynamic> jsonResponse =
+      json.decode(jsonString) as Map<String, dynamic>;
+  final VisualInformation visuals = VisualInformation.fromJson(jsonResponse);
   if (kDebugMode) {
     print(visuals.taskbarHeight);
     print(visuals.opaqueTitlebars);

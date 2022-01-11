@@ -38,7 +38,8 @@ class AcrylicLayer extends StatelessWidget {
                 decoration: const BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage(
-                        "assets/textures/NoiseAsset_256X256_PNG.png"),
+                      "assets/textures/NoiseAsset_256X256_PNG.png",
+                    ),
                     alignment: Alignment.topLeft,
                     repeat: ImageRepeat.repeat,
                   ),
@@ -48,10 +49,7 @@ class AcrylicLayer extends StatelessWidget {
                 child: Container(),
               ),
             ),
-            Align(
-              alignment: Alignment.center,
-              child: child,
-            ),
+            Center(child: child),
           ],
         ),
       ),
@@ -70,11 +68,13 @@ class AcrylicLayerPainter extends CustomPainter {
   // painter
   @override
   Future<void> paint(Canvas canvas, Size size) async {
-    var _darkModeColor = const Color(0xff0a0a0a).withOpacity(0.6);
-    var _lightModeColor = const Color(0xfffafafa).withOpacity(0.6);
+    final Color _darkModeColor = const Color(0xff0a0a0a).withOpacity(0.6);
+    final Color _lightModeColor = const Color(0xfffafafa).withOpacity(0.6);
 
     canvas.drawColor(
-        darkMode ? _darkModeColor : _lightModeColor, BlendMode.luminosity);
+      darkMode ? _darkModeColor : _lightModeColor,
+      BlendMode.luminosity,
+    );
     canvas.drawColor(tintColor.withOpacity(0.10), BlendMode.color);
   }
 

@@ -110,14 +110,14 @@ class _ThemeModeButtonState extends State<ThemeModeButton> {
 
   Expanded _cardElement(ThemeModeDataModel model) {
     return Expanded(
-      flex: 1,
       child: Container(
         decoration: BoxDecoration(
           border: Border.all(
-              color: model.darkMode
-                  ? Colors.white.withOpacity(0.05)
-                  : Colors.black.withOpacity(0.05),
-              width: 2),
+            color: model.darkMode
+                ? Colors.white.withOpacity(0.05)
+                : Colors.black.withOpacity(0.05),
+            width: 2,
+          ),
           color: model.darkMode
               ? const Color(0xff212121)
               : const Color(0xfff0f0f0),

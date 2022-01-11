@@ -16,22 +16,21 @@ limitations under the License.
 
 import 'dart:io';
 
+import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:pangolin/utils/api_models/bing_wallpaper_api_model.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:pangolin/utils/wm/wm.dart';
 
-String totalVersionNumber = "21XXXX";
-String headingFeatureString =
-    "dahliaOS Linux-Based " + totalVersionNumber + " ...";
-String longName = "dahliaOS Linux-Based " + totalVersionNumber + " PRE-RELEASE";
+String totalVersionNumber = "22XXXX";
+String headingFeatureString = "dahliaOS Linux-Based $totalVersionNumber ...";
+String longName = "dahliaOS Linux-Based $totalVersionNumber PRE-RELEASE";
 String get kernel {
   if (!kIsWeb) {
     if (!Platform.isWindows) {
-      ProcessResult result = Process.runSync('uname', ['-sr']);
-      var kernelString = result.stdout;
-      return kernelString.toString().replaceAll('\n', '');
+      final ProcessResult result = Process.runSync('uname', ['-sr']);
+      final String kernelString = result.stdout.toString();
+      return kernelString.replaceAll('\n', '');
     } else {
       return "Windows";
     }
@@ -43,9 +42,9 @@ String get kernel {
 String get architecture {
   if (!kIsWeb) {
     if (!Platform.isWindows) {
-      ProcessResult result = Process.runSync('uname', ['-p']);
-      var architechtureString = result.stdout;
-      return architechtureString.toString().replaceAll('\n', '');
+      final ProcessResult result = Process.runSync('uname', ['-p']);
+      final String architechtureString = result.stdout.toString();
+      return architechtureString.replaceAll('\n', '');
     } else {
       return "x86_64 / ARM64 based Windows operating system";
     }
@@ -57,9 +56,9 @@ String get architecture {
 String get username {
   if (!kIsWeb) {
     if (!Platform.isWindows) {
-      ProcessResult result = Process.runSync('whoami', []);
-      var architechtureString = result.stdout;
-      return architechtureString.toString().replaceAll('\n', '');
+      final ProcessResult result = Process.runSync('whoami', []);
+      final String architechtureString = result.stdout.toString();
+      return architechtureString.replaceAll('\n', '');
     } else {
       return "Windows user";
     }
@@ -96,16 +95,19 @@ List<String> wallpapers = [
 
 Future<BingWallpaper> getBingWallpaper() async {
   final response = await get(
-      Uri.parse(
-          'http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US'),
-      headers: {
-        "Access-Control-Allow-Origin": "true",
-        "Access-Control-Allow-Methods": "POST, GET, OPTIONS, PUT, DELETE, HEAD",
-      });
+    Uri.parse(
+      'http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US',
+    ),
+    headers: {
+      "Access-Control-Allow-Origin": "true",
+      "Access-Control-Allow-Methods": "POST, GET, OPTIONS, PUT, DELETE, HEAD",
+    },
+  );
   if (response.statusCode == 200) {
     return bingWallpaperFromJson(response.body);
   } else {
     throw Exception(
-        "Failed to fetch data from the Bing's Wallpaper of the Day API.");
+      "Failed to fetch data from the Bing's Wallpaper of the Day API.",
+    );
   }
 }

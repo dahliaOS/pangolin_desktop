@@ -16,6 +16,7 @@ limitations under the License.
 
 import 'dart:io';
 
+import 'package:pangolin/utils/data/app_list.dart';
 import 'package:pangolin/utils/data/models/application.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
@@ -35,27 +36,8 @@ class AppLauncherTile extends StatefulWidget {
 }
 
 class _AppLauncherTileState extends State<AppLauncherTile> {
-  Widget AppIcon(bool UsesRuntime, String? iconPath, double height) {
-    if (iconPath == null) {
-      return Image.asset(
-        'assets/icons/null.png',
-        height: height,
-      );
-    }
-    if (UsesRuntime == true) {
-      return Image.file(
-        File(iconPath),
-        height: height,
-      );
-    } else {
-      return Image.asset(
-        "assets/icons/${iconPath}.png",
-        height: height,
-      );
-    }
-  }
-
   bool _hover = false;
+
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
@@ -67,21 +49,31 @@ class _AppLauncherTileState extends State<AppLauncherTile> {
             borderRadius: BorderRadius.circular(8),
           ),
           dense: true,
-          leading: AppIcon(widget.application.systemExecutable,
-              widget.application.iconName, 32),
+          leading: SizedBox.fromSize(
+            size: const Size.square(32),
+            child: getAppIcon(
+              widget.application.systemExecutable,
+              widget.application.iconName,
+              32,
+            ),
+          ),
           title: Text(widget.application.name ?? "Unknown"),
           subtitle: Text(
             widget.application.description ?? "Unknown",
             overflow: TextOverflow.ellipsis,
           ),
           trailing: Offstage(
-              offstage: !_hover,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Consumer(builder: (context,
-                      CustomizationProvider customizationProvider, _) {
+            offstage: !_hover,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Consumer(
+                  builder: (
+                    context,
+                    CustomizationProvider customizationProvider,
+                    _,
+                  ) {
                     return QuickActionButton(
                       size: 32,
                       margin: const EdgeInsets.symmetric(horizontal: 4),
@@ -92,21 +84,23 @@ class _AppLauncherTileState extends State<AppLauncherTile> {
                             .togglePinnedApp(widget.application.packageName);
                       },
                     );
-                  }),
-                  const QuickActionButton(
-                    size: 32,
-                    margin: EdgeInsets.symmetric(horizontal: 4),
-                    padding: EdgeInsets.zero,
-                    leading: Icon(Icons.settings_outlined),
-                  ),
-                  const QuickActionButton(
-                    size: 32,
-                    margin: EdgeInsets.symmetric(horizontal: 4),
-                    padding: EdgeInsets.zero,
-                    leading: Icon(Icons.more_vert_rounded),
-                  ),
-                ],
-              )),
+                  },
+                ),
+                const QuickActionButton(
+                  size: 32,
+                  margin: EdgeInsets.symmetric(horizontal: 4),
+                  padding: EdgeInsets.zero,
+                  leading: Icon(Icons.settings_outlined),
+                ),
+                const QuickActionButton(
+                  size: 32,
+                  margin: EdgeInsets.symmetric(horizontal: 4),
+                  padding: EdgeInsets.zero,
+                  leading: Icon(Icons.more_vert_rounded),
+                ),
+              ],
+            ),
+          ),
           onTap: () {
             if (widget.application.systemExecutable == true) {
               print(widget.application.runtimeFlags.toString());

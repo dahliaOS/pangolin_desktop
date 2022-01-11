@@ -19,24 +19,22 @@ import 'package:pangolin/utils/theme/theme_manager.dart';
 
 // ignore: must_be_immutable
 class QsToggleButton extends StatefulWidget {
-  QsToggleButton({
+  final String? title;
+  final String? subtitle;
+  final IconData? icon;
+  final bool value;
+  final VoidCallback? onPressed;
+  final VoidCallback? onMenuPressed;
+
+  const QsToggleButton({
     Key? key,
     this.title,
     this.subtitle,
     this.icon,
-    this.value,
+    this.value = false,
     this.onPressed,
     this.onMenuPressed,
-  }) : super(
-          key: key,
-        ) {
-    value = value ?? false;
-  }
-
-  final String? title, subtitle;
-  final IconData? icon;
-  bool? value;
-  final VoidCallback? onPressed, onMenuPressed;
+  }) : super(key: key);
 
   @override
   _QsToggleButtonState createState() => _QsToggleButtonState();
@@ -48,6 +46,7 @@ class _QsToggleButtonState extends State<QsToggleButton> {
     final _color = widget.value == true
         ? context.theme.primaryColor
         : context.theme.backgroundColor.withOpacity(0.5);
+
     return SizedBox(
       height: 60,
       width: 162,
@@ -91,17 +90,18 @@ class _QsToggleButtonState extends State<QsToggleButton> {
                         ),
                       ),
                     ),
-                    (widget.subtitle != null)
-                        ? Text(
-                            widget.subtitle!,
-                            style: TextStyle(
-                              fontSize: 11,
-                              color: _color.computeLuminance() > 0.4
-                                  ? ColorsX.black
-                                  : ColorsX.white,
-                            ),
-                          )
-                        : const SizedBox.shrink(),
+                    if (widget.subtitle != null)
+                      Text(
+                        widget.subtitle!,
+                        style: TextStyle(
+                          fontSize: 11,
+                          color: _color.computeLuminance() > 0.4
+                              ? ColorsX.black
+                              : ColorsX.white,
+                        ),
+                      )
+                    else
+                      const SizedBox.shrink(),
                   ],
                 ),
                 const Spacer(),
@@ -117,6 +117,7 @@ class _QsToggleButtonState extends State<QsToggleButton> {
                   shape: const CircleBorder(),
                   clipBehavior: Clip.antiAlias,
                   child: InkWell(
+                    onTap: widget.onMenuPressed,
                     child: Padding(
                       padding: const EdgeInsets.all(6.0),
                       child: Icon(
@@ -127,7 +128,6 @@ class _QsToggleButtonState extends State<QsToggleButton> {
                             : ColorsX.white,
                       ),
                     ),
-                    onTap: widget.onMenuPressed,
                   ),
                 )
               ],

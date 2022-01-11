@@ -38,20 +38,20 @@ class ContextMenuRegion extends StatefulWidget {
 class _ContextMenuRegionState extends State<ContextMenuRegion> {
   final GlobalKey _globalKey = GlobalKey();
   static const contextMenuEntry = WindowEntry(
-    features: [
-      GeometryWindowFeature(),
-    ],
+    features: [],
+    layoutInfo: FreeformLayoutInfo(
+      size: Size(200, 300),
+      alwaysOnTop: true,
+      alwaysOnTopMode: AlwaysOnTopMode.systemOverlay,
+    ),
     properties: {
       WindowExtras.stableId: "shell:context_menu",
       WindowEntry.title: "Context menu",
       WindowEntry.showOnTaskbar: false,
-      GeometryWindowFeature.size: Size(200, 300),
-      GeometryWindowFeature.position: Offset.zero,
       WindowEntry.icon: null,
-      WindowEntry.alwaysOnTop: true,
-      WindowEntry.alwaysOnTopMode: AlwaysOnTopMode.systemOverlay,
     },
   );
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -60,33 +60,37 @@ class _ContextMenuRegionState extends State<ContextMenuRegion> {
         behavior: HitTestBehavior.opaque,
         onLongPressStart: (details) {
           if (widget.useLongPress) {
-            showOverlay(context, details, constraints);
+            showOverlay(context, details.globalPosition, constraints);
           } else {
             return;
           }
         },
         onSecondaryTapDown: (details) =>
-            showOverlay(context, details, constraints),
+            showOverlay(context, details.globalPosition, constraints),
         child: widget.child ?? const SizedBox.shrink(),
       ),
     );
   }
 
   void showOverlay(
-      BuildContext context, dynamic details, BoxConstraints constraints) {
-    RenderBox _box = _globalKey.currentContext!.findRenderObject() as RenderBox;
+    BuildContext context,
+    Offset globalPosition,
+    BoxConstraints constraints,
+  ) {
+    final RenderBox _box =
+        _globalKey.currentContext!.findRenderObject()! as RenderBox;
     final buttonRect = _box.localToGlobal(Offset.zero);
-    bool centerAboveElement = widget.centerAboveElement ?? false;
+    final bool centerAboveElement = widget.centerAboveElement ?? false;
 
-    List<int> _length = List.empty(growable: true);
+    final List<int> _length = List.empty(growable: true);
     for (final ContextMenuItem element in widget.contextMenu.items) {
       _length.add(element.title.characters.length);
     }
     _length.sort();
-    late Size size =
+    final Size size =
         Size(64 + (_length.last * 8.8), widget.contextMenu.items.length * 44);
-    late double x;
-    late double y;
+    final double x;
+    final double y;
 
     if (centerAboveElement) {
       x = max(
@@ -96,22 +100,22 @@ class _ContextMenuRegionState extends State<ContextMenuRegion> {
           buttonRect.dx - 100 + (constraints.maxHeight / 2),
         ),
       );
-      y = details.globalPosition.dy
+      y = globalPosition.dy
           .clamp(56.0, MediaQuery.of(context).size.height - size.height - 56.0);
     } else {
-      x = details.globalPosition.dx
+      x = globalPosition.dx
           .clamp(8.0, MediaQuery.of(context).size.width - size.width - 8.0);
-      y = details.globalPosition.dy
+      y = globalPosition.dy
           .clamp(8.0, MediaQuery.of(context).size.height - size.height - 8.0);
     }
 
     WindowHierarchy.of(context, listen: false).addWindowEntry(
       contextMenuEntry.newInstance(
-        widget.contextMenu,
-        {
-          GeometryWindowFeature.position: Offset(x, y),
-          GeometryWindowFeature.size: size,
-        },
+        content: widget.contextMenu,
+        overrideLayout: (info) => info.copyWith(
+          position: Offset(x, y),
+          size: size,
+        ),
       ),
     );
     setState(() {});
