@@ -33,7 +33,7 @@ class CustomizationProvider extends ChangeNotifier {
   int _accentColor = Colors.deepOrangeAccent.value;
 
   String _fontFamily = "Inter";
-  String _wallpaper = "assets/images/wallpapers/Three_Bubbles.png";
+  String _wallpaper = "assets/images/wallpapers/modern.png";
 
   // Getter
 
