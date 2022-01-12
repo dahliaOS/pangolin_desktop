@@ -57,7 +57,6 @@ dependencies:
   terminal:
     git:
       url: https://github.com/dahliaOS/terminal.git
-      ref: v2
   text_editor:
     git:
       url: https://github.com/dahliaOS/text_editor.git
