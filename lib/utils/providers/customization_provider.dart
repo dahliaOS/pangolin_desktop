@@ -132,6 +132,7 @@ class CustomizationProvider extends ChangeNotifier {
         DatabaseManager.get("coloredTitlebars") ?? _coloredTitlebars;
 
     _pinnedApps = List.from(DatabaseManager.get("pinnedApps") ?? _pinnedApps);
+
     _recentWallpapers =
         List.from(DatabaseManager.get("recentWallpapers") ?? _recentWallpapers);
 

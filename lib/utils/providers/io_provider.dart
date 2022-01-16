@@ -71,8 +71,8 @@ class IOProvider extends ChangeNotifier {
   // Data Loading
 
   void _loadData() {
-    _volume = DatabaseManager.get("volume") ?? volume;
-    _brightness = DatabaseManager.get("brightness") ?? volume;
+    _volume = DatabaseManager.get("volume") ?? _volume;
+    _brightness = DatabaseManager.get("brightness") ?? _volume;
     DatabaseManager.newEntry("alt_volume", volume);
     DatabaseManager.newEntry("alt_brightness", brightness);
   }

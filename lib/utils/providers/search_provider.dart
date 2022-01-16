@@ -41,6 +41,6 @@ class SearchProvider extends ChangeNotifier {
 
   void loadData() {
     recentSearchResults =
-        DatabaseManager.get("recentSearchResults") ?? _recentSearchResults;
+        List.castFrom(DatabaseManager.get("recentSearchResults"));
   }
 }

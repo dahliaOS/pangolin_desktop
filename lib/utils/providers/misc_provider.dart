@@ -36,6 +36,6 @@ class MiscProvider extends ChangeNotifier {
   //TODO fix data loading
   void _loadData() {
     _compactLauncher =
-        DatabaseManager.get("compactLauncher") ?? compactLauncher;
+        DatabaseManager.get("compactLauncher") ?? _compactLauncher;
   }
 }

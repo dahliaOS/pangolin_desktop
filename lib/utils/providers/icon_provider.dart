@@ -48,6 +48,6 @@ class IconProvider extends ChangeNotifier {
     if (!_list.contains(iconPack)) {
       iconPack = "material";
     }
-    _iconPack = DatabaseManager.get("iconPack") ?? iconPack;
+    _iconPack = DatabaseManager.get("iconPack") ?? _iconPack;
   }
 }
