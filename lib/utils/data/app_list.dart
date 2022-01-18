@@ -53,7 +53,7 @@ List<Application> applications = [
   Application(
     color: Colors.grey.shade900,
     packageName: "io.dahlia.terminal",
-    app: const Terminal(),
+    app: TerminalApp(),
     name: LSX.apps.terminal,
     description: LSX.apps.terminalDescription,
     iconName: "terminal",
