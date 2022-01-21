@@ -69,7 +69,8 @@ class _SettingsPageCustomizationState extends State<SettingsPageCustomization> {
             ),
           ],
         ),
-        SettingsContentHeader(LSX.settings.pagesCustomizationTaskbarAlignment),
+        SettingsContentHeader("Taskbar Alignment"),
+        //TODO make this LSX.settings.pagesCustomizationTaskbarAlignment
         SettingsCard(
           children: [
             SizedBox(

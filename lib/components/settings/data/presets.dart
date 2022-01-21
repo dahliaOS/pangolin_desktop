@@ -82,12 +82,12 @@ class SettingsPresets {
       [
         ThemeModeDataModel(
           const Color(0xffffffff),
-          LSX.settings.pagesCustomizationThemeModeLight,
+          "Light",
           false,
         ),
         ThemeModeDataModel(
           const Color(0xff0a0a0a),
-          LSX.settings.pagesCustomizationThemeModeDark,
+          "Dark",
           true,
         ),
       ],
@@ -98,11 +98,11 @@ class SettingsPresets {
     taskbarAlignmentPresets = List.from(
       [
         TaskbarAlignmentModelData(
-          LSX.settings.pagesCustomizationTaskbarAlignmentStart,
+          "Start",
           false,
         ),
         TaskbarAlignmentModelData(
-          LSX.settings.pagesCustomizationTaskbarAlignmentCenter,
+          "Center",
           true,
         ),
       ],
