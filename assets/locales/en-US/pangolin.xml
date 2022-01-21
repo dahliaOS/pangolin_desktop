@@ -95,7 +95,7 @@
     <string name="quicksettingsOverlay.pages.network.title">Network Settings</string>
     <string name="quicksettingsOverlay.pages.theme.title">Theme Settings</string>
     <!-- Wallpaper Picker -->
-    <string name="desktop.wallpaper_picker.gone">Error\nImage does not exist anymore</string>
+    <string name="desktop.wallpaper_picker.gone">Error\nThat image cannot be used</string>
     <string name="desktop.wallpaper_picker.url_wallpaper.hint">Set wallpaper from URL</string>
     <string name="desktop.wallpaper_picker.url_wallpaper.label">Wallpaper URL</string>
     <string name="desktop.wallpaper_picker.bing_wallpaper_button">Use Bing Wallpaper</string>
@@ -116,7 +116,7 @@
     <string name="settings.pages.network.wifi">Wi-Fi</string>
     <string name="settings.pages.network.wifi_switch_tile.title">Wi-Fi</string>
     <string name="settings.pages.network.wifi_switch_tile.subtitle_enabled">Wi-Fi is enabled</string>
-    <string name="settings.pages.network.wifi_switch_tile.subtitle_disabled">Wi-Fi is disbaled</string>
+    <string name="settings.pages.network.wifi_switch_tile.subtitle_disabled">Wi-Fi is disabled</string>
     <string name="settings.pages.network.wifi_preferences_tile.title">Wi-Fi perferences</string>
     <string name="settings.pages.network.wifi_preferences_tile.subtitle">Smart Wi-Fi connection, scanning options</string>
     <string name="settings.pages.network.wifi_saved_networks_tile.title">Saved networks</string>
@@ -126,7 +126,7 @@
     <string name="settings.pages.network.ethernet">Ethernet</string>
     <string name="settings.pages.network.ethernet_switch_tile.title">Ethernet</string>
     <string name="settings.pages.network.ethernet_switch_tile.subtitle_enabled">Ethernet is enabled</string>
-    <string name="settings.pages.network.ethernet_switch_tile.subtitle_disabled">Ethernet is disbaled</string>
+    <string name="settings.pages.network.ethernet_switch_tile.subtitle_disabled">Ethernet is disabled</string>
     <string name="settings.pages.network.ethernet_data_usage_tile.title">Wi-Fi data usage</string>
     <string name="settings.pages.network.ethernet_data_usage_tile.subtitle">Data usage for this month</string>
     <string name="settings.pages.network.network_options">Network options</string>
@@ -142,7 +142,7 @@
     <string name="settings.pages.connections.bluetooth">Bluetooth</string>
     <string name="settings.pages.connections.bluetooth_switch_tile.title">Bluetooth</string>
     <string name="settings.pages.connections.bluetooth_switch_tile.subtitle_enabled">Bluetooth is enabled</string>
-    <string name="settings.pages.connections.bluetooth_switch_tile.subtitle_disabled">Bluetooth is disbaled</string>
+    <string name="settings.pages.connections.bluetooth_switch_tile.subtitle_disabled">Bluetooth is disabled</string>
     <string name="settings.pages.connections.bluetooth_file_transfer_tile.title">Files received via Bluetooth</string>
     <string name="settings.pages.connections.phone_integration">Phone integration</string>
     <string name="settings.pages.connections.phone_integration_tile.title">Phone integration</string>
@@ -169,7 +169,7 @@
     <string name="settings.pages.customization.window_options_border_radius.title">Window border radius - %s</string>
     <string name="settings.pages.customization.window_options_border_radius.subtitle">Change the window border radius</string>
     <string name="settings.pages.customization.window_options_colored_titlebars.title">Colored titlebars</string>
-    <string name="settings.pages.customization.window_options_colored_titlebars.subtitle">Use colored titlebars for the windows</string>
+    <string name="settings.pages.customization.window_options_colored_titlebars.subtitle">Give window titlebars a custom accent color</string>
     <!-- Display -->
     <string name="settings.pages.display.title">Display</string>
     <string name="settings.pages.display.subtitle">Resolution, screen timeout, scaling</string>
