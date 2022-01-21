@@ -55,7 +55,7 @@ class SettingsPageAbout extends StatelessWidget {
                     ),
                     Text(
                       //TODO Localize
-                      "Version $totalVersionNumber",
+                      "$totalVersionNumber",
                       style: const TextStyle(color: Colors.white),
                     )
                   ],

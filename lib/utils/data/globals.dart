@@ -22,9 +22,9 @@ import 'package:http/http.dart';
 import 'package:pangolin/utils/api_models/bing_wallpaper_api_model.dart';
 import 'package:pangolin/utils/wm/wm.dart';
 
-String totalVersionNumber = "22XXXX";
-String headingFeatureString = "dahliaOS Linux-Based $totalVersionNumber ...";
-String longName = "dahliaOS Linux-Based $totalVersionNumber PRE-RELEASE";
+String totalVersionNumber = "220122";
+String headingFeatureString = "dahliaOS Linux $totalVersionNumber ...";
+String longName = "dahliaOS Linux $totalVersionNumber ALPHA";
 String get kernel {
   if (!kIsWeb) {
     if (!Platform.isWindows) {
