@@ -6,18 +6,18 @@ import 'package:pangolin/utils/data/app_list.dart';
 import 'package:pangolin/utils/data/models/application.dart';
 import 'package:pangolin/utils/data/package_model.dart';
 
-const applicationPath =
-    '${const String.fromEnvironment('HOME')}/Applications/data/';
+var applicationPath = Platform.environment['HOME']! + '/Applications/data/';
 
 void indexApplications() {
   final List<String> packages =
       Process.runSync('ls', [applicationPath]).stdout.toString().split('\n');
-
+  print(packages);
   for (final String package in packages) {
     if (package.endsWith('.json')) {
       Process.run('cat', ['$applicationPath$package']).then(
         (result) {
           final String rawData = result.stdout.toString();
+          print(rawData);
           final Map<String, dynamic> json =
               jsonDecode(rawData) as Map<String, dynamic>;
           final manifest = PackageManifest.fromJson(json);

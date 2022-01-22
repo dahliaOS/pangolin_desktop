@@ -78,7 +78,7 @@ List<Application> applications = [
     iconName: "graft",
     category: ApplicationCategory.system,
   ),
-  Application(
+  /*Application(
     color: Colors.deepOrange,
     packageName: "io.dahlia.web",
     app: Browser(),
@@ -86,7 +86,7 @@ List<Application> applications = [
     description: LSX.apps.webDescription,
     iconName: "web",
     category: ApplicationCategory.internet,
-  ),
+  ),*/
   Application(
     color: Colors.deepOrange.shade800,
     packageName: "io.dahlia.files",
