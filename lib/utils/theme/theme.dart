@@ -26,7 +26,6 @@ ThemeData theme(BuildContext context) {
           ? ColorsX.black
           : ColorsX.white;
   return ThemeData(
-    //visualDensity: VisualDensity(horizontal: -3.5, vertical: -3.5),
     pageTransitionsTheme: const PageTransitionsTheme(
       builders: {
         TargetPlatform.android:
@@ -55,24 +54,18 @@ ThemeData theme(BuildContext context) {
       ),
     ),
 
+    appBarTheme: AppBarTheme(
+      color: Color(_customizationProvider.accentColor),
+      elevation: 0.0,
+      iconTheme: IconThemeData(color: _foregroundColor),
+    ),
+
     fontFamily: _customizationProvider.fontFamily,
-    /* brightness: _data.darkMode ? Brightness.dark : Brightness.light,
-    accentColor: Color(_data.accentColor), */
-    colorScheme: ColorScheme(
-      background: ThemeManager.of(context).backgroundColor,
+    colorScheme: ColorScheme.fromSeed(
       brightness:
           _customizationProvider.darkMode ? Brightness.dark : Brightness.light,
-      error: Colors.red,
-      onBackground: Colors.grey,
-      onError: Colors.red[900]!,
-      onPrimary: Color(_customizationProvider.accentColor),
-      onSecondary: Color(_customizationProvider.accentColor),
-      //TODO changes color of the slider tooltip idk if it breaks anything
-      onSurface:
-          _customizationProvider.darkMode ? ColorsX.black : ColorsX.white,
-      primary: Color(_customizationProvider.accentColor),
+      seedColor: Color(_customizationProvider.accentColor),
       secondary: Color(_customizationProvider.accentColor),
-      surface: _customizationProvider.darkMode ? ColorsX.black : ColorsX.white,
     ),
     backgroundColor: ThemeManager.of(context).backgroundColor,
     canvasColor: ThemeManager.of(context).surfaceColor,
@@ -95,14 +88,9 @@ ThemeData theme(BuildContext context) {
         ),
       ),
     ),
-    snackBarTheme: SnackBarThemeData(
-      contentTextStyle: TextStyle(
-        color: _customizationProvider.darkMode ? ColorsX.white : ColorsX.black,
-      ),
-    ),
     dialogBackgroundColor: ThemeManager.of(context).backgroundColor,
     toggleableActiveColor: Color(_customizationProvider.accentColor),
-    platform: TargetPlatform.android,
+    platform: TargetPlatform.fuchsia,
     sliderTheme: SliderThemeData(
       overlayColor: Color(_customizationProvider.accentColor).withOpacity(0.1),
       thumbColor: Color(_customizationProvider.accentColor),

@@ -44,7 +44,7 @@ class IconsX {
     final iconPack = IconProvider.of(context).iconPack;
     switch (iconPack) {
       case "material":
-        return Icons.settings;
+        return Icons.settings_outlined;
       case "fluent":
         return FluentIcons.settings_24_regular;
       case "unicons":

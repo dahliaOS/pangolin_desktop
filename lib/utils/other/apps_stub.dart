@@ -12,8 +12,8 @@ class Files extends StatelessWidget {
   }
 }
 
-class TerminalApp extends StatelessWidget {
-  const TerminalApp({Key? key}) : super(key: key);
+class Terminal extends StatelessWidget {
+  const Terminal({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

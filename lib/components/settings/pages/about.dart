@@ -15,6 +15,7 @@ limitations under the License.
 */
 
 import 'package:flutter/material.dart';
+import 'package:pangolin/components/settings/widgets/list_tiles.dart';
 import 'package:pangolin/components/settings/widgets/settings_card.dart';
 import 'package:pangolin/components/settings/widgets/settings_content_header.dart';
 import 'package:pangolin/utils/data/globals.dart';
@@ -120,6 +121,29 @@ class SettingsPageAbout extends StatelessWidget {
                     ),
                   ],
                 ),
+                const SettingsContentHeader("Legal"),
+                SettingsCard(
+                  children: [
+                    RouterListTile(
+                      leading: const Icon(Icons.info_outline_rounded),
+                      title: const Text("Licenses"),
+                      subtitle: const Text("Show third party licenses"),
+                      onTap: () => showLicensePage(
+                        context: context,
+                        applicationName: "Pangolin Desktop",
+                        applicationIcon: Padding(
+                          padding: const EdgeInsets.only(top: 24.0),
+                          child: Image.asset(
+                            "assets/images/logos/pangolin.png",
+                            height: 64,
+                            width: 64,
+                          ),
+                        ),
+                        applicationLegalese: "Apache-2.0 License",
+                      ),
+                    )
+                  ],
+                )
               ],
             ),
           )

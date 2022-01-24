@@ -146,14 +146,15 @@ class RouterListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      onTap: () {
-        //TODO implement router navigation
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text("Not implemented yet"),
-          ),
-        );
-      },
+      onTap: onTap ??
+          () {
+            //TODO implement router navigation
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text("Not implemented yet"),
+              ),
+            );
+          },
       onLongPress: onLongPress,
       title: title ?? const Text("Router List Tile"),
       subtitle: subtitle ?? const Text("Description of a Router List Tile"),
