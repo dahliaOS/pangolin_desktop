@@ -38,6 +38,8 @@
 
 ## Build Pangolin Desktop
 
+### Prerequisites (On Debian/Ubuntu)
+```sudo apt install build-essential clang pkg-config libgtk-3-dev make cmake ninja-build```
 If you're interested in building Pangolin, you can refer to [Building and Running Pangolin](https://github.com/dahliaOS/pangolin_desktop/wiki/Compile-Pangolin-Desktop)
 
 ## Contribute
