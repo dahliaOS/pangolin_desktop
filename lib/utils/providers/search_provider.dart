@@ -40,7 +40,7 @@ class SearchProvider extends ChangeNotifier {
   }
 
   void loadData() {
-    recentSearchResults =
-        List.castFrom(DatabaseManager.get("recentSearchResults"));
+    //recentSearchResults =
+       // List.castFrom(DatabaseManager.get("recentSearchResults"));
   }
 }
