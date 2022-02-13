@@ -88,6 +88,13 @@ ThemeData theme(BuildContext context) {
         ),
       ),
     ),
+    listTileTheme: ListTileThemeData(
+      dense: true,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8),
+      ),
+    ),
+    textTheme: const TextTheme(button: TextStyle(fontSize: 13)),
     dialogBackgroundColor: ThemeManager.of(context).backgroundColor,
     toggleableActiveColor: Color(_customizationProvider.accentColor),
     platform: TargetPlatform.fuchsia,

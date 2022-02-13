@@ -6,7 +6,7 @@ import 'package:pangolin/utils/data/app_list.dart';
 import 'package:pangolin/utils/data/models/application.dart';
 import 'package:pangolin/utils/data/package_model.dart';
 
-var applicationPath = Platform.environment['HOME']! + '/Applications/data/';
+String applicationPath = '${Platform.environment['HOME']!}/Applications/data/';
 
 void indexApplications() {
   final List<String> packages =

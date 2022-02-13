@@ -17,9 +17,9 @@ limitations under the License.
 import 'dart:async';
 
 import 'package:battery_plus/battery_plus.dart';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:pangolin/components/overlays/quick_settings/pages/qs_account_page.dart';
+import 'package:pangolin/components/overlays/quick_settings/pages/qs_language_page.dart';
 import 'package:pangolin/components/overlays/quick_settings/pages/qs_network_page.dart';
 import 'package:pangolin/components/overlays/quick_settings/pages/qs_theme_page.dart';
 import 'package:pangolin/components/overlays/quick_settings/widgets/qs_shortcut_button.dart';
@@ -126,6 +126,7 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
                     "/pages/account": (context) => const QsAccountPage(),
                     "/pages/network": (context) => const QsNetworkPage(),
                     "/pages/theme": (context) => const QsThemePage(),
+                    "/pages/language": (context) => const QsLanguagePage(),
                   },
                   theme: Theme.of(context)
                       .copyWith(scaffoldBackgroundColor: Colors.transparent),
@@ -288,6 +289,9 @@ class QsMain extends StatelessWidget {
                             } else {
                               context.setLocale(Locales.supported[0]);
                             }
+                          },
+                          onMenuPressed: () {
+                            Navigator.pushNamed(context, "/pages/language");
                           },
                         ),
                         //TODO remove the provider option for this

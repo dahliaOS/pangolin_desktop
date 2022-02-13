@@ -77,6 +77,7 @@ dependencies:
       url: https://github.com/dahliaOS/welcome.git
 
   xml: ^5.3.0
+  flag: ^6.0.0
 
 dev_dependencies:
   lint: ^1.8.1

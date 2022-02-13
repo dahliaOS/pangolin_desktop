@@ -19,9 +19,9 @@ import 'package:pangolin/utils/providers/customization_provider.dart';
 
 class ThemeManager {
   final BuildContext context;
-  late CustomizationProvider _customizationProvider;
+  late bool _darkMode;
   ThemeManager.of(this.context) {
-    _customizationProvider = CustomizationProvider.of(context);
+    _darkMode = CustomizationProvider.of(context).darkMode;
   }
 
   //Getter: accentColor
@@ -60,17 +60,19 @@ class ThemeManager {
       this.accentColor.computeLuminance() < 0.4 ? Colors.white : Colors.black; */
 
   //Getter: surfaceColor
-  Color get surfaceColor => _customizationProvider.darkMode
-      ? const Color(0xff151515)
-      : const Color(0xffffffff);
+  Color get surfaceColor =>
+      _darkMode ? const Color(0xff1E1E1E) : const Color(0xffffffff);
 
   //Getter: backgroundColor
-  Color get backgroundColor => _customizationProvider.darkMode
-      ? const Color(0xff0a0a0a)
-      : const Color(0xffffffff);
+  Color get backgroundColor =>
+      _darkMode ? const Color(0xff0a0a0a) : const Color(0xffffffff);
 
   //Getter: cardColor
-  Color get cardColor => _customizationProvider.darkMode
-      ? const Color(0xff212121)
-      : const Color(0xfff0f0f0);
+  Color get cardColor =>
+      _darkMode ? const Color(0xFF2c2c2c) : const Color(0xffEBEBEB);
+}
+
+mixin ThemeConstants {
+  static EdgeInsets get buttonPadding =>
+      const EdgeInsets.symmetric(horizontal: 4, vertical: 10);
 }

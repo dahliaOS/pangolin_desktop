@@ -28,7 +28,6 @@ import 'package:pangolin/utils/other/apps_stub.dart'
 import 'package:system_logs/main.dart';
 import 'package:task_manager/monitor.dart';
 import 'package:text_editor/editor.dart';
-import 'package:web_browser/main.dart';
 import 'package:welcome/main.dart';
 
 List<Application> applications = [

@@ -19,7 +19,6 @@ import 'package:pangolin/components/overlays/power_overlay.dart';
 import 'package:pangolin/components/overlays/search/search_overlay.dart';
 import 'package:pangolin/components/overlays/search/widgets/searchbar.dart';
 import 'package:pangolin/components/shell/shell.dart';
-import 'package:pangolin/services/locales/locale_strings.g.dart';
 import 'package:pangolin/utils/action_manager/action_manager.dart';
 import 'package:pangolin/utils/data/app_list.dart';
 import 'package:pangolin/utils/data/common_data.dart';

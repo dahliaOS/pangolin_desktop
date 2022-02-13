@@ -45,9 +45,9 @@ class _SearchTileState extends State<SearchTile> {
         leading: Column(
           children: [
             const SizedBox(
-              height: 10,
+              height: 6,
             ),
-            getAppIcon(application.systemExecutable, application.iconName, 34),
+            getAppIcon(application.systemExecutable, application.iconName, 30),
           ],
         ),
         trailing: Text(LSX.searchOverlay.app),

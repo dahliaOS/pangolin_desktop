@@ -14,7 +14,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:flutter/widgets.dart';
 import 'package:pangolin/components/settings/models/settings_accent_data_model.dart';
 import 'package:pangolin/components/settings/models/settings_taskbar_data_model.dart';
 import 'package:pangolin/components/settings/models/settings_theme_data_model.dart';
@@ -80,13 +79,13 @@ class SettingsPresets {
     //load the data for the theme mode presets
     themeModePresets = List.from(
       [
-        ThemeModeDataModel(
-          const Color(0xffffffff),
+        const ThemeModeDataModel(
+          Color(0xffffffff),
           "Light",
           false,
         ),
-        ThemeModeDataModel(
-          const Color(0xff0a0a0a),
+        const ThemeModeDataModel(
+          Color(0xff0a0a0a),
           "Dark",
           true,
         ),
@@ -97,11 +96,11 @@ class SettingsPresets {
     //load the data for the taskbar alignment presets
     taskbarAlignmentPresets = List.from(
       [
-        TaskbarAlignmentModelData(
+        const TaskbarAlignmentModelData(
           "Start",
           false,
         ),
-        TaskbarAlignmentModelData(
+        const TaskbarAlignmentModelData(
           "Center",
           true,
         ),

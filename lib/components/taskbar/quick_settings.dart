@@ -21,6 +21,7 @@ import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/other/date_time_manager.dart';
 import 'package:pangolin/utils/providers/connection_provider.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
+import 'package:pangolin/utils/theme/theme_manager.dart';
 
 class QuickSettingsButton extends StatelessWidget {
   const QuickSettingsButton({Key? key}) : super(key: key);
@@ -136,7 +137,7 @@ class QuickSettingsButton extends StatelessWidget {
         width: 2,
         height: 16,
         decoration: BoxDecoration(
-          color: context.theme.darkMode ? Colors.white : Colors.black,
+          color: ThemeManager.of(context).foregroundColorOnAccentColor,
           borderRadius: const BorderRadius.all(Radius.circular(4)),
         ),
       ),

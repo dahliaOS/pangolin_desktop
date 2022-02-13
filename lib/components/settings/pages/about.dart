@@ -14,7 +14,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:flutter/material.dart';
 import 'package:pangolin/components/settings/widgets/list_tiles.dart';
 import 'package:pangolin/components/settings/widgets/settings_card.dart';
 import 'package:pangolin/components/settings/widgets/settings_content_header.dart';
@@ -56,7 +55,7 @@ class SettingsPageAbout extends StatelessWidget {
                     ),
                     Text(
                       //TODO Localize
-                      "$totalVersionNumber",
+                      totalVersionNumber,
                       style: const TextStyle(color: Colors.white),
                     )
                   ],
@@ -111,7 +110,7 @@ class SettingsPageAbout extends StatelessWidget {
                       leading: const Icon(Icons.update),
                       trailing: ElevatedButton(
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: ThemeConstants.buttonPadding,
                           child: Text(
                             LSX.settings.pagesAboutSoftwareUpdateTileButton,
                           ),

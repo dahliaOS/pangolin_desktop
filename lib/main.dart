@@ -17,11 +17,9 @@ import 'dart:io' show Platform;
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
-import 'package:flutter/material.dart';
 import 'package:pangolin/components/settings/data/presets.dart';
 import 'package:pangolin/components/shell/desktop.dart';
 import 'package:pangolin/services/locales/generated_asset_loader.g.dart';
-import 'package:pangolin/services/locales/locales.g.dart';
 import 'package:pangolin/services/visual_engine/visual_engine.dart';
 import 'package:pangolin/utils/data/dap_index.dart';
 import 'package:pangolin/utils/data/database_manager.dart';
@@ -69,6 +67,7 @@ Future<void> main() async {
       assetLoader: GeneratedAssetLoader(),
       path: "assets/locales",
       startLocale: const Locale("en", "US"),
+      saveLocale: false,
       child: MultiProvider(
         providers: [
           /* ChangeNotifierProvider<PreferenceProvider>.value(

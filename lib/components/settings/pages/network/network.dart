@@ -17,13 +17,13 @@ limitations under the License.
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:pangolin/components/settings/widgets/list_tiles.dart';
 import 'package:pangolin/components/settings/widgets/settings_card.dart';
 import 'package:pangolin/components/settings/widgets/settings_content_header.dart';
 import 'package:pangolin/components/settings/widgets/settings_page.dart';
 import 'package:pangolin/services/network_manager.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
+import 'package:pangolin/utils/theme/theme_manager.dart';
 
 class SettingsPageNetwork extends StatefulWidget {
   const SettingsPageNetwork({Key? key}) : super(key: key);
@@ -160,7 +160,7 @@ class _SettingsPageNetworkState extends State<SettingsPageNetwork> {
                     leading: const Icon(Icons.vpn_lock_rounded),
                     trailing: ElevatedButton(
                       child: Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: ThemeConstants.buttonPadding,
                         child: Text(
                           LSX.settings.pagesNetworkNetworkOptionsVpnTileButton,
                         ),
@@ -170,15 +170,18 @@ class _SettingsPageNetworkState extends State<SettingsPageNetwork> {
                   ),
                   ListTile(
                     title: Text(
-                        LSX.settings.pagesNetworkNetworkOptionsDnsTileTitle),
+                      LSX.settings.pagesNetworkNetworkOptionsDnsTileTitle,
+                    ),
                     subtitle: Text(
-                        LSX.settings.pagesNetworkNetworkOptionsDnsTileSubtitle),
+                      LSX.settings.pagesNetworkNetworkOptionsDnsTileSubtitle,
+                    ),
                     leading: const Icon(Icons.dns_rounded),
                     trailing: ElevatedButton(
                       child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(LSX
-                            .settings.pagesNetworkNetworkOptionsDnsTileButton),
+                        padding: ThemeConstants.buttonPadding,
+                        child: Text(
+                          LSX.settings.pagesNetworkNetworkOptionsDnsTileButton,
+                        ),
                       ),
                       onPressed: () {},
                     ),

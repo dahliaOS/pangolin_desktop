@@ -40,10 +40,14 @@ class SettingsPage extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.fromLTRB(64, 96, 64, 24),
+          padding: const EdgeInsets.fromLTRB(0, 96, 0, 24),
           child: SizedBox(
             width: MediaQuery.of(context).size.width - 500,
             child: ListView(
+              padding: const EdgeInsets.only(
+                left: 64,
+                right: 64,
+              ),
               physics: const BouncingScrollPhysics(),
               children: cards,
             ),

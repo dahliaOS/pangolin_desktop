@@ -16,12 +16,6 @@ class SettingsCard extends StatelessWidget {
         elevation: 0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(6),
-          side: BorderSide(
-            color: Theme.of(context).darkMode
-                ? Colors.white.withOpacity(0.05)
-                : Colors.black.withOpacity(0.05),
-            width: 2,
-          ),
         ),
         child: ListTileTheme.merge(
           dense: true,
@@ -31,33 +25,11 @@ class SettingsCard extends StatelessWidget {
           ),
           child: ListView(
             shrinkWrap: true,
-            children: children?.toList().joinType(
-                      const Divider(
-                        indent: 2,
-                        endIndent: 2,
-                        height: 2,
-                      ),
-                    ) ??
+            children: children ??
                 [],
           ),
         ),
       ),
     );
-  }
-}
-
-extension JoinList<T> on List<T> {
-  List<T> joinType(T separator) {
-    final List<T> workList = [];
-
-    for (int i = 0; i < (length * 2) - 1; i++) {
-      if (i.isEven) {
-        workList.add(this[i ~/ 2]);
-      } else {
-        workList.add(separator);
-      }
-    }
-
-    return workList;
   }
 }
