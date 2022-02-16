@@ -8,7 +8,7 @@
 .buildlog/
 .history
 .svn/
-
+pubspec.lock
 # IntelliJ related
 *.iml
 *.ipr
@@ -30,6 +30,9 @@
 .pub-cache/
 .pub/
 /build/
+/ios/
+/android/
+/test
 
 # Web related
 lib/generated_plugin_registrant.dart

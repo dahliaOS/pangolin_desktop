@@ -11,13 +11,13 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:dahlia_backend/dahlia_backend.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/utils/context_menus/context_menu_item.dart';
-import 'package:pangolin/utils/size_meassure.dart';
+import 'package:pangolin/utils/data/common_data.dart';
+import 'package:pangolin/widgets/global/box/box_container.dart';
 
 class ContextMenu extends StatefulWidget {
-  ContextMenu({Key? key, required this.items});
+  const ContextMenu({Key? key, required this.items}) : super(key: key);
   final List<ContextMenuItem> items;
 
   @override
@@ -28,23 +28,13 @@ class _ContextMenuState extends State<ContextMenu> {
   Size size = Size.zero;
   @override
   Widget build(BuildContext context) {
-    return BoxContainer(
-      useSystemOpacity: true,
-      customBorderRadius: BorderRadius.circular(6),
-      color: Theme.of(context).backgroundColor,
+    return BoxSurface(
+      borderRadius: CommonData.of(context).borderRadius(BorderRadiusType.small),
       child: SingleChildScrollView(
-        child: SizeMeasureWidget(
-          onSizeMeasure: (size) =>
-              WidgetsBinding.instance!.addPostFrameCallback(
-            (_) => setState(() => this.size = size),
-          ),
-          child: SizedBox(
-            width: size != Size.zero ? size.width : null,
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: widget.items,
-            ),
+        child: SizedBox(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: widget.items,
           ),
         ),
       ),

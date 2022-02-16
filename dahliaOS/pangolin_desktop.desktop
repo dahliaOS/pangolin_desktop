@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Pangolin Desktop
+Exec=pangolin_desktop
+Terminal=false
+Icon=pangolin_desktop
+Type=Application
+Categories=Utility;

@@ -1,0 +1,25 @@
+name: Locale Generator
+on:
+  push:
+    paths:
+      - '**.xml'
+    branches: [ main ]
+jobs:
+  locale_gen:
+    name: Generate Locales
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        name: Checkout repository
+      - run: git submodule update --init --recursive
+        name: Checkout submodules
+      - uses: subosito/flutter-action@v1
+        name: Prepare Flutter SDK
+      - run: flutter channel dev
+        name: Switch Flutter channel
+      - run: flutter pub get
+        name: Get dependencies
+      - run: dart bin/locale_gen.dart
+        name: Generate translations
+      - run: git config --global user.name "dahliaOS" && git config --global user.email contact@dahliaos.io && git commit -am "Generated Locales" && git push
+        name: Push translations

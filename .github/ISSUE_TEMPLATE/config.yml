@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Help
+    url: https://dahliaos.io/discord
+    about: 'If you have a question or need help, join our Discord!'
+  - name: Documentation issue
+    url: https://github.com/dahliaos/documentation
+    about: 'For documentation issues, suggest changes on our documentation repository.'

@@ -1,5 +1,5 @@
 
-name: Build and Deploy to GitHub Pages
+name: Build and Deploy to Web
 
 on:
   push:
@@ -14,21 +14,22 @@ jobs:
       - uses: subosito/flutter-action@v1
         name: Set up Flutter
       - name: Checkout submodules
-        uses: textbook/git-checkout-submodule-action@master
-      - run: flutter channel master
-        name: Switch Flutter channel
-      - run: flutter upgrade
-        name: Make sure Flutter is up to date
-      - run: flutter config --enable-web
-        name: Enable Web support
-      - run: sudo apt update && sudo apt install cmake ninja-build clang libgtk-3-dev util-linux liblzma-dev libgcrypt-dev -y
-        name: Install system dependencies
+        run: git submodule update --init --recursive
+      - name: Switch Flutter channel
+        run: flutter channel master
+      - name: Make sure Flutter is up to date
+        run: flutter upgrade
+      - name: Enable Web support
+        run: flutter config --enable-web
+      - name: Install system dependencies
+        run: sudo apt update && sudo apt install cmake ninja-build clang libgtk-3-dev util-linux liblzma-dev libgcrypt-dev -y
       - name: Get dependencies
         run: flutter pub get && flutter pub upgrade
-      - run: flutter build web --release
-        name: Build Pangolin for Web
+      - name: Build Pangolin for Web
+        run: flutter build web --release
       - name: Deploy to GitHub pages
         run: |
+          echo "web.dahliaos.io" >> build/web/CNAME
           git config user.name github-actions
           git config user.email "action@github.com"
           git --work-tree build/web add --all
