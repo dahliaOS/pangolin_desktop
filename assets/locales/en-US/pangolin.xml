@@ -170,6 +170,8 @@
     <string name="settings.pages.customization.window_options_border_radius.subtitle">Change the window border radius</string>
     <string name="settings.pages.customization.window_options_colored_titlebars.title">Colored titlebars</string>
     <string name="settings.pages.customization.window_options_colored_titlebars.subtitle">Give window titlebars a custom accent color</string>
+    <string name="settings.pages.customization.window_options_transparent_colored_titlebars.title">Transparent colored titlebars</string>
+    <string name="settings.pages.customization.window_options_transparent_colored_titlebars.subtitle">Add transparency to the colored titlebars</string>
     <!-- Display -->
     <string name="settings.pages.display.title">Display</string>
     <string name="settings.pages.display.subtitle">Resolution, screen timeout, scaling</string>

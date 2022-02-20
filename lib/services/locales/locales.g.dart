@@ -381,6 +381,8 @@ class _$LocaleEnUS extends _$LocaleBase {
     "settings.pages.customization.window_options_border_radius.subtitle": "Change the window border radius",
     "settings.pages.customization.window_options_colored_titlebars.title": "Colored titlebars",
     "settings.pages.customization.window_options_colored_titlebars.subtitle": "Give window titlebars a custom accent color",
+    "settings.pages.customization.window_options_transparent_colored_titlebars.title": "Transparent colored titlebars",
+    "settings.pages.customization.window_options_transparent_colored_titlebars.subtitle": "Add transparency to the colored titlebars",
     "settings.pages.display.title": "Display",
     "settings.pages.display.subtitle": "Resolution, screen timeout, scaling",
     "settings.pages.sound.title": "Sound",
@@ -408,7 +410,7 @@ class _$LocaleEnUS extends _$LocaleBase {
   };
 
   @override
-  int get translatedStrings => 176;
+  int get translatedStrings => 178;
 }
 
 

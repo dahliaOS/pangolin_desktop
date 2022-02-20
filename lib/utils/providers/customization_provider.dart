@@ -16,6 +16,7 @@ class CustomizationProvider extends ChangeNotifier {
   bool _centerTaskbar = true;
   bool _enableBlur = true;
   bool _coloredTitlebars = false;
+  bool _transparentColoredTitlebars = false;
 
   List<String> _pinnedApps = List.from(
     [
@@ -41,6 +42,7 @@ class CustomizationProvider extends ChangeNotifier {
   bool get centerTaskbar => _centerTaskbar;
   bool get enableBlur => _enableBlur;
   bool get coloredTitlebars => _coloredTitlebars;
+  bool get transparentColoredTitlebars => _transparentColoredTitlebars;
 
   List<String> get pinnedApps => _pinnedApps;
   List<String> get recentWallpapers => _recentWallpapers;
@@ -76,6 +78,12 @@ class CustomizationProvider extends ChangeNotifier {
     _coloredTitlebars = value;
     notifyListeners();
     DatabaseManager.set("coloredTitlebars", value);
+  }
+
+  set transparentColoredTitlebars(bool value) {
+    _transparentColoredTitlebars = value;
+    notifyListeners();
+    DatabaseManager.set("transparentColoredTitlebars", value);
   }
 
   void togglePinnedApp(String packageName) {
@@ -130,6 +138,9 @@ class CustomizationProvider extends ChangeNotifier {
     enableBlur = DatabaseManager.get("enableBlur") ?? _enableBlur;
     coloredTitlebars =
         DatabaseManager.get("coloredTitlebars") ?? _coloredTitlebars;
+    transparentColoredTitlebars =
+        DatabaseManager.get("transparentColoredTitlebars") ??
+            _transparentColoredTitlebars;
 
     _pinnedApps = List.from(DatabaseManager.get("pinnedApps") ?? _pinnedApps);
 
