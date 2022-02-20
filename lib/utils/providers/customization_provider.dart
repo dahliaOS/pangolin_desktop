@@ -30,7 +30,7 @@ class CustomizationProvider extends ChangeNotifier {
   double _taskbarPosition = 2;
 
   int _launcherIcon = Icons.apps.codePoint;
-  int _accentColor = Colors.deepOrangeAccent.value;
+  int _accentColor = const Color(0xFFFF5722).value;
 
   String _fontFamily = "Inter";
   String _wallpaper = "assets/images/wallpapers/modern.png";
