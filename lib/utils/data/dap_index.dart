@@ -50,6 +50,7 @@ void indexApplications() {
               description: manifest.package.first.description,
               category: ApplicationCategory.internet,
               runtimeFlags: [
+                '--no-sandbox',
                 '--accent=${manifest.package.first.accentColor}',
                 '--title=${manifest.package.first.realName}',
                 '--windowbar=${manifest.package.first.titleBarColor}',
@@ -113,11 +114,18 @@ Widget appInfoPage(String title, Color accentColor, PackageManifest manifest) {
                 Container(
                   height: 16,
                 ),
+                Text(
+                  "Warning: You are running dahliaOS as root. Web runtime sandboxing is disabled.",
+                ),
+                Container(
+                  height: 16,
+                ),
                 RaisedButton.icon(
                   onPressed: () {
                     Process.run(
                       'web_runtime',
                       [
+                        '--no-sandbox',
                         '--accent=${manifest.package.first.accentColor}',
                         '--title=${manifest.package.first.realName}',
                         '--windowbar=${manifest.package.first.titleBarColor}',
