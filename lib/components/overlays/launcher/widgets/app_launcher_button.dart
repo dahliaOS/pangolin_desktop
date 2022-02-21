@@ -55,7 +55,8 @@ class _AppLauncherButtonState extends State<AppLauncherButton> {
               onTap: () {
                 if (application.systemExecutable == true) {
                   print(application.runtimeFlags.toString());
-                  Process.run('web_runtime', application.runtimeFlags);
+                  Process.run(
+                      'io.dahliaos.web_runtime.dap', application.runtimeFlags);
                 }
                 application.launch(context);
               },

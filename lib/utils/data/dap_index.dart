@@ -123,7 +123,7 @@ Widget appInfoPage(String title, Color accentColor, PackageManifest manifest) {
                 RaisedButton.icon(
                   onPressed: () {
                     Process.run(
-                      'web_runtime',
+                      'io.dahliaos.web_runtime.dap',
                       [
                         '--no-sandbox',
                         '--accent=${manifest.package.first.accentColor}',
