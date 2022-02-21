@@ -100,11 +100,11 @@ class SettingsPageAbout extends StatelessWidget {
                     ListTile(
                       title: Text(
                         LSX.settings
-                            .pagesAboutSoftwareUpdateTileTitle("22XXXX"),
+                            .pagesAboutSoftwareUpdateTileTitle("220222"),
                       ),
                       subtitle: Text(
                         LSX.settings.pagesAboutSoftwareUpdateTileSubtitle(
-                          "Today at 12:45 AM",
+                          "2/22/2022",
                         ),
                       ),
                       leading: const Icon(Icons.update),
@@ -112,10 +112,10 @@ class SettingsPageAbout extends StatelessWidget {
                         child: Padding(
                           padding: ThemeConstants.buttonPadding,
                           child: Text(
-                            LSX.settings.pagesAboutSoftwareUpdateTileButton,
+                            "Updates Disabled",
                           ),
                         ),
-                        onPressed: () {},
+                        onPressed: null,
                       ),
                     ),
                   ],
