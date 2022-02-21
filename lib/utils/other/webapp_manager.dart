@@ -9,15 +9,11 @@ void wapInstall(String url) {
   Process.run('wget', [
     "-N",
     "https://packages.dahliaos.io/" + url,
-    "-P" "/root/Applications/data/"
+    "-P" "/home/nmcain/Applications/data/"
   ]).then((result) {
     print(result.stderr.toString());
     print(result.stdout.toString());
-    for (Application app in applications) {
-      if (app.systemExecutable == true) {
-        applications.remove(app);
-      }
-    }
+
     indexApplications();
   });
 }
@@ -29,6 +25,7 @@ ListTile webApp(String name, String description, String url) {
     trailing: ElevatedButton(
       child: Text('INSTALL'),
       onPressed: () {
+        applications.removeWhere((app) => app.systemExecutable == true);
         wapInstall(url);
       },
     ),

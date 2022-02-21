@@ -40,6 +40,7 @@ List<Application> applications = [
     description: "Install and manage web apps",
     iconName: "store",
     category: ApplicationCategory.internet,
+    supportsWeb: false,
   ),
   Application(
     color: Colors.transparent,
