@@ -48,6 +48,7 @@ void indexApplications() {
                 ).withOpacity(1),
               ),
               description: manifest.package.first.description,
+              category: ApplicationCategory.internet,
               runtimeFlags: [
                 '--accent=${manifest.package.first.accentColor}',
                 '--title=${manifest.package.first.realName}',
