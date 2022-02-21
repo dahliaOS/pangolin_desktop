@@ -32,23 +32,23 @@
     <string name="apps.web">Web Browser</string>
     <!-- App Descriptions-->
     <string name="apps.authenticator_description">Two Factor Authorization</string>
-    <string name="apps.calculator_description">Addition, Subtraction, Multiplication, and Division</string>
-    <string name="apps.clock_description">Manage Time, Alarms, Stopwatches and World Clocks</string>
-    <string name="apps.containers_description">Manage your System Containers</string>
-    <string name="apps.disks_description">Manage Disks and Partitions</string>
-    <string name="apps.files_description">Browse Files and Folders</string>
-    <string name="apps.media_description">Browse and watch Photos and Videos</string>
-    <string name="apps.music_description">Listen to local Music</string>
-    <string name="apps.notes_description">Edit local Text Files</string>
+    <string name="apps.calculator_description">Perform basic calculations</string>
+    <string name="apps.clock_description">Keep track of time</string>
+    <string name="apps.containers_description">Manage containers and virtual machines</string>
+    <string name="apps.disks_description">Manage disks and partitions</string>
+    <string name="apps.files_description">Browse files and folders</string>
+    <string name="apps.media_description">Browse and watch photos and videos</string>
+    <string name="apps.music_description">Listen to music</string>
+    <string name="apps.notes_description">Create and edit documents</string>
     <string name="apps.notesmobile_description">Notes (Mobile)</string>
     <string name="apps.messages_description">Messages</string>
     <string name="apps.rootterminal_description">Run Commands as Superuser</string>
-    <string name="apps.settings_description">Adjust System Settings</string>
-    <string name="apps.systemlogs_description">Read System Logs</string>
-    <string name="apps.taskmanager_description">Manage currently running Applications</string>
-    <string name="apps.terminal_description">Access the Commandline</string>
+    <string name="apps.settings_description">Adjust system settings</string>
+    <string name="apps.systemlogs_description">View and debug software issues</string>
+    <string name="apps.taskmanager_description">Monitor system performance</string>
+    <string name="apps.terminal_description">Access the command line</string>
     <string name="apps.themedemo_description">Internal demonstration for app theming</string>
-    <string name="apps.welcome_description">Welcome Application</string>
+    <string name="apps.welcome_description">View information about dahliaOS</string>
     <string name="apps.help_description">F.A.Q. and Support</string>
     <string name="apps.web_description">Browse the Web</string>
     <!-- Feature Not Implemented-->
@@ -170,6 +170,8 @@
     <string name="settings.pages.customization.window_options_border_radius.subtitle">Change the window border radius</string>
     <string name="settings.pages.customization.window_options_colored_titlebars.title">Colored titlebars</string>
     <string name="settings.pages.customization.window_options_colored_titlebars.subtitle">Give window titlebars a custom accent color</string>
+    <string name="settings.pages.customization.window_options_transparent_colored_titlebars.title">Transparent colored titlebars</string>
+    <string name="settings.pages.customization.window_options_transparent_colored_titlebars.subtitle">Add transparency to the colored titlebars</string>
     <!-- Display -->
     <string name="settings.pages.display.title">Display</string>
     <string name="settings.pages.display.subtitle">Resolution, screen timeout, scaling</string>
