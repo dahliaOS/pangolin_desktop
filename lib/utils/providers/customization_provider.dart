@@ -20,10 +20,12 @@ class CustomizationProvider extends ChangeNotifier {
 
   List<String> _pinnedApps = List.from(
     [
-      "io.dahlia.calculator",
-      "io.dahlia.terminal",
+      "io.dahlia.files",
       "io.dahlia.settings",
-      "io.dahlia.files"
+      "io.dahlia.terminal",
+      "io.dahlia.calculator",
+      "io.dahlia.store",
+      "io.dahlia.media",
     ],
   );
   List<String> _recentWallpapers = List.from([], growable: true);
