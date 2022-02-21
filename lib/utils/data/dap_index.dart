@@ -9,6 +9,8 @@ import 'package:pangolin/utils/data/package_model.dart';
 String applicationPath = '${Platform.environment['HOME']!}/Applications/data/';
 
 void indexApplications() {
+//remove every web app from the list of applications
+
   final List<String> packages =
       Process.runSync('ls', [applicationPath]).stdout.toString().split('\n');
   print(packages);

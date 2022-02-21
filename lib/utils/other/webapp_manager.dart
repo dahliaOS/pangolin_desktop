@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:pangolin/utils/data/dap_index.dart';
+import 'package:pangolin/utils/data/app_list.dart';
+import 'package:pangolin/utils/data/models/application.dart';
 
 void wapInstall(String url) {
   Process.run('wget', [
@@ -11,6 +13,11 @@ void wapInstall(String url) {
   ]).then((result) {
     print(result.stderr.toString());
     print(result.stdout.toString());
+    for (Application app in applications) {
+      if (app.systemExecutable == true) {
+        applications.remove(app);
+      }
+    }
     indexApplications();
   });
 }
