@@ -5,6 +5,7 @@ import 'package:pangolin/utils/data/dap_index.dart';
 
 void wapInstall(String url) {
   Process.run('wget', [
+    "-N",
     "https://packages.dahliaos.io/" + url,
     "-P" "/root/Applications/data/"
   ]).then((result) {
