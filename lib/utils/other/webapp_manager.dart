@@ -54,6 +54,13 @@ Widget WebAppManagerHomePage() {
             "Discord", "Chat, Talk & Hangout", "com.discordapp.discord.json"),
         webApp("Visual Studio Code", "Code editing. Redefined.",
             "dev.vscode.app.json"),
+        webApp("Google", "Google Search", "com.google.search.json"),
+        webApp("Townscaper", "City builder game",
+            "com.oskarstalberg.townscaper.json"),
+        webApp("dahliaOS Documentation", "dahliaOS Documentation",
+            "io.dahliaos.documentation.json"),
+        webApp("Minecraft Classic", "Minecraft Classic Online",
+            "net.minecraft.classic.json"),
       ]),
     ),
   );
