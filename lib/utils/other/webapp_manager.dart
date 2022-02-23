@@ -7,7 +7,7 @@ import 'package:pangolin/utils/data/models/application.dart';
 
 void wapInstall(url) async {
   Response response = await get(Uri.parse('https://packages.dahliaos.io/$url'));
-  File file = File(url);
+  File file = File('/root/Applications/data/$url');
   file.writeAsBytes(response.bodyBytes);
 }
 
