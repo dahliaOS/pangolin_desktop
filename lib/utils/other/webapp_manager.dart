@@ -5,20 +5,13 @@ import 'package:pangolin/utils/data/dap_index.dart';
 import 'package:pangolin/utils/data/app_list.dart';
 import 'package:pangolin/utils/data/models/application.dart';
 
-void wapInstall(String url) {
-  Process.run('wget', [
-    "-N",
-    "https://packages.dahliaos.io/" + url,
-    "-P" "/root/Applications/data/"
-  ]).then((result) {
-    print(result.stderr.toString());
-    print(result.stdout.toString());
-
-    indexApplications();
-  });
+void wapInstall(url) async {
+  Response response = await get(Uri.parse('https://packages.dahliaos.io/$url'));
+  File file = File(url);
+  file.writeAsBytes(response.bodyBytes);
 }
 
-ListTile webApp(String name, String description, String url) {
+ListTile webApp(String name, String description, String url) async {
   return ListTile(
     title: Text(name),
     subtitle: Text(description),
@@ -26,7 +19,7 @@ ListTile webApp(String name, String description, String url) {
       child: Text('INSTALL'),
       onPressed: () {
         applications.removeWhere((app) => app.systemExecutable == true);
-        wapInstall(url);
+        await wapInstall(url);
       },
     ),
   );
