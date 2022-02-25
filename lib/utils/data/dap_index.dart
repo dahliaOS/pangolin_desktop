@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/utils/data/app_list.dart';
 import 'package:pangolin/utils/data/models/application.dart';
@@ -13,13 +14,17 @@ void indexApplications() {
 
   final List<String> packages =
       Process.runSync('ls', [applicationPath]).stdout.toString().split('\n');
-  print(packages);
+  if (kDebugMode) {
+    print(packages);
+  }
   for (final String package in packages) {
     if (package.endsWith('.json')) {
       Process.run('cat', ['$applicationPath$package']).then(
         (result) {
           final String rawData = result.stdout.toString();
-          print(rawData);
+          if (kDebugMode) {
+            print(rawData);
+          }
           final Map<String, dynamic> json =
               jsonDecode(rawData) as Map<String, dynamic>;
           final manifest = PackageManifest.fromJson(json);
@@ -116,7 +121,7 @@ Widget appInfoPage(String title, Color accentColor, PackageManifest manifest) {
                 Container(
                   height: 16,
                 ),
-                Text(
+                const Text(
                   "Warning: You are running dahliaOS as root. Web runtime sandboxing is disabled.",
                 ),
                 Container(

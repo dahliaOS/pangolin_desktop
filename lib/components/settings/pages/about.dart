@@ -109,13 +109,13 @@ class SettingsPageAbout extends StatelessWidget {
                       ),
                       leading: const Icon(Icons.update),
                       trailing: ElevatedButton(
+                        onPressed: null,
                         child: Padding(
                           padding: ThemeConstants.buttonPadding,
-                          child: Text(
+                          child: const Text(
                             "Updates Disabled",
                           ),
                         ),
-                        onPressed: null,
                       ),
                     ),
                   ],
