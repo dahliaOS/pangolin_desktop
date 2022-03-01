@@ -55,7 +55,7 @@ class _DesktopState extends State<Desktop> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       //Desktop.wmController.addWindowEntry(wallpaperEntry.newInstance());
       Desktop.wmController.addWindowEntry(
         shellEntry.newInstance(
