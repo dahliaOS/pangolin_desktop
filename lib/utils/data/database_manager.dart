@@ -28,6 +28,7 @@ class DatabaseManager {
 
     //Default entries
     newEntry("windowBorderRadius", 12.0);
+    newEntry("initialStart", true);
 
     //Fix old database entries
     if (DatabaseManager.get("wallpaper") != null &&
