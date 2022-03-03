@@ -55,9 +55,8 @@ class _AppLauncherButtonState extends State<AppLauncherButton> {
               focusColor: CommonData.of(context).textColor(),
               onTap: () {
                 if (application.systemExecutable == true) {
-                  if (kDebugMode) {
-                    print(application.runtimeFlags.toString());
-                  }
+                  // ignore: avoid_print
+                  print(application.runtimeFlags.toString());
                   Process.run(
                     'io.dahliaos.web_runtime.dap',
                     application.runtimeFlags,
