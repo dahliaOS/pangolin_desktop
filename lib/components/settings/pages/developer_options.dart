@@ -16,7 +16,6 @@ limitations under the License.
 
 import 'package:pangolin/components/settings/widgets/settings_card.dart';
 import 'package:pangolin/components/settings/widgets/settings_page.dart';
-import 'package:pangolin/utils/data/database_manager.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/theme/theme_manager.dart';
 
@@ -64,7 +63,7 @@ class _SettingsPageDeveloperOptionsState
               ),
               leading: const Icon(Icons.new_releases_outlined),
               trailing: ElevatedButton(
-                onPressed: DatabaseManager.getHiveBox?.clear,
+                onPressed: null, //DatabaseManager.getHiveBox?.clear,
                 child: Padding(
                   padding: ThemeConstants.buttonPadding,
                   child: const Text(
