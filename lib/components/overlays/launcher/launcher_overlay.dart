@@ -206,6 +206,7 @@ class _SearchState extends State<Search> {
           leading: const Icon(Icons.search),
           trailing: const Icon(Icons.menu),
           hint: "Search Device, Apps and Web",
+          acrylic: false,
           controller: TextEditingController(),
         ),
       ),
