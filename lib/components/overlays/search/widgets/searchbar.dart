@@ -30,6 +30,10 @@ class Searchbar extends StatelessWidget {
   final FocusNode? focusNode;
   final ValueChanged<String>? onTextChanged;
 
+  /// Enable or disable the acrylic effect of this seachbar.
+  /// When disabled, a semi-transparent layer is applied instead.
+  final bool acrylic;
+
   const Searchbar({
     Key? key,
     required this.leading,
@@ -42,6 +46,7 @@ class Searchbar extends StatelessWidget {
     this.text = "",
     this.color,
     this.onTextChanged,
+    this.acrylic = true,
   }) : super(key: key);
 
   @override
@@ -52,6 +57,7 @@ class Searchbar extends StatelessWidget {
           CommonData.of(context).borderRadius(BorderRadiusType.medium),
       width: 800,
       height: 48,
+      acrylic: acrylic,
       child: Material(
         type: MaterialType.transparency,
         child: Row(
