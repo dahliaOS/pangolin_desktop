@@ -114,6 +114,7 @@ class _SearchOverlayState extends State<SearchOverlay>
                       leading: const Icon(Icons.search),
                       trailing: const Icon(Icons.menu_rounded),
                       onTextChanged: searchService.globalSearch,
+                      acrylic: false,
                     ),
                   ),
 
