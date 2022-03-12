@@ -97,6 +97,10 @@ class BoxContainer extends StatelessWidget {
   final double? height;
   final bool outline;
 
+  /// Enable or disable the acrylic effect of this container.
+  /// When disabled, a semi-transparent layer is applied instead.
+  final bool acrylic;
+
   const BoxContainer({
     Key? key,
     this.child,
@@ -106,11 +110,13 @@ class BoxContainer extends StatelessWidget {
     this.width,
     this.height,
     this.outline = false,
+    this.acrylic = true,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final bool _darkMode = Theme.of(context).brightness == Brightness.dark;
+    final Widget innerChild = child ?? Container();
     return Container(
       width: width,
       height: height,
@@ -134,9 +140,17 @@ class BoxContainer extends StatelessWidget {
       ),
       child: ClipRRect(
         borderRadius: borderRadius,
-        child: AcrylicLayer(
-          child: child ?? Container(),
-        ),
+        child: acrylic
+            ? AcrylicLayer(
+                child: innerChild,
+              )
+            : CustomPaint(
+                painter: AcrylicLayerPainter(
+                  darkMode: _darkMode,
+                  tintColor: Theme.of(context).colorScheme.secondary,
+                ),
+                child: innerChild,
+              ),
       ),
     );
   }
