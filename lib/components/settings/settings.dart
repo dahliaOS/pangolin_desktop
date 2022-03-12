@@ -274,6 +274,7 @@ class _SettingsSearchBar extends StatelessWidget {
             hint: 'Search settings',
             leading: const Icon(Icons.search_rounded),
             trailing: const Icon(Icons.close_rounded),
+            acrylic: false,
           )
         : Container(
             height: 16,
