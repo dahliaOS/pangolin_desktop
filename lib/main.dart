@@ -17,7 +17,6 @@ import 'dart:io' show Platform;
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
-import 'package:pangolin/components/settings/data/presets.dart';
 import 'package:pangolin/components/shell/desktop.dart';
 import 'package:pangolin/services/locales/generated_asset_loader.g.dart';
 import 'package:pangolin/services/visual_engine/visual_engine.dart';
@@ -47,9 +46,6 @@ Future<void> main() async {
 
   //initialize the localization engine
   await EasyLocalization.ensureInitialized();
-
-  //load customization presets
-  SettingsPresets.loadPresets();
 
   //load visual engine
   await loadVisualEngine();

@@ -23,18 +23,56 @@ class SettingsPresets {
   const SettingsPresets._();
 
   //List with presets for the system accent colors
-  static late List<AccentColorDataModel> accentColorPresets;
+  static List<AccentColorDataModel> get accentColorPresets => getAccentColorPresets();
 
   //List with presets for the system theme modes
   //TODO add automatic option based on time / sunrise-sunset
-  static late List<ThemeModeDataModel> themeModePresets;
+  static List<ThemeModeDataModel> get themeModePresets => getThemeModePresets();
 
   //List with presets for the taskbar alignment
-  static late List<TaskbarAlignmentModelData> taskbarAlignmentPresets;
+  static List<TaskbarAlignmentModelData> get taskbarAlignmentPresets => getTaskbarAlignmentPresets();
 
-  static void loadPresets() {
-    //load the data for the accent color presets
-    accentColorPresets = List.from(
+  static List<ThemeModeDataModel> getThemeModePresets()
+  {
+//load the data for the theme mode presets
+    return List.from(
+      [
+        const ThemeModeDataModel(
+          Color(0xffffffff),
+          "Light",
+          false,
+        ),
+        const ThemeModeDataModel(
+          Color(0xff0a0a0a),
+          "Dark",
+          true,
+        ),
+      ],
+      growable: false,
+    );
+  }
+
+  static List<TaskbarAlignmentModelData> getTaskbarAlignmentPresets()
+  {
+//load the data for the taskbar alignment presets
+    return List.from(
+      [
+        const TaskbarAlignmentModelData(
+          "Start",
+          false,
+        ),
+        const TaskbarAlignmentModelData(
+          "Center",
+          true,
+        ),
+      ],
+      growable: false,
+    );
+  }
+
+  static List<AccentColorDataModel> getAccentColorPresets() {
+//load the data for the accent color presets
+    return List.from(
       [
         AccentColorDataModel(
           const Color(0xFFFF5722),
@@ -71,38 +109,6 @@ class SettingsPresets {
         AccentColorDataModel(
           const Color(0xFF455a64),
           LSX.settings.pagesCustomizationThemeColorAnthracite,
-        ),
-      ],
-      growable: false,
-    );
-
-    //load the data for the theme mode presets
-    themeModePresets = List.from(
-      [
-        const ThemeModeDataModel(
-          Color(0xffffffff),
-          "Light",
-          false,
-        ),
-        const ThemeModeDataModel(
-          Color(0xff0a0a0a),
-          "Dark",
-          true,
-        ),
-      ],
-      growable: false,
-    );
-
-    //load the data for the taskbar alignment presets
-    taskbarAlignmentPresets = List.from(
-      [
-        const TaskbarAlignmentModelData(
-          "Start",
-          false,
-        ),
-        const TaskbarAlignmentModelData(
-          "Center",
-          true,
         ),
       ],
       growable: false,
