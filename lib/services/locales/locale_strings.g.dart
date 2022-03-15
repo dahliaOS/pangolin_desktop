@@ -199,6 +199,8 @@ class _$SettingsLocaleStrings {
   final String pagesCustomizationWindowOptionsBorderRadiusSubtitle = "settings.pages.customization.window_options_border_radius.subtitle".tr();
   final String pagesCustomizationWindowOptionsColoredTitlebarsTitle = "settings.pages.customization.window_options_colored_titlebars.title".tr();
   final String pagesCustomizationWindowOptionsColoredTitlebarsSubtitle = "settings.pages.customization.window_options_colored_titlebars.subtitle".tr();
+  final String pagesCustomizationWindowOptionsTransparentColoredTitlebarsTitle = "settings.pages.customization.window_options_transparent_colored_titlebars.title".tr();
+  final String pagesCustomizationWindowOptionsTransparentColoredTitlebarsSubtitle = "settings.pages.customization.window_options_transparent_colored_titlebars.subtitle".tr();
   final String pagesDisplayTitle = "settings.pages.display.title".tr();
   final String pagesDisplaySubtitle = "settings.pages.display.subtitle".tr();
   final String pagesSoundTitle = "settings.pages.sound.title".tr();

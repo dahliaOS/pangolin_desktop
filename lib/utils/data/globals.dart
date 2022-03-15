@@ -22,7 +22,7 @@ import 'package:http/http.dart';
 import 'package:pangolin/utils/api_models/bing_wallpaper_api_model.dart';
 import 'package:pangolin/utils/wm/wm.dart';
 
-String totalVersionNumber = "220122";
+String totalVersionNumber = "220222";
 String headingFeatureString = "dahliaOS Linux $totalVersionNumber ...";
 String longName = "dahliaOS Linux $totalVersionNumber ALPHA";
 String get kernel {
@@ -49,7 +49,7 @@ String get architecture {
       return "x86_64 / ARM64 based Windows operating system";
     }
   } else {
-    return "Unkown architecture";
+    return "x86_64";
   }
 }
 
@@ -67,7 +67,7 @@ String get username {
   }
 }
 
-String pangolinCommit = "8c5eea993a89446b3bb0b9e313cdea1d06bf8477";
+String pangolinCommit = "220222-dahliaOS_linux";
 String fullPangolinVersion = pangolinCommit;
 
 double horizontalPadding(BuildContext context, double size) =>

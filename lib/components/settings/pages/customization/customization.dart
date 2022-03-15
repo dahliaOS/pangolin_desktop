@@ -136,6 +136,23 @@ class _SettingsPageCustomizationState extends State<SettingsPageCustomization> {
                 _provider.coloredTitlebars = value;
               },
             ),
+            //TODO add translation
+            SwitchListTile(
+              title: Text(
+                LSX.settings
+                    .pagesCustomizationWindowOptionsTransparentColoredTitlebarsTitle,
+              ),
+              subtitle: Text(
+                LSX.settings
+                    .pagesCustomizationWindowOptionsTransparentColoredTitlebarsSubtitle,
+              ),
+              value: _provider.transparentColoredTitlebars,
+              onChanged: _provider.coloredTitlebars
+                  ? (value) {
+                      _provider.transparentColoredTitlebars = value;
+                    }
+                  : null,
+            ),
           ],
         ),
       ],

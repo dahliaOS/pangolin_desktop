@@ -17,6 +17,7 @@ limitations under the License.
 import 'package:pangolin/components/settings/widgets/settings_card.dart';
 import 'package:pangolin/components/settings/widgets/settings_page.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
+import 'package:pangolin/utils/theme/theme_manager.dart';
 
 class SettingsPageDeveloperOptions extends StatefulWidget {
   const SettingsPageDeveloperOptions({Key? key}) : super(key: key);
@@ -48,6 +49,28 @@ class _SettingsPageDeveloperOptionsState
               onChanged: (val) {
                 setState(() => _devModeEnabled = val);
               },
+            ),
+          ],
+        ),
+        SettingsCard(
+          children: [
+            ListTile(
+              title: const Text(
+                "Reset Database",
+              ),
+              subtitle: const Text(
+                "Needs restart to take effect",
+              ),
+              leading: const Icon(Icons.new_releases_outlined),
+              trailing: ElevatedButton(
+                onPressed: null, //DatabaseManager.getHiveBox?.clear,
+                child: Padding(
+                  padding: ThemeConstants.buttonPadding,
+                  child: const Text(
+                    "Reset Database",
+                  ),
+                ),
+              ),
             ),
           ],
         ),

@@ -111,7 +111,11 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
           height: 40,
           child: Material(
             color: _customizationProvider.coloredTitlebars
-                ? widget.barColor
+                ? widget.barColor.op(
+                    _customizationProvider.transparentColoredTitlebars
+                        ? 0.5
+                        : 1.0,
+                  )
                 : Colors.transparent,
             child: IconTheme.merge(
               data: IconThemeData(

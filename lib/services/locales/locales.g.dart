@@ -258,23 +258,23 @@ class _$LocaleEnUS extends _$LocaleBase {
     "apps.help": "Help",
     "apps.web": "Web Browser",
     "apps.authenticator_description": "Two Factor Authorization",
-    "apps.calculator_description": "Addition, Subtraction, Multiplication, and Division",
-    "apps.clock_description": "Manage Time, Alarms, Stopwatches and World Clocks",
-    "apps.containers_description": "Manage your System Containers",
-    "apps.disks_description": "Manage Disks and Partitions",
-    "apps.files_description": "Browse Files and Folders",
-    "apps.media_description": "Browse and watch Photos and Videos",
-    "apps.music_description": "Listen to local Music",
-    "apps.notes_description": "Edit local Text Files",
+    "apps.calculator_description": "Perform basic calculations",
+    "apps.clock_description": "Keep track of time",
+    "apps.containers_description": "Manage containers and virtual machines",
+    "apps.disks_description": "Manage disks and partitions",
+    "apps.files_description": "Browse files and folders",
+    "apps.media_description": "Browse and watch photos and videos",
+    "apps.music_description": "Listen to music",
+    "apps.notes_description": "Create and edit documents",
     "apps.notesmobile_description": "Notes (Mobile)",
     "apps.messages_description": "Messages",
     "apps.rootterminal_description": "Run Commands as Superuser",
-    "apps.settings_description": "Adjust System Settings",
-    "apps.systemlogs_description": "Read System Logs",
-    "apps.taskmanager_description": "Manage currently running Applications",
-    "apps.terminal_description": "Access the Commandline",
+    "apps.settings_description": "Adjust system settings",
+    "apps.systemlogs_description": "View and debug software issues",
+    "apps.taskmanager_description": "Monitor system performance",
+    "apps.terminal_description": "Access the command line",
     "apps.themedemo_description": "Internal demonstration for app theming",
-    "apps.welcome_description": "Welcome Application",
+    "apps.welcome_description": "View information about dahliaOS",
     "apps.help_description": "F.A.Q. and Support",
     "apps.web_description": "Browse the Web",
     "misc.featurenotimplemented_title": "Feature not implemented",
@@ -381,6 +381,8 @@ class _$LocaleEnUS extends _$LocaleBase {
     "settings.pages.customization.window_options_border_radius.subtitle": "Change the window border radius",
     "settings.pages.customization.window_options_colored_titlebars.title": "Colored titlebars",
     "settings.pages.customization.window_options_colored_titlebars.subtitle": "Give window titlebars a custom accent color",
+    "settings.pages.customization.window_options_transparent_colored_titlebars.title": "Transparent colored titlebars",
+    "settings.pages.customization.window_options_transparent_colored_titlebars.subtitle": "Add transparency to the colored titlebars",
     "settings.pages.display.title": "Display",
     "settings.pages.display.subtitle": "Resolution, screen timeout, scaling",
     "settings.pages.sound.title": "Sound",
@@ -408,7 +410,7 @@ class _$LocaleEnUS extends _$LocaleBase {
   };
 
   @override
-  int get translatedStrings => 176;
+  int get translatedStrings => 178;
 }
 
 

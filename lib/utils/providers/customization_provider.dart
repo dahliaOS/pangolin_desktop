@@ -16,13 +16,16 @@ class CustomizationProvider extends ChangeNotifier {
   bool _centerTaskbar = true;
   bool _enableBlur = true;
   bool _coloredTitlebars = false;
+  bool _transparentColoredTitlebars = false;
 
   List<String> _pinnedApps = List.from(
     [
-      "io.dahlia.calculator",
-      "io.dahlia.terminal",
+      "io.dahlia.files",
       "io.dahlia.settings",
-      "io.dahlia.files"
+      "io.dahlia.terminal",
+      "io.dahlia.calculator",
+      "io.dahlia.store",
+      "io.dahlia.media",
     ],
   );
   List<String> _recentWallpapers = List.from([], growable: true);
@@ -30,7 +33,7 @@ class CustomizationProvider extends ChangeNotifier {
   double _taskbarPosition = 2;
 
   int _launcherIcon = Icons.apps.codePoint;
-  int _accentColor = Colors.deepOrangeAccent.value;
+  int _accentColor = const Color(0xFFFF5722).value;
 
   String _fontFamily = "Inter";
   String _wallpaper = "assets/images/wallpapers/modern.png";
@@ -41,6 +44,7 @@ class CustomizationProvider extends ChangeNotifier {
   bool get centerTaskbar => _centerTaskbar;
   bool get enableBlur => _enableBlur;
   bool get coloredTitlebars => _coloredTitlebars;
+  bool get transparentColoredTitlebars => _transparentColoredTitlebars;
 
   List<String> get pinnedApps => _pinnedApps;
   List<String> get recentWallpapers => _recentWallpapers;
@@ -76,6 +80,12 @@ class CustomizationProvider extends ChangeNotifier {
     _coloredTitlebars = value;
     notifyListeners();
     DatabaseManager.set("coloredTitlebars", value);
+  }
+
+  set transparentColoredTitlebars(bool value) {
+    _transparentColoredTitlebars = value;
+    notifyListeners();
+    DatabaseManager.set("transparentColoredTitlebars", value);
   }
 
   void togglePinnedApp(String packageName) {
@@ -130,6 +140,9 @@ class CustomizationProvider extends ChangeNotifier {
     enableBlur = DatabaseManager.get("enableBlur") ?? _enableBlur;
     coloredTitlebars =
         DatabaseManager.get("coloredTitlebars") ?? _coloredTitlebars;
+    transparentColoredTitlebars =
+        DatabaseManager.get("transparentColoredTitlebars") ??
+            _transparentColoredTitlebars;
 
     _pinnedApps = List.from(DatabaseManager.get("pinnedApps") ?? _pinnedApps);
 

@@ -9,6 +9,8 @@ import 'package:pangolin/utils/data/package_model.dart';
 String applicationPath = '${Platform.environment['HOME']!}/Applications/data/';
 
 void indexApplications() {
+//remove every web app from the list of applications
+
   final List<String> packages =
       Process.runSync('ls', [applicationPath]).stdout.toString().split('\n');
   print(packages);
@@ -48,7 +50,9 @@ void indexApplications() {
                 ).withOpacity(1),
               ),
               description: manifest.package.first.description,
+              category: ApplicationCategory.internet,
               runtimeFlags: [
+                '--no-sandbox',
                 '--accent=${manifest.package.first.accentColor}',
                 '--title=${manifest.package.first.realName}',
                 '--windowbar=${manifest.package.first.titleBarColor}',
@@ -112,11 +116,18 @@ Widget appInfoPage(String title, Color accentColor, PackageManifest manifest) {
                 Container(
                   height: 16,
                 ),
+                Text(
+                  "Warning: You are running dahliaOS as root. Web runtime sandboxing is disabled.",
+                ),
+                Container(
+                  height: 16,
+                ),
                 RaisedButton.icon(
                   onPressed: () {
                     Process.run(
-                      'web_runtime',
+                      'io.dahliaos.web_runtime.dap',
                       [
+                        '--no-sandbox',
                         '--accent=${manifest.package.first.accentColor}',
                         '--title=${manifest.package.first.realName}',
                         '--windowbar=${manifest.package.first.titleBarColor}',

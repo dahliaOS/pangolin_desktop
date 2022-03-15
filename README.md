@@ -25,16 +25,16 @@
  - You can check it online [here](https://web.dahliaos.io)!
 
 <p align="center">
-  <img width="100%" src="https://docs.dahliaos.io/img/screenshot/21xxxx/desktop.png"
+  <img width="100%" src="https://docs.dahliaos.io/img/screenshot/22xxxx/settings.png"
 </p>
 
-> Pangolin Desktop calculator app and quick-settings menu.
+> Pangolin Desktop, settings and start menu.
 
 <p align="center">
-  <img width="100%" src="https://docs.dahliaos.io/img/screenshot/21xxxx/launcher.png"
+  <img width="100%" src="https://docs.dahliaos.io/img/screenshot/22xxxx/search.png"
 </p>
 
-> Pangolin Desktop app launcher screen.
+> Pangolin Desktop, Calculator, Terminal, Notes and search.
 
 ## Build Pangolin Desktop
 

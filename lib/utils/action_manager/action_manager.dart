@@ -74,7 +74,7 @@ class ActionManager {
 
   static void reboot() {
     if (Platform.isLinux) {
-      Process.run("restart", []);
+      Process.run("reboot", []);
     } else {
       print("Not supported on this Platform");
     }
