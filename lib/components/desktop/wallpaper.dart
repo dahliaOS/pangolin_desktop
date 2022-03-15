@@ -35,7 +35,7 @@ class WallpaperLayer extends StatelessWidget {
     final String image = CustomizationProvider.of(context).wallpaper;
 
     //get Bing Wallpaper of the Day data
-    getBingWallpaper();
+    // getBingWallpaper(); // could'nd find return from this call: is that necessery? it's causin' #310
     //return const SizedBox();
     return SizedBox.expand(
       child: ChangeNotifierProvider.value(

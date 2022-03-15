@@ -94,9 +94,10 @@ List<String> wallpapers = [
 ];
 
 Future<BingWallpaper> getBingWallpaper() async {
+  // TODO(allansrc) adds CORS heards or a call to fix proxy needed call onBing API
   final response = await get(
     Uri.parse(
-      'http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US',
+      'https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US',
     ),
     headers: {
       "Access-Control-Allow-Origin": "true",

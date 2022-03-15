@@ -226,6 +226,8 @@ class _WallpaperPickerState extends State<WallpaperPicker>
                       borderRadius: BorderRadius.circular(8),
                     ),
                     onPressed: () async {
+                      // TODO(allansrc) : that call to bind api is causing #310.
+                      // It needed adds CORS headrs to req images from bing.
                       final bingresponse = await getBingWallpaper();
                       _customizationProvider.wallpaper =
                           'https://bing.com${bingresponse.images.first.url}';
