@@ -205,7 +205,7 @@ class _WallpaperPickerState extends State<WallpaperPicker>
                       ),
                       controller: _controller,
                       onSubmitted: (text) {
-                        if (text.startsWith("http")) {
+                        if (text.startsWith("http") && text.endsWith(".jpg") | text.endsWith(".png")) {
                           _customizationProvider.wallpaper = text;
                           _customizationProvider.addRecentWallpaper(text);
                           Navigator.pop(context);
