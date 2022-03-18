@@ -16,6 +16,7 @@ limitations under the License.
 
 import 'dart:ui';
 
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 
 class AcrylicLayer extends StatelessWidget {
@@ -72,9 +73,9 @@ class AcrylicLayer extends StatelessWidget {
     );
   }
 
-  double get noiseOpacity => enableNoise ? 0.02 : 0;
+  double get noiseOpacity => enableNoise ? 0.02 : 0.0;
 
-  double get blurSigma => enableBlur ? 32 : 0;
+  double get blurSigma => enableBlur ? 32 : (kIsWeb ? 0.1 : 0.0);
 }
 
 class AcrylicLayerPainter extends CustomPainter {
