@@ -56,7 +56,9 @@ class _AppLauncherButtonState extends State<AppLauncherButton> {
                 if (application.systemExecutable == true) {
                   print(application.runtimeFlags.toString());
                   Process.run(
-                      'io.dahliaos.web_runtime.dap', application.runtimeFlags);
+                    'io.dahliaos.web_runtime.dap',
+                    application.runtimeFlags,
+                  );
                 }
                 application.launch(context);
               },
@@ -73,6 +75,7 @@ class _AppLauncherButtonState extends State<AppLauncherButton> {
                   ),
                   Text(
                     application.name ?? "",
+                    textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 17,
                       color: CommonData.of(context).textColor(),

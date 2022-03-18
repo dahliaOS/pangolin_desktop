@@ -119,7 +119,6 @@ class _LauncherOverlayState extends State<LauncherOverlay>
         },
         child: Stack(
           children: [
-            //Positioned.fill(top: 0, child: Wallpaper()),
             AnimatedBuilder(
               animation: _animation,
               builder: (context, child) => FadeTransition(
@@ -246,9 +245,6 @@ class _LauncherCategoriesState extends State<LauncherCategories> {
         Transform.scale(
           scale: 1.0,
           child: Container(
-            //width: 652,
-            //color: Colors.white,
-            // The row of chips 'test test test test' lol
             margin: const EdgeInsets.only(top: 33 + (1 / 3), bottom: 8),
             child: BoxContainer(
               borderRadius:

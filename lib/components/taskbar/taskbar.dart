@@ -27,6 +27,7 @@ import 'package:pangolin/utils/providers/customization_provider.dart';
 import 'package:pangolin/utils/context_menus/context_menu_item.dart';
 import 'package:pangolin/utils/context_menus/core/context_menu_region.dart'; */
 import 'package:pangolin/utils/wm/wm.dart';
+import 'package:pangolin/widgets/global/box/box_container.dart';
 
 class Taskbar extends StatefulWidget {
   final List<Widget>? leading;
@@ -160,69 +161,63 @@ class _TaskbarState extends State<Taskbar> {
               ),
             ],
           ), */
-        child: ValueListenableBuilder<bool>(
-          valueListenable: _shell.getShowingNotifier(LauncherOverlay.overlayId),
-          builder: (context, shown, child) {
-            return Material(
-              color: shown
-                  ? ColorsX.black.op(context.theme.darkMode ? 0.1 : 0.05)
-                  : Colors.transparent,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 4.0),
-                child: Stack(
-                  children: [
-                    if (_customizationProvider.centerTaskbar)
-                      Positioned.fill(
-                        child: listenerWrapper(Center(child: items)),
-                      )
-                    else
-                      const SizedBox.shrink(),
-                    if (_customizationProvider.isTaskbarHorizontal)
-                      Row(
-                        children: [
-                          Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children:
-                                widget.leading ?? [const SizedBox.shrink()],
-                          ),
-                          Expanded(
-                            child: _customizationProvider.centerTaskbar
-                                ? Container()
-                                : listenerWrapper(items),
-                          ),
-                          Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children:
-                                widget.trailing ?? [const SizedBox.shrink()],
-                          ),
-                        ],
-                      )
-                    else
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children:
-                                widget.leading ?? [const SizedBox.shrink()],
-                          ),
-                          Expanded(
-                            child: _customizationProvider.centerTaskbar
-                                ? Container()
-                                : listenerWrapper(items),
-                          ),
-                          Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children:
-                                widget.trailing ?? [const SizedBox.shrink()],
-                          ),
-                        ],
-                      ),
-                  ],
-                ),
+        child: BoxContainer(
+          opacity: 0.25,
+          child: Material(
+            color: Colors.transparent,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 4.0),
+              child: Stack(
+                children: [
+                  if (_customizationProvider.centerTaskbar)
+                    Positioned.fill(
+                      child: listenerWrapper(Center(child: items)),
+                    )
+                  else
+                    const SizedBox.shrink(),
+                  if (_customizationProvider.isTaskbarHorizontal)
+                    Row(
+                      children: [
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: widget.leading ?? [const SizedBox.shrink()],
+                        ),
+                        Expanded(
+                          child: _customizationProvider.centerTaskbar
+                              ? Container()
+                              : listenerWrapper(items),
+                        ),
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children:
+                              widget.trailing ?? [const SizedBox.shrink()],
+                        ),
+                      ],
+                    )
+                  else
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: widget.leading ?? [const SizedBox.shrink()],
+                        ),
+                        Expanded(
+                          child: _customizationProvider.centerTaskbar
+                              ? Container()
+                              : listenerWrapper(items),
+                        ),
+                        Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children:
+                              widget.trailing ?? [const SizedBox.shrink()],
+                        ),
+                      ],
+                    ),
+                ],
               ),
-            );
-          },
+            ),
+          ),
         ),
       ),
       /* ), */

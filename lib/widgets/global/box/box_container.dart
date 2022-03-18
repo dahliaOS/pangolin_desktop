@@ -41,7 +41,7 @@ class BoxSurface extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool _darkMode = Theme.of(context).brightness == Brightness.dark;
+    final bool _darkMode = Theme.of(context).darkMode;
     return Container(
       width: width,
       height: height,
@@ -81,6 +81,7 @@ class BoxSurface extends StatelessWidget {
       child: ClipRRect(
         borderRadius: borderRadius,
         child: AcrylicLayer(
+          isBackground: true,
           child: child ?? Container(),
         ),
       ),
@@ -96,6 +97,7 @@ class BoxContainer extends StatelessWidget {
   final double? width;
   final double? height;
   final bool outline;
+  final double opacity;
 
   const BoxContainer({
     Key? key,
@@ -106,11 +108,12 @@ class BoxContainer extends StatelessWidget {
     this.width,
     this.height,
     this.outline = false,
+    this.opacity = 0.5,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final bool _darkMode = Theme.of(context).brightness == Brightness.dark;
+    final bool _darkMode = Theme.of(context).darkMode;
     return Container(
       width: width,
       height: height,
@@ -135,6 +138,9 @@ class BoxContainer extends StatelessWidget {
       child: ClipRRect(
         borderRadius: borderRadius,
         child: AcrylicLayer(
+          opacity: opacity,
+          enableBlur: false,
+          enableNoise: false,
           child: child ?? Container(),
         ),
       ),

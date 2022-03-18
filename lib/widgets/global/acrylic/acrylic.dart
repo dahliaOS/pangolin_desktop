@@ -15,67 +15,105 @@ limitations under the License.
 */
 
 import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 class AcrylicLayer extends StatelessWidget {
   final Widget? child;
-  const AcrylicLayer({Key? key, required this.child}) : super(key: key);
+  final bool isBackground;
+  final bool enableBlur;
+  final bool enableNoise;
+  final double opacity;
+  const AcrylicLayer({
+    Key? key,
+    required this.child,
+    this.isBackground = false,
+    this.enableBlur = true,
+    this.enableNoise = true,
+    this.opacity = 0.5,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BackdropFilter(
-      filter: ImageFilter.blur(sigmaX: 64, sigmaY: 64),
+      filter: ImageFilter.blur(sigmaX: blurSigma, sigmaY: blurSigma),
       child: CustomPaint(
         painter: AcrylicLayerPainter(
           darkMode: Theme.of(context).brightness == Brightness.dark,
-          tintColor: Theme.of(context).colorScheme.secondary,
+          isBackground: isBackground,
+          opacity: opacity,
         ),
-        child: Stack(
-          children: [
-            Opacity(
-              opacity: 0.025,
-              child: DecoratedBox(
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(
-                      "assets/textures/NoiseAsset_256X256_PNG.png",
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: blurSigma, sigmaY: blurSigma),
+          child: Stack(
+            children: [
+              Opacity(
+                opacity: noiseOpacity,
+                child: DecoratedBox(
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage(
+                        "assets/textures/NoiseAsset_256X256_PNG.png",
+                      ),
+                      alignment: Alignment.topLeft,
+                      repeat: ImageRepeat.repeat,
                     ),
-                    alignment: Alignment.topLeft,
-                    repeat: ImageRepeat.repeat,
+                    backgroundBlendMode: BlendMode.srcOver,
+                    color: Colors.transparent,
                   ),
-                  backgroundBlendMode: BlendMode.srcOver,
-                  color: Colors.transparent,
+                  child: Container(),
                 ),
-                child: Container(),
               ),
-            ),
-            Center(child: child),
-          ],
+              Center(child: child),
+            ],
+          ),
         ),
       ),
     );
   }
+
+  double get noiseOpacity => enableNoise ? 0.02 : 0;
+
+  double get blurSigma => enableBlur ? 32 : 0;
 }
 
 class AcrylicLayerPainter extends CustomPainter {
   // vars
   final bool darkMode;
-  final Color tintColor;
+  final bool isBackground;
+  final double opacity;
 
   // const
-  const AcrylicLayerPainter({required this.darkMode, required this.tintColor});
+  const AcrylicLayerPainter({
+    required this.darkMode,
+    required this.isBackground,
+    this.opacity = 0.5,
+  });
 
   // painter
   @override
   Future<void> paint(Canvas canvas, Size size) async {
-    final Color _darkModeColor = const Color(0xff0a0a0a).withOpacity(0.6);
-    final Color _lightModeColor = const Color(0xfffafafa).withOpacity(0.6);
+    final Color _darkModeColor = const Color(0xff0a0a0a).withOpacity(opacity);
+    final Color _lightModeColor = const Color(0xfffafafa).withOpacity(opacity);
 
-    canvas.drawColor(
+    /* canvas.drawColor(
       darkMode ? _darkModeColor : _lightModeColor,
       BlendMode.luminosity,
-    );
-    canvas.drawColor(tintColor.withOpacity(0.10), BlendMode.color);
+    ); */
+    const Color red = Color(0x00ff0000);
+    const Color green = Color(0x0000ff00);
+    const Color blue = Color(0x000000ff);
+    if (isBackground) {
+      canvas.drawColor(red.withOpacity(0.25), BlendMode.luminosity);
+      canvas.drawColor(green.withOpacity(0.25), BlendMode.luminosity);
+      canvas.drawColor(blue.withOpacity(0.25), BlendMode.luminosity);
+      canvas.drawColor(red.withOpacity(0.05), BlendMode.saturation);
+      canvas.drawColor(green.withOpacity(0.05), BlendMode.saturation);
+      canvas.drawColor(blue.withOpacity(0.05), BlendMode.saturation);
+    }
+    darkMode
+        ? canvas.drawColor(_darkModeColor, BlendMode.darken)
+        : canvas.drawColor(_lightModeColor, BlendMode.lighten);
   }
 
   @override
