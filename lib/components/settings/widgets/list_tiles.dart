@@ -93,6 +93,7 @@ class _ExpandableListTileState extends State<ExpandableListTile> {
           title: widget.title ?? const Text("Expandable List Tile"),
           subtitle: widget.subtitle,
           leading: widget.leading,
+          dense: true,
           trailing: Transform.rotate(
             angle: _value ? math.pi / 2 : -math.pi / 2,
             child: const Padding(

@@ -43,7 +43,7 @@ class QsTitlebar extends StatelessWidget implements PreferredSizeWidget {
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
                 height: 1.1,
-                color: context.theme.darkMode ? ColorsX.white : ColorsX.black,
+                color: context.theme.surfaceForegroundColor,
               ),
             )
           else

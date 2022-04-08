@@ -16,9 +16,11 @@ limitations under the License.
 
 import 'dart:async';
 
+import 'package:pangolin/components/desktop/wallpaper.dart';
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/utils/data/common_data.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
+import 'package:pangolin/utils/providers/customization_provider.dart';
 import 'package:pangolin/utils/wm/wm.dart';
 import 'package:pangolin/widgets/global/box/box_container.dart';
 
@@ -46,6 +48,7 @@ class _OverviewOverlayState extends State<OverviewOverlay>
   @override
   Widget build(BuildContext context) {
     final _hierarchy = WindowHierarchy.of(context);
+    final String image = CustomizationProvider.of(context).wallpaper;
 
     if (!controller.showing) return const SizedBox();
 
@@ -64,29 +67,27 @@ class _OverviewOverlayState extends State<OverviewOverlay>
                 left: 0,
                 right: 0,
                 height: 152,
-                child: BoxSurface(
+                child: BoxContainer(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Padding(
                         padding: const EdgeInsets.all(12.0),
-                        child: BoxSurface(
-                          borderRadius: CommonData.of(context)
-                              .borderRadius(BorderRadiusType.small),
-                          /* decoration: BoxDecoration(
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.5),
-                                blurRadius: 10.0,
-                                spreadRadius: 0.0,
-                                offset: Offset(
-                                  2.0,
-                                  2.0,
-                                ), // shadow direction: bottom right
-                              )
-                            ],
-                          ), */
-                          child: Image.asset("assets/images/other/Desktop.png"),
+                        child: Material(
+                          color: Colors.transparent,
+                          clipBehavior: Clip.antiAlias,
+                          shape: RoundedRectangleBorder(
+                            borderRadius:
+                                CommonData.of(context).borderRadiusSmall,
+                            side: BorderSide(
+                              color: context.theme.surfaceForegroundColor,
+                              width: 2,
+                            ),
+                          ),
+                          child: InkWell(
+                            onTap: () {},
+                            child: wallpaperImage(image),
+                          ),
                         ),
                       ),
                       Padding(

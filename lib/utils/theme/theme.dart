@@ -17,14 +17,23 @@ limitations under the License.
 import 'package:animations/animations.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
-import 'package:pangolin/utils/theme/theme_manager.dart';
 
 ThemeData theme(BuildContext context) {
   final _customizationProvider = CustomizationProvider.of(context);
-  final Color _foregroundColor =
-      Color(_customizationProvider.accentColor).computeLuminance() > 0.4
-          ? ColorsX.black
-          : ColorsX.white;
+
+  final bool darkMode = _customizationProvider.darkMode;
+
+  final Color accentColor = Color(_customizationProvider.accentColor);
+  final Color foregroundColor = context.theme.foregroundColor;
+  final Color backgroundColor = darkMode ? Colors.black : Colors.white;
+  final Color surfaceForegroundColor = darkMode ? Colors.white : Colors.black;
+  final Color surfaceColor = Color(darkMode ? 0xff1E1E1E : 0xffffffff);
+  final Color cardColor = Color(darkMode ? 0xFF2c2c2c : 0xFFEBEBEB);
+
+  final String fontFamily = _customizationProvider.fontFamily;
+
+  final Brightness brightness = darkMode ? Brightness.dark : Brightness.light;
+
   return ThemeData(
     pageTransitionsTheme: const PageTransitionsTheme(
       builders: {
@@ -33,49 +42,44 @@ ThemeData theme(BuildContext context) {
       },
     ),
     hoverColor: context.theme.colorScheme.surface.withOpacity(0.25),
-    //splashColor: Color(_data.accentColor),
-    /* buttonColor: Color(_data.accentColor), */
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       elevation: 0.0,
       hoverElevation: 0.0,
       focusElevation: 0.0,
       highlightElevation: 0.0,
-      foregroundColor: _foregroundColor,
+      foregroundColor: foregroundColor,
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(
-          Color(_customizationProvider.accentColor),
+          accentColor,
         ),
         elevation: MaterialStateProperty.all(0.0),
         foregroundColor: MaterialStateProperty.all(
-          ThemeManager.of(context).foregroundColorOnAccentColor,
+          foregroundColor,
         ),
       ),
     ),
-
     appBarTheme: AppBarTheme(
-      color: Color(_customizationProvider.accentColor),
+      color: accentColor,
       elevation: 0.0,
-      iconTheme: IconThemeData(color: _foregroundColor),
+      iconTheme: IconThemeData(color: foregroundColor),
     ),
-
-    fontFamily: _customizationProvider.fontFamily,
+    fontFamily: fontFamily,
     colorScheme: ColorScheme.fromSeed(
-      brightness:
-          _customizationProvider.darkMode ? Brightness.dark : Brightness.light,
-      seedColor: Color(_customizationProvider.accentColor),
-      secondary: Color(_customizationProvider.accentColor),
+      brightness: brightness,
+      seedColor: accentColor,
+      secondary: accentColor,
     ),
-    backgroundColor: ThemeManager.of(context).backgroundColor,
-    canvasColor: ThemeManager.of(context).surfaceColor,
-    primaryColor: Color(_customizationProvider.accentColor),
-    primaryColorDark: Color(_customizationProvider.accentColor),
-    cardColor: ThemeManager.of(context).cardColor,
-    scaffoldBackgroundColor: ThemeManager.of(context).surfaceColor,
+    backgroundColor: backgroundColor,
+    canvasColor: surfaceColor,
+    primaryColor: accentColor,
+    primaryColorDark: accentColor,
+    cardColor: cardColor,
+    scaffoldBackgroundColor: surfaceColor,
     inputDecorationTheme: InputDecorationTheme(
       labelStyle: TextStyle(
-        color: Color(_customizationProvider.accentColor),
+        color: accentColor,
       ),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
@@ -83,7 +87,7 @@ ThemeData theme(BuildContext context) {
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
         borderSide: BorderSide(
-          color: Color(_customizationProvider.accentColor),
+          color: accentColor,
           width: 2,
         ),
       ),
@@ -94,21 +98,43 @@ ThemeData theme(BuildContext context) {
         borderRadius: BorderRadius.circular(8),
       ),
     ),
-    textTheme: const TextTheme(button: TextStyle(fontSize: 13)),
-    dialogBackgroundColor: ThemeManager.of(context).backgroundColor,
-    toggleableActiveColor: Color(_customizationProvider.accentColor),
+    //TODO Text Theme
+    textTheme: const TextTheme(
+      button: TextStyle(fontSize: 13),
+      /* displaySmall: TextStyle(fontSize: 11),
+      displayMedium: TextStyle(fontSize: 12),
+      displayLarge: TextStyle(fontSize: 13),
+      //body
+      bodySmall: TextStyle(fontSize: 11),
+      bodyMedium: TextStyle(fontSize: 12),
+      bodyLarge: TextStyle(fontSize: 13),
+      //label
+      labelSmall: TextStyle(fontSize: 11),
+      labelMedium: TextStyle(fontSize: 12),
+      labelLarge: TextStyle(fontSize: 13),
+      //title
+      titleSmall: TextStyle(fontSize: 11),
+      titleMedium: TextStyle(fontSize: 12),
+      titleLarge: TextStyle(fontSize: 13),
+
+      //headline
+      headlineSmall: TextStyle(fontSize: 11),
+      headlineMedium: TextStyle(fontSize: 12),
+      headlineLarge: TextStyle(fontSize: 13), */
+    ),
+    dialogBackgroundColor: backgroundColor,
+    toggleableActiveColor: accentColor,
     platform: TargetPlatform.fuchsia,
     sliderTheme: SliderThemeData(
-      overlayColor: Color(_customizationProvider.accentColor).withOpacity(0.1),
-      thumbColor: Color(_customizationProvider.accentColor),
-      activeTrackColor: Color(_customizationProvider.accentColor),
-      inactiveTrackColor:
-          Color(_customizationProvider.accentColor).withOpacity(0.5),
-      activeTickMarkColor: Colors.white.withOpacity(0.2),
-      inactiveTickMarkColor: Colors.white.withOpacity(0.2),
+      overlayColor: accentColor.op(0.1),
+      thumbColor: accentColor,
+      activeTrackColor: accentColor,
+      inactiveTrackColor: accentColor.op(0.5),
+      activeTickMarkColor: Colors.white.op(0.2),
+      inactiveTickMarkColor: Colors.white.op(0.2),
     ),
     iconTheme: IconThemeData(
-      color: _customizationProvider.darkMode ? ColorsX.white : ColorsX.black,
+      color: surfaceForegroundColor,
     ),
   );
 }

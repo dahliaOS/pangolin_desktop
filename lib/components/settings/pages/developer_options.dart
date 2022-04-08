@@ -17,7 +17,6 @@ limitations under the License.
 import 'package:pangolin/components/settings/widgets/settings_card.dart';
 import 'package:pangolin/components/settings/widgets/settings_page.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
-import 'package:pangolin/utils/theme/theme_manager.dart';
 
 class SettingsPageDeveloperOptions extends StatefulWidget {
   const SettingsPageDeveloperOptions({Key? key}) : super(key: key);

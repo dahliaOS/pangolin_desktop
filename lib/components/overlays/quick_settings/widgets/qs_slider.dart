@@ -37,8 +37,10 @@ class QsSlider extends StatefulWidget {
 }
 
 class _QsSliderState extends State<QsSlider> {
+
   @override
   Widget build(BuildContext context) {
+    final Color backgroundColor = context.theme.backgroundColor.op(0.5);
     return Material(
       color: Colors.transparent,
       clipBehavior: Clip.antiAlias,
@@ -47,9 +49,7 @@ class _QsSliderState extends State<QsSlider> {
           SizedBox.square(
             dimension: 40,
             child: Material(
-              color: context.theme.darkMode
-                  ? ColorsX.black.op(0.5)
-                  : ColorsX.white.op(0.5),
+              color: backgroundColor,
               clipBehavior: Clip.antiAlias,
               borderRadius: BorderRadius.circular(20),
               child: InkWell(
@@ -71,9 +71,7 @@ class _QsSliderState extends State<QsSlider> {
           SizedBox.square(
             dimension: 40,
             child: Material(
-              color: context.theme.darkMode
-                  ? ColorsX.black.op(0.5)
-                  : ColorsX.white.op(0.5),
+              color: backgroundColor,
               clipBehavior: Clip.antiAlias,
               borderRadius: BorderRadius.circular(20),
               child: InkWell(

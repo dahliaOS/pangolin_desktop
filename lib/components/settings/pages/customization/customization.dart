@@ -112,9 +112,7 @@ class _SettingsPageCustomizationState extends State<SettingsPageCustomization> {
                       min: 8.0,
                       max: 24.0,
                       onChanged: (double val) {
-                        setState(() {
-                          DatabaseManager.set("windowBorderRadius", val);
-                        });
+                        DatabaseManager.set("windowBorderRadius", val);
                       },
                       value: value,
                     ),

@@ -116,7 +116,7 @@ Widget appInfoPage(String title, Color accentColor, PackageManifest manifest) {
                 Container(
                   height: 16,
                 ),
-                Text(
+                const Text(
                   "Warning: You are running dahliaOS as root. Web runtime sandboxing is disabled.",
                 ),
                 Container(

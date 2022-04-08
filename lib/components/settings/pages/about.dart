@@ -19,7 +19,6 @@ import 'package:pangolin/components/settings/widgets/settings_card.dart';
 import 'package:pangolin/components/settings/widgets/settings_content_header.dart';
 import 'package:pangolin/utils/data/globals.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
-import 'package:pangolin/utils/theme/theme_manager.dart';
 
 class SettingsPageAbout extends StatelessWidget {
   const SettingsPageAbout({Key? key}) : super(key: key);
@@ -34,7 +33,7 @@ class SettingsPageAbout extends StatelessWidget {
               Container(
                 width: double.maxFinite,
                 height: 200,
-                color: ThemeManager.of(context).accentColorAlt,
+                color: context.theme.accent,
               ),
               Image.asset(
                 "assets/images/other/about-mask.png",
@@ -109,13 +108,13 @@ class SettingsPageAbout extends StatelessWidget {
                       ),
                       leading: const Icon(Icons.update),
                       trailing: ElevatedButton(
+                        onPressed: null,
                         child: Padding(
                           padding: ThemeConstants.buttonPadding,
-                          child: Text(
+                          child: const Text(
                             "Updates Disabled",
                           ),
                         ),
-                        onPressed: null,
                       ),
                     ),
                   ],

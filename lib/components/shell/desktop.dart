@@ -16,6 +16,7 @@ limitations under the License.
 
 import 'package:pangolin/components/desktop/wallpaper.dart';
 import 'package:pangolin/components/desktop/welcome_screen.dart';
+import 'package:pangolin/components/overlays/account_overlay.dart';
 import 'package:pangolin/components/overlays/launcher/compact_launcher_overlay.dart';
 import 'package:pangolin/components/overlays/launcher/launcher_overlay.dart';
 import 'package:pangolin/components/overlays/overview_overlay.dart';
@@ -23,6 +24,7 @@ import 'package:pangolin/components/overlays/power_overlay.dart';
 import 'package:pangolin/components/overlays/quick_settings/quick_settings_overlay.dart';
 import 'package:pangolin/components/overlays/search/search_overlay.dart';
 import 'package:pangolin/components/shell/shell.dart';
+import 'package:pangolin/utils/data/app_list.dart';
 import 'package:pangolin/utils/data/database_manager.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
@@ -70,6 +72,7 @@ class _DesktopState extends State<Desktop> {
               OverviewOverlay(),
               QuickSettingsOverlay(),
               PowerOverlay(),
+              AccountOverlay(),
             ],
           ),
         ),
@@ -86,6 +89,11 @@ class _DesktopState extends State<Desktop> {
           },
         );
       }
+
+      
+      //sort application list in alphabetical order
+      applications.sort((a, b) => a.packageName.compareTo(b.packageName));
+
     });
   }
 

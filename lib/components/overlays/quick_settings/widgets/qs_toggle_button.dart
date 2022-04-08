@@ -15,7 +15,6 @@ limitations under the License.
 */
 
 import 'package:pangolin/utils/extensions/extensions.dart';
-import 'package:pangolin/utils/theme/theme_manager.dart';
 
 // ignore: must_be_immutable
 class QsToggleButton extends StatefulWidget {
@@ -43,9 +42,11 @@ class QsToggleButton extends StatefulWidget {
 class _QsToggleButtonState extends State<QsToggleButton> {
   @override
   Widget build(BuildContext context) {
+    final theme = context.theme;
+
     final _color = widget.value == true
-        ? context.theme.primaryColor
-        : context.theme.backgroundColor.withOpacity(0.5);
+        ? theme.accent
+        : theme.backgroundColor.withOpacity(0.5);
 
     return SizedBox(
       height: 60,
@@ -66,9 +67,7 @@ class _QsToggleButtonState extends State<QsToggleButton> {
                 Icon(
                   widget.icon ?? Icons.wifi,
                   size: 20,
-                  color: _color.computeLuminance() > 0.4
-                      ? ColorsX.black
-                      : ColorsX.white,
+                  color: theme.computedForegroundColor(_color),
                 ),
                 const SizedBox(width: 12),
                 Column(
@@ -84,9 +83,7 @@ class _QsToggleButtonState extends State<QsToggleButton> {
                         style: TextStyle(
                           fontSize: 13,
                           fontWeight: FontWeight.w500,
-                          color: _color.computeLuminance() > 0.4
-                              ? ColorsX.black
-                              : ColorsX.white,
+                          color: theme.computedForegroundColor(_color),
                         ),
                       ),
                     ),
@@ -95,9 +92,7 @@ class _QsToggleButtonState extends State<QsToggleButton> {
                         widget.subtitle!,
                         style: TextStyle(
                           fontSize: 11,
-                          color: _color.computeLuminance() > 0.4
-                              ? ColorsX.black
-                              : ColorsX.white,
+                          color: theme.computedForegroundColor(_color),
                         ),
                       )
                     else
@@ -107,10 +102,8 @@ class _QsToggleButtonState extends State<QsToggleButton> {
                 const Spacer(),
                 VerticalDivider(
                   color: widget.value == true
-                      ? context.theme.backgroundColor.op(0.2)
-                      : ThemeManager.of(context)
-                          .foregroundColorOnSurface
-                          .op(0.2),
+                      ? theme.backgroundColor.op(0.2)
+                      : theme.surfaceForegroundColor.op(0.2),
                 ),
                 Material(
                   color: Colors.transparent,
@@ -123,9 +116,7 @@ class _QsToggleButtonState extends State<QsToggleButton> {
                       child: Icon(
                         Icons.chevron_right_rounded,
                         size: 20,
-                        color: _color.computeLuminance() > 0.4
-                            ? ColorsX.black
-                            : ColorsX.white,
+                        color: theme.computedForegroundColor(_color),
                       ),
                     ),
                   ),

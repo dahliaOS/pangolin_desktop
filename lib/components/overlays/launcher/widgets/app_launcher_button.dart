@@ -16,6 +16,7 @@ limitations under the License.
 
 import 'dart:io';
 
+import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:pangolin/utils/data/app_list.dart';
 import 'package:pangolin/utils/data/common_data.dart';
 import 'package:pangolin/utils/data/models/application.dart';
@@ -37,56 +38,55 @@ class _AppLauncherButtonState extends State<AppLauncherButton> {
   Widget build(BuildContext context) {
     final _customizationProvider =
         CustomizationProvider.of(context, listen: false);
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
+    return SizedBox(
+      height: 128,
+      width: 128,
       child: Material(
-        // Material widget to allow a HoverColor for each app
         color: Colors.transparent,
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: GestureDetector(
-            onSecondaryTap: () {
-              _customizationProvider.togglePinnedApp(application.packageName);
+          padding: const EdgeInsets.all(8),
+          child: InkWell(
+            onLongPress: () =>
+                _customizationProvider.togglePinnedApp(application.packageName),
+            onTap: () {
+              _launchApp(context);
             },
-            child: InkWell(
-              borderRadius: BorderRadius.circular(12),
-              hoverColor: CommonData.of(context).textColor().withOpacity(0.2),
-              focusColor: CommonData.of(context).textColor(),
-              onTap: () {
-                if (application.systemExecutable == true) {
-                  print(application.runtimeFlags.toString());
-                  Process.run(
-                    'io.dahliaos.web_runtime.dap',
-                    application.runtimeFlags,
-                  );
-                }
-                application.launch(context);
-              },
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  getAppIcon(
-                    application.systemExecutable,
-                    application.iconName,
-                    64,
+            borderRadius: CommonData.of(context).borderRadiusMedium,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                getAppIcon(
+                  application.systemExecutable,
+                  application.iconName,
+                  64,
+                ),
+                Text(
+                  application.name ?? "",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 17,
+                    color: CommonData.of(context).textColor(),
                   ),
-                  const SizedBox(
-                    height: 18,
-                  ),
-                  Text(
-                    application.name ?? "",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 17,
-                      color: CommonData.of(context).textColor(),
-                    ),
-                  )
-                ],
-              ),
+                )
+              ],
             ),
           ),
         ),
       ),
     );
+    
+  }
+
+  void _launchApp(BuildContext context) {
+    if (application.systemExecutable == true) {
+      if (kDebugMode) {
+        print(application.runtimeFlags.toString());
+      }
+      Process.run(
+        'io.dahliaos.web_runtime.dap',
+        application.runtimeFlags,
+      );
+    }
+    application.launch(context);
   }
 }

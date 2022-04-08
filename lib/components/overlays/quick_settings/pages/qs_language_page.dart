@@ -27,9 +27,9 @@ class QsLanguagePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const QsTitlebar(
-        title: "Languages",
-        trailing: [
+      appBar: QsTitlebar(
+        title: LSX.quicksettingsOverlay.quickControlsLanguageTitle,
+        trailing: const [
           QuickActionButton(
             leading: Icon(
               Icons.help_outline_rounded,
@@ -60,7 +60,7 @@ class QsLanguagePage extends StatelessWidget {
               subtitle: Text(Locales.supported[index].languageCode),
               onTap: () {
                 context.setLocale(Locales.supported[index]);
-                //Navigator.pop(context);
+                Navigator.pop(context);
               },
             );
           },
