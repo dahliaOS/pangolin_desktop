@@ -18,7 +18,6 @@ import 'package:pangolin/components/settings/models/settings_theme_data_model.da
 import 'package:pangolin/utils/data/common_data.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
-import 'package:pangolin/utils/theme/theme_manager.dart';
 
 class ThemeModeButton extends StatefulWidget {
   final ThemeModeDataModel model;
@@ -48,7 +47,7 @@ class _ThemeModeButtonState extends State<ThemeModeButton> {
           clipBehavior: Clip.antiAlias,
           decoration: BoxDecoration(
             color: (widget.model.darkMode == _customizationProvider.darkMode)
-                ? ThemeManager.of(context).accentColor
+                ? context.theme.accent
                 : Colors.transparent,
           ),
           child: Padding(
@@ -91,12 +90,7 @@ class _ThemeModeButtonState extends State<ThemeModeButton> {
                   style: Theme.of(context).textTheme.subtitle1?.copyWith(
                         color: widget.model.darkMode ==
                                 _customizationProvider.darkMode
-                            ? ThemeManager.of(context)
-                                        .accentColor
-                                        .computeLuminance() <
-                                    0.4
-                                ? Colors.white
-                                : Colors.black
+                            ? context.theme.foregroundColor
                             : null,
                       ),
                 ),

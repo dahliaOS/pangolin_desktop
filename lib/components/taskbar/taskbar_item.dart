@@ -112,6 +112,12 @@ class _TaskbarItemState extends State<TaskbarItem>
             contextMenu: ContextMenu(
               items: [
                 ContextMenuItem(
+                  icon: Icons.info_outline_rounded,
+                  title: _app.name ?? "Error",
+                  onTap: () {},
+                  shortcut: "",
+                ),
+                ContextMenuItem(
                   icon: Icons.push_pin_outlined,
                   title: _customizationProvider.pinnedApps
                           .contains(_app.packageName)
@@ -122,6 +128,14 @@ class _TaskbarItemState extends State<TaskbarItem>
                   },
                   shortcut: "",
                 ),
+                if (appIsRunning)
+                  ContextMenuItem(
+                    icon: Icons.close_outlined,
+                    title: "Close Window",
+                    onTap: () => WmAPI.of(context)
+                        .popWindowEntry(entry!.registry.info.id),
+                    shortcut: "",
+                  ),
               ],
             ),
             child: GestureDetector(

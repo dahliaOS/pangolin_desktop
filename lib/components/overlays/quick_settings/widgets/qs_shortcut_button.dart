@@ -37,9 +37,7 @@ class _QsShortcutButtonState extends State<QsShortcutButton> {
     return Padding(
       padding: const EdgeInsets.only(right: 8.0),
       child: Material(
-        color: context.theme.darkMode
-            ? ColorsX.black.op(0.5)
-            : ColorsX.white.op(0.5),
+        color: context.theme.backgroundColor.op(0.5),
         clipBehavior: Clip.antiAlias,
         borderRadius: BorderRadius.circular(16),
         child: InkWell(

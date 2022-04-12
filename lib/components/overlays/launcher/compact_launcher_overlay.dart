@@ -72,7 +72,6 @@ class _CompactLauncherOverlayState extends State<CompactLauncherOverlay>
   @override
   Widget build(BuildContext context) {
     final _customizationProvider = CustomizationProvider.of(context);
-    // _getTime(context);
     final Animation<double> _animation = CurvedAnimation(
       parent: ac,
       curve: CommonData.of(context).animationCurve(),
@@ -212,16 +211,10 @@ class CompactLauncher extends StatelessWidget {
               SizedBox(
                 height: 460,
                 width: 380,
-                child: Builder(
-                  builder: (context) {
-                    applications
-                        .sort((a, b) => a.packageName.compareTo(b.packageName));
-                    return ListView(
+                child: ListView(
                       children: applications
                           .map((Application e) => AppLauncherTile(e))
-                          .toList(),
-                    );
-                  },
+                      .toList(),
                 ),
               ),
             ],

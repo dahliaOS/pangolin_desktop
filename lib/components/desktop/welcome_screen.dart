@@ -1,6 +1,5 @@
 import 'package:pangolin/utils/data/database_manager.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
-import 'package:pangolin/utils/theme/theme_manager.dart';
 import 'package:pangolin/widgets/global/box/box_container.dart';
 
 class WelcomeScreen extends StatefulWidget {

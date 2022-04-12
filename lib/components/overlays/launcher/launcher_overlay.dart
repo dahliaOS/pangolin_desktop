@@ -15,7 +15,6 @@ limitations under the License.
 */
 
 import 'package:pangolin/components/overlays/launcher/widgets/app_launcher_button.dart';
-import 'package:pangolin/components/overlays/power_overlay.dart';
 import 'package:pangolin/components/overlays/search/search_overlay.dart';
 import 'package:pangolin/components/overlays/search/widgets/searchbar.dart';
 import 'package:pangolin/components/shell/shell.dart';
@@ -98,6 +97,7 @@ class _LauncherOverlayState extends State<LauncherOverlay>
       left: _customizationProvider.isTaskbarLeft ? 48 : 0,
       right: _customizationProvider.isTaskbarRight ? 48 : 0,
       child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
         onVerticalDragUpdate: (details) {
           if (details.delta.dy > 0.5) {
             ac.value = ac.value - details.delta.dy / 1200;
@@ -145,7 +145,7 @@ class _LauncherOverlayState extends State<LauncherOverlay>
                           const Search(),
                           LauncherCategories(controller: _controller),
                           LauncherGrid(controller: _controller),
-                          const LauncherPowerMenu(),
+                          const LauncherActionMenu(),
                         ],
                       ),
                     ],
@@ -322,21 +322,7 @@ class LauncherGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const double minWidth = 512;
     final double width = MediaQuery.of(context).size.width;
-    // Calculate horizontal padding moultiplier based off of window width
-    double horizontalWidgetPaddingMultiplier;
-    if (width < minWidth) {
-      // should have 0 horizontal padding if width smaller than `widget.minWidth`, so multiplier = 0
-      horizontalWidgetPaddingMultiplier = 0;
-    } else if (width < 1000) {
-      // between `widget.minWidth` and 1000, so set to the result of a function that calculates smooth transition for multiplier
-      // check https://www.desmos.com/calculator/lv1liilllb for a graph of this transition
-      horizontalWidgetPaddingMultiplier =
-          (width - minWidth) / (1000 - minWidth);
-    } else {
-      horizontalWidgetPaddingMultiplier = 1;
-    }
 
     final _applications = applications;
     final List<Application> _internet = [];
@@ -383,7 +369,7 @@ class LauncherGrid extends StatelessWidget {
     return Expanded(
       child: Padding(
         padding: EdgeInsets.symmetric(
-          horizontal: horizontalWidgetPaddingMultiplier * 200,
+          horizontal: width / 10,
         ),
         child: PageView.builder(
           physics: const NeverScrollableScrollPhysics(),
@@ -409,7 +395,10 @@ class LauncherGrid extends StatelessWidget {
                     ),
                   );
                 }
-                return AppLauncherButton(application);
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: AppLauncherButton(application),
+                );
               },
             );
           },
@@ -421,17 +410,16 @@ class LauncherGrid extends StatelessWidget {
 
 // Power Menu
 
-class LauncherPowerMenu extends StatefulWidget {
-  const LauncherPowerMenu({Key? key}) : super(key: key);
+class LauncherActionMenu extends StatefulWidget {
+  const LauncherActionMenu({Key? key}) : super(key: key);
 
   @override
-  _LauncherPowerMenuState createState() => _LauncherPowerMenuState();
+  _LauncherActionMenuState createState() => _LauncherActionMenuState();
 }
 
-class _LauncherPowerMenuState extends State<LauncherPowerMenu> {
+class _LauncherActionMenuState extends State<LauncherActionMenu> {
   @override
   Widget build(BuildContext context) {
-    final _shell = Shell.of(context);
 
     return Padding(
       padding: const EdgeInsets.all(50.0),
@@ -446,64 +434,53 @@ class _LauncherPowerMenuState extends State<LauncherPowerMenu> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Expanded(
-                  child: SizedBox(
-                    height: 32 + 16,
-                    child: InkWell(
-                      borderRadius: CommonData.of(context)
-                          .borderRadius(BorderRadiusType.medium),
-                      onTap: () async {
-                        _shell.dismissOverlay(LauncherOverlay.overlayId);
-                        await Future.delayed(const Duration(milliseconds: 150));
-                        _shell.showOverlay(
-                          PowerOverlay.overlayId,
-                          dismissEverything: false,
-                        );
-                        setState(() {});
-                      },
-                      mouseCursor: SystemMouseCursors.click,
-                      child: const Icon(
-                        Icons.power_settings_new,
-                        size: 28,
-                      ),
-                    ),
-                  ),
+                _launcherActionWidget(
+                  "Power Menu",
+                  Icons.power_settings_new_rounded,
+                  context,
+                  () => ActionManager.showPowerMenu(context),
                 ),
-                Expanded(
-                  child: SizedBox(
-                    height: 32 + 16,
-                    child: InkWell(
-                      borderRadius: CommonData.of(context)
-                          .borderRadius(BorderRadiusType.medium),
-                      onTap: () {},
-                      mouseCursor: SystemMouseCursors.click,
-                      child: const Icon(
-                        Icons.person,
-                        size: 28,
-                      ),
-                    ),
-                  ),
+                _launcherActionWidget(
+                  "Account Menu",
+                  Icons.person,
+                  context,
+                  () => ActionManager.showAccountMenu(context),
                 ),
-                Expanded(
-                  child: SizedBox(
-                    height: 32 + 16,
-                    child: InkWell(
-                      borderRadius: CommonData.of(context)
-                          .borderRadius(BorderRadiusType.medium),
-                      onTap: () {
-                        _shell.dismissEverything();
-                        WmAPI.of(context).openApp("io.dahlia.settings");
-                        setState(() {});
-                      },
-                      mouseCursor: SystemMouseCursors.click,
-                      child: const Icon(
-                        Icons.settings_outlined,
-                        size: 28,
-                      ),
-                    ),
-                  ),
+                _launcherActionWidget(
+                  "Settings",
+                  Icons.settings_outlined,
+                  context,
+                  //close launcher as well
+                  () => ActionManager.openSettings(context),
                 ),
               ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Expanded _launcherActionWidget(
+    String title,
+    IconData icon,
+    BuildContext context,
+    VoidCallback? onPressed,
+  ) {
+    return Expanded(
+      child: SizedBox(
+        height: 32 + 16,
+        child: Tooltip(
+          message: title,
+          verticalOffset: -64,
+          child: InkWell(
+            borderRadius:
+                CommonData.of(context).borderRadius(BorderRadiusType.medium),
+            onTap: onPressed,
+            mouseCursor: SystemMouseCursors.click,
+            child: Icon(
+              icon,
+              size: 28,
             ),
           ),
         ),

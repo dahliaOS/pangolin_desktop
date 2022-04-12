@@ -111,6 +111,7 @@ class AcrylicLayerPainter extends CustomPainter {
       canvas.drawColor(red.withOpacity(0.05), BlendMode.saturation);
       canvas.drawColor(green.withOpacity(0.05), BlendMode.saturation);
       canvas.drawColor(blue.withOpacity(0.05), BlendMode.saturation);
+      canvas.drawColor(Colors.black.withOpacity(0.2), BlendMode.darken);
     }
     darkMode
         ? canvas.drawColor(_darkModeColor, BlendMode.darken)

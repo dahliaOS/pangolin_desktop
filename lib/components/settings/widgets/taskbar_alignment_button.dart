@@ -18,7 +18,6 @@ import 'package:pangolin/components/settings/models/settings_taskbar_data_model.
 import 'package:pangolin/utils/data/common_data.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
-import 'package:pangolin/utils/theme/theme_manager.dart';
 
 class TaskbarAlignmentButton extends StatelessWidget {
   final TaskbarAlignmentModelData model;
@@ -47,7 +46,7 @@ class TaskbarAlignmentButton extends StatelessWidget {
           clipBehavior: Clip.antiAlias,
           decoration: BoxDecoration(
             color: isCentred == model.centred
-                ? ThemeManager.of(context).accentColor
+                ? context.theme.accent
                 : Colors.transparent,
           ),
           child: Padding(
@@ -122,12 +121,7 @@ class TaskbarAlignmentButton extends StatelessWidget {
                   model.label,
                   style: Theme.of(context).textTheme.subtitle1?.copyWith(
                         color: isCentred == model.centred
-                            ? ThemeManager.of(context)
-                                        .accentColor
-                                        .computeLuminance() <
-                                    0.4
-                                ? Colors.white
-                                : Colors.black
+                            ? context.theme.foregroundColor
                             : null,
                       ),
                 ),

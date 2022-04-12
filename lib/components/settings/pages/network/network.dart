@@ -23,7 +23,6 @@ import 'package:pangolin/components/settings/widgets/settings_content_header.dar
 import 'package:pangolin/components/settings/widgets/settings_page.dart';
 import 'package:pangolin/services/network_manager.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
-import 'package:pangolin/utils/theme/theme_manager.dart';
 
 class SettingsPageNetwork extends StatefulWidget {
   const SettingsPageNetwork({Key? key}) : super(key: key);

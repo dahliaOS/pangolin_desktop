@@ -55,9 +55,7 @@ class _QuickActionButtonState extends State<QuickActionButton> {
         width: widget.isCircular == true ? widget.size ?? 40 : null,
         child: Material(
           clipBehavior: Clip.antiAlias,
-          color: context.theme.darkMode
-              ? ColorsX.black.op(0.5)
-              : ColorsX.white.op(0.5),
+          color: context.theme.backgroundColor.op(0.5),
           borderRadius: BorderRadius.circular(32),
           child: InkWell(
             onTap: () => widget.onPressed?.call(),
@@ -68,8 +66,7 @@ class _QuickActionButtonState extends State<QuickActionButton> {
                     vertical: 8.0,
                   ),
               child: IconTheme.merge(
-                data: IconThemeData(
-                  color: context.theme.darkMode ? ColorsX.white : ColorsX.black,
+                data: const IconThemeData(
                   size: 18,
                 ),
                 child: DefaultTextStyle(

@@ -41,7 +41,6 @@ class BoxSurface extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool _darkMode = Theme.of(context).darkMode;
     return Container(
       width: width,
       height: height,
@@ -72,7 +71,7 @@ class BoxSurface extends StatelessWidget {
           side: outline
               ? BorderSide(
                   color:
-                      _darkMode ? ColorsX.white.op(0.1) : ColorsX.black.op(0.2),
+                      context.theme.backgroundColor.op(0.2),
                   width: 2,
                 )
               : BorderSide.none,

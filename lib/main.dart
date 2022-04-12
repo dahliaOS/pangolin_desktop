@@ -66,12 +66,6 @@ Future<void> main() async {
       saveLocale: false,
       child: MultiProvider(
         providers: [
-          /* ChangeNotifierProvider<PreferenceProvider>.value(
-            value: PreferenceProvider(),
-          ),
-          ChangeNotifierProvider<FeatureFlags>.value(
-            value: FeatureFlags(),
-          ), */
           ChangeNotifierProvider<IconProvider>.value(
             value: IconProvider(),
           ),
@@ -106,7 +100,6 @@ class Pangolin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      //debugShowCheckedModeBanner: false,
       home: const Desktop(),
       theme: theme(context),
       locale: context.locale,

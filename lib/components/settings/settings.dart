@@ -29,7 +29,6 @@ import 'package:pangolin/components/settings/pages/notifications.dart';
 import 'package:pangolin/components/settings/pages/sound.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/theme/theme.dart';
-import 'package:pangolin/utils/theme/theme_manager.dart';
 import 'package:provider/provider.dart';
 
 class Settings extends StatelessWidget {
@@ -69,6 +68,7 @@ class _SettingsHome extends StatefulWidget {
 class _SettingsHomeState extends State<_SettingsHome> {
   @override
   Widget build(BuildContext context) {
+    final theme = context.theme;
     return Consumer<_SettingsProvider>(
       builder: (context, provider, _) {
         return LayoutBuilder(
@@ -124,10 +124,8 @@ class _SettingsHomeState extends State<_SettingsHome> {
                                             onTap: !isTile
                                                 ? null
                                                 : () {
-                                                    setState(() {
                                                       provider.pageIndex =
                                                           index;
-                                                    });
                                                   },
                                             shape: RoundedRectangleBorder(
                                               borderRadius:
@@ -135,8 +133,7 @@ class _SettingsHomeState extends State<_SettingsHome> {
                                             ),
                                             tileColor: isTile
                                                 ? isSelected
-                                                    ? ThemeManager.of(context)
-                                                        .accentColorAlt
+                                                    ? theme.accent
                                                     : Colors.transparent
                                                 : Colors.transparent,
                                             contentPadding:
@@ -152,14 +149,8 @@ class _SettingsHomeState extends State<_SettingsHome> {
                                                           ? FontWeight.bold
                                                           : FontWeight.normal,
                                                       color: isSelected
-                                                          ? ThemeManager.of(
-                                                                    context,
-                                                                  )
-                                                                      .accentColorAlt
-                                                                      .computeLuminance() <
-                                                                  0.4
-                                                              ? Colors.white
-                                                              : Colors.black
+                                                          ? theme
+                                                              .foregroundColor
                                                           : null,
                                                     ),
                                                   )
@@ -175,14 +166,8 @@ class _SettingsHomeState extends State<_SettingsHome> {
                                                               : FontWeight
                                                                   .normal,
                                                           color: isSelected
-                                                              ? ThemeManager.of(
-                                                                        context,
-                                                                      )
-                                                                          .accentColorAlt
-                                                                          .computeLuminance() <
-                                                                      0.4
-                                                                  ? Colors.white
-                                                                  : Colors.black
+                                                              ? theme
+                                                                  .foregroundColor
                                                               : null,
                                                         ),
                                                       )
@@ -197,22 +182,14 @@ class _SettingsHomeState extends State<_SettingsHome> {
                                                     width: 40,
                                                     height: 40,
                                                     decoration: BoxDecoration(
-                                                      color: ThemeManager.of(
-                                                        context,
-                                                      ).accentColor,
+                                                      color: theme.accent,
                                                       shape: BoxShape.circle,
                                                     ),
                                                     child: Icon(
                                                       _settingsTiles[index]
                                                           .icon,
-                                                      color: ThemeManager.of(
-                                                                context,
-                                                              )
-                                                                  .accentColor
-                                                                  .computeLuminance() <
-                                                              0.4
-                                                          ? Colors.white
-                                                          : Colors.black,
+                                                      color:
+                                                          theme.foregroundColor,
                                                       size: 20,
                                                     ),
                                                   ),

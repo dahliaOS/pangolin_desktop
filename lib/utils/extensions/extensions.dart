@@ -29,19 +29,21 @@ typedef LSX = LocaleStrings;
 
 extension ThemeDataX on ThemeData {
   bool get darkMode => brightness == Brightness.dark;
-  Color get elementColor =>
-      darkMode ? const Color(0xff0a0a0a) : const Color(0xfffafafa);
-  Color get elementHoverColor => darkMode
-      ? const Color(0xff0a0a0a).withOpacity(0.2)
-      : const Color(0xfffafafa).withOpacity(0.2);
 
-  Color get textColor => darkMode ? ColorsX.white : ColorsX.black;
+  Color get textColor => darkMode ? Colors.white : Colors.black;
+
+  Color get accent => colorScheme.secondary;
+  Color get backgroundColor => darkMode ? Colors.black : Colors.white;
+  Color get foregroundColor =>
+      accent.computeLuminance() > 0.4 ? Colors.black : Colors.white;
+  Color get surfaceForegroundColor =>
+      iconTheme.color ?? (darkMode ? Colors.white : Colors.black);
+
+  Color computedForegroundColor(Color init) =>
+      init.computeLuminance() > 0.4 ? Colors.black : Colors.white;
 }
 
 extension ColorsX on Color {
-  static Color get white => const Color(0xfffafafa);
-  static Color get black => const Color(0xff0a0a0a);
-  static Color get transparent => Colors.transparent;
   Color op(double opacity) {
     return withOpacity(opacity);
   }
@@ -51,9 +53,6 @@ extension BuildContextX on BuildContext {
   ThemeData get theme => Theme.of(this);
 
   CommonData get commonData => CommonData.of(this);
-
-  Color get accentColor => theme.colorScheme.secondary;
-  Color get backgroundColor => theme.darkMode ? ColorsX.black : ColorsX.white;
 
   MediaQueryData get mediaQuery => MediaQuery.of(this);
   Size get mSize => mediaQuery.size;
@@ -98,4 +97,9 @@ extension CommonDataX on CommonData {
   BorderRadius get borderRadiusMedium => borderRadius(BorderRadiusType.medium);
   BorderRadius get borderRadiusBig => borderRadius(BorderRadiusType.big);
   BorderRadius get borderRadiusRound => borderRadius(BorderRadiusType.round);
+}
+
+mixin ThemeConstants {
+  static EdgeInsets get buttonPadding =>
+      const EdgeInsets.symmetric(horizontal: 4, vertical: 10);
 }

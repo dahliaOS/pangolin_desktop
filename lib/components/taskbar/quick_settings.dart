@@ -21,7 +21,6 @@ import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/other/date_time_manager.dart';
 import 'package:pangolin/utils/providers/connection_provider.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
-import 'package:pangolin/utils/theme/theme_manager.dart';
 
 class QuickSettingsButton extends StatelessWidget {
   const QuickSettingsButton({Key? key}) : super(key: key);
@@ -30,35 +29,41 @@ class QuickSettingsButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final _customizationProvider = CustomizationProvider.of(context);
     final _connectionProv = ConnectionProvider.of(context);
+    final theme = context.theme;
     return TaskbarElement(
       iconSize: 18,
       size: Size.fromWidth(
-        70 +
-            24 +
-            6 +
+        152 +
             (_connectionProv.wifi ? 26 : 0) +
-            (_connectionProv.bluetooth ? 26 : 0) +
-            26 +
-            26,
+            (_connectionProv.bluetooth ? 26 : 0),
       ),
       overlayID: QuickSettingsOverlay.overlayId,
       child: Padding(
         padding: const EdgeInsets.only(left: 8.0, right: 4.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: items(context)
-            ..add(
-              SizedBox(
-                width: 74,
-                child: Padding(
-                  padding: _customizationProvider.isTaskbarHorizontal
-                      ? const EdgeInsets.symmetric(horizontal: 8.0)
-                      : const EdgeInsets.symmetric(vertical: 8.0),
-                  child: ValueListenableBuilder<bool>(
-                    valueListenable: Shell.of(context)
-                        .getShowingNotifier(QuickSettingsOverlay.overlayId),
-                    builder: (context, showing, child) =>
-                        ValueListenableBuilder(
+        child: ValueListenableBuilder<bool>(
+          valueListenable: Shell.of(context)
+              .getShowingNotifier(QuickSettingsOverlay.overlayId),
+          builder: (context, showing, child) => Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: items(context)
+              ..addAll([
+                Container(
+                  width: 2,
+                  height: 16,
+                  decoration: BoxDecoration(
+                    color: showing
+                        ? theme.foregroundColor
+                        : theme.surfaceForegroundColor,
+                    borderRadius: const BorderRadius.all(Radius.circular(4)),
+                  ),
+                ),
+                SizedBox(
+                  width: 74,
+                  child: Padding(
+                    padding: _customizationProvider.isTaskbarHorizontal
+                        ? const EdgeInsets.symmetric(horizontal: 8.0)
+                        : const EdgeInsets.symmetric(vertical: 8.0),
+                    child: ValueListenableBuilder(
                       valueListenable: DateTimeManager.getTimeNotifier()!,
                       builder: (BuildContext context, String time, child) {
                         return Text(
@@ -67,20 +72,16 @@ class QuickSettingsButton extends StatelessWidget {
                             fontWeight: FontWeight.w600,
                             fontSize: 13,
                             color: showing
-                                ? context.accentColor.computeLuminance() < 0.3
-                                    ? const Color(0xffffffff)
-                                    : const Color(0xff000000)
-                                : context.theme.darkMode
-                                    ? const Color(0xffffffff)
-                                    : const Color(0xff000000),
+                                ? theme.foregroundColor
+                                : theme.surfaceForegroundColor,
                           ),
                         );
                       },
                     ),
                   ),
                 ),
-              ),
-            ),
+              ]),
+          ),
         ),
       ),
     );
@@ -133,14 +134,6 @@ class QuickSettingsButton extends StatelessWidget {
         ),
       ),
       const SizedBox(width: 4),
-      Container(
-        width: 2,
-        height: 16,
-        decoration: BoxDecoration(
-          color: ThemeManager.of(context).foregroundColorOnAccentColor,
-          borderRadius: const BorderRadius.all(Radius.circular(4)),
-        ),
-      ),
     ];
   }
 }

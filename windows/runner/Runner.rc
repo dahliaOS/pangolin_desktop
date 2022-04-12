@@ -93,7 +93,7 @@ BEGIN
             VALUE "FileDescription", "Pangolin Desktop" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
             VALUE "InternalName", "pangolin_desktop" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2021 io.dahliaos.pangolin_desktop All rights reserved." "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2022 io.dahliaos.pangolin_desktop All rights reserved." "\0"
             VALUE "OriginalFilename", "pangolin_desktop.exe" "\0"
             VALUE "ProductName", "pangolin_desktop" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"

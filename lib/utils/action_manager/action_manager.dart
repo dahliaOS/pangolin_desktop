@@ -18,6 +18,7 @@ limitations under the License.
 
 import 'dart:io';
 
+import 'package:pangolin/components/overlays/account_overlay.dart';
 import 'package:pangolin/components/overlays/launcher/compact_launcher_overlay.dart';
 import 'package:pangolin/components/overlays/launcher/launcher_overlay.dart';
 import 'package:pangolin/components/overlays/power_overlay.dart';
@@ -36,6 +37,18 @@ class ActionManager {
     await Future.delayed(CommonData.of(context).animationDuration());
     shell.showOverlay(
       PowerOverlay.overlayId,
+      dismissEverything: false,
+    );
+    // ignore: invalid_use_of_protected_member
+    ScaffoldMessenger.of(context).setState(() {});
+  }
+
+  static Future<void> showAccountMenu(BuildContext context) async {
+    final shell = Shell.of(context, listen: false);
+    shell.dismissEverything();
+    await Future.delayed(CommonData.of(context).animationDuration());
+    shell.showOverlay(
+      AccountOverlay.overlayId,
       dismissEverything: false,
     );
     // ignore: invalid_use_of_protected_member
@@ -81,4 +94,8 @@ class ActionManager {
   }
 
   static void suspend() {}
+
+  static void lock() {}
+
+  static void logout() {}
 }

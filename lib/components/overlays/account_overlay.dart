@@ -23,16 +23,16 @@ import 'package:pangolin/utils/data/globals.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/widgets/global/box/box_container.dart';
 
-class PowerOverlay extends ShellOverlay {
-  static const String overlayId = "power";
+class AccountOverlay extends ShellOverlay {
+  static const String overlayId = "account";
 
-  PowerOverlay({Key? key}) : super(key: key, id: overlayId);
+  AccountOverlay({Key? key}) : super(key: key, id: overlayId);
 
   @override
-  _PowerOverlayState createState() => _PowerOverlayState();
+  _AccountOverlayState createState() => _AccountOverlayState();
 }
 
-class _PowerOverlayState extends State<PowerOverlay>
+class _AccountOverlayState extends State<AccountOverlay>
     with SingleTickerProviderStateMixin, ShellOverlayState {
   late AnimationController ac;
 
@@ -106,16 +106,16 @@ class _PowerOverlayState extends State<PowerOverlay>
                           padding: const EdgeInsets.all(24.0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
+                            children: const [
                               Text(
-                                LSX.powerOverlay.title,
-                                style: const TextStyle(
+                                "Account Menu",
+                                style: TextStyle(
                                   fontSize: 24,
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
-                              const SizedBox(height: 12),
-                              Text(LSX.powerOverlay.subtitle),
+                              SizedBox(height: 12),
+                              Text("Choose what to do as user"),
                             ],
                           ),
                         ),
@@ -128,23 +128,24 @@ class _PowerOverlayState extends State<PowerOverlay>
                             padding: const EdgeInsets.all(16.0),
                             child: Column(
                               children: [
-                                _powerMenuButton(
-                                  LSX.powerOverlay.poweroff,
-                                  Icons.power_settings_new_rounded,
+                                _accountMenuButton(
+                                  "Sign out",
+                                  Icons.logout_rounded,
                                   context,
-                                  onPressed: () => ActionManager.powerOff(),
+                                  onPressed: () => ActionManager.logout(),
                                 ),
-                                _powerMenuButton(
-                                  LSX.powerOverlay.sleep,
-                                  Icons.brightness_4_outlined,
+                                _accountMenuButton(
+                                  "Lock",
+                                  Icons.lock_outline,
                                   context,
-                                  onPressed: () => ActionManager.suspend(),
+                                  onPressed: () => ActionManager.lock(),
                                 ),
-                                _powerMenuButton(
-                                  LSX.powerOverlay.restart,
-                                  Icons.replay_rounded,
+                                _accountMenuButton(
+                                  "Account Settings",
+                                  Icons.settings_outlined,
                                   context,
-                                  onPressed: () => ActionManager.reboot(),
+                                  onPressed: () =>
+                                      ActionManager.openSettings(context),
                                 ),
                               ],
                             ),
@@ -162,7 +163,7 @@ class _PowerOverlayState extends State<PowerOverlay>
     );
   }
 
-  Padding _powerMenuButton(
+  Padding _accountMenuButton(
     String title,
     IconData icon,
     BuildContext context, {
@@ -190,8 +191,7 @@ class _PowerOverlayState extends State<PowerOverlay>
                   const SizedBox(width: 12),
                   Text(
                     title,
-                    style:
-                        context.theme.textTheme.button?.copyWith(
+                    style: context.theme.textTheme.button?.copyWith(
                       fontSize: 16,
                       color: context.theme.foregroundColor,
                     ),
