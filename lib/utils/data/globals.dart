@@ -15,7 +15,6 @@ limitations under the License.
 */
 
 import 'dart:io';
-
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
@@ -90,7 +89,7 @@ List<String> wallpapers = [
   "assets/images/wallpapers/modern.png",
   "assets/images/wallpapers/modern_dark.png",
   "assets/images/wallpapers/wood.jpg",
-  "assets/images/wallpapers/beach.jpg",
+  "assets/images/wallpapers/beach.jpg"
 ];
 
 Future<BingWallpaper> getBingWallpaper() async {
