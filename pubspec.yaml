@@ -81,7 +81,7 @@ dependencies:
   flag: ^6.0.0
 
 dev_dependencies:
-  lint: ^1.8.1
+  lint: ^1.8.2
 #  flutter_test:
 #    sdk: flutter
 #  integration_test:
