@@ -20,7 +20,7 @@ dependencies:
     git:
       url: https://github.com/dahliaOS/clock.git
 
-  easy_localization: ^3.0.0
+  easy_localization: ^3.0.1
 
   files:
     git:

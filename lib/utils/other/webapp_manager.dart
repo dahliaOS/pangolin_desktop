@@ -60,7 +60,11 @@ Widget webAppManagerHomePage() {
             "Code editing. Redefined.",
             "dev.vscode.app.json",
           ),
-          webApp("Google", "Google Search", "com.google.search.json"),
+          webApp(
+            "Google",
+            "Google Search",
+            "com.google.search.json",
+          ),
           webApp(
             "Townscaper",
             "City builder game",
