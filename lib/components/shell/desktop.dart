@@ -56,11 +56,10 @@ class _DesktopState extends State<Desktop> {
     },
   );
 
-
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       //Desktop.wmController.addWindowEntry(wallpaperEntry.newInstance());
       Desktop.wmController.addWindowEntry(
         shellEntry.newInstance(
@@ -79,7 +78,7 @@ class _DesktopState extends State<Desktop> {
       );
       // ignore: avoid_print
       print("Initilized Desktop Shell");
-      
+
       if (DatabaseManager.get("initialStart")) {
         showDialog(
           barrierColor: Colors.transparent,
@@ -90,10 +89,8 @@ class _DesktopState extends State<Desktop> {
         );
       }
 
-      
       //sort application list in alphabetical order
       applications.sort((a, b) => a.packageName.compareTo(b.packageName));
-
     });
   }
 

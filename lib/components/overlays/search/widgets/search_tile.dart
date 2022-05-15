@@ -57,7 +57,9 @@ class _SearchTileState extends State<SearchTile> {
           if (application.systemExecutable == true) {
             print(application.runtimeFlags.toString());
             Process.run(
-                'io.dahliaos.web_runtime.dap', application.runtimeFlags);
+              'io.dahliaos.web_runtime.dap',
+              application.runtimeFlags,
+            );
           }
           application.launch(context);
         },

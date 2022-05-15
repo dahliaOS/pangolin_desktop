@@ -46,7 +46,6 @@ class Taskbar extends StatefulWidget {
 class _TaskbarState extends State<Taskbar> {
   @override
   Widget build(BuildContext context) {
-    final _shell = Shell.of(context);
     final _customizationProvider = CustomizationProvider.of(context);
     final List<String> _pinnedApps = _customizationProvider.pinnedApps;
     final List<String> _taskbarApps = _pinnedApps.toList()

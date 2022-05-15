@@ -45,7 +45,6 @@ class _WallpaperPickerState extends State<WallpaperPicker>
     final _controller = TextEditingController();
     final List<String> _recentWallpapers = List.from(
       _customizationProvider.recentWallpapers.reversed,
-      growable: true,
     );
     return GestureDetector(
       onTap: () => Navigator.pop(context),

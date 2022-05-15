@@ -12,7 +12,7 @@ class SearchProvider extends ChangeNotifier {
 
   // Initial Values
 
-  List<String> _recentSearchResults = List.from([], growable: true);
+  List<String> _recentSearchResults = List.from([]);
   String _searchQueryCache = '';
 
   // Getters
@@ -41,6 +41,6 @@ class SearchProvider extends ChangeNotifier {
 
   void loadData() {
     //recentSearchResults =
-       // List.castFrom(DatabaseManager.get("recentSearchResults"));
+    // List.castFrom(DatabaseManager.get("recentSearchResults"));
   }
 }

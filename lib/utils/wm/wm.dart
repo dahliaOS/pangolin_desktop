@@ -1,3 +1,3 @@
-export 'package:utopia_wm/wm_new.dart';
+export 'package:utopia_wm/wm.dart';
 export 'hierarchy.dart';
 export 'properties.dart';

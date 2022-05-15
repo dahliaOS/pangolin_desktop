@@ -28,7 +28,7 @@ class CustomizationProvider extends ChangeNotifier {
       "io.dahlia.media",
     ],
   );
-  List<String> _recentWallpapers = List.from([], growable: true);
+  List<String> _recentWallpapers = List.from([]);
 
   double _taskbarPosition = 2;
 

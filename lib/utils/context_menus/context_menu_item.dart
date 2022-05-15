@@ -13,7 +13,7 @@ limitations under the License.
 
 import 'package:flutter/material.dart';
 import 'package:pangolin/utils/wm/wm_api.dart';
-import 'package:utopia_wm/wm_new.dart';
+import 'package:utopia_wm/wm.dart';
 
 class ContextMenuItem extends StatelessWidget {
   const ContextMenuItem({
