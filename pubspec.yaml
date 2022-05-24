@@ -7,7 +7,7 @@ environment:
   sdk: ">=2.17.0-0 <3.0.0"
 
 dependencies:
-  animations: ^2.0.2
+  animations: ^2.0.3
 
   battery_plus: ^2.0.1
 
@@ -20,7 +20,7 @@ dependencies:
     git:
       url: https://github.com/dahliaOS/clock.git
 
-  easy_localization: ^3.0.1
+  easy_localization: ^3.0.2-dev
 
   files:
     git:
