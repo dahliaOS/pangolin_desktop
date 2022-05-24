@@ -15,6 +15,7 @@ limitations under the License.
 */
 
 import 'package:flutter/services.dart';
+import 'package:pangolin/components/shell/effects.dart';
 import 'package:pangolin/utils/context_menus/context_menu.dart';
 import 'package:pangolin/utils/context_menus/context_menu_item.dart';
 import 'package:pangolin/utils/context_menus/core/context_menu_region.dart';
@@ -23,6 +24,8 @@ import 'package:pangolin/utils/providers/customization_provider.dart';
 import 'package:pangolin/utils/wm/wm.dart';
 
 class PangolinWindowToolbar extends StatefulWidget {
+  static const double dockEdgeSize = 40;
+
   const PangolinWindowToolbar({
     Key? key,
     required this.barColor,
@@ -40,9 +43,11 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
   SystemMouseCursor _cursor = SystemMouseCursors.move;
   // ignore: unused_field
   late DragUpdateDetails _lastDetails;
+  WindowDock? _draggingDock;
 
   @override
   Widget build(BuildContext context) {
+    final hierarchy = WindowHierarchy.of(context);
     final properties = WindowPropertyRegistry.of(context);
     final layout = LayoutState.of(context);
     final fgColor = !context.theme.darkMode ? Colors.grey[900]! : Colors.white;
@@ -199,6 +204,10 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
                           });
                         },
                         onPanStart: (details) {
+                          _draggingDock = WindowDock.none;
+                          final layer = EffectsLayer.of(context);
+                          layer?.startDockEffect(layout);
+
                           if (layout.dock != WindowDock.none) {
                             layout.dock = WindowDock.none;
                             layout.position = details.globalPosition +
@@ -211,7 +220,12 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
                         onDoubleTap: () => onDoubleTap(layout),
                         onPanUpdate: (details) =>
                             onDrag(details, properties, layout),
-                        onPanEnd: onDragEnd,
+                        onPanEnd: (details) => onDragEnd(
+                          details,
+                          hierarchy,
+                          properties,
+                          layout,
+                        ),
                       ),
                     ),
                   ),
@@ -249,41 +263,13 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
       _cursor = SystemMouseCursors.move;
     });
     _lastDetails = details;
-    /* final hierarchy = context.read<WindowHierarchyState>();
-    final docked = entry.maximized || layout.dock != WindowDock.NORMAL;
-    double dockedToolbarOffset;
-
-    switch (layout.dock) {
-      case WindowDock.TOP:
-      case WindowDock.TOP_LEFT:
-      case WindowDock.TOP_RIGHT:
-      case WindowDock.LEFT:
-      case WindowDock.RIGHT:
-        dockedToolbarOffset = 0;
-        break;
-      case WindowDock.BOTTOM:
-      case WindowDock.BOTTOM_LEFT:
-      case WindowDock.BOTTOM_RIGHT:
-        dockedToolbarOffset =
-            hierarchy.wmRect.top + hierarchy.wmRect.height / 2;
-        break;
-      case WindowDock.NORMAL:
-      default:
-        dockedToolbarOffset = 0;
-        break;
+    final WindowDock dock =
+        _getDockForPosition(hierarchy.wmBounds, details.globalPosition);
+    if (_draggingDock != dock) {
+      _draggingDock = dock;
+      final layer = EffectsLayer.of(context);
+      layer?.updateDockEffect(dock);
     }
-
-    Rect base = Rect.fromLTWH(
-      docked
-          ? details.globalPosition.dx - entry.windowRect.width / 2
-          : entry.windowRect.left,
-      docked ? dockedToolbarOffset : entry.windowRect.top,
-      entry.windowRect.width,
-      entry.windowRect.height,
-    );
-    hierarchy.requestWindowFocus(entry);
-    entry.maximized = false;
-    layout.dock = WindowDock.NORMAL; */
 
     layout.position += details.delta;
     layout.position = Offset(
@@ -296,58 +282,78 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
     setState(() {});
   }
 
-  void onDragEnd(DragEndDetails details) {
+  WindowDock _getDockForPosition(Rect bounds, Offset position) {
+    final Rect topLeft = Rect.fromLTWH(
+      bounds.left,
+      bounds.top,
+      PangolinWindowToolbar.dockEdgeSize,
+      PangolinWindowToolbar.dockEdgeSize,
+    );
+    final Rect left = Rect.fromLTWH(
+      bounds.left,
+      bounds.top + PangolinWindowToolbar.dockEdgeSize,
+      PangolinWindowToolbar.dockEdgeSize,
+      bounds.height - PangolinWindowToolbar.dockEdgeSize * 2,
+    );
+    final Rect bottomLeft = Rect.fromLTWH(
+      bounds.left,
+      bounds.bottom - PangolinWindowToolbar.dockEdgeSize,
+      PangolinWindowToolbar.dockEdgeSize,
+      PangolinWindowToolbar.dockEdgeSize,
+    );
+    final Rect topRight = Rect.fromLTWH(
+      bounds.right - PangolinWindowToolbar.dockEdgeSize,
+      bounds.top,
+      PangolinWindowToolbar.dockEdgeSize,
+      PangolinWindowToolbar.dockEdgeSize,
+    );
+    final Rect right = Rect.fromLTWH(
+      bounds.right - PangolinWindowToolbar.dockEdgeSize,
+      bounds.top + PangolinWindowToolbar.dockEdgeSize,
+      PangolinWindowToolbar.dockEdgeSize,
+      bounds.height - PangolinWindowToolbar.dockEdgeSize * 2,
+    );
+    final Rect bottomRight = Rect.fromLTWH(
+      bounds.right - PangolinWindowToolbar.dockEdgeSize,
+      bounds.bottom - PangolinWindowToolbar.dockEdgeSize,
+      PangolinWindowToolbar.dockEdgeSize,
+      PangolinWindowToolbar.dockEdgeSize,
+    );
+    final Rect maximized = Rect.fromLTWH(
+      bounds.left + PangolinWindowToolbar.dockEdgeSize,
+      bounds.top,
+      bounds.width - PangolinWindowToolbar.dockEdgeSize * 2,
+      PangolinWindowToolbar.dockEdgeSize,
+    );
+
+    if (topLeft.contains(position)) return WindowDock.topLeft;
+    if (left.contains(position)) return WindowDock.left;
+    if (bottomLeft.contains(position)) return WindowDock.bottomLeft;
+
+    if (topRight.contains(position)) return WindowDock.topRight;
+    if (right.contains(position)) return WindowDock.right;
+    if (bottomRight.contains(position)) return WindowDock.bottomRight;
+
+    if (maximized.contains(position)) return WindowDock.maximized;
+
+    return WindowDock.none;
+  }
+
+  void onDragEnd(
+    DragEndDetails details,
+    WindowHierarchyController hierarchy,
+    WindowPropertyRegistry properties,
+    LayoutState layout,
+  ) {
     setState(() {
       _cursor = SystemMouseCursors.click;
     });
-    /* final entry = context.read<WindowEntry>();
-    final rect = context.read<WindowHierarchyState>().wmRect;
-    final topEdge = _lastDetails.globalPosition.dy <= rect.top + 2;
-    final leftEdge = _lastDetails.globalPosition.dx <= rect.left + 2;
-    final rightEdge = _lastDetails.globalPosition.dx >= rect.right - 2;
-
-    if (topEdge && _lastDetails.globalPosition.dx <= rect.left + 2 ||
-        _lastDetails.globalPosition.dy <= rect.top + 50 && leftEdge) {
-      entry.windowDock = WindowDock.TOP_LEFT;
-      return;
-    }
-
-    if (topEdge && _lastDetails.globalPosition.dx >= rect.right - 50 ||
-        _lastDetails.globalPosition.dy <= rect.top + 50 && rightEdge) {
-      entry.windowDock = WindowDock.TOP_RIGHT;
-      return;
-    }
-
-    if (topEdge && _lastDetails.globalPosition.dx <= rect.left + 2 ||
-        _lastDetails.globalPosition.dy <= rect.top + 50 && leftEdge) {
-      entry.windowDock = WindowDock.TOP_LEFT;
-      return;
-    }
-
-    if (leftEdge && _lastDetails.globalPosition.dy >= rect.bottom - 50) {
-      entry.windowDock = WindowDock.BOTTOM_LEFT;
-      return;
-    }
-
-    if (rightEdge && _lastDetails.globalPosition.dy >= rect.bottom - 50) {
-      entry.windowDock = WindowDock.BOTTOM_RIGHT;
-      return;
-    }
-
-    if (topEdge) {
-      entry.maximized = true;
-      return;
-    }
-
-    if (leftEdge) {
-      entry.windowDock = WindowDock.LEFT;
-      return;
-    }
-
-    if (rightEdge) {
-      entry.windowDock = WindowDock.RIGHT;
-      return;
-    } */
+    final WindowDock dock =
+        _getDockForPosition(hierarchy.wmBounds, _lastDetails.globalPosition);
+    layout.dock = dock;
+    final layer = EffectsLayer.of(context);
+    layer?.endDockEffect();
+    _draggingDock = null;
   }
 
   void onDoubleTap(LayoutState layout) {
