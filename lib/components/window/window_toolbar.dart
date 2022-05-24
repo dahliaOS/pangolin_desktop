@@ -403,11 +403,8 @@ class WindowToolbarButton extends StatelessWidget {
 class _ToolbarIcons {
   _ToolbarIcons._();
 
-  static const _kFontFam = 'CustomIcons';
-  static const _kFontPkg = 'utopia_wm';
+  static const String _kFontFam = 'CustomIcons';
 
-  static const IconData maximize =
-      IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData minimize =
-      IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData maximize = IconData(0xe800, fontFamily: _kFontFam);
+  static const IconData minimize = IconData(0xe801, fontFamily: _kFontFam);
 }
