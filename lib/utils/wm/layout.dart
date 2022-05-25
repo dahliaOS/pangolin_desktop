@@ -136,10 +136,14 @@ class _WindowLayoutBuilder extends StatefulWidget {
 class _WindowLayoutBuilderState extends State<_WindowLayoutBuilder>
     with TickerProviderStateMixin {
   late AnimationController _controller;
+
   late Rect _rect = window.layoutState.rect;
+  late Rect _actualRect = _getWindowRect();
   late WindowDock _dock = window.layoutState.dock;
   late bool _fullscreen = window.layoutState.fullscreen;
-  late final RectTween _rectTween = RectTween(begin: _getWindowRect());
+  late Size _mqSize = MediaQuery.of(context).size;
+
+  late final RectTween _rectTween = RectTween(begin: _actualRect);
 
   @override
   void initState() {
@@ -167,20 +171,35 @@ class _WindowLayoutBuilderState extends State<_WindowLayoutBuilder>
     }
 
     if (window.layoutState.rect != _rect) {
-      _rect = window.layoutState.rect;
-      _rectTween.begin = _rect;
+      _rectTween.begin = window.layoutState.rect;
       _rectTween.end = null;
       _controller.value = 0;
+      _rect = _rectTween.begin!;
+      _actualRect = _rectTween.begin!;
       return;
+    }
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_mqSize != MediaQuery.of(context).size) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        _mqSize = MediaQuery.of(context).size;
+        _actualRect = _getWindowRect();
+        setState(() {});
+      });
     }
   }
 
   Future<void> _animateWindow() async {
     _rectTween.end = _getWindowRect();
     await _controller.animateTo(1);
+    _actualRect = _getWindowRect();
     _rectTween.begin = _rectTween.end;
     _controller.value = 0;
     _rectTween.end = null;
+    setState(() {});
   }
 
   @override
@@ -196,7 +215,8 @@ class _WindowLayoutBuilderState extends State<_WindowLayoutBuilder>
       );
 
   Rect _getWindowRect() {
-    final WindowHierarchyController hierarchy = WindowHierarchy.of(context);
+    final WindowHierarchyController hierarchy =
+        WindowHierarchy.of(context, listen: false);
 
     if (window.layoutState.fullscreen) {
       return hierarchy.displayBounds;
@@ -212,20 +232,22 @@ class _WindowLayoutBuilderState extends State<_WindowLayoutBuilder>
 
   @override
   Widget build(BuildContext context) {
-    final Rect rect = _getWindowRect();
-
     return AnimatedBuilder(
       animation: _controller,
       builder: (context, child) {
+        final Rect rect = _controller.value > 0
+            ? _rectTween.evaluate(animation)!
+            : _actualRect;
+
         return Positioned.fromRect(
-          rect: _rectTween.evaluate(animation)!,
+          rect: rect,
           child: child!,
         );
       },
       child: Offstage(
         offstage: window.layoutState.minimized,
         child: MediaQuery(
-          data: MediaQueryData(size: rect.size),
+          data: MediaQueryData(size: _actualRect.size),
           child: window.view,
         ),
       ),
