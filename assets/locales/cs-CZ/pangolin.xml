@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Global Strings -->
+    <string name="global.account.local">Místní účet</string>
+    <string name="global.account.user_accounts">Uživatelské účty</string>
+    <string name="global.on">Zapnuto</string>
+    <string name="global.off">Vypnuto</string>
+    <string name="global.settings">Nastavení</string>
+    <string name="global.coming_soon">Již brzy</string>
+    <string name="global.save">Uložit</string>
+    <string name="global.search">Hledat</string>
+    <!-- App Names-->
+    <string name="apps.authenticator">Autentikátor</string>
+    <string name="apps.calculator">Kalkulačka</string>
+    <string name="apps.clock">Hodiny</string>
+    <string name="apps.containers" comment="Do not actually translate this string, just write &quot;Graft&quot; as the translation">Graft</string>
+    <string name="apps.disks">Disky</string>
+    <string name="apps.files">Soubory</string>
+    <string name="apps.media">Média</string>
+    <string name="apps.music">Hudba</string>
+    <string name="apps.notes">Textový Editor</string>
+    <string name="apps.notesmobile">Poznámky (mobilní)</string>
+    <string name="apps.messages">Zprávy</string>
+    <string name="apps.rootterminal">Root Terminál</string>
+    <string name="apps.settings">Nastavení</string>
+    <string name="apps.systemlogs">Systémové záznamy</string>
+    <string name="apps.taskmanager">Správce Úloh</string>
+    <string name="apps.terminal">Terminál</string>
+    <string name="apps.themedemo">Demo Motivu</string>
+    <string name="apps.welcome">Vítejte</string>
+    <string name="apps.help">Pomoc</string>
+    <string name="apps.web">Webový Prohlížeč</string>
+    <!-- App Descriptions-->
+    <string name="apps.authenticator_description">Dvoufaktorové Ověření</string>
+    <string name="apps.calculator_description">Provádějte základní výpočty</string>
+    <string name="apps.clock_description">Mějte přehled o čase</string>
+    <string name="apps.containers_description">Spravujte kontejnery a virtuální stroje</string>
+    <string name="apps.disks_description">Spravujte disky a diskové oddíly</string>
+    <string name="apps.files_description">Procházejte složky a soubory</string>
+    <string name="apps.media_description">Procházejte a sledujte fotky a videa</string>
+    <string name="apps.music_description">Poslouchejte hudbu</string>
+    <string name="apps.notes_description">Vytvářejte a upravujte dokumenty</string>
+    <string name="apps.notesmobile_description">Poznámky (mobilní)</string>
+    <string name="apps.messages_description">Zprávy</string>
+    <string name="apps.rootterminal_description">Spustit příkazy jako superuživatel</string>
+    <string name="apps.settings_description">Upravujte nastavení systému</string>
+    <string name="apps.systemlogs_description">Procházejte záznamy a řešte problémy</string>
+    <string name="apps.taskmanager_description">Sledujte aktuální stav systému</string>
+    <string name="apps.terminal_description">Používejte příkazový řádek</string>
+    <string name="apps.themedemo_description">Interní ukázka motivů aplikací</string>
+    <string name="apps.welcome_description">Zobrazte si informace o dahliaOS</string>
+    <string name="apps.help_description">Často kladnené otázky a podpora</string>
+    <string name="apps.web_description">Používejte web</string>
+    <!-- Feature Not Implemented-->
+    <string name="misc.featurenotimplemented_title">Funkce dosud není implementována</string>
+    <string name="misc.featurenotimplemented_value">Tato funkce není momentálně dostupná na vaší verzi Pangolinu, informace o aktualizacích najdete na dahliaOS.io.</string>
+    <!-- Overlays -->
+    <!-- Overview -->
+    <string name="overviewOverlay.new_desktop">Nová plocha</string>
+    <!-- Power menu -->
+    <string name="powerOverlay.title">Nabídka napájení</string>
+    <string name="powerOverlay.subtitle">Vyberte, co chcete udělat</string>
+    <string name="powerOverlay.poweroff">Vypnout</string>
+    <string name="powerOverlay.sleep">Uspat</string>
+    <string name="powerOverlay.restart">Restartovat</string>
+    <!-- Search -->
+    <string name="searchOverlay.hint">Hledat v zařízench, aplikacích a na webu</string>
+    <string name="searchOverlay.results">Výsledky</string>
+    <string name="searchOverlay.recent">Nedávné</string>
+    <string name="searchOverlay.app">Aplikace</string>
+    <!-- Launcher -->
+    <string name="launcherOverlay.categories.all_applications">Všechny Aplikace</string>
+    <string name="launcherOverlay.categories.internet">Internet</string>
+    <string name="launcherOverlay.categories.media">Média</string>
+    <string name="launcherOverlay.categories.gaming">Hraní</string>
+    <string name="launcherOverlay.categories.development">Vývoj</string>
+    <string name="launcherOverlay.categories.office">Kancelář</string>
+    <string name="launcherOverlay.categories.system">Systém</string>
+    <!-- Quick Settings -->
+    <string name="quicksettingsOverlay.quick_controls">Rychlé ovládání</string>
+    <string name="quicksettingsOverlay.quick_controls.network.title">Síť</string>
+    <string name="quicksettingsOverlay.quick_controls.network.subtitle_connected">připojeno</string>
+    <string name="quicksettingsOverlay.quick_controls.network.subtitle_disconnected">odpojeno</string>
+    <string name="quicksettingsOverlay.quick_controls.bluetooth.title">Bluetooth</string>
+    <string name="quicksettingsOverlay.quick_controls.blueooth.subtitle_connected">připojeno</string>
+    <string name="quicksettingsOverlay.quick_controls.blueooth.subtitle_disconnected">odpojeno</string>
+    <string name="quicksettingsOverlay.quick_controls.airplane_mode.title">Režim letadlo</string>
+    <string name="quicksettingsOverlay.quick_controls.language.title">Jazyk</string>
+    <string name="quicksettingsOverlay.quick_controls.theme.title">Motiv</string>
+    <string name="quicksettingsOverlay.quick_controls.donotdisturb.title">Nerušit</string>
+    <string name="quicksettingsOverlay.shortcuts.title">Zkratky</string>
+    <string name="quicksettingsOverlay.shortcuts.new_event">Nová událost</string>
+    <string name="quicksettingsOverlay.shortcuts.alpha_build">Alfa verze</string>
+    <string name="quicksettingsOverlay.shortcuts.energy_mode">Režim výkonu</string>
+    <string name="quicksettingsOverlay.pages.network.title">Nastavení sítě</string>
+    <string name="quicksettingsOverlay.pages.theme.title">Nastavení motivu</string>
+    <!-- Wallpaper Picker -->
+    <string name="desktop.wallpaper_picker.gone">Chyba\nTento obrázek nelze použít</string>
+    <string name="desktop.wallpaper_picker.url_wallpaper.hint">Nastavit tapetu z URL</string>
+    <string name="desktop.wallpaper_picker.url_wallpaper.label">URL tapety</string>
+    <string name="desktop.wallpaper_picker.bing_wallpaper_button">Použít Bing pozadí</string>
+    <!-- Desktop Context Menu -->
+    <string name="desktop.desktop_context_menu.change_wallpaper">Změnit pozadí</string>
+    <string name="desktop.desktop_context_menu.settings">Nastavení</string>
+    <!-- Misc -->
+    <string name="desktop.misc.show_desktop">Zobrazit plochu</string>
+    <!-- Settings -->
+    <!-- Headers -->
+    <string name="settings.headers.connectivity">Připojení</string>
+    <string name="settings.headers.personalize">Přizpůsobení</string>
+    <string name="settings.headers.device">Zařízení &amp; aplikace</string>
+    <string name="settings.headers.system">Systém</string>
+    <!-- Network & internet -->
+    <string name="settings.pages.network.title">Síť &amp; internet</string>
+    <string name="settings.pages.network.subtitle">Wi-Fi, ethernet, využití dat</string>
+    <string name="settings.pages.network.wifi">Wi-Fi</string>
+    <string name="settings.pages.network.wifi_switch_tile.title">Wi-Fi</string>
+    <string name="settings.pages.network.wifi_switch_tile.subtitle_enabled">Wi-Fi je povolena</string>
+    <string name="settings.pages.network.wifi_switch_tile.subtitle_disabled">Wi-Fi je zakázána</string>
+    <string name="settings.pages.network.wifi_preferences_tile.title">Možnosti Wi-Fi</string>
+    <string name="settings.pages.network.wifi_preferences_tile.subtitle">Chytré Wi-Fi připojení, možnosti skenování</string>
+    <string name="settings.pages.network.wifi_saved_networks_tile.title">Uložené sítě</string>
+    <string name="settings.pages.network.wifi_saved_networks_tile.subtitle">%s sítí</string>
+    <string name="settings.pages.network.wifi_data_usage_tile.title">Využití dat přes Wi-Fi</string>
+    <string name="settings.pages.network.wifi_data_usage_tile.subtitle">Využití dat za tento měsíc</string>
+    <string name="settings.pages.network.ethernet">Ethernet</string>
+    <string name="settings.pages.network.ethernet_switch_tile.title">Ethernet</string>
+    <string name="settings.pages.network.ethernet_switch_tile.subtitle_enabled">Ethernet je povolen</string>
+    <string name="settings.pages.network.ethernet_switch_tile.subtitle_disabled">Ethernet je zakázán</string>
+    <string name="settings.pages.network.ethernet_data_usage_tile.title">Využití dat přes Wi-Fi</string>
+    <string name="settings.pages.network.ethernet_data_usage_tile.subtitle">Využití dat za tento měsíc</string>
+    <string name="settings.pages.network.network_options">Možnosti sítě</string>
+    <string name="settings.pages.network.network_options.vpn_tile.title">Virtuální privátní síť (VPN)</string>
+    <string name="settings.pages.network.network_options.vpn_tile.subtitle">Žádná</string>
+    <string name="settings.pages.network.network_options.vpn_tile.button">Možnosti VPN</string>
+    <string name="settings.pages.network.network_options.dns_tile.title">Soukromá DNS</string>
+    <string name="settings.pages.network.network_options.dns_tile.subtitle">Automatická</string>
+    <string name="settings.pages.network.network_options.dns_tile.button">Možnosti DNS</string>
+    <!-- Connected devices -->
+    <string name="settings.pages.connections.title">Připojená zařízení</string>
+    <string name="settings.pages.connections.subtitle">Bluetooth, tiskárny, USB zařízení</string>
+    <string name="settings.pages.connections.bluetooth">Bluetooth</string>
+    <string name="settings.pages.connections.bluetooth_switch_tile.title">Bluetooth</string>
+    <string name="settings.pages.connections.bluetooth_switch_tile.subtitle_enabled">Bluetooth je povoleno</string>
+    <string name="settings.pages.connections.bluetooth_switch_tile.subtitle_disabled">Bluetooth je zakázáno</string>
+    <string name="settings.pages.connections.bluetooth_file_transfer_tile.title">Soubory přijaté přes Bluetooth</string>
+    <string name="settings.pages.connections.phone_integration">Propojení s telefonem</string>
+    <string name="settings.pages.connections.phone_integration_tile.title">Propojení s telefonem</string>
+    <string name="settings.pages.connections.phone_integration_tile.subtitle">Propojení s telefonem je zakázáno</string>
+    <!-- Customization -->
+    <string name="settings.pages.customization.title">Přizpůsobení</string>
+    <string name="settings.pages.customization.subtitle">Přizpůsobte si svůj systém</string>
+    <string name="settings.pages.customization.theme">Motiv</string>
+    <string name="settings.pages.customization.theme_mode_light">Světlý</string>
+    <string name="settings.pages.customization.theme_mode_dark">Tmavý</string>
+    <string name="settings.pages.customization.theme_color_orange">Oranžový</string>
+    <string name="settings.pages.customization.theme_color_red">Červený</string>
+    <string name="settings.pages.customization.theme_color_green">Zelený</string>
+    <string name="settings.pages.customization.theme_color_blue">Modrý</string>
+    <string name="settings.pages.customization.theme_color_teal">Modrozelený</string>
+    <string name="settings.pages.customization.theme_color_pruple" comment="settings.pages.customization.theme_color_purple">Fialový</string>
+    <string name="settings.pages.customization.theme_color_aqua">Akvamarínový</string>
+    <string name="settings.pages.customization.theme_color_gold">Zlatý</string>
+    <string name="settings.pages.customization.theme_color_anthracite">Antracitová</string>
+    <string name="settings.pages.customization.taskbar_alignment">Zarovnání panelu úloh</string>
+    <string name="settings.pages.customization.taskbar_alignment_start">Počátek</string>
+    <string name="settings.pages.customization.taskbar_alignment_center">Střed</string>
+    <string name="settings.pages.customization.window_options">Možnosti okna</string>
+    <string name="settings.pages.customization.window_options_border_radius.title">Velikost okraje oken - %s</string>
+    <string name="settings.pages.customization.window_options_border_radius.subtitle">Změnit velikost okraje oken</string>
+    <string name="settings.pages.customization.window_options_colored_titlebars.title">Barevné vrcholy panelů</string>
+    <string name="settings.pages.customization.window_options_colored_titlebars.subtitle">Obarvěte si vrchol panelu vlastní barvou</string>
+    <string name="settings.pages.customization.window_options_transparent_colored_titlebars.title">Průhledné barevné vrcholy panelů</string>
+    <string name="settings.pages.customization.window_options_transparent_colored_titlebars.subtitle">Přidat průhlednost do barevných vrcholů panelů</string>
+    <!-- Display -->
+    <string name="settings.pages.display.title">Displej</string>
+    <string name="settings.pages.display.subtitle">Rozlišení, časový limit obrazovky, škálování</string>
+    <!-- Sound -->
+    <string name="settings.pages.sound.title">Zvuk</string>
+    <string name="settings.pages.sound.subtitle">Hlasitost, režim nerušit, zvuk spuštění</string>
+    <!-- Locale -->
+    <string name="settings.pages.locale.title">Lokalizace</string>
+    <string name="settings.pages.locale.subtitle">Jazyk, čas a datum, rozložení klávesnice</string>
+    <!-- Notifications -->
+    <string name="settings.pages.notifications.title">Oznámení</string>
+    <string name="settings.pages.notifications.subtitle">Zvuk oznámení, výběr aplikací</string>
+    <!-- Applications -->
+    <string name="settings.pages.applications.title">Aplikace</string>
+    <string name="settings.pages.applications.subtitle">Nainstalované aplikace, výchozí aplikace</string>
+    <!-- Developer options -->
+    <string name="settings.pages.developer_options.title">Vývojářské možnosti</string>
+    <string name="settings.pages.developer_options.subtitle">Testovací funkce, pokročilé možnosti</string>
+    <string name="settings.pages.developer_options.developer_mode_tile.title">Vývojářský režim</string>
+    <string name="settings.pages.developer_options.developer_mode_tile.subtitle">Aktivovat pokročilé ladící funkce</string>
+    <!-- About device -->
+    <string name="settings.pages.about.title">O zařízení</string>
+    <string name="settings.pages.about.subtitle">Verze systému, informace o zařízení</string>
+    <string name="settings.pages.about.system_information">Informace o systému</string>
+    <string name="settings.pages.about.system_information_environment">Prostředí</string>
+    <string name="settings.pages.about.system_information_architecture">Architektura</string>
+    <string name="settings.pages.about.system_information_desktop">Plocha</string>
+    <string name="settings.pages.about.software_update">Aktualizace softwaru</string>
+    <string name="settings.pages.about.software_update_tile.title">dahliaOS je aktuální - %s</string>
+    <string name="settings.pages.about.software_update_tile.subtitle">Poslední kontrola: %s</string>
+    <string name="settings.pages.about.software_update_tile.button">Zkontrolovat aktualizace</string>
+</resources>
