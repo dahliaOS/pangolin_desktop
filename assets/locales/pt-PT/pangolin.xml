@@ -32,23 +32,23 @@
     <string name="apps.web">Navegador de Internet</string>
     <!-- App Descriptions-->
     <string name="apps.authenticator_description">Autorização de dois fatores</string>
-    <string name="apps.calculator_description">Adição, Subtração, Multiplicação e Divisão</string>
-    <string name="apps.clock_description">Gerir hora, alarmes, cronómetros e relógios mundiais</string>
-    <string name="apps.containers_description">Gerir os seus contentores do sistema</string>
+    <string name="apps.calculator_description">Executar cálculos básicos</string>
+    <string name="apps.clock_description">Manter a noção do tempo</string>
+    <string name="apps.containers_description">Gerir contentores e máquinas virtuais</string>
     <string name="apps.disks_description">Gerir discos e partições</string>
     <string name="apps.files_description">Explorar ficheiros e pastas</string>
     <string name="apps.media_description">Explorar e assistir fotos e vídeos</string>
-    <string name="apps.music_description">Ouvir música local</string>
-    <string name="apps.notes_description">Editar ficheiros de texto locais</string>
+    <string name="apps.music_description">Ouvir música</string>
+    <string name="apps.notes_description">Criar e editar documentos</string>
     <string name="apps.notesmobile_description">Notas (Móvel)</string>
     <string name="apps.messages_description">Mensagens</string>
     <string name="apps.rootterminal_description">Executar comandos como Superutilizador</string>
     <string name="apps.settings_description">Ajustar definições do sistema</string>
-    <string name="apps.systemlogs_description">Ler registos do sistema</string>
-    <string name="apps.taskmanager_description">Gerir aplicações atualmente em execução</string>
+    <string name="apps.systemlogs_description">Ver e depurar problemas do software</string>
+    <string name="apps.taskmanager_description">Monitorar o desempenho do sistema</string>
     <string name="apps.terminal_description">Aceder à linha de comandos</string>
     <string name="apps.themedemo_description">Demonstração interna para temas da aplicação</string>
-    <string name="apps.welcome_description">Aplicação de boas-vindas</string>
+    <string name="apps.welcome_description">Ver informação acerca do dahliaOS</string>
     <string name="apps.help_description">F.A.Q. e Suporte</string>
     <string name="apps.web_description">Navegar na Web</string>
     <!-- Feature Not Implemented-->
@@ -95,7 +95,7 @@
     <string name="quicksettingsOverlay.pages.network.title">Definições de rede</string>
     <string name="quicksettingsOverlay.pages.theme.title">Definições de tema</string>
     <!-- Wallpaper Picker -->
-    <string name="desktop.wallpaper_picker.gone">Erro\nA imagem não existe mais</string>
+    <string name="desktop.wallpaper_picker.gone">Erro\nEssa imagem não pode ser usada</string>
     <string name="desktop.wallpaper_picker.url_wallpaper.hint">Definir papel de parede de URL</string>
     <string name="desktop.wallpaper_picker.url_wallpaper.label">URL do papel de parede</string>
     <string name="desktop.wallpaper_picker.bing_wallpaper_button">Usar papel de parede do Bing</string>
@@ -169,7 +169,9 @@
     <string name="settings.pages.customization.window_options_border_radius.title">Raio do contorno da janela - %s</string>
     <string name="settings.pages.customization.window_options_border_radius.subtitle">Alterar o raio do contorno da janela</string>
     <string name="settings.pages.customization.window_options_colored_titlebars.title">Barras de título coloridas</string>
-    <string name="settings.pages.customization.window_options_colored_titlebars.subtitle">Usar barras de título coloridas para as janelas</string>
+    <string name="settings.pages.customization.window_options_colored_titlebars.subtitle">Dar às barras de título das janelas uma cor de destaque personalizada</string>
+    <string name="settings.pages.customization.window_options_transparent_colored_titlebars.title">Barras de título transparentes e coloridas</string>
+    <string name="settings.pages.customization.window_options_transparent_colored_titlebars.subtitle">Adicionar transparência às barras de título coloridas</string>
     <!-- Display -->
     <string name="settings.pages.display.title">Ecrã</string>
     <string name="settings.pages.display.subtitle">Resolução, tempo limite de ecrã, escala</string>
