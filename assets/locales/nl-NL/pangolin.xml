@@ -32,23 +32,23 @@
     <string name="apps.web">Web Browser</string>
     <!-- App Descriptions-->
     <string name="apps.authenticator_description">Twee-staps Autorisatie</string>
-    <string name="apps.calculator_description">Optellen, aftrekken, vermenigvuldigen en delen</string>
-    <string name="apps.clock_description">Beheer tijd, alarmen, Stopwatches en Wereld Klokken</string>
-    <string name="apps.containers_description">Beheer uw Systeemcontainers</string>
-    <string name="apps.disks_description">Beheer schijven en partities</string>
-    <string name="apps.files_description">Blader door bestanden en mappen</string>
+    <string name="apps.calculator_description">Basisberekeningen uitvoeren</string>
+    <string name="apps.clock_description">Houd de tijd bij</string>
+    <string name="apps.containers_description">Beheer containers en virtuele machines</string>
+    <string name="apps.disks_description">Schijven en partities beheren</string>
+    <string name="apps.files_description">Door bestanden en mappen bladeren</string>
     <string name="apps.media_description">Blader en bekijk foto\'s en video\'s</string>
-    <string name="apps.music_description">Luister naar lokale muziek</string>
-    <string name="apps.notes_description">Bewerk lokale tekstbestanden</string>
+    <string name="apps.music_description">Luister naar muziek</string>
+    <string name="apps.notes_description">Creëer en bewerk documenten</string>
     <string name="apps.notesmobile_description">Notities (Mobiel)</string>
     <string name="apps.messages_description">Berichten</string>
     <string name="apps.rootterminal_description">Voer opdrachten uit als Superuser</string>
     <string name="apps.settings_description">Systeeminstellingen aanpassen</string>
-    <string name="apps.systemlogs_description">Systeemlogboeken lezen</string>
-    <string name="apps.taskmanager_description">Toepassingen beheren die momenteel worden uitgevoerd</string>
-    <string name="apps.terminal_description">Toegang tot de opdrachtlijn</string>
+    <string name="apps.systemlogs_description">Bekijk en debug software problemen</string>
+    <string name="apps.taskmanager_description">Systeemprestaties monitoren</string>
+    <string name="apps.terminal_description">Gebruik de terminal</string>
     <string name="apps.themedemo_description">Interne demonstratie voor app thema\'s</string>
-    <string name="apps.welcome_description">Welkom Applicatie</string>
+    <string name="apps.welcome_description">Bekijk informatie over dahliaOS</string>
     <string name="apps.help_description">F.A.Q. en Ondersteuning</string>
     <string name="apps.web_description">Blader door het web</string>
     <!-- Feature Not Implemented-->
@@ -80,10 +80,10 @@
     <string name="quicksettingsOverlay.quick_controls">Snelle Bedieningen</string>
     <string name="quicksettingsOverlay.quick_controls.network.title">Netwerk</string>
     <string name="quicksettingsOverlay.quick_controls.network.subtitle_connected">verbonden</string>
-    <string name="quicksettingsOverlay.quick_controls.network.subtitle_disconnected">losgekoppeld</string>
+    <string name="quicksettingsOverlay.quick_controls.network.subtitle_disconnected">verbinding verbroken</string>
     <string name="quicksettingsOverlay.quick_controls.bluetooth.title">Bluetooth</string>
     <string name="quicksettingsOverlay.quick_controls.blueooth.subtitle_connected">verbonden</string>
-    <string name="quicksettingsOverlay.quick_controls.blueooth.subtitle_disconnected">losgekoppeld</string>
+    <string name="quicksettingsOverlay.quick_controls.blueooth.subtitle_disconnected">verbinding verbroken</string>
     <string name="quicksettingsOverlay.quick_controls.airplane_mode.title">Vliegtuig modus</string>
     <string name="quicksettingsOverlay.quick_controls.language.title">Taal</string>
     <string name="quicksettingsOverlay.quick_controls.theme.title">Thema</string>
@@ -95,7 +95,7 @@
     <string name="quicksettingsOverlay.pages.network.title">Netwerk instellingen</string>
     <string name="quicksettingsOverlay.pages.theme.title">Thema instellingen</string>
     <!-- Wallpaper Picker -->
-    <string name="desktop.wallpaper_picker.gone">Fout\nAfbeelding bestaat niet meer</string>
+    <string name="desktop.wallpaper_picker.gone">Fout\nDeze afbeelding kan niet worden gebruikt</string>
     <string name="desktop.wallpaper_picker.url_wallpaper.hint">Achtergrond instellen van URL</string>
     <string name="desktop.wallpaper_picker.url_wallpaper.label">Achtergrond URL</string>
     <string name="desktop.wallpaper_picker.bing_wallpaper_button">Gebruik Bing Achtergrond</string>
@@ -169,7 +169,9 @@
     <string name="settings.pages.customization.window_options_border_radius.title">Venster rand radius - %s</string>
     <string name="settings.pages.customization.window_options_border_radius.subtitle">Wijzig de rand van het venster radius</string>
     <string name="settings.pages.customization.window_options_colored_titlebars.title">Gekleurde titelbalken</string>
-    <string name="settings.pages.customization.window_options_colored_titlebars.subtitle">Gebruik gekleurde titelbalken voor de vensters</string>
+    <string name="settings.pages.customization.window_options_colored_titlebars.subtitle">Geef venster titelbalken een aangepaste accentkleur</string>
+    <string name="settings.pages.customization.window_options_transparent_colored_titlebars.title">Transparante gekleurde titelbalken</string>
+    <string name="settings.pages.customization.window_options_transparent_colored_titlebars.subtitle">Voeg transparantie toe aan de gekleurde titelbalken</string>
     <!-- Display -->
     <string name="settings.pages.display.title">Scherm</string>
     <string name="settings.pages.display.subtitle">Resolutie, scherm time-out, schalen</string>
