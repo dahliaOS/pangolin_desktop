@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Global Strings -->
+    <string name="global.account.local">الحساب المحلي</string>
+    <string name="global.account.user_accounts">حسابات المستخدم</string>
+    <string name="global.on">تشغيل</string>
+    <string name="global.off">إيقاف</string>
+    <string name="global.settings">الإعدادات</string>
+    <string name="global.coming_soon">قادم قريبًا</string>
+    <string name="global.save">حفظ</string>
+    <string name="global.search">بحث</string>
+    <!-- App Names-->
+    <string name="apps.authenticator">المصادق</string>
+    <string name="apps.calculator">الآلة الحاسبة</string>
+    <string name="apps.clock">الساعة</string>
+    <string name="apps.containers" comment="Do not actually translate this string, just write &quot;Graft&quot; as the translation">الصناعة</string>
+    <string name="apps.disks">الأقراص</string>
+    <string name="apps.files">الملفات</string>
+    <string name="apps.media">المرئيات</string>
+    <string name="apps.music">الموسيقى</string>
+    <string name="apps.notes">محرر النصوص</string>
+    <string name="apps.notesmobile">الملاحظات(الهواتف)</string>
+    <string name="apps.messages">الرسائل</string>
+    <string name="apps.rootterminal">طرفية الجذر</string>
+    <string name="apps.settings">الإعدادات</string>
+    <string name="apps.systemlogs">سجلات النظام</string>
+    <string name="apps.taskmanager">مدير المهام</string>
+    <string name="apps.terminal">الترمينال</string>
+    <string name="apps.themedemo">السمات تجريبي</string>
+    <string name="apps.welcome">أهلا بك</string>
+    <string name="apps.help">مساعدة</string>
+    <string name="apps.web">متصفح الإنترنت</string>
+    <!-- App Descriptions-->
+    <string name="apps.authenticator_description">المصادقة الثنائية</string>
+    <string name="apps.calculator_description">إجراء الحسابات الأساسية</string>
+    <string name="apps.clock_description">تتبع الوقت</string>
+    <string name="apps.containers_description">إدارة الحاويات و الأجهزة الإفتراضية</string>
+    <string name="apps.disks_description">أدر الأقراص والأقسام</string>
+    <string name="apps.files_description">تصفح الملفات والمجلدات</string>
+    <string name="apps.media_description">تصفح و شاهد الصور و الفيديوهات</string>
+    <string name="apps.music_description">استمع إلى الموسيقى</string>
+    <string name="apps.notes_description">أنشئ و عدل المستندات</string>
+    <string name="apps.notesmobile_description">ملاحظات(الهاتف)</string>
+    <string name="apps.messages_description">الرسائل</string>
+    <string name="apps.rootterminal_description">تشغيل الأوامر كمستخدم خارق</string>
+    <string name="apps.settings_description">اضبط إعدادات النظام</string>
+    <string name="apps.systemlogs_description">اعرض مشاكل البرمجيات ونقِّحها</string>
+    <string name="apps.taskmanager_description">راقب أداء النظام</string>
+    <string name="apps.terminal_description">الوصول إلى سطر الأوامر</string>
+    <string name="apps.themedemo_description">مظاهر داخلية لسمات التطبيق</string>
+    <string name="apps.welcome_description">عرض المعلومات حول dahlia OS</string>
+    <string name="apps.help_description">الأسئلة الشائعة والدعم</string>
+    <string name="apps.web_description">تصفح الوب</string>
+    <!-- Feature Not Implemented-->
+    <string name="misc.featurenotimplemented_title">المِيزة غير منفذة</string>
+    <string name="misc.featurenotimplemented_value">هذه الميزة غير متوفرة حاليا في نسختك من Pangolin , يرجى زيارة dahliaOS.io للتحقق من التحديثات</string>
+    <!-- Overlays -->
+    <!-- Overview -->
+    <string name="overviewOverlay.new_desktop">مكتب جديد</string>
+    <!-- Power menu -->
+    <string name="powerOverlay.title">قائمة التشغيل</string>
+    <string name="powerOverlay.subtitle">إختر ماذا تريد فعله</string>
+    <string name="powerOverlay.poweroff">إيقاف التشغيل</string>
+    <string name="powerOverlay.sleep">وضع الراحة</string>
+    <string name="powerOverlay.restart">إعادة التشغيل</string>
+    <!-- Search -->
+    <string name="searchOverlay.hint">جهاز البحث و التطبيقات و الإنترنت</string>
+    <string name="searchOverlay.results">النتائج</string>
+    <string name="searchOverlay.recent">حديثا</string>
+    <string name="searchOverlay.app">التطبيق</string>
+    <!-- Launcher -->
+    <string name="launcherOverlay.categories.all_applications">كل التطبيقات</string>
+    <string name="launcherOverlay.categories.internet">الإنترنت</string>
+    <string name="launcherOverlay.categories.media">المرئيات</string>
+    <string name="launcherOverlay.categories.gaming">الألعاب</string>
+    <string name="launcherOverlay.categories.development">التطوير</string>
+    <string name="launcherOverlay.categories.office">المكتب</string>
+    <string name="launcherOverlay.categories.system">النظام</string>
+    <!-- Quick Settings -->
+    <string name="quicksettingsOverlay.quick_controls">التحكم السريع</string>
+    <string name="quicksettingsOverlay.quick_controls.network.title">الشبكة</string>
+    <string name="quicksettingsOverlay.quick_controls.network.subtitle_connected">متصل</string>
+    <string name="quicksettingsOverlay.quick_controls.network.subtitle_disconnected">منفصل</string>
+    <string name="quicksettingsOverlay.quick_controls.bluetooth.title">البلوتوث</string>
+    <string name="quicksettingsOverlay.quick_controls.blueooth.subtitle_connected">متصل</string>
+    <string name="quicksettingsOverlay.quick_controls.blueooth.subtitle_disconnected">غير متصل</string>
+    <string name="quicksettingsOverlay.quick_controls.airplane_mode.title">وضع الطائرة</string>
+    <string name="quicksettingsOverlay.quick_controls.language.title">اللغة</string>
+    <string name="quicksettingsOverlay.quick_controls.theme.title">السمة</string>
+    <string name="quicksettingsOverlay.quick_controls.donotdisturb.title">لا تزعجني</string>
+    <string name="quicksettingsOverlay.shortcuts.title">الاختصارات</string>
+    <string name="quicksettingsOverlay.shortcuts.new_event">الأحداث الجديدة</string>
+    <string name="quicksettingsOverlay.shortcuts.alpha_build">النسخة ألفا</string>
+    <string name="quicksettingsOverlay.shortcuts.energy_mode">وضع الطاقة: الأداء</string>
+    <string name="quicksettingsOverlay.pages.network.title">إعدادات الشبكة</string>
+    <string name="quicksettingsOverlay.pages.theme.title">إعدادات السمة</string>
+    <!-- Wallpaper Picker -->
+    <string name="desktop.wallpaper_picker.gone">خطأ n\ لا يمكن استعمال تلك الصورة</string>
+    <string name="desktop.wallpaper_picker.url_wallpaper.hint">عين صورة الخلفية من URL</string>
+    <string name="desktop.wallpaper_picker.url_wallpaper.label">رابط صورة الخلفية</string>
+    <string name="desktop.wallpaper_picker.bing_wallpaper_button">إستخدم خلفية من Bing</string>
+    <!-- Desktop Context Menu -->
+    <string name="desktop.desktop_context_menu.change_wallpaper">غيِّر الخلفية</string>
+    <string name="desktop.desktop_context_menu.settings">الإعدادات</string>
+    <!-- Misc -->
+    <string name="desktop.misc.show_desktop">أظهر سطح المكتب</string>
+    <!-- Settings -->
+    <!-- Headers -->
+    <string name="settings.headers.connectivity">الإتصال</string>
+    <string name="settings.headers.personalize">تخصيص</string>
+    <string name="settings.headers.device">الأجهزة ;apm&amp; التطبيقات</string>
+    <string name="settings.headers.system">النظام</string>
+    <!-- Network & internet -->
+    <string name="settings.pages.network.title">الشبكة ;apm&amp; الإنترنت</string>
+    <string name="settings.pages.network.subtitle">واي فاي , إيثرنت , إستخدام البيانات</string>
+    <string name="settings.pages.network.wifi">واي فاي</string>
+    <string name="settings.pages.network.wifi_switch_tile.title">واي-فاي</string>
+    <string name="settings.pages.network.wifi_switch_tile.subtitle_enabled">الواي-فاي مفعل</string>
+    <string name="settings.pages.network.wifi_switch_tile.subtitle_disabled">الواي-فاي معطل</string>
+    <string name="settings.pages.network.wifi_preferences_tile.title">تفضيلات الواي-فاي</string>
+    <string name="settings.pages.network.wifi_preferences_tile.subtitle">إتصال واي-فاي ذكي . خيارات المسح</string>
+    <string name="settings.pages.network.wifi_saved_networks_tile.title">الشبكات المحفوظة</string>
+    <string name="settings.pages.network.wifi_saved_networks_tile.subtitle">شبكات s%</string>
+    <string name="settings.pages.network.wifi_data_usage_tile.title">إستخدام بيانات الواي-فاي</string>
+    <string name="settings.pages.network.wifi_data_usage_tile.subtitle">إستخدام البيانات لهذا الشهر</string>
+    <string name="settings.pages.network.ethernet">إيثرنت</string>
+    <string name="settings.pages.network.ethernet_switch_tile.title">إيثرنت</string>
+    <string name="settings.pages.network.ethernet_switch_tile.subtitle_enabled">الإيثرنت مفعل</string>
+    <string name="settings.pages.network.ethernet_switch_tile.subtitle_disabled">الإيثرنت غير مفعل</string>
+    <string name="settings.pages.network.ethernet_data_usage_tile.title">إستخدام بيانات الواي-فاي</string>
+    <string name="settings.pages.network.ethernet_data_usage_tile.subtitle">إستخدام البيانات لهذا الشهر</string>
+    <string name="settings.pages.network.network_options">خيارات الشبكة</string>
+    <string name="settings.pages.network.network_options.vpn_tile.title">الشبكة الخاصة الظاهرية (VPN)</string>
+    <string name="settings.pages.network.network_options.vpn_tile.subtitle">لا</string>
+    <string name="settings.pages.network.network_options.vpn_tile.button">خيارات VPN</string>
+    <string name="settings.pages.network.network_options.dns_tile.title">DNS الخاص</string>
+    <string name="settings.pages.network.network_options.dns_tile.subtitle">تلقائي</string>
+    <string name="settings.pages.network.network_options.dns_tile.button">خيارات DNS</string>
+    <!-- Connected devices -->
+    <string name="settings.pages.connections.title">الأجهزة المتصلة</string>
+    <string name="settings.pages.connections.subtitle">البلوتوث، الطابعة، وأجهزة USB</string>
+    <string name="settings.pages.connections.bluetooth">البلوتوث</string>
+    <string name="settings.pages.connections.bluetooth_switch_tile.title">البلوتوث</string>
+    <string name="settings.pages.connections.bluetooth_switch_tile.subtitle_enabled">البلوتوث مفعل</string>
+    <string name="settings.pages.connections.bluetooth_switch_tile.subtitle_disabled">البلوتوث معطل</string>
+    <string name="settings.pages.connections.bluetooth_file_transfer_tile.title">الملفات المستلمة عبر البلوتوث</string>
+    <string name="settings.pages.connections.phone_integration">تكامل الهاتف</string>
+    <string name="settings.pages.connections.phone_integration_tile.title">تكامل الهاتف</string>
+    <string name="settings.pages.connections.phone_integration_tile.subtitle">تم تعطيل تكامل الهاتف</string>
+    <!-- Customization -->
+    <string name="settings.pages.customization.title">التخصيص</string>
+    <string name="settings.pages.customization.subtitle">خصص تجربتك</string>
+    <string name="settings.pages.customization.theme">السمة</string>
+    <string name="settings.pages.customization.theme_mode_light">فاتح</string>
+    <string name="settings.pages.customization.theme_mode_dark">مظلم</string>
+    <string name="settings.pages.customization.theme_color_orange">برتقالي</string>
+    <string name="settings.pages.customization.theme_color_red">أحمر</string>
+    <string name="settings.pages.customization.theme_color_green">أخضر</string>
+    <string name="settings.pages.customization.theme_color_blue">أزرق</string>
+    <string name="settings.pages.customization.theme_color_teal">تيل</string>
+    <string name="settings.pages.customization.theme_color_pruple" comment="settings.pages.customization.theme_color_purple">بنفسجي</string>
+    <string name="settings.pages.customization.theme_color_aqua">أكوا</string>
+    <string name="settings.pages.customization.theme_color_gold">ذهبي</string>
+    <string name="settings.pages.customization.theme_color_anthracite">أنثرسايت</string>
+    <string name="settings.pages.customization.taskbar_alignment">محاذاة شريط المهام</string>
+    <string name="settings.pages.customization.taskbar_alignment_start">ابدأ</string>
+    <string name="settings.pages.customization.taskbar_alignment_center">وسط</string>
+    <string name="settings.pages.customization.window_options">خيارات النافذة</string>
+    <string name="settings.pages.customization.window_options_border_radius.title">نصف قطر حدود النافذة - %s</string>
+    <string name="settings.pages.customization.window_options_border_radius.subtitle">تغيير نصف قطر النافذة الحدودي</string>
+    <string name="settings.pages.customization.window_options_colored_titlebars.title">أشرطة العنوان الملونة</string>
+    <string name="settings.pages.customization.window_options_colored_titlebars.subtitle">إعطاء شريط عنوان النافذة لون تمييز مخصصة</string>
+    <string name="settings.pages.customization.window_options_transparent_colored_titlebars.title">شريط عنوان شفاف اللون</string>
+    <string name="settings.pages.customization.window_options_transparent_colored_titlebars.subtitle">إضافة الشفافية إلى شريط العناوين الملون</string>
+    <!-- Display -->
+    <string name="settings.pages.display.title">العرض</string>
+    <string name="settings.pages.display.subtitle">الدقة، مهلة الشاشة، الحجم</string>
+    <!-- Sound -->
+    <string name="settings.pages.sound.title">الصوت</string>
+    <string name="settings.pages.sound.subtitle">مستوى الصوت، عدم الإزعاج، صوت بدء التشغيل</string>
+    <!-- Locale -->
+    <string name="settings.pages.locale.title">محلي</string>
+    <string name="settings.pages.locale.subtitle">اللغة والوقت والتاريخ، تخطيط لوحة المفاتيح</string>
+    <!-- Notifications -->
+    <string name="settings.pages.notifications.title">الإشعارات</string>
+    <string name="settings.pages.notifications.subtitle">صوت الإشعار، اختيار التطبيق</string>
+    <!-- Applications -->
+    <string name="settings.pages.applications.title">التطبيقات</string>
+    <string name="settings.pages.applications.subtitle">التطبيقات المثبتة، التطبيقات الافتراضية</string>
+    <!-- Developer options -->
+    <string name="settings.pages.developer_options.title">إعدادات المبرمجين</string>
+    <string name="settings.pages.developer_options.subtitle">أعلام الميزة، الخيارات المتقدمة</string>
+    <string name="settings.pages.developer_options.developer_mode_tile.title">وضع المطور</string>
+    <string name="settings.pages.developer_options.developer_mode_tile.subtitle">تفيعيل ميزات التصحيح المتقدمة</string>
+    <!-- About device -->
+    <string name="settings.pages.about.title">حول الجهاز</string>
+    <string name="settings.pages.about.subtitle">إصدار النظام، معلومات الجهاز</string>
+    <string name="settings.pages.about.system_information">معلومات النظام</string>
+    <string name="settings.pages.about.system_information_environment">البيئة</string>
+    <string name="settings.pages.about.system_information_architecture">البنية</string>
+    <string name="settings.pages.about.system_information_desktop">المكتب</string>
+    <string name="settings.pages.about.software_update">تحديث النظام</string>
+    <string name="settings.pages.about.software_update_tile.title">dahliaOS محدث - s%</string>
+    <string name="settings.pages.about.software_update_tile.subtitle">آخر تحقق : s%</string>
+    <string name="settings.pages.about.software_update_tile.button">تحقق من وجود تحديثات</string>
+</resources>
