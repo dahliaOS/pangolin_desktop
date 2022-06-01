@@ -32,23 +32,24 @@
     <string name="apps.web">Navigateur Web</string>
     <!-- App Descriptions-->
     <string name="apps.authenticator_description">Autorisation à deux facteurs</string>
-    <string name="apps.calculator_description">Addition, soustraction, multiplication et division</string>
-    <string name="apps.clock_description">Gérer le Temps, les Alarmes, les Chronomètres et les Horloges Mondiales</string>
-    <string name="apps.containers_description">Gérez vos conteneurs système</string>
+    <string name="apps.calculator_description">Effectuer des calculs de base</string>
+    <string name="apps.clock_description">Garder une trace du temps</string>
+    <string name="apps.containers_description">Gérer les conteneurs et les machines virtuelles</string>
     <string name="apps.disks_description">Gérer les Disques et Partitions</string>
-    <string name="apps.files_description">Parcourir les Fichiers et Répertoires</string>
-    <string name="apps.media_description">Parcourir et regarder des Photos et Vidéos</string>
-    <string name="apps.music_description">Écouter de la Musique locale</string>
-    <string name="apps.notes_description">Modifier les Fichiers Texte locaux</string>
+    <string name="apps.files_description">Accéder aux fichiers et aux dossiers</string>
+    <string name="apps.media_description">Parcourez et regardez des photos et vidéos</string>
+    <string name="apps.music_description">Écouter de la musique</string>
+    <string name="apps.notes_description">Créer et modifier les documents</string>
     <string name="apps.notesmobile_description">Notes (Mobile)</string>
     <string name="apps.messages_description">Messages</string>
     <string name="apps.rootterminal_description">Exécuter les Commandes en tant que Super-utilisateur</string>
-    <string name="apps.settings_description">Ajuster les paramètres système</string>
-    <string name="apps.systemlogs_description">Lire les Journaux Système</string>
-    <string name="apps.taskmanager_description">Gérer les Applications en cours d\'exécution</string>
-    <string name="apps.terminal_description">Accéder à la Ligne de Commande</string>
+    <string name="apps.settings_description">Modifier les réglages système</string>
+    <string name="apps.systemlogs_description">Afficher et déboguer les problèmes logiciels</string>
+    <string name="apps.taskmanager_description">Suivre les performances système</string>
+    <string name="apps.terminal_description">Accéder à la ligne de commande</string>
     <string name="apps.themedemo_description">Démonstration interne pour le thème des applications</string>
-    <string name="apps.welcome_description">Application de Bienvenue</string>
+    <string name="apps.welcome_description">Voir les informations à propos de dahliaOS
+À propos de dahliaOS</string>
     <string name="apps.help_description">F.A.Q et Support</string>
     <string name="apps.web_description">Naviguer sur le Web</string>
     <!-- Feature Not Implemented-->
@@ -95,7 +96,7 @@
     <string name="quicksettingsOverlay.pages.network.title">Paramètre Réseau</string>
     <string name="quicksettingsOverlay.pages.theme.title">Paramètres du Thème</string>
     <!-- Wallpaper Picker -->
-    <string name="desktop.wallpaper_picker.gone">Erreur\nL\'image n\'existe plus</string>
+    <string name="desktop.wallpaper_picker.gone">Erreur\nCette image ne peut pas être utilisée</string>
     <string name="desktop.wallpaper_picker.url_wallpaper.hint">Définir le fond d\'écran depuis l\'URL</string>
     <string name="desktop.wallpaper_picker.url_wallpaper.label">URL du fond d\'écran</string>
     <string name="desktop.wallpaper_picker.bing_wallpaper_button">Utiliser le Fond d\'écran Bing</string>
@@ -116,7 +117,7 @@
     <string name="settings.pages.network.wifi">Wi-Fi</string>
     <string name="settings.pages.network.wifi_switch_tile.title">Wi-Fi</string>
     <string name="settings.pages.network.wifi_switch_tile.subtitle_enabled">Le Wi-Fi est activé</string>
-    <string name="settings.pages.network.wifi_switch_tile.subtitle_disabled">Le Wi-Fi est désactivé</string>
+    <string name="settings.pages.network.wifi_switch_tile.subtitle_disabled">Le Wi-Fi n\'est pas activé</string>
     <string name="settings.pages.network.wifi_preferences_tile.title">Préférences Wi-Fi</string>
     <string name="settings.pages.network.wifi_preferences_tile.subtitle">Connexion Wi-Fi intelligente, options de recherche</string>
     <string name="settings.pages.network.wifi_saved_networks_tile.title">Réseaux enregistrés</string>
@@ -126,7 +127,7 @@
     <string name="settings.pages.network.ethernet">Ethernet</string>
     <string name="settings.pages.network.ethernet_switch_tile.title">Ethernet</string>
     <string name="settings.pages.network.ethernet_switch_tile.subtitle_enabled">Ethernet est activé</string>
-    <string name="settings.pages.network.ethernet_switch_tile.subtitle_disabled">Ethernet est désactivé</string>
+    <string name="settings.pages.network.ethernet_switch_tile.subtitle_disabled">Ethernet n\'est pas activé</string>
     <string name="settings.pages.network.ethernet_data_usage_tile.title">Consommation de données Wi-Fi</string>
     <string name="settings.pages.network.ethernet_data_usage_tile.subtitle">Consommation de données pour ce mois</string>
     <string name="settings.pages.network.network_options">Options réseaux</string>
@@ -169,7 +170,9 @@
     <string name="settings.pages.customization.window_options_border_radius.title">Rayon de bordure de la fenêtre - %s</string>
     <string name="settings.pages.customization.window_options_border_radius.subtitle">Changer le rayon de la bordure de la fenêtre</string>
     <string name="settings.pages.customization.window_options_colored_titlebars.title">Barres de titre colorées</string>
-    <string name="settings.pages.customization.window_options_colored_titlebars.subtitle">Utiliser des barres de titre colorées pour les fenêtres</string>
+    <string name="settings.pages.customization.window_options_colored_titlebars.subtitle">Donner aux barres de titres des fenêtres une couleur d\'accentuation personnalisée</string>
+    <string name="settings.pages.customization.window_options_transparent_colored_titlebars.title">Barres de titre transparente colorée</string>
+    <string name="settings.pages.customization.window_options_transparent_colored_titlebars.subtitle">Ajouter la transparence aux barres de titre colorées</string>
     <!-- Display -->
     <string name="settings.pages.display.title">Affichage</string>
     <string name="settings.pages.display.subtitle">Résolution, mise en veille de l\'écran, échelle, mise à l\'échelle</string>
