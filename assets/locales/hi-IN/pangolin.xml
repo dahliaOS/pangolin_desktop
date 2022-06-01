@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Global Strings -->
+    <string name="global.account.local">स्थानीय खाता</string>
+    <string name="global.account.user_accounts">उपयोगकर्ता के खाते</string>
+    <string name="global.on">चालू</string>
+    <string name="global.off">बंद</string>
+    <string name="global.settings">समायोजन</string>
+    <string name="global.coming_soon">जल्द आ रहा है।</string>
+    <string name="global.save">सेव करें</string>
+    <string name="global.search">खोजें</string>
+    <!-- App Names-->
+    <string name="apps.authenticator">प्रमाणक</string>
+    <string name="apps.calculator">कैलकुलेटर</string>
+    <string name="apps.clock">घड़ी</string>
+    <string name="apps.containers" comment="Do not actually translate this string, just write &quot;Graft&quot; as the translation">ग्राफ्ट</string>
+    <string name="apps.disks">डिस्क</string>
+    <string name="apps.files">फ़ाइलें</string>
+    <string name="apps.media">मीडिया</string>
+    <string name="apps.music">गाना</string>
+    <string name="apps.notes">टेक्स्ट संपादक</string>
+    <string name="apps.notesmobile">नोट्स (मोबाइल)</string>
+    <string name="apps.messages">संदेश</string>
+    <string name="apps.rootterminal">मुख्य टर्मिनल</string>
+    <string name="apps.settings">सेटिंग्स</string>
+    <string name="apps.systemlogs">सिस्टम लॉग्स</string>
+    <string name="apps.taskmanager">कार्य प्रबंधक</string>
+    <string name="apps.terminal">टर्मिनल</string>
+    <string name="apps.themedemo">थीम डेमो</string>
+    <string name="apps.welcome">आपका स्वागत है।</string>
+    <string name="apps.help">सहायता</string>
+    <string name="apps.web">वेब ब्राउज़र</string>
+    <!-- App Descriptions-->
+    <string name="apps.authenticator_description">दोहरी सुरक्षा प्रमाणक</string>
+    <string name="apps.calculator_description">समान्य गणना करना</string>
+    <string name="apps.clock_description">समय का हिसाब</string>
+    <string name="apps.containers_description">कंटेनर व वर्चुअल मशीन</string>
+    <string name="apps.disks_description">डिस्क और विभाजन प्रबंधित करें |</string>
+    <string name="apps.files_description">फ़ाइलें और फ़ोल्डर ब्राउज़ करें |</string>
+    <string name="apps.media_description">फ़ोटो और वीडियो ब्राउज़ करें तथा देखें</string>
+    <string name="apps.music_description">संगीत सुनें</string>
+    <string name="apps.notes_description">दस्तावेज बनाएँ एवं संपादित करें</string>
+    <string name="apps.notesmobile_description">नोट्स (मोबाइल)</string>
+    <string name="apps.messages_description">संदेश</string>
+    <string name="apps.rootterminal_description">सुपरयुसर के रूप में कमांड चलाएँ।</string>
+    <string name="apps.settings_description">सिस्टम सेटिंग्स को समायोजित करें</string>
+    <string name="apps.systemlogs_description">सॉफ्टवेयर समस्याओं को देखें एवं दोषमार्जन करें</string>
+    <string name="apps.taskmanager_description">सिस्टम के बर्ताव की निगरानी करें</string>
+    <string name="apps.terminal_description">कमांड लाइन को एक्सेस करें</string>
+    <string name="apps.themedemo_description">ऐप थीमिंग के लिए आंतरिक प्रदर्शन।</string>
+    <string name="apps.welcome_description">डाहलिया ओएस की जानकारी हासिल करें</string>
+    <string name="apps.help_description">सामान्य प्रश्न और सहायता</string>
+    <string name="apps.web_description">इंटरनेट चलायें।</string>
+    <!-- Feature Not Implemented-->
+    <string name="misc.featurenotimplemented_title">फ़ीचर उपलब्ध नहीं</string>
+    <string name="misc.featurenotimplemented_value">यह फिचर आपके द्वारा बनाए गए पंगोलिन पर उपलब्ध नहीं है। इसके लिए आप dahliaOS.io पर चैक करे।</string>
+    <!-- Overlays -->
+    <!-- Overview -->
+    <string name="overviewOverlay.new_desktop">नया डेस्कटॉप</string>
+    <!-- Power menu -->
+    <string name="powerOverlay.title">पावर मेन्यू</string>
+    <string name="powerOverlay.subtitle">आप क्या करना चाहते हैं।</string>
+    <string name="powerOverlay.poweroff">बंद करें</string>
+    <string name="powerOverlay.sleep">विश्राम</string>
+    <string name="powerOverlay.restart">दोबारा शुरू करें</string>
+    <!-- Search -->
+    <string name="searchOverlay.hint">साधन, ऐप तथा इन्टरनेट से खोजें</string>
+    <string name="searchOverlay.results">परिणाम</string>
+    <string name="searchOverlay.recent">ताज़ा</string>
+    <string name="searchOverlay.app">ऐप</string>
+    <!-- Launcher -->
+    <string name="launcherOverlay.categories.all_applications">सभी एप्लिकेशंस</string>
+    <string name="launcherOverlay.categories.internet">इंटरनेट</string>
+    <string name="launcherOverlay.categories.media">मीडिया</string>
+    <string name="launcherOverlay.categories.gaming">खेल</string>
+    <string name="launcherOverlay.categories.development">विकसन</string>
+    <string name="launcherOverlay.categories.office">दफ्तर</string>
+    <string name="launcherOverlay.categories.system">सिस्टम</string>
+    <!-- Quick Settings -->
+    <string name="quicksettingsOverlay.quick_controls">झटपट नियंत्रण</string>
+    <string name="quicksettingsOverlay.quick_controls.network.title">नेटवर्क</string>
+    <string name="quicksettingsOverlay.quick_controls.network.subtitle_connected">जुड़ा हुआ है।</string>
+    <string name="quicksettingsOverlay.quick_controls.network.subtitle_disconnected">संबंध टुट गया।</string>
+    <string name="quicksettingsOverlay.quick_controls.bluetooth.title">ब्लूटूथ</string>
+    <string name="quicksettingsOverlay.quick_controls.blueooth.subtitle_connected">जुड़ा हुआ है।</string>
+    <string name="quicksettingsOverlay.quick_controls.blueooth.subtitle_disconnected">संबंध टुट गया।</string>
+    <string name="quicksettingsOverlay.quick_controls.airplane_mode.title">हवाई जहाज मोड</string>
+    <string name="quicksettingsOverlay.quick_controls.language.title">भाषा</string>
+    <string name="quicksettingsOverlay.quick_controls.theme.title">थीम</string>
+    <string name="quicksettingsOverlay.quick_controls.donotdisturb.title">परेशान न करें।</string>
+    <string name="quicksettingsOverlay.shortcuts.title">शॉर्टकट</string>
+    <string name="quicksettingsOverlay.shortcuts.new_event">नया कार्यक्रम</string>
+    <string name="quicksettingsOverlay.shortcuts.alpha_build">पहला निर्माण</string>
+    <string name="quicksettingsOverlay.shortcuts.energy_mode">ऊर्जा मोड: शक्तिशाली</string>
+    <string name="quicksettingsOverlay.pages.network.title">नेटवर्क नियंत्रण</string>
+    <string name="quicksettingsOverlay.pages.theme.title">थीम नियंत्रण</string>
+    <!-- Wallpaper Picker -->
+    <string name="desktop.wallpaper_picker.gone">गलत \n वह फोटो इस्तेमाल नहीं कि जा सकती।</string>
+    <string name="desktop.wallpaper_picker.url_wallpaper.hint">इंटरनेट से वॉलपेपर सेट करें</string>
+    <string name="desktop.wallpaper_picker.url_wallpaper.label">वॉलपेपर का लिंक</string>
+    <string name="desktop.wallpaper_picker.bing_wallpaper_button">बिंग वॉलपेपर का इस्तेमाल करें</string>
+    <!-- Desktop Context Menu -->
+    <string name="desktop.desktop_context_menu.change_wallpaper">वॉलपेपर बदले</string>
+    <string name="desktop.desktop_context_menu.settings">सेटिंग्स</string>
+    <!-- Misc -->
+    <string name="desktop.misc.show_desktop">डेस्कटॉप देखें</string>
+    <!-- Settings -->
+    <!-- Headers -->
+    <string name="settings.headers.connectivity">कनेक्टिविटी</string>
+    <string name="settings.headers.personalize">अपने अनुसार करें</string>
+    <string name="settings.headers.device">डिवाइस &amp; एप्लिकेशंस</string>
+    <string name="settings.headers.system">सिस्टम</string>
+    <!-- Network & internet -->
+    <string name="settings.pages.network.title">नेटवर्क &amp; इंटरनेट</string>
+    <string name="settings.pages.network.subtitle">वाई-फाई, इथरनेट, डाटा इस्तेमाल</string>
+    <string name="settings.pages.network.wifi">वाई-फाई</string>
+    <string name="settings.pages.network.wifi_switch_tile.title">वाई-फाई</string>
+    <string name="settings.pages.network.wifi_switch_tile.subtitle_enabled">वाई-फाई चालु है।</string>
+    <string name="settings.pages.network.wifi_switch_tile.subtitle_disabled">वाई-फाई बंद है।</string>
+    <string name="settings.pages.network.wifi_preferences_tile.title">वाई-फाई परफेरेंसेज</string>
+    <string name="settings.pages.network.wifi_preferences_tile.subtitle">स्मार्ट वाई-फाई कनेक्शन, जांच विकल्प।</string>
+    <string name="settings.pages.network.wifi_saved_networks_tile.title">सुरक्षित नेटवर्कस</string>
+    <string name="settings.pages.network.wifi_saved_networks_tile.subtitle">%s नेटवर्कस</string>
+    <string name="settings.pages.network.wifi_data_usage_tile.title">वाई-फाई द्वारा इस्तेमाल किया गया डाटा</string>
+    <string name="settings.pages.network.wifi_data_usage_tile.subtitle">इस महीने का डाटा इस्तेमाल</string>
+    <string name="settings.pages.network.ethernet">इथरनेट</string>
+    <string name="settings.pages.network.ethernet_switch_tile.title">इथरनेट</string>
+    <string name="settings.pages.network.ethernet_switch_tile.subtitle_enabled">इथरनेट चालु है।</string>
+    <string name="settings.pages.network.ethernet_switch_tile.subtitle_disabled">इथरनेट बंद है।</string>
+    <string name="settings.pages.network.ethernet_data_usage_tile.title">वाई-फाई द्वारा इस्तेमाल किया गया डाटा</string>
+    <string name="settings.pages.network.ethernet_data_usage_tile.subtitle">इस महीने का डाटा इस्तेमाल</string>
+    <string name="settings.pages.network.network_options">नेटवर्क का चुनाव</string>
+    <string name="settings.pages.network.network_options.vpn_tile.title">क्रीत्रीम नीजी नेटवर्क (वीपीएन)</string>
+    <string name="settings.pages.network.network_options.vpn_tile.subtitle">कुछ भी नहीं</string>
+    <string name="settings.pages.network.network_options.vpn_tile.button">विपीएन के विकल्प</string>
+    <string name="settings.pages.network.network_options.dns_tile.title">नीजी डिएनएस</string>
+    <string name="settings.pages.network.network_options.dns_tile.subtitle">अपने आप</string>
+    <string name="settings.pages.network.network_options.dns_tile.button">डिएनएस के विकल्प</string>
+    <!-- Connected devices -->
+    <string name="settings.pages.connections.title">जुड़े हुए उपकरण</string>
+    <string name="settings.pages.connections.subtitle">ब्लुटूथ, प्रींटर, युअसबी उपकरण</string>
+    <string name="settings.pages.connections.bluetooth">ब्लूटूथ</string>
+    <string name="settings.pages.connections.bluetooth_switch_tile.title">ब्लूटूथ</string>
+    <string name="settings.pages.connections.bluetooth_switch_tile.subtitle_enabled">ब्लूटूथ चालु है।</string>
+    <string name="settings.pages.connections.bluetooth_switch_tile.subtitle_disabled">ब्लूटूथ बंद है।</string>
+    <string name="settings.pages.connections.bluetooth_file_transfer_tile.title">ब्लूटूथ के द्वारा प्राप्त फाईल</string>
+    <string name="settings.pages.connections.phone_integration">फोन के साथ जुड़ाव</string>
+    <string name="settings.pages.connections.phone_integration_tile.title">फोन के साथ जुड़ाव</string>
+    <string name="settings.pages.connections.phone_integration_tile.subtitle">फोन के साथ जुड़ाव बंद है।</string>
+    <!-- Customization -->
+    <string name="settings.pages.customization.title">अपने अनुसार करें।</string>
+    <string name="settings.pages.customization.subtitle">सिस्टम का व्यवहार ठीक करें</string>
+    <string name="settings.pages.customization.theme">थीम</string>
+    <string name="settings.pages.customization.theme_mode_light">रोशनी</string>
+    <string name="settings.pages.customization.theme_mode_dark">डार्क मोड</string>
+    <string name="settings.pages.customization.theme_color_orange">नारंगी रंग</string>
+    <string name="settings.pages.customization.theme_color_red">लाल</string>
+    <string name="settings.pages.customization.theme_color_green">हरा</string>
+    <string name="settings.pages.customization.theme_color_blue">नीला</string>
+    <string name="settings.pages.customization.theme_color_teal">गहरा हरा-नीला</string>
+    <string name="settings.pages.customization.theme_color_pruple" comment="settings.pages.customization.theme_color_purple">बेंगनी</string>
+    <string name="settings.pages.customization.theme_color_aqua">नीले पानी जैसा</string>
+    <string name="settings.pages.customization.theme_color_gold">सुनहरी</string>
+    <string name="settings.pages.customization.theme_color_anthracite">कोयले जैसा</string>
+    <string name="settings.pages.customization.taskbar_alignment">टास्कबार की जगह</string>
+    <string name="settings.pages.customization.taskbar_alignment_start">शुरू में</string>
+    <string name="settings.pages.customization.taskbar_alignment_center">बीच में</string>
+    <string name="settings.pages.customization.window_options">विंडो के विकल्प</string>
+    <string name="settings.pages.customization.window_options_border_radius.title">विंडो की मोटाई - %s</string>
+    <string name="settings.pages.customization.window_options_border_radius.subtitle">विंडो की मोटाई बदले</string>
+    <string name="settings.pages.customization.window_options_colored_titlebars.title">टाईटलबार का रंग</string>
+    <string name="settings.pages.customization.window_options_colored_titlebars.subtitle">टाईटलबार का रंग चुनें</string>
+    <string name="settings.pages.customization.window_options_transparent_colored_titlebars.title">टाइटलबार पारदर्शी रखें</string>
+    <string name="settings.pages.customization.window_options_transparent_colored_titlebars.subtitle">रंगीन टाइटलबार में पारदर्शिता रखें</string>
+    <!-- Display -->
+    <string name="settings.pages.display.title">डिस्प्ले</string>
+    <string name="settings.pages.display.subtitle">स्क्रीन साइज, स्क्रीन बंद समय, जुम</string>
+    <!-- Sound -->
+    <string name="settings.pages.sound.title">ध्वनि</string>
+    <string name="settings.pages.sound.subtitle">आवाज़, तंग ना करें, सिस्टम शुरुआती आवाज़</string>
+    <!-- Locale -->
+    <string name="settings.pages.locale.title">स्थानीय</string>
+    <string name="settings.pages.locale.subtitle">भाषा, समय और तारीख, कि बोर्ड का प्रकार</string>
+    <!-- Notifications -->
+    <string name="settings.pages.notifications.title">सूचना</string>
+    <string name="settings.pages.notifications.subtitle">सुचना आवाज़, ऐप का चुनाव</string>
+    <!-- Applications -->
+    <string name="settings.pages.applications.title">एप्लिकेशंस</string>
+    <string name="settings.pages.applications.subtitle">स्थापित ऐप, डिफ़ाल्ट ऐप्स</string>
+    <!-- Developer options -->
+    <string name="settings.pages.developer_options.title">ऐप निर्माताओं के लिए विकल्प</string>
+    <string name="settings.pages.developer_options.subtitle">शीर्ष फिचर, और ज्यादा विकल्प</string>
+    <string name="settings.pages.developer_options.developer_mode_tile.title">निर्माण मोड</string>
+    <string name="settings.pages.developer_options.developer_mode_tile.subtitle">गलती ढुढने के लिए और फिचर शुरू करें।</string>
+    <!-- About device -->
+    <string name="settings.pages.about.title">इस मसीन के बारे में</string>
+    <string name="settings.pages.about.subtitle">सिस्टम नंबर, मसीन की जानकारी</string>
+    <string name="settings.pages.about.system_information">सिस्टम की जानकारी</string>
+    <string name="settings.pages.about.system_information_environment">माहोल</string>
+    <string name="settings.pages.about.system_information_architecture">बनावट</string>
+    <string name="settings.pages.about.system_information_desktop">डेस्कटॉप</string>
+    <string name="settings.pages.about.software_update">सोफ्टवेयर अपडेट करें।</string>
+    <string name="settings.pages.about.software_update_tile.title">dahliaOS नवीनतम है। - %s</string>
+    <string name="settings.pages.about.software_update_tile.subtitle">आखरी बार अपडेट चैक किया: %s</string>
+    <string name="settings.pages.about.software_update_tile.button">अपडेट चैक करें।</string>
+</resources>

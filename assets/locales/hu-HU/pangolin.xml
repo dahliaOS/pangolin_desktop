@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Global Strings -->
+    <string name="global.account.local">Helyi fiók</string>
+    <string name="global.account.user_accounts">Felhasználói fiókok</string>
+    <string name="global.on">Be</string>
+    <string name="global.off">Ki</string>
+    <string name="global.settings">Beállítások</string>
+    <string name="global.coming_soon">Hamarosan érkezik</string>
+    <string name="global.save">Mentés</string>
+    <string name="global.search">Keresés</string>
+    <!-- App Names-->
+    <string name="apps.authenticator">Hitelesítő</string>
+    <string name="apps.calculator">Számológép</string>
+    <string name="apps.clock">Óra</string>
+    <string name="apps.containers" comment="Do not actually translate this string, just write &quot;Graft&quot; as the translation">Graft</string>
+    <string name="apps.disks">Lemezek</string>
+    <string name="apps.files">Fájlok</string>
+    <string name="apps.media">Média</string>
+    <string name="apps.music">Zene</string>
+    <string name="apps.notes">Szövegszerkesztő</string>
+    <string name="apps.notesmobile">Jegyzetek (Mobil)</string>
+    <string name="apps.messages">Üzenetek</string>
+    <string name="apps.rootterminal">Gyökér Terminál</string>
+    <string name="apps.settings">Beállítások</string>
+    <string name="apps.systemlogs">Rendszernaplók</string>
+    <string name="apps.taskmanager">Feladatkezelő</string>
+    <string name="apps.terminal">Terminál</string>
+    <string name="apps.themedemo">Demó Téma</string>
+    <string name="apps.welcome">Üdvözlet</string>
+    <string name="apps.help">Segítség</string>
+    <string name="apps.web">Webböngésző</string>
+    <!-- App Descriptions-->
+    <string name="apps.authenticator_description">Kétlépcsős hitelesítés</string>
+    <string name="apps.calculator_description">Alap számítások végzése</string>
+    <string name="apps.clock_description">Az idő nyomon követése</string>
+    <string name="apps.containers_description">A konténerek és virtuális gépek kezelése</string>
+    <string name="apps.disks_description">A lemezek és partíciók kezelése</string>
+    <string name="apps.files_description">Böngésszen fájlok és mappák között</string>
+    <string name="apps.media_description">Böngésszen és tekintse meg a képeket és videókat</string>
+    <string name="apps.music_description">Hallgasson zenét</string>
+    <string name="apps.notes_description">Dokumentumok létrehozása és szerkesztése</string>
+    <string name="apps.notesmobile_description">Jegyzetek (Mobil)</string>
+    <string name="apps.messages_description">Üzenetek</string>
+    <string name="apps.rootterminal_description">Futtasson parancsokat Superuser-ként</string>
+    <string name="apps.settings_description">Igazítsa a rendszerbeállítasokat</string>
+    <string name="apps.systemlogs_description">Szoftverproblémák megtekintése és hibakeresése</string>
+    <string name="apps.taskmanager_description">Ügyelje fel a rendszer teljesítményét</string>
+    <string name="apps.terminal_description">A parancssor elérése</string>
+    <string name="apps.themedemo_description">Belső demonstráció appok témázására</string>
+    <string name="apps.welcome_description">Tekintse meg az információkat dahliaOS-ről</string>
+    <string name="apps.help_description">GY.I.K és Támogatás</string>
+    <string name="apps.web_description">Böngéssze az internetet</string>
+    <!-- Feature Not Implemented-->
+    <string name="misc.featurenotimplemented_title">Ez a funkció még nem elérhető</string>
+    <string name="misc.featurenotimplemented_value">Ez a funkció nem elérhető a jelenlegi Pangolin verziójában, kérem keresse fel a dahliaOS.io oldalát és nézzen frissítésekért.</string>
+    <!-- Overlays -->
+    <!-- Overview -->
+    <string name="overviewOverlay.new_desktop">Új Asztal</string>
+    <!-- Power menu -->
+    <string name="powerOverlay.title">Energiamenü</string>
+    <string name="powerOverlay.subtitle">Döntse el mit szeretne</string>
+    <string name="powerOverlay.poweroff">Leállítás</string>
+    <string name="powerOverlay.sleep">Alvás</string>
+    <string name="powerOverlay.restart">Újraindítás</string>
+    <!-- Search -->
+    <string name="searchOverlay.hint">Keressen az Eszközön, az Alkalmazások között és a Weben</string>
+    <string name="searchOverlay.results">Eredmények</string>
+    <string name="searchOverlay.recent">Nemrégi</string>
+    <string name="searchOverlay.app">Alkalmazások</string>
+    <!-- Launcher -->
+    <string name="launcherOverlay.categories.all_applications">Összes alkalmazás</string>
+    <string name="launcherOverlay.categories.internet">Internet</string>
+    <string name="launcherOverlay.categories.media">Média</string>
+    <string name="launcherOverlay.categories.gaming">Játékok</string>
+    <string name="launcherOverlay.categories.development">Fejlesztés</string>
+    <string name="launcherOverlay.categories.office">Iroda</string>
+    <string name="launcherOverlay.categories.system">Rendszer</string>
+    <!-- Quick Settings -->
+    <string name="quicksettingsOverlay.quick_controls">Gyors elérés</string>
+    <string name="quicksettingsOverlay.quick_controls.network.title">Hálózat</string>
+    <string name="quicksettingsOverlay.quick_controls.network.subtitle_connected">csatlakoztatva</string>
+    <string name="quicksettingsOverlay.quick_controls.network.subtitle_disconnected">lecsatlakoztatva</string>
+    <string name="quicksettingsOverlay.quick_controls.bluetooth.title">Bluetooth</string>
+    <string name="quicksettingsOverlay.quick_controls.blueooth.subtitle_connected">csatlakoztatva</string>
+    <string name="quicksettingsOverlay.quick_controls.blueooth.subtitle_disconnected">lecsatlakoztatva</string>
+    <string name="quicksettingsOverlay.quick_controls.airplane_mode.title">Repülőgép mód</string>
+    <string name="quicksettingsOverlay.quick_controls.language.title">Nyelv</string>
+    <string name="quicksettingsOverlay.quick_controls.theme.title">Téma</string>
+    <string name="quicksettingsOverlay.quick_controls.donotdisturb.title">Ne zavarjon</string>
+    <string name="quicksettingsOverlay.shortcuts.title">Parancsikonok</string>
+    <string name="quicksettingsOverlay.shortcuts.new_event">Új esemény</string>
+    <string name="quicksettingsOverlay.shortcuts.alpha_build">Alfa verzió</string>
+    <string name="quicksettingsOverlay.shortcuts.energy_mode">Energia mód: Teljesítmény</string>
+    <string name="quicksettingsOverlay.pages.network.title">Hálózati beállítások</string>
+    <string name="quicksettingsOverlay.pages.theme.title">Téma beállítások</string>
+    <!-- Wallpaper Picker -->
+    <string name="desktop.wallpaper_picker.gone">Hiba\nAzt a képet nem lehet használni</string>
+    <string name="desktop.wallpaper_picker.url_wallpaper.hint">Háttérkép beállítása URL-ből</string>
+    <string name="desktop.wallpaper_picker.url_wallpaper.label">Háttérkép URL</string>
+    <string name="desktop.wallpaper_picker.bing_wallpaper_button">Bing háttérkép használata</string>
+    <!-- Desktop Context Menu -->
+    <string name="desktop.desktop_context_menu.change_wallpaper">Háttérkép megváltoztatása</string>
+    <string name="desktop.desktop_context_menu.settings">Beállítások</string>
+    <!-- Misc -->
+    <string name="desktop.misc.show_desktop">Asztal mutatása</string>
+    <!-- Settings -->
+    <!-- Headers -->
+    <string name="settings.headers.connectivity">Kapcsolódás</string>
+    <string name="settings.headers.personalize">Személyre szabás</string>
+    <string name="settings.headers.device">Eszköz &amp; alkalmazások</string>
+    <string name="settings.headers.system">Rendszer</string>
+    <!-- Network & internet -->
+    <string name="settings.pages.network.title">Hálózat &amp; internet</string>
+    <string name="settings.pages.network.subtitle">Wi-Fi, ethernet, adathasználat</string>
+    <string name="settings.pages.network.wifi">Wi-Fi</string>
+    <string name="settings.pages.network.wifi_switch_tile.title">Wi-Fi</string>
+    <string name="settings.pages.network.wifi_switch_tile.subtitle_enabled">A Wi-Fi engedélyezve van</string>
+    <string name="settings.pages.network.wifi_switch_tile.subtitle_disabled">A Wi-Fi nincs engedélyezve</string>
+    <string name="settings.pages.network.wifi_preferences_tile.title">Wi-Fi beállítások</string>
+    <string name="settings.pages.network.wifi_preferences_tile.subtitle">Okos Wi-Fi kapcsolat, szkennelési opciók</string>
+    <string name="settings.pages.network.wifi_saved_networks_tile.title">Mentett hálózatok</string>
+    <string name="settings.pages.network.wifi_saved_networks_tile.subtitle">%s db hálózat</string>
+    <string name="settings.pages.network.wifi_data_usage_tile.title">Wi-Fi adathasználat</string>
+    <string name="settings.pages.network.wifi_data_usage_tile.subtitle">Adathasznlálat a hónapban</string>
+    <string name="settings.pages.network.ethernet">Ethernet</string>
+    <string name="settings.pages.network.ethernet_switch_tile.title">Ethernet</string>
+    <string name="settings.pages.network.ethernet_switch_tile.subtitle_enabled">Az Ethernet engedélyezve van</string>
+    <string name="settings.pages.network.ethernet_switch_tile.subtitle_disabled">Az Ethernet nincs engedélyezve</string>
+    <string name="settings.pages.network.ethernet_data_usage_tile.title">Wi-Fi adathasználat</string>
+    <string name="settings.pages.network.ethernet_data_usage_tile.subtitle">Adathasznlálat a hónapban</string>
+    <string name="settings.pages.network.network_options">Hálózati opciók</string>
+    <string name="settings.pages.network.network_options.vpn_tile.title">Virtuális Privát Hálózatok (VPN)</string>
+    <string name="settings.pages.network.network_options.vpn_tile.subtitle">Egyik sem</string>
+    <string name="settings.pages.network.network_options.vpn_tile.button">VPN opciók</string>
+    <string name="settings.pages.network.network_options.dns_tile.title">Privát DNS</string>
+    <string name="settings.pages.network.network_options.dns_tile.subtitle">Autómatikus</string>
+    <string name="settings.pages.network.network_options.dns_tile.button">DNS opciók</string>
+    <!-- Connected devices -->
+    <string name="settings.pages.connections.title">Csatlakoztatott eszközök</string>
+    <string name="settings.pages.connections.subtitle">Bluetooth, nyomtatók, USB eszközök</string>
+    <string name="settings.pages.connections.bluetooth">Bluetooth</string>
+    <string name="settings.pages.connections.bluetooth_switch_tile.title">Bluetooth</string>
+    <string name="settings.pages.connections.bluetooth_switch_tile.subtitle_enabled">A Bluetooth engedélyezve van</string>
+    <string name="settings.pages.connections.bluetooth_switch_tile.subtitle_disabled">A Bluetooth nincs engedélyezve</string>
+    <string name="settings.pages.connections.bluetooth_file_transfer_tile.title">Fogadott fájlok Bluetoothon keresztül</string>
+    <string name="settings.pages.connections.phone_integration">Telefonos integráció</string>
+    <string name="settings.pages.connections.phone_integration_tile.title">Telefonos integráció</string>
+    <string name="settings.pages.connections.phone_integration_tile.subtitle">A Telefonos integráció nincs engedélyezve</string>
+    <!-- Customization -->
+    <string name="settings.pages.customization.title">Testreszabás</string>
+    <string name="settings.pages.customization.subtitle">Szabja személyre az élményét</string>
+    <string name="settings.pages.customization.theme">Téma</string>
+    <string name="settings.pages.customization.theme_mode_light">Világos</string>
+    <string name="settings.pages.customization.theme_mode_dark">Sötét</string>
+    <string name="settings.pages.customization.theme_color_orange">Narancs</string>
+    <string name="settings.pages.customization.theme_color_red">Piros</string>
+    <string name="settings.pages.customization.theme_color_green">Zöld</string>
+    <string name="settings.pages.customization.theme_color_blue">Kék</string>
+    <string name="settings.pages.customization.theme_color_teal">Zöldeskék</string>
+    <string name="settings.pages.customization.theme_color_pruple" comment="settings.pages.customization.theme_color_purple">Lila</string>
+    <string name="settings.pages.customization.theme_color_aqua">Aqua</string>
+    <string name="settings.pages.customization.theme_color_gold">Arany</string>
+    <string name="settings.pages.customization.theme_color_anthracite">Antracit</string>
+    <string name="settings.pages.customization.taskbar_alignment">Tálca igazítása</string>
+    <string name="settings.pages.customization.taskbar_alignment_start">Eleje</string>
+    <string name="settings.pages.customization.taskbar_alignment_center">Középső</string>
+    <string name="settings.pages.customization.window_options">Ablak beállítások</string>
+    <string name="settings.pages.customization.window_options_border_radius.title">Ablakkeret sugara - %s</string>
+    <string name="settings.pages.customization.window_options_border_radius.subtitle">Az ablakkeret sugarának állítása</string>
+    <string name="settings.pages.customization.window_options_colored_titlebars.title">Színes címsorok</string>
+    <string name="settings.pages.customization.window_options_colored_titlebars.subtitle">Adj az ablak címsoroknak egyedi színt</string>
+    <string name="settings.pages.customization.window_options_transparent_colored_titlebars.title">Átlátszó színes címsorok</string>
+    <string name="settings.pages.customization.window_options_transparent_colored_titlebars.subtitle">Átlátszóság bekapcsolása a színes címsoroknak</string>
+    <!-- Display -->
+    <string name="settings.pages.display.title">Kijelző</string>
+    <string name="settings.pages.display.subtitle">Felbontás, képernyő időtúllépés, méretezés</string>
+    <!-- Sound -->
+    <string name="settings.pages.sound.title">Hang</string>
+    <string name="settings.pages.sound.subtitle">Hangerő, Ne zavarj, bekapcsolási hang</string>
+    <!-- Locale -->
+    <string name="settings.pages.locale.title">Helyszín</string>
+    <string name="settings.pages.locale.subtitle">Nyelv, idő és dátum, billentyűzet kiosztás</string>
+    <!-- Notifications -->
+    <string name="settings.pages.notifications.title">Értesítések</string>
+    <string name="settings.pages.notifications.subtitle">Értesítési hang, alkalmazás választás</string>
+    <!-- Applications -->
+    <string name="settings.pages.applications.title">Alkalmazások</string>
+    <string name="settings.pages.applications.subtitle">Telepített-, és alapértelmezett alkalmazások</string>
+    <!-- Developer options -->
+    <string name="settings.pages.developer_options.title">Fejlesztői beállítások</string>
+    <string name="settings.pages.developer_options.subtitle">Funkció zászlók, haladó beállítások</string>
+    <string name="settings.pages.developer_options.developer_mode_tile.title">Fejlesztői mód</string>
+    <string name="settings.pages.developer_options.developer_mode_tile.subtitle">Haladó hibakereső funkciók aktiválása</string>
+    <!-- About device -->
+    <string name="settings.pages.about.title">Az eszközről</string>
+    <string name="settings.pages.about.subtitle">Rendszer verziója, eszköz információ</string>
+    <string name="settings.pages.about.system_information">Rendszer információ</string>
+    <string name="settings.pages.about.system_information_environment">Környezet</string>
+    <string name="settings.pages.about.system_information_architecture">Architektúra</string>
+    <string name="settings.pages.about.system_information_desktop">Asztal</string>
+    <string name="settings.pages.about.software_update">Rendszerfrissítés</string>
+    <string name="settings.pages.about.software_update_tile.title">dahliaOS naprakész - %s</string>
+    <string name="settings.pages.about.software_update_tile.subtitle">Utoljára megnézve: %s</string>
+    <string name="settings.pages.about.software_update_tile.button">Frissítések keresése</string>
+</resources>

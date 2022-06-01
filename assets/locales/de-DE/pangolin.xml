@@ -32,23 +32,23 @@
     <string name="apps.web">Web Browser</string>
     <!-- App Descriptions-->
     <string name="apps.authenticator_description">Zwei-Faktor-Autorisierung</string>
-    <string name="apps.calculator_description">Addition, Subtraktion, Multiplikation und Division</string>
-    <string name="apps.clock_description">Zeit, Wecker, Stoppuhren und Weltzeiten verwalten</string>
-    <string name="apps.containers_description">Verwalten Sie Ihre Systemcontainer</string>
+    <string name="apps.calculator_description">Grundlegende Berechnungen durchführen</string>
+    <string name="apps.clock_description">Die Zeit im Auge behalten</string>
+    <string name="apps.containers_description">Container und virtuelle Maschinen verwalten</string>
     <string name="apps.disks_description">Festplatten und Partitionen verwalten</string>
     <string name="apps.files_description">Dateien und Ordner durchsuchen</string>
-    <string name="apps.media_description">Bilder und Videos ansehen</string>
-    <string name="apps.music_description">Lokale Musik anhören</string>
-    <string name="apps.notes_description">Lokale Text-Dateien bearbeiten</string>
+    <string name="apps.media_description">Bilder und Videos durchsuchen und anschauen</string>
+    <string name="apps.music_description">Musik hören</string>
+    <string name="apps.notes_description">Dokumente erstellen und bearbeiten</string>
     <string name="apps.notesmobile_description">Notizen (Mobile)</string>
     <string name="apps.messages_description">Nachrichten</string>
     <string name="apps.rootterminal_description">Befehle als Superuser ausführen</string>
     <string name="apps.settings_description">Systemeinstellungen anpassen</string>
-    <string name="apps.systemlogs_description">System-Protokolle auslesen</string>
-    <string name="apps.taskmanager_description">Aktuell laufende Anwendungen verwalten</string>
+    <string name="apps.systemlogs_description">Softwarefehler anzeigen und debug</string>
+    <string name="apps.taskmanager_description">Systemleistung überwachen</string>
     <string name="apps.terminal_description">Auf die Kommandozeile zugreifen</string>
     <string name="apps.themedemo_description">Interne Demo für App-Theming</string>
-    <string name="apps.welcome_description">Begrüßungs Anwendung</string>
+    <string name="apps.welcome_description">Informationen zu dahliaOS anzeigen</string>
     <string name="apps.help_description">Häufig gestellte Fragen und Support</string>
     <string name="apps.web_description">Internet durchsuchen</string>
     <!-- Feature Not Implemented-->
@@ -95,7 +95,7 @@
     <string name="quicksettingsOverlay.pages.network.title">Netzwerkeinstellungen</string>
     <string name="quicksettingsOverlay.pages.theme.title">Theme-Einstellungen</string>
     <!-- Wallpaper Picker -->
-    <string name="desktop.wallpaper_picker.gone">Fehler\nBild existiert nicht mehr</string>
+    <string name="desktop.wallpaper_picker.gone">Fehler\nDieses Bild kann nicht verwendet werden</string>
     <string name="desktop.wallpaper_picker.url_wallpaper.hint">Hintergrund von URL festlegen</string>
     <string name="desktop.wallpaper_picker.url_wallpaper.label">Hintergrundbild URL</string>
     <string name="desktop.wallpaper_picker.bing_wallpaper_button">Bing-Hintergrund verwenden</string>
@@ -169,7 +169,9 @@
     <string name="settings.pages.customization.window_options_border_radius.title">Fensterrahmen Radius - %s</string>
     <string name="settings.pages.customization.window_options_border_radius.subtitle">Fensterrahmen Radius ändern</string>
     <string name="settings.pages.customization.window_options_colored_titlebars.title">Farbige Titelleisten</string>
-    <string name="settings.pages.customization.window_options_colored_titlebars.subtitle">Farbige Titelleisten für Fenster verwenden</string>
+    <string name="settings.pages.customization.window_options_colored_titlebars.subtitle">Fenster-Titelleiste eine benutzerdefinierte Akzentfarbe zuweisen</string>
+    <string name="settings.pages.customization.window_options_transparent_colored_titlebars.title">Transparente, farbige Titelleisten</string>
+    <string name="settings.pages.customization.window_options_transparent_colored_titlebars.subtitle">Transparenz zu den farbigen Titelleisten hinzufügen</string>
     <!-- Display -->
     <string name="settings.pages.display.title">Anzeige</string>
     <string name="settings.pages.display.subtitle">Auflösung, Bildschirm-Timeout, Skalierung</string>

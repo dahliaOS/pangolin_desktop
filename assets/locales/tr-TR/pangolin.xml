@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Global Strings -->
+    <string name="global.account.local">Yerel hesap</string>
+    <string name="global.account.user_accounts">Kullanıcı hesapları</string>
+    <string name="global.on">Açık</string>
+    <string name="global.off">Kapalı</string>
+    <string name="global.settings">Ayarlar</string>
+    <string name="global.coming_soon">Çok yakında</string>
+    <string name="global.save">Kaydet</string>
+    <string name="global.search">Ara</string>
+    <!-- App Names-->
+    <string name="apps.authenticator">Kimlik doğrulayıcı</string>
+    <string name="apps.calculator">Hesap makinesi</string>
+    <string name="apps.clock">Saat</string>
+    <string name="apps.containers" comment="Do not actually translate this string, just write &quot;Graft&quot; as the translation">Aşı</string>
+    <string name="apps.disks">Diskler</string>
+    <string name="apps.files">Dosyalar</string>
+    <string name="apps.media">Ortam</string>
+    <string name="apps.music">Müzik</string>
+    <string name="apps.notes">Metin düzenleyici</string>
+    <string name="apps.notesmobile">Notlar (Mobil)</string>
+    <string name="apps.messages">İletiler</string>
+    <string name="apps.rootterminal">Kök uçbirim</string>
+    <string name="apps.settings">Ayarlar</string>
+    <string name="apps.systemlogs">Sistem günlükleri</string>
+    <string name="apps.taskmanager">Görev yöneticisi</string>
+    <string name="apps.terminal">Uçbirim</string>
+    <string name="apps.themedemo">Tema demosu</string>
+    <string name="apps.welcome">Hoş geldiniz</string>
+    <string name="apps.help">Yardım</string>
+    <string name="apps.web">Web tarayıcısı</string>
+    <!-- App Descriptions-->
+    <string name="apps.authenticator_description">İki adımlı kimlik doğrulama</string>
+    <string name="apps.calculator_description">Basit hesaplamalar yap</string>
+    <string name="apps.clock_description">Zamanı tut</string>
+    <string name="apps.containers_description">Kapsayıcıları ve sanal makineleri yönet</string>
+    <string name="apps.disks_description">Diskleri ve bölümleri yönet</string>
+    <string name="apps.files_description">Dosyalara ve klasörlere göz at</string>
+    <string name="apps.media_description">Fotoğraflara ve videolara göz at ve izle</string>
+    <string name="apps.music_description">Müzik dinle</string>
+    <string name="apps.notes_description">Belgeler oluştur ve düzenle</string>
+    <string name="apps.notesmobile_description">Notlar (taşınabilir)</string>
+    <string name="apps.messages_description">İletiler</string>
+    <string name="apps.rootterminal_description">Komutları Süper Kullanıcı olarak çalıştır</string>
+    <string name="apps.settings_description">Sistem ayarlarını düzenle</string>
+    <string name="apps.systemlogs_description">Yazılım sorunlarını görüntüle ve ayıkla</string>
+    <string name="apps.taskmanager_description">Sistem başarımını izle</string>
+    <string name="apps.terminal_description">Komut satırına eriş</string>
+    <string name="apps.themedemo_description">Uygulama temaları için dahili gösterim</string>
+    <string name="apps.welcome_description">dahliaOS hakkında bilgi görüntüle</string>
+    <string name="apps.help_description">SSS ve destek</string>
+    <string name="apps.web_description">Web\'de gezin</string>
+    <!-- Feature Not Implemented-->
+    <string name="misc.featurenotimplemented_title">Özellik henüz mevcut değil</string>
+    <string name="misc.featurenotimplemented_value">Bu özellik şu anda kullandığınız yapıda mevcut değil, gelişmeler için lütfen https://dahliaOS.io adresine bakın.</string>
+    <!-- Overlays -->
+    <!-- Overview -->
+    <string name="overviewOverlay.new_desktop">Yeni Masaüstü</string>
+    <!-- Power menu -->
+    <string name="powerOverlay.title">Güç menüsü</string>
+    <string name="powerOverlay.subtitle">Ne yapmak istediğinizi seçin</string>
+    <string name="powerOverlay.poweroff">Kapat</string>
+    <string name="powerOverlay.sleep">Uyku</string>
+    <string name="powerOverlay.restart">Yeniden başlat</string>
+    <!-- Search -->
+    <string name="searchOverlay.hint">Aygıt, uygulamalar ve Web\'i ara</string>
+    <string name="searchOverlay.results">Sonuçlar</string>
+    <string name="searchOverlay.recent">Son kullanılan</string>
+    <string name="searchOverlay.app">Uygulama</string>
+    <!-- Launcher -->
+    <string name="launcherOverlay.categories.all_applications">Tüm uygulamalar</string>
+    <string name="launcherOverlay.categories.internet">İnternet</string>
+    <string name="launcherOverlay.categories.media">Ortam</string>
+    <string name="launcherOverlay.categories.gaming">Oyunlar</string>
+    <string name="launcherOverlay.categories.development">Geliştirme</string>
+    <string name="launcherOverlay.categories.office">Ofis</string>
+    <string name="launcherOverlay.categories.system">Sistem</string>
+    <!-- Quick Settings -->
+    <string name="quicksettingsOverlay.quick_controls">Hızlı denetimler</string>
+    <string name="quicksettingsOverlay.quick_controls.network.title">Ağ</string>
+    <string name="quicksettingsOverlay.quick_controls.network.subtitle_connected">bağlı</string>
+    <string name="quicksettingsOverlay.quick_controls.network.subtitle_disconnected">bağlı değil</string>
+    <string name="quicksettingsOverlay.quick_controls.bluetooth.title">Bluetooth</string>
+    <string name="quicksettingsOverlay.quick_controls.blueooth.subtitle_connected">bağlı</string>
+    <string name="quicksettingsOverlay.quick_controls.blueooth.subtitle_disconnected">bağlı değil</string>
+    <string name="quicksettingsOverlay.quick_controls.airplane_mode.title">Uçak kipi</string>
+    <string name="quicksettingsOverlay.quick_controls.language.title">Dil</string>
+    <string name="quicksettingsOverlay.quick_controls.theme.title">Tema</string>
+    <string name="quicksettingsOverlay.quick_controls.donotdisturb.title">Rahatsız etme</string>
+    <string name="quicksettingsOverlay.shortcuts.title">Kestirmeler</string>
+    <string name="quicksettingsOverlay.shortcuts.new_event">Yeni etkinlik</string>
+    <string name="quicksettingsOverlay.shortcuts.alpha_build">Alfa yapı</string>
+    <string name="quicksettingsOverlay.shortcuts.energy_mode">Enerji kipi: Başarım</string>
+    <string name="quicksettingsOverlay.pages.network.title">Ağ ayarları</string>
+    <string name="quicksettingsOverlay.pages.theme.title">Tema ayarları</string>
+    <!-- Wallpaper Picker -->
+    <string name="desktop.wallpaper_picker.gone">Hata\nBu görsel kullanılamaz</string>
+    <string name="desktop.wallpaper_picker.url_wallpaper.hint">Duvar kağıdını URL\'den ayarla</string>
+    <string name="desktop.wallpaper_picker.url_wallpaper.label">Duvar kağıdı URL\'si</string>
+    <string name="desktop.wallpaper_picker.bing_wallpaper_button">Bing duvar kağıdını kullan</string>
+    <!-- Desktop Context Menu -->
+    <string name="desktop.desktop_context_menu.change_wallpaper">Duvar kağıdını değiştir</string>
+    <string name="desktop.desktop_context_menu.settings">Ayarlar</string>
+    <!-- Misc -->
+    <string name="desktop.misc.show_desktop">Masaüstü\'nü göster</string>
+    <!-- Settings -->
+    <!-- Headers -->
+    <string name="settings.headers.connectivity">Bağlantı</string>
+    <string name="settings.headers.personalize">Kişiselleştir</string>
+    <string name="settings.headers.device">Aygıt ve uygulamalar</string>
+    <string name="settings.headers.system">Sistem</string>
+    <!-- Network & internet -->
+    <string name="settings.pages.network.title">Ağ ve İnternet</string>
+    <string name="settings.pages.network.subtitle">Wi-Fi, ethernet, veri kullanımı</string>
+    <string name="settings.pages.network.wifi">Wi-Fi</string>
+    <string name="settings.pages.network.wifi_switch_tile.title">Wi-Fi</string>
+    <string name="settings.pages.network.wifi_switch_tile.subtitle_enabled">Wi-Fi etkin</string>
+    <string name="settings.pages.network.wifi_switch_tile.subtitle_disabled">Wi-Fi devre dışı</string>
+    <string name="settings.pages.network.wifi_preferences_tile.title">Wi-Fi tercihleri</string>
+    <string name="settings.pages.network.wifi_preferences_tile.subtitle">Akıllı Wi-Fi bağlantısı, tarama seçenekleri</string>
+    <string name="settings.pages.network.wifi_saved_networks_tile.title">Kayıtlı ağlar</string>
+    <string name="settings.pages.network.wifi_saved_networks_tile.subtitle">%s ağ</string>
+    <string name="settings.pages.network.wifi_data_usage_tile.title">Wi-Fi veri kullanımı</string>
+    <string name="settings.pages.network.wifi_data_usage_tile.subtitle">Bu ay için veri kullanımı</string>
+    <string name="settings.pages.network.ethernet">Ethernet</string>
+    <string name="settings.pages.network.ethernet_switch_tile.title">Ethernet</string>
+    <string name="settings.pages.network.ethernet_switch_tile.subtitle_enabled">Ethernet etkin</string>
+    <string name="settings.pages.network.ethernet_switch_tile.subtitle_disabled">Ethernet devre dışı</string>
+    <string name="settings.pages.network.ethernet_data_usage_tile.title">Wi-Fi veri kullanımı</string>
+    <string name="settings.pages.network.ethernet_data_usage_tile.subtitle">Bu ay için veri kullanımı</string>
+    <string name="settings.pages.network.network_options">Ağ seçenekleri</string>
+    <string name="settings.pages.network.network_options.vpn_tile.title">Sanal Özel Ağ (VPN)</string>
+    <string name="settings.pages.network.network_options.vpn_tile.subtitle">Hiçbiri</string>
+    <string name="settings.pages.network.network_options.vpn_tile.button">VPN seçenekleri</string>
+    <string name="settings.pages.network.network_options.dns_tile.title">Özel DNS</string>
+    <string name="settings.pages.network.network_options.dns_tile.subtitle">Otomatik</string>
+    <string name="settings.pages.network.network_options.dns_tile.button">DNS seçenekleri</string>
+    <!-- Connected devices -->
+    <string name="settings.pages.connections.title">Bağlı aygıtlar</string>
+    <string name="settings.pages.connections.subtitle">Bluetooth, yazıcı, USB aygıtları</string>
+    <string name="settings.pages.connections.bluetooth">Bluetooth</string>
+    <string name="settings.pages.connections.bluetooth_switch_tile.title">Bluetooth</string>
+    <string name="settings.pages.connections.bluetooth_switch_tile.subtitle_enabled">Bluetooth etkin</string>
+    <string name="settings.pages.connections.bluetooth_switch_tile.subtitle_disabled">Bluetooth devre dışı</string>
+    <string name="settings.pages.connections.bluetooth_file_transfer_tile.title">Bluetooth ile alınan dosyalar</string>
+    <string name="settings.pages.connections.phone_integration">Telefon entegrasyonu</string>
+    <string name="settings.pages.connections.phone_integration_tile.title">Telefon entegrasyonu</string>
+    <string name="settings.pages.connections.phone_integration_tile.subtitle">Telefon entegrasyonu devre dışı</string>
+    <!-- Customization -->
+    <string name="settings.pages.customization.title">Özelleştirme</string>
+    <string name="settings.pages.customization.subtitle">Deneyiminizi kişiselleştirin</string>
+    <string name="settings.pages.customization.theme">Tema</string>
+    <string name="settings.pages.customization.theme_mode_light">Açık</string>
+    <string name="settings.pages.customization.theme_mode_dark">Koyu</string>
+    <string name="settings.pages.customization.theme_color_orange">Turuncu</string>
+    <string name="settings.pages.customization.theme_color_red">Kırmızı</string>
+    <string name="settings.pages.customization.theme_color_green">Yeşil</string>
+    <string name="settings.pages.customization.theme_color_blue">Mavi</string>
+    <string name="settings.pages.customization.theme_color_teal">Turkuaz</string>
+    <string name="settings.pages.customization.theme_color_pruple" comment="settings.pages.customization.theme_color_purple">Mor</string>
+    <string name="settings.pages.customization.theme_color_aqua">Su</string>
+    <string name="settings.pages.customization.theme_color_gold">Altın</string>
+    <string name="settings.pages.customization.theme_color_anthracite">Taşkömürü</string>
+    <string name="settings.pages.customization.taskbar_alignment">Görev çubuğu hizalaması</string>
+    <string name="settings.pages.customization.taskbar_alignment_start">Başlangıç</string>
+    <string name="settings.pages.customization.taskbar_alignment_center">Orta</string>
+    <string name="settings.pages.customization.window_options">Pencere seçenekleri</string>
+    <string name="settings.pages.customization.window_options_border_radius.title">Pencere kenarlığı radyanı - %s</string>
+    <string name="settings.pages.customization.window_options_border_radius.subtitle">Pencere kenarlığı radyanını değiştir</string>
+    <string name="settings.pages.customization.window_options_colored_titlebars.title">Renkli başlık çubukları</string>
+    <string name="settings.pages.customization.window_options_colored_titlebars.subtitle">Pencere başlık çubuklarına özel vurgu rengi ver</string>
+    <string name="settings.pages.customization.window_options_transparent_colored_titlebars.title">Saydam renkli başlık çubukları</string>
+    <string name="settings.pages.customization.window_options_transparent_colored_titlebars.subtitle">Renkli başlık çubuklarına saydamlık ekle</string>
+    <!-- Display -->
+    <string name="settings.pages.display.title">Ekran</string>
+    <string name="settings.pages.display.subtitle">Çözünürlük, ekran zaman aşımı, ölçeklendirme</string>
+    <!-- Sound -->
+    <string name="settings.pages.sound.title">Ses</string>
+    <string name="settings.pages.sound.subtitle">Ses düzeyi, rahatsız etme, başlangıç sesi</string>
+    <!-- Locale -->
+    <string name="settings.pages.locale.title">Yerel</string>
+    <string name="settings.pages.locale.subtitle">Dil, tarih ve zaman, klavye dizilimi</string>
+    <!-- Notifications -->
+    <string name="settings.pages.notifications.title">Bildirimler</string>
+    <string name="settings.pages.notifications.subtitle">Bildirim sesi, uygulama seçimi</string>
+    <!-- Applications -->
+    <string name="settings.pages.applications.title">Uygulamalar</string>
+    <string name="settings.pages.applications.subtitle">Yüklü ve öntanımlı uygulamalar</string>
+    <!-- Developer options -->
+    <string name="settings.pages.developer_options.title">Geliştirici seçenekleri</string>
+    <string name="settings.pages.developer_options.subtitle">Özellik bayrakları, gelişmiş seçenekler</string>
+    <string name="settings.pages.developer_options.developer_mode_tile.title">Geliştirici kipi</string>
+    <string name="settings.pages.developer_options.developer_mode_tile.subtitle">Gelişmiş hata ayıklama özelliklerini etkinleştir</string>
+    <!-- About device -->
+    <string name="settings.pages.about.title">Aygıt hakkında</string>
+    <string name="settings.pages.about.subtitle">Sistem sürümü, aygıt bilgisi</string>
+    <string name="settings.pages.about.system_information">Sistem bilgisi</string>
+    <string name="settings.pages.about.system_information_environment">Ortam</string>
+    <string name="settings.pages.about.system_information_architecture">Mimari</string>
+    <string name="settings.pages.about.system_information_desktop">Masaüstü</string>
+    <string name="settings.pages.about.software_update">Yazılım güncelleme</string>
+    <string name="settings.pages.about.software_update_tile.title">dahliaOS güncel - %s</string>
+    <string name="settings.pages.about.software_update_tile.subtitle">Son denetim: %s</string>
+    <string name="settings.pages.about.software_update_tile.button">Güncellemeleri denetle</string>
+</resources>

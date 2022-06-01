@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Global Strings -->
+    <string name="global.account.local">Conta Local</string>
+    <string name="global.account.user_accounts">Contas de Usuários</string>
+    <string name="global.on">Ligado</string>
+    <string name="global.off">Desligado</string>
+    <string name="global.settings">Configurações</string>
+    <string name="global.coming_soon">Em Breve</string>
+    <string name="global.save">Salvar</string>
+    <string name="global.search">Buscar</string>
+    <!-- App Names-->
+    <string name="apps.authenticator">Autenticador</string>
+    <string name="apps.calculator">Calculadora</string>
+    <string name="apps.clock">Relógio</string>
+    <string name="apps.containers" comment="Do not actually translate this string, just write &quot;Graft&quot; as the translation">Graft</string>
+    <string name="apps.disks">Discos</string>
+    <string name="apps.files">Arquivos</string>
+    <string name="apps.media">Mídia</string>
+    <string name="apps.music">Música</string>
+    <string name="apps.notes">Editor de Texto</string>
+    <string name="apps.notesmobile">Notas (Mobile)</string>
+    <string name="apps.messages">Mensagens</string>
+    <string name="apps.rootterminal">Terminal Root</string>
+    <string name="apps.settings">Configurações</string>
+    <string name="apps.systemlogs">Logs do Sistema</string>
+    <string name="apps.taskmanager">Gerenciador de Tarefas</string>
+    <string name="apps.terminal">Terminal</string>
+    <string name="apps.themedemo">Demo do Tema</string>
+    <string name="apps.welcome">Bem-vindo</string>
+    <string name="apps.help">Ajuda</string>
+    <string name="apps.web">Navegador de Internet</string>
+    <!-- App Descriptions-->
+    <string name="apps.authenticator_description">Autenticação de dois fatores</string>
+    <string name="apps.calculator_description">Executar cálculos básicos</string>
+    <string name="apps.clock_description">Ver as horas</string>
+    <string name="apps.containers_description">Gerenciar containers e máquinas virtuais</string>
+    <string name="apps.disks_description">Gerenciar discos e partições</string>
+    <string name="apps.files_description">Explore arquivos e pastas</string>
+    <string name="apps.media_description">Explore e veja fotos e vídeos</string>
+    <string name="apps.music_description">Ouça músicas</string>
+    <string name="apps.notes_description">Crie e edite documentos</string>
+    <string name="apps.notesmobile_description">Notas (Mobile)</string>
+    <string name="apps.messages_description">Mensagens</string>
+    <string name="apps.rootterminal_description">Executar comandos como superusuário</string>
+    <string name="apps.settings_description">Ajustar configurações do sistema</string>
+    <string name="apps.systemlogs_description">Visualizar e debugar problemas do software</string>
+    <string name="apps.taskmanager_description">Monitorar desempenho do sistema</string>
+    <string name="apps.terminal_description">Acessar a linha de comando</string>
+    <string name="apps.themedemo_description">Demonstração interna para temas de programas</string>
+    <string name="apps.welcome_description">Ver informações sobre o dahliaOS</string>
+    <string name="apps.help_description">Perguntas frequentes e Suporte</string>
+    <string name="apps.web_description">Navegar na Web</string>
+    <!-- Feature Not Implemented-->
+    <string name="misc.featurenotimplemented_title">Recurso não implementado</string>
+    <string name="misc.featurenotimplemented_value">Este recurso não está disponível na sua versão do Pangolin. Por favor, consulte dahliaOS.io para verificar se há atualizações.</string>
+    <!-- Overlays -->
+    <!-- Overview -->
+    <string name="overviewOverlay.new_desktop">Nova área de trabalho</string>
+    <!-- Power menu -->
+    <string name="powerOverlay.title">Menu de Energia</string>
+    <string name="powerOverlay.subtitle">Escolha o que você quer fazer</string>
+    <string name="powerOverlay.poweroff">Desligar</string>
+    <string name="powerOverlay.sleep">Suspender</string>
+    <string name="powerOverlay.restart">Reiniciar</string>
+    <!-- Search -->
+    <string name="searchOverlay.hint">Buscar dispositivos, aplicativos e na web</string>
+    <string name="searchOverlay.results">Resultados</string>
+    <string name="searchOverlay.recent">Recente</string>
+    <string name="searchOverlay.app">Aplicativo</string>
+    <!-- Launcher -->
+    <string name="launcherOverlay.categories.all_applications">Todos os aplicativos</string>
+    <string name="launcherOverlay.categories.internet">Internet</string>
+    <string name="launcherOverlay.categories.media">Mídia</string>
+    <string name="launcherOverlay.categories.gaming">Jogos</string>
+    <string name="launcherOverlay.categories.development">Desenvolvimento</string>
+    <string name="launcherOverlay.categories.office">Escritório</string>
+    <string name="launcherOverlay.categories.system">Sistema</string>
+    <!-- Quick Settings -->
+    <string name="quicksettingsOverlay.quick_controls">Controles rápidos</string>
+    <string name="quicksettingsOverlay.quick_controls.network.title">Rede</string>
+    <string name="quicksettingsOverlay.quick_controls.network.subtitle_connected">conectado</string>
+    <string name="quicksettingsOverlay.quick_controls.network.subtitle_disconnected">desconectado</string>
+    <string name="quicksettingsOverlay.quick_controls.bluetooth.title">Bluetooth</string>
+    <string name="quicksettingsOverlay.quick_controls.blueooth.subtitle_connected">conectado</string>
+    <string name="quicksettingsOverlay.quick_controls.blueooth.subtitle_disconnected">desconectado</string>
+    <string name="quicksettingsOverlay.quick_controls.airplane_mode.title">Modo avião</string>
+    <string name="quicksettingsOverlay.quick_controls.language.title">Idioma</string>
+    <string name="quicksettingsOverlay.quick_controls.theme.title">Tema</string>
+    <string name="quicksettingsOverlay.quick_controls.donotdisturb.title">Não perturbe</string>
+    <string name="quicksettingsOverlay.shortcuts.title">Atalhos</string>
+    <string name="quicksettingsOverlay.shortcuts.new_event">Novo Evento</string>
+    <string name="quicksettingsOverlay.shortcuts.alpha_build">Build Alpha</string>
+    <string name="quicksettingsOverlay.shortcuts.energy_mode">Modo Energia: Desempenho</string>
+    <string name="quicksettingsOverlay.pages.network.title">Configurações de Rede</string>
+    <string name="quicksettingsOverlay.pages.theme.title">Configurações de Tema</string>
+    <!-- Wallpaper Picker -->
+    <string name="desktop.wallpaper_picker.gone">Erro\nEsta imagem não pode ser usada</string>
+    <string name="desktop.wallpaper_picker.url_wallpaper.hint">Definir plano de fundo a partir de URL</string>
+    <string name="desktop.wallpaper_picker.url_wallpaper.label">URL do plano de fundo</string>
+    <string name="desktop.wallpaper_picker.bing_wallpaper_button">Usar papel de parede do Bing</string>
+    <!-- Desktop Context Menu -->
+    <string name="desktop.desktop_context_menu.change_wallpaper">Alterar Plano de fundo</string>
+    <string name="desktop.desktop_context_menu.settings">Configurações</string>
+    <!-- Misc -->
+    <string name="desktop.misc.show_desktop">Mostrar Área de Trabalho</string>
+    <!-- Settings -->
+    <!-- Headers -->
+    <string name="settings.headers.connectivity">Conectividade</string>
+    <string name="settings.headers.personalize">Personalizar</string>
+    <string name="settings.headers.device">Dispositivo &amp; aplicativos</string>
+    <string name="settings.headers.system">Sistema</string>
+    <!-- Network & internet -->
+    <string name="settings.pages.network.title">Rede &amp; Internet</string>
+    <string name="settings.pages.network.subtitle">Wi-Fi, ethernet, uso de dados</string>
+    <string name="settings.pages.network.wifi">Wi-Fi</string>
+    <string name="settings.pages.network.wifi_switch_tile.title">Wi-Fi</string>
+    <string name="settings.pages.network.wifi_switch_tile.subtitle_enabled">O Wi-Fi está ativado</string>
+    <string name="settings.pages.network.wifi_switch_tile.subtitle_disabled">O Wi-Fi está desativado</string>
+    <string name="settings.pages.network.wifi_preferences_tile.title">Perferências de Wi-Fi</string>
+    <string name="settings.pages.network.wifi_preferences_tile.subtitle">Conexão Wi-Fi inteligente, opções de busca</string>
+    <string name="settings.pages.network.wifi_saved_networks_tile.title">Redes salvas</string>
+    <string name="settings.pages.network.wifi_saved_networks_tile.subtitle">%s redes</string>
+    <string name="settings.pages.network.wifi_data_usage_tile.title">Uso de dados Wi-Fi</string>
+    <string name="settings.pages.network.wifi_data_usage_tile.subtitle">Uso de dados deste mês</string>
+    <string name="settings.pages.network.ethernet">Ethernet</string>
+    <string name="settings.pages.network.ethernet_switch_tile.title">Ethernet</string>
+    <string name="settings.pages.network.ethernet_switch_tile.subtitle_enabled">Conexão via cabo ativada</string>
+    <string name="settings.pages.network.ethernet_switch_tile.subtitle_disabled">Conexão via cabo desativada</string>
+    <string name="settings.pages.network.ethernet_data_usage_tile.title">Uso de dados Wi-Fi</string>
+    <string name="settings.pages.network.ethernet_data_usage_tile.subtitle">Uso de dados deste mês</string>
+    <string name="settings.pages.network.network_options">Opções de rede</string>
+    <string name="settings.pages.network.network_options.vpn_tile.title">Rede Privada Virtual (VPN)</string>
+    <string name="settings.pages.network.network_options.vpn_tile.subtitle">Nenhuma</string>
+    <string name="settings.pages.network.network_options.vpn_tile.button">Opções de VPN</string>
+    <string name="settings.pages.network.network_options.dns_tile.title">DNS privado</string>
+    <string name="settings.pages.network.network_options.dns_tile.subtitle">Automático</string>
+    <string name="settings.pages.network.network_options.dns_tile.button">Opções de DNS</string>
+    <!-- Connected devices -->
+    <string name="settings.pages.connections.title">Dispositivos conectados</string>
+    <string name="settings.pages.connections.subtitle">Bluetooth, impressora, dispositivos USB</string>
+    <string name="settings.pages.connections.bluetooth">Bluetooth</string>
+    <string name="settings.pages.connections.bluetooth_switch_tile.title">Bluetooth</string>
+    <string name="settings.pages.connections.bluetooth_switch_tile.subtitle_enabled">Bluetooth está habilitado</string>
+    <string name="settings.pages.connections.bluetooth_switch_tile.subtitle_disabled">Bluetooth está desabilitado</string>
+    <string name="settings.pages.connections.bluetooth_file_transfer_tile.title">Arquivos recebidos via Bluetooth</string>
+    <string name="settings.pages.connections.phone_integration">Integração do telefone</string>
+    <string name="settings.pages.connections.phone_integration_tile.title">Integração do telefone</string>
+    <string name="settings.pages.connections.phone_integration_tile.subtitle">Integração do telefone desativada</string>
+    <!-- Customization -->
+    <string name="settings.pages.customization.title">Personalização</string>
+    <string name="settings.pages.customization.subtitle">Personalizar sua experiência</string>
+    <string name="settings.pages.customization.theme">Tema</string>
+    <string name="settings.pages.customization.theme_mode_light">Claro</string>
+    <string name="settings.pages.customization.theme_mode_dark">Escuro</string>
+    <string name="settings.pages.customization.theme_color_orange">Laranja</string>
+    <string name="settings.pages.customization.theme_color_red">Vermelho</string>
+    <string name="settings.pages.customization.theme_color_green">Verde</string>
+    <string name="settings.pages.customization.theme_color_blue">Azul</string>
+    <string name="settings.pages.customization.theme_color_teal">Verde-azulado</string>
+    <string name="settings.pages.customization.theme_color_pruple" comment="settings.pages.customization.theme_color_purple">Roxo</string>
+    <string name="settings.pages.customization.theme_color_aqua">Ciano</string>
+    <string name="settings.pages.customization.theme_color_gold">Dourado</string>
+    <string name="settings.pages.customization.theme_color_anthracite">Antracite</string>
+    <string name="settings.pages.customization.taskbar_alignment">Alinhamento da barra de tarefas</string>
+    <string name="settings.pages.customization.taskbar_alignment_start">Início</string>
+    <string name="settings.pages.customization.taskbar_alignment_center">Centro</string>
+    <string name="settings.pages.customization.window_options">Opções de Janela</string>
+    <string name="settings.pages.customization.window_options_border_radius.title">Raio da borda da janela - %s</string>
+    <string name="settings.pages.customization.window_options_border_radius.subtitle">Alterar o raio da borda da janela</string>
+    <string name="settings.pages.customization.window_options_colored_titlebars.title">Barras de título coloridas</string>
+    <string name="settings.pages.customization.window_options_colored_titlebars.subtitle">Janela de título com uma cor de destaque</string>
+    <string name="settings.pages.customization.window_options_transparent_colored_titlebars.title">Barras de título coloridas transparentes</string>
+    <string name="settings.pages.customization.window_options_transparent_colored_titlebars.subtitle">Adicionar transparência às barras de título coloridas</string>
+    <!-- Display -->
+    <string name="settings.pages.display.title">Tela</string>
+    <string name="settings.pages.display.subtitle">Resolução, tempo limite da tela, escala</string>
+    <!-- Sound -->
+    <string name="settings.pages.sound.title">Som</string>
+    <string name="settings.pages.sound.subtitle">Volume, Não Perturbe, som de início</string>
+    <!-- Locale -->
+    <string name="settings.pages.locale.title">Localidade</string>
+    <string name="settings.pages.locale.subtitle">Idioma, data e hora, layout de teclado</string>
+    <!-- Notifications -->
+    <string name="settings.pages.notifications.title">Notificações</string>
+    <string name="settings.pages.notifications.subtitle">Som de notificação, seleção de aplicação</string>
+    <!-- Applications -->
+    <string name="settings.pages.applications.title">Aplicativos</string>
+    <string name="settings.pages.applications.subtitle">Apps instalados, apps padrões</string>
+    <!-- Developer options -->
+    <string name="settings.pages.developer_options.title">Opções do desenvolvedor</string>
+    <string name="settings.pages.developer_options.subtitle">Flags de recursos, opções avançadas</string>
+    <string name="settings.pages.developer_options.developer_mode_tile.title">Modo de desenvolvedor</string>
+    <string name="settings.pages.developer_options.developer_mode_tile.subtitle">Ativar recursos avançados de depuração</string>
+    <!-- About device -->
+    <string name="settings.pages.about.title">Sobre o dispositivo</string>
+    <string name="settings.pages.about.subtitle">Versão do sistema, informações do dispositivo</string>
+    <string name="settings.pages.about.system_information">Informaçao do Sistema</string>
+    <string name="settings.pages.about.system_information_environment">Ambiente</string>
+    <string name="settings.pages.about.system_information_architecture">Arquitetura</string>
+    <string name="settings.pages.about.system_information_desktop">Computador</string>
+    <string name="settings.pages.about.software_update">Atualizações de software</string>
+    <string name="settings.pages.about.software_update_tile.title">O dahliaOS está atualizado - %s</string>
+    <string name="settings.pages.about.software_update_tile.subtitle">Última verificação: %s</string>
+    <string name="settings.pages.about.software_update_tile.button">Procurar por atualizações</string>
+</resources>
