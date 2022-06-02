@@ -4,7 +4,7 @@
     <string name="global.account.local">Lokalni račun</string>
     <string name="global.account.user_accounts">Korisnički računi</string>
     <string name="global.on">Uključeno</string>
-    <string name="global.off">Ugašeno</string>
+    <string name="global.off">Isključeno</string>
     <string name="global.settings">Postavke</string>
     <string name="global.coming_soon">Dolazi uskoro</string>
     <string name="global.save">Spremi</string>
@@ -179,7 +179,7 @@
     <string name="settings.pages.sound.title">Zvuk</string>
     <string name="settings.pages.sound.subtitle">Glasnoća, ne ometaj, zvuk pri pokretanju</string>
     <!-- Locale -->
-    <string name="settings.pages.locale.title">Locale</string>
+    <string name="settings.pages.locale.title">Jezik</string>
     <string name="settings.pages.locale.subtitle">Jezik, vrijeme i datum, raspored tipkovnice</string>
     <!-- Notifications -->
     <string name="settings.pages.notifications.title">Obavijesti</string>
