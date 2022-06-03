@@ -60,7 +60,7 @@
     <!-- Power menu -->
     <string name="powerOverlay.title">Izbornik napajanja</string>
     <string name="powerOverlay.subtitle">Odaberite što želite raditi</string>
-    <string name="powerOverlay.poweroff">Isključite napajanje</string>
+    <string name="powerOverlay.poweroff">Isključite računalo</string>
     <string name="powerOverlay.sleep">Stanje mirovanja</string>
     <string name="powerOverlay.restart">Ponovno pokreni</string>
     <!-- Search -->
