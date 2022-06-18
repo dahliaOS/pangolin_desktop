@@ -90,6 +90,7 @@ dev_dependencies:
 dependency_overrides:
   material_design_icons_flutter: ^5.0.6295
   path: 1.8.2
+  flutter_lints: ^2.0.1
 
 flutter:
   uses-material-design: true

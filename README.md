@@ -1,16 +1,15 @@
 <p align="center">
-  <img width="80%" src="https://github.com/dahliaOS/brand/blob/master/pangolin/svg/logotypeblacktext.svg#gh-light-mode-only"
-<p>
-<p align="center">
-  <img width="80%" src="https://github.com/dahliaOS/brand/blob/master/pangolin/svg/logotypewhitetext.svg#gh-dark-mode-only"
-<p>
+  <img width="30%" src="https://github.com/dahliaOS/brand/blob/main/assets/dahliaos/banner/colored.svg#gh-dark-mode-only" />
+  <img width="30%" src="https://github.com/dahliaOS/brand/blob/main/assets/dahliaos/banner/colored.svg#gh-light-mode-only" />
+  
+</p>
 
 <p align="center">
-<a href="https://dahliaos.io">Website</a> ●
-<a href="https://dahliaos.io/discord">Discord</a> ●
-<a href="https://dahliaos.io/download">Releases</a> ●
-<a href="https://dahliaos.io/donate">Donate</a> ●
-<a href="https://docs.dahliaos.io">Documentation</a>
+<a href="https://dahliaos.io">Website</a> •
+<a href="https://discord.gg/7qVbJHR">Discord</a> •
+<a href="https://github.com/dahliaos/releases/releases">Releases</a> •
+<a href="https://paypal.me/officialdahliaos">Donate</a> •
+<a href="https://github.com/dahliaos/documentation">Documentation</a>
 
 # Pangolin Desktop UI [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=dahliaOS%20is%20a%20modern,%20secure,%20lightweight%20and%20responsive%20operating%20system,%20combining%20the%20best%20of%20GNU/Linux%20and%20Fuchsia%20OS&url=https://dahliaos.io&via=realdahliaos&hashtags=dahliaos,linux,zircon,flutter,dart,fuchsia,opensource)
 [![Build and Deploy to Web](https://github.com/dahliaOS/pangolin_desktop/actions/workflows/web.yml/badge.svg?branch=main)](https://github.com/dahliaOS/pangolin_desktop/actions/workflows/web.yml)

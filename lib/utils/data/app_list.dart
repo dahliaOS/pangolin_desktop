@@ -20,12 +20,13 @@ import 'package:media/main.dart';
 import 'package:pangolin/components/settings/settings.dart';
 import 'package:pangolin/utils/data/models/application.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
-import 'package:pangolin/utils/other/apps_stub.dart';
-//    if (dart.library.io) 'package:files/main.dart';
+// Stub import
+import 'package:pangolin/utils/other/apps_stub.dart'
+    if (dart.library.io) 'package:terminal/main.dart';
 // ignore: duplicate_import
-import 'package:pangolin/utils/other/apps_stub.dart';
+import 'package:pangolin/utils/other/apps_stub.dart'
+    if (dart.library.io) 'package:files/main.dart';
 import 'package:pangolin/utils/other/webapp_manager.dart';
-//    if (dart.library.io) 'package:terminal/main.dart';
 import 'package:system_logs/main.dart';
 import 'package:task_manager/monitor.dart';
 import 'package:text_editor/editor.dart';
