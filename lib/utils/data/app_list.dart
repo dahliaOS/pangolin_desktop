@@ -12,6 +12,7 @@ limitations under the License.
 */
 import 'dart:io';
 
+import 'package:app_store/main.dart';
 import 'package:calculator/calculator.dart';
 import 'package:dahlia_clock/main.dart';
 import 'package:flutter/foundation.dart';
@@ -143,6 +144,17 @@ List<Application> applications = [
     name: LSX.apps.welcome,
     description: LSX.apps.welcomeDescription,
     iconName: "welcome-info",
+    category: ApplicationCategory.system,
+  ),
+  //TODO add locale strings for app store
+  const Application(
+    color: Colors.white,
+    appBarTextColor: Colors.black,
+    packageName: "io.dahlia.appstore",
+    app: AppStore(),
+    name: 'App store',
+    description: 'App store',
+    iconName: "store",
     category: ApplicationCategory.system,
   ),
   Application(
