@@ -1,6 +1,8 @@
 PODS:
   - battery_plus_macos (0.0.1):
     - FlutterMacOS
+  - flutter_pty (0.0.1):
+    - FlutterMacOS
   - FlutterMacOS (1.0.0)
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
@@ -12,16 +14,14 @@ PODS:
   - sqflite (0.0.2):
     - FlutterMacOS
     - FMDB (>= 2.7.5)
-  - window_size (0.0.2):
-    - FlutterMacOS
 
 DEPENDENCIES:
   - battery_plus_macos (from `Flutter/ephemeral/.symlinks/plugins/battery_plus_macos/macos`)
+  - flutter_pty (from `Flutter/ephemeral/.symlinks/plugins/flutter_pty/macos`)
   - FlutterMacOS (from `Flutter/ephemeral`)
   - path_provider_macos (from `Flutter/ephemeral/.symlinks/plugins/path_provider_macos/macos`)
   - shared_preferences_macos (from `Flutter/ephemeral/.symlinks/plugins/shared_preferences_macos/macos`)
   - sqflite (from `Flutter/ephemeral/.symlinks/plugins/sqflite/macos`)
-  - window_size (from `Flutter/ephemeral/.symlinks/plugins/window_size/macos`)
 
 SPEC REPOS:
   trunk:
@@ -30,6 +30,8 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   battery_plus_macos:
     :path: Flutter/ephemeral/.symlinks/plugins/battery_plus_macos/macos
+  flutter_pty:
+    :path: Flutter/ephemeral/.symlinks/plugins/flutter_pty/macos
   FlutterMacOS:
     :path: Flutter/ephemeral
   path_provider_macos:
@@ -38,17 +40,15 @@ EXTERNAL SOURCES:
     :path: Flutter/ephemeral/.symlinks/plugins/shared_preferences_macos/macos
   sqflite:
     :path: Flutter/ephemeral/.symlinks/plugins/sqflite/macos
-  window_size:
-    :path: Flutter/ephemeral/.symlinks/plugins/window_size/macos
 
 SPEC CHECKSUMS:
   battery_plus_macos: 6011b4f68b8845e0a7dda4787b90f455fb67c2d1
-  FlutterMacOS: 57701585bf7de1b3fc2bb61f6378d73bbdea8424
+  flutter_pty: 41b6f848ade294be726a6b94cdd4a67c3bc52f59
+  FlutterMacOS: ae6af50a8ea7d6103d888583d46bd8328a7e9811
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
-  path_provider_macos: 160cab0d5461f0c0e02995469a98f24bdb9a3f1f
+  path_provider_macos: 3c0c3b4b0d4a76d2bf989a913c2de869c5641a19
   shared_preferences_macos: a64dc611287ed6cbe28fd1297898db1336975727
   sqflite: a5789cceda41d54d23f31d6de539d65bb14100ea
-  window_size: 339dafa0b27a95a62a843042038fa6c3c48de195
 
 PODFILE CHECKSUM: 6eac6b3292e5142cfc23bdeb71848a40ec51c14c
 
