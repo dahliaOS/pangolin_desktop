@@ -12,10 +12,10 @@ class CustomizationProvider extends ChangeNotifier {
 
   // Initial Values
 
-  bool _darkMode = true;
+  bool _darkMode = false;
   bool _centerTaskbar = true;
   bool _enableBlur = true;
-  bool _coloredTitlebars = false;
+  bool _coloredTitlebars = true;
   bool _transparentColoredTitlebars = false;
 
   List<String> _pinnedApps = List.from(
@@ -35,7 +35,7 @@ class CustomizationProvider extends ChangeNotifier {
   int _launcherIcon = Icons.apps.codePoint;
   int _accentColor = const Color(0xFFFF5722).value;
 
-  String _fontFamily = "Inter";
+  String _fontFamily = "Roboto";
   String _wallpaper = "assets/images/wallpapers/modern.png";
 
   // Getter
