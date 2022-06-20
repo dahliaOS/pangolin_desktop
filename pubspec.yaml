@@ -75,7 +75,9 @@ dependencies:
   welcome:
     git:
       url: https://github.com/dahliaOS/welcome.git
-      ref: old
+  app_store:
+    git:
+      url: https://github.com/dahliaOS/app_store.git
 
   xml: ^5.3.0
   flag: ^6.0.0
