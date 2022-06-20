@@ -1,6 +1,5 @@
 import 'package:pangolin/utils/data/database_manager.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
-import 'package:pangolin/widgets/global/box/box_container.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
@@ -11,7 +10,7 @@ class WelcomeScreen extends StatefulWidget {
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
   bool showAtStartup = true;
-  bool _isDarkMode = DatabaseManager.get("darkMode");
+  final bool _isDarkMode = DatabaseManager.get("darkMode");
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -29,8 +28,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               borderRadius: BorderRadius.circular(12),
               child: Container(
                 decoration: BoxDecoration(
-                  color: _isDarkMode ? Color(0xFF1e1e1e) : Colors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                  color: _isDarkMode ? const Color(0xFF1e1e1e) : Colors.white,
+                  borderRadius: const BorderRadius.all(Radius.circular(12.0)),
                   /*boxShadow: [
                         BoxShadow(
                           color: Colors.black.withOpacity(0.1),
@@ -74,7 +73,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       left: 40,
                       width: 368,
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: const [
                           Text(
