@@ -11,6 +11,7 @@ class WelcomeScreen extends StatefulWidget {
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
   bool showAtStartup = true;
+  bool _isDarkMode = DatabaseManager.get("darkMode");
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -24,7 +25,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               borderRadius: BorderRadius.circular(12),
               child: Container(
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: _isDarkMode ? Color(0xFF1e1e1e) : Colors.white,
                   borderRadius: BorderRadius.all(Radius.circular(12.0)),
                   /*boxShadow: [
                         BoxShadow(
@@ -43,7 +44,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       top: 0,
                       right: 0,
                       child: Image.asset(
-                        'assets/images/other/developer-white.png',
+                        _isDarkMode ? 'assets/images/other/developer-dark.png' : 'assets/images/other/developer-white.png',
                         fit: BoxFit.cover,
                         filterQuality: FilterQuality.high,
                         height: 256,
@@ -54,7 +55,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       top: 40,
                       left: 40,
                       child: Image.asset(
-                        'assets/images/logos/dahliaOS-modern.png',
+                        _isDarkMode ? 'assets/images/logos/dahliaOS-white.png' : 'assets/images/logos/dahliaOS-modern.png',
                         filterQuality: FilterQuality.high,
                         fit: BoxFit.cover,
                         height: 32,
