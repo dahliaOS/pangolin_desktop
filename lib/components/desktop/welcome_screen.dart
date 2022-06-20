@@ -15,7 +15,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.pop(context),
+      onTap: () {
+        DatabaseManager.set("initialStart", showAtStartup);
+
+        Navigator.pop(context);
+      },
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: Container(
@@ -44,7 +48,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       top: 0,
                       right: 0,
                       child: Image.asset(
-                        _isDarkMode ? 'assets/images/other/developer-dark.png' : 'assets/images/other/developer-white.png',
+                        _isDarkMode
+                            ? 'assets/images/other/developer-dark.png'
+                            : 'assets/images/other/developer-white.png',
                         fit: BoxFit.cover,
                         filterQuality: FilterQuality.high,
                         height: 256,
@@ -55,7 +61,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       top: 40,
                       left: 40,
                       child: Image.asset(
-                        _isDarkMode ? 'assets/images/logos/dahliaOS-white.png' : 'assets/images/logos/dahliaOS-modern.png',
+                        _isDarkMode
+                            ? 'assets/images/logos/dahliaOS-white.png'
+                            : 'assets/images/logos/dahliaOS-modern.png',
                         filterQuality: FilterQuality.high,
                         fit: BoxFit.cover,
                         height: 32,
@@ -90,39 +98,36 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     Positioned(
                       bottom: 30,
                       left: 30,
-                  
-                      child:
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Checkbox(
-                                value: showAtStartup,
-                                onChanged: (val) {
-                                  setState(() {
-                                    showAtStartup = !showAtStartup;
-                                  });
-                                },
-                              ),
-                              const Text("Show at every startup"),
-                            ],
-                          ),
-                         
-                       
-                    ),
-                    Positioned(bottom: 30,
-                    right: 30,
-                      child:  ElevatedButton(
-                            onPressed: () {
-                              DatabaseManager.set(
-                                  "initialStart", showAtStartup);
-
-                              Navigator.pop(context);
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Checkbox(
+                            value: showAtStartup,
+                            onChanged: (val) {
+                              setState(() {
+                                showAtStartup = !showAtStartup;
+                              });
                             },
-                            child: Padding(
-                              padding: ThemeConstants.buttonPadding,
-                              child: const Text("LET'S GO!"),
-                            ),
-                          ),)
+                          ),
+                          const Text("Show at every startup"),
+                        ],
+                      ),
+                    ),
+                    Positioned(
+                      bottom: 30,
+                      right: 30,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          DatabaseManager.set("initialStart", showAtStartup);
+
+                          Navigator.pop(context);
+                        },
+                        child: Padding(
+                          padding: ThemeConstants.buttonPadding,
+                          child: const Text("LET'S GO!"),
+                        ),
+                      ),
+                    )
                   ],
                 ),
               ),
