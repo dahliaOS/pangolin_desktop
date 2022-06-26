@@ -146,14 +146,13 @@ List<Application> applications = [
     iconName: "welcome-info",
     category: ApplicationCategory.system,
   ),
-  //TODO add locale strings for app store
-  const Application(
+  Application(
     color: Colors.white,
     appBarTextColor: Colors.black,
     packageName: "io.dahlia.appstore",
-    app: AppStore(),
-    name: 'App Store',
-    description: 'App Store',
+    app: const AppStore(),
+    name: LSX.apps.appStore,
+    description: LSX.apps.appStoreDescription,
     iconName: "store",
     category: ApplicationCategory.system,
   ),

@@ -70,6 +70,10 @@ class _$AppsLocaleStrings {
   final String welcomeDescription = "apps.welcome_description".tr();
   final String helpDescription = "apps.help_description".tr();
   final String webDescription = "apps.web_description".tr();
+  /// App store application name
+  final String appStore = "apps.app_store".tr();
+  /// App Store application description
+  final String appStoreDescription = "apps.app_store_description".tr();
 }
 
 class _$MiscLocaleStrings {

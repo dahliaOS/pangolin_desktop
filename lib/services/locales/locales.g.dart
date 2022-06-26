@@ -827,10 +827,12 @@ class _$LocaleEnUS extends _$LocaleBase {
     "settings.pages.about.software_update_tile.title": "dahliaOS is up to date - {}",
     "settings.pages.about.software_update_tile.subtitle": "Last checked: {}",
     "settings.pages.about.software_update_tile.button": "Check for updates",
+    "apps.app_store": "App Store",
+    "apps.app_store_description": "Curated marketplace for third-party applications",
   };
 
   @override
-  int get translatedStrings => 178;
+  int get translatedStrings => 180;
 }
 
 
