@@ -203,4 +203,6 @@
     <string name="settings.pages.about.software_update_tile.title">dahliaOS je ažurirana</string>
     <string name="settings.pages.about.software_update_tile.subtitle">Posljednje provjereno:</string>
     <string name="settings.pages.about.software_update_tile.button">Provjerite ima li ažuriranja</string>
+    <string name="apps.app_store" comment="App store application name">Trgovina aplikacijama</string>
+    <string name="apps.app_store_description" comment="App Store application description">Određeno tržište za aplikacije trećih strana</string>
 </resources>
