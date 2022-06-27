@@ -1593,10 +1593,12 @@ class _$LocaleHrHR extends _$LocaleBase {
     "settings.pages.about.software_update_tile.title": "dahliaOS je ažurirana",
     "settings.pages.about.software_update_tile.subtitle": "Posljednje provjereno:",
     "settings.pages.about.software_update_tile.button": "Provjerite ima li ažuriranja",
+    "apps.app_store": "Trgovina aplikacijama",
+    "apps.app_store_description": "Određeno tržište za aplikacije trećih strana",
   };
 
   @override
-  int get translatedStrings => 178;
+  int get translatedStrings => 180;
 }
 
 
