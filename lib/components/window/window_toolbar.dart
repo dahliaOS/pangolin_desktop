@@ -56,7 +56,7 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
     final _customizationProvider = CustomizationProvider.of(context);
 Color widgetColor() {
                 if(_customizationProvider.coloredTitlebars){
-                  if(_customizationProvider.transparentColoredTitlebars){
+                  if(_customizationProvider.transparentColoredTitlebars && widget.barColor.opacity >= 0.5){
                     return widget.barColor.op(0.5);
                   }
                   else{
