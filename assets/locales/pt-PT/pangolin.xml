@@ -203,4 +203,6 @@
     <string name="settings.pages.about.software_update_tile.title">O dahliaOS está atualizado - %s</string>
     <string name="settings.pages.about.software_update_tile.subtitle">Última verificação: %s</string>
     <string name="settings.pages.about.software_update_tile.button">Procurar por atualizações</string>
+    <string name="apps.app_store" comment="App store application name">Loja de Aplicações</string>
+    <string name="apps.app_store_description" comment="App Store application description">Mercado categorizado para aplicações de terceiros</string>
 </resources>

@@ -203,4 +203,6 @@
     <string name="settings.pages.about.software_update_tile.title">dahliaOS güncel - %s</string>
     <string name="settings.pages.about.software_update_tile.subtitle">Son denetim: %s</string>
     <string name="settings.pages.about.software_update_tile.button">Güncellemeleri denetle</string>
+    <string name="apps.app_store" comment="App store application name">Uygulama mağazası</string>
+    <string name="apps.app_store_description" comment="App Store application description">Üçüncü parti uygulamalar için seçkin erişim noktası</string>
 </resources>
