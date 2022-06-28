@@ -1977,10 +1977,12 @@ class _$LocaleItIT extends _$LocaleBase {
     "settings.pages.about.software_update_tile.title": "dahliaOS è aggiornato - {}",
     "settings.pages.about.software_update_tile.subtitle": "Ultima verifica: {}",
     "settings.pages.about.software_update_tile.button": "Verifica aggiornamenti",
+    "apps.app_store": "App Store",
+    "apps.app_store_description": "Negozio di applicazioni esterne selezionate",
   };
 
   @override
-  int get translatedStrings => 178;
+  int get translatedStrings => 180;
 }
 
 
@@ -2741,10 +2743,12 @@ class _$LocalePtPT extends _$LocaleBase {
     "settings.pages.about.software_update_tile.title": "O dahliaOS está atualizado - {}",
     "settings.pages.about.software_update_tile.subtitle": "Última verificação: {}",
     "settings.pages.about.software_update_tile.button": "Procurar por atualizações",
+    "apps.app_store": "Loja de Aplicações",
+    "apps.app_store_description": "Mercado categorizado para aplicações de terceiros",
   };
 
   @override
-  int get translatedStrings => 178;
+  int get translatedStrings => 180;
 }
 
 
@@ -3123,9 +3127,11 @@ class _$LocaleTrTR extends _$LocaleBase {
     "settings.pages.about.software_update_tile.title": "dahliaOS güncel - {}",
     "settings.pages.about.software_update_tile.subtitle": "Son denetim: {}",
     "settings.pages.about.software_update_tile.button": "Güncellemeleri denetle",
+    "apps.app_store": "Uygulama mağazası",
+    "apps.app_store_description": "Üçüncü parti uygulamalar için seçkin erişim noktası",
   };
 
   @override
-  int get translatedStrings => 178;
+  int get translatedStrings => 180;
 }
 
