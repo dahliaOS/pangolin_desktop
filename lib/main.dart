@@ -59,7 +59,7 @@ Future<void> main() async {
     EasyLocalization(
       supportedLocales: Locales.supported,
       fallbackLocale: const Locale("en", "US"),
-      useFallbackTranslations: false,
+      useFallbackTranslations: true,
       assetLoader: GeneratedAssetLoader(),
       path: "assets/locales",
       startLocale: const Locale("en", "US"),
