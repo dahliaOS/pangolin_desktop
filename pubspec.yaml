@@ -79,7 +79,7 @@ dependencies:
     git:
       url: https://github.com/dahliaOS/app_store.git
 
-  xml: ^6.1.0
+  xml: ^5.4.0
   flag: ^6.0.0
 
 dev_dependencies:
