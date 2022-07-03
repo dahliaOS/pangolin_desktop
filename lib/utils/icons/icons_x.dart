@@ -1,7 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
 
 /*
-Copyright 2021 The dahliaOS Authors
+Copyright 2022 The dahliaOS Authors
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
