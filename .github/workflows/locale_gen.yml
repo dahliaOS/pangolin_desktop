@@ -1,4 +1,4 @@
-name: Locale Generator
+name: Locale generator
 on:
   push:
     paths:
@@ -6,7 +6,7 @@ on:
     branches: [ main ]
 jobs:
   locale_gen:
-    name: Generate Locales
+    name: Generate locales
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3.0.2
@@ -15,9 +15,9 @@ jobs:
         name: Prepare Flutter SDK
       - run: flutter channel dev
         name: Switch Flutter channel
-      - run: flutter pub get
+      - run: flutter pub get && flutter pub upgrade
         name: Get dependencies
-      - run: dart bin/locale_gen.dart
+      - run: flutter pub run build_runner build
         name: Generate translations
-      - run: git config user.name "dahliaOS-Bot" && git config user.email dahliaosofficial@gmail.com && git commit -am "Generated locales" && git push
+      - run: git config user.name "dahliaOS-Bot" && git config user.email dahliaosofficial@gmail.com && git add lib/generated && git commit -am "Generated locales" && git push
         name: Push translations
