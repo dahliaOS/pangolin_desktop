@@ -1,5 +1,5 @@
 /*
-Copyright 2021 The dahliaOS Authors
+Copyright 2022 The dahliaOS Authors
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -15,10 +15,10 @@ limitations under the License.
 */
 import 'dart:io' show Platform;
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:flutter_localizations/flutter_localizations.dart';
+import "package:intl/locale.dart" as intl;
 import 'package:pangolin/components/shell/desktop.dart';
-import 'package:pangolin/services/locales/generated_asset_loader.g.dart';
 import 'package:pangolin/services/visual_engine/visual_engine.dart';
 import 'package:pangolin/utils/data/dap_index.dart';
 import 'package:pangolin/utils/data/database_manager.dart';
@@ -29,10 +29,12 @@ import 'package:pangolin/utils/providers/connection_provider.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
 import 'package:pangolin/utils/providers/icon_provider.dart';
 import 'package:pangolin/utils/providers/io_provider.dart';
+import 'package:pangolin/utils/providers/locale_provider.dart';
 import 'package:pangolin/utils/providers/misc_provider.dart';
 import 'package:pangolin/utils/providers/search_provider.dart';
 import 'package:pangolin/utils/theme/theme.dart';
 import 'package:provider/provider.dart';
+import 'package:yatl_flutter/yatl_flutter.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -44,8 +46,8 @@ Future<void> main() async {
   //initialize scheduler for time and date
   DateTimeManager.initialiseScheduler();
 
-  //initialize the localization engine
-  await EasyLocalization.ensureInitialized();
+  // initialize locale providers
+  await initProviders();
 
   //load visual engine
   await loadVisualEngine();
@@ -56,14 +58,11 @@ Future<void> main() async {
   }
 
   runApp(
-    EasyLocalization(
-      supportedLocales: Locales.supported,
-      fallbackLocale: const Locale("en", "US"),
-      useFallbackTranslations: true,
-      assetLoader: GeneratedAssetLoader(),
-      path: "assets/locales",
-      startLocale: const Locale("en", "US"),
-      saveLocale: false,
+    YatlApp(
+      core: yatl,
+      getLocale: () =>
+          intl.Locale.tryParse(preferences.locale ?? "")?.toFlutterLocale(),
+      setLocale: (locale) => preferences.locale = locale?.toString(),
       child: MultiProvider(
         providers: [
           ChangeNotifierProvider<IconProvider>.value(
@@ -102,9 +101,15 @@ class Pangolin extends StatelessWidget {
     return MaterialApp(
       home: const Desktop(),
       theme: theme(context),
-      locale: context.locale,
-      localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
+      locale: context.locale,
+      localizationsDelegates: [
+        GlobalWidgetsLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        context.localizationsDelegate,
+      ],
+      debugShowCheckedModeBanner: false,
     );
   }
 }

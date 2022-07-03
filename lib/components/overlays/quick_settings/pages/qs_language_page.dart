@@ -1,5 +1,5 @@
 /*
-Copyright 2021 The dahliaOS Authors
+Copyright 2022 The dahliaOS Authors
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,12 +14,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flag/flag.dart';
 import 'package:pangolin/components/overlays/quick_settings/widgets/qs_titlebar.dart';
-import 'package:pangolin/services/locales/native_names.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
+import 'package:pangolin/utils/other/native_names.dart';
+import 'package:pangolin/utils/providers/locale_provider.dart';
 import 'package:pangolin/widgets/global/quick_button.dart';
+import 'package:yatl_flutter/yatl_flutter.dart';
 
 class QsLanguagePage extends StatelessWidget {
   const QsLanguagePage({Key? key}) : super(key: key);
@@ -28,7 +28,7 @@ class QsLanguagePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: QsTitlebar(
-        title: LSX.quicksettingsOverlay.quickControlsLanguageTitle,
+        title: strings.quicksettingsOverlay.quickControlsLanguageTitle,
         trailing: const [
           QuickActionButton(
             leading: Icon(
@@ -42,24 +42,39 @@ class QsLanguagePage extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 16.0),
         child: ListView.builder(
-          itemCount: Locales.supported.length,
+          itemCount: locales.supportedLocales.length,
           itemBuilder: (context, index) {
             return ListTile(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8),
               ),
-              leading: Flag.fromString(
-                Locales.supported[index].languageCode.replaceAll("en", "us"),
-                width: 32,
-                replacement: const Icon(Icons.language_outlined),
+              leading: Text(
+                locales.supportedLocales[index]
+                    .toString()
+                    .substring(3)
+                    .replaceAllMapped(
+                      RegExp('[A-Z]'),
+                      (match) => String.fromCharCode(
+                        match.group(0)!.codeUnitAt(0) + 127397,
+                      ),
+                    ),
+                style: const TextStyle(
+                  fontSize: 30,
+                ),
               ),
               title: Text(
-                localeNativeNames[Locales.supported[index].languageCode] ??
+                localeNativeNames[
+                        locales.supportedLocales[index].languageCode] ??
                     "Language code not found",
               ),
-              subtitle: Text(Locales.supported[index].languageCode),
+              subtitle: Text(locales.supportedLocales[index].toLanguageTag()),
+              trailing: Text(
+                "${locales.progressData[locales.supportedLocales[index].toLanguageTag()]} / ${locales.progressData[context.fallbackLocale.toLanguageTag()]}",
+              ),
               onTap: () {
-                context.setLocale(Locales.supported[index]);
+                context.locale =
+                    locales.supportedLocales[index].toFlutterLocale();
+
                 Navigator.pop(context);
               },
             );

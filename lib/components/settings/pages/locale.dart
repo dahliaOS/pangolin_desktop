@@ -1,5 +1,5 @@
 /*
-Copyright 2021 The dahliaOS Authors
+Copyright 2022 The dahliaOS Authors
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@ limitations under the License.
 
 import 'package:pangolin/components/settings/widgets/settings_page.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
+import 'package:pangolin/utils/providers/locale_provider.dart';
 
 class SettingsPageLocale extends StatefulWidget {
   const SettingsPageLocale({Key? key}) : super(key: key);
@@ -28,7 +29,7 @@ class _SettingsPageLocaleState extends State<SettingsPageLocale> {
   @override
   Widget build(BuildContext context) {
     return SettingsPage(
-      title: LSX.settings.pagesLocaleTitle,
+      title: strings.settings.pagesLocaleTitle,
       cards: const [],
     );
   }

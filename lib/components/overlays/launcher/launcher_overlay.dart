@@ -1,5 +1,5 @@
 /*
-Copyright 2021 The dahliaOS Authors
+Copyright 2022 The dahliaOS Authors
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -24,6 +24,7 @@ import 'package:pangolin/utils/data/common_data.dart';
 import 'package:pangolin/utils/data/models/application.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
+import 'package:pangolin/utils/providers/locale_provider.dart';
 import 'package:pangolin/utils/providers/search_provider.dart';
 import 'package:pangolin/utils/wm/wm_api.dart';
 import 'package:pangolin/widgets/global/box/box_container.dart';
@@ -227,18 +228,18 @@ class _LauncherCategoriesState extends State<LauncherCategories> {
   GlobalKey key = GlobalKey();
   var _selected = 0;
   Size? s;
+  static List<String> get launcherCategories => <String>[
+        strings.launcherOverlay.categoriesAllApplications,
+        strings.launcherOverlay.categoriesInternet,
+        strings.launcherOverlay.categoriesMedia,
+        strings.launcherOverlay.categoriesGaming,
+        strings.launcherOverlay.categoriesDevelopment,
+        strings.launcherOverlay.categoriesOffice,
+        strings.launcherOverlay.categoriesSystem
+      ];
 
   @override
   Widget build(BuildContext context) {
-    final List<String> launcherCategories = [
-      LocaleStrings.launcherOverlay.categoriesAllApplications,
-      LocaleStrings.launcherOverlay.categoriesInternet,
-      LocaleStrings.launcherOverlay.categoriesMedia,
-      LocaleStrings.launcherOverlay.categoriesGaming,
-      LocaleStrings.launcherOverlay.categoriesDevelopment,
-      LocaleStrings.launcherOverlay.categoriesOffice,
-      LocaleStrings.launcherOverlay.categoriesSystem
-    ];
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -324,7 +325,7 @@ class LauncherGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
 
-    final _applications = applications;
+    final List<Application> _applications = applications;
     final List<Application> _internet = [];
     final List<Application> _media = [];
     final List<Application> _gaming = [];
@@ -420,7 +421,6 @@ class LauncherActionMenu extends StatefulWidget {
 class _LauncherActionMenuState extends State<LauncherActionMenu> {
   @override
   Widget build(BuildContext context) {
-
     return Padding(
       padding: const EdgeInsets.all(50.0),
       child: SizedBox(

@@ -8,20 +8,14 @@ environment:
 
 dependencies:
   animations: ^2.0.3
-
-  battery_plus: ^2.0.1
-
-  cached_network_image: ^3.2.0
-  calculator:
+  app_store:
     git:
-      url: https://github.com/dahliaOS/calculator.git
-
+      url: https://github.com/dahliaOS/app_store.git
+  battery_plus: ^2.0.1
+  cached_network_image: ^3.2.0
   dahlia_clock:
     git:
       url: https://github.com/dahliaOS/clock.git
-
-  easy_localization: ^3.0.2-dev
-
   files:
     git:
       url: https://github.com/dahliaOS/files.git
@@ -29,28 +23,23 @@ dependencies:
   fluentui_system_icons: ^1.1.143
   flutter:
     sdk: flutter
-
+  flutter_localizations:
+    sdk: flutter
   graft:
     git:
       url: https://github.com/dahliaOS/graft.git
-
   hive_flutter: any
   http: ^0.13.0
-
   intl: ^0.17.0
-
   media:
     git:
       url: https://github.com/dahliaOS/media.git
-
   provider: ^6.0.1
-
   recase: ^4.0.0
-
+  shared_preferences: ^2.0.15
   system_logs:
     git:
       url: https://github.com/dahliaOS/system_logs.git
-
   task_manager:
     git:
       url: https://github.com/dahliaOS/task_manager.git
@@ -61,28 +50,34 @@ dependencies:
   text_editor:
     git:
       url: https://github.com/dahliaOS/text_editor.git
-
   unicons: ^2.0.2
   utopia_wm:
     #path: ../utopia/
     git:
       url: https://github.com/dahliaOS/utopia.git
       ref: utopia
-
   web_browser:
     git:
       url: https://github.com/dahliaOS/web_browser.git
   welcome:
     git:
       url: https://github.com/dahliaOS/welcome.git
-  app_store:
+  xml: ^6.1.0
+  yatl:
     git:
-      url: https://github.com/dahliaOS/app_store.git
-
-  xml: ^5.3.0
-  flag: ^6.0.0
+      url: https://github.com/HrX03/yatl
+      path: yatl
+  yatl_flutter:
+    git:
+      url: https://github.com/HrX03/yatl
+      path: yatl_flutter
+  yatl_gen:
+    git:
+      url: https://github.com/HrX03/yatl
+      path: yatl_gen
 
 dev_dependencies:
+  build_runner: ^2.1.11
   lint: ^1.8.2
 #  flutter_test:
 #    sdk: flutter
@@ -90,9 +85,9 @@ dev_dependencies:
 #    sdk: flutter
 
 dependency_overrides:
+  flutter_lints: ^2.0.1
   material_design_icons_flutter: ^5.0.6295
   path: 1.8.2
-  flutter_lints: ^2.0.1
 
 flutter:
   uses-material-design: true
@@ -102,7 +97,6 @@ flutter:
     - assets/images/logos/
     - assets/images/other/
     - assets/icons/
-    - assets/locales/
     - assets/json/visualData.json
     - assets/textures/
     - assets/fonts/
