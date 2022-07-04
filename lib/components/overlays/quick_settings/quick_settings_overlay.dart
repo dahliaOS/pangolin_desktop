@@ -17,7 +17,6 @@ limitations under the License.
 import 'dart:async';
 
 import 'package:battery_plus/battery_plus.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:pangolin/components/overlays/quick_settings/pages/qs_account_page.dart';
 import 'package:pangolin/components/overlays/quick_settings/pages/qs_language_page.dart';
 import 'package:pangolin/components/overlays/quick_settings/pages/qs_network_page.dart';
@@ -34,8 +33,10 @@ import 'package:pangolin/utils/other/date_time_manager.dart';
 import 'package:pangolin/utils/providers/connection_provider.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
 import 'package:pangolin/utils/providers/io_provider.dart';
+import 'package:pangolin/utils/providers/locale_provider.dart';
 import 'package:pangolin/widgets/global/box/box_container.dart';
 import 'package:pangolin/widgets/global/quick_button.dart';
+import 'package:yatl_flutter/yatl_flutter.dart';
 
 class QuickSettingsOverlay extends ShellOverlay {
   static const String overlayId = 'quicksettings';
@@ -196,7 +197,7 @@ class QsMain extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: _qsActionButton,
             ),
-            _qsTitle(LSX.quicksettingsOverlay.quickControls),
+            _qsTitle(strings.quicksettingsOverlay.quickControls),
             Builder(
               builder: (context) {
                 final _connectionProvider = ConnectionProvider.of(context);
@@ -209,13 +210,13 @@ class QsMain extends StatelessWidget {
                       children: [
                         QsToggleButton(
                           //TODO change title to "Network"
-                          title: LSX
+                          title: strings
                               .quicksettingsOverlay.quickControlsNetworkTitle,
                           icon: _connectionProvider.wifi
                               ? Icons.wifi_rounded
                               : Icons.wifi_off_rounded,
                           //TODO Capitalise
-                          subtitle: LSX.quicksettingsOverlay
+                          subtitle: strings.quicksettingsOverlay
                               .quickControlsNetworkSubtitleConnected,
                           value: _connectionProvider.wifi,
                           onPressed: () => _connectionProvider.wifi =
@@ -225,11 +226,11 @@ class QsMain extends StatelessWidget {
                           },
                         ),
                         QsToggleButton(
-                          title: LSX
+                          title: strings
                               .quicksettingsOverlay.quickControlsBluetoothTitle,
                           subtitle: _connectionProvider.bluetooth
-                              ? LSX.global.on
-                              : LSX.global.off,
+                              ? strings.global.on
+                              : strings.global.off,
                           icon: _connectionProvider.bluetooth
                               ? Icons.bluetooth_connected_rounded
                               : Icons.bluetooth_disabled_rounded,
@@ -238,7 +239,7 @@ class QsMain extends StatelessWidget {
                               !_connectionProvider.bluetooth,
                         ),
                         QsToggleButton(
-                          title: LSX.quicksettingsOverlay
+                          title: strings.quicksettingsOverlay
                               .quickControlsAirplaneModeTitle,
                           icon: !(!_connectionProvider.wifi &&
                                   !_connectionProvider.bluetooth)
@@ -276,19 +277,22 @@ class QsMain extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         QsToggleButton(
-                          title: LSX
+                          title: strings
                               .quicksettingsOverlay.quickControlsLanguageTitle,
                           //TODO Fix this
                           subtitle: context.locale.toLanguageTag(),
                           icon: Icons.language_rounded,
                           value: true,
                           onPressed: () {
-                            final int index =
-                                Locales.supported.indexOf(context.locale);
-                            if (index + 1 < Locales.supported.length) {
-                              context.setLocale(Locales.supported[index + 1]);
+                            final int index = locales.supportedLocales
+                                .indexOf(context.locale.toIntlLocale());
+                            if (index + 1 < locales.supportedLocales.length) {
+                              context.locale = locales
+                                  .supportedLocales[index + 1]
+                                  .toFlutterLocale();
                             } else {
-                              context.setLocale(Locales.supported[0]);
+                              context.locale =
+                                  locales.supportedLocales[0].toFlutterLocale();
                             }
                           },
                           onMenuPressed: () {
@@ -298,13 +302,13 @@ class QsMain extends StatelessWidget {
                         //TODO remove the provider option for this
                         /* 
                       QsToggleButton(
-                        title: LSX.qs.autorotate,
+                        title: strings.qs.autorotate,
                         icon: Icons.screen_lock_rotation_rounded,
                         value: false,
                       ), */
                         QsToggleButton(
-                          title:
-                              LSX.quicksettingsOverlay.quickControlsThemeTitle,
+                          title: strings
+                              .quicksettingsOverlay.quickControlsThemeTitle,
                           icon: Icons.palette_outlined,
                           value: true,
                           onPressed: () => _customizationProvider.darkMode =
@@ -313,7 +317,7 @@ class QsMain extends StatelessWidget {
                               Navigator.pushNamed(context, "/pages/theme"),
                         ),
                         QsToggleButton(
-                          title: LSX.quicksettingsOverlay
+                          title: strings.quicksettingsOverlay
                               .quickControlsDonotdisturbTitle,
                           icon: Icons.do_not_disturb_off_rounded,
                           onPressed: () {},
@@ -331,15 +335,15 @@ class QsMain extends StatelessWidget {
                 );
               },
             ),
-            _qsTitle(LSX.quicksettingsOverlay.shortcutsTitle),
+            _qsTitle(strings.quicksettingsOverlay.shortcutsTitle),
             Row(
               children: [
                 QsShortcutButton(
-                  title: LSX.quicksettingsOverlay.shortcutsNewEvent,
+                  title: strings.quicksettingsOverlay.shortcutsNewEvent,
                   icon: Icons.calendar_today_rounded,
                 ),
                 QsShortcutButton(
-                  title: LSX.quicksettingsOverlay.shortcutsAlphaBuild,
+                  title: strings.quicksettingsOverlay.shortcutsAlphaBuild,
                   icon: Icons.info_outline_rounded,
                 ),
                 const QsShortcutButton(
@@ -410,9 +414,9 @@ class QsMain extends StatelessWidget {
                     return FutureBuilder(
                       future: Battery().batteryLevel,
                       builder: (context, AsyncSnapshot<int?> data) {
-                        final String batteryPercentage =
-                            data.data?.toString() ??
-                                LSX.quicksettingsOverlay.shortcutsEnergyMode;
+                        final String batteryPercentage = data.data
+                                ?.toString() ??
+                            strings.quicksettingsOverlay.shortcutsEnergyMode;
                         return QuickActionButton(
                           leading: const Icon(Icons.battery_charging_full),
                           title: batteryPercentage,

@@ -15,7 +15,7 @@ limitations under the License.
 */
 
 import 'package:animations/animations.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:pangolin/components/overlays/search/widgets/searchbar.dart';
 import 'package:pangolin/components/settings/pages/about.dart';
 import 'package:pangolin/components/settings/pages/applications.dart';
@@ -28,8 +28,10 @@ import 'package:pangolin/components/settings/pages/network/network.dart';
 import 'package:pangolin/components/settings/pages/notifications.dart';
 import 'package:pangolin/components/settings/pages/sound.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
+import 'package:pangolin/utils/providers/locale_provider.dart';
 import 'package:pangolin/utils/theme/theme.dart';
 import 'package:provider/provider.dart';
+import 'package:yatl_flutter/yatl_flutter.dart';
 
 class Settings extends StatelessWidget {
   const Settings({Key? key}) : super(key: key);
@@ -48,9 +50,15 @@ class Settings extends StatelessWidget {
           backgroundColor: Colors.transparent,
           body: _SettingsHome(),
         ),
-        locale: context.locale,
-        localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
+        locale: context.locale,
+        localizationsDelegates: [
+          GlobalWidgetsLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+          context.localizationsDelegate,
+        ],
+        debugShowCheckedModeBanner: false,
       ),
     );
   }
@@ -124,8 +132,7 @@ class _SettingsHomeState extends State<_SettingsHome> {
                                             onTap: !isTile
                                                 ? null
                                                 : () {
-                                                      provider.pageIndex =
-                                                          index;
+                                                    provider.pageIndex = index;
                                                   },
                                             shape: RoundedRectangleBorder(
                                               borderRadius:
@@ -274,93 +281,93 @@ class _SettingsTileData {
   });
 }
 
-List<_SettingsTileData> _settingsTiles = [
-  //Search HEADER
-  const _SettingsTileData(
-    title: "Search",
-  ),
-  //Connectivity HEADER
-  _SettingsTileData(
-    title: LSX.settings.headersConnectivity,
-  ),
-  //Connectivity TILES
-  _SettingsTileData(
-    title: LSX.settings.pagesNetworkTitle,
-    subtitle: LSX.settings.pagesNetworkSubtitle,
-    icon: Icons.wifi,
-    page: const SettingsPageNetwork(),
-  ),
-  _SettingsTileData(
-    title: LSX.settings.pagesConnectionsTitle,
-    subtitle: LSX.settings.pagesConnectionsSubtitle,
-    icon: Icons.devices_rounded,
-    page: const SettingsPageConnectedDevices(),
-  ),
-  //Personalize HEADER
-  _SettingsTileData(
-    title: LSX.settings.headersPersonalize,
-  ),
-  //Personalize TILES
-  _SettingsTileData(
-    title: LSX.settings.pagesCustomizationTitle,
-    subtitle: LSX.settings.pagesCustomizationSubtitle,
-    icon: Icons.color_lens_outlined,
-    page: const SettingsPageCustomization(),
-  ),
+List<_SettingsTileData> get _settingsTiles => <_SettingsTileData>[
+      //Search HEADER
+      const _SettingsTileData(
+        title: "Search",
+      ),
+      //Connectivity HEADER
+      _SettingsTileData(
+        title: strings.settings.headersConnectivity,
+      ),
+      //Connectivity TILES
+      _SettingsTileData(
+        title: strings.settings.pagesNetworkTitle,
+        subtitle: strings.settings.pagesNetworkSubtitle,
+        icon: Icons.wifi,
+        page: const SettingsPageNetwork(),
+      ),
+      _SettingsTileData(
+        title: strings.settings.pagesConnectionsTitle,
+        subtitle: strings.settings.pagesConnectionsSubtitle,
+        icon: Icons.devices_rounded,
+        page: const SettingsPageConnectedDevices(),
+      ),
+      //Personalize HEADER
+      _SettingsTileData(
+        title: strings.settings.headersPersonalize,
+      ),
+      //Personalize TILES
+      _SettingsTileData(
+        title: strings.settings.pagesCustomizationTitle,
+        subtitle: strings.settings.pagesCustomizationSubtitle,
+        icon: Icons.color_lens_outlined,
+        page: const SettingsPageCustomization(),
+      ),
 
-  //Device & applications HEADER
-  _SettingsTileData(
-    title: LSX.settings.headersDevice,
-  ),
-  //Device & applications TILES
-  _SettingsTileData(
-    title: LSX.settings.pagesDisplayTitle,
-    subtitle: LSX.settings.pagesDisplaySubtitle,
-    icon: Icons.desktop_windows,
-    page: const SettingsPageDisplay(),
-  ),
-  _SettingsTileData(
-    title: LSX.settings.pagesSoundTitle,
-    subtitle: LSX.settings.pagesSoundSubtitle,
-    icon: Icons.volume_up_rounded,
-    page: const SettingsPageSound(),
-  ),
-  _SettingsTileData(
-    title: LSX.settings.pagesLocaleTitle,
-    subtitle: LSX.settings.pagesLocaleSubtitle,
-    icon: Icons.translate_rounded,
-    page: const SettingsPageLocale(),
-  ),
-  _SettingsTileData(
-    title: LSX.settings.pagesNotificationsTitle,
-    subtitle: LSX.settings.pagesNotificationsSubtitle,
-    icon: Icons.notifications_none_rounded,
-    page: const SettingsPageNotifications(),
-  ),
-  _SettingsTileData(
-    title: LSX.settings.pagesApplicationsTitle,
-    subtitle: LSX.settings.pagesApplicationsSubtitle,
-    icon: Icons.apps_rounded,
-    page: const SettingsPageApplications(),
-  ),
-  //System HEADER
-  _SettingsTileData(
-    title: LSX.settings.headersSystem,
-  ),
-  _SettingsTileData(
-    title: LSX.settings.pagesDeveloperOptionsTitle,
-    subtitle: LSX.settings.pagesDeveloperOptionsSubtitle,
-    icon: Icons.developer_mode_rounded,
-    page: const SettingsPageDeveloperOptions(),
-  ),
-  //System TILES
-  _SettingsTileData(
-    title: LSX.settings.pagesAboutTitle,
-    subtitle: LSX.settings.pagesAboutSubtitle,
-    icon: Icons.laptop_mac_rounded,
-    page: const SettingsPageAbout(),
-  ),
-];
+      //Device & applications HEADER
+      _SettingsTileData(
+        title: strings.settings.headersDevice,
+      ),
+      //Device & applications TILES
+      _SettingsTileData(
+        title: strings.settings.pagesDisplayTitle,
+        subtitle: strings.settings.pagesDisplaySubtitle,
+        icon: Icons.desktop_windows,
+        page: const SettingsPageDisplay(),
+      ),
+      _SettingsTileData(
+        title: strings.settings.pagesSoundTitle,
+        subtitle: strings.settings.pagesSoundSubtitle,
+        icon: Icons.volume_up_rounded,
+        page: const SettingsPageSound(),
+      ),
+      _SettingsTileData(
+        title: strings.settings.pagesLocaleTitle,
+        subtitle: strings.settings.pagesLocaleSubtitle,
+        icon: Icons.translate_rounded,
+        page: const SettingsPageLocale(),
+      ),
+      _SettingsTileData(
+        title: strings.settings.pagesNotificationsTitle,
+        subtitle: strings.settings.pagesNotificationsSubtitle,
+        icon: Icons.notifications_none_rounded,
+        page: const SettingsPageNotifications(),
+      ),
+      _SettingsTileData(
+        title: strings.settings.pagesApplicationsTitle,
+        subtitle: strings.settings.pagesApplicationsSubtitle,
+        icon: Icons.apps_rounded,
+        page: const SettingsPageApplications(),
+      ),
+      //System HEADER
+      _SettingsTileData(
+        title: strings.settings.headersSystem,
+      ),
+      _SettingsTileData(
+        title: strings.settings.pagesDeveloperOptionsTitle,
+        subtitle: strings.settings.pagesDeveloperOptionsSubtitle,
+        icon: Icons.developer_mode_rounded,
+        page: const SettingsPageDeveloperOptions(),
+      ),
+      //System TILES
+      _SettingsTileData(
+        title: strings.settings.pagesAboutTitle,
+        subtitle: strings.settings.pagesAboutSubtitle,
+        icon: Icons.laptop_mac_rounded,
+        page: const SettingsPageAbout(),
+      ),
+    ];
 
 class _SettingsProvider extends ChangeNotifier {
   int? _pageIndex = 2;

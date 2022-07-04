@@ -15,17 +15,12 @@ limitations under the License.
 */
 
 import 'package:flutter/material.dart';
-import 'package:pangolin/services/locales/locale_strings.g.dart';
 import 'package:pangolin/utils/data/common_data.dart';
 
 export 'package:flutter/material.dart';
-export 'package:pangolin/services/locales/locale_strings.g.dart';
-export 'package:pangolin/services/locales/locales.g.dart';
 export 'package:pangolin/utils/extensions/extensions.dart';
 export 'package:pangolin/utils/extensions/preference_extension.dart';
 export 'package:pangolin/utils/icons/icons_x.dart';
-
-typedef LSX = LocaleStrings;
 
 extension ThemeDataX on ThemeData {
   bool get darkMode => brightness == Brightness.dark;

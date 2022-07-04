@@ -1,5 +1,5 @@
 /*
-Copyright 2021 The dahliaOS Authors
+Copyright 2022 The dahliaOS Authors
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,18 +14,18 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:pangolin/components/settings/widgets/settings_page.dart';
-import 'package:pangolin/utils/extensions/extensions.dart';
-import 'package:pangolin/utils/providers/locale_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class SettingsPageApplications extends StatelessWidget {
-  const SettingsPageApplications({Key? key}) : super(key: key);
+class AppPreferences {
+  final SharedPreferences prefs;
 
-  @override
-  Widget build(BuildContext context) {
-    return SettingsPage(
-      title: strings.settings.pagesApplicationsTitle,
-      cards: const [],
-    );
+  const AppPreferences(this.prefs);
+
+  String? get locale {
+    return prefs.getString("locale");
+  }
+
+  set locale(String? value) {
+    prefs.setString("locale", value!);
   }
 }

@@ -17,6 +17,7 @@ limitations under the License.
 import 'package:pangolin/components/settings/widgets/settings_card.dart';
 import 'package:pangolin/components/settings/widgets/settings_page.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
+import 'package:pangolin/utils/providers/locale_provider.dart';
 
 class SettingsPageDeveloperOptions extends StatefulWidget {
   const SettingsPageDeveloperOptions({Key? key}) : super(key: key);
@@ -32,16 +33,16 @@ class _SettingsPageDeveloperOptionsState
   @override
   Widget build(BuildContext context) {
     return SettingsPage(
-      title: LSX.settings.pagesDeveloperOptionsTitle,
+      title: strings.settings.pagesDeveloperOptionsTitle,
       cards: [
         SettingsCard(
           children: [
             SwitchListTile(
               title: Text(
-                LSX.settings.pagesDeveloperOptionsDeveloperModeTileTitle,
+                strings.settings.pagesDeveloperOptionsDeveloperModeTileTitle,
               ),
               subtitle: Text(
-                LSX.settings.pagesDeveloperOptionsDeveloperModeTileSubtitle,
+                strings.settings.pagesDeveloperOptionsDeveloperModeTileSubtitle,
               ),
               secondary: const Icon(Icons.developer_mode),
               value: _devModeEnabled,

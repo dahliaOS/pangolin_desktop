@@ -19,6 +19,7 @@ import 'package:pangolin/components/settings/widgets/settings_card.dart';
 import 'package:pangolin/components/settings/widgets/settings_content_header.dart';
 import 'package:pangolin/components/settings/widgets/settings_page.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
+import 'package:pangolin/utils/providers/locale_provider.dart';
 
 class SettingsPageConnectedDevices extends StatelessWidget {
   const SettingsPageConnectedDevices({Key? key}) : super(key: key);
@@ -26,39 +27,43 @@ class SettingsPageConnectedDevices extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SettingsPage(
-      title: LSX.settings.pagesConnectionsTitle,
+      title: strings.settings.pagesConnectionsTitle,
       cards: [
-        SettingsContentHeader(LSX.settings.pagesConnectionsBluetooth),
+        SettingsContentHeader(strings.settings.pagesConnectionsBluetooth),
         SettingsCard(
           children: [
             ExpandableSwitchListTile(
               value: false,
               onChanged: (val) {},
-              title:
-                  Text(LSX.settings.pagesConnectionsBluetoothSwitchTileTitle),
+              title: Text(
+                strings.settings.pagesConnectionsBluetoothSwitchTileTitle,
+              ),
               subtitle: Text(
-                LSX.settings
+                strings.settings
                     .pagesConnectionsBluetoothSwitchTileSubtitleDisabled,
               ),
               leading: const Icon(Icons.bluetooth_rounded),
             ),
             RouterListTile(
               title: Text(
-                LSX.settings.pagesConnectionsBluetoothFileTransferTileTitle,
+                strings.settings.pagesConnectionsBluetoothFileTransferTileTitle,
               ),
               leading: const Icon(Icons.file_copy_rounded),
             ),
           ],
         ),
-        SettingsContentHeader(LSX.settings.pagesConnectionsPhoneIntegration),
+        SettingsContentHeader(
+          strings.settings.pagesConnectionsPhoneIntegration,
+        ),
         SettingsCard(
           children: [
             ExpandableListTile(
               value: false,
-              title:
-                  Text(LSX.settings.pagesConnectionsPhoneIntegrationTileTitle),
+              title: Text(
+                strings.settings.pagesConnectionsPhoneIntegrationTileTitle,
+              ),
               subtitle: Text(
-                LSX.settings.pagesConnectionsPhoneIntegrationTileSubtitle,
+                strings.settings.pagesConnectionsPhoneIntegrationTileSubtitle,
               ),
               leading: const Icon(Icons.phone_android_rounded),
             ),
