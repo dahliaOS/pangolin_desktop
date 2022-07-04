@@ -27,7 +27,7 @@ class TaskbarAlignmentButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _customizationProvider = CustomizationProvider.of(context);
-    final bool isCentred = _customizationProvider.centerTaskbar;
+    final bool isCentered = _customizationProvider.centerTaskbar;
     final bool _isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return ClipRRect(
@@ -40,12 +40,12 @@ class TaskbarAlignmentButton extends StatelessWidget {
         ),
         mouseCursor: SystemMouseCursors.click,
         onTap: () {
-          _customizationProvider.centerTaskbar = model.centred;
+          _customizationProvider.centerTaskbar = model.centered;
         },
         child: Container(
           clipBehavior: Clip.antiAlias,
           decoration: BoxDecoration(
-            color: isCentred == model.centred
+            color: isCentered == model.centered
                 ? context.theme.accent
                 : Colors.transparent,
           ),
@@ -74,7 +74,7 @@ class TaskbarAlignmentButton extends StatelessWidget {
                             _taskbarElement(context),
                             const SizedBox(width: 8),
                             _taskbarElement(context),
-                            if (!model.centred) ...[
+                            if (!model.centered) ...[
                               const SizedBox(width: 16),
                               _taskbarElement(context, shaded: true),
                               const SizedBox(width: 8),
@@ -90,7 +90,7 @@ class TaskbarAlignmentButton extends StatelessWidget {
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: model.centred
+                          children: model.centered
                               ? [
                                   _taskbarElement(context, shaded: true),
                                   const SizedBox(width: 8),
@@ -120,7 +120,7 @@ class TaskbarAlignmentButton extends StatelessWidget {
                 Text(
                   model.label,
                   style: Theme.of(context).textTheme.subtitle1?.copyWith(
-                        color: isCentred == model.centred
+                        color: isCentered == model.centered
                             ? context.theme.foregroundColor
                             : null,
                       ),
