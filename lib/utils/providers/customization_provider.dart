@@ -23,6 +23,7 @@ class CustomizationProvider extends ChangeNotifier {
       "io.dahlia.files",
       "io.dahlia.settings",
       "io.dahlia.terminal",
+      "io.dahlia.calculator",
       "io.dahlia.store",
       "io.dahlia.media",
     ],

@@ -13,6 +13,7 @@ limitations under the License.
 import 'dart:io';
 
 import 'package:app_store/main.dart';
+import 'package:calculator/calculator.dart';
 import 'package:dahlia_clock/main.dart';
 import 'package:flutter/foundation.dart';
 import 'package:graft/main.dart';
@@ -52,6 +53,15 @@ List<Application> get applications => <Application>[
         description: strings.apps.settingsDescription,
         iconName: "settings",
         category: ApplicationCategory.system,
+      ),
+      Application(
+        color: Colors.green,
+        packageName: "io.dahlia.calculator",
+        app: Calculator(),
+        name: strings.apps.calculator,
+        description: strings.apps.calculatorDescription,
+        iconName: "calculator",
+        category: ApplicationCategory.office,
       ),
       Application(
         color: Colors.grey.shade900,
