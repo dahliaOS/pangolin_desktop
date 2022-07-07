@@ -25,8 +25,7 @@ class SettingsCard extends StatelessWidget {
           ),
           child: ListView(
             shrinkWrap: true,
-            children: children ??
-                [],
+            children: children ?? [],
           ),
         ),
       ),

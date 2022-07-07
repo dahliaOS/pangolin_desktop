@@ -16,6 +16,7 @@ limitations under the License.
 
 import 'package:pangolin/components/settings/widgets/settings_page.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
+import 'package:pangolin/utils/providers/locale_provider.dart';
 
 class SettingsPageDisplay extends StatefulWidget {
   const SettingsPageDisplay({Key? key}) : super(key: key);
@@ -29,7 +30,7 @@ class _SettingsPageDisplayState extends State<SettingsPageDisplay> {
   @override
   Widget build(BuildContext context) {
     return SettingsPage(
-      title: LSX.settings.pagesDisplayTitle,
+      title: strings.settings.pagesDisplayTitle,
       cards: const [],
     );
   }

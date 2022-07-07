@@ -24,6 +24,7 @@ import 'package:pangolin/components/settings/widgets/theme_mode_button.dart';
 import 'package:pangolin/utils/data/database_manager.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
+import 'package:pangolin/utils/providers/locale_provider.dart';
 
 class SettingsPageCustomization extends StatefulWidget {
   const SettingsPageCustomization({Key? key}) : super(key: key);
@@ -38,9 +39,9 @@ class _SettingsPageCustomizationState extends State<SettingsPageCustomization> {
   Widget build(BuildContext context) {
     final _provider = CustomizationProvider.of(context);
     return SettingsPage(
-      title: LSX.settings.pagesCustomizationTitle,
+      title: strings.settings.pagesCustomizationTitle,
       cards: [
-        SettingsContentHeader(LSX.settings.pagesCustomizationTheme),
+        SettingsContentHeader(strings.settings.pagesCustomizationTheme),
         SettingsCard(
           children: [
             SizedBox(
@@ -70,7 +71,7 @@ class _SettingsPageCustomizationState extends State<SettingsPageCustomization> {
           ],
         ),
         const SettingsContentHeader("Taskbar Alignment"),
-        //TODO make this LSX.settings.pagesCustomizationTaskbarAlignment
+        //TODO make this strings.settings.pagesCustomizationTaskbarAlignment
         SettingsCard(
           children: [
             SizedBox(
@@ -88,17 +89,18 @@ class _SettingsPageCustomizationState extends State<SettingsPageCustomization> {
             ),
           ],
         ),
-        SettingsContentHeader(LSX.settings.pagesCustomizationWindowOptions),
+        SettingsContentHeader(strings.settings.pagesCustomizationWindowOptions),
         SettingsCard(
           children: [
             ListTile(
               title: Text(
-                LSX.settings.pagesCustomizationWindowOptionsBorderRadiusTitle(
+                strings.settings
+                    .pagesCustomizationWindowOptionsBorderRadiusTitle(
                   DatabaseManager.get("windowBorderRadius"),
                 ),
               ),
               subtitle: Text(
-                LSX.settings
+                strings.settings
                     .pagesCustomizationWindowOptionsBorderRadiusSubtitle,
               ),
               trailing: Builder(
@@ -122,11 +124,11 @@ class _SettingsPageCustomizationState extends State<SettingsPageCustomization> {
             ),
             SwitchListTile(
               title: Text(
-                LSX.settings
+                strings.settings
                     .pagesCustomizationWindowOptionsColoredTitlebarsTitle,
               ),
               subtitle: Text(
-                LSX.settings
+                strings.settings
                     .pagesCustomizationWindowOptionsColoredTitlebarsSubtitle,
               ),
               value: _provider.coloredTitlebars,
@@ -137,11 +139,11 @@ class _SettingsPageCustomizationState extends State<SettingsPageCustomization> {
             //TODO add translation
             SwitchListTile(
               title: Text(
-                LSX.settings
+                strings.settings
                     .pagesCustomizationWindowOptionsTransparentColoredTitlebarsTitle,
               ),
               subtitle: Text(
-                LSX.settings
+                strings.settings
                     .pagesCustomizationWindowOptionsTransparentColoredTitlebarsSubtitle,
               ),
               value: _provider.transparentColoredTitlebars,

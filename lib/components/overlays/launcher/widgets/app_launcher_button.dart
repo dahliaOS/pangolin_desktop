@@ -74,7 +74,6 @@ class _AppLauncherButtonState extends State<AppLauncherButton> {
         ),
       ),
     );
-    
   }
 
   void _launchApp(BuildContext context) {

@@ -19,6 +19,7 @@ import 'dart:io';
 import 'package:pangolin/utils/data/app_list.dart';
 import 'package:pangolin/utils/data/models/application.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
+import 'package:pangolin/utils/providers/locale_provider.dart';
 import 'package:pangolin/utils/providers/search_provider.dart';
 
 class SearchTile extends StatefulWidget {
@@ -50,7 +51,7 @@ class _SearchTileState extends State<SearchTile> {
             getAppIcon(application.systemExecutable, application.iconName, 30),
           ],
         ),
-        trailing: Text(LSX.searchOverlay.app),
+        trailing: Text(strings.searchOverlay.app),
         subtitle: Text(application.description ?? ""),
         onTap: () {
           _searchProvider.addRecentSearchResult(application.packageName);

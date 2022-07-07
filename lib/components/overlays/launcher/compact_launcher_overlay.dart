@@ -16,7 +16,6 @@ limitations under the License.
 
 import 'dart:async';
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:pangolin/components/overlays/launcher/widgets/app_launcher_tile.dart';
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/utils/action_manager/action_manager.dart';
@@ -28,6 +27,7 @@ import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
 import 'package:pangolin/widgets/global/box/box_container.dart';
 import 'package:pangolin/widgets/global/quick_button.dart';
+import 'package:yatl_flutter/yatl_flutter.dart';
 
 class CompactLauncherOverlay extends ShellOverlay {
   static const String overlayId = 'compactlauncher';
@@ -212,8 +212,8 @@ class CompactLauncher extends StatelessWidget {
                 height: 460,
                 width: 380,
                 child: ListView(
-                      children: applications
-                          .map((Application e) => AppLauncherTile(e))
+                  children: applications
+                      .map((Application e) => AppLauncherTile(e))
                       .toList(),
                 ),
               ),
