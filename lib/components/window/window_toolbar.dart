@@ -52,6 +52,17 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
     final layout = LayoutState.of(context);
     final fgColor = !context.theme.darkMode ? Colors.grey[900]! : Colors.white;
     final _customizationProvider = CustomizationProvider.of(context);
+    Color widgetColor() {
+      if (_customizationProvider.coloredTitlebars) {
+        if (_customizationProvider.transparentColoredTitlebars &&
+            widget.barColor.opacity >= 0.5) {
+          return widget.barColor.op(0.5);
+        } else {
+          return widget.barColor;
+        }
+      }
+      return Colors.transparent;
+    }
 
     return GestureDetector(
       child: ContextMenuRegion(
@@ -115,13 +126,7 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
         child: SizedBox(
           height: 40,
           child: Material(
-            color: _customizationProvider.coloredTitlebars
-                ? widget.barColor.op(
-                    _customizationProvider.transparentColoredTitlebars
-                        ? 0.5
-                        : 1.0,
-                  )
-                : Colors.transparent,
+            color: widgetColor(),
             child: IconTheme.merge(
               data: IconThemeData(
                 color: _customizationProvider.coloredTitlebars

@@ -1,7 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/shell/effects.dart';
-import 'package:pangolin/components/window/window_toolbar.dart';
 import 'package:pangolin/utils/wm/wm.dart';
 import 'package:provider/provider.dart';
 

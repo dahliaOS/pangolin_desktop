@@ -18,22 +18,24 @@ import 'package:pangolin/components/settings/models/settings_accent_data_model.d
 import 'package:pangolin/components/settings/models/settings_taskbar_data_model.dart';
 import 'package:pangolin/components/settings/models/settings_theme_data_model.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
+import 'package:pangolin/utils/providers/locale_provider.dart';
 
 class SettingsPresets {
   const SettingsPresets._();
 
   //List with presets for the system accent colors
-  static List<AccentColorDataModel> get accentColorPresets => getAccentColorPresets();
+  static List<AccentColorDataModel> get accentColorPresets =>
+      getAccentColorPresets();
 
   //List with presets for the system theme modes
   //TODO add automatic option based on time / sunrise-sunset
   static List<ThemeModeDataModel> get themeModePresets => getThemeModePresets();
 
   //List with presets for the taskbar alignment
-  static List<TaskbarAlignmentModelData> get taskbarAlignmentPresets => getTaskbarAlignmentPresets();
+  static List<TaskbarAlignmentModelData> get taskbarAlignmentPresets =>
+      getTaskbarAlignmentPresets();
 
-  static List<ThemeModeDataModel> getThemeModePresets()
-  {
+  static List<ThemeModeDataModel> getThemeModePresets() {
 //load the data for the theme mode presets
     return List.from(
       [
@@ -52,8 +54,7 @@ class SettingsPresets {
     );
   }
 
-  static List<TaskbarAlignmentModelData> getTaskbarAlignmentPresets()
-  {
+  static List<TaskbarAlignmentModelData> getTaskbarAlignmentPresets() {
 //load the data for the taskbar alignment presets
     return List.from(
       [
@@ -76,39 +77,39 @@ class SettingsPresets {
       [
         AccentColorDataModel(
           const Color(0xFFFF5722),
-          LSX.settings.pagesCustomizationThemeColorOrange,
+          strings.settings.pagesCustomizationThemeColorOrange,
         ),
         AccentColorDataModel(
           const Color(0xFFD32F2F),
-          LSX.settings.pagesCustomizationThemeColorRed,
+          strings.settings.pagesCustomizationThemeColorRed,
         ),
         AccentColorDataModel(
           const Color(0xFF078D48),
-          LSX.settings.pagesCustomizationThemeColorGreen,
+          strings.settings.pagesCustomizationThemeColorGreen,
         ),
         AccentColorDataModel(
           const Color(0xFF0067C0),
-          LSX.settings.pagesCustomizationThemeColorBlue,
+          strings.settings.pagesCustomizationThemeColorBlue,
         ),
         AccentColorDataModel(
           const Color(0xFF00594F),
-          LSX.settings.pagesCustomizationThemeColorTeal,
+          strings.settings.pagesCustomizationThemeColorTeal,
         ),
         AccentColorDataModel(
           const Color(0xFF6200EE),
-          LSX.settings.pagesCustomizationThemeColorPruple,
+          strings.settings.pagesCustomizationThemeColorPruple,
         ),
         AccentColorDataModel(
           const Color(0xFF00BCD4),
-          LSX.settings.pagesCustomizationThemeColorAqua,
+          strings.settings.pagesCustomizationThemeColorAqua,
         ),
         AccentColorDataModel(
           const Color(0xFFFFC107),
-          LSX.settings.pagesCustomizationThemeColorGold,
+          strings.settings.pagesCustomizationThemeColorGold,
         ),
         AccentColorDataModel(
           const Color(0xFF455a64),
-          LSX.settings.pagesCustomizationThemeColorAnthracite,
+          strings.settings.pagesCustomizationThemeColorAnthracite,
         ),
       ],
       growable: false,

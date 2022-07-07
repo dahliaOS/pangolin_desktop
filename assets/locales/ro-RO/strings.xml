@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Global Strings -->
+    <string name="global.account.local">Cont local</string>
+    <string name="global.account.user_accounts">Conturi de utilizator</string>
+    <string name="global.on">Pornit</string>
+    <string name="global.off">Oprit</string>
+    <string name="global.settings">Setări</string>
+    <string name="global.coming_soon">În curând</string>
+    <string name="global.save">Salvare</string>
+    <string name="global.search">Căutare</string>
+    <!-- App Names-->
+    <string name="apps.authenticator">Autentificator</string>
+    <string name="apps.calculator">Calculator</string>
+    <string name="apps.clock">Ceas</string>
+    <string name="apps.containers" comment="Do not actually translate this string, just write &quot;Graft&quot; as the translation">Graft</string>
+    <string name="apps.disks">Discuri</string>
+    <string name="apps.files">Fişiere</string>
+    <string name="apps.media">Media</string>
+    <string name="apps.music">Muzică</string>
+    <string name="apps.notes">Editor text</string>
+    <string name="apps.notesmobile">Notițe (Mobil)</string>
+    <string name="apps.messages">Mesaje</string>
+    <string name="apps.rootterminal">Terminal root</string>
+    <string name="apps.settings">Setări</string>
+    <string name="apps.systemlogs">Jurnale sistem</string>
+    <string name="apps.taskmanager">Manager de activități</string>
+    <string name="apps.terminal">Terminal</string>
+    <string name="apps.themedemo">Demo temă</string>
+    <string name="apps.welcome">Bun venit</string>
+    <string name="apps.help">Ajutor</string>
+    <string name="apps.web">Browser web</string>
+    <!-- App Descriptions-->
+    <string name="apps.authenticator_description">Autorizare în doi paşi</string>
+    <string name="apps.calculator_description">Efectuează calcule simple</string>
+    <string name="apps.clock_description">Gestionează-ți timpul</string>
+    <string name="apps.containers_description">Gestionare containere și mașini virtuale</string>
+    <string name="apps.disks_description">Gestionare discuri și partiții</string>
+    <string name="apps.files_description">Exploră fișiere și foldere</string>
+    <string name="apps.media_description">Explorează și vezi fotografii și videoclipuri</string>
+    <string name="apps.music_description">Ascultă muzică</string>
+    <string name="apps.notes_description">Creează și editează documente</string>
+    <string name="apps.notesmobile_description">Notițe (Mobil)</string>
+    <string name="apps.messages_description">Mesaje</string>
+    <string name="apps.rootterminal_description">Executare comenzi ca Superuser</string>
+    <string name="apps.settings_description">Ajustare setări sistem</string>
+    <string name="apps.systemlogs_description">Vezi și examinează probleme de software</string>
+    <string name="apps.taskmanager_description">Monitorizează performanța sistemului</string>
+    <string name="apps.terminal_description">Accesează linia de comandă</string>
+    <string name="apps.themedemo_description">Demonstrație internă pentru teme de aplicații</string>
+    <string name="apps.welcome_description">Vezi informații despre dahliaOS</string>
+    <string name="apps.help_description">F.A.Q. și suport</string>
+    <string name="apps.web_description">Navighează internetul</string>
+    <!-- Feature Not Implemented-->
+    <string name="misc.featurenotimplemented_title">Funcție neimplementată</string>
+    <string name="misc.featurenotimplemented_value">Funcția aceasta nu este disponibilă pe această versiune de Pangolin, vezi dahliaOS.io pentru a verifica actualizările.</string>
+    <!-- Overlays -->
+    <!-- Overview -->
+    <string name="overviewOverlay.new_desktop">Desktop nou</string>
+    <!-- Power menu -->
+    <string name="powerOverlay.title">Meniu de alimentare</string>
+    <string name="powerOverlay.subtitle">Alege ce vrei să faci</string>
+    <string name="powerOverlay.poweroff">Oprire</string>
+    <string name="powerOverlay.sleep">Suspendare</string>
+    <string name="powerOverlay.restart">Repornire</string>
+    <!-- Search -->
+    <string name="searchOverlay.hint">Caută pe dispozitiv, aplicații şi web</string>
+    <string name="searchOverlay.results">Rezultate</string>
+    <string name="searchOverlay.recent">Recente</string>
+    <string name="searchOverlay.app">Aplicație</string>
+    <!-- Launcher -->
+    <string name="launcherOverlay.categories.all_applications">Toate aplicațiile</string>
+    <string name="launcherOverlay.categories.internet">Internet</string>
+    <string name="launcherOverlay.categories.media">Media</string>
+    <string name="launcherOverlay.categories.gaming">Gaming</string>
+    <string name="launcherOverlay.categories.development">Dezvoltare</string>
+    <string name="launcherOverlay.categories.office">Productivitate</string>
+    <string name="launcherOverlay.categories.system">Sistem</string>
+    <!-- Quick Settings -->
+    <string name="quicksettingsOverlay.quick_controls">Comenzi rapide</string>
+    <string name="quicksettingsOverlay.quick_controls.network.title">Rețea</string>
+    <string name="quicksettingsOverlay.quick_controls.network.subtitle_connected">conectat</string>
+    <string name="quicksettingsOverlay.quick_controls.network.subtitle_disconnected">deconectat</string>
+    <string name="quicksettingsOverlay.quick_controls.bluetooth.title">Bluetooth</string>
+    <string name="quicksettingsOverlay.quick_controls.blueooth.subtitle_connected">conectat</string>
+    <string name="quicksettingsOverlay.quick_controls.blueooth.subtitle_disconnected">deconectat</string>
+    <string name="quicksettingsOverlay.quick_controls.airplane_mode.title">Mod avion</string>
+    <string name="quicksettingsOverlay.quick_controls.language.title">Limbă</string>
+    <string name="quicksettingsOverlay.quick_controls.theme.title">Temă</string>
+    <string name="quicksettingsOverlay.quick_controls.donotdisturb.title">Nu deranja</string>
+    <string name="quicksettingsOverlay.shortcuts.title">Scurtături</string>
+    <string name="quicksettingsOverlay.shortcuts.new_event">Eveniment nou</string>
+    <string name="quicksettingsOverlay.shortcuts.alpha_build">Versiune alpha</string>
+    <string name="quicksettingsOverlay.shortcuts.energy_mode">Mod energie: Performanță</string>
+    <string name="quicksettingsOverlay.pages.network.title">Setări rețea</string>
+    <string name="quicksettingsOverlay.pages.theme.title">Setări temă</string>
+    <!-- Wallpaper Picker -->
+    <string name="desktop.wallpaper_picker.gone">Eroare\nImaginea asta nu poate fi folosită</string>
+    <string name="desktop.wallpaper_picker.url_wallpaper.hint">Setare fundal din URL</string>
+    <string name="desktop.wallpaper_picker.url_wallpaper.label">URL fundal</string>
+    <string name="desktop.wallpaper_picker.bing_wallpaper_button">Utilizare fundal Bing</string>
+    <!-- Desktop Context Menu -->
+    <string name="desktop.desktop_context_menu.change_wallpaper">Schimbare fundal</string>
+    <string name="desktop.desktop_context_menu.settings">Setări</string>
+    <!-- Misc -->
+    <string name="desktop.misc.show_desktop">Afișare Desktop</string>
+    <!-- Settings -->
+    <!-- Headers -->
+    <string name="settings.headers.connectivity">Conectivitate</string>
+    <string name="settings.headers.personalize">Personalizare</string>
+    <string name="settings.headers.device">Aplicații &amp; dispozitiv</string>
+    <string name="settings.headers.system">Sistem</string>
+    <!-- Network & internet -->
+    <string name="settings.pages.network.title">Rețea &amp; internet</string>
+    <string name="settings.pages.network.subtitle">Wi-Fi, ethernet, utilizare date</string>
+    <string name="settings.pages.network.wifi">Wi-Fi</string>
+    <string name="settings.pages.network.wifi_switch_tile.title">Wi-Fi</string>
+    <string name="settings.pages.network.wifi_switch_tile.subtitle_enabled">Wi-Fi activat</string>
+    <string name="settings.pages.network.wifi_switch_tile.subtitle_disabled">Wi-Fi dezactivat</string>
+    <string name="settings.pages.network.wifi_preferences_tile.title">Preferințe Wi-Fi</string>
+    <string name="settings.pages.network.wifi_preferences_tile.subtitle">Conexiune inteligentă Wi-Fi, opțiuni de scanare</string>
+    <string name="settings.pages.network.wifi_saved_networks_tile.title">Rețele salvate</string>
+    <string name="settings.pages.network.wifi_saved_networks_tile.subtitle">%s rețele</string>
+    <string name="settings.pages.network.wifi_data_usage_tile.title">Utilizare date Wi-Fi</string>
+    <string name="settings.pages.network.wifi_data_usage_tile.subtitle">Utilizare date pentru această lună</string>
+    <string name="settings.pages.network.ethernet">Ethernet</string>
+    <string name="settings.pages.network.ethernet_switch_tile.title">Ethernet</string>
+    <string name="settings.pages.network.ethernet_switch_tile.subtitle_enabled">Ethernet activat</string>
+    <string name="settings.pages.network.ethernet_switch_tile.subtitle_disabled">Ethernet dezactivat</string>
+    <string name="settings.pages.network.ethernet_data_usage_tile.title">Utilizare date Wi-Fi</string>
+    <string name="settings.pages.network.ethernet_data_usage_tile.subtitle">Utilizare date pentru această lună</string>
+    <string name="settings.pages.network.network_options">Opțiuni rețea</string>
+    <string name="settings.pages.network.network_options.vpn_tile.title">Rețea virtuală privată (VPN)</string>
+    <string name="settings.pages.network.network_options.vpn_tile.subtitle">Niciunul</string>
+    <string name="settings.pages.network.network_options.vpn_tile.button">Opțiuni VPN</string>
+    <string name="settings.pages.network.network_options.dns_tile.title">DNS privat</string>
+    <string name="settings.pages.network.network_options.dns_tile.subtitle">Automat</string>
+    <string name="settings.pages.network.network_options.dns_tile.button">Opțiuni DNS</string>
+    <!-- Connected devices -->
+    <string name="settings.pages.connections.title">Dispozitive conectate</string>
+    <string name="settings.pages.connections.subtitle">Bluetooth, imprimantă, dispozitive USB</string>
+    <string name="settings.pages.connections.bluetooth">Bluetooth</string>
+    <string name="settings.pages.connections.bluetooth_switch_tile.title">Bluetooth</string>
+    <string name="settings.pages.connections.bluetooth_switch_tile.subtitle_enabled">Bluetooth activat</string>
+    <string name="settings.pages.connections.bluetooth_switch_tile.subtitle_disabled">Bluetooth dezactivat</string>
+    <string name="settings.pages.connections.bluetooth_file_transfer_tile.title">Fișiere primite via Bluetooth</string>
+    <string name="settings.pages.connections.phone_integration">Integrare telefon</string>
+    <string name="settings.pages.connections.phone_integration_tile.title">Integrare telefon</string>
+    <string name="settings.pages.connections.phone_integration_tile.subtitle">Integrare telefon dezactivată</string>
+    <!-- Customization -->
+    <string name="settings.pages.customization.title">Personalizare</string>
+    <string name="settings.pages.customization.subtitle">Personalizează-ți experiența</string>
+    <string name="settings.pages.customization.theme">Temă</string>
+    <string name="settings.pages.customization.theme_mode_light">Luminos</string>
+    <string name="settings.pages.customization.theme_mode_dark">Întunecat</string>
+    <string name="settings.pages.customization.theme_color_orange">Portocaliu</string>
+    <string name="settings.pages.customization.theme_color_red">Roșu</string>
+    <string name="settings.pages.customization.theme_color_green">Verde</string>
+    <string name="settings.pages.customization.theme_color_blue">Albastru</string>
+    <string name="settings.pages.customization.theme_color_teal">Turcoaz</string>
+    <string name="settings.pages.customization.theme_color_pruple" comment="settings.pages.customization.theme_color_purple">Violet</string>
+    <string name="settings.pages.customization.theme_color_aqua">Aqua</string>
+    <string name="settings.pages.customization.theme_color_gold">Auriu</string>
+    <string name="settings.pages.customization.theme_color_anthracite">Antracit</string>
+    <string name="settings.pages.customization.taskbar_alignment">Aliniere taskbar</string>
+    <string name="settings.pages.customization.taskbar_alignment_start">Start</string>
+    <string name="settings.pages.customization.taskbar_alignment_center">Centru</string>
+    <string name="settings.pages.customization.window_options">Opțiuni fereastră</string>
+    <string name="settings.pages.customization.window_options_border_radius.title">Rază margine fereastră - %s</string>
+    <string name="settings.pages.customization.window_options_border_radius.subtitle">Schimbă raza marginii ferestrei</string>
+    <string name="settings.pages.customization.window_options_colored_titlebars.title">Bare de titlu colorate</string>
+    <string name="settings.pages.customization.window_options_colored_titlebars.subtitle">Dă barelor de titlu o culoare de accent personalizată</string>
+    <string name="settings.pages.customization.window_options_transparent_colored_titlebars.title">Bare de titlu colorate transparente</string>
+    <string name="settings.pages.customization.window_options_transparent_colored_titlebars.subtitle">Adaugă transparență barelor de titlu colorate</string>
+    <!-- Display -->
+    <string name="settings.pages.display.title">Afișare</string>
+    <string name="settings.pages.display.subtitle">Rezoluție, închidere ecran, scalare</string>
+    <!-- Sound -->
+    <string name="settings.pages.sound.title">Sunet</string>
+    <string name="settings.pages.sound.subtitle">Volum, Nu deranja, sunet de pornire</string>
+    <!-- Locale -->
+    <string name="settings.pages.locale.title">Locală</string>
+    <string name="settings.pages.locale.subtitle">Limbă, fus orar, schemă tastatură</string>
+    <!-- Notifications -->
+    <string name="settings.pages.notifications.title">Notificări</string>
+    <string name="settings.pages.notifications.subtitle">Sunet notificări, selecție aplicații</string>
+    <!-- Applications -->
+    <string name="settings.pages.applications.title">Aplicații</string>
+    <string name="settings.pages.applications.subtitle">Aplicații instalate, aplicații prestabilite</string>
+    <!-- Developer options -->
+    <string name="settings.pages.developer_options.title">Opțiuni dezvoltator</string>
+    <string name="settings.pages.developer_options.subtitle">Funcții experimentale, opțiuni avansate</string>
+    <string name="settings.pages.developer_options.developer_mode_tile.title">Mod dezvoltator</string>
+    <string name="settings.pages.developer_options.developer_mode_tile.subtitle">Activează funcții avansate de debugging</string>
+    <!-- About device -->
+    <string name="settings.pages.about.title">Despre dispozitiv</string>
+    <string name="settings.pages.about.subtitle">Versiune sistem, informații dispozitiv</string>
+    <string name="settings.pages.about.system_information">Informații sistem</string>
+    <string name="settings.pages.about.system_information_environment">Mediu</string>
+    <string name="settings.pages.about.system_information_architecture">Arhitectură</string>
+    <string name="settings.pages.about.system_information_desktop">Desktop</string>
+    <string name="settings.pages.about.software_update">Actualizare dispozitiv</string>
+    <string name="settings.pages.about.software_update_tile.title">dahliaOS este actualizat - %s</string>
+    <string name="settings.pages.about.software_update_tile.subtitle">Ultima verificare: %s</string>
+    <string name="settings.pages.about.software_update_tile.button">Verificare actualizări</string>
+</resources>

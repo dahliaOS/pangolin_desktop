@@ -41,7 +41,7 @@ String get kernel {
 String get architecture {
   if (!kIsWeb) {
     if (!Platform.isWindows) {
-      final ProcessResult result = Process.runSync('uname', ['-p']);
+      final ProcessResult result = Process.runSync('uname', ['-m']);
       final String architechtureString = result.stdout.toString();
       return architechtureString.replaceAll('\n', '');
     } else {

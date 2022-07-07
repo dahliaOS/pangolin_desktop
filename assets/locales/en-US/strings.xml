@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Global Strings -->
-    <string name="global.account.local">Local Account</string>
-    <string name="global.account.user_accounts">User Accounts</string>
+    <string name="global.account.local">Local account</string>
+    <string name="global.account.user_accounts">User accounts</string>
     <string name="global.on">On</string>
     <string name="global.off">Off</string>
     <string name="global.settings">Settings</string>
-    <string name="global.coming_soon">Coming Soon</string>
+    <string name="global.coming_soon">Coming soon</string>
     <string name="global.save">Save</string>
     <string name="global.search">Search</string>
     <!-- App Names-->
@@ -42,7 +42,7 @@
     <string name="apps.notes_description">Create and edit documents</string>
     <string name="apps.notesmobile_description">Notes (Mobile)</string>
     <string name="apps.messages_description">Messages</string>
-    <string name="apps.rootterminal_description">Run Commands as Superuser</string>
+    <string name="apps.rootterminal_description">Run commands as superuser</string>
     <string name="apps.settings_description">Adjust system settings</string>
     <string name="apps.systemlogs_description">View and debug software issues</string>
     <string name="apps.taskmanager_description">Monitor system performance</string>
@@ -53,23 +53,23 @@
     <string name="apps.web_description">Browse the Web</string>
     <!-- Feature Not Implemented-->
     <string name="misc.featurenotimplemented_title">Feature not implemented</string>
-    <string name="misc.featurenotimplemented_value">This feature is currently not available on your build of Pangolin, please see dahliaOS.io to check for updates.</string>
+    <string name="misc.featurenotimplemented_value">This feature is currently not available on your build of Pangolin, please check dahliaos.io for further information</string>
     <!-- Overlays -->
     <!-- Overview -->
-    <string name="overviewOverlay.new_desktop">New Desktop</string>
+    <string name="overviewOverlay.new_desktop">New desktop</string>
     <!-- Power menu -->
-    <string name="powerOverlay.title">Power Menu</string>
+    <string name="powerOverlay.title">Power menu</string>
     <string name="powerOverlay.subtitle">Choose what you want to do</string>
     <string name="powerOverlay.poweroff">Power off</string>
     <string name="powerOverlay.sleep">Sleep</string>
     <string name="powerOverlay.restart">Restart</string>
     <!-- Search -->
-    <string name="searchOverlay.hint">Search Device, Apps and Web</string>
+    <string name="searchOverlay.hint">Search device, apps and web</string>
     <string name="searchOverlay.results">Results</string>
     <string name="searchOverlay.recent">Recent</string>
     <string name="searchOverlay.app">App</string>
     <!-- Launcher -->
-    <string name="launcherOverlay.categories.all_applications">All Applications</string>
+    <string name="launcherOverlay.categories.all_applications">All applications</string>
     <string name="launcherOverlay.categories.internet">Internet</string>
     <string name="launcherOverlay.categories.media">Media</string>
     <string name="launcherOverlay.categories.gaming">Gaming</string>
@@ -79,31 +79,31 @@
     <!-- Quick Settings -->
     <string name="quicksettingsOverlay.quick_controls">Quick Controls</string>
     <string name="quicksettingsOverlay.quick_controls.network.title">Network</string>
-    <string name="quicksettingsOverlay.quick_controls.network.subtitle_connected">connected</string>
-    <string name="quicksettingsOverlay.quick_controls.network.subtitle_disconnected">disconnected</string>
+    <string name="quicksettingsOverlay.quick_controls.network.subtitle_connected">Connected</string>
+    <string name="quicksettingsOverlay.quick_controls.network.subtitle_disconnected">Disconnected</string>
     <string name="quicksettingsOverlay.quick_controls.bluetooth.title">Bluetooth</string>
-    <string name="quicksettingsOverlay.quick_controls.blueooth.subtitle_connected">connected</string>
-    <string name="quicksettingsOverlay.quick_controls.blueooth.subtitle_disconnected">disconnected</string>
+    <string name="quicksettingsOverlay.quick_controls.blueooth.subtitle_connected">Connected</string>
+    <string name="quicksettingsOverlay.quick_controls.blueooth.subtitle_disconnected">Disconnected</string>
     <string name="quicksettingsOverlay.quick_controls.airplane_mode.title">Airplane mode</string>
     <string name="quicksettingsOverlay.quick_controls.language.title">Language</string>
     <string name="quicksettingsOverlay.quick_controls.theme.title">Theme</string>
     <string name="quicksettingsOverlay.quick_controls.donotdisturb.title">Do not disturb</string>
     <string name="quicksettingsOverlay.shortcuts.title">Shortcuts</string>
-    <string name="quicksettingsOverlay.shortcuts.new_event">New Event</string>
-    <string name="quicksettingsOverlay.shortcuts.alpha_build">Alpha Build</string>
-    <string name="quicksettingsOverlay.shortcuts.energy_mode">Energy Mode: Performance</string>
-    <string name="quicksettingsOverlay.pages.network.title">Network Settings</string>
-    <string name="quicksettingsOverlay.pages.theme.title">Theme Settings</string>
+    <string name="quicksettingsOverlay.shortcuts.new_event">New event</string>
+    <string name="quicksettingsOverlay.shortcuts.alpha_build">Alpha build</string>
+    <string name="quicksettingsOverlay.shortcuts.energy_mode">Energy mode: performance</string>
+    <string name="quicksettingsOverlay.pages.network.title">Network settings</string>
+    <string name="quicksettingsOverlay.pages.theme.title">Theme settings</string>
     <!-- Wallpaper Picker -->
     <string name="desktop.wallpaper_picker.gone">Error\nThat image cannot be used</string>
     <string name="desktop.wallpaper_picker.url_wallpaper.hint">Set wallpaper from URL</string>
     <string name="desktop.wallpaper_picker.url_wallpaper.label">Wallpaper URL</string>
-    <string name="desktop.wallpaper_picker.bing_wallpaper_button">Use Bing Wallpaper</string>
+    <string name="desktop.wallpaper_picker.bing_wallpaper_button">Use Bing wallpaper</string>
     <!-- Desktop Context Menu -->
-    <string name="desktop.desktop_context_menu.change_wallpaper">Change Wallpaper</string>
+    <string name="desktop.desktop_context_menu.change_wallpaper">Change wallpaper</string>
     <string name="desktop.desktop_context_menu.settings">Settings</string>
     <!-- Misc -->
-    <string name="desktop.misc.show_desktop">Show Desktop</string>
+    <string name="desktop.misc.show_desktop">Show desktop</string>
     <!-- Settings -->
     <!-- Headers -->
     <string name="settings.headers.connectivity">Connectivity</string>
@@ -117,7 +117,7 @@
     <string name="settings.pages.network.wifi_switch_tile.title">Wi-Fi</string>
     <string name="settings.pages.network.wifi_switch_tile.subtitle_enabled">Wi-Fi is enabled</string>
     <string name="settings.pages.network.wifi_switch_tile.subtitle_disabled">Wi-Fi is disabled</string>
-    <string name="settings.pages.network.wifi_preferences_tile.title">Wi-Fi perferences</string>
+    <string name="settings.pages.network.wifi_preferences_tile.title">Wi-Fi preferences</string>
     <string name="settings.pages.network.wifi_preferences_tile.subtitle">Smart Wi-Fi connection, scanning options</string>
     <string name="settings.pages.network.wifi_saved_networks_tile.title">Saved networks</string>
     <string name="settings.pages.network.wifi_saved_networks_tile.subtitle">%s networks</string>
@@ -203,4 +203,6 @@
     <string name="settings.pages.about.software_update_tile.title">dahliaOS is up to date - %s</string>
     <string name="settings.pages.about.software_update_tile.subtitle">Last checked: %s</string>
     <string name="settings.pages.about.software_update_tile.button">Check for updates</string>
+    <string name="apps.app_store" comment="App store application name">App Store</string>
+    <string name="apps.app_store_description" comment="App Store application description">Curated marketplace for third-party applications</string>
 </resources>

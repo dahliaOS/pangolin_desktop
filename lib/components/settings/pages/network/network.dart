@@ -23,6 +23,7 @@ import 'package:pangolin/components/settings/widgets/settings_content_header.dar
 import 'package:pangolin/components/settings/widgets/settings_page.dart';
 import 'package:pangolin/services/network_manager.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
+import 'package:pangolin/utils/providers/locale_provider.dart';
 
 class SettingsPageNetwork extends StatefulWidget {
   const SettingsPageNetwork({Key? key}) : super(key: key);
@@ -38,7 +39,7 @@ class _SettingsPageNetworkState extends State<SettingsPageNetwork> {
   @override
   Widget build(BuildContext context) {
     return SettingsPage(
-      title: LSX.settings.pagesNetworkTitle,
+      title: strings.settings.pagesNetworkTitle,
       cards: kIsWeb
           ? [
               const SettingsCard(
@@ -51,16 +52,17 @@ class _SettingsPageNetworkState extends State<SettingsPageNetwork> {
               ),
             ]
           : [
-              SettingsContentHeader(LSX.settings.pagesNetworkWifi),
+              SettingsContentHeader(strings.settings.pagesNetworkWifi),
               SettingsCard(
                 children: [
                   ExpandableSwitchListTile(
-                    title: Text(LSX.settings.pagesNetworkWifiSwitchTileTitle),
+                    title:
+                        Text(strings.settings.pagesNetworkWifiSwitchTileTitle),
                     subtitle: Text(
                       _wifiEnabled
-                          ? LSX.settings
+                          ? strings.settings
                               .pagesNetworkWifiSwitchTileSubtitleEnabled
-                          : LSX.settings
+                          : strings.settings
                               .pagesNetworkWifiSwitchTileSubtitleDisabled,
                     ),
                     value: _wifiEnabled,
@@ -86,10 +88,11 @@ class _SettingsPageNetworkState extends State<SettingsPageNetwork> {
                   ),
                   ExpandableListTile(
                     value: false,
-                    title:
-                        Text(LSX.settings.pagesNetworkWifiPreferencesTileTitle),
+                    title: Text(
+                      strings.settings.pagesNetworkWifiPreferencesTileTitle,
+                    ),
                     subtitle: Text(
-                      LSX.settings.pagesNetworkWifiPreferencesTileSubtitle,
+                      strings.settings.pagesNetworkWifiPreferencesTileSubtitle,
                     ),
                     leading: const Icon(
                       Icons.online_prediction_rounded,
@@ -98,35 +101,37 @@ class _SettingsPageNetworkState extends State<SettingsPageNetwork> {
                   ExpandableListTile(
                     value: false,
                     title: Text(
-                      LSX.settings.pagesNetworkWifiSavedNetworksTileTitle,
+                      strings.settings.pagesNetworkWifiSavedNetworksTileTitle,
                     ),
                     subtitle: Text(
-                      LSX.settings
+                      strings.settings
                           .pagesNetworkWifiSavedNetworksTileSubtitle("8"),
                     ),
                     leading: const Icon(Icons.save_rounded),
                   ),
                   RouterListTile(
-                    title:
-                        Text(LSX.settings.pagesNetworkWifiDataUsageTileTitle),
+                    title: Text(
+                      strings.settings.pagesNetworkWifiDataUsageTileTitle,
+                    ),
                     subtitle: Text(
-                      LSX.settings.pagesNetworkWifiDataUsageTileSubtitle,
+                      strings.settings.pagesNetworkWifiDataUsageTileSubtitle,
                     ),
                     leading: const Icon(Icons.data_saver_on_rounded),
                   )
                 ],
               ),
-              SettingsContentHeader(LSX.settings.pagesNetworkEthernet),
+              SettingsContentHeader(strings.settings.pagesNetworkEthernet),
               SettingsCard(
                 children: [
                   SwitchListTile(
-                    title:
-                        Text(LSX.settings.pagesNetworkEthernetSwitchTileTitle),
+                    title: Text(
+                      strings.settings.pagesNetworkEthernetSwitchTileTitle,
+                    ),
                     subtitle: Text(
                       _ethernetEnabled
-                          ? LSX.settings
+                          ? strings.settings
                               .pagesNetworkEthernetSwitchTileSubtitleEnabled
-                          : LSX.settings
+                          : strings.settings
                               .pagesNetworkEthernetSwitchTileSubtitleDisabled,
                     ),
                     secondary: const Icon(Icons.settings_ethernet_rounded),
@@ -137,31 +142,36 @@ class _SettingsPageNetworkState extends State<SettingsPageNetwork> {
                   ),
                   RouterListTile(
                     title: Text(
-                      LSX.settings.pagesNetworkEthernetDataUsageTileTitle,
+                      strings.settings.pagesNetworkEthernetDataUsageTileTitle,
                     ),
                     subtitle: Text(
-                      LSX.settings.pagesNetworkEthernetDataUsageTileSubtitle,
+                      strings
+                          .settings.pagesNetworkEthernetDataUsageTileSubtitle,
                     ),
                     leading: const Icon(Icons.data_saver_on_rounded),
                   ),
                 ],
               ),
-              SettingsContentHeader(LSX.settings.pagesNetworkNetworkOptions),
+              SettingsContentHeader(
+                strings.settings.pagesNetworkNetworkOptions,
+              ),
               SettingsCard(
                 children: [
                   ListTile(
                     title: Text(
-                      LSX.settings.pagesNetworkNetworkOptionsVpnTileTitle,
+                      strings.settings.pagesNetworkNetworkOptionsVpnTileTitle,
                     ),
                     subtitle: Text(
-                      LSX.settings.pagesNetworkNetworkOptionsVpnTileSubtitle,
+                      strings
+                          .settings.pagesNetworkNetworkOptionsVpnTileSubtitle,
                     ),
                     leading: const Icon(Icons.vpn_lock_rounded),
                     trailing: ElevatedButton(
                       child: Padding(
                         padding: ThemeConstants.buttonPadding,
                         child: Text(
-                          LSX.settings.pagesNetworkNetworkOptionsVpnTileButton,
+                          strings
+                              .settings.pagesNetworkNetworkOptionsVpnTileButton,
                         ),
                       ),
                       onPressed: () {},
@@ -169,17 +179,19 @@ class _SettingsPageNetworkState extends State<SettingsPageNetwork> {
                   ),
                   ListTile(
                     title: Text(
-                      LSX.settings.pagesNetworkNetworkOptionsDnsTileTitle,
+                      strings.settings.pagesNetworkNetworkOptionsDnsTileTitle,
                     ),
                     subtitle: Text(
-                      LSX.settings.pagesNetworkNetworkOptionsDnsTileSubtitle,
+                      strings
+                          .settings.pagesNetworkNetworkOptionsDnsTileSubtitle,
                     ),
                     leading: const Icon(Icons.dns_rounded),
                     trailing: ElevatedButton(
                       child: Padding(
                         padding: ThemeConstants.buttonPadding,
                         child: Text(
-                          LSX.settings.pagesNetworkNetworkOptionsDnsTileButton,
+                          strings
+                              .settings.pagesNetworkNetworkOptionsDnsTileButton,
                         ),
                       ),
                       onPressed: () {},
