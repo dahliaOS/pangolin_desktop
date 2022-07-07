@@ -112,7 +112,7 @@ class SettingsPageAbout extends StatelessWidget {
                         child: Padding(
                           padding: ThemeConstants.buttonPadding,
                           child: const Text(
-                            "Updates Disabled",
+                            "Check for update",
                           ),
                         ),
                       ),
