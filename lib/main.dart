@@ -60,9 +60,9 @@ Future<void> main() async {
   runApp(
     YatlApp(
       core: yatl,
-      getLocale: () =>
-          intl.Locale.tryParse(preferences.locale ?? "")?.toFlutterLocale(),
-      setLocale: (locale) => preferences.locale = locale?.toString(),
+      getLocale: () => intl.Locale.tryParse(DatabaseManager.get('locale') ?? "")
+          ?.toFlutterLocale(),
+      setLocale: (locale) => DatabaseManager.set('locale', locale?.toString()),
       child: MultiProvider(
         providers: [
           ChangeNotifierProvider<IconProvider>.value(

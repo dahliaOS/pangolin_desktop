@@ -284,15 +284,13 @@ class QsMain extends StatelessWidget {
                           icon: Icons.language_rounded,
                           value: true,
                           onPressed: () {
-                            final int index = locales.supportedLocales
-                                .indexOf(context.locale.toIntlLocale());
+                            final int index = context.supportedLocales
+                                .indexOf(context.locale);
                             if (index + 1 < locales.supportedLocales.length) {
-                              context.locale = locales
-                                  .supportedLocales[index + 1]
-                                  .toFlutterLocale();
-                            } else {
                               context.locale =
-                                  locales.supportedLocales[0].toFlutterLocale();
+                                  context.supportedLocales[index + 1];
+                            } else {
+                              context.locale = context.supportedLocales[0];
                             }
                           },
                           onMenuPressed: () {

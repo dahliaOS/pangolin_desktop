@@ -39,7 +39,6 @@ dependencies:
       url: https://github.com/dahliaOS/media.git
   provider: ^6.0.1
   recase: ^4.0.0
-  shared_preferences: ^2.0.15
   system_logs:
     git:
       url: https://github.com/dahliaOS/system_logs.git

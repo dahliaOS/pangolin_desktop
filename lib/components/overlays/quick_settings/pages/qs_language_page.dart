@@ -44,20 +44,27 @@ class QsLanguagePage extends StatelessWidget {
         child: ListView.builder(
           itemCount: locales.supportedLocales.length,
           itemBuilder: (context, index) {
+            final int? translatedStrings = locales
+                .progressData[locales.supportedLocales[index].toLanguageTag()];
+            final int? totalTranslationStrings =
+                locales.progressData[context.fallbackLocale.toLanguageTag()];
             return ListTile(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8),
               ),
               leading: Text(
-                locales.supportedLocales[index]
-                    .toString()
-                    .substring(3)
-                    .replaceAllMapped(
-                      RegExp('[A-Z]'),
-                      (match) => String.fromCharCode(
-                        match.group(0)!.codeUnitAt(0) + 127397,
-                      ),
-                    ),
+                // Select every supported locale's country code.
+                locales.supportedLocales[index].countryCode!.replaceAllMapped(
+                  //  Select each character with regex.
+                  RegExp('[A-Z]'),
+                  // Convert the regional indicator symbols' values to a string (flag emoji).
+                  (match) => String.fromCharCode(
+                    // .codeUnitAt(0) converts each character to a rune.
+                    // By adding to 127397 we are converting each rune to a regional indicator symbol.
+                    // The 127397 comes from the Regional Indicator Symbol 🇦's HTML code, 127462, minus the rune value of A, 65.
+                    match.group(0)!.codeUnitAt(0) + 127397,
+                  ),
+                ),
                 style: const TextStyle(
                   fontSize: 30,
                 ),
@@ -69,11 +76,10 @@ class QsLanguagePage extends StatelessWidget {
               ),
               subtitle: Text(locales.supportedLocales[index].toLanguageTag()),
               trailing: Text(
-                "${locales.progressData[locales.supportedLocales[index].toLanguageTag()]} / ${locales.progressData[context.fallbackLocale.toLanguageTag()]}",
+                '$translatedStrings / $totalTranslationStrings',
               ),
               onTap: () {
-                context.locale =
-                    locales.supportedLocales[index].toFlutterLocale();
+                context.locale = context.supportedLocales[index];
 
                 Navigator.pop(context);
               },

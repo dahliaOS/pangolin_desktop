@@ -16,17 +16,13 @@ limitations under the License.
 
 import 'package:intl/locale.dart';
 import 'package:pangolin/generated/locale.dart';
-import 'package:pangolin/utils/other/preferences.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:yatl_flutter/yatl_flutter.dart';
 import 'package:yatl_gen/yatl_gen.dart';
 
-class _Providers {
-  _Providers._();
+class _LocaleProviders {
+  _LocaleProviders._();
 
-  late AppPreferences _preferences;
-
-  static final _Providers instance = _Providers._();
+  static final _LocaleProviders instance = _LocaleProviders._();
 
   static const GeneratedLocales _locales = GeneratedLocales();
 
@@ -40,18 +36,15 @@ class _Providers {
       fallbackLocale: Locale.parse("en_US"),
     );
     _strings = GeneratedLocaleStrings(_yatl);
-    _preferences = AppPreferences(await SharedPreferences.getInstance());
   }
 }
 
-_Providers get _instance => _Providers.instance;
+_LocaleProviders get _instance => _LocaleProviders.instance;
 
 Future<void> initProviders() async => _instance.init();
 
 YatlCore get yatl => _instance._yatl;
 
-GeneratedLocales get locales => _Providers._locales;
+GeneratedLocales get locales => _LocaleProviders._locales;
 
 GeneratedLocaleStrings get strings => _instance._strings;
-
-AppPreferences get preferences => _instance._preferences;
