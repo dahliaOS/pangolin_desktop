@@ -22,6 +22,7 @@ import 'package:pangolin/utils/data/common_data.dart';
 import 'package:pangolin/utils/data/globals.dart';
 import 'package:pangolin/utils/data/models/application.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
+import 'package:pangolin/utils/providers/locale_provider.dart';
 import 'package:pangolin/utils/providers/search_provider.dart';
 import 'package:pangolin/widgets/global/box/box_container.dart';
 
@@ -110,7 +111,7 @@ class _SearchOverlayState extends State<SearchOverlay>
                           .borderRadius(BorderRadiusType.medium),
                       focusNode: _focusNode,
                       controller: _controller,
-                      hint: LSX.searchOverlay.hint,
+                      hint: strings.searchOverlay.hint,
                       leading: const Icon(Icons.search),
                       trailing: const Icon(Icons.menu_rounded),
                       onTextChanged: searchService.globalSearch,
@@ -135,7 +136,7 @@ class _SearchOverlayState extends State<SearchOverlay>
                                         right: 24,
                                       ),
                                       child: Text(
-                                        LSX.searchOverlay.results,
+                                        strings.searchOverlay.results,
                                         style: TextStyle(
                                           fontSize: 17,
                                           fontWeight: FontWeight.w600,
@@ -170,7 +171,7 @@ class _SearchOverlayState extends State<SearchOverlay>
                                         right: 24,
                                       ),
                                       child: Text(
-                                        LSX.searchOverlay.recent,
+                                        strings.searchOverlay.recent,
                                         style: TextStyle(
                                           fontSize: 17,
                                           fontWeight: FontWeight.w600,

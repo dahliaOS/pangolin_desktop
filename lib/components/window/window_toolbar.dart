@@ -45,8 +45,6 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
   late DragUpdateDetails _lastDetails;
   WindowDock? _draggingDock;
 
-
-
   @override
   Widget build(BuildContext context) {
     final hierarchy = WindowHierarchy.of(context);
@@ -54,17 +52,18 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
     final layout = LayoutState.of(context);
     final fgColor = !context.theme.darkMode ? Colors.grey[900]! : Colors.white;
     final _customizationProvider = CustomizationProvider.of(context);
-Color widgetColor() {
-                if(_customizationProvider.coloredTitlebars){
-                  if(_customizationProvider.transparentColoredTitlebars && widget.barColor.opacity >= 0.5){
-                    return widget.barColor.op(0.5);
-                  }
-                  else{
-                    return widget.barColor;
-                  }
-                }
-                return Colors.transparent;
-}
+    Color widgetColor() {
+      if (_customizationProvider.coloredTitlebars) {
+        if (_customizationProvider.transparentColoredTitlebars &&
+            widget.barColor.opacity >= 0.5) {
+          return widget.barColor.op(0.5);
+        } else {
+          return widget.barColor;
+        }
+      }
+      return Colors.transparent;
+    }
+
     return GestureDetector(
       child: ContextMenuRegion(
         contextMenu: ContextMenu(
@@ -127,7 +126,7 @@ Color widgetColor() {
         child: SizedBox(
           height: 40,
           child: Material(
-            color:widgetColor(),
+            color: widgetColor(),
             child: IconTheme.merge(
               data: IconThemeData(
                 color: _customizationProvider.coloredTitlebars

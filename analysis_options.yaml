@@ -10,9 +10,9 @@ linter:
     empty_catches: false
     implementation_imports: false
     use_build_context_synchronously: false
-    sort_pub_dependencies: false
 
 analyzer:
   exclude:
     - lib/**/*.g.dart
+    - lib/generated/**/*.dart
     - lib/generated_plugin_registrant.dart

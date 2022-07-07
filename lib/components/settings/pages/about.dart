@@ -19,6 +19,7 @@ import 'package:pangolin/components/settings/widgets/settings_card.dart';
 import 'package:pangolin/components/settings/widgets/settings_content_header.dart';
 import 'package:pangolin/utils/data/globals.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
+import 'package:pangolin/utils/providers/locale_provider.dart';
 
 class SettingsPageAbout extends StatelessWidget {
   const SettingsPageAbout({Key? key}) : super(key: key);
@@ -67,42 +68,46 @@ class SettingsPageAbout extends StatelessWidget {
             child: Column(
               children: [
                 SettingsContentHeader(
-                  LSX.settings.pagesAboutSystemInformation,
+                  strings.settings.pagesAboutSystemInformation,
                 ),
                 SettingsCard(
                   children: [
                     ListTile(
                       title: Text(
-                        LSX.settings.pagesAboutSystemInformationEnvironment,
+                        strings.settings.pagesAboutSystemInformationEnvironment,
                       ),
                       subtitle: Text(kernel),
                       leading: const Icon(Icons.memory),
                     ),
                     ListTile(
                       title: Text(
-                        LSX.settings.pagesAboutSystemInformationArchitecture,
+                        strings
+                            .settings.pagesAboutSystemInformationArchitecture,
                       ),
                       subtitle: Text(architecture),
                       leading: const Icon(Icons.architecture),
                     ),
                     ListTile(
-                      title:
-                          Text(LSX.settings.pagesAboutSystemInformationDesktop),
+                      title: Text(
+                        strings.settings.pagesAboutSystemInformationDesktop,
+                      ),
                       subtitle: Text("Pangolin $pangolinCommit"),
                       leading: const Icon(Icons.desktop_mac),
                     )
                   ],
                 ),
-                SettingsContentHeader(LSX.settings.pagesAboutSoftwareUpdate),
+                SettingsContentHeader(
+                  strings.settings.pagesAboutSoftwareUpdate,
+                ),
                 SettingsCard(
                   children: [
                     ListTile(
                       title: Text(
-                        LSX.settings
+                        strings.settings
                             .pagesAboutSoftwareUpdateTileTitle("220222"),
                       ),
                       subtitle: Text(
-                        LSX.settings.pagesAboutSoftwareUpdateTileSubtitle(
+                        strings.settings.pagesAboutSoftwareUpdateTileSubtitle(
                           "2/22/2022",
                         ),
                       ),
@@ -112,7 +117,7 @@ class SettingsPageAbout extends StatelessWidget {
                         child: Padding(
                           padding: ThemeConstants.buttonPadding,
                           child: const Text(
-                            "Updates Disabled",
+                            "Check for update",
                           ),
                         ),
                       ),

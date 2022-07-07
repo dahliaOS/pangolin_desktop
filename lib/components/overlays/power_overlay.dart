@@ -21,6 +21,7 @@ import 'package:pangolin/utils/action_manager/action_manager.dart';
 import 'package:pangolin/utils/data/common_data.dart';
 import 'package:pangolin/utils/data/globals.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
+import 'package:pangolin/utils/providers/locale_provider.dart';
 import 'package:pangolin/widgets/global/box/box_container.dart';
 
 class PowerOverlay extends ShellOverlay {
@@ -108,14 +109,14 @@ class _PowerOverlayState extends State<PowerOverlay>
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                LSX.powerOverlay.title,
+                                strings.powerOverlay.title,
                                 style: const TextStyle(
                                   fontSize: 24,
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
                               const SizedBox(height: 12),
-                              Text(LSX.powerOverlay.subtitle),
+                              Text(strings.powerOverlay.subtitle),
                             ],
                           ),
                         ),
@@ -129,19 +130,19 @@ class _PowerOverlayState extends State<PowerOverlay>
                             child: Column(
                               children: [
                                 _powerMenuButton(
-                                  LSX.powerOverlay.poweroff,
+                                  strings.powerOverlay.poweroff,
                                   Icons.power_settings_new_rounded,
                                   context,
                                   onPressed: () => ActionManager.powerOff(),
                                 ),
                                 _powerMenuButton(
-                                  LSX.powerOverlay.sleep,
+                                  strings.powerOverlay.sleep,
                                   Icons.brightness_4_outlined,
                                   context,
                                   onPressed: () => ActionManager.suspend(),
                                 ),
                                 _powerMenuButton(
-                                  LSX.powerOverlay.restart,
+                                  strings.powerOverlay.restart,
                                   Icons.replay_rounded,
                                   context,
                                   onPressed: () => ActionManager.reboot(),
@@ -190,8 +191,7 @@ class _PowerOverlayState extends State<PowerOverlay>
                   const SizedBox(width: 12),
                   Text(
                     title,
-                    style:
-                        context.theme.textTheme.button?.copyWith(
+                    style: context.theme.textTheme.button?.copyWith(
                       fontSize: 16,
                       color: context.theme.foregroundColor,
                     ),

@@ -16,6 +16,7 @@ limitations under the License.
 
 import 'package:pangolin/components/settings/widgets/settings_page.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
+import 'package:pangolin/utils/providers/locale_provider.dart';
 
 class SettingsPageNotifications extends StatelessWidget {
   const SettingsPageNotifications({Key? key}) : super(key: key);
@@ -23,7 +24,7 @@ class SettingsPageNotifications extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SettingsPage(
-      title: LSX.settings.pagesNotificationsTitle,
+      title: strings.settings.pagesNotificationsTitle,
       cards: const [],
     );
   }
