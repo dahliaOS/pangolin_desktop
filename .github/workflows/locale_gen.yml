@@ -17,7 +17,7 @@ jobs:
         name: Switch Flutter channel
       - run: flutter pub get && flutter pub upgrade
         name: Get dependencies
-      - run: flutter pub run build_runner build
+      - run: flutter pub run build_runner build --delete-conflicting-outputs
         name: Generate translations
       - run: git config user.name "dahliaOS-Bot" && git config user.email dahliaosofficial@gmail.com && git add lib/generated && git commit -am "Generated locales" && git push
         name: Push translations
