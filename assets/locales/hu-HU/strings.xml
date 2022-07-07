@@ -203,4 +203,6 @@
     <string name="settings.pages.about.software_update_tile.title">dahliaOS naprakész - %s</string>
     <string name="settings.pages.about.software_update_tile.subtitle">Utoljára megnézve: %s</string>
     <string name="settings.pages.about.software_update_tile.button">Frissítések keresése</string>
+    <string name="apps.app_store" comment="App store application name">Alkalmazásbolt</string>
+    <string name="apps.app_store_description" comment="App Store application description">Felügyelt piactér harmadik féltől származó alkalmazások számára</string>
 </resources>
