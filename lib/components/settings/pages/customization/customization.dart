@@ -21,7 +21,7 @@ import 'package:pangolin/components/settings/widgets/settings_content_header.dar
 import 'package:pangolin/components/settings/widgets/settings_page.dart';
 import 'package:pangolin/components/settings/widgets/taskbar_alignment_button.dart';
 import 'package:pangolin/components/settings/widgets/theme_mode_button.dart';
-import 'package:pangolin/utils/data/database_manager.dart';
+import 'package:pangolin/services/preferences.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
 import 'package:pangolin/utils/providers/locale_provider.dart';
@@ -96,7 +96,7 @@ class _SettingsPageCustomizationState extends State<SettingsPageCustomization> {
               title: Text(
                 strings.settings
                     .pagesCustomizationWindowOptionsBorderRadiusTitle(
-                  DatabaseManager.get("windowBorderRadius"),
+                  PreferencesService.running.get("windowBorderRadius")!,
                 ),
               ),
               subtitle: Text(
@@ -105,8 +105,8 @@ class _SettingsPageCustomizationState extends State<SettingsPageCustomization> {
               ),
               trailing: Builder(
                 builder: (context) {
-                  final double value =
-                      DatabaseManager.get<double>("windowBorderRadius");
+                  final double value = PreferencesService.running
+                      .get<double>("windowBorderRadius")!;
                   return SizedBox(
                     width: 256,
                     child: Slider(
@@ -114,7 +114,8 @@ class _SettingsPageCustomizationState extends State<SettingsPageCustomization> {
                       min: 8.0,
                       max: 24.0,
                       onChanged: (double val) {
-                        DatabaseManager.set("windowBorderRadius", val);
+                        PreferencesService.running
+                            .set("windowBorderRadius", val);
                       },
                       value: value,
                     ),

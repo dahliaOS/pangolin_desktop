@@ -20,7 +20,7 @@ import 'package:flutter/gestures.dart';
 import 'package:pangolin/components/overlays/launcher/launcher_overlay.dart';
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/components/taskbar/taskbar_item.dart';
-import 'package:pangolin/utils/data/database_manager.dart';
+import 'package:pangolin/services/preferences.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
 /* import 'package:pangolin/utils/context_menus/context_menu.dart';
@@ -75,11 +75,11 @@ class _TaskbarState extends State<Taskbar> {
           final item = _taskbarApps.removeAt(oldIndex);
           _taskbarApps.insert(newIndex, item);
           if (_pinnedApps.contains(item)) {
-            DatabaseManager.set("pinnedApps", _pinnedApps);
+            PreferencesService.running.set("pinnedApps", _pinnedApps);
           } else {
             setState(() {
               _pinnedApps.add(item);
-              DatabaseManager.set("pinnedApps", _pinnedApps);
+              PreferencesService.running.set("pinnedApps", _pinnedApps);
             });
           }
         });
@@ -103,7 +103,7 @@ class _TaskbarState extends State<Taskbar> {
       height: _customizationProvider.isTaskbarHorizontal ? 48 : null,
       width: _customizationProvider.isTaskbarVertical
           ? 48
-          : null, //height: DatabaseManager.get('taskbarHeight').toDouble() ?? 48,
+          : null, //height: PreferencesService.running.get('taskbarHeight').toDouble() ?? 48,
       child: Listener(
         onPointerSignal: (pointerSignal) {
           if (pointerSignal is PointerScrollEvent) {

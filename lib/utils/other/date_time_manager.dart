@@ -17,7 +17,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:pangolin/utils/data/database_manager.dart';
+import 'package:pangolin/services/preferences.dart';
 
 class DateTimeManager {
   const DateTimeManager._();
@@ -43,7 +43,8 @@ class DateTimeManager {
     _timeNotifier = ValueNotifier(_getTimeFormat().format(DateTime.now()));
 
     _dateNotifier = ValueNotifier(
-      DateFormat(DatabaseManager.get('dateFormat')).format(DateTime.now()),
+      DateFormat(PreferencesService.running.get('dateFormat'))
+          .format(DateTime.now()),
     );
 
     while (true) {
@@ -71,15 +72,15 @@ class DateTimeManager {
 
   /// Format the Date
   static void formatDate() {
-    _date =
-        DateFormat(DatabaseManager.get('dateFormat')).format(DateTime.now());
+    _date = DateFormat(PreferencesService.running.get('dateFormat'))
+        .format(DateTime.now());
     _dateNotifier!.value = _date!;
   }
 
   /// Get the [DateFormat]
   static DateFormat _getTimeFormat() {
     DateFormat _format;
-    switch (DatabaseManager.get('timeFormat')) {
+    switch (PreferencesService.running.get('timeFormat')) {
       case '12h':
         _format = DateFormat.jm();
         break;
@@ -112,13 +113,13 @@ class DateTimeManager {
   /// am/pm with seconds: "12h+s"
   /// 24hr with seconds: "24h+s"
   static void setTimeFormat(String format) {
-    DatabaseManager.set('timeFormat', format.toLowerCase());
+    PreferencesService.running.set('timeFormat', format.toLowerCase());
   }
 
   /// Sets the Date Format
   /// Choose a time format
   /// More information: https://pub.dev/documentation/intl/latest/intl/DateFormat-class.html
   static void setDateFormat(String format) {
-    DatabaseManager.set('dateFormat', format);
+    PreferencesService.running.set('dateFormat', format);
   }
 }

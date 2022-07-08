@@ -1,4 +1,4 @@
-import 'package:pangolin/utils/data/database_manager.dart';
+import 'package:pangolin/services/preferences.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:provider/provider.dart';
 
@@ -25,7 +25,7 @@ class MiscProvider extends ChangeNotifier {
   set compactLauncher(bool value) {
     _compactLauncher = value;
     notifyListeners();
-    DatabaseManager.set("compactLauncher", value);
+    PreferencesService.running.set("compactLauncher", value);
   }
 
   set minimizedWindowsCache(List<String> value) {
@@ -36,6 +36,6 @@ class MiscProvider extends ChangeNotifier {
   //TODO fix data loading
   void _loadData() {
     _compactLauncher =
-        DatabaseManager.get("compactLauncher") ?? _compactLauncher;
+        PreferencesService.running.get("compactLauncher") ?? _compactLauncher;
   }
 }

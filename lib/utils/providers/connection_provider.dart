@@ -1,4 +1,4 @@
-import 'package:pangolin/utils/data/database_manager.dart';
+import 'package:pangolin/services/preferences.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:provider/provider.dart';
 
@@ -28,31 +28,31 @@ class ConnectionProvider extends ChangeNotifier {
   set wifi(bool value) {
     _wifi = value;
     notifyListeners();
-    DatabaseManager.set("wifi", value);
+    PreferencesService.running.set("wifi", value);
   }
 
   set bluetooth(bool value) {
     _bluetooth = value;
     notifyListeners();
-    DatabaseManager.set("bluetooth", value);
+    PreferencesService.running.set("bluetooth", value);
   }
 
   set mobile(bool value) {
     _mobile = value;
     notifyListeners();
-    DatabaseManager.set("mobile", value);
+    PreferencesService.running.set("mobile", value);
   }
 
   set ethernet(bool value) {
     _ethernet = value;
     notifyListeners();
-    DatabaseManager.set("ethernet", value);
+    PreferencesService.running.set("ethernet", value);
   }
 
   void loadData() {
-    wifi = DatabaseManager.get("wifi") ?? _wifi;
-    bluetooth = DatabaseManager.get("bluetooth") ?? _bluetooth;
-    mobile = DatabaseManager.get("mobile") ?? _mobile;
-    ethernet = DatabaseManager.get("ethernet") ?? _ethernet;
+    wifi = PreferencesService.running.get("wifi") ?? _wifi;
+    bluetooth = PreferencesService.running.get("bluetooth") ?? _bluetooth;
+    mobile = PreferencesService.running.get("mobile") ?? _mobile;
+    ethernet = PreferencesService.running.get("ethernet") ?? _ethernet;
   }
 }

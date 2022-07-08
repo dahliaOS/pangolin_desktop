@@ -17,7 +17,7 @@ limitations under the License.
 import 'package:pangolin/components/overlays/search/widgets/search_tile.dart';
 import 'package:pangolin/components/overlays/search/widgets/searchbar.dart';
 import 'package:pangolin/components/shell/shell.dart';
-import 'package:pangolin/services/search_service.dart';
+import 'package:pangolin/services/search.dart';
 import 'package:pangolin/utils/data/common_data.dart';
 import 'package:pangolin/utils/data/globals.dart';
 import 'package:pangolin/utils/data/models/application.dart';
@@ -37,10 +37,10 @@ class SearchOverlay extends ShellOverlay {
 
 class _SearchOverlayState extends State<SearchOverlay>
     with SingleTickerProviderStateMixin, ShellOverlayState {
-  final searchService = SearchNotifier();
   late AnimationController ac;
   final _controller = TextEditingController();
   final _focusNode = FocusNode();
+  final List<Application> results = [];
 
   @override
   void initState() {
@@ -114,7 +114,13 @@ class _SearchOverlayState extends State<SearchOverlay>
                       hint: strings.searchOverlay.hint,
                       leading: const Icon(Icons.search),
                       trailing: const Icon(Icons.menu_rounded),
-                      onTextChanged: searchService.globalSearch,
+                      onTextChanged: (text) async {
+                        results.clear();
+                        results.addAll(
+                          await SearchService.running.search(text),
+                        );
+                        setState(() {});
+                      },
                     ),
                   ),
 
@@ -122,85 +128,77 @@ class _SearchOverlayState extends State<SearchOverlay>
 
                   Material(
                     type: MaterialType.transparency,
-                    child: ValueListenableBuilder(
-                      builder: (_, List<Application>? apps, Widget? child) {
-                        return apps!.isNotEmpty
-                            ? SizedBox(
-                                height: 240,
-                                child: ListView(
-                                  children: [
-                                    Container(
-                                      padding: const EdgeInsets.only(
-                                        top: 16,
-                                        left: 24,
-                                        right: 24,
-                                      ),
-                                      child: Text(
-                                        strings.searchOverlay.results,
-                                        style: TextStyle(
-                                          fontSize: 17,
-                                          fontWeight: FontWeight.w600,
-                                          color: CommonData.of(context)
-                                              .textColor(),
-                                        ),
-                                      ),
+                    child: results.isNotEmpty
+                        ? SizedBox(
+                            height: 240,
+                            child: ListView(
+                              children: [
+                                Container(
+                                  padding: const EdgeInsets.only(
+                                    top: 16,
+                                    left: 24,
+                                    right: 24,
+                                  ),
+                                  child: Text(
+                                    strings.searchOverlay.results,
+                                    style: TextStyle(
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w600,
+                                      color: CommonData.of(context).textColor(),
                                     ),
-                                    ListView.builder(
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 16,
-                                        vertical: 4,
-                                      ),
-                                      shrinkWrap: true,
-                                      itemCount: apps.length,
-                                      physics: const BouncingScrollPhysics(),
-                                      itemBuilder: (_, index) => SearchTile(
-                                        apps[index].packageName,
-                                      ),
-                                    ),
-                                  ],
+                                  ),
                                 ),
-                              )
-                            : SizedBox(
-                                height: 240,
-                                child: ListView(
-                                  children: [
-                                    Container(
-                                      padding: const EdgeInsets.only(
-                                        top: 16,
-                                        left: 24,
-                                        right: 24,
-                                      ),
-                                      child: Text(
-                                        strings.searchOverlay.recent,
-                                        style: TextStyle(
-                                          fontSize: 17,
-                                          fontWeight: FontWeight.w600,
-                                          color: CommonData.of(context)
-                                              .textColor(),
-                                        ),
-                                      ),
-                                    ),
-                                    ListView.builder(
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 16,
-                                        vertical: 4,
-                                      ),
-                                      shrinkWrap: true,
-                                      reverse: true,
-                                      itemCount: _searchProvider
-                                          .recentSearchResults.length,
-                                      physics: const BouncingScrollPhysics(),
-                                      itemBuilder: (_, index) => SearchTile(
-                                        _searchProvider
-                                            .recentSearchResults[index],
-                                      ),
-                                    ),
-                                  ],
+                                ListView.builder(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 16,
+                                    vertical: 4,
+                                  ),
+                                  shrinkWrap: true,
+                                  itemCount: results.length,
+                                  physics: const BouncingScrollPhysics(),
+                                  itemBuilder: (_, index) => SearchTile(
+                                    results[index].packageName,
+                                  ),
                                 ),
-                              );
-                      },
-                      valueListenable: searchService.termSearchResult,
-                    ),
+                              ],
+                            ),
+                          )
+                        : SizedBox(
+                            height: 240,
+                            child: ListView(
+                              children: [
+                                Container(
+                                  padding: const EdgeInsets.only(
+                                    top: 16,
+                                    left: 24,
+                                    right: 24,
+                                  ),
+                                  child: Text(
+                                    strings.searchOverlay.recent,
+                                    style: TextStyle(
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w600,
+                                      color: CommonData.of(context).textColor(),
+                                    ),
+                                  ),
+                                ),
+                                ListView.builder(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 16,
+                                    vertical: 4,
+                                  ),
+                                  shrinkWrap: true,
+                                  reverse: true,
+                                  itemCount: _searchProvider
+                                      .recentSearchResults.length,
+                                  physics: const BouncingScrollPhysics(),
+                                  itemBuilder: (_, index) => SearchTile(
+                                    _searchProvider.recentSearchResults[index],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                   ),
                 ],
               ),

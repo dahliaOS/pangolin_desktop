@@ -24,8 +24,8 @@ import 'package:pangolin/components/overlays/power_overlay.dart';
 import 'package:pangolin/components/overlays/quick_settings/quick_settings_overlay.dart';
 import 'package:pangolin/components/overlays/search/search_overlay.dart';
 import 'package:pangolin/components/shell/shell.dart';
+import 'package:pangolin/services/preferences.dart';
 import 'package:pangolin/utils/data/app_list.dart';
-import 'package:pangolin/utils/data/database_manager.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
 import 'package:pangolin/utils/wm/layout.dart';
@@ -79,7 +79,7 @@ class _DesktopState extends State<Desktop> {
       // ignore: avoid_print
       print("Initilized Desktop Shell");
 
-      if (DatabaseManager.get("initialStart")) {
+      if (PreferencesService.running.get("initialStart")!) {
         showDialog(
           barrierColor: Colors.transparent,
           context: context,

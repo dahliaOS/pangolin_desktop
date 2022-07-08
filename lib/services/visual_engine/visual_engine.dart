@@ -18,8 +18,8 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:pangolin/services/preferences.dart';
 import 'package:pangolin/services/visual_engine/visual_data.dart';
-import 'package:pangolin/utils/data/database_manager.dart';
 
 Future<String> _loadDataAsset() {
   return rootBundle.loadString('assets/json/visualData.json');
@@ -51,24 +51,30 @@ Future loadVisualEngine() async {
     print(visuals.taskbarOpacity);
     print(visuals.taskbarRounding);
   }
-  DatabaseManager.set('taskbarHeight', visuals.taskbarHeight);
-  DatabaseManager.set('opaqueTitlebars', visuals.opaqueTitlebars);
-  DatabaseManager.set('titleInfo', visuals.titleInfo);
-  DatabaseManager.set('titleInfo', visuals.windowRadius);
-  DatabaseManager.set('activeAppsPosition', visuals.activeAppsPosition);
-  DatabaseManager.set('userName', visuals.userName);
-  DatabaseManager.set('launcherCategories', visuals.launcherCategories);
-  DatabaseManager.set('launcherIndicator', visuals.launcherIndicator);
-  DatabaseManager.set('launcherSystemOptions', visuals.launcherSystemOptions);
-  DatabaseManager.set('notificationsIcon', visuals.notificationsIcon);
-  DatabaseManager.set('overlayButtonRounding', visuals.overlayButtonRounding);
-  DatabaseManager.set('overlayOpacity', visuals.overlayOpacity);
-  DatabaseManager.set('overviewIcon', visuals.overviewIcon);
-  DatabaseManager.set('qsTileRounding', visuals.qsTileRounding);
-  DatabaseManager.set('searchBarString', visuals.searchBarString);
-  DatabaseManager.set('searchIcon', visuals.searchIcon);
-  DatabaseManager.set('showDate', visuals.showDate);
-  DatabaseManager.set('qsRounding', visuals.qsRounding);
-  DatabaseManager.set('taskbarOpacity', visuals.taskbarOpacity);
-  DatabaseManager.set('taskbarRounding', visuals.taskbarRounding);
+  PreferencesService.running.set('taskbarHeight', visuals.taskbarHeight);
+  PreferencesService.running.set('opaqueTitlebars', visuals.opaqueTitlebars);
+  PreferencesService.running.set('titleInfo', visuals.titleInfo);
+  PreferencesService.running.set('titleInfo', visuals.windowRadius);
+  PreferencesService.running
+      .set('activeAppsPosition', visuals.activeAppsPosition);
+  PreferencesService.running.set('userName', visuals.userName);
+  PreferencesService.running
+      .set('launcherCategories', visuals.launcherCategories);
+  PreferencesService.running
+      .set('launcherIndicator', visuals.launcherIndicator);
+  PreferencesService.running
+      .set('launcherSystemOptions', visuals.launcherSystemOptions);
+  PreferencesService.running
+      .set('notificationsIcon', visuals.notificationsIcon);
+  PreferencesService.running
+      .set('overlayButtonRounding', visuals.overlayButtonRounding);
+  PreferencesService.running.set('overlayOpacity', visuals.overlayOpacity);
+  PreferencesService.running.set('overviewIcon', visuals.overviewIcon);
+  PreferencesService.running.set('qsTileRounding', visuals.qsTileRounding);
+  PreferencesService.running.set('searchBarString', visuals.searchBarString);
+  PreferencesService.running.set('searchIcon', visuals.searchIcon);
+  PreferencesService.running.set('showDate', visuals.showDate);
+  PreferencesService.running.set('qsRounding', visuals.qsRounding);
+  PreferencesService.running.set('taskbarOpacity', visuals.taskbarOpacity);
+  PreferencesService.running.set('taskbarRounding', visuals.taskbarRounding);
 }

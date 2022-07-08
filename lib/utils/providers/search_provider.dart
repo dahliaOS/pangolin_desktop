@@ -1,4 +1,4 @@
-import 'package:pangolin/utils/data/database_manager.dart';
+import 'package:pangolin/services/preferences.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:provider/provider.dart';
 
@@ -25,13 +25,13 @@ class SearchProvider extends ChangeNotifier {
   void addRecentSearchResult(String value) {
     _recentSearchResults.add(value);
     notifyListeners();
-    DatabaseManager.set("recentSearchResults", _recentSearchResults);
+    PreferencesService.running.set("recentSearchResults", _recentSearchResults);
   }
 
   set recentSearchResults(List<String> value) {
     _recentSearchResults = value;
     notifyListeners();
-    DatabaseManager.set("recentSearchResults", _recentSearchResults);
+    PreferencesService.running.set("recentSearchResults", _recentSearchResults);
   }
 
   set searchQueryCache(String value) {
@@ -41,6 +41,6 @@ class SearchProvider extends ChangeNotifier {
 
   void loadData() {
     //recentSearchResults =
-    // List.castFrom(DatabaseManager.get("recentSearchResults"));
+    // List.castFrom(PreferencesService.running.get("recentSearchResults"));
   }
 }

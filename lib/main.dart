@@ -19,9 +19,11 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter_localizations/flutter_localizations.dart';
 import "package:intl/locale.dart" as intl;
 import 'package:pangolin/components/shell/desktop.dart';
+import 'package:pangolin/services/preferences.dart';
+import 'package:pangolin/services/search.dart';
+import 'package:pangolin/services/service.dart';
 import 'package:pangolin/services/visual_engine/visual_engine.dart';
 import 'package:pangolin/utils/data/dap_index.dart';
-import 'package:pangolin/utils/data/database_manager.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/other/date_time_manager.dart';
 import 'package:pangolin/utils/providers/clock_provider.dart';
@@ -39,8 +41,11 @@ import 'package:yatl_flutter/yatl_flutter.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  //initialize the database
-  await DatabaseManager.initialseDatabase();
+  await ServiceManager.registerService<SearchService>(SearchService.build);
+  await ServiceManager.registerService<PreferencesService>(
+    PreferencesService.build,
+  );
+  await ServiceManager.startServices();
   //PreferenceProvider();
 
   //initialize scheduler for time and date
@@ -60,9 +65,11 @@ Future<void> main() async {
   runApp(
     YatlApp(
       core: yatl,
-      getLocale: () => intl.Locale.tryParse(DatabaseManager.get('locale') ?? "")
-          ?.toFlutterLocale(),
-      setLocale: (locale) => DatabaseManager.set('locale', locale?.toString()),
+      getLocale: () => intl.Locale.tryParse(
+        PreferencesService.running.get('locale') ?? "",
+      )?.toFlutterLocale(),
+      setLocale: (locale) =>
+          PreferencesService.running.set('locale', locale?.toString()),
       child: MultiProvider(
         providers: [
           ChangeNotifierProvider<IconProvider>.value(

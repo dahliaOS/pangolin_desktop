@@ -1,4 +1,4 @@
-import 'package:pangolin/utils/data/database_manager.dart';
+import 'package:pangolin/services/preferences.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:provider/provider.dart';
 
@@ -25,25 +25,27 @@ class ClockProvider extends ChangeNotifier {
   set enable24hFormat(bool value) {
     _enable24hFormat = value;
     notifyListeners();
-    DatabaseManager.set("clock_24hFormat", value);
+    PreferencesService.running.set("clock_24hFormat", value);
   }
 
   set enableSeconds(bool value) {
     _enableSeconds = value;
     notifyListeners();
-    DatabaseManager.set("clock_seconds", value);
+    PreferencesService.running.set("clock_seconds", value);
   }
 
   set enableAutoTime(bool value) {
     _enableAutoTime = value;
     notifyListeners();
-    DatabaseManager.set("clock_autoTime", value);
+    PreferencesService.running.set("clock_autoTime", value);
   }
 
   void _loadData() {
     enable24hFormat =
-        DatabaseManager.get("clock_24hFormat") ?? _enable24hFormat;
-    enableSeconds = DatabaseManager.get("clock_seconds") ?? _enableSeconds;
-    enableAutoTime = DatabaseManager.get("clock_autoTime") ?? _enableAutoTime;
+        PreferencesService.running.get("clock_24hFormat") ?? _enable24hFormat;
+    enableSeconds =
+        PreferencesService.running.get("clock_seconds") ?? _enableSeconds;
+    enableAutoTime =
+        PreferencesService.running.get("clock_autoTime") ?? _enableAutoTime;
   }
 }

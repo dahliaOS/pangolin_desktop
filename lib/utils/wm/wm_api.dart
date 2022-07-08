@@ -17,8 +17,8 @@ limitations under the License.
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/window/window_surface.dart';
 import 'package:pangolin/components/window/window_toolbar.dart';
+import 'package:pangolin/services/preferences.dart';
 import 'package:pangolin/utils/data/app_list.dart';
-import 'package:pangolin/utils/data/database_manager.dart';
 import 'package:pangolin/utils/providers/misc_provider.dart';
 import 'package:pangolin/utils/wm/wm.dart';
 
@@ -48,7 +48,9 @@ class WmAPI {
       SurfaceWindowFeature.elevation: 4.0,
       SurfaceWindowFeature.shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(
-          Radius.circular(DatabaseManager.get("windowBorderRadius") ?? 12.0),
+          Radius.circular(
+            PreferencesService.running.get("windowBorderRadius") ?? 12.0,
+          ),
         ),
       ),
       SurfaceWindowFeature.background: const PangolinWindowSurface(),

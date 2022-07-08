@@ -1,4 +1,4 @@
-import 'package:pangolin/utils/data/database_manager.dart';
+import 'package:pangolin/services/preferences.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:provider/provider.dart';
 
@@ -61,31 +61,31 @@ class CustomizationProvider extends ChangeNotifier {
   set darkMode(bool value) {
     _darkMode = value;
     notifyListeners();
-    DatabaseManager.set("darkMode", value);
+    PreferencesService.running.set("darkMode", value);
   }
 
   set centerTaskbar(bool value) {
     _centerTaskbar = value;
     notifyListeners();
-    DatabaseManager.set("centerTaskbar", value);
+    PreferencesService.running.set("centerTaskbar", value);
   }
 
   set enableBlur(bool value) {
     _enableBlur = value;
     notifyListeners();
-    DatabaseManager.set("enableBlur", value);
+    PreferencesService.running.set("enableBlur", value);
   }
 
   set coloredTitlebars(bool value) {
     _coloredTitlebars = value;
     notifyListeners();
-    DatabaseManager.set("coloredTitlebars", value);
+    PreferencesService.running.set("coloredTitlebars", value);
   }
 
   set transparentColoredTitlebars(bool value) {
     _transparentColoredTitlebars = value;
     notifyListeners();
-    DatabaseManager.set("transparentColoredTitlebars", value);
+    PreferencesService.running.set("transparentColoredTitlebars", value);
   }
 
   void togglePinnedApp(String packageName) {
@@ -93,69 +93,73 @@ class CustomizationProvider extends ChangeNotifier {
         ? _pinnedApps.add(packageName)
         : _pinnedApps.remove(packageName);
     notifyListeners();
-    DatabaseManager.set("pinnedApps", _pinnedApps);
+    PreferencesService.running.set("pinnedApps", _pinnedApps);
   }
 
   void addRecentWallpaper(String ref) {
     if (!_recentWallpapers.contains(ref)) {
       _recentWallpapers.add(ref);
       notifyListeners();
-      DatabaseManager.set("recentWallpapers", _recentWallpapers);
+      PreferencesService.running.set("recentWallpapers", _recentWallpapers);
     }
   }
 
   set taskbarPosition(double value) {
     _taskbarPosition = value;
     notifyListeners();
-    DatabaseManager.set("taskbarPosition", value);
+    PreferencesService.running.set("taskbarPosition", value);
   }
 
   set launcherIcon(int value) {
     _launcherIcon = value;
     notifyListeners();
-    DatabaseManager.set("launcherIcon", value);
+    PreferencesService.running.set("launcherIcon", value);
   }
 
   set accentColor(int value) {
     _accentColor = value;
     notifyListeners();
-    DatabaseManager.set("accentColor", value);
+    PreferencesService.running.set("accentColor", value);
   }
 
   set fontFamily(String value) {
     _fontFamily = value;
     notifyListeners();
-    DatabaseManager.set("fontFamily", value);
+    PreferencesService.running.set("fontFamily", value);
   }
 
   set wallpaper(String value) {
     _wallpaper = value;
     notifyListeners();
-    DatabaseManager.set("wallpaper", value);
+    PreferencesService.running.set("wallpaper", value);
   }
 
   void _loadData() {
-    darkMode = DatabaseManager.get("darkMode") ?? _darkMode;
-    centerTaskbar = DatabaseManager.get("centerTaskbar") ?? _centerTaskbar;
-    enableBlur = DatabaseManager.get("enableBlur") ?? _enableBlur;
+    darkMode = PreferencesService.running.get("darkMode") ?? _darkMode;
+    centerTaskbar =
+        PreferencesService.running.get("centerTaskbar") ?? _centerTaskbar;
+    enableBlur = PreferencesService.running.get("enableBlur") ?? _enableBlur;
     coloredTitlebars =
-        DatabaseManager.get("coloredTitlebars") ?? _coloredTitlebars;
+        PreferencesService.running.get("coloredTitlebars") ?? _coloredTitlebars;
     transparentColoredTitlebars =
-        DatabaseManager.get("transparentColoredTitlebars") ??
+        PreferencesService.running.get("transparentColoredTitlebars") ??
             _transparentColoredTitlebars;
 
-    _pinnedApps = List.from(DatabaseManager.get("pinnedApps") ?? _pinnedApps);
+    _pinnedApps =
+        List.from(PreferencesService.running.get("pinnedApps") ?? _pinnedApps);
 
-    _recentWallpapers =
-        List.from(DatabaseManager.get("recentWallpapers") ?? _recentWallpapers);
+    _recentWallpapers = List.from(
+      PreferencesService.running.get("recentWallpapers") ?? _recentWallpapers,
+    );
 
     taskbarPosition =
-        DatabaseManager.get("taskbarPosition") ?? _taskbarPosition;
+        PreferencesService.running.get("taskbarPosition") ?? _taskbarPosition;
 
-    launcherIcon = DatabaseManager.get("launcherIcon") ?? _launcherIcon;
-    accentColor = DatabaseManager.get("accentColor") ?? _accentColor;
+    launcherIcon =
+        PreferencesService.running.get("launcherIcon") ?? _launcherIcon;
+    accentColor = PreferencesService.running.get("accentColor") ?? _accentColor;
 
-    fontFamily = DatabaseManager.get("fontFamily") ?? _fontFamily;
-    wallpaper = DatabaseManager.get("wallpaper") ?? _wallpaper;
+    fontFamily = PreferencesService.running.get("fontFamily") ?? _fontFamily;
+    wallpaper = PreferencesService.running.get("wallpaper") ?? _wallpaper;
   }
 }

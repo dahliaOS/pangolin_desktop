@@ -63,7 +63,7 @@ class _SettingsPageDeveloperOptionsState
               ),
               leading: const Icon(Icons.new_releases_outlined),
               trailing: ElevatedButton(
-                onPressed: null, //DatabaseManager.getHiveBox?.clear,
+                onPressed: null, //PreferencesService.running.getHiveBox?.clear,
                 child: Padding(
                   padding: ThemeConstants.buttonPadding,
                   child: const Text(

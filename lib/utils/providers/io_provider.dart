@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:pangolin/utils/data/database_manager.dart';
+import 'package:pangolin/services/preferences.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:provider/provider.dart';
 
@@ -44,36 +44,40 @@ class IOProvider extends ChangeNotifier {
 
   set volume(double value) {
     _volume = value;
-    DatabaseManager.set("volume", value);
-    if (value > 0) DatabaseManager.set("alt_volume", value);
+    PreferencesService.running.set("volume", value);
+    if (value > 0) PreferencesService.running.set("alt_volume", value);
     notifyListeners();
   }
 
   set brightness(double value) {
     _brightness = value;
-    DatabaseManager.set("brightness", value);
-    if (value > 0) DatabaseManager.set("alt_brightness", value);
+    PreferencesService.running.set("brightness", value);
+    if (value > 0) PreferencesService.running.set("alt_brightness", value);
     notifyListeners();
   }
 
   set isMuted(bool value) {
     _isMuted = value;
-    value == true ? volume = 0 : volume = DatabaseManager.get("alt_volume");
+    if (value) {
+      volume = 0;
+    } else {
+      volume = PreferencesService.running.get("alt_volume") ?? 0;
+    }
     notifyListeners();
   }
 
   set isAutoBrightnessEnabled(bool value) {
     _isAutoBrightnessEnabled = value;
-    DatabaseManager.set("auto_brightness", value);
+    PreferencesService.running.set("auto_brightness", value);
     notifyListeners();
   }
 
   // Data Loading
 
   void _loadData() {
-    _volume = DatabaseManager.get("volume") ?? _volume;
-    _brightness = DatabaseManager.get("brightness") ?? _volume;
-    DatabaseManager.newEntry("alt_volume", volume);
-    DatabaseManager.newEntry("alt_brightness", brightness);
+    _volume = PreferencesService.running.get("volume") ?? _volume;
+    _brightness = PreferencesService.running.get("brightness") ?? _volume;
+    PreferencesService.running.addIfNotPresent("alt_volume", volume);
+    PreferencesService.running.addIfNotPresent("alt_brightness", brightness);
   }
 }

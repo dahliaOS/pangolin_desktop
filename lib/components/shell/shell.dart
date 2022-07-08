@@ -24,7 +24,7 @@ import 'package:pangolin/components/taskbar/quick_settings.dart';
 import 'package:pangolin/components/taskbar/search.dart';
 import 'package:pangolin/components/taskbar/show_desktop.dart';
 import 'package:pangolin/components/taskbar/taskbar.dart';
-import 'package:pangolin/utils/data/database_manager.dart';
+import 'package:pangolin/services/preferences.dart';
 import 'package:pangolin/utils/wm/wm.dart';
 import 'package:pangolin/widgets/global/box/box_container.dart';
 import 'package:provider/provider.dart';
@@ -130,11 +130,11 @@ class _ShellState extends State<Shell> {
             Taskbar(
               leading: [
                 const LauncherButton(),
-                if (DatabaseManager.get<bool>('searchIcon'))
+                if (PreferencesService.running.get<bool>('searchIcon')!)
                   const SearchButton()
                 else
                   const SizedBox(),
-                if (DatabaseManager.get<bool>('overviewIcon'))
+                if (PreferencesService.running.get<bool>('overviewIcon')!)
                   const OverviewButton()
                 else
                   const SizedBox(),

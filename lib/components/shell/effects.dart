@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/shell/desktop.dart';
-import 'package:pangolin/utils/data/database_manager.dart';
+import 'package:pangolin/services/preferences.dart';
 import 'package:pangolin/utils/wm/layout.dart';
 import 'package:pangolin/widgets/global/box/box_container.dart';
 import 'package:provider/provider.dart';
@@ -143,7 +143,8 @@ class EffectsLayerState extends State<EffectsLayer>
                   child: BoxSurface(
                     borderRadius: BorderRadius.all(
                       Radius.circular(
-                        DatabaseManager.get("windowBorderRadius") ?? 12.0,
+                        PreferencesService.running.get("windowBorderRadius") ??
+                            12.0,
                       ),
                     ),
                     dropShadow: true,

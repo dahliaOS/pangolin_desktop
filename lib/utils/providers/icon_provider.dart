@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:pangolin/utils/data/database_manager.dart';
+import 'package:pangolin/services/preferences.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:provider/provider.dart';
 
@@ -38,7 +38,7 @@ class IconProvider extends ChangeNotifier {
   set iconPack(String value) {
     _iconPack = value.toLowerCase();
     notifyListeners();
-    DatabaseManager.set("iconPack", value.toLowerCase());
+    PreferencesService.running.set("iconPack", value.toLowerCase());
   }
 
   // Data Loading
@@ -48,6 +48,6 @@ class IconProvider extends ChangeNotifier {
     if (!_list.contains(iconPack)) {
       iconPack = "material";
     }
-    _iconPack = DatabaseManager.get("iconPack") ?? _iconPack;
+    _iconPack = PreferencesService.running.get("iconPack") ?? _iconPack;
   }
 }

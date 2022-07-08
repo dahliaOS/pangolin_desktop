@@ -1,4 +1,4 @@
-import 'package:pangolin/utils/data/database_manager.dart';
+import 'package:pangolin/services/preferences.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -10,12 +10,12 @@ class WelcomeScreen extends StatefulWidget {
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
   bool showAtStartup = true;
-  final bool _isDarkMode = DatabaseManager.get("darkMode");
+  final bool _isDarkMode = PreferencesService.running.get<bool>("darkMode")!;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        DatabaseManager.set("initialStart", showAtStartup);
+        PreferencesService.running.set("initialStart", showAtStartup);
 
         Navigator.pop(context);
       },
@@ -116,7 +116,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       right: 30,
                       child: ElevatedButton(
                         onPressed: () {
-                          DatabaseManager.set("initialStart", showAtStartup);
+                          PreferencesService.running
+                              .set("initialStart", showAtStartup);
 
                           Navigator.pop(context);
                         },
@@ -180,7 +181,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  DatabaseManager.set("initialStart", showAtStartup);
+                  PreferencesService.running.set("initialStart", showAtStartup);
 
                   Navigator.pop(context);
                 },
