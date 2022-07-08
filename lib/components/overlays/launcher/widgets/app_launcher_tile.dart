@@ -103,7 +103,6 @@ class _AppLauncherTileState extends State<AppLauncherTile> {
           ),
           onTap: () {
             if (widget.application.systemExecutable == true) {
-              print(widget.application.runtimeFlags.toString());
               Process.run(
                 'io.dahliaos.web_runtime.dap',
                 widget.application.runtimeFlags,

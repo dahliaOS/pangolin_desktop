@@ -55,7 +55,6 @@ class _SearchTileState extends State<SearchTile> {
         onTap: () {
           _searchProvider.addRecentSearchResult(application.packageName);
           if (application.systemExecutable == true) {
-            print(application.runtimeFlags.toString());
             Process.run(
               'io.dahliaos.web_runtime.dap',
               application.runtimeFlags,

@@ -10,9 +10,6 @@ void wapInstall(String url) {
     "https://packages.dahliaos.io/$url",
     "-P" + "/root/Applications/data/"
   ]).then((result) {
-    print(result.stderr.toString());
-    print(result.stdout.toString());
-
     indexApplications();
   });
 }

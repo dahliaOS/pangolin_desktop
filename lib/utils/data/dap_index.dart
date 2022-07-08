@@ -13,13 +13,12 @@ void indexApplications() {
 
   final List<String> packages =
       Process.runSync('ls', [applicationPath]).stdout.toString().split('\n');
-  print(packages);
+
   for (final String package in packages) {
     if (package.endsWith('.json')) {
       Process.run('cat', ['$applicationPath$package']).then(
         (result) {
           final String rawData = result.stdout.toString();
-          print(rawData);
           final Map<String, dynamic> json =
               jsonDecode(rawData) as Map<String, dynamic>;
           final manifest = PackageManifest.fromJson(json);
