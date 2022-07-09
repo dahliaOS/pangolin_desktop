@@ -39,8 +39,6 @@ class ActionManager {
       PowerOverlay.overlayId,
       dismissEverything: false,
     );
-    // ignore: invalid_use_of_protected_member
-    ScaffoldMessenger.of(context).setState(() {});
   }
 
   static Future<void> showAccountMenu(BuildContext context) async {
@@ -51,8 +49,6 @@ class ActionManager {
       AccountOverlay.overlayId,
       dismissEverything: false,
     );
-    // ignore: invalid_use_of_protected_member
-    ScaffoldMessenger.of(context).setState(() {});
   }
 
   static Future<void> switchLauncher(BuildContext context) async {
@@ -68,13 +64,10 @@ class ActionManager {
     );
   }
 
-  static Future<void> openSettings(BuildContext context) async {
+  static void openSettings(BuildContext context) {
     final shell = Shell.of(context, listen: false);
     shell.dismissEverything();
-    await Future.delayed(const Duration(milliseconds: 150));
     WmAPI.of(context).openApp("io.dahlia.settings");
-    // ignore: invalid_use_of_protected_member
-    ScaffoldMessenger.of(context).setState(() {});
   }
 
   static void powerOff() {

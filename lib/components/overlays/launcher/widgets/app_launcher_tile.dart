@@ -52,9 +52,9 @@ class _AppLauncherTileState extends State<AppLauncherTile> {
           leading: SizedBox.fromSize(
             size: const Size.square(32),
             child: getAppIcon(
-              widget.application.systemExecutable,
-              widget.application.iconName,
-              32,
+              iconPath: widget.application.iconName,
+              usesRuntime: widget.application.systemExecutable,
+              height: 32,
             ),
           ),
           title: Text(widget.application.name ?? "Unknown"),

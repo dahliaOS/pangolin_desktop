@@ -21,5 +21,9 @@ class ThemeModeDataModel {
   final bool darkMode;
   final String label;
 
-  const ThemeModeDataModel(this.color, this.label, this.darkMode);
+  const ThemeModeDataModel({
+    required this.color,
+    required this.label,
+    required this.darkMode,
+  });
 }

@@ -84,13 +84,12 @@ class _TaskbarItemState extends State<TaskbarItem>
                 hierarchy.sortedEntries.last.registry.extra.stableId,
           )
         : null;
-    final bool focused = windows.length > 1
-        ? focusedEntry?.registry.extra.stableId == widget.packageName &&
-            !windows.last.layoutState.minimized
-        : true;
+    final bool focused = windows.length > 1 &&
+        (focusedEntry?.registry.extra.stableId == widget.packageName &&
+            !windows.last.layoutState.minimized);
 
     final bool showSelected =
-        appIsRunning ? focused && !entry!.layoutState.minimized : false;
+        appIsRunning && focused && !entry!.layoutState.minimized;
 
     if (showSelected) {
       _ac.animateTo(1);

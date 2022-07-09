@@ -231,7 +231,7 @@ class _WallpaperPickerState extends State<WallpaperPicker>
                       _customizationProvider.addRecentWallpaper(
                         'https://bing.com${bingresponse.images.first.url}',
                       );
-                      Navigator.pop(context);
+                      if (mounted) Navigator.pop(context);
                     },
                     label: const Text(
                       "Use Bing Wallpaper",

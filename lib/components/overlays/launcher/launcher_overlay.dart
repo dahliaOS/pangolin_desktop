@@ -68,7 +68,7 @@ class _LauncherOverlayState extends State<LauncherOverlay>
   @override
   Future<void> requestDismiss(Map<String, dynamic> args) async {
     await ac.reverse();
-    WmAPI.of(context).undoMinimizeAll();
+    if (mounted) WmAPI.of(context).undoMinimizeAll();
     controller.showing = false;
   }
 

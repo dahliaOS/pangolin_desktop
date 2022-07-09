@@ -59,7 +59,7 @@ class TaskbarAlignmentButton extends StatelessWidget {
                   height: 40,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
-                    border: borderStyle(_isDarkMode),
+                    border: borderStyle(isDarkMode: _isDarkMode),
                     color: Theme.of(context).backgroundColor,
                   ),
                   child: Padding(
@@ -133,9 +133,9 @@ class TaskbarAlignmentButton extends StatelessWidget {
     );
   }
 
-  Border borderStyle(bool _isDarkMode) {
+  Border borderStyle({bool isDarkMode = false}) {
     return Border.all(
-      color: _isDarkMode
+      color: isDarkMode
           ? Colors.white.withOpacity(0.2)
           : Colors.black.withOpacity(0.2),
       width: 2,

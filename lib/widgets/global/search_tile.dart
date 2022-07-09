@@ -47,7 +47,11 @@ class _SearchTileState extends State<SearchTile> {
             const SizedBox(
               height: 10,
             ),
-            getAppIcon(application.systemExecutable, application.iconName, 34),
+            getAppIcon(
+              iconPath: application.iconName,
+              usesRuntime: application.systemExecutable,
+              height: 34,
+            ),
           ],
         ),
         trailing: const Text("App"),

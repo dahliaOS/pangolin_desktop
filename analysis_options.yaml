@@ -2,14 +2,6 @@ include: package:lint/analysis_options.yaml
 
 linter:
   rules:
-    avoid_bool_literals_in_conditional_expressions: false
-    avoid_catching_errors: false
-    avoid_double_and_int_checks: false
-    avoid_positional_boolean_parameters: false
-    avoid_setters_without_getters: false
-    empty_catches: false
-    implementation_imports: false
-    use_build_context_synchronously: false
 
 analyzer:
   exclude:

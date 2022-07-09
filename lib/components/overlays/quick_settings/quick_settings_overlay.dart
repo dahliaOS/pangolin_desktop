@@ -241,14 +241,12 @@ class QsMain extends StatelessWidget {
                         QsToggleButton(
                           title: strings.quicksettingsOverlay
                               .quickControlsAirplaneModeTitle,
-                          icon: !(!_connectionProvider.wifi &&
-                                  !_connectionProvider.bluetooth)
-                              ? Icons.airplanemode_off_rounded
-                              : Icons.airplanemode_active_rounded,
-                          value: !(!_connectionProvider.wifi &&
-                                  !_connectionProvider.bluetooth)
-                              ? false
-                              : true,
+                          icon: !_connectionProvider.wifi &&
+                                  !_connectionProvider.bluetooth
+                              ? Icons.airplanemode_active_rounded
+                              : Icons.airplanemode_off_rounded,
+                          value: !_connectionProvider.wifi &&
+                              !_connectionProvider.bluetooth,
                           onPressed: () {
                             if (_connectionProvider.wifi &&
                                 _connectionProvider.bluetooth) {

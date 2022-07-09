@@ -173,14 +173,24 @@ Application getApp(String packageName) {
       .firstWhere((element) => element.packageName == packageName);
 }
 
-Widget getAppIcon(bool usesRuntime, String? iconPath, double height) {
+Widget getAppIcon({
+  String? iconPath,
+  bool usesRuntime = false,
+  double height = 24,
+}) {
   return Image(
-    image: getAppIconProvider(usesRuntime, iconPath),
+    image: getAppIconProvider(
+      usesRuntime: usesRuntime,
+      iconPath: iconPath,
+    ),
     height: height,
   );
 }
 
-ImageProvider getAppIconProvider(bool usesRuntime, String? iconPath) {
+ImageProvider getAppIconProvider({
+  String? iconPath,
+  bool usesRuntime = false,
+}) {
   if (iconPath == null) {
     return const AssetImage('assets/icons/null.png');
   }

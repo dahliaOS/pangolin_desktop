@@ -17,5 +17,9 @@ limitations under the License.
 class TaskbarAlignmentModelData {
   final bool centered;
   final String label;
-  const TaskbarAlignmentModelData(this.label, this.centered);
+
+  const TaskbarAlignmentModelData({
+    required this.label,
+    required this.centered,
+  });
 }

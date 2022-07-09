@@ -56,9 +56,9 @@ class _AppLauncherButtonState extends State<AppLauncherButton> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 getAppIcon(
-                  application.systemExecutable,
-                  application.iconName,
-                  64,
+                  iconPath: application.iconName,
+                  usesRuntime: application.systemExecutable,
+                  height: 64,
                 ),
                 Text(
                   application.name ?? "",

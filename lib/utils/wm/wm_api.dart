@@ -85,8 +85,8 @@ class WmAPI {
           textColor: application.appBarTextColor,
         ),
         WindowEntry.icon: getAppIconProvider(
-          application.systemExecutable,
-          application.iconName,
+          iconPath: application.iconName,
+          usesRuntime: application.systemExecutable,
         ),
         WindowExtras.stableId: packageName,
       },
@@ -115,9 +115,8 @@ class WmAPI {
 
   void undoMinimizeAll() {
     for (final LiveWindowEntry e in _windowHierarchy.entries) {
-      _miscProvider.minimizedWindowsCache.contains(e.registry.info.id)
-          ? e.layoutState.minimized = true
-          : e.layoutState.minimized = false;
+      e.layoutState.minimized =
+          _miscProvider.minimizedWindowsCache.contains(e.registry.info.id);
     }
   }
 }

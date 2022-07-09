@@ -42,13 +42,13 @@ IconData wifiBars(String nmcliIn, String security) {
   }
 }
 
-Widget networkTile(
-  String title,
-  bool connected,
-  String strength,
-  String security,
-  BuildContext context,
-) {
+Widget networkTile({
+  required String title,
+  required bool connected,
+  required String strength,
+  required String security,
+  required BuildContext context,
+}) {
   return ListTile(
     //the icons suck but thats going to be all that is here until https://github.com/google/material-design-icons/issues/181 is resolved.
     leading: Icon(wifiBars(strength, security)),
@@ -153,27 +153,15 @@ List<Widget> parseNetworks(BuildContext context) {
     //TODO: Remove channel and frequency duplicate networks
     if (network.split(":").length > 1) {
       //print(network);
-      if (network.split(":")[0] == "*") {
-        tiles.add(
-          networkTile(
-            network.split(":")[7],
-            true,
-            network.split(":")[12],
-            network.split(":")[13],
-            context,
-          ),
-        );
-      } else {
-        tiles.add(
-          networkTile(
-            network.split(":")[7],
-            false,
-            network.split(":")[12],
-            network.split(":")[13],
-            context,
-          ),
-        );
-      }
+      tiles.add(
+        networkTile(
+          title: network.split(":")[7],
+          connected: network.split(":")[0] == "*",
+          strength: network.split(":")[12],
+          security: network.split(":")[13],
+          context: context,
+        ),
+      );
     }
   }
 
