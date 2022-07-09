@@ -183,11 +183,9 @@ class _WindowLayoutBuilderState extends State<_WindowLayoutBuilder>
   void didChangeDependencies() {
     super.didChangeDependencies();
     if (_mqSize != MediaQuery.of(context).size) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        _mqSize = MediaQuery.of(context).size;
-        _actualRect = _getWindowRect();
-        setState(() {});
-      });
+      _mqSize = MediaQuery.of(context).size;
+      _actualRect = _getWindowRect();
+      setState(() {});
     }
   }
 
