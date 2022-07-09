@@ -20,7 +20,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import "package:intl/locale.dart" as intl;
 import 'package:logging/logging.dart';
 import 'package:pangolin/components/shell/desktop.dart';
-import 'package:pangolin/services/error.dart';
 import 'package:pangolin/services/preferences.dart';
 import 'package:pangolin/services/search.dart';
 import 'package:pangolin/services/service.dart';
@@ -56,10 +55,6 @@ Future<void> main() async {
   await ServiceManager.registerService(
     PreferencesService.build,
     fallback: PreferencesService.fallback(),
-  );
-  await ServiceManager.registerService(
-    ErrorService.build,
-    //fallback: ErrorService.fallback(),
   );
   //PreferenceProvider();
 
