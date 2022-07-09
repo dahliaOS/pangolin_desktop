@@ -21,10 +21,10 @@ import 'package:pangolin/utils/data/app_list.dart';
 import 'package:pangolin/utils/data/models/application.dart';
 
 abstract class SearchService extends Service<SearchService> {
-  const SearchService() : super("search");
+  SearchService() : super("SearchService");
 
-  static SearchService get running {
-    return ServiceManager.getService<SearchService>();
+  static SearchService get current {
+    return ServiceManager.getService<SearchService>()!;
   }
 
   static SearchService build() {

@@ -38,7 +38,7 @@ class IconProvider extends ChangeNotifier {
   set iconPack(String value) {
     _iconPack = value.toLowerCase();
     notifyListeners();
-    PreferencesService.running.set("iconPack", value.toLowerCase());
+    PreferencesService.current.set("iconPack", value.toLowerCase());
   }
 
   // Data Loading
@@ -48,6 +48,6 @@ class IconProvider extends ChangeNotifier {
     if (!_list.contains(iconPack)) {
       iconPack = "material";
     }
-    _iconPack = PreferencesService.running.get("iconPack") ?? _iconPack;
+    _iconPack = PreferencesService.current.get("iconPack") ?? _iconPack;
   }
 }

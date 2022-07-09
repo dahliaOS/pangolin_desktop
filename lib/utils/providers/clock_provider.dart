@@ -25,27 +25,27 @@ class ClockProvider extends ChangeNotifier {
   set enable24hFormat(bool value) {
     _enable24hFormat = value;
     notifyListeners();
-    PreferencesService.running.set("clock_24hFormat", value);
+    PreferencesService.current.set("clock_24hFormat", value);
   }
 
   set enableSeconds(bool value) {
     _enableSeconds = value;
     notifyListeners();
-    PreferencesService.running.set("clock_seconds", value);
+    PreferencesService.current.set("clock_seconds", value);
   }
 
   set enableAutoTime(bool value) {
     _enableAutoTime = value;
     notifyListeners();
-    PreferencesService.running.set("clock_autoTime", value);
+    PreferencesService.current.set("clock_autoTime", value);
   }
 
   void _loadData() {
     enable24hFormat =
-        PreferencesService.running.get("clock_24hFormat") ?? _enable24hFormat;
+        PreferencesService.current.get("clock_24hFormat") ?? _enable24hFormat;
     enableSeconds =
-        PreferencesService.running.get("clock_seconds") ?? _enableSeconds;
+        PreferencesService.current.get("clock_seconds") ?? _enableSeconds;
     enableAutoTime =
-        PreferencesService.running.get("clock_autoTime") ?? _enableAutoTime;
+        PreferencesService.current.get("clock_autoTime") ?? _enableAutoTime;
   }
 }

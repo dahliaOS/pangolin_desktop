@@ -4,15 +4,17 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:pangolin/services/service.dart';
 
 abstract class PreferencesService extends Service<PreferencesService> {
-  const PreferencesService() : super("preferences");
+  PreferencesService() : super("PreferencesService");
 
-  static PreferencesService get running {
-    return ServiceManager.getService<PreferencesService>();
+  static PreferencesService get current {
+    return ServiceManager.getService<PreferencesService>()!;
   }
 
   static PreferencesService build() {
     return _HivePreferencesServiceImpl();
   }
+
+  factory PreferencesService.fallback() = _InMemoryPreferencesServiceImpl;
 
   T? get<T>(String key, [T? defaultValue]);
 
@@ -20,9 +22,6 @@ abstract class PreferencesService extends Service<PreferencesService> {
   FutureOr<void> addIfNotPresent<T>(String key, T value);
 
   FutureOr<void> delete(String key);
-
-  @override
-  PreferencesService get fallbackService => _InMemoryPreferencesServiceImpl();
 }
 
 class _HivePreferencesServiceImpl extends PreferencesService {

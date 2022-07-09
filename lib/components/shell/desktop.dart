@@ -79,7 +79,7 @@ class _DesktopState extends State<Desktop> {
       // ignore: avoid_print
       print("Initilized Desktop Shell");
 
-      if (PreferencesService.running.get("initialStart")!) {
+      if (PreferencesService.current.get("initialStart")!) {
         showDialog(
           barrierColor: Colors.transparent,
           context: context,

@@ -28,31 +28,31 @@ class ConnectionProvider extends ChangeNotifier {
   set wifi(bool value) {
     _wifi = value;
     notifyListeners();
-    PreferencesService.running.set("wifi", value);
+    PreferencesService.current.set("wifi", value);
   }
 
   set bluetooth(bool value) {
     _bluetooth = value;
     notifyListeners();
-    PreferencesService.running.set("bluetooth", value);
+    PreferencesService.current.set("bluetooth", value);
   }
 
   set mobile(bool value) {
     _mobile = value;
     notifyListeners();
-    PreferencesService.running.set("mobile", value);
+    PreferencesService.current.set("mobile", value);
   }
 
   set ethernet(bool value) {
     _ethernet = value;
     notifyListeners();
-    PreferencesService.running.set("ethernet", value);
+    PreferencesService.current.set("ethernet", value);
   }
 
   void loadData() {
-    wifi = PreferencesService.running.get("wifi") ?? _wifi;
-    bluetooth = PreferencesService.running.get("bluetooth") ?? _bluetooth;
-    mobile = PreferencesService.running.get("mobile") ?? _mobile;
-    ethernet = PreferencesService.running.get("ethernet") ?? _ethernet;
+    wifi = PreferencesService.current.get("wifi") ?? _wifi;
+    bluetooth = PreferencesService.current.get("bluetooth") ?? _bluetooth;
+    mobile = PreferencesService.current.get("mobile") ?? _mobile;
+    ethernet = PreferencesService.current.get("ethernet") ?? _ethernet;
   }
 }

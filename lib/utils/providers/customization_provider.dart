@@ -61,31 +61,31 @@ class CustomizationProvider extends ChangeNotifier {
   set darkMode(bool value) {
     _darkMode = value;
     notifyListeners();
-    PreferencesService.running.set("darkMode", value);
+    PreferencesService.current.set("darkMode", value);
   }
 
   set centerTaskbar(bool value) {
     _centerTaskbar = value;
     notifyListeners();
-    PreferencesService.running.set("centerTaskbar", value);
+    PreferencesService.current.set("centerTaskbar", value);
   }
 
   set enableBlur(bool value) {
     _enableBlur = value;
     notifyListeners();
-    PreferencesService.running.set("enableBlur", value);
+    PreferencesService.current.set("enableBlur", value);
   }
 
   set coloredTitlebars(bool value) {
     _coloredTitlebars = value;
     notifyListeners();
-    PreferencesService.running.set("coloredTitlebars", value);
+    PreferencesService.current.set("coloredTitlebars", value);
   }
 
   set transparentColoredTitlebars(bool value) {
     _transparentColoredTitlebars = value;
     notifyListeners();
-    PreferencesService.running.set("transparentColoredTitlebars", value);
+    PreferencesService.current.set("transparentColoredTitlebars", value);
   }
 
   void togglePinnedApp(String packageName) {
@@ -93,73 +93,73 @@ class CustomizationProvider extends ChangeNotifier {
         ? _pinnedApps.add(packageName)
         : _pinnedApps.remove(packageName);
     notifyListeners();
-    PreferencesService.running.set("pinnedApps", _pinnedApps);
+    PreferencesService.current.set("pinnedApps", _pinnedApps);
   }
 
   void addRecentWallpaper(String ref) {
     if (!_recentWallpapers.contains(ref)) {
       _recentWallpapers.add(ref);
       notifyListeners();
-      PreferencesService.running.set("recentWallpapers", _recentWallpapers);
+      PreferencesService.current.set("recentWallpapers", _recentWallpapers);
     }
   }
 
   set taskbarPosition(double value) {
     _taskbarPosition = value;
     notifyListeners();
-    PreferencesService.running.set("taskbarPosition", value);
+    PreferencesService.current.set("taskbarPosition", value);
   }
 
   set launcherIcon(int value) {
     _launcherIcon = value;
     notifyListeners();
-    PreferencesService.running.set("launcherIcon", value);
+    PreferencesService.current.set("launcherIcon", value);
   }
 
   set accentColor(int value) {
     _accentColor = value;
     notifyListeners();
-    PreferencesService.running.set("accentColor", value);
+    PreferencesService.current.set("accentColor", value);
   }
 
   set fontFamily(String value) {
     _fontFamily = value;
     notifyListeners();
-    PreferencesService.running.set("fontFamily", value);
+    PreferencesService.current.set("fontFamily", value);
   }
 
   set wallpaper(String value) {
     _wallpaper = value;
     notifyListeners();
-    PreferencesService.running.set("wallpaper", value);
+    PreferencesService.current.set("wallpaper", value);
   }
 
   void _loadData() {
-    darkMode = PreferencesService.running.get("darkMode") ?? _darkMode;
+    darkMode = PreferencesService.current.get("darkMode") ?? _darkMode;
     centerTaskbar =
-        PreferencesService.running.get("centerTaskbar") ?? _centerTaskbar;
-    enableBlur = PreferencesService.running.get("enableBlur") ?? _enableBlur;
+        PreferencesService.current.get("centerTaskbar") ?? _centerTaskbar;
+    enableBlur = PreferencesService.current.get("enableBlur") ?? _enableBlur;
     coloredTitlebars =
-        PreferencesService.running.get("coloredTitlebars") ?? _coloredTitlebars;
+        PreferencesService.current.get("coloredTitlebars") ?? _coloredTitlebars;
     transparentColoredTitlebars =
-        PreferencesService.running.get("transparentColoredTitlebars") ??
+        PreferencesService.current.get("transparentColoredTitlebars") ??
             _transparentColoredTitlebars;
 
     _pinnedApps =
-        List.from(PreferencesService.running.get("pinnedApps") ?? _pinnedApps);
+        List.from(PreferencesService.current.get("pinnedApps") ?? _pinnedApps);
 
     _recentWallpapers = List.from(
-      PreferencesService.running.get("recentWallpapers") ?? _recentWallpapers,
+      PreferencesService.current.get("recentWallpapers") ?? _recentWallpapers,
     );
 
     taskbarPosition =
-        PreferencesService.running.get("taskbarPosition") ?? _taskbarPosition;
+        PreferencesService.current.get("taskbarPosition") ?? _taskbarPosition;
 
     launcherIcon =
-        PreferencesService.running.get("launcherIcon") ?? _launcherIcon;
-    accentColor = PreferencesService.running.get("accentColor") ?? _accentColor;
+        PreferencesService.current.get("launcherIcon") ?? _launcherIcon;
+    accentColor = PreferencesService.current.get("accentColor") ?? _accentColor;
 
-    fontFamily = PreferencesService.running.get("fontFamily") ?? _fontFamily;
-    wallpaper = PreferencesService.running.get("wallpaper") ?? _wallpaper;
+    fontFamily = PreferencesService.current.get("fontFamily") ?? _fontFamily;
+    wallpaper = PreferencesService.current.get("wallpaper") ?? _wallpaper;
   }
 }

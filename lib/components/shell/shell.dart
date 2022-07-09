@@ -130,11 +130,11 @@ class _ShellState extends State<Shell> {
             Taskbar(
               leading: [
                 const LauncherButton(),
-                if (PreferencesService.running.get<bool>('searchIcon')!)
+                if (PreferencesService.current.get<bool>('searchIcon')!)
                   const SearchButton()
                 else
                   const SizedBox(),
-                if (PreferencesService.running.get<bool>('overviewIcon')!)
+                if (PreferencesService.current.get<bool>('overviewIcon')!)
                   const OverviewButton()
                 else
                   const SizedBox(),

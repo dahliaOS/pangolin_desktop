@@ -51,30 +51,30 @@ Future loadVisualEngine() async {
     print(visuals.taskbarOpacity);
     print(visuals.taskbarRounding);
   }
-  PreferencesService.running.set('taskbarHeight', visuals.taskbarHeight);
-  PreferencesService.running.set('opaqueTitlebars', visuals.opaqueTitlebars);
-  PreferencesService.running.set('titleInfo', visuals.titleInfo);
-  PreferencesService.running.set('titleInfo', visuals.windowRadius);
-  PreferencesService.running
+  PreferencesService.current.set('taskbarHeight', visuals.taskbarHeight);
+  PreferencesService.current.set('opaqueTitlebars', visuals.opaqueTitlebars);
+  PreferencesService.current.set('titleInfo', visuals.titleInfo);
+  PreferencesService.current.set('titleInfo', visuals.windowRadius);
+  PreferencesService.current
       .set('activeAppsPosition', visuals.activeAppsPosition);
-  PreferencesService.running.set('userName', visuals.userName);
-  PreferencesService.running
+  PreferencesService.current.set('userName', visuals.userName);
+  PreferencesService.current
       .set('launcherCategories', visuals.launcherCategories);
-  PreferencesService.running
+  PreferencesService.current
       .set('launcherIndicator', visuals.launcherIndicator);
-  PreferencesService.running
+  PreferencesService.current
       .set('launcherSystemOptions', visuals.launcherSystemOptions);
-  PreferencesService.running
+  PreferencesService.current
       .set('notificationsIcon', visuals.notificationsIcon);
-  PreferencesService.running
+  PreferencesService.current
       .set('overlayButtonRounding', visuals.overlayButtonRounding);
-  PreferencesService.running.set('overlayOpacity', visuals.overlayOpacity);
-  PreferencesService.running.set('overviewIcon', visuals.overviewIcon);
-  PreferencesService.running.set('qsTileRounding', visuals.qsTileRounding);
-  PreferencesService.running.set('searchBarString', visuals.searchBarString);
-  PreferencesService.running.set('searchIcon', visuals.searchIcon);
-  PreferencesService.running.set('showDate', visuals.showDate);
-  PreferencesService.running.set('qsRounding', visuals.qsRounding);
-  PreferencesService.running.set('taskbarOpacity', visuals.taskbarOpacity);
-  PreferencesService.running.set('taskbarRounding', visuals.taskbarRounding);
+  PreferencesService.current.set('overlayOpacity', visuals.overlayOpacity);
+  PreferencesService.current.set('overviewIcon', visuals.overviewIcon);
+  PreferencesService.current.set('qsTileRounding', visuals.qsTileRounding);
+  PreferencesService.current.set('searchBarString', visuals.searchBarString);
+  PreferencesService.current.set('searchIcon', visuals.searchIcon);
+  PreferencesService.current.set('showDate', visuals.showDate);
+  PreferencesService.current.set('qsRounding', visuals.qsRounding);
+  PreferencesService.current.set('taskbarOpacity', visuals.taskbarOpacity);
+  PreferencesService.current.set('taskbarRounding', visuals.taskbarRounding);
 }

@@ -117,7 +117,7 @@ class _SearchOverlayState extends State<SearchOverlay>
                       onTextChanged: (text) async {
                         results.clear();
                         results.addAll(
-                          await SearchService.running.search(text),
+                          await SearchService.current.search(text),
                         );
                         setState(() {});
                       },

@@ -43,7 +43,7 @@ class DateTimeManager {
     _timeNotifier = ValueNotifier(_getTimeFormat().format(DateTime.now()));
 
     _dateNotifier = ValueNotifier(
-      DateFormat(PreferencesService.running.get('dateFormat'))
+      DateFormat(PreferencesService.current.get('dateFormat'))
           .format(DateTime.now()),
     );
 
@@ -72,7 +72,7 @@ class DateTimeManager {
 
   /// Format the Date
   static void formatDate() {
-    _date = DateFormat(PreferencesService.running.get('dateFormat'))
+    _date = DateFormat(PreferencesService.current.get('dateFormat'))
         .format(DateTime.now());
     _dateNotifier!.value = _date!;
   }
@@ -80,7 +80,7 @@ class DateTimeManager {
   /// Get the [DateFormat]
   static DateFormat _getTimeFormat() {
     DateFormat _format;
-    switch (PreferencesService.running.get('timeFormat')) {
+    switch (PreferencesService.current.get('timeFormat')) {
       case '12h':
         _format = DateFormat.jm();
         break;
@@ -113,13 +113,13 @@ class DateTimeManager {
   /// am/pm with seconds: "12h+s"
   /// 24hr with seconds: "24h+s"
   static void setTimeFormat(String format) {
-    PreferencesService.running.set('timeFormat', format.toLowerCase());
+    PreferencesService.current.set('timeFormat', format.toLowerCase());
   }
 
   /// Sets the Date Format
   /// Choose a time format
   /// More information: https://pub.dev/documentation/intl/latest/intl/DateFormat-class.html
   static void setDateFormat(String format) {
-    PreferencesService.running.set('dateFormat', format);
+    PreferencesService.current.set('dateFormat', format);
   }
 }

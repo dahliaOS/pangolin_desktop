@@ -25,13 +25,13 @@ class SearchProvider extends ChangeNotifier {
   void addRecentSearchResult(String value) {
     _recentSearchResults.add(value);
     notifyListeners();
-    PreferencesService.running.set("recentSearchResults", _recentSearchResults);
+    PreferencesService.current.set("recentSearchResults", _recentSearchResults);
   }
 
   set recentSearchResults(List<String> value) {
     _recentSearchResults = value;
     notifyListeners();
-    PreferencesService.running.set("recentSearchResults", _recentSearchResults);
+    PreferencesService.current.set("recentSearchResults", _recentSearchResults);
   }
 
   set searchQueryCache(String value) {

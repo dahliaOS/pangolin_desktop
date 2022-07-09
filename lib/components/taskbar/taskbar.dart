@@ -75,11 +75,11 @@ class _TaskbarState extends State<Taskbar> {
           final item = _taskbarApps.removeAt(oldIndex);
           _taskbarApps.insert(newIndex, item);
           if (_pinnedApps.contains(item)) {
-            PreferencesService.running.set("pinnedApps", _pinnedApps);
+            PreferencesService.current.set("pinnedApps", _pinnedApps);
           } else {
             setState(() {
               _pinnedApps.add(item);
-              PreferencesService.running.set("pinnedApps", _pinnedApps);
+              PreferencesService.current.set("pinnedApps", _pinnedApps);
             });
           }
         });

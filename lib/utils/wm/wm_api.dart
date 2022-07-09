@@ -49,7 +49,7 @@ class WmAPI {
       SurfaceWindowFeature.shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(
           Radius.circular(
-            PreferencesService.running.get("windowBorderRadius") ?? 12.0,
+            PreferencesService.current.get("windowBorderRadius") ?? 12.0,
           ),
         ),
       ),

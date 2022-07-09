@@ -25,7 +25,7 @@ class MiscProvider extends ChangeNotifier {
   set compactLauncher(bool value) {
     _compactLauncher = value;
     notifyListeners();
-    PreferencesService.running.set("compactLauncher", value);
+    PreferencesService.current.set("compactLauncher", value);
   }
 
   set minimizedWindowsCache(List<String> value) {
@@ -36,6 +36,6 @@ class MiscProvider extends ChangeNotifier {
   //TODO fix data loading
   void _loadData() {
     _compactLauncher =
-        PreferencesService.running.get("compactLauncher") ?? _compactLauncher;
+        PreferencesService.current.get("compactLauncher") ?? _compactLauncher;
   }
 }

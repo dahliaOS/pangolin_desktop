@@ -10,12 +10,12 @@ class WelcomeScreen extends StatefulWidget {
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
   bool showAtStartup = true;
-  final bool _isDarkMode = PreferencesService.running.get<bool>("darkMode")!;
+  final bool _isDarkMode = PreferencesService.current.get<bool>("darkMode")!;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        PreferencesService.running.set("initialStart", showAtStartup);
+        PreferencesService.current.set("initialStart", showAtStartup);
 
         Navigator.pop(context);
       },
@@ -116,7 +116,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       right: 30,
                       child: ElevatedButton(
                         onPressed: () {
-                          PreferencesService.running
+                          PreferencesService.current
                               .set("initialStart", showAtStartup);
 
                           Navigator.pop(context);

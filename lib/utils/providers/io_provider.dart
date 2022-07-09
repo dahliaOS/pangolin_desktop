@@ -44,15 +44,15 @@ class IOProvider extends ChangeNotifier {
 
   set volume(double value) {
     _volume = value;
-    PreferencesService.running.set("volume", value);
-    if (value > 0) PreferencesService.running.set("alt_volume", value);
+    PreferencesService.current.set("volume", value);
+    if (value > 0) PreferencesService.current.set("alt_volume", value);
     notifyListeners();
   }
 
   set brightness(double value) {
     _brightness = value;
-    PreferencesService.running.set("brightness", value);
-    if (value > 0) PreferencesService.running.set("alt_brightness", value);
+    PreferencesService.current.set("brightness", value);
+    if (value > 0) PreferencesService.current.set("alt_brightness", value);
     notifyListeners();
   }
 
@@ -61,23 +61,23 @@ class IOProvider extends ChangeNotifier {
     if (value) {
       volume = 0;
     } else {
-      volume = PreferencesService.running.get("alt_volume") ?? 0;
+      volume = PreferencesService.current.get("alt_volume") ?? 0;
     }
     notifyListeners();
   }
 
   set isAutoBrightnessEnabled(bool value) {
     _isAutoBrightnessEnabled = value;
-    PreferencesService.running.set("auto_brightness", value);
+    PreferencesService.current.set("auto_brightness", value);
     notifyListeners();
   }
 
   // Data Loading
 
   void _loadData() {
-    _volume = PreferencesService.running.get("volume") ?? _volume;
-    _brightness = PreferencesService.running.get("brightness") ?? _volume;
-    PreferencesService.running.addIfNotPresent("alt_volume", volume);
-    PreferencesService.running.addIfNotPresent("alt_brightness", brightness);
+    _volume = PreferencesService.current.get("volume") ?? _volume;
+    _brightness = PreferencesService.current.get("brightness") ?? _volume;
+    PreferencesService.current.addIfNotPresent("alt_volume", volume);
+    PreferencesService.current.addIfNotPresent("alt_brightness", brightness);
   }
 }

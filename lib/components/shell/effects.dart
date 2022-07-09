@@ -143,7 +143,7 @@ class EffectsLayerState extends State<EffectsLayer>
                   child: BoxSurface(
                     borderRadius: BorderRadius.all(
                       Radius.circular(
-                        PreferencesService.running.get("windowBorderRadius") ??
+                        PreferencesService.current.get("windowBorderRadius") ??
                             12.0,
                       ),
                     ),

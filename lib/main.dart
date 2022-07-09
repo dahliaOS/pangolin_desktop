@@ -15,10 +15,12 @@ limitations under the License.
 */
 import 'dart:io' show Platform;
 
-import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:flutter/foundation.dart' show kDebugMode, kIsWeb;
 import 'package:flutter_localizations/flutter_localizations.dart';
 import "package:intl/locale.dart" as intl;
+import 'package:logging/logging.dart';
 import 'package:pangolin/components/shell/desktop.dart';
+import 'package:pangolin/services/error.dart';
 import 'package:pangolin/services/preferences.dart';
 import 'package:pangolin/services/search.dart';
 import 'package:pangolin/services/service.dart';
@@ -41,11 +43,24 @@ import 'package:yatl_flutter/yatl_flutter.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await ServiceManager.registerService<SearchService>(SearchService.build);
-  await ServiceManager.registerService<PreferencesService>(
+  Logger.root.level = Level.ALL;
+  Logger.root.onRecord.listen((record) {
+    if (kDebugMode) {
+      print(
+        '${record.level.name}: ${record.message}\n${record.error}\n${record.stackTrace}',
+      );
+    }
+  });
+
+  await ServiceManager.registerService(SearchService.build);
+  await ServiceManager.registerService(
     PreferencesService.build,
+    fallback: PreferencesService.fallback(),
   );
-  await ServiceManager.startServices();
+  await ServiceManager.registerService(
+    ErrorService.build,
+    //fallback: ErrorService.fallback(),
+  );
   //PreferenceProvider();
 
   //initialize scheduler for time and date
@@ -66,10 +81,10 @@ Future<void> main() async {
     YatlApp(
       core: yatl,
       getLocale: () => intl.Locale.tryParse(
-        PreferencesService.running.get('locale') ?? "",
+        PreferencesService.current.get('locale') ?? "",
       )?.toFlutterLocale(),
       setLocale: (locale) =>
-          PreferencesService.running.set('locale', locale?.toString()),
+          PreferencesService.current.set('locale', locale?.toString()),
       child: MultiProvider(
         providers: [
           ChangeNotifierProvider<IconProvider>.value(

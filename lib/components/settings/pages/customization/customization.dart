@@ -96,7 +96,7 @@ class _SettingsPageCustomizationState extends State<SettingsPageCustomization> {
               title: Text(
                 strings.settings
                     .pagesCustomizationWindowOptionsBorderRadiusTitle(
-                  PreferencesService.running.get("windowBorderRadius")!,
+                  PreferencesService.current.get("windowBorderRadius")!,
                 ),
               ),
               subtitle: Text(
@@ -105,7 +105,7 @@ class _SettingsPageCustomizationState extends State<SettingsPageCustomization> {
               ),
               trailing: Builder(
                 builder: (context) {
-                  final double value = PreferencesService.running
+                  final double value = PreferencesService.current
                       .get<double>("windowBorderRadius")!;
                   return SizedBox(
                     width: 256,
@@ -114,7 +114,7 @@ class _SettingsPageCustomizationState extends State<SettingsPageCustomization> {
                       min: 8.0,
                       max: 24.0,
                       onChanged: (double val) {
-                        PreferencesService.running
+                        PreferencesService.current
                             .set("windowBorderRadius", val);
                       },
                       value: value,

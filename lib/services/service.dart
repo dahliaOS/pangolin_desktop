@@ -1,86 +1,104 @@
 import 'dart:async';
 
+import 'package:pangolin/utils/other/log.dart';
+
 abstract class Service<T extends Service<T>> {
   final String name;
 
-  const Service(this.name);
+  Service(this.name);
+
+  bool _running = false;
+  bool get running => _running;
 
   FutureOr<void> start();
   FutureOr<void> stop();
 
-  T? get fallbackService => null;
+  @override
+  String toString() {
+    return "$name, ${running ? "running" : "not running"}";
+  }
 }
 
 typedef ServiceBuilder<T extends Service<T>> = FutureOr<T> Function();
 
-class ServiceManager {
-  final Map<String, Service> _registeredServices = {};
-  final Map<Type, String> _typeKeys = {};
+class ServiceManager with LoggerProvider {
+  final Map<Type, Service> _registeredServices = {};
   static final ServiceManager _instance = ServiceManager._();
 
   ServiceManager._();
 
   static Future<void> registerService<T extends Service<T>>(
-    ServiceBuilder<T> builder,
-  ) =>
-      _instance._registerService<T>(builder);
+    ServiceBuilder<T> builder, {
+    T? fallback,
+  }) =>
+      _instance._registerService<T>(builder, fallback);
 
-  static void unregisterService<T extends Service<T>>() =>
+  static Future<void> unregisterService<T extends Service<T>>() =>
       _instance._unregisterService<T>();
 
-  static Future<void> startServices() => _instance._startServices();
-
-  static Future<void> stopServices() => _instance._stopServices();
-
-  static T getService<T extends Service<T>>() => _instance._getService<T>();
-
-  static T? getOptionalService<T extends Service<T>>() =>
-      _instance._getOptionalService<T>();
+  static T? getService<T extends Service<T>>() => _instance._getService<T>();
 
   Future<void> _registerService<T extends Service<T>>(
-    ServiceBuilder<T> builder,
+    ServiceBuilder<T> builder, [
+    T? fallback,
+  ]) async {
+    final T? service = await _startWithFallback<T>(await builder(), fallback);
+
+    if (service == null) return;
+
+    _registeredServices[T] = service;
+  }
+
+  Future<T?> _startWithFallback<T extends Service<T>>(
+    final T service,
+    final T? fallback,
   ) async {
-    final T service = await builder();
+    try {
+      await service.start();
+      service._running = true;
 
-    _typeKeys[T] = service.name;
-    _registeredServices[service.name] = service;
-  }
-
-  void _unregisterService<T extends Service<T>>() {
-    _registeredServices.remove(T);
-  }
-
-  Future<void> _startServices() async {
-    for (final Service service in _registeredServices.values) {
-      try {
-        await service.start();
-      } catch (e) {
-        if (service.fallbackService == null) {
-          rethrow;
-        }
-
-        final Service fallback = service.fallbackService! as Service;
-        _registeredServices[service.name] = fallback;
-
-        await fallback.start();
+      return service;
+    } catch (exception, stackTrace) {
+      if (fallback == null) {
+        logger.severe(
+          "The service ${service.name} failed to start",
+          exception,
+          stackTrace,
+        );
+        return null;
       }
+
+      return _startWithFallback(fallback, null);
     }
   }
 
-  Future<void> _stopServices() async {
-    for (final Service service in _registeredServices.values) {
-      await service.stop();
+  Future<void> _unregisterService<T extends Service<T>>() async {
+    final Service? service = _registeredServices.remove(T);
+    await service?.stop();
+    service?._running = false;
+  }
+
+  T? _getService<T extends Service<T>>() {
+    final T? service = _registeredServices[T] as T?;
+
+    if (service == null) return null;
+
+    if (!service.running) {
+      throw ServiceNotRunningException<T>(service);
     }
+
+    return service;
   }
+}
 
-  T _getService<T extends Service<T>>() {
-    return _registeredServices[_typeKeys[T]!]! as T;
-  }
+class ServiceNotRunningException<T extends Service<T>> implements Exception {
+  final T service;
 
-  T? _getOptionalService<T extends Service<T>>() {
-    final String? nameKey = _typeKeys[T];
-    if (nameKey == null) return null;
+  const ServiceNotRunningException(this.service);
 
-    return _registeredServices[nameKey] as T?;
+  @override
+  String toString() {
+    return 'The service ${service.name} is currently not running.\n'
+        'This is probably caused by an exception thrown while starting, consider adding a fallback service to avoid these situations.';
   }
 }
