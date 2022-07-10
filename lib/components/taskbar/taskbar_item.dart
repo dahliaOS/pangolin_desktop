@@ -112,7 +112,7 @@ class _TaskbarItemState extends State<TaskbarItem>
               items: [
                 ContextMenuItem(
                   icon: Icons.info_outline_rounded,
-                  title: _app.name ?? "Error",
+                  title: _app.name,
                   onTap: () {},
                   shortcut: "",
                 ),

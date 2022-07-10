@@ -4,7 +4,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:pangolin/services/service.dart';
 
 abstract class PreferencesService extends Service<PreferencesService> {
-  PreferencesService() : super("PreferencesService");
+  PreferencesService();
 
   static PreferencesService get current {
     return ServiceManager.getService<PreferencesService>()!;

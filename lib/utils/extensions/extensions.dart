@@ -16,6 +16,7 @@ limitations under the License.
 
 import 'package:flutter/material.dart';
 import 'package:pangolin/utils/data/common_data.dart';
+import 'package:xdg_desktop/xdg_desktop.dart';
 
 export 'package:flutter/material.dart';
 export 'package:pangolin/utils/extensions/extensions.dart';
@@ -97,4 +98,14 @@ extension CommonDataX on CommonData {
 mixin ThemeConstants {
   static EdgeInsets get buttonPadding =>
       const EdgeInsets.symmetric(horizontal: 4, vertical: 10);
+}
+
+extension LocalizedStringResolve on LocalizedString {
+  String resolve(Locale locale) => getForLocale(
+        XdgLocale(
+          locale.languageCode,
+          locale.countryCode,
+          locale.scriptCode,
+        ),
+      );
 }

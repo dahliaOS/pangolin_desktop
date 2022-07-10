@@ -41,7 +41,7 @@ class _SearchTileState extends State<SearchTile> {
         contentPadding: const EdgeInsets.fromLTRB(16, 0, 16, 2),
         autofocus: true,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        title: Text(application.name ?? ""),
+        title: Text(application.name),
         leading: Column(
           children: [
             const SizedBox(

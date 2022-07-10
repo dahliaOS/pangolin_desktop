@@ -39,6 +39,7 @@ dependencies:
   media:
     git:
       url: https://github.com/dahliaOS/media.git
+  path: ^1.8.2
   provider: ^6.0.1
   recase: ^4.0.0
   system_logs:
@@ -66,6 +67,9 @@ dependencies:
   welcome:
     git:
       url: https://github.com/dahliaOS/welcome.git
+  xdg_desktop:
+    git: https://github.com/HrX03/xdg.dart
+  xdg_directories: ^0.2.0+1
   xml: ^6.1.0
   yatl:
     git:

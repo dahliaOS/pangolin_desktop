@@ -14,22 +14,22 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'dart:io';
-
-import 'package:pangolin/utils/data/app_list.dart';
-import 'package:pangolin/utils/data/models/application.dart';
+import 'package:pangolin/components/shell/shell.dart';
+import 'package:pangolin/services/application.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
 import 'package:pangolin/widgets/global/quick_button.dart';
 import 'package:provider/provider.dart';
+import 'package:xdg_desktop/xdg_desktop.dart';
+import 'package:yatl_flutter/yatl_flutter.dart';
 
 class AppLauncherTile extends StatefulWidget {
-  final Application application;
+  final DesktopEntry application;
 
-  const AppLauncherTile(
-    this.application, {
-    Key? key,
-  }) : super(key: key);
+  const AppLauncherTile({
+    required this.application,
+    super.key,
+  });
 
   @override
   State<AppLauncherTile> createState() => _AppLauncherTileState();
@@ -49,19 +49,21 @@ class _AppLauncherTileState extends State<AppLauncherTile> {
             borderRadius: BorderRadius.circular(8),
           ),
           dense: true,
-          leading: SizedBox.fromSize(
+          /* leading: SizedBox.fromSize(
             size: const Size.square(32),
             child: getAppIcon(
               iconPath: widget.application.iconName,
               usesRuntime: widget.application.systemExecutable,
               height: 32,
             ),
-          ),
-          title: Text(widget.application.name ?? "Unknown"),
-          subtitle: Text(
-            widget.application.description ?? "Unknown",
-            overflow: TextOverflow.ellipsis,
-          ),
+          ), */
+          title: Text(widget.application.name.resolve(context.locale)),
+          subtitle: widget.application.comment != null
+              ? Text(
+                  widget.application.comment!.resolve(context.locale),
+                  overflow: TextOverflow.ellipsis,
+                )
+              : null,
           trailing: Offstage(
             offstage: !_hover,
             child: Row(
@@ -80,8 +82,8 @@ class _AppLauncherTileState extends State<AppLauncherTile> {
                       padding: EdgeInsets.zero,
                       leading: const Icon(Icons.push_pin_rounded),
                       onPressed: () {
-                        customizationProvider
-                            .togglePinnedApp(widget.application.packageName);
+                        // customizationProvider
+                        //     .togglePinnedApp(widget.application.packageName);
                       },
                     );
                   },
@@ -101,14 +103,16 @@ class _AppLauncherTileState extends State<AppLauncherTile> {
               ],
             ),
           ),
-          onTap: () {
-            if (widget.application.systemExecutable == true) {
-              Process.run(
-                'io.dahliaos.web_runtime.dap',
-                widget.application.runtimeFlags,
-              );
-            }
-            widget.application.launch(context);
+          onTap: () async {
+            await ApplicationService.current.startApp(widget.application);
+            if (mounted) Shell.of(context, listen: false).dismissEverything();
+            // if (widget.application.systemExecutable == true) {
+            //   Process.run(
+            //     'io.dahliaos.web_runtime.dap',
+            //     widget.application.runtimeFlags,
+            //   );
+            // }
+            // widget.application.launch(context);
           },
         ),
       ),

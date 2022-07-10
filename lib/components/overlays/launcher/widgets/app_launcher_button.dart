@@ -14,25 +14,19 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'dart:io';
-
-import 'package:flutter/foundation.dart' show kDebugMode;
+import 'package:pangolin/components/shell/shell.dart';
+import 'package:pangolin/services/application.dart';
 import 'package:pangolin/utils/data/app_list.dart';
 import 'package:pangolin/utils/data/common_data.dart';
-import 'package:pangolin/utils/data/models/application.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
+import 'package:xdg_desktop/xdg_desktop.dart';
+import 'package:yatl_flutter/yatl_flutter.dart';
 
-class AppLauncherButton extends StatefulWidget {
-  final Application application;
-  const AppLauncherButton(this.application, {Key? key}) : super(key: key);
+class AppLauncherButton extends StatelessWidget {
+  final DesktopEntry application;
 
-  @override
-  _AppLauncherButtonState createState() => _AppLauncherButtonState();
-}
-
-class _AppLauncherButtonState extends State<AppLauncherButton> {
-  Application get application => widget.application;
+  const AppLauncherButton({required this.application, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -46,22 +40,22 @@ class _AppLauncherButtonState extends State<AppLauncherButton> {
         child: Padding(
           padding: const EdgeInsets.all(8),
           child: InkWell(
-            onLongPress: () =>
-                _customizationProvider.togglePinnedApp(application.packageName),
-            onTap: () {
-              _launchApp(context);
+            /* onLongPress: () =>
+                _customizationProvider.togglePinnedApp(application.packageName), */
+            onTap: () async {
+              await ApplicationService.current.startApp(application);
+              // ignore: use_build_context_synchronously
+              Shell.of(context, listen: false).dismissEverything();
             },
             borderRadius: CommonData.of(context).borderRadiusMedium,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 getAppIcon(
-                  iconPath: application.iconName,
-                  usesRuntime: application.systemExecutable,
                   height: 64,
                 ),
                 Text(
-                  application.name ?? "",
+                  application.name.resolve(context.locale),
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 17,
@@ -77,7 +71,7 @@ class _AppLauncherButtonState extends State<AppLauncherButton> {
   }
 
   void _launchApp(BuildContext context) {
-    if (application.systemExecutable == true) {
+    /* if (application.systemExecutable == true) {
       if (kDebugMode) {
         print(application.runtimeFlags.toString());
       }
@@ -86,6 +80,6 @@ class _AppLauncherButtonState extends State<AppLauncherButton> {
         application.runtimeFlags,
       );
     }
-    application.launch(context);
+    application.launch(context); */
   }
 }

@@ -18,10 +18,9 @@ import 'package:pangolin/components/overlays/launcher/widgets/app_launcher_butto
 import 'package:pangolin/components/overlays/search/search_overlay.dart';
 import 'package:pangolin/components/overlays/search/widgets/searchbar.dart';
 import 'package:pangolin/components/shell/shell.dart';
+import 'package:pangolin/services/application.dart';
 import 'package:pangolin/utils/action_manager/action_manager.dart';
-import 'package:pangolin/utils/data/app_list.dart';
 import 'package:pangolin/utils/data/common_data.dart';
-import 'package:pangolin/utils/data/models/application.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
 import 'package:pangolin/utils/providers/locale_provider.dart';
@@ -29,6 +28,8 @@ import 'package:pangolin/utils/providers/search_provider.dart';
 import 'package:pangolin/utils/wm/wm_api.dart';
 import 'package:pangolin/widgets/global/box/box_container.dart';
 import 'package:pangolin/widgets/global/quick_button.dart';
+import 'package:xdg_desktop/xdg_desktop.dart';
+import 'package:yatl_flutter/yatl_flutter.dart';
 
 class LauncherOverlay extends ShellOverlay {
   static const String overlayId = 'launcher';
@@ -325,7 +326,7 @@ class LauncherGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
 
-    final List<Application> _applications = applications;
+    /* final List<Application> _applications = applications;
     final List<Application> _internet = [];
     final List<Application> _media = [];
     final List<Application> _gaming = [];
@@ -365,40 +366,48 @@ class LauncherGrid extends StatelessWidget {
       _development,
       _office,
       _system
-    ];
+    ]; */
 
     return Expanded(
       child: Padding(
         padding: EdgeInsets.symmetric(
           horizontal: width / 10,
         ),
-        child: PageView.builder(
-          physics: const NeverScrollableScrollPhysics(),
-          controller: controller,
-          itemCount: pages.length,
-          itemBuilder: (context, int pvindex) {
-            final List<Application> page = pages[pvindex];
-            return GridView.builder(
-              physics: const BouncingScrollPhysics(),
-              itemCount: pages[pvindex].length,
-              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                // Flutter automatically calculates the optimal number of horizontal
-                // items with a MaxCrossAxisExtent in the app launcher grid
-                maxCrossAxisExtent: 175,
-              ),
-              itemBuilder: (BuildContext context, int index) {
-                final Application application = getApp(page[index].packageName);
-                if (!application.canBeOpened) {
-                  return IgnorePointer(
-                    child: Opacity(
-                      opacity: 0.4,
-                      child: AppLauncherButton(application),
-                    ),
-                  );
-                }
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: AppLauncherButton(application),
+        child: AnimatedBuilder(
+          animation: ApplicationService.current,
+          builder: (context, child) {
+            return PageView.builder(
+              physics: const NeverScrollableScrollPhysics(),
+              controller: controller,
+              itemCount: 1,
+              itemBuilder: (context, int pvindex) {
+                final List<DesktopEntry> applications =
+                    ApplicationService.current.listApplications();
+
+                applications.sort(
+                  (a, b) =>
+                      a.name.resolve(context.locale).toLowerCase().compareTo(
+                            b.name.resolve(context.locale).toLowerCase(),
+                          ),
+                );
+
+                //final List<Application> page = pages[pvindex];
+                return GridView.builder(
+                  physics: const BouncingScrollPhysics(),
+                  itemCount: applications.length,
+                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                    // Flutter automatically calculates the optimal number of horizontal
+                    // items with a MaxCrossAxisExtent in the app launcher grid
+                    maxCrossAxisExtent: 175,
+                  ),
+                  itemBuilder: (BuildContext context, int index) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: AppLauncherButton(
+                        application: applications[index],
+                      ),
+                    );
+                  },
                 );
               },
             );

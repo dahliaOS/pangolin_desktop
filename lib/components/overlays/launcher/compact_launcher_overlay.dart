@@ -18,15 +18,15 @@ import 'dart:async';
 
 import 'package:pangolin/components/overlays/launcher/widgets/app_launcher_tile.dart';
 import 'package:pangolin/components/shell/shell.dart';
+import 'package:pangolin/services/application.dart';
 import 'package:pangolin/utils/action_manager/action_manager.dart';
-import 'package:pangolin/utils/data/app_list.dart';
 import 'package:pangolin/utils/data/common_data.dart';
 import 'package:pangolin/utils/data/globals.dart';
-import 'package:pangolin/utils/data/models/application.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
 import 'package:pangolin/widgets/global/box/box_container.dart';
 import 'package:pangolin/widgets/global/quick_button.dart';
+import 'package:xdg_desktop/xdg_desktop.dart';
 import 'package:yatl_flutter/yatl_flutter.dart';
 
 class CompactLauncherOverlay extends ShellOverlay {
@@ -211,10 +211,28 @@ class CompactLauncher extends StatelessWidget {
               SizedBox(
                 height: 460,
                 width: 380,
-                child: ListView(
-                  children: applications
-                      .map((Application e) => AppLauncherTile(e))
-                      .toList(),
+                child: AnimatedBuilder(
+                  animation: ApplicationService.current,
+                  builder: (context, _) {
+                    final List<DesktopEntry> applications =
+                        ApplicationService.current.listApplications();
+
+                    applications.sort(
+                      (a, b) => a.name
+                          .resolve(context.locale)
+                          .toLowerCase()
+                          .compareTo(
+                            b.name.resolve(context.locale).toLowerCase(),
+                          ),
+                    );
+
+                    return ListView.builder(
+                      itemCount: applications.length,
+                      itemBuilder: (context, index) => AppLauncherTile(
+                        application: applications[index],
+                      ),
+                    );
+                  },
                 ),
               ),
             ],

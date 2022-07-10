@@ -18,11 +18,11 @@ import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/utils/wm/wm_api.dart';
 
 class Application {
-  final String? name;
+  final String name;
   final String? version;
   final String? description;
   final String packageName;
-  final Widget? app;
+  final Widget app;
   final ApplicationCategory? category;
   final bool isTest;
   final String? iconName;

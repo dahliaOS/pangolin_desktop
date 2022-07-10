@@ -21,7 +21,7 @@ import 'package:pangolin/utils/data/app_list.dart';
 import 'package:pangolin/utils/data/models/application.dart';
 
 abstract class SearchService extends Service<SearchService> {
-  SearchService() : super("SearchService");
+  SearchService();
 
   static SearchService get current {
     return ServiceManager.getService<SearchService>()!;
@@ -38,7 +38,7 @@ class _SearchServiceImpl extends SearchService {
   @override
   List<Application> search(String term) {
     return applications
-        .where((app) => app.name!.toLowerCase().contains(term.toLowerCase()))
+        .where((app) => app.name.toLowerCase().contains(term.toLowerCase()))
         .toList();
   }
 

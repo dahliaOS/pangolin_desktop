@@ -3,10 +3,6 @@ import 'dart:async';
 import 'package:pangolin/utils/other/log.dart';
 
 abstract class Service<T extends Service<T>> {
-  final String name;
-
-  Service(this.name);
-
   bool _running = false;
   bool get running => _running;
 
@@ -15,7 +11,28 @@ abstract class Service<T extends Service<T>> {
 
   @override
   String toString() {
-    return "$name, ${running ? "running" : "not running"}";
+    return "$T, ${running ? "running" : "not running"}";
+  }
+}
+
+class FailedService<T extends Service<T>> extends Service<T> {
+  FailedService._();
+
+  @override
+  FutureOr<void> start() => _error();
+
+  @override
+  FutureOr<void> stop() => _error();
+
+  Never _error() {
+    throw UnimplementedError(
+      "Instances of FailedService exist only to signal that a service that was supposed to exist is not for some reason. Avoid calling any method on such instances.",
+    );
+  }
+
+  @override
+  String toString() {
+    return "$T, failed";
   }
 }
 
@@ -42,18 +59,17 @@ class ServiceManager with LoggerProvider {
     ServiceBuilder<T> builder, [
     T? fallback,
   ]) async {
-    final T? service = await _startWithFallback<T>(await builder(), fallback);
-
-    if (service == null) return;
+    final Service service = await _startWithFallback<T>(builder, fallback);
 
     _registeredServices[T] = service;
   }
 
-  Future<T?> _startWithFallback<T extends Service<T>>(
-    final T service,
+  Future<Service> _startWithFallback<T extends Service<T>>(
+    final ServiceBuilder<T> builder,
     final T? fallback,
   ) async {
     try {
+      final T service = await builder();
       await service.start();
       service._running = true;
 
@@ -61,14 +77,16 @@ class ServiceManager with LoggerProvider {
     } catch (exception, stackTrace) {
       if (fallback == null) {
         logger.severe(
-          "The service ${service.name} failed to start",
+          "The service $T failed to start",
           exception,
           stackTrace,
         );
-        return null;
+        return FailedService<T>._();
       }
 
-      return _startWithFallback(fallback, null);
+      logger.info("Starting fallback service for $T");
+
+      return _startWithFallback<T>(() => fallback, null);
     }
   }
 
@@ -79,26 +97,24 @@ class ServiceManager with LoggerProvider {
   }
 
   T? _getService<T extends Service<T>>() {
-    final T? service = _registeredServices[T] as T?;
+    final Service? service = _registeredServices[T];
 
     if (service == null) return null;
 
-    if (!service.running) {
-      throw ServiceNotRunningException<T>(service);
+    if (!service.running || service is FailedService) {
+      throw ServiceNotRunningException<T>();
     }
 
-    return service;
+    return service as T;
   }
 }
 
 class ServiceNotRunningException<T extends Service<T>> implements Exception {
-  final T service;
-
-  const ServiceNotRunningException(this.service);
+  const ServiceNotRunningException();
 
   @override
   String toString() {
-    return 'The service ${service.name} is currently not running.\n'
+    return 'The service $T is currently not running.\n'
         'This is probably caused by an exception thrown while starting, consider adding a fallback service to avoid these situations.';
   }
 }

@@ -20,6 +20,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import "package:intl/locale.dart" as intl;
 import 'package:logging/logging.dart';
 import 'package:pangolin/components/shell/desktop.dart';
+import 'package:pangolin/services/application.dart';
 import 'package:pangolin/services/preferences.dart';
 import 'package:pangolin/services/search.dart';
 import 'package:pangolin/services/service.dart';
@@ -51,7 +52,14 @@ Future<void> main() async {
     }
   });
 
+  // initialize locale providers
+  await initProviders();
+
   await ServiceManager.registerService(SearchService.build);
+  await ServiceManager.registerService(
+    ApplicationService.build,
+    fallback: ApplicationService.fallback(),
+  );
   await ServiceManager.registerService(
     PreferencesService.build,
     fallback: PreferencesService.fallback(),
@@ -60,9 +68,6 @@ Future<void> main() async {
 
   //initialize scheduler for time and date
   DateTimeManager.initialiseScheduler();
-
-  // initialize locale providers
-  await initProviders();
 
   //load visual engine
   await loadVisualEngine();
