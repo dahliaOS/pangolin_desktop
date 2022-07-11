@@ -18,6 +18,7 @@ import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/services/application.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
+import 'package:pangolin/widgets/global/icon/icon.dart';
 import 'package:pangolin/widgets/global/quick_button.dart';
 import 'package:provider/provider.dart';
 import 'package:xdg_desktop/xdg_desktop.dart';
@@ -49,14 +50,13 @@ class _AppLauncherTileState extends State<AppLauncherTile> {
             borderRadius: BorderRadius.circular(8),
           ),
           dense: true,
-          /* leading: SizedBox.fromSize(
+          leading: SizedBox.fromSize(
             size: const Size.square(32),
-            child: getAppIcon(
-              iconPath: widget.application.iconName,
-              usesRuntime: widget.application.systemExecutable,
-              height: 32,
+            child: DynamicIcon(
+              icon: widget.application.icon?.main ?? "",
+              size: 32,
             ),
-          ), */
+          ),
           title: Text(widget.application.name.resolve(context.locale)),
           subtitle: widget.application.comment != null
               ? Text(

@@ -16,10 +16,10 @@ limitations under the License.
 
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/services/application.dart';
-import 'package:pangolin/utils/data/app_list.dart';
 import 'package:pangolin/utils/data/common_data.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/customization_provider.dart';
+import 'package:pangolin/widgets/global/icon/icon.dart';
 import 'package:xdg_desktop/xdg_desktop.dart';
 import 'package:yatl_flutter/yatl_flutter.dart';
 
@@ -51,8 +51,9 @@ class AppLauncherButton extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                getAppIcon(
-                  height: 64,
+                DynamicIcon(
+                  icon: application.icon?.main ?? "",
+                  size: 64,
                 ),
                 Text(
                   application.name.resolve(context.locale),
@@ -68,18 +69,5 @@ class AppLauncherButton extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  void _launchApp(BuildContext context) {
-    /* if (application.systemExecutable == true) {
-      if (kDebugMode) {
-        print(application.runtimeFlags.toString());
-      }
-      Process.run(
-        'io.dahliaos.web_runtime.dap',
-        application.runtimeFlags,
-      );
-    }
-    application.launch(context); */
   }
 }

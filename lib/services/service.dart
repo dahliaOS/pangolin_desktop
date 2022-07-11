@@ -84,6 +84,11 @@ class ServiceManager with LoggerProvider {
         return FailedService<T>._();
       }
 
+      logger.warning(
+        "The service $T failed to start",
+        exception,
+        stackTrace,
+      );
       logger.info("Starting fallback service for $T");
 
       return _startWithFallback<T>(() => fallback, null);

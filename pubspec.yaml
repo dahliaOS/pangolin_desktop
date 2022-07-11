@@ -20,6 +20,7 @@ dependencies:
   dahlia_clock:
     git:
       url: https://github.com/dahliaOS/clock.git
+  dbus: ^0.7.4
   files:
     git:
       url: https://github.com/dahliaOS/files.git
@@ -29,9 +30,11 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
+  flutter_svg: ^1.1.1+1
   graft:
     git:
       url: https://github.com/dahliaOS/graft.git
+  gsettings: ^0.2.5
   hive_flutter: any
   http: ^0.13.0
   intl: ^0.17.0

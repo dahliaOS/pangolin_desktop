@@ -21,6 +21,7 @@ import "package:intl/locale.dart" as intl;
 import 'package:logging/logging.dart';
 import 'package:pangolin/components/shell/desktop.dart';
 import 'package:pangolin/services/application.dart';
+import 'package:pangolin/services/icon.dart';
 import 'package:pangolin/services/preferences.dart';
 import 'package:pangolin/services/search.dart';
 import 'package:pangolin/services/service.dart';
@@ -59,6 +60,10 @@ Future<void> main() async {
   await ServiceManager.registerService(
     ApplicationService.build,
     fallback: ApplicationService.fallback(),
+  );
+  await ServiceManager.registerService(
+    IconService.build,
+    fallback: IconService.fallback(),
   );
   await ServiceManager.registerService(
     PreferencesService.build,
