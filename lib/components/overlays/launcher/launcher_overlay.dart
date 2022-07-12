@@ -180,11 +180,12 @@ class _SearchState extends State<Search> {
 
     return RawKeyboardListener(
       focusNode: _focusNode,
-      onKey: (_) async {
+      onKey: (event) async {
+        if (event.character == null ||
+            !RegExp("[a-zA-Z]").hasMatch(event.character!)) return;
         final _searchProvider = SearchProvider.of(context, listen: false);
-        if (_.character != null) {
-          _searchProvider.searchQueryCache = _.character!;
-        }
+
+        _searchProvider.searchQueryCache = event.character!;
         _shell.dismissOverlay(LauncherOverlay.overlayId);
         await Future.delayed(const Duration(milliseconds: 150));
         _shell.showOverlay(
@@ -385,10 +386,12 @@ class LauncherGrid extends StatelessWidget {
                     ApplicationService.current.listApplications();
 
                 applications.sort(
-                  (a, b) =>
-                      a.name.resolve(context.locale).toLowerCase().compareTo(
-                            b.name.resolve(context.locale).toLowerCase(),
-                          ),
+                  (a, b) => a
+                      .getLocalizedName(context.locale)
+                      .toLowerCase()
+                      .compareTo(
+                        b.getLocalizedName(context.locale).toLowerCase(),
+                      ),
                 );
 
                 //final List<Application> page = pages[pvindex];

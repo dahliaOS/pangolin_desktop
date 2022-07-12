@@ -1,10 +1,11 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:flutter/widgets.dart';
+import 'package:pangolin/services/langpacks.dart';
 import 'package:pangolin/services/service.dart';
 import 'package:pangolin/utils/data/app_list.dart';
 import 'package:pangolin/utils/data/models/application.dart';
+import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/other/log.dart';
 import 'package:path/path.dart' as p;
 import 'package:xdg_desktop/xdg_desktop.dart';
@@ -55,13 +56,22 @@ class _LinuxApplicationService extends ApplicationService {
   @override
   FutureOr<void> start() {
     _loadFolder(p.join(xdg.dataHome.path, "applications"));
+    for (final Directory dir in xdg.dataDirs) {
+      _loadFolder(p.join(dir.path, "applications"));
+    }
     _loadFolder("/usr/share/applications");
   }
 
   Future<void> _loadFolder(String path) async {
     final Directory directory = Directory(path);
-    final List<FileSystemEntity> entities =
-        await directory.list(recursive: true).toList();
+    final List<FileSystemEntity> entities;
+
+    try {
+      entities = await directory.list(recursive: true).toList();
+    } catch (e) {
+      logger.warning("Exception while listing applications for $path", e);
+      return;
+    }
 
     for (final FileSystemEntity entity in entities) {
       await _parseEntity(entity);
@@ -80,8 +90,18 @@ class _LinuxApplicationService extends ApplicationService {
       final DesktopEntry entry = DesktopEntry.fromIni(content);
       if (entry.noDisplay == true || entry.hidden == true) return;
 
-      if (entry.tryExec != null && !File(entry.tryExec!).existsSync()) {
+      if (entry.tryExec != null && !File(entry.tryExec!).existsSync()) return;
+
+      final List<String> onlyShowIn = entry.onlyShowIn ?? [];
+      final List<String> notShowIn = entry.notShowIn ?? [];
+
+      if (onlyShowIn.isNotEmpty && !onlyShowIn.contains("Pangolin") ||
+          notShowIn.contains("Pangolin")) {
         return;
+      }
+
+      if (entry.domainKey != null) {
+        LangPacksService.current.warmup(entry.domain!);
       }
 
       entries[entity.path] = entry;
@@ -143,7 +163,7 @@ class _BuiltInApplicationService extends ApplicationService {
   }
 
   @override
-  List<DesktopEntry> listApplications() => entries;
+  List<DesktopEntry> listApplications({bool sort = false}) => entries;
 
   @override
   void startApp(DesktopEntry app) {

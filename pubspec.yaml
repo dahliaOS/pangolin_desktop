@@ -30,7 +30,6 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  flutter_svg: ^1.1.1+1
   graft:
     git:
       url: https://github.com/dahliaOS/graft.git
@@ -38,6 +37,7 @@ dependencies:
   hive_flutter: any
   http: ^0.13.0
   intl: ^0.17.0
+  jovial_svg: ^1.1.5
   logging: ^1.0.2
   media:
     git:

@@ -183,8 +183,16 @@ class _LinuxIconService extends IconService with LoggerProvider {
   }
 
   Future<void> _populateFor(String path) async {
-    final List<FileSystemEntity> entities =
-        await Directory(path).list().toList();
+    final Directory directory = Directory(path);
+    final List<FileSystemEntity> entities;
+
+    try {
+      entities = await directory.list(recursive: true).toList();
+    } catch (e) {
+      logger.warning("Exception while listing icons for $path", e);
+      return;
+    }
+
     final List<IconTheme> foundIconThemes = [];
 
     for (final FileSystemEntity entity in entities) {
@@ -310,7 +318,6 @@ class _LinuxIconService extends IconService with LoggerProvider {
 
         if (theme == null) continue;
 
-        theme.theme.directoryNames.sort((a, b) => a.compareTo(b));
         themes.add(theme);
       }
 
@@ -327,7 +334,13 @@ class _LinuxIconService extends IconService with LoggerProvider {
 
     final IconCache? cache = await IconCache.create(iconTheme.path);
 
-    return _LoadedIconTheme(iconTheme, cache: cache);
+    final List<IconThemeDirectory> dirs = List.of(iconTheme.directories);
+    dirs.sort((a, b) => b.size.compareTo(a.size));
+
+    return _LoadedIconTheme(
+      iconTheme.copyWith(directories: dirs),
+      cache: cache,
+    );
   }
 
   List<String> _getInheritances(_IconFolder folder, IconTheme theme) {

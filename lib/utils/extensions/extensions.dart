@@ -14,9 +14,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:pangolin/services/langpacks.dart';
 import 'package:pangolin/utils/data/common_data.dart';
 import 'package:xdg_desktop/xdg_desktop.dart';
+import 'package:yatl_flutter/yatl_flutter.dart';
 
 export 'package:flutter/material.dart';
 export 'package:pangolin/utils/extensions/extensions.dart';
@@ -100,12 +103,49 @@ mixin ThemeConstants {
       const EdgeInsets.symmetric(horizontal: 4, vertical: 10);
 }
 
-extension LocalizedStringResolve on LocalizedString {
-  String resolve(Locale locale) => getForLocale(
+extension LocalizedResourceResolve<T> on LocalizedResource<T> {
+  T resolve(Locale locale) => getForLocale(
         XdgLocale(
           locale.languageCode,
           locale.countryCode,
           locale.scriptCode,
         ),
       );
+}
+
+extension DesktopEntryLocalizer on DesktopEntry {
+  String? get domainKey => extra.keys.firstWhereOrNull(
+        (e) => RegExp("X-.+-Gettext-Domain").hasMatch(e),
+      );
+  String? get domain => domainKey != null ? extra[domainKey!] : null;
+
+  String getLocalizedName(Locale locale) {
+    return domainKey != null
+        ? LangPacksService.current.cacheLookup(
+            extra[domainKey]!,
+            name.main,
+            locale.toIntlLocale(),
+          )
+        : name.resolve(locale);
+  }
+
+  String? getLocalizedComment(Locale locale) {
+    return domainKey != null && comment != null
+        ? LangPacksService.current.cacheLookup(
+            extra[domainKey]!,
+            comment!.main,
+            locale.toIntlLocale(),
+          )
+        : comment?.resolve(locale);
+  }
+
+  String? getLocalizedGenericName(Locale locale) {
+    return domainKey != null && genericName != null
+        ? LangPacksService.current.cacheLookup(
+            extra[domainKey]!,
+            genericName!.main,
+            locale.toIntlLocale(),
+          )
+        : genericName?.resolve(locale);
+  }
 }

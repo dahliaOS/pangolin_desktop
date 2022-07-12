@@ -46,6 +46,8 @@ class _AppLauncherTileState extends State<AppLauncherTile> {
       onExit: (details) => setState(() => _hover = false),
       child: GestureDetector(
         child: ListTile(
+          contentPadding:
+              const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
           ),
@@ -57,10 +59,13 @@ class _AppLauncherTileState extends State<AppLauncherTile> {
               size: 32,
             ),
           ),
-          title: Text(widget.application.name.resolve(context.locale)),
+          title: Text(
+            widget.application.getLocalizedName(context.locale),
+            overflow: TextOverflow.ellipsis,
+          ),
           subtitle: widget.application.comment != null
               ? Text(
-                  widget.application.comment!.resolve(context.locale),
+                  widget.application.getLocalizedComment(context.locale)!,
                   overflow: TextOverflow.ellipsis,
                 )
               : null,

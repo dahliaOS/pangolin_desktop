@@ -53,7 +53,6 @@ class _DynamicIconState extends State<DynamicIcon> {
             "application-x-executable",
             widget.lookupForSize ? widget.size : null,
           );
-      ;
     }
     if (mounted) setState(() {});
   }

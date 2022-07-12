@@ -32,38 +32,44 @@ class AppLauncherButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final _customizationProvider =
         CustomizationProvider.of(context, listen: false);
-    return SizedBox(
-      height: 128,
-      width: 128,
-      child: Material(
-        color: Colors.transparent,
-        child: Padding(
-          padding: const EdgeInsets.all(8),
-          child: InkWell(
-            /* onLongPress: () =>
-                _customizationProvider.togglePinnedApp(application.packageName), */
-            onTap: () async {
-              await ApplicationService.current.startApp(application);
-              // ignore: use_build_context_synchronously
-              Shell.of(context, listen: false).dismissEverything();
-            },
-            borderRadius: CommonData.of(context).borderRadiusMedium,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                DynamicIcon(
-                  icon: application.icon?.main ?? "",
-                  size: 64,
-                ),
-                Text(
-                  application.name.resolve(context.locale),
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 17,
-                    color: CommonData.of(context).textColor(),
+    return Tooltip(
+      message: application.getLocalizedComment(context.locale) ?? "",
+      waitDuration: const Duration(seconds: 1),
+      preferBelow: true,
+      verticalOffset: 80,
+      child: SizedBox(
+        height: 128,
+        width: 128,
+        child: Material(
+          color: Colors.transparent,
+          child: Padding(
+            padding: const EdgeInsets.all(8),
+            child: InkWell(
+              /* onLongPress: () =>
+                  _customizationProvider.togglePinnedApp(application.packageName), */
+              onTap: () async {
+                await ApplicationService.current.startApp(application);
+                // ignore: use_build_context_synchronously
+                Shell.of(context, listen: false).dismissEverything();
+              },
+              borderRadius: CommonData.of(context).borderRadiusMedium,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  DynamicIcon(
+                    icon: application.icon?.main ?? "",
+                    size: 64,
                   ),
-                )
-              ],
+                  Text(
+                    application.getLocalizedName(context.locale),
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 17,
+                      color: CommonData.of(context).textColor(),
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ),

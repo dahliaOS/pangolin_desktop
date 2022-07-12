@@ -218,20 +218,22 @@ class CompactLauncher extends StatelessWidget {
                         ApplicationService.current.listApplications();
 
                     applications.sort(
-                      (a, b) => a.name
-                          .resolve(context.locale)
+                      (a, b) => a
+                          .getLocalizedName(context.locale)
                           .toLowerCase()
                           .compareTo(
-                            b.name.resolve(context.locale).toLowerCase(),
+                            b.getLocalizedName(context.locale).toLowerCase(),
                           ),
                     );
                     //applications = applications.sublist(0, 1);
 
-                    return ListView.builder(
+                    return ListView.separated(
                       itemCount: applications.length,
                       itemBuilder: (context, index) => AppLauncherTile(
                         application: applications[index],
                       ),
+                      separatorBuilder: (context, index) =>
+                          const SizedBox(height: 4),
                     );
                   },
                 ),

@@ -203,6 +203,8 @@ class _XpmImageState extends State<XpmImage> {
       loadedXpm!.height,
       ui.PixelFormat.bgra8888,
       imageLoaded,
+      targetHeight: widget.width?.toInt(),
+      targetWidth: widget.height?.toInt(),
     );
   }
 

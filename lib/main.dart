@@ -22,6 +22,7 @@ import 'package:logging/logging.dart';
 import 'package:pangolin/components/shell/desktop.dart';
 import 'package:pangolin/services/application.dart';
 import 'package:pangolin/services/icon.dart';
+import 'package:pangolin/services/langpacks.dart';
 import 'package:pangolin/services/preferences.dart';
 import 'package:pangolin/services/search.dart';
 import 'package:pangolin/services/service.dart';
@@ -57,6 +58,10 @@ Future<void> main() async {
   await initProviders();
 
   await ServiceManager.registerService(SearchService.build);
+  await ServiceManager.registerService(
+    LangPacksService.build,
+    fallback: LangPacksService.fallback(),
+  );
   await ServiceManager.registerService(
     ApplicationService.build,
     fallback: ApplicationService.fallback(),

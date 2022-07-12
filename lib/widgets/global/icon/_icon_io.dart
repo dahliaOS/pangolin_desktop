@@ -1,7 +1,11 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:jovial_svg/jovial_svg.dart';
+// ignore: implementation_imports
+import 'package:jovial_svg/src/dag.dart';
+// ignore: implementation_imports
+import 'package:jovial_svg/src/svg_parser.dart';
 import 'package:pangolin/services/icon.dart';
 import 'package:pangolin/widgets/global/icon/xpm.dart';
 import 'package:path/path.dart' as p;
@@ -80,8 +84,8 @@ class _DynamicIconState extends State<DynamicIcon> {
 
     switch (ext) {
       case ".svg":
-        return SvgPicture.file(
-          File(_loadedIcon!),
+        return _SvgFileRenderer(
+          file: File(_loadedIcon!),
           width: widget.size.toDouble(),
           height: widget.size.toDouble(),
         );
@@ -90,6 +94,9 @@ class _DynamicIconState extends State<DynamicIcon> {
           File(_loadedIcon!),
           width: widget.size.toDouble(),
           height: widget.size.toDouble(),
+          filterQuality: FilterQuality.medium,
+          isAntiAlias: true,
+          gaplessPlayback: true,
         );
       case ".xpm":
         return XpmImage(
@@ -100,5 +107,55 @@ class _DynamicIconState extends State<DynamicIcon> {
     }
 
     return SizedBox.square(dimension: widget.size.toDouble());
+  }
+}
+
+class _SvgFileRenderer extends StatefulWidget {
+  final File file;
+  final double? width;
+  final double? height;
+
+  const _SvgFileRenderer({
+    required this.file,
+    this.width,
+    this.height,
+  });
+
+  @override
+  State<_SvgFileRenderer> createState() => _SvgFileRendererState();
+}
+
+class _SvgFileRendererState extends State<_SvgFileRenderer> {
+  ScalableImage? image;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadIcon();
+  }
+
+  @override
+  void didUpdateWidget(_SvgFileRenderer oldWidget) {
+    if (widget.file != oldWidget.file) {
+      _loadIcon();
+    }
+    super.didUpdateWidget(oldWidget);
+  }
+
+  Future<void> _loadIcon() async {
+    final String src = await widget.file.readAsString();
+    final b = SIDagBuilder(warn: (_) {});
+    StringSvgParser(src, b, warn: (_) {}).parse();
+    image = b.si;
+    if (mounted) setState(() {});
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: widget.width ?? double.infinity,
+      height: widget.height ?? double.infinity,
+      child: image != null ? ScalableImageWidget(si: image!) : null,
+    );
   }
 }
