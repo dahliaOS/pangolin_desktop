@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:pangolin/utils/other/computation_pool.dart';
 import 'package:pangolin/utils/other/log.dart';
 
 abstract class Service<T extends Service<T>> {
@@ -15,8 +16,10 @@ abstract class Service<T extends Service<T>> {
   }
 }
 
-class FailedService<T extends Service<T>> extends Service<T> {
-  FailedService._();
+class FailedService extends Service<FailedService> {
+  final Type service;
+
+  FailedService._(this.service);
 
   @override
   FutureOr<void> start() => _error();
@@ -26,83 +29,109 @@ class FailedService<T extends Service<T>> extends Service<T> {
 
   Never _error() {
     throw UnimplementedError(
-      "Instances of FailedService exist only to signal that a service that was supposed to exist is not for some reason. Avoid calling any method on such instances.",
+      "Instances of FailedService exist only to signal that a service that was supposed to exist does not for some reason. Avoid calling any method on such instances.",
     );
   }
 
   @override
   String toString() {
-    return "$T, failed";
+    return "$service, failed";
   }
 }
 
 typedef ServiceBuilder<T extends Service<T>> = FutureOr<T> Function();
 
 class ServiceManager with LoggerProvider {
-  final Map<Type, Service> _registeredServices = {};
+  final Map<Type, _ServiceBuilderWithFallback> _awaitingForStartup = {};
   static final ServiceManager _instance = ServiceManager._();
+  final Map<Type, Service<dynamic>> _registeredServices = {};
+  final ComputationPool<Type, Service<dynamic>> _startupPool =
+      ComputationPool();
 
   ServiceManager._();
 
-  static Future<void> registerService<T extends Service<T>>(
+  static void registerService<T extends Service<T>>(
     ServiceBuilder<T> builder, {
     T? fallback,
   }) =>
       _instance._registerService<T>(builder, fallback);
+
+  static Future<void> startServices() => _instance._startServices();
+
+  static Future<void> waitForService<T extends Service<T>>() =>
+      _instance._waitForService<T>();
 
   static Future<void> unregisterService<T extends Service<T>>() =>
       _instance._unregisterService<T>();
 
   static T? getService<T extends Service<T>>() => _instance._getService<T>();
 
-  Future<void> _registerService<T extends Service<T>>(
+  void _registerService<T extends Service<T>>(
     ServiceBuilder<T> builder, [
     T? fallback,
-  ]) async {
-    final Service service = await _startWithFallback<T>(builder, fallback);
-
-    _registeredServices[T] = service;
+  ]) {
+    _awaitingForStartup[T] = _ServiceBuilderWithFallback<T>(builder, fallback);
   }
 
-  Future<Service> _startWithFallback<T extends Service<T>>(
-    final ServiceBuilder<T> builder,
-    final T? fallback,
+  Future<void> _waitForService<T extends Service<T>>() {
+    return _startupPool.waitFor(T);
+  }
+
+  Future<void> _startServices() async {
+    _awaitingForStartup.forEach((type, builder) {
+      _startupPool.registerComputation(type);
+      _startWithFallback(type, builder.builder, builder.fallback);
+    });
+
+    await _startupPool.waitForResults((type, service) {
+      _registeredServices[type] = service;
+      logger.info("Loaded service $type");
+    });
+  }
+
+  Future<void> _startWithFallback(
+    final Type type,
+    final ServiceBuilder<Service<dynamic>> builder,
+    final Service<dynamic>? fallback,
   ) async {
     try {
-      final T service = await builder();
+      final Service<dynamic> service = await builder();
       await service.start();
       service._running = true;
 
-      return service;
+      _startupPool.completeComputation(type, service);
+      return;
     } catch (exception, stackTrace) {
       if (fallback == null) {
         logger.severe(
-          "The service $T failed to start",
+          "The service $type failed to start",
           exception,
           stackTrace,
         );
-        return FailedService<T>._();
+
+        _startupPool.completeComputation(type, FailedService._(type));
+        return;
       }
 
       logger.warning(
-        "The service $T failed to start",
+        "The service $type failed to start",
         exception,
         stackTrace,
       );
-      logger.info("Starting fallback service for $T");
+      logger.info("Starting fallback service for $type");
 
-      return _startWithFallback<T>(() => fallback, null);
+      return _startWithFallback(type, () => fallback, null);
     }
   }
 
   Future<void> _unregisterService<T extends Service<T>>() async {
-    final Service? service = _registeredServices.remove(T);
+    final Service<dynamic>? service = _registeredServices.remove(T);
     await service?.stop();
     service?._running = false;
   }
 
   T? _getService<T extends Service<T>>() {
-    final Service? service = _registeredServices[T];
+    final Service<dynamic>? service = _registeredServices[T];
 
     if (service == null) return null;
 
@@ -122,4 +151,11 @@ class ServiceNotRunningException<T extends Service<T>> implements Exception {
     return 'The service $T is currently not running.\n'
         'This is probably caused by an exception thrown while starting, consider adding a fallback service to avoid these situations.';
   }
+}
+
+class _ServiceBuilderWithFallback<T extends Service<T>> {
+  final ServiceBuilder<T> builder;
+  final T? fallback;
+
+  const _ServiceBuilderWithFallback(this.builder, this.fallback);
 }

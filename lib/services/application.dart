@@ -54,7 +54,10 @@ class _LinuxApplicationService extends ApplicationService {
   }
 
   @override
-  FutureOr<void> start() {
+  Future<void> start() async {
+    await ServiceManager.waitForService<LangPacksService>();
+    logger.info("Starting loading app service");
+
     _loadFolder(p.join(xdg.dataHome.path, "applications"));
     for (final Directory dir in xdg.dataDirs) {
       _loadFolder(p.join(dir.path, "applications"));

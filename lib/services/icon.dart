@@ -94,6 +94,9 @@ class _LinuxIconService extends IconService with LoggerProvider {
         Timer.periodic(const Duration(milliseconds: 500), _pollForSetting);
 
     await _populateFor(p.join(xdg.dataHome.path, "icons"));
+    for (final Directory dir in xdg.dataDirs) {
+      await _populateFor(p.join(dir.path, "icons"));
+    }
     await _populateFor("/usr/share/icons");
 
     final List<FileSystemEntity> entities =
