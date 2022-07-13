@@ -58,6 +58,8 @@ class ServiceManager with LoggerProvider {
 
   static Future<void> startServices() => _instance._startServices();
 
+  static Future<void> stopServices() => _instance._stopServices();
+
   static Future<void> waitForService<T extends Service<T>>() =>
       _instance._waitForService<T>();
 
@@ -84,9 +86,22 @@ class ServiceManager with LoggerProvider {
     });
 
     await _startupPool.waitForResults((type, service) {
+      _awaitingForStartup.remove(type);
       _registeredServices[type] = service;
       logger.info("Loaded service $type");
     });
+
+    _awaitingForStartup.clear();
+    _startupPool.dispose();
+  }
+
+  Future<void> _stopServices() async {
+    for (final Type type in _registeredServices.keys) {
+      await _unregisterServiceByType(type);
+    }
+
+    // Better safe than sorry
+    _registeredServices.clear();
   }
 
   Future<void> _startWithFallback(
@@ -124,8 +139,11 @@ class ServiceManager with LoggerProvider {
     }
   }
 
-  Future<void> _unregisterService<T extends Service<T>>() async {
-    final Service<dynamic>? service = _registeredServices.remove(T);
+  Future<void> _unregisterService<T extends Service<T>>() =>
+      _unregisterServiceByType(T);
+
+  Future<void> _unregisterServiceByType(Type type) async {
+    final Service<dynamic>? service = _registeredServices.remove(type);
     await service?.stop();
     service?._running = false;
   }

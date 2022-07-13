@@ -225,7 +225,6 @@ class CompactLauncher extends StatelessWidget {
                             b.getLocalizedName(context.locale).toLowerCase(),
                           ),
                     );
-                    //applications = applications.sublist(0, 1);
 
                     return ListView.separated(
                       itemCount: applications.length,

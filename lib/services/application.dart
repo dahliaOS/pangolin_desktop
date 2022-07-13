@@ -69,6 +69,8 @@ class _LinuxApplicationService extends ApplicationService {
     final Directory directory = Directory(path);
     final List<FileSystemEntity> entities;
 
+    if (!directory.existsSync()) return;
+
     try {
       entities = await directory.list(recursive: true).toList();
     } catch (e) {

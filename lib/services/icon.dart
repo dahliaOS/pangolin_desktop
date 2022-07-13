@@ -6,11 +6,14 @@ import 'package:dbus/dbus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:gsettings/gsettings.dart';
 import 'package:pangolin/services/service.dart';
+import 'package:pangolin/utils/other/benchmark.dart';
 import 'package:pangolin/utils/other/log.dart';
 import 'package:pangolin/widgets/global/icon/cache.dart';
 import 'package:path/path.dart' as p;
 import 'package:xdg_desktop/xdg_desktop.dart';
 import 'package:xdg_directories/xdg_directories.dart' as xdg;
+
+typedef _IconCache = Map<String, _CachedIconSet>;
 
 abstract class IconService extends Service<IconService> with ChangeNotifier {
   IconService();
@@ -27,167 +30,81 @@ abstract class IconService extends Service<IconService> with ChangeNotifier {
 
   factory IconService.fallback() = _StraightThroughIconServiceImpl;
 
-  Future<String?> lookup(String name, [int? size]);
+  String? lookup(String name, {int? size, String? fallback});
 }
 
 class _LinuxIconService extends IconService with LoggerProvider {
+  static final RegExp extRegexp = RegExp(r"(\.png|\.svg(z)?|\.xpm)^");
   final GSettings settings = GSettings("org.gnome.desktop.interface");
 
   final List<_IconFolder> iconFolders = [];
-  final List<_LoadedIconBundle> loadedBundles = [];
-  final List<File> pixmaps = [];
-  final Map<String, _CachedIcon> cache = {};
+  final _IconCache cache = {};
+  final List<StreamSubscription<FileSystemEvent>> dirWatchers = [];
 
   String? systemTheme;
   Timer? settingPollingTimer;
 
   @override
-  Future<String?> lookup(String name, [int? size]) async {
-    if (name.isEmpty) return null;
+  String? lookup(String name, {int? size, String? fallback}) {
+    if (name.isEmpty && (fallback == null || fallback.isEmpty)) return null;
 
-    final DateTime now = DateTime.now();
-    final String key = "$name@$size";
+    // Some icons get requested like <name>.<ext>, in order to solve this we just remove the extension
+    final String fixedName = name.replaceFirst(extRegexp, "");
+    final String? fixedFallback = fallback?.replaceFirst(extRegexp, "");
 
-    if (cache.containsKey(key)) {
-      final _CachedIcon icon = cache[key]!;
+    final Benchmark benchmark = Benchmark();
+    benchmark.begin();
 
-      // We check if the cache is recent enough, else we need to lookup again
-      if (now.difference(icon.date) < const Duration(seconds: 5)) {
-        return icon.path;
-      }
+    final _CachedIconSet? mainSet = cache[fixedName];
+    final _CachedIconSet? fallbackSet = cache[fixedFallback];
+
+    if (mainSet == null) {
+      benchmark.end();
+
+      logger.finest(
+        "Nothing found for $fixedName, will return fallback $fixedFallback, took ${benchmark.duration.inMilliseconds}ms",
+      );
+      return fallbackSet?.lookup(size);
     }
 
-    for (final _LoadedIconBundle bundle in loadedBundles) {
-      String? lookup;
+    final String? lookupResult = mainSet.lookup(size);
 
-      for (final _LoadedIconTheme theme in bundle.themes) {
-        lookup = await _themeLookup(name, theme, size);
-
-        if (lookup != null) break;
-      }
-
-      if (lookup != null) {
-        return cache
-            .putIfAbsent(key, () => _CachedIcon(lookup!, DateTime.now()))
-            .path;
-      }
+    if (lookupResult != null) {
+      benchmark.end();
+      logger.finest(
+        "Looked up icon $fixedName, took ${benchmark.duration.inMilliseconds}ms, result $lookupResult",
+      );
+      return lookupResult;
     }
 
-    final File? file = pixmaps.firstWhereOrNull(
-      (e) => p.basenameWithoutExtension(e.path) == name,
+    benchmark.end();
+
+    logger.finest(
+      "Nothing found for $fixedName, took ${benchmark.duration.inMilliseconds}ms",
     );
-    if (file != null) {
-      return cache
-          .putIfAbsent(
-            key,
-            () => _CachedIcon(file.absolute.path, DateTime.now()),
-          )
-          .path;
-    }
-
     return null;
   }
 
   @override
-  Future<void> start() async {
+  FutureOr<void> start() async {
     settingPollingTimer =
-        Timer.periodic(const Duration(milliseconds: 500), _pollForSetting);
+        Timer.periodic(const Duration(seconds: 1), _pollForSetting);
 
     await _populateFor(p.join(xdg.dataHome.path, "icons"));
     for (final Directory dir in xdg.dataDirs) {
       await _populateFor(p.join(dir.path, "icons"));
     }
-    await _populateFor("/usr/share/icons");
-
-    final List<FileSystemEntity> entities =
-        await Directory("/usr/share/pixmaps").list(recursive: true).toList();
-
-    for (final FileSystemEntity entity in entities) {
-      if (entity is! File) continue;
-
-      pixmaps.add(entity);
-    }
 
     systemTheme = await _getCurrentTheme();
 
-    await _loadThemes(systemTheme!);
-  }
-
-  @override
-  FutureOr<void> stop() {
-    settingPollingTimer?.cancel();
-  }
-
-  Future<String?> _themeLookup(
-    String name,
-    _LoadedIconTheme theme, [
-    int? size,
-  ]) async {
-    List<IconThemeDirectory>? directories;
-    final List<String>? cacheDirectories = theme.cache?.lookup(name);
-
-    if (cacheDirectories != null) {
-      directories = [];
-
-      for (final String dir in cacheDirectories) {
-        final IconThemeDirectory? iconDir =
-            theme.theme.directories.firstWhereOrNull(
-          (e) => e.name == dir,
-        );
-
-        if (iconDir != null) directories.add(iconDir);
-      }
-    }
-
-    if (directories == null || directories.isEmpty) {
-      directories = theme.theme.directories;
-    }
-
-    for (final IconThemeDirectory dir in directories) {
-      if (size != null && !_sizeMatches(size, dir)) continue;
-
-      final Directory fsDir = Directory(p.join(theme.theme.path, dir.name));
-
-      final List<FileSystemEntity> files;
-
-      try {
-        files = await fsDir.list().toList();
-      } catch (e) {
-        continue;
-      }
-
-      final File? file = files.firstWhereOrNull((e) {
-        if (e is! File) return false;
-
-        return p.basenameWithoutExtension(e.path) == name;
-      }) as File?;
-
-      if (file != null) {
-        return file.absolute.path;
-      }
-    }
-
-    return null;
-  }
-
-  bool _sizeMatches(int size, IconThemeDirectory dir) {
-    switch (dir.type) {
-      case IconThemeDirectoryType.scalable:
-        final int minSize = dir.minSize ?? dir.size;
-        final int maxSize = dir.maxSize ?? dir.size;
-        return size >= minSize && size <= maxSize;
-      case IconThemeDirectoryType.threshold:
-        final int threshold = dir.threshold ?? 2;
-        return size < dir.size * threshold;
-      case IconThemeDirectoryType.fixed:
-      default:
-        return dir.size == size;
-    }
+    await _loadThemes(systemTheme);
   }
 
   Future<void> _populateFor(String path) async {
     final Directory directory = Directory(path);
     final List<FileSystemEntity> entities;
+
+    if (!directory.existsSync()) return;
 
     try {
       entities = await directory.list(recursive: true).toList();
@@ -197,7 +114,9 @@ class _LinuxIconService extends IconService with LoggerProvider {
     }
 
     final List<IconTheme> foundIconThemes = [];
+    final Benchmark benchmark = Benchmark();
 
+    benchmark.begin();
     for (final FileSystemEntity entity in entities) {
       if (entity is! Directory) continue;
 
@@ -226,13 +145,29 @@ class _LinuxIconService extends IconService with LoggerProvider {
         try {
           final IconTheme entry = IconTheme.fromIni(child.parent.path, content);
 
-          foundIconThemes.add(entry);
-        } catch (error, stackTrace) {
-          logger.warning(
-            "Failed to parse icon theme for ${child.path}",
-            error,
-            stackTrace,
+          final List<String> directoryNames = List.of(entry.directoryNames);
+          final List<IconThemeDirectory> directories =
+              List.of(entry.directories);
+
+          directories.removeWhere((e) {
+            final bool exists =
+                Directory(p.join(entry.path, e.name)).existsSync();
+
+            if (!exists) {
+              directoryNames.remove(e.name);
+            }
+
+            return !exists;
+          });
+
+          foundIconThemes.add(
+            entry.copyWith(
+              directoryNames: directoryNames,
+              directories: directories,
+            ),
           );
+        } catch (error) {
+          logger.warning("Failed to parse icon theme for ${child.path}", error);
         }
       }
 
@@ -262,6 +197,11 @@ class _LinuxIconService extends IconService with LoggerProvider {
       }
     }
 
+    benchmark.end();
+    logger.finest(
+      "Loaded themes for $path, took ${benchmark.duration.inMilliseconds}ms",
+    );
+    dirWatchers.add(directory.watch(recursive: true).listen(_directoryWatcher));
     iconFolders.add(_IconFolder(path, foundIconThemes));
   }
 
@@ -292,20 +232,46 @@ class _LinuxIconService extends IconService with LoggerProvider {
     return IconThemeDirectory(name: name, size: size, scale: scale);
   }
 
-  Future<void> _loadThemes(String name) async {
-    cache.clear();
-    loadedBundles.clear();
+  Future<void> _directoryWatcher(FileSystemEvent event) async {
+    switch (event.type) {
+      case FileSystemEvent.create:
+      case FileSystemEvent.delete:
+      case FileSystemEvent.move:
+        _loadThemes();
+        break;
+    }
+  }
 
-    for (final _IconFolder folder in iconFolders) {
+  Future<void> _loadThemes([String? name]) async {
+    cache.clear();
+    final String resolvedName = name ?? systemTheme ?? "hicolor";
+
+    final Benchmark benchmark = Benchmark();
+    final List<FileSystemEntity> entities =
+        await Directory("/usr/share/pixmaps").list(recursive: true).toList();
+    for (final FileSystemEntity entity in entities) {
+      if (entity is! File) continue;
+
+      const _CacheKey key = _CacheKey();
+      final String iconName = p.basenameWithoutExtension(entity.path);
+      cache[iconName] ??= _CachedIconSet({key: entity.path});
+    }
+
+    for (final _IconFolder folder in iconFolders.reversed) {
+      benchmark.begin();
       final IconTheme? rootTheme =
-          folder.themes.firstWhereOrNull((e) => e.name.main == name);
+          folder.themes.firstWhereOrNull((e) => e.name.main == resolvedName);
 
       if (rootTheme == null) {
-        final _LoadedIconTheme? theme = await _loadTheme("hicolor", folder);
+        final _IconCache? themeCache = await _loadTheme("hicolor", folder);
 
-        if (theme == null) continue;
+        if (themeCache == null) continue;
 
-        loadedBundles.add(_LoadedIconBundle([theme]));
+        cache.addAll(themeCache);
+        benchmark.end();
+        logger.finest(
+          "Loaded theme $resolvedName, took ${benchmark.duration.inMilliseconds}ms",
+        );
         continue;
       }
 
@@ -314,35 +280,61 @@ class _LinuxIconService extends IconService with LoggerProvider {
 
       if (cleanInheritances.isEmpty) cleanInheritances.add("hicolor");
 
-      final List<_LoadedIconTheme> themes = [];
+      for (final String inheritance in cleanInheritances.reversed) {
+        final _IconCache? themeCache = await _loadTheme(inheritance, folder);
 
-      for (final String inheritance in cleanInheritances) {
-        final _LoadedIconTheme? theme = await _loadTheme(inheritance, folder);
+        if (themeCache == null) continue;
 
-        if (theme == null) continue;
-
-        themes.add(theme);
+        cache.addAll(themeCache);
       }
 
-      loadedBundles.add(_LoadedIconBundle(themes));
+      benchmark.end();
+      logger.finest(
+        "Loaded theme $resolvedName, took ${benchmark.duration.inMilliseconds}ms,",
+      );
     }
   }
 
-  Future<_LoadedIconTheme?> _loadTheme(String name, _IconFolder folder) async {
+  Future<_IconCache?> _loadTheme(
+    String name,
+    _IconFolder folder,
+  ) async {
     final IconTheme? iconTheme = folder.themes.firstWhereOrNull(
       (e) => e.name.main.toLowerCase() == name.toLowerCase(),
     );
 
     if (iconTheme == null) return null;
 
-    final IconCache? cache = await IconCache.create(iconTheme.path);
-
     final List<IconThemeDirectory> dirs = List.of(iconTheme.directories);
     dirs.sort((a, b) => b.size.compareTo(a.size));
 
-    return _LoadedIconTheme(
-      iconTheme.copyWith(directories: dirs),
-      cache: cache,
+    final List<FileSystemEntity> items =
+        await Directory(iconTheme.path).list(recursive: true).toList();
+
+    final Map<String, Map<_CacheKey, String>> iconCache = {};
+    for (final FileSystemEntity item in items) {
+      if (item is! File) continue;
+      final IconThemeDirectory? dir =
+          dirs.firstWhereOrNull((e) => item.path.contains(e.name));
+
+      if (dir == null) continue;
+
+      final String name = p.basenameWithoutExtension(item.path);
+      iconCache[name] ??= {};
+
+      final _CacheKey key = _CacheKey(
+        size: dir.size,
+        minSize: dir.minSize,
+        maxSize: dir.maxSize,
+        threshold: dir.threshold,
+        type: dir.type,
+      );
+      iconCache[name]![key] = item.path;
+    }
+
+    return _IconCache.fromIterables(
+      iconCache.keys,
+      iconCache.values.map((e) => _CachedIconSet(e)),
     );
   }
 
@@ -382,15 +374,27 @@ class _LinuxIconService extends IconService with LoggerProvider {
 
     if (systemTheme != currentTheme) {
       systemTheme = currentTheme;
-      await _loadThemes(systemTheme!);
+      await _loadThemes(systemTheme);
       notifyListeners();
     }
+  }
+
+  @override
+  FutureOr<void> stop() async {
+    cache.clear();
+    iconFolders.clear();
+    settingPollingTimer?.cancel();
+    for (final StreamSubscription<FileSystemEvent> sub in dirWatchers) {
+      await sub.cancel();
+    }
+    dirWatchers.clear();
+    await settings.close();
   }
 }
 
 class _StraightThroughIconServiceImpl extends IconService {
   @override
-  Future<String?> lookup(String name, [int? size]) => Future.value(name);
+  String? lookup(String name, {int? size, String? fallback}) => name;
 
   @override
   FutureOr<void> start() {
@@ -403,32 +407,62 @@ class _StraightThroughIconServiceImpl extends IconService {
   }
 }
 
+class _CachedIconSet {
+  final Map<_CacheKey, String> icons;
+
+  const _CachedIconSet(this.icons);
+
+  String? lookup(int? size) {
+    for (final MapEntry<_CacheKey, String> item in icons.entries) {
+      final _CacheKey key = item.key;
+      final String path = item.value;
+
+      if (size != null && !_sizeMatches(size, key)) continue;
+
+      return path;
+    }
+
+    return null;
+  }
+
+  bool _sizeMatches(int size, _CacheKey key) {
+    // This is the case for pixmaps as they match any size because we don't have anything else
+    if (key.size == null) return true;
+
+    switch (key.type) {
+      case IconThemeDirectoryType.scalable:
+        final int minSize = key.minSize ?? key.size!;
+        final int maxSize = key.maxSize ?? key.size!;
+        return size >= minSize && size <= maxSize;
+      case IconThemeDirectoryType.threshold:
+        final int threshold = key.threshold ?? 2;
+        return size < key.size! * threshold;
+      case IconThemeDirectoryType.fixed:
+      default:
+        return key.size == size;
+    }
+  }
+}
+
+class _CacheKey {
+  final int? size;
+  final int? minSize;
+  final int? maxSize;
+  final int? threshold;
+  final IconThemeDirectoryType? type;
+
+  const _CacheKey({
+    this.size,
+    this.minSize,
+    this.maxSize,
+    this.threshold,
+    this.type,
+  });
+}
+
 class _IconFolder {
   final String path;
   final List<IconTheme> themes;
 
   const _IconFolder(this.path, this.themes);
-}
-
-class _LoadedIconBundle {
-  final List<_LoadedIconTheme> themes;
-
-  const _LoadedIconBundle(this.themes);
-}
-
-class _LoadedIconTheme {
-  final IconTheme theme;
-  final IconCache? cache;
-
-  const _LoadedIconTheme(
-    this.theme, {
-    this.cache,
-  });
-}
-
-class _CachedIcon {
-  final String path;
-  final DateTime date;
-
-  const _CachedIcon(this.path, this.date);
 }

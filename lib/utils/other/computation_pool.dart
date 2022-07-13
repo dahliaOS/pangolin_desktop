@@ -38,6 +38,10 @@ class ComputationPool<K, V> {
 
     return results;
   }
+
+  void dispose() {
+    _results.clear();
+  }
 }
 
 typedef OnResultCallback<K, V> = void Function(K key, V value);

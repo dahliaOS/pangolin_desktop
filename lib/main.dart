@@ -13,6 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
+import 'dart:developer';
 import 'dart:io' show Platform;
 
 import 'package:flutter/foundation.dart' show kDebugMode, kIsWeb;
@@ -48,37 +49,22 @@ Future<void> main() async {
   Logger.root.level = Level.ALL;
   Logger.root.onRecord.listen((record) {
     if (kDebugMode) {
-      final StringBuffer buffer = StringBuffer();
-      buffer.writeln('${record.level.name}: ${record.message}');
-
-      if (record.error != null) {
-        final List<String> parts = record.error.toString().split("\n");
-
-        parts.map((e) => "\t$e").forEach(buffer.writeln);
-      }
-
-      if (record.error != null && record.stackTrace != null) {
-        buffer.writeln();
-      }
-
-      if (record.stackTrace != null) {
-        final List<String> parts = record.stackTrace.toString().split("\n");
-
-        parts.map((e) => "\t$e").forEach(buffer.writeln);
-      }
-
-      print(buffer.toString());
+      log(
+        record.message,
+        time: record.time,
+        sequenceNumber: record.sequenceNumber,
+        level: record.level.value,
+        name: record.loggerName,
+        zone: record.zone,
+        error: record.error,
+        stackTrace: record.stackTrace,
+      );
     }
   });
 
   // initialize locale providers
   await initProviders();
 
-  //initialize scheduler for time and date
-  //DateTimeManager.initialiseScheduler();
-
-  //load visual engine
-  //await loadVisualEngine();
   if (kIsWeb == false) {
     if (Platform.isLinux) {
       indexApplications();

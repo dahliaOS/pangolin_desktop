@@ -42,6 +42,12 @@ class _ServiceBuilderWidgetState extends State<ServiceBuilderWidget> {
     _startServices();
   }
 
+  @override
+  void dispose() {
+    ServiceManager.stopServices();
+    super.dispose();
+  }
+
   Future<void> _startServices() async {
     await ServiceManager.startServices();
     await widget.onLoaded?.call();
