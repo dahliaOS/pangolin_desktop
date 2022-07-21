@@ -5,7 +5,7 @@ class _$FrFRLocaleData extends LocaleData {
   const _$FrFRLocaleData._()
       : super(
           locale: "fr-FR",
-          translationProgress: 178,
+          translationProgress: 180,
         );
 
   @override
@@ -239,5 +239,8 @@ class _$FrFRLocaleData extends LocaleData {
         "Dernière vérification : {{}}",
     "settings.pages.about.software_update_tile.button":
         "Rechecher des Mises à jour",
+    "apps.app_store": "Boutique d'applications",
+    "apps.app_store_description":
+        "Marché d'applications pour des applications tierces",
   };
 }
