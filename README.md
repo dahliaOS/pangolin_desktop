@@ -24,13 +24,13 @@
  - You can check it online [here](https://web.dahliaos.io)!
 
 <p align="center">
-  <img width="100%" src="https://docs.dahliaos.io/img/screenshot/22xxxx/settings.png"
+  <img width="100%" src="https://docs.dahliaos.io/docs/pangolin/settings.png"
 </p>
 
 > Pangolin Desktop, settings and start menu.
 
 <p align="center">
-  <img width="100%" src="https://docs.dahliaos.io/img/screenshot/22xxxx/search.png"
+  <img width="100%" src="https://docs.dahliaos.io/docs/pangolin/search.png"
 </p>
 
 > Pangolin Desktop, Calculator, Terminal, Notes and search.
