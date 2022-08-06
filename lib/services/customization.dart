@@ -22,7 +22,7 @@ abstract class CustomizationService
   bool get enableEffects;
   List<String> get pinnedApps;
   List<ImageResource> get recentWallpapers;
-  String get launcherIcon;
+  IconResource get launcherIcon;
   ColorResource get accentColor;
   String get fontFamily;
   ImageResource get wallpaper;
@@ -42,7 +42,7 @@ abstract class CustomizationService
   set enableEffects(bool? value);
   set pinnedApps(List<String>? value);
   set recentWallpapers(List<ImageResource>? value);
-  set launcherIcon(String value);
+  set launcherIcon(IconResource value);
   set accentColor(ColorResource? value);
   set fontFamily(String? value);
   set wallpaper(ImageResource? value);
@@ -82,7 +82,8 @@ class _CustomizationServiceImpl extends CustomizationService {
       _getAsResourceList<ImageResource>(Preference.recentWallpapers);
 
   @override
-  String get launcherIcon => _get(Preference.launcherIcon);
+  IconResource get launcherIcon =>
+      _getAsResource<IconResource>(Preference.launcherIcon);
 
   @override
   ColorResource get accentColor =>
@@ -146,7 +147,8 @@ class _CustomizationServiceImpl extends CustomizationService {
       );
 
   @override
-  set launcherIcon(String? value) => _set(Preference.launcherIcon, value);
+  set launcherIcon(IconResource? value) =>
+      _set(Preference.launcherIcon, value?.toString());
 
   @override
   set accentColor(ColorResource? value) =>
@@ -259,7 +261,7 @@ enum Preference<T> {
   enableEffects<bool>("enable_effects", true),
   pinnedApps<List<String>>("pinned_apps", []),
   recentWallpapers<List<String>>("recent_wallpapers", []),
-  launcherIcon<String>("launcher_icon", "icon:dahlia#launcher_icon1"),
+  launcherIcon<String>("launcher_icon", "icon:dahlia#launcher_1"),
   accentColor<String>("accent_color", "color:dahlia#orange"),
   fontFamily<String>("font_family", "Roboto"),
   wallpaper<String>("wallpaper", "image:dahlia#images/wallpapers/modern.png"),

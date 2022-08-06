@@ -153,7 +153,7 @@ Widget appInfoPage(String title, Color accentColor, PackageManifest manifest) {
           child: Center(
             child: ClipRRect(
               borderRadius: BorderRadius.circular(5),
-              child: Container(
+              child: ColoredBox(
                 color: Colors.grey.withOpacity(0.2),
                 child: ListView(
                   children: <Widget>[

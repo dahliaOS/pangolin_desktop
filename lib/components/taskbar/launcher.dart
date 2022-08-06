@@ -19,6 +19,12 @@ import 'package:pangolin/components/overlays/launcher/compact_launcher_overlay.d
 import 'package:pangolin/components/overlays/launcher/launcher_overlay.dart';
 import 'package:pangolin/components/taskbar/taskbar_element.dart';
 import 'package:pangolin/services/customization.dart';
+import 'package:pangolin/utils/context_menus/context_menu.dart';
+import 'package:pangolin/utils/context_menus/context_menu_item.dart';
+import 'package:pangolin/utils/context_menus/core/context_menu_region.dart';
+import 'package:pangolin/utils/data/constants.dart';
+import 'package:pangolin/utils/other/resource.dart';
+import 'package:pangolin/widgets/global/resource/icon/icon.dart';
 import 'package:pangolin/widgets/services.dart';
 
 //TODO: Context menu for changing the taskbar's icon is cut off.
@@ -28,11 +34,40 @@ class LauncherButton extends StatelessWidget
 
   @override
   Widget buildChild(BuildContext context, CustomizationService service) {
-    return TaskbarElement(
-      overlayID: service.compactLauncher
-          ? CompactLauncherOverlay.overlayId
-          : LauncherOverlay.overlayId,
-      child: const Icon(Icons.brightness_low),
+    return ContextMenuRegion(
+      centerAboveElement: true,
+      contextMenu: ContextMenu(
+        items: LauncherIcon.values
+            .map(
+              (e) => ContextMenuItem(
+                icon: Constants.builtinIcons[e.iconName]!,
+                title: e.label,
+                onTap: () => service.launcherIcon = IconResource(
+                  type: IconResourceType.dahlia,
+                  value: e.iconName,
+                ),
+              ),
+            )
+            .toList(),
+      ),
+      child: TaskbarElement(
+        overlayID: service.compactLauncher
+            ? CompactLauncherOverlay.overlayId
+            : LauncherOverlay.overlayId,
+        child: ResourceIcon(resource: service.launcherIcon),
+      ),
     );
   }
+}
+
+enum LauncherIcon {
+  first("Icon 1", "launcher_1"),
+  second("Icon 2", "launcher_2"),
+  third("Icon 3", "launcher_3"),
+  fourth("Icon 4", "launcher_4");
+
+  final String label;
+  final String iconName;
+
+  const LauncherIcon(this.label, this.iconName);
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pangolin/services/icon.dart';
+import 'package:pangolin/utils/data/constants.dart';
 import 'package:pangolin/utils/other/log.dart';
 import 'package:pangolin/utils/other/resource.dart';
 import 'package:pangolin/widgets/global/resource/image/image.dart';
@@ -53,7 +54,7 @@ class _ResourceIconState extends State<ResourceIcon> with LoggerProvider {
     switch (widget.resource.subtype) {
       case IconResourceType.dahlia:
         return Icon(
-          _resolveFromName(resolvedResource),
+          Constants.builtinIcons[resolvedResource],
           size: widget.size,
           color: widget.color,
         );
@@ -68,19 +69,4 @@ class _ResourceIconState extends State<ResourceIcon> with LoggerProvider {
         );
     }
   }
-}
-
-IconData? _resolveFromName(String name) {
-  switch (name) {
-    case 'launcher_1':
-      return Icons.apps_rounded;
-    case 'launcher_2':
-      return Icons.panorama_fish_eye;
-    case 'launcher_3':
-      return Icons.brightness_low;
-    case 'launcher_4':
-      return Icons.radio_button_checked;
-  }
-
-  return null;
 }

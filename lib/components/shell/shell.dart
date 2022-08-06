@@ -28,10 +28,17 @@ import 'package:pangolin/utils/wm/wm.dart';
 import 'package:pangolin/widgets/global/box/box_container.dart';
 import 'package:provider/provider.dart';
 
+typedef ShellShownCallback = void Function(ShellState shell);
+
 class Shell extends StatefulWidget {
   final List<ShellOverlay> overlays;
+  final ShellShownCallback? onShellShown;
 
-  const Shell({required this.overlays, super.key});
+  const Shell({
+    required this.overlays,
+    this.onShellShown,
+    super.key,
+  });
 
   @override
   ShellState createState() => ShellState();
@@ -43,6 +50,14 @@ class Shell extends StatefulWidget {
 
 class ShellState extends State<Shell> {
   final List<String> minimizedWindowsCache = [];
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      widget.onShellShown?.call(this);
+    });
+  }
 
   Future<void> showOverlay(
     String overlayId, {

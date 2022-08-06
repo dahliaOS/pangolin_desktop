@@ -62,6 +62,13 @@ class Constants {
   );
 
   static const OutlinedBorder circularShape = StadiumBorder();
+
+  static const Map<String, IconData> builtinIcons = {
+    'launcher_1': Icons.brightness_low,
+    'launcher_2': Icons.apps_rounded,
+    'launcher_3': Icons.panorama_fish_eye,
+    'launcher_4': Icons.radio_button_checked,
+  };
 }
 
 enum BuiltinColor {
