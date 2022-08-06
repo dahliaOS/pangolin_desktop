@@ -1,9 +1,11 @@
 import 'dart:async';
 
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:pangolin/services/service.dart';
+import 'package:pangolin/utils/other/log.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-abstract class PreferencesService extends Service<PreferencesService> {
+abstract class PreferencesService extends Service<PreferencesService>
+    with LoggerProvider {
   PreferencesService();
 
   static PreferencesService get current {
@@ -11,7 +13,7 @@ abstract class PreferencesService extends Service<PreferencesService> {
   }
 
   static PreferencesService build() {
-    return _HivePreferencesServiceImpl();
+    return _SharedPrefPreferencesServiceImpl();
   }
 
   factory PreferencesService.fallback() = _InMemoryPreferencesServiceImpl;
@@ -19,63 +21,92 @@ abstract class PreferencesService extends Service<PreferencesService> {
   T? get<T>(String key, [T? defaultValue]);
 
   FutureOr<void> set<T>(String key, T value);
-  FutureOr<void> addIfNotPresent<T>(String key, T value);
 
   FutureOr<void> delete(String key);
   FutureOr<void> clear();
 }
 
-class _HivePreferencesServiceImpl extends PreferencesService {
-  late Box _hivedb;
+class _SharedPrefPreferencesServiceImpl extends PreferencesService {
+  SharedPreferences? _sharedPreferences;
 
   @override
-  Future<void> addIfNotPresent<T>(String key, T value) {
-    if (_hivedb.containsKey(key)) return Future.value();
-
-    return set<T>(key, value);
-  }
-
-  @override
-  Future<void> delete(String key) {
-    return _hivedb.delete(key);
+  Future<void> delete(String key) async {
+    await _sharedPreferences?.remove(key);
   }
 
   @override
   T? get<T>(String key, [T? defaultValue]) {
-    return _hivedb.get(key, defaultValue: defaultValue) as T?;
+    // This is an hack used to switch the type T without getting a value
+    final List<T> switchVal = <T>[];
+
+    if (switchVal is List<int>) {
+      return _sharedPreferences?.getInt(key) as T?;
+    }
+
+    if (switchVal is List<double>) {
+      return _sharedPreferences?.getDouble(key) as T?;
+    }
+
+    if (switchVal is List<bool>) {
+      return _sharedPreferences?.getBool(key) as T?;
+    }
+
+    if (switchVal is List<String>) {
+      return _sharedPreferences?.getString(key) as T?;
+    }
+
+    if (switchVal is List<List<String>>) {
+      return _sharedPreferences?.getStringList(key) as T?;
+    }
+
+    logger.warning(
+      "(preference $key) Unsupported type $T for PreferencesService, returning null",
+    );
+
+    return null;
   }
 
   @override
-  Future<void> set<T>(String key, T value) {
-    return _hivedb.put(key, value);
+  Future<void> set<T>(String key, T value) async {
+    if (value is int) {
+      _sharedPreferences?.setInt(key, value);
+    }
+
+    if (value is double) {
+      _sharedPreferences?.setDouble(key, value);
+    }
+
+    if (value is bool) {
+      _sharedPreferences?.setBool(key, value);
+    }
+
+    if (value is String) {
+      _sharedPreferences?.setString(key, value);
+    }
+
+    if (value is List<String>) {
+      _sharedPreferences?.setStringList(key, value);
+    }
   }
 
   @override
-  Future<void> clear() {
-    return _hivedb.clear();
+  Future<void> clear() async {
+    await _sharedPreferences?.clear();
   }
 
   @override
   FutureOr<void> start() async {
-    await Hive.initFlutter();
-    _hivedb = await Hive.openBox('settings');
+    _sharedPreferences = await SharedPreferences.getInstance();
   }
 
   @override
   FutureOr<void> stop() async {
-    await _hivedb.close();
+    _sharedPreferences = null;
   }
 }
 
 class _InMemoryPreferencesServiceImpl extends PreferencesService {
   final Map<String, dynamic> _prefs = {};
-
-  @override
-  void addIfNotPresent<T>(String key, T value) {
-    if (_prefs.containsKey(key)) return;
-
-    set<T>(key, value);
-  }
 
   @override
   void delete(String key) {
