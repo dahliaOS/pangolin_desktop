@@ -166,6 +166,7 @@ Widget _buildIconWidget(String icon, double size) {
       resource: resource as IconResource? ??
           IconResource(type: IconResourceType.xdg, value: icon),
       size: size,
+      lookupForSize: true,
     );
   }
 

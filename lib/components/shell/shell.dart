@@ -127,19 +127,13 @@ class _ShellState extends State<Shell> {
                 child: const BoxSurface(),
               ),
             ),
-            Taskbar(
+            const Taskbar(
               leading: [
-                const LauncherButton(),
-                if (PreferencesService.current.get<bool>('searchIcon')!)
-                  const SearchButton()
-                else
-                  const SizedBox(),
-                if (PreferencesService.current.get<bool>('overviewIcon')!)
-                  const OverviewButton()
-                else
-                  const SizedBox(),
+                LauncherButton(),
+                SearchButton(),
+                OverviewButton(),
               ],
-              trailing: const [
+              trailing: [
                 //TODO: here is the keyboard button
                 //KeyboardButton(),
                 QuickSettingsButton(),

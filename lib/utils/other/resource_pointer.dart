@@ -129,6 +129,7 @@ class IconResource extends Resource<IconResourceType, String?> {
       case IconResourceType.dahlia:
         return value;
       case IconResourceType.xdg:
+        if (value.startsWith("/")) return value;
         return IconService.current
             .lookup(value, size: size, fallback: fallback);
     }

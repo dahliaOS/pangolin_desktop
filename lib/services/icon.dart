@@ -241,6 +241,12 @@ class _LinuxIconService extends IconService with LoggerProvider {
     }
   }
 
+  // Here we load the specified theme from the available theme folders and every children
+  // it possibly has (basically we build the inheritance tree and then we flatten it,
+  // removing duplicate entries and setting the proper priority).
+  // Before anything tho, we load the icons from pixmaps as they have the lowest priority.
+  // Icon loading works by reverse priority, lowest get written before. As we traverse the hierarchy
+  // tree from bottom to top, we override low priority entries with the ones that sit on top.
   Future<void> _loadThemes([String? name]) async {
     cache.clear();
     final String resolvedName = name ?? systemTheme ?? "hicolor";
@@ -269,7 +275,7 @@ class _LinuxIconService extends IconService with LoggerProvider {
         cache.addAll(themeCache);
         benchmark.end();
         logger.finest(
-          "Loaded theme $resolvedName, took ${benchmark.duration.inMilliseconds}ms",
+          "Loaded theme $resolvedName (default), took ${benchmark.duration.inMilliseconds}ms",
         );
         continue;
       }
@@ -333,8 +339,17 @@ class _LinuxIconService extends IconService with LoggerProvider {
 
     return _IconCache.fromIterables(
       iconCache.keys,
-      iconCache.values.map((e) => _CachedIconSet(e)),
+      iconCache.values.map((e) => _CachedIconSet(_sortCache(e))),
     );
+  }
+
+  Map<_CacheKey, String> _sortCache(Map<_CacheKey, String> orig) {
+    final List<MapEntry<_CacheKey, String>> entries = orig.entries.toList();
+    entries.sort(
+      (a, b) => b.key.nullSafeSize.compareTo(a.key.nullSafeSize),
+    );
+
+    return Map.fromEntries(entries);
   }
 
   List<String> _getInheritances(_IconFolder folder, IconTheme theme) {
@@ -421,7 +436,7 @@ class _CachedIconSet {
       return path;
     }
 
-    return null;
+    return icons.values.first;
   }
 
   bool _sizeMatches(int size, _CacheKey key) {
@@ -464,4 +479,8 @@ class _IconFolder {
   final List<IconTheme> themes;
 
   const _IconFolder(this.path, this.themes);
+}
+
+extension on _CacheKey {
+  int get nullSafeSize => size ?? 0;
 }
