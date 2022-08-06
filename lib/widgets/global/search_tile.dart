@@ -16,24 +16,27 @@ limitations under the License.
 
 import 'dart:io';
 
+import 'package:pangolin/services/customization.dart';
 import 'package:pangolin/utils/data/app_list.dart';
 import 'package:pangolin/utils/data/models/application.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
-import 'package:pangolin/utils/providers/search_provider.dart';
+import 'package:pangolin/widgets/services.dart';
 
 class SearchTile extends StatefulWidget {
   final String packageName;
-  const SearchTile(this.packageName, {Key? key}) : super(key: key);
+
+  const SearchTile(this.packageName, {super.key});
 
   @override
   _SearchTileState createState() => _SearchTileState();
 }
 
-class _SearchTileState extends State<SearchTile> {
+class _SearchTileState extends State<SearchTile>
+    with StateServiceListener<CustomizationService, SearchTile> {
   @override
-  Widget build(BuildContext context) {
+  Widget buildChild(BuildContext context, CustomizationService service) {
     final Application application = getApp(widget.packageName);
-    final _searchProvider = SearchProvider.of(context);
+
     return Material(
       borderRadius: BorderRadius.circular(8),
       color: Colors.transparent,
@@ -57,7 +60,10 @@ class _SearchTileState extends State<SearchTile> {
         trailing: const Text("App"),
         subtitle: Text(application.description ?? ""),
         onTap: () {
-          _searchProvider.addRecentSearchResult(application.packageName);
+          service.recentSearchResults = service.recentSearchResults = [
+            ...service.recentSearchResults,
+            application.packageName
+          ];
           if (application.systemExecutable == true) {
             Process.run(
               'io.dahliaos.web_runtime.dap',

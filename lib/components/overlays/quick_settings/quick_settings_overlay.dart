@@ -31,8 +31,6 @@ import 'package:pangolin/utils/data/constants.dart';
 import 'package:pangolin/utils/data/globals.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/other/date_time_manager.dart';
-import 'package:pangolin/utils/providers/connection_provider.dart';
-import 'package:pangolin/utils/providers/io_provider.dart';
 import 'package:pangolin/utils/providers/locale_provider.dart';
 import 'package:pangolin/widgets/global/box/box_container.dart';
 import 'package:pangolin/widgets/global/quick_button.dart';
@@ -42,17 +40,14 @@ import 'package:yatl_flutter/yatl_flutter.dart';
 class QuickSettingsOverlay extends ShellOverlay {
   static const String overlayId = 'quicksettings';
 
-  QuickSettingsOverlay({Key? key}) : super(key: key, id: overlayId);
+  QuickSettingsOverlay({super.key}) : super(id: overlayId);
 
   @override
   _QuickSettingsOverlayState createState() => _QuickSettingsOverlayState();
 }
 
 class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
-    with
-        SingleTickerProviderStateMixin,
-        ShellOverlayState,
-        StateServiceListener<CustomizationService, QuickSettingsOverlay> {
+    with SingleTickerProviderStateMixin, ShellOverlayState {
   late final AnimationController ac = AnimationController(
     vsync: this,
     duration: Constants.animationDuration,
@@ -77,9 +72,9 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
   }
 
   @override
-  Widget buildChild(BuildContext context, CustomizationService service) {
+  Widget build(BuildContext context) {
     // _getTime(context);
-    final Animation<double> _animation = CurvedAnimation(
+    final Animation<double> animation = CurvedAnimation(
       parent: ac,
       curve: Constants.animationCurve,
     );
@@ -90,11 +85,11 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
       bottom: 56, // Bottom insets + some padding (8)
       right: 8,
       child: AnimatedBuilder(
-        animation: _animation,
+        animation: animation,
         builder: (context, chilld) => FadeTransition(
-          opacity: _animation,
+          opacity: animation,
           child: ScaleTransition(
-            scale: _animation,
+            scale: animation,
             alignment: const FractionalOffset(0.8, 1.0),
             child: BoxSurface(
               shape: Constants.bigShape,
@@ -105,7 +100,7 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
                 padding: const EdgeInsets.all(16.0),
                 child: MaterialApp(
                   routes: {
-                    "/": (context) => QsMain(service: service),
+                    "/": (context) => const QsMain(),
                     "/pages/account": (context) => const QsAccountPage(),
                     "/pages/network": (context) => const QsNetworkPage(),
                     "/pages/theme": (context) => const QsThemePage(),
@@ -125,18 +120,14 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
   }
 }
 
-class QsMain extends StatelessWidget {
-  final CustomizationService service;
-
-  const QsMain({
-    required this.service,
-    super.key,
-  });
+class QsMain extends StatelessWidget
+    with StatelessServiceListener<CustomizationService> {
+  const QsMain({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget buildChild(BuildContext context, CustomizationService service) {
     // Action Button Bar
-    final List<Widget> _qsActionButton = [
+    final List<Widget> qsActionButton = [
       QuickActionButton(
         leading: const FlutterLogo(
           size: 18,
@@ -154,21 +145,21 @@ class QsMain extends StatelessWidget {
       ),
       const Spacer(),
       QuickActionButton(
-        leading: Icon(IconsX.of(context).settings),
+        leading: const Icon(Icons.settings),
         //title: "Settings",
         onPressed: () => ActionManager.openSettings(context),
       ),
-      QuickActionButton(
-        leading: Icon(IconsX.of(context).edit),
+      const QuickActionButton(
+        leading: Icon(Icons.edit),
         //title: "Edit panel",
       ),
       QuickActionButton(
-        leading: Icon(IconsX.of(context).sign_out),
+        leading: const Icon(Icons.logout),
         onPressed: () => ActionManager.showAccountMenu(context),
         //title: "Sign out",
       ),
       QuickActionButton(
-        leading: Icon(IconsX.of(context).power),
+        leading: const Icon(Icons.power_settings_new),
         margin: const EdgeInsets.only(left: 8),
         onPressed: () => ActionManager.showPowerMenu(context),
         //title: "Power",
@@ -182,138 +173,135 @@ class QsMain extends StatelessWidget {
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: _qsActionButton,
+              children: qsActionButton,
             ),
             _qsTitle(strings.quicksettingsOverlay.quickControls),
-            Builder(
-              builder: (context) {
-                final _connectionProvider = ConnectionProvider.of(context);
-                return Column(
+            Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        QsToggleButton(
-                          //TODO change title to "Network"
-                          title: strings
-                              .quicksettingsOverlay.quickControlsNetworkTitle,
-                          icon: _connectionProvider.wifi
-                              ? Icons.wifi_rounded
-                              : Icons.wifi_off_rounded,
-                          //TODO Capitalise
-                          subtitle: strings.quicksettingsOverlay
-                              .quickControlsNetworkSubtitleConnected,
-                          value: _connectionProvider.wifi,
-                          onPressed: () => _connectionProvider.wifi =
-                              !_connectionProvider.wifi,
-                          onMenuPressed: () {
-                            Navigator.pushNamed(context, "/pages/network");
-                          },
-                        ),
-                        QsToggleButton(
-                          title: strings
-                              .quicksettingsOverlay.quickControlsBluetoothTitle,
-                          subtitle: _connectionProvider.bluetooth
-                              ? strings.global.on
-                              : strings.global.off,
-                          icon: _connectionProvider.bluetooth
-                              ? Icons.bluetooth_connected_rounded
-                              : Icons.bluetooth_disabled_rounded,
-                          value: _connectionProvider.bluetooth,
-                          onPressed: () => _connectionProvider.bluetooth =
-                              !_connectionProvider.bluetooth,
-                        ),
-                        QsToggleButton(
-                          title: strings.quicksettingsOverlay
-                              .quickControlsAirplaneModeTitle,
-                          icon: !_connectionProvider.wifi &&
-                                  !_connectionProvider.bluetooth
-                              ? Icons.airplanemode_active_rounded
-                              : Icons.airplanemode_off_rounded,
-                          value: !_connectionProvider.wifi &&
-                              !_connectionProvider.bluetooth,
-                          onPressed: () {
-                            if (_connectionProvider.wifi &&
-                                _connectionProvider.bluetooth) {
-                              _connectionProvider.wifi = false;
-                              _connectionProvider.bluetooth = false;
-                            } else if (_connectionProvider.wifi &&
-                                !_connectionProvider.bluetooth) {
-                              _connectionProvider.wifi = false;
-                              _connectionProvider.bluetooth = false;
-                            } else if (!_connectionProvider.wifi &&
-                                _connectionProvider.bluetooth) {
-                              _connectionProvider.wifi = false;
-                              _connectionProvider.bluetooth = false;
-                            } else {
-                              _connectionProvider.wifi = true;
-                              _connectionProvider.bluetooth = true;
-                            }
-                          },
-                        ),
-                      ],
+                    QsToggleButton(
+                      //TODO change title to "Network"
+                      title: ToggleProperty.singleState(
+                        strings.quicksettingsOverlay.quickControlsNetworkTitle,
+                      ),
+                      icon: const ToggleProperty(
+                        base: Icons.wifi_off_rounded,
+                        active: Icons.wifi_rounded,
+                      ),
+                      //TODO Capitalise
+                      subtitle: ToggleProperty(
+                        base: null,
+                        active: strings.quicksettingsOverlay
+                            .quickControlsNetworkSubtitleConnected,
+                      ),
+                      enabled:
+                          service.enableWifi && !service.enableAirplaneMode,
+                      onPressed: (value) => service.enableWifi = value,
+                      onMenuPressed: () {
+                        Navigator.pushNamed(context, "/pages/network");
+                      },
                     ),
-                    const SizedBox(
-                      height: 12,
+                    QsToggleButton(
+                      title: ToggleProperty.singleState(
+                        strings
+                            .quicksettingsOverlay.quickControlsBluetoothTitle,
+                      ),
+                      subtitle: ToggleProperty(
+                        base: strings.global.off,
+                        active: strings.global.on,
+                      ),
+                      icon: const ToggleProperty(
+                        base: Icons.bluetooth_disabled_rounded,
+                        active: Icons.bluetooth_connected_rounded,
+                      ),
+                      enabled: service.enableBluetooth &&
+                          !service.enableAirplaneMode,
+                      onPressed: (value) => service.enableBluetooth = value,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        QsToggleButton(
-                          title: strings
-                              .quicksettingsOverlay.quickControlsLanguageTitle,
-                          //TODO Fix this
-                          subtitle: context.locale.toLanguageTag(),
-                          icon: Icons.language_rounded,
-                          value: true,
-                          onPressed: () {
-                            final int index = context.supportedLocales
-                                .indexOf(context.locale);
-                            if (index + 1 < locales.supportedLocales.length) {
-                              context.locale =
-                                  context.supportedLocales[index + 1];
-                            } else {
-                              context.locale = context.supportedLocales[0];
-                            }
-                          },
-                          onMenuPressed: () {
-                            Navigator.pushNamed(context, "/pages/language");
-                          },
-                        ),
-                        //TODO remove the provider option for this
-                        /* 
+                    QsToggleButton(
+                      title: ToggleProperty.singleState(
+                        strings.quicksettingsOverlay
+                            .quickControlsAirplaneModeTitle,
+                      ),
+                      icon: const ToggleProperty(
+                        base: Icons.airplanemode_off_rounded,
+                        active: Icons.airplanemode_active_rounded,
+                      ),
+                      enabled: service.enableAirplaneMode,
+                      onPressed: (value) => service.enableAirplaneMode = value,
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 12),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    QsToggleButton(
+                      title: ToggleProperty.singleState(
+                        strings.quicksettingsOverlay.quickControlsLanguageTitle,
+                      ),
+                      //TODO Fix this
+                      subtitle: ToggleProperty.singleState(
+                        context.locale.toLanguageTag(),
+                      ),
+                      icon: const ToggleProperty.singleState(
+                        Icons.language_rounded,
+                      ),
+                      enabled: true,
+                      onPressed: (_) {
+                        final int index =
+                            context.supportedLocales.indexOf(context.locale);
+                        if (index + 1 < locales.supportedLocales.length) {
+                          context.locale = context.supportedLocales[index + 1];
+                        } else {
+                          context.locale = context.supportedLocales[0];
+                        }
+                      },
+                      onMenuPressed: () {
+                        Navigator.pushNamed(context, "/pages/language");
+                      },
+                    ),
+                    //TODO remove the provider option for this
+                    /* 
                       QsToggleButton(
                         title: strings.qs.autorotate,
                         icon: Icons.screen_lock_rotation_rounded,
                         value: false,
                       ), */
-                        QsToggleButton(
-                          title: strings
-                              .quicksettingsOverlay.quickControlsThemeTitle,
-                          icon: Icons.palette_outlined,
-                          value: true,
-                          onPressed: () => service.darkMode = !service.darkMode,
-                          onMenuPressed: () =>
-                              Navigator.pushNamed(context, "/pages/theme"),
-                        ),
-                        QsToggleButton(
-                          title: strings.quicksettingsOverlay
-                              .quickControlsDonotdisturbTitle,
-                          icon: Icons.do_not_disturb_off_rounded,
-                          onPressed: () {},
-                        ),
-                        //TODO move night light to the brightness control submenu
-                        /* 
+                    QsToggleButton(
+                      title: ToggleProperty.singleState(
+                        strings.quicksettingsOverlay.quickControlsThemeTitle,
+                      ),
+                      icon: const ToggleProperty.singleState(
+                        Icons.palette_outlined,
+                      ),
+                      enabled: true,
+                      onPressed: (_) => service.darkMode = !service.darkMode,
+                      onMenuPressed: () =>
+                          Navigator.pushNamed(context, "/pages/theme"),
+                    ),
+                    QsToggleButton(
+                      title: ToggleProperty.singleState(
+                        strings.quicksettingsOverlay
+                            .quickControlsDonotdisturbTitle,
+                      ),
+                      icon: const ToggleProperty.singleState(
+                        Icons.do_not_disturb_off_rounded,
+                      ),
+                      onPressed: (_) {},
+                    ),
+                    //TODO move night light to the brightness control submenu
+                    /* 
                       QsToggleButton(
                         title: "Night light",
                         icon: Icons.brightness_4_rounded,
                         value: false,
                       ), */
-                      ],
-                    ),
                   ],
-                );
-              },
+                ),
+              ],
             ),
             _qsTitle(strings.quicksettingsOverlay.shortcutsTitle),
             Row(
@@ -336,38 +324,31 @@ class QsMain extends StatelessWidget {
             const SizedBox(
               height: 12,
             ),
-            Builder(
-              builder: (context) {
-                final _ioProvider = IOProvider.of(context);
-                return Column(
-                  children: [
-                    QsSlider(
-                      icon: _ioProvider.isMuted
-                          ? Icons.volume_off_rounded
-                          : Icons.volume_up_rounded,
-                      onChanged: (val) {
-                        _ioProvider.volume = val;
-                      },
-                      value: _ioProvider.volume,
-                      steps: 20,
-                      onIconTap: () =>
-                          _ioProvider.isMuted = !_ioProvider.isMuted,
-                    ),
-                    QsSlider(
-                      icon: _ioProvider.isAutoBrightnessEnabled
-                          ? Icons.brightness_auto_rounded
-                          : Icons.brightness_5_rounded,
-                      onChanged: (val) {
-                        _ioProvider.brightness = val;
-                      },
-                      value: _ioProvider.brightness,
-                      steps: 10,
-                      onIconTap: () => _ioProvider.isAutoBrightnessEnabled =
-                          !_ioProvider.isAutoBrightnessEnabled,
-                    ),
-                  ],
-                );
-              },
+            Column(
+              children: [
+                QsSlider(
+                  icon: service.muteVolume
+                      ? Icons.volume_off_rounded
+                      : Icons.volume_up_rounded,
+                  onChanged: (val) {
+                    service.volume = val;
+                    service.muteVolume = val == 0;
+                  },
+                  value: !service.muteVolume ? service.volume : 0,
+                  steps: 20,
+                  onIconTap: () => service.muteVolume = !service.muteVolume,
+                ),
+                QsSlider(
+                  icon: service.autoBrightness
+                      ? Icons.brightness_auto_rounded
+                      : Icons.brightness_5_rounded,
+                  onChanged: (val) => service.brightness = val,
+                  value: service.brightness,
+                  steps: 10,
+                  onIconTap: () =>
+                      service.autoBrightness = !service.autoBrightness,
+                ),
+              ],
             ),
             const SizedBox(
               height: 8,

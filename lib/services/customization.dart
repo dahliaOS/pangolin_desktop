@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:pangolin/services/preferences.dart';
 import 'package:pangolin/services/service.dart';
 import 'package:pangolin/utils/other/log.dart';
-import 'package:pangolin/utils/other/resource_pointer.dart';
+import 'package:pangolin/utils/other/resource.dart';
 
 abstract class CustomizationService
     extends ListenableService<CustomizationService> with LoggerProvider {
@@ -25,6 +25,15 @@ abstract class CustomizationService
   ColorResource get accentColor;
   String get fontFamily;
   ImageResource get wallpaper;
+  bool get compactLauncher;
+  double get volume;
+  bool get muteVolume;
+  double get brightness;
+  bool get autoBrightness;
+  bool get enableWifi;
+  bool get enableBluetooth;
+  bool get enableAirplaneMode;
+  List<String> get recentSearchResults;
 
   set darkMode(bool? value);
   set showWelcomeScreen(bool? value);
@@ -35,6 +44,15 @@ abstract class CustomizationService
   set accentColor(ColorResource? value);
   set fontFamily(String? value);
   set wallpaper(ImageResource? value);
+  set compactLauncher(bool? value);
+  set volume(double? value);
+  set muteVolume(bool? value);
+  set brightness(double? value);
+  set autoBrightness(bool? value);
+  set enableWifi(bool? value);
+  set enableBluetooth(bool? value);
+  set enableAirplaneMode(bool? value);
+  set recentSearchResults(List<String>? recentSearchResults);
 }
 
 class _CustomizationServiceImpl extends CustomizationService {
@@ -72,6 +90,33 @@ class _CustomizationServiceImpl extends CustomizationService {
   ImageResource get wallpaper =>
       _getAsResource<ImageResource>(Preference.wallpaper);
 
+  @override
+  bool get compactLauncher => _get(Preference.compactLauncher);
+
+  @override
+  double get volume => _get(Preference.volume);
+
+  @override
+  bool get muteVolume => _get(Preference.muteVolume);
+
+  @override
+  double get brightness => _get(Preference.brightness);
+
+  @override
+  bool get autoBrightness => _get(Preference.autoBrightness);
+
+  @override
+  bool get enableWifi => _get(Preference.enableWifi);
+
+  @override
+  bool get enableBluetooth => _get(Preference.enableBluetooth);
+
+  @override
+  bool get enableAirplaneMode => _get(Preference.enableAirplaneMode);
+
+  @override
+  List<String> get recentSearchResults => _get(Preference.recentSearchResults);
+
   /* ====== Setters ====== */
   @override
   set darkMode(bool? value) => _set(Preference.darkMode, value);
@@ -105,6 +150,35 @@ class _CustomizationServiceImpl extends CustomizationService {
   @override
   set wallpaper(ImageResource? value) =>
       _set(Preference.wallpaper, value?.toString());
+
+  @override
+  set compactLauncher(bool? value) => _set(Preference.compactLauncher, value);
+
+  @override
+  set volume(double? value) => _set(Preference.volume, value);
+
+  @override
+  set muteVolume(bool? value) => _set(Preference.muteVolume, value);
+
+  @override
+  set brightness(double? value) => _set(Preference.brightness, value);
+
+  @override
+  set autoBrightness(bool? value) => _set(Preference.autoBrightness, value);
+
+  @override
+  set enableWifi(bool? value) => _set(Preference.enableWifi, value);
+
+  @override
+  set enableBluetooth(bool? value) => _set(Preference.enableBluetooth, value);
+
+  @override
+  set enableAirplaneMode(bool? value) =>
+      _set(Preference.enableAirplaneMode, value);
+
+  @override
+  set recentSearchResults(List<String>? value) =>
+      _set(Preference.recentSearchResults, value);
 
   @override
   Future<void> start() async {
@@ -179,7 +253,16 @@ enum Preference<T> {
   launcherIcon<String>("launcher_icon", "icon:dahlia#launcher_icon1"),
   accentColor<String>("accent_color", "color:dahlia#orange"),
   fontFamily<String>("font_family", "Roboto"),
-  wallpaper<String>("wallpaper", "image:dahlia#images/wallpapers/modern.png");
+  wallpaper<String>("wallpaper", "image:dahlia#images/wallpapers/modern.png"),
+  compactLauncher<bool>("compact_launcher", false),
+  volume<double>("volume", 0.5),
+  muteVolume<bool>("mute_volume", false),
+  brightness<double>("brightness", 0.5),
+  autoBrightness<bool>("auto_brightness", true),
+  enableWifi<bool>("enable_wifi", true),
+  enableBluetooth<bool>("enable_bluetooth", true),
+  enableAirplaneMode<bool>("enable_airplane_mode", false),
+  recentSearchResults<List<String>>("recent_search_results", []);
 
   final String key;
   final T defaultValue;

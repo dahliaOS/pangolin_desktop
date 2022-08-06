@@ -15,11 +15,11 @@ limitations under the License.
 */
 
 import 'package:flutter/material.dart';
+import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/components/window/window_surface.dart';
 import 'package:pangolin/components/window/window_toolbar.dart';
 import 'package:pangolin/services/preferences.dart';
 import 'package:pangolin/utils/data/app_list.dart';
-import 'package:pangolin/utils/providers/misc_provider.dart';
 import 'package:pangolin/utils/wm/wm.dart';
 
 class WmAPI {
@@ -29,8 +29,7 @@ class WmAPI {
   late final WindowHierarchyController _windowHierarchy =
       WindowHierarchy.of(context, listen: false);
 
-  late final MiscProvider _miscProvider =
-      MiscProvider.of(context, listen: false);
+  late final ShellState _shellState = Shell.of(context, listen: false);
 
   static WindowEntry windowEntry = WindowEntry(
     features: const [
@@ -103,10 +102,10 @@ class WmAPI {
   }
 
   void minimizeAll() {
-    _miscProvider.minimizedWindowsCache = [];
+    _shellState.minimizedWindowsCache.clear();
     for (final LiveWindowEntry e in _windowHierarchy.entries) {
       if (e.layoutState.minimized) {
-        _miscProvider.minimizedWindowsCache.add(e.registry.info.id);
+        _shellState.minimizedWindowsCache.add(e.registry.info.id);
       } else {
         e.layoutState.minimized = true;
       }
@@ -116,7 +115,7 @@ class WmAPI {
   void undoMinimizeAll() {
     for (final LiveWindowEntry e in _windowHierarchy.entries) {
       e.layoutState.minimized =
-          _miscProvider.minimizedWindowsCache.contains(e.registry.info.id);
+          _shellState.minimizedWindowsCache.contains(e.registry.info.id);
     }
   }
 }

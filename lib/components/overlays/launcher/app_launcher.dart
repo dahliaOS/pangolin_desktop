@@ -18,7 +18,7 @@ import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/services/application.dart';
 import 'package:pangolin/utils/data/constants.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
-import 'package:pangolin/utils/other/resource_pointer.dart';
+import 'package:pangolin/utils/other/resource.dart';
 import 'package:pangolin/widgets/global/resource/icon/icon.dart';
 import 'package:pangolin/widgets/global/resource/image/image.dart';
 import 'package:pangolin/widgets/quick_button.dart';

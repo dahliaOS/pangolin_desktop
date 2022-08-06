@@ -16,7 +16,7 @@ limitations under the License.
 
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:pangolin/utils/other/resource_pointer.dart';
+import 'package:pangolin/utils/other/resource.dart';
 
 class Constants {
   const Constants._();

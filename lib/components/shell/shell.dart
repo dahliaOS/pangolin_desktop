@@ -24,7 +24,6 @@ import 'package:pangolin/components/taskbar/quick_settings.dart';
 import 'package:pangolin/components/taskbar/search.dart';
 import 'package:pangolin/components/taskbar/show_desktop.dart';
 import 'package:pangolin/components/taskbar/taskbar.dart';
-import 'package:pangolin/services/preferences.dart';
 import 'package:pangolin/utils/wm/wm.dart';
 import 'package:pangolin/widgets/global/box/box_container.dart';
 import 'package:provider/provider.dart';
@@ -32,17 +31,19 @@ import 'package:provider/provider.dart';
 class Shell extends StatefulWidget {
   final List<ShellOverlay> overlays;
 
-  const Shell({required this.overlays, Key? key}) : super(key: key);
+  const Shell({required this.overlays, super.key});
 
   @override
-  _ShellState createState() => _ShellState();
+  ShellState createState() => ShellState();
 
-  static _ShellState of(BuildContext context, {bool listen = true}) {
-    return Provider.of<_ShellState>(context, listen: listen);
+  static ShellState of(BuildContext context, {bool listen = true}) {
+    return Provider.of<ShellState>(context, listen: listen);
   }
 }
 
-class _ShellState extends State<Shell> {
+class ShellState extends State<Shell> {
+  final List<String> minimizedWindowsCache = [];
+
   Future<void> showOverlay(
     String overlayId, {
     Map<String, dynamic> args = const {},

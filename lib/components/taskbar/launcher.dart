@@ -17,25 +17,22 @@ limitations under the License.
 import 'package:pangolin/components/overlays/launcher/compact_launcher_overlay.dart';
 import 'package:pangolin/components/overlays/launcher/launcher_overlay.dart';
 import 'package:pangolin/components/taskbar/taskbar_element.dart';
+import 'package:pangolin/services/customization.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
-import 'package:pangolin/utils/providers/misc_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:pangolin/widgets/services.dart';
 
 //TODO: Context menu for changing the taskbar's icon is cut off.
-class LauncherButton extends StatelessWidget {
-  const LauncherButton({Key? key}) : super(key: key);
+class LauncherButton extends StatelessWidget
+    with StatelessServiceListener<CustomizationService> {
+  const LauncherButton({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Consumer(
-      builder: (context, MiscProvider provider, _) {
-        return TaskbarElement(
-          overlayID: provider.compactLauncher
-              ? CompactLauncherOverlay.overlayId
-              : LauncherOverlay.overlayId,
-          child: const Icon(Icons.brightness_low),
-        );
-      },
+  Widget buildChild(BuildContext context, CustomizationService service) {
+    return TaskbarElement(
+      overlayID: service.compactLauncher
+          ? CompactLauncherOverlay.overlayId
+          : LauncherOverlay.overlayId,
+      child: const Icon(Icons.brightness_low),
     );
   }
 }

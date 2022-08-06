@@ -31,16 +31,9 @@ import 'package:pangolin/services/visual_engine/visual_engine.dart';
 import 'package:pangolin/utils/data/dap_index.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/other/date_time_manager.dart';
-import 'package:pangolin/utils/providers/clock_provider.dart';
-import 'package:pangolin/utils/providers/connection_provider.dart';
-import 'package:pangolin/utils/providers/icon_provider.dart';
-import 'package:pangolin/utils/providers/io_provider.dart';
 import 'package:pangolin/utils/providers/locale_provider.dart';
-import 'package:pangolin/utils/providers/misc_provider.dart';
-import 'package:pangolin/utils/providers/search_provider.dart';
 import 'package:pangolin/utils/theme/theme.dart';
 import 'package:pangolin/widgets/services.dart';
-import 'package:provider/provider.dart';
 import 'package:yatl_flutter/yatl_flutter.dart';
 
 Future<void> main() async {
@@ -101,7 +94,7 @@ Future<void> main() async {
         await loadVisualEngine();
       },
       builder: (context, loaded, child) {
-        if (!loaded) return const ColoredBox(color: Colors.red);
+        if (!loaded) return const ColoredBox(color: Colors.black);
 
         return YatlApp(
           core: yatl,
@@ -110,29 +103,7 @@ Future<void> main() async {
           )?.toFlutterLocale(),
           setLocale: (locale) =>
               PreferencesService.current.set('locale', locale?.toString()),
-          child: MultiProvider(
-            providers: [
-              ChangeNotifierProvider<IconProvider>.value(
-                value: IconProvider(),
-              ),
-              ChangeNotifierProvider<IOProvider>.value(
-                value: IOProvider(),
-              ),
-              ChangeNotifierProvider<MiscProvider>.value(
-                value: MiscProvider(),
-              ),
-              ChangeNotifierProvider<ClockProvider>.value(
-                value: ClockProvider(),
-              ),
-              ChangeNotifierProvider<ConnectionProvider>.value(
-                value: ConnectionProvider(),
-              ),
-              ChangeNotifierProvider<SearchProvider>.value(
-                value: SearchProvider(),
-              ),
-            ],
-            child: child,
-          ),
+          child: child!,
         );
       },
       child: const Pangolin(),
@@ -141,7 +112,7 @@ Future<void> main() async {
 }
 
 class Pangolin extends StatelessWidget {
-  const Pangolin({Key? key}) : super(key: key);
+  const Pangolin({super.key});
 
   @override
   Widget build(BuildContext context) {

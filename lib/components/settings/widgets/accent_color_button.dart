@@ -17,7 +17,7 @@ limitations under the License.
 import 'package:pangolin/services/customization.dart';
 import 'package:pangolin/utils/data/constants.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
-import 'package:pangolin/utils/other/resource_pointer.dart';
+import 'package:pangolin/utils/other/resource.dart';
 import 'package:pangolin/widgets/services.dart';
 
 class AccentColorButton extends StatelessWidget

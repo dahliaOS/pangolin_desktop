@@ -18,14 +18,12 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/services/langpacks.dart';
 import 'package:pangolin/utils/data/constants.dart';
-import 'package:pangolin/utils/other/resource_pointer.dart';
+import 'package:pangolin/utils/other/resource.dart';
 import 'package:pangolin/utils/providers/locale_provider.dart';
 import 'package:xdg_desktop/xdg_desktop.dart';
 import 'package:yatl_flutter/yatl_flutter.dart';
 
 export 'package:flutter/material.dart';
-export 'package:pangolin/utils/extensions/extensions.dart';
-export 'package:pangolin/utils/icons/icons_x.dart';
 
 extension ThemeDataX on ThemeData {
   bool get darkMode => brightness == Brightness.dark;

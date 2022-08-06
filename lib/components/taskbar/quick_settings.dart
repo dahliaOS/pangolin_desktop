@@ -17,23 +17,24 @@ limitations under the License.
 import 'package:pangolin/components/overlays/quick_settings/quick_settings_overlay.dart';
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/components/taskbar/taskbar_element.dart';
+import 'package:pangolin/services/customization.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/other/date_time_manager.dart';
-import 'package:pangolin/utils/providers/connection_provider.dart';
+import 'package:pangolin/widgets/services.dart';
 
-class QuickSettingsButton extends StatelessWidget {
-  const QuickSettingsButton({Key? key}) : super(key: key);
+class QuickSettingsButton extends StatelessWidget
+    with StatelessServiceListener<CustomizationService> {
+  const QuickSettingsButton({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final _connectionProv = ConnectionProvider.of(context);
+  Widget buildChild(BuildContext context, CustomizationService service) {
     final theme = context.theme;
     return TaskbarElement(
       iconSize: 18,
       size: Size.fromWidth(
         152 +
-            (_connectionProv.wifi ? 26 : 0) +
-            (_connectionProv.bluetooth ? 26 : 0),
+            (service.enableWifi ? 26 : 0) +
+            (service.enableBluetooth ? 26 : 0),
       ),
       overlayID: QuickSettingsOverlay.overlayId,
       child: Padding(
@@ -43,7 +44,7 @@ class QuickSettingsButton extends StatelessWidget {
               .getShowingNotifier(QuickSettingsOverlay.overlayId),
           builder: (context, showing, child) => Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: items(context)
+            children: items(context, service)
               ..addAll([
                 Container(
                   width: 2,
@@ -83,24 +84,18 @@ class QuickSettingsButton extends StatelessWidget {
     );
   }
 
-  List<Widget> items(BuildContext context) {
-    final _connectionProv = ConnectionProvider.of(context);
-
+  List<Widget> items(BuildContext context, CustomizationService service) {
     return [
-      if (_connectionProv.wifi)
+      if (service.enableWifi)
         const Padding(
           padding: EdgeInsets.symmetric(horizontal: 4.0),
           child: Icon(Icons.wifi),
-        )
-      else
-        const SizedBox.shrink(),
-      if (_connectionProv.bluetooth)
+        ),
+      if (service.enableBluetooth)
         const Padding(
           padding: EdgeInsets.symmetric(horizontal: 4.0),
           child: Icon(Icons.bluetooth),
-        )
-      else
-        const SizedBox.shrink(),
+        ),
       const Padding(
         padding: EdgeInsets.symmetric(horizontal: 4.0),
         child: Icon(

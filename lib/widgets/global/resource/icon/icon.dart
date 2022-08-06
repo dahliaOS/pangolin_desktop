@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pangolin/services/icon.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/other/log.dart';
-import 'package:pangolin/utils/other/resource_pointer.dart';
+import 'package:pangolin/utils/other/resource.dart';
 import 'package:pangolin/widgets/global/resource/image/image.dart';
 
 class ResourceIcon extends StatefulWidget {

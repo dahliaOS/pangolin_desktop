@@ -24,7 +24,6 @@ import 'package:pangolin/utils/action_manager/action_manager.dart';
 import 'package:pangolin/utils/data/constants.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/locale_provider.dart';
-import 'package:pangolin/utils/providers/search_provider.dart';
 import 'package:pangolin/utils/wm/wm_api.dart';
 import 'package:pangolin/widgets/global/box/box_container.dart';
 import 'package:pangolin/widgets/global/quick_button.dart';
@@ -175,14 +174,12 @@ class _SearchState extends State<Search> {
       onKey: (event) async {
         if (event.character == null ||
             !RegExp("[a-zA-Z]").hasMatch(event.character!)) return;
-        final _searchProvider = SearchProvider.of(context, listen: false);
 
-        _searchProvider.searchQueryCache = event.character!;
         _shell.dismissOverlay(LauncherOverlay.overlayId);
         await Future.delayed(const Duration(milliseconds: 150));
         _shell.showOverlay(
           SearchOverlay.overlayId,
-          args: {"searchQuery": _searchProvider.searchQueryCache},
+          args: {"searchQuery": event.character},
           dismissEverything: false,
         );
       },

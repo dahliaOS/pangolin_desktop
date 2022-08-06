@@ -17,26 +17,30 @@ limitations under the License.
 import 'package:pangolin/components/overlays/search/widgets/search_tile.dart';
 import 'package:pangolin/components/overlays/search/widgets/searchbar.dart';
 import 'package:pangolin/components/shell/shell.dart';
+import 'package:pangolin/services/customization.dart';
 import 'package:pangolin/services/search.dart';
 import 'package:pangolin/utils/data/constants.dart';
 import 'package:pangolin/utils/data/globals.dart';
 import 'package:pangolin/utils/data/models/application.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/locale_provider.dart';
-import 'package:pangolin/utils/providers/search_provider.dart';
 import 'package:pangolin/widgets/global/box/box_container.dart';
+import 'package:pangolin/widgets/services.dart';
 
 class SearchOverlay extends ShellOverlay {
   static const String overlayId = "search";
 
-  SearchOverlay({Key? key}) : super(key: key, id: overlayId);
+  SearchOverlay({super.key}) : super(id: overlayId);
 
   @override
   _SearchOverlayState createState() => _SearchOverlayState();
 }
 
 class _SearchOverlayState extends State<SearchOverlay>
-    with SingleTickerProviderStateMixin, ShellOverlayState {
+    with
+        SingleTickerProviderStateMixin,
+        ShellOverlayState,
+        StateServiceListener<CustomizationService, SearchOverlay> {
   late AnimationController ac;
   final _controller = TextEditingController();
   final _focusNode = FocusNode();
@@ -72,12 +76,11 @@ class _SearchOverlayState extends State<SearchOverlay>
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget buildChild(BuildContext context, CustomizationService service) {
     final Animation<double> _animation = CurvedAnimation(
       parent: ac,
       curve: Constants.animationCurve,
     );
-    final _searchProvider = SearchProvider.of(context);
     _focusNode.requestFocus();
 
     if (!controller.showing) return const SizedBox();
@@ -121,7 +124,7 @@ class _SearchOverlayState extends State<SearchOverlay>
                     ),
                   ),
 
-                  /// `Applicotins builder`
+                  /// `Applications builder`
 
                   Material(
                     type: MaterialType.transparency,
@@ -184,11 +187,10 @@ class _SearchOverlayState extends State<SearchOverlay>
                                   ),
                                   shrinkWrap: true,
                                   reverse: true,
-                                  itemCount: _searchProvider
-                                      .recentSearchResults.length,
+                                  itemCount: service.recentSearchResults.length,
                                   physics: const BouncingScrollPhysics(),
                                   itemBuilder: (_, index) => SearchTile(
-                                    _searchProvider.recentSearchResults[index],
+                                    service.recentSearchResults[index],
                                   ),
                                 ),
                               ],

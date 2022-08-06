@@ -9,7 +9,7 @@ import 'package:jovial_svg/jovial_svg.dart';
 import 'package:jovial_svg/src/dag.dart';
 // ignore: implementation_imports
 import 'package:jovial_svg/src/svg_parser.dart';
-import 'package:pangolin/utils/other/resource_pointer.dart';
+import 'package:pangolin/utils/other/resource.dart';
 import 'package:pangolin/widgets/global/resource/image/xpm.dart';
 import 'package:path/path.dart' as p;
 
