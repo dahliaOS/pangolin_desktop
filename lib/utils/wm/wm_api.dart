@@ -18,8 +18,8 @@ import 'package:flutter/material.dart';
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/components/window/window_surface.dart';
 import 'package:pangolin/components/window/window_toolbar.dart';
-import 'package:pangolin/services/preferences.dart';
 import 'package:pangolin/utils/data/app_list.dart';
+import 'package:pangolin/utils/data/constants.dart';
 import 'package:pangolin/utils/wm/wm.dart';
 
 class WmAPI {
@@ -31,29 +31,23 @@ class WmAPI {
 
   late final ShellState _shellState = Shell.of(context, listen: false);
 
-  static WindowEntry windowEntry = WindowEntry(
-    features: const [
+  static const WindowEntry windowEntry = WindowEntry(
+    features: [
       ResizeWindowFeature(),
       SurfaceWindowFeature(),
       FocusableWindowFeature(),
       ToolbarWindowFeature(),
     ],
-    layoutInfo: const FreeformLayoutInfo(
+    layoutInfo: FreeformLayoutInfo(
       position: Offset(32, 32),
       size: Size(1280, 720),
     ),
     properties: {
-      ResizeWindowFeature.minSize: const Size(480, 360),
+      ResizeWindowFeature.minSize: Size(480, 360),
       SurfaceWindowFeature.elevation: 4.0,
-      SurfaceWindowFeature.shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(
-          Radius.circular(
-            PreferencesService.current.get("windowBorderRadius") ?? 12.0,
-          ),
-        ),
-      ),
-      SurfaceWindowFeature.background: const PangolinWindowSurface(),
-      ToolbarWindowFeature.widget: const PangolinWindowToolbar(
+      SurfaceWindowFeature.shape: Constants.mediumShape,
+      SurfaceWindowFeature.background: PangolinWindowSurface(),
+      ToolbarWindowFeature.widget: PangolinWindowToolbar(
         barColor: Colors.transparent,
         textColor: Colors.black,
       ),

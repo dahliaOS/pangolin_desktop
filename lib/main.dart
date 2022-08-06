@@ -23,6 +23,7 @@ import 'package:logging/logging.dart';
 import 'package:pangolin/components/shell/desktop.dart';
 import 'package:pangolin/services/application.dart';
 import 'package:pangolin/services/customization.dart';
+import 'package:pangolin/services/date_time.dart';
 import 'package:pangolin/services/icon.dart';
 import 'package:pangolin/services/langpacks.dart';
 import 'package:pangolin/services/preferences.dart';
@@ -30,7 +31,6 @@ import 'package:pangolin/services/search.dart';
 import 'package:pangolin/services/visual_engine/visual_engine.dart';
 import 'package:pangolin/utils/data/dap_index.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
-import 'package:pangolin/utils/other/date_time_manager.dart';
 import 'package:pangolin/utils/providers/locale_provider.dart';
 import 'package:pangolin/utils/theme/theme.dart';
 import 'package:pangolin/widgets/services.dart';
@@ -85,25 +85,27 @@ Future<void> main() async {
           PreferencesService.fallback(),
         ),
         const ServiceEntry<CustomizationService>(CustomizationService.build),
+        const ServiceEntry<DateTimeService>(DateTimeService.build),
       ],
       onLoaded: () async {
-        //initialize scheduler for time and date
-        DateTimeManager.initialiseScheduler();
-
         //load visual engine
         await loadVisualEngine();
       },
       builder: (context, loaded, child) {
         if (!loaded) return const ColoredBox(color: Colors.black);
 
-        return YatlApp(
-          core: yatl,
-          getLocale: () => intl.Locale.tryParse(
-            PreferencesService.current.get('locale') ?? "",
-          )?.toFlutterLocale(),
-          setLocale: (locale) =>
-              PreferencesService.current.set('locale', locale?.toString()),
-          child: child!,
+        return ListenableServiceBuilder<CustomizationService>(
+          builder: (context, child) {
+            final CustomizationService service = CustomizationService.current;
+            return YatlApp(
+              core: yatl,
+              getLocale: () =>
+                  intl.Locale.tryParse(service.locale)?.toFlutterLocale(),
+              setLocale: (locale) => service.locale = locale?.toString(),
+              child: child!,
+            );
+          },
+          child: child,
         );
       },
       child: const Pangolin(),

@@ -16,12 +16,13 @@ abstract class CustomizationService
   static CustomizationService build() => _CustomizationServiceImpl();
 
   int get databaseVersion;
+  String get locale;
   bool get showWelcomeScreen;
   bool get darkMode;
   bool get enableEffects;
   List<String> get pinnedApps;
   List<ImageResource> get recentWallpapers;
-  String? get launcherIcon;
+  String get launcherIcon;
   ColorResource get accentColor;
   String get fontFamily;
   ImageResource get wallpaper;
@@ -36,11 +37,12 @@ abstract class CustomizationService
   List<String> get recentSearchResults;
 
   set darkMode(bool? value);
+  set locale(String? value);
   set showWelcomeScreen(bool? value);
   set enableEffects(bool? value);
   set pinnedApps(List<String>? value);
   set recentWallpapers(List<ImageResource>? value);
-  set launcherIcon(String? value);
+  set launcherIcon(String value);
   set accentColor(ColorResource? value);
   set fontFamily(String? value);
   set wallpaper(ImageResource? value);
@@ -61,6 +63,9 @@ class _CustomizationServiceImpl extends CustomizationService {
   int get databaseVersion => _get(Preference.databaseVersion);
 
   @override
+  String get locale => _get(Preference.locale);
+
+  @override
   bool get showWelcomeScreen => _get(Preference.showWelcomeScreen);
 
   @override
@@ -77,7 +82,7 @@ class _CustomizationServiceImpl extends CustomizationService {
       _getAsResourceList<ImageResource>(Preference.recentWallpapers);
 
   @override
-  String? get launcherIcon => _get(Preference.launcherIcon);
+  String get launcherIcon => _get(Preference.launcherIcon);
 
   @override
   ColorResource get accentColor =>
@@ -120,6 +125,9 @@ class _CustomizationServiceImpl extends CustomizationService {
   /* ====== Setters ====== */
   @override
   set darkMode(bool? value) => _set(Preference.darkMode, value);
+
+  @override
+  set locale(String? value) => _set(Preference.locale, value);
 
   @override
   set showWelcomeScreen(bool? value) =>
@@ -245,6 +253,7 @@ class _CustomizationServiceImpl extends CustomizationService {
 
 enum Preference<T> {
   databaseVersion<int>("database_version", 2),
+  locale<String>("locale", "en_US"),
   showWelcomeScreen<bool>("show_welcome_screen", true),
   darkMode<bool>("dark_mode", false),
   enableEffects<bool>("enable_effects", true),

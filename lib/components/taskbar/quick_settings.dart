@@ -18,8 +18,8 @@ import 'package:pangolin/components/overlays/quick_settings/quick_settings_overl
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/components/taskbar/taskbar_element.dart';
 import 'package:pangolin/services/customization.dart';
+import 'package:pangolin/services/date_time.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
-import 'package:pangolin/utils/other/date_time_manager.dart';
 import 'package:pangolin/widgets/services.dart';
 
 class QuickSettingsButton extends StatelessWidget
@@ -60,11 +60,12 @@ class QuickSettingsButton extends StatelessWidget
                   width: 74,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: ValueListenableBuilder(
-                      valueListenable: DateTimeManager.getTimeNotifier()!,
-                      builder: (BuildContext context, String time, child) {
+                    child: ListenableServiceBuilder<DateTimeService>(
+                      builder: (BuildContext context, _) {
+                        final DateTimeService service = DateTimeService.current;
+
                         return Text(
-                          time,
+                          service.formattedTime,
                           style: TextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize: 13,

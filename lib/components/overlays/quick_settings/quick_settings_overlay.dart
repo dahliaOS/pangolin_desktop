@@ -26,11 +26,11 @@ import 'package:pangolin/components/overlays/quick_settings/widgets/qs_slider.da
 import 'package:pangolin/components/overlays/quick_settings/widgets/qs_toggle_button.dart';
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/services/customization.dart';
+import 'package:pangolin/services/date_time.dart';
 import 'package:pangolin/utils/action_manager/action_manager.dart';
 import 'package:pangolin/utils/data/constants.dart';
 import 'package:pangolin/utils/data/globals.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
-import 'package:pangolin/utils/other/date_time_manager.dart';
 import 'package:pangolin/utils/providers/locale_provider.dart';
 import 'package:pangolin/widgets/global/box/box_container.dart';
 import 'package:pangolin/widgets/global/quick_button.dart';
@@ -356,19 +356,18 @@ class QsMain extends StatelessWidget
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                ValueListenableBuilder(
-                  valueListenable: DateTimeManager.getDateNotifier()!,
-                  builder: (BuildContext context, String date, child) =>
-                      ValueListenableBuilder(
-                    valueListenable: DateTimeManager.getTimeNotifier()!,
-                    builder: (BuildContext context, String time, child) =>
-                        QuickActionButton(
+                ListenableServiceBuilder<DateTimeService>(
+                  builder: (BuildContext context, _) {
+                    final String date = DateTimeService.current.formattedDate;
+                    final String time = DateTimeService.current.formattedTime;
+
+                    return QuickActionButton(
                       isCircular: false,
                       leading: const Icon(Icons.calendar_today),
                       title: "$date - $time",
                       margin: EdgeInsets.zero,
-                    ),
-                  ),
+                    );
+                  },
                 ),
                 Builder(
                   builder: (context) {

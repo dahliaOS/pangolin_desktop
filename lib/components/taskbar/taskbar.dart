@@ -45,13 +45,13 @@ class _TaskbarState extends State<Taskbar>
     with StateServiceListener<CustomizationService, Taskbar> {
   @override
   Widget buildChild(BuildContext context, CustomizationService service) {
-    final List<String> _pinnedApps = service.pinnedApps;
-    final List<String> _taskbarApps = _pinnedApps.toList()
+    final List<String> pinnedApps = service.pinnedApps;
+    final List<String> taskbarApps = pinnedApps.toList()
       ..addAll(
         WindowHierarchy.of(context)
             .entries
             .map<String>(
-              (e) => _pinnedApps.contains(e.registry.extra.stableId)
+              (e) => pinnedApps.contains(e.registry.extra.stableId)
                   ? ""
                   : e.registry.extra.stableId,
             )
@@ -68,19 +68,19 @@ class _TaskbarState extends State<Taskbar>
           if (newIndex > oldIndex) {
             newIndex -= 1;
           }
-          final item = _taskbarApps.removeAt(oldIndex);
-          _taskbarApps.insert(newIndex, item);
-          if (_pinnedApps.contains(item)) {
-            PreferencesService.current.set("pinnedApps", _pinnedApps);
+          final item = taskbarApps.removeAt(oldIndex);
+          taskbarApps.insert(newIndex, item);
+          if (pinnedApps.contains(item)) {
+            service.pinnedApps = pinnedApps;
           } else {
             setState(() {
-              _pinnedApps.add(item);
-              PreferencesService.current.set("pinnedApps", _pinnedApps);
+              pinnedApps.add(item);
+              service.pinnedApps = pinnedApps;
             });
           }
         });
       },
-      children: _taskbarApps
+      children: taskbarApps
           .map<Widget>(
             (e) => e != ""
                 ? TaskbarItem(key: ValueKey(e), packageName: e)
@@ -90,7 +90,7 @@ class _TaskbarState extends State<Taskbar>
           )
           .toList(),
     );
-    double _scroll = 0;
+    double scroll = 0;
     return Positioned(
       left: 0,
       right: 0,
@@ -101,9 +101,9 @@ class _TaskbarState extends State<Taskbar>
           if (pointerSignal is PointerScrollEvent) {
             // do something when scrolled
             setState(() {
-              _scroll = _scroll + pointerSignal.scrollDelta.dy;
+              scroll = scroll + pointerSignal.scrollDelta.dy;
             });
-            if (_scroll > 500) {
+            if (scroll > 500) {
               Shell.of(context).dismissOverlay(LauncherOverlay.overlayId);
             }
           }
