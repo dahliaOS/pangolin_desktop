@@ -16,13 +16,59 @@ limitations under the License.
 
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/services/application.dart';
+import 'package:pangolin/utils/data/constants.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
-import 'package:pangolin/utils/providers/customization_provider.dart';
-import 'package:pangolin/widgets/global/icon/icon.dart';
-import 'package:pangolin/widgets/global/quick_button.dart';
-import 'package:provider/provider.dart';
+import 'package:pangolin/utils/other/resource_pointer.dart';
+import 'package:pangolin/widgets/global/resource/icon/icon.dart';
+import 'package:pangolin/widgets/global/resource/image/image.dart';
+import 'package:pangolin/widgets/quick_button.dart';
 import 'package:xdg_desktop/xdg_desktop.dart';
 import 'package:yatl_flutter/yatl_flutter.dart';
+
+class AppLauncherButton extends StatelessWidget {
+  final DesktopEntry application;
+
+  const AppLauncherButton({required this.application, super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Tooltip(
+      message: application.getLocalizedComment(context.locale) ?? "",
+      waitDuration: const Duration(seconds: 1),
+      preferBelow: true,
+      verticalOffset: 80,
+      child: SizedBox(
+        height: 128,
+        width: 128,
+        child: Material(
+          color: Colors.transparent,
+          shape: Constants.mediumShape,
+          clipBehavior: Clip.antiAlias,
+          child: InkWell(
+            /* onLongPress: () =>
+                _customizationProvider.togglePinnedApp(application.packageName), */
+            onTap: () async {
+              await ApplicationService.current.startApp(application);
+              // ignore: use_build_context_synchronously
+              Shell.of(context, listen: false).dismissEverything();
+            },
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                _buildIconWidget(application.icon?.main ?? "", 64),
+                Text(
+                  application.getLocalizedName(context.locale),
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(fontSize: 17),
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
 
 class AppLauncherTile extends StatefulWidget {
   final DesktopEntry application;
@@ -48,16 +94,11 @@ class _AppLauncherTileState extends State<AppLauncherTile> {
         child: ListTile(
           contentPadding:
               const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-          ),
+          shape: Constants.smallShape,
           dense: true,
           leading: SizedBox.fromSize(
             size: const Size.square(32),
-            child: DynamicIcon(
-              icon: widget.application.icon?.main ?? "",
-              size: 32,
-            ),
+            child: _buildIconWidget(widget.application.icon?.main ?? "", 32),
           ),
           title: Text(
             widget.application.getLocalizedName(context.locale),
@@ -75,22 +116,14 @@ class _AppLauncherTileState extends State<AppLauncherTile> {
               mainAxisAlignment: MainAxisAlignment.end,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Consumer(
-                  builder: (
-                    context,
-                    CustomizationProvider customizationProvider,
-                    _,
-                  ) {
-                    return QuickActionButton(
-                      size: 32,
-                      margin: const EdgeInsets.symmetric(horizontal: 4),
-                      padding: EdgeInsets.zero,
-                      leading: const Icon(Icons.push_pin_rounded),
-                      onPressed: () {
-                        // customizationProvider
-                        //     .togglePinnedApp(widget.application.packageName);
-                      },
-                    );
+                QuickActionButton(
+                  size: 32,
+                  margin: const EdgeInsets.symmetric(horizontal: 4),
+                  padding: EdgeInsets.zero,
+                  leading: const Icon(Icons.push_pin_rounded),
+                  onPressed: () {
+                    // customizationProvider
+                    //     .togglePinnedApp(widget.application.packageName);
                   },
                 ),
                 const QuickActionButton(
@@ -123,4 +156,26 @@ class _AppLauncherTileState extends State<AppLauncherTile> {
       ),
     );
   }
+}
+
+Widget _buildIconWidget(String icon, double size) {
+  final Resource? resource = Resource.tryParse(icon);
+
+  if (resource == null || resource is IconResource) {
+    return ResourceIcon(
+      resource: resource as IconResource? ??
+          IconResource(type: IconResourceType.xdg, value: icon),
+      size: size,
+    );
+  }
+
+  if (resource is ImageResource) {
+    return ResourceImage(
+      resource: resource,
+      width: size,
+      height: size,
+    );
+  }
+
+  return SizedBox.square(dimension: size);
 }

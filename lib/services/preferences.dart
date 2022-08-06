@@ -22,6 +22,7 @@ abstract class PreferencesService extends Service<PreferencesService> {
   FutureOr<void> addIfNotPresent<T>(String key, T value);
 
   FutureOr<void> delete(String key);
+  FutureOr<void> clear();
 }
 
 class _HivePreferencesServiceImpl extends PreferencesService {
@@ -47,6 +48,11 @@ class _HivePreferencesServiceImpl extends PreferencesService {
   @override
   Future<void> set<T>(String key, T value) {
     return _hivedb.put(key, value);
+  }
+
+  @override
+  Future<void> clear() {
+    return _hivedb.clear();
   }
 
   @override
@@ -84,6 +90,11 @@ class _InMemoryPreferencesServiceImpl extends PreferencesService {
   @override
   void set<T>(String key, T value) {
     _prefs[key] = value;
+  }
+
+  @override
+  void clear() {
+    _prefs.clear();
   }
 
   @override

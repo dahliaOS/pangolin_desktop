@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:pangolin/utils/other/computation_pool.dart';
 import 'package:pangolin/utils/other/log.dart';
 
@@ -15,6 +16,9 @@ abstract class Service<T extends Service<T>> {
     return "$T, ${running ? "running" : "not running"}";
   }
 }
+
+abstract class ListenableService<T extends ListenableService<T>>
+    extends Service<T> with ChangeNotifier {}
 
 class FailedService extends Service<FailedService> {
   final Type service;
@@ -47,6 +51,9 @@ class ServiceManager with LoggerProvider {
   final Map<Type, Service<dynamic>> _registeredServices = {};
   final ComputationPool<Type, Service<dynamic>> _startupPool =
       ComputationPool();
+  final ValueNotifier<int> _startedServicesCount = ValueNotifier(0);
+  final ValueNotifier<int> _totalRegisteredServices = ValueNotifier(0);
+  final Map<Type, Completer<void>> _completionTracker = {};
 
   ServiceManager._();
 
@@ -68,29 +75,48 @@ class ServiceManager with LoggerProvider {
 
   static T? getService<T extends Service<T>>() => _instance._getService<T>();
 
+  static ValueListenable<int> get startedServicesCount =>
+      _instance._startedServicesCount;
+  static ValueListenable<int> get totalRegisteredServices =>
+      _instance._totalRegisteredServices;
+
   void _registerService<T extends Service<T>>(
     ServiceBuilder<T> builder, [
     T? fallback,
   ]) {
     _awaitingForStartup[T] = _ServiceBuilderWithFallback<T>(builder, fallback);
+    _totalRegisteredServices.value += 1;
   }
 
   Future<void> _waitForService<T extends Service<T>>() {
-    return _startupPool.waitFor(T);
+    final Completer<void>? _completer = _completionTracker[T];
+
+    if (_completer == null) {
+      throw Exception(
+        "Can't wait for Service $T because it was not registered",
+      );
+    }
+
+    return _completionTracker[T]!.future;
   }
 
   Future<void> _startServices() async {
     _awaitingForStartup.forEach((type, builder) {
+      logger.info("Registering computation for $type");
       _startupPool.registerComputation(type);
+      _completionTracker[type] = Completer<void>();
       _startWithFallback(type, builder.builder, builder.fallback);
     });
 
     await _startupPool.waitForResults((type, service) {
-      _awaitingForStartup.remove(type);
-      _registeredServices[type] = service;
       logger.info("Loaded service $type");
+      _registeredServices[type] = service;
+      _completionTracker[type]?.complete();
+      _awaitingForStartup.remove(type);
+      _startedServicesCount.value += 1;
     });
 
+    _completionTracker.clear();
     _awaitingForStartup.clear();
     _startupPool.dispose();
   }
@@ -98,6 +124,8 @@ class ServiceManager with LoggerProvider {
   Future<void> _stopServices() async {
     for (final Type type in _registeredServices.keys) {
       await _unregisterServiceByType(type);
+      _totalRegisteredServices.value -= 1;
+      _startedServicesCount.value -= 1;
     }
 
     // Better safe than sorry

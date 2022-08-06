@@ -141,8 +141,8 @@ class EffectsLayerState extends State<EffectsLayer>
                 child: FadeTransition(
                   opacity: _opacityController,
                   child: BoxSurface(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(
                         PreferencesService.current.get("windowBorderRadius") ??
                             12.0,
                       ),

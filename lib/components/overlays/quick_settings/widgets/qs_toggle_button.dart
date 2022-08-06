@@ -14,6 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'package:pangolin/utils/data/constants.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 
 // ignore: must_be_immutable
@@ -53,7 +54,7 @@ class _QsToggleButtonState extends State<QsToggleButton> {
       width: 162,
       child: Material(
         color: _color,
-        borderRadius: context.commonData.borderRadiusMedium,
+        shape: Constants.mediumShape,
         clipBehavior: Clip.antiAlias,
         child: InkWell(
           onTap: () {

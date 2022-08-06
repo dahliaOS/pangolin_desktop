@@ -15,7 +15,7 @@ limitations under the License.
 */
 
 import 'package:flutter/material.dart';
-import 'package:pangolin/utils/data/common_data.dart';
+import 'package:pangolin/utils/data/constants.dart';
 import 'package:pangolin/widgets/global/box/box_container.dart';
 
 class Searchbar extends StatelessWidget {
@@ -26,7 +26,6 @@ class Searchbar extends StatelessWidget {
   final Color? color;
   final bool outline;
   final TextEditingController? controller;
-  final BorderRadius? borderRadius;
   final FocusNode? focusNode;
   final ValueChanged<String>? onTextChanged;
 
@@ -37,7 +36,6 @@ class Searchbar extends StatelessWidget {
     required this.hint,
     required this.controller,
     this.outline = false,
-    this.borderRadius,
     this.focusNode,
     this.text = "",
     this.color,
@@ -48,10 +46,9 @@ class Searchbar extends StatelessWidget {
   Widget build(BuildContext context) {
     return BoxContainer(
       outline: outline,
-      borderRadius: borderRadius ??
-          CommonData.of(context).borderRadius(BorderRadiusType.medium),
       width: 800,
       height: 48,
+      shape: Constants.mediumShape,
       child: Material(
         type: MaterialType.transparency,
         child: Row(

@@ -16,26 +16,30 @@ limitations under the License.
 
 import 'dart:async';
 
-import 'package:pangolin/components/desktop/wallpaper.dart';
 import 'package:pangolin/components/shell/shell.dart';
-import 'package:pangolin/utils/data/common_data.dart';
+import 'package:pangolin/services/customization.dart';
+import 'package:pangolin/utils/data/constants.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
-import 'package:pangolin/utils/providers/customization_provider.dart';
+import 'package:pangolin/utils/other/resource_pointer.dart';
 import 'package:pangolin/utils/providers/locale_provider.dart';
 import 'package:pangolin/utils/wm/wm.dart';
 import 'package:pangolin/widgets/global/box/box_container.dart';
+import 'package:pangolin/widgets/global/resource/image/image.dart';
+import 'package:pangolin/widgets/services.dart';
 
 class OverviewOverlay extends ShellOverlay {
   static const String overlayId = "overview";
 
-  OverviewOverlay({Key? key}) : super(key: key, id: overlayId);
+  OverviewOverlay({super.key}) : super(id: overlayId);
 
   @override
   _OverviewOverlayState createState() => _OverviewOverlayState();
 }
 
 class _OverviewOverlayState extends State<OverviewOverlay>
-    with ShellOverlayState {
+    with
+        ShellOverlayState,
+        StateServiceListener<CustomizationService, OverviewOverlay> {
   @override
   FutureOr<void> requestShow(Map<String, dynamic> args) {
     controller.showing = true;
@@ -47,14 +51,14 @@ class _OverviewOverlayState extends State<OverviewOverlay>
   }
 
   @override
-  Widget build(BuildContext context) {
-    final _hierarchy = WindowHierarchy.of(context);
-    final String image = CustomizationProvider.of(context).wallpaper;
+  Widget buildChild(BuildContext context, CustomizationService service) {
+    final WindowHierarchyController hierarchy = WindowHierarchy.of(context);
+    final ImageResource image = service.wallpaper;
 
     if (!controller.showing) return const SizedBox();
 
     return Positioned.fromRect(
-      rect: _hierarchy.wmBounds,
+      rect: hierarchy.wmBounds,
       child: GestureDetector(
         onTap: () {
           Shell.of(context, listen: false).dismissEverything();
@@ -77,9 +81,7 @@ class _OverviewOverlayState extends State<OverviewOverlay>
                         child: Material(
                           color: Colors.transparent,
                           clipBehavior: Clip.antiAlias,
-                          shape: RoundedRectangleBorder(
-                            borderRadius:
-                                CommonData.of(context).borderRadiusSmall,
+                          shape: Constants.smallShape.copyWith(
                             side: BorderSide(
                               color: context.theme.surfaceForegroundColor,
                               width: 2,
@@ -87,7 +89,10 @@ class _OverviewOverlayState extends State<OverviewOverlay>
                           ),
                           child: InkWell(
                             onTap: () {},
-                            child: wallpaperImage(image),
+                            child: ResourceImage(
+                              resource: image,
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                       ),

@@ -26,7 +26,7 @@ dependencies:
     git:
       url: https://github.com/dahliaOS/files.git
       ref: old-base
-  fluentui_system_icons: ^1.1.143
+  fluentui_system_icons: ^1.1.177
   flutter:
     sdk: flutter
   flutter_localizations:
@@ -36,7 +36,7 @@ dependencies:
       url: https://github.com/dahliaOS/graft.git
   gsettings: ^0.2.5
   hive_flutter: any
-  http: ^0.13.0
+  http: ^0.13.5
   intl: ^0.17.0
   jovial_svg: ^1.1.5
   logging: ^1.0.2
@@ -90,7 +90,7 @@ dependencies:
 
 dev_dependencies:
   build_runner: ^2.1.11
-  lint: ^1.8.2
+  lint: ^1.10.0
 
 flutter:
   uses-material-design: true

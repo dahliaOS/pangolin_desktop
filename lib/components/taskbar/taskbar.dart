@@ -20,14 +20,12 @@ import 'package:flutter/gestures.dart';
 import 'package:pangolin/components/overlays/launcher/launcher_overlay.dart';
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/components/taskbar/taskbar_item.dart';
+import 'package:pangolin/services/customization.dart';
 import 'package:pangolin/services/preferences.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
-import 'package:pangolin/utils/providers/customization_provider.dart';
-/* import 'package:pangolin/utils/context_menus/context_menu.dart';
-import 'package:pangolin/utils/context_menus/context_menu_item.dart';
-import 'package:pangolin/utils/context_menus/core/context_menu_region.dart'; */
 import 'package:pangolin/utils/wm/wm.dart';
 import 'package:pangolin/widgets/global/box/box_container.dart';
+import 'package:pangolin/widgets/services.dart';
 
 class Taskbar extends StatefulWidget {
   final List<Widget>? leading;
@@ -43,11 +41,11 @@ class Taskbar extends StatefulWidget {
   _TaskbarState createState() => _TaskbarState();
 }
 
-class _TaskbarState extends State<Taskbar> {
+class _TaskbarState extends State<Taskbar>
+    with StateServiceListener<CustomizationService, Taskbar> {
   @override
-  Widget build(BuildContext context) {
-    final _customizationProvider = CustomizationProvider.of(context);
-    final List<String> _pinnedApps = _customizationProvider.pinnedApps;
+  Widget buildChild(BuildContext context, CustomizationService service) {
+    final List<String> _pinnedApps = service.pinnedApps;
     final List<String> _taskbarApps = _pinnedApps.toList()
       ..addAll(
         WindowHierarchy.of(context)
@@ -64,9 +62,7 @@ class _TaskbarState extends State<Taskbar> {
       shrinkWrap: true,
       primary: true,
       physics: const BouncingScrollPhysics(),
-      scrollDirection: _customizationProvider.isTaskbarHorizontal
-          ? Axis.horizontal
-          : Axis.vertical,
+      scrollDirection: Axis.horizontal,
       onReorder: (int oldIndex, int newIndex) {
         setState(() {
           if (newIndex > oldIndex) {
@@ -96,14 +92,10 @@ class _TaskbarState extends State<Taskbar> {
     );
     double _scroll = 0;
     return Positioned(
-      left: !_customizationProvider.isTaskbarRight ? 0 : null,
-      right: !_customizationProvider.isTaskbarLeft ? 0 : null,
-      bottom: !_customizationProvider.isTaskbarTop ? 0 : null,
-      top: !_customizationProvider.isTaskbarBottom ? 0 : null,
-      height: _customizationProvider.isTaskbarHorizontal ? 48 : null,
-      width: _customizationProvider.isTaskbarVertical
-          ? 48
-          : null, //height: PreferencesService.running.get('taskbarHeight').toDouble() ?? 48,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      height: 48,
       child: Listener(
         onPointerSignal: (pointerSignal) {
           if (pointerSignal is PointerScrollEvent) {
@@ -168,51 +160,22 @@ class _TaskbarState extends State<Taskbar> {
               padding: const EdgeInsets.only(left: 4.0),
               child: Stack(
                 children: [
-                  if (_customizationProvider.centerTaskbar)
-                    Positioned.fill(
-                      child: listenerWrapper(Center(child: items)),
-                    )
-                  else
-                    const SizedBox.shrink(),
-                  if (_customizationProvider.isTaskbarHorizontal)
-                    Row(
-                      children: [
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: widget.leading ?? [const SizedBox.shrink()],
-                        ),
-                        Expanded(
-                          child: _customizationProvider.centerTaskbar
-                              ? Container()
-                              : listenerWrapper(items),
-                        ),
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children:
-                              widget.trailing ?? [const SizedBox.shrink()],
-                        ),
-                      ],
-                    )
-                  else
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: widget.leading ?? [const SizedBox.shrink()],
-                        ),
-                        Expanded(
-                          child: _customizationProvider.centerTaskbar
-                              ? Container()
-                              : listenerWrapper(items),
-                        ),
-                        Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children:
-                              widget.trailing ?? [const SizedBox.shrink()],
-                        ),
-                      ],
-                    ),
+                  const SizedBox.shrink(),
+                  Row(
+                    children: [
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: widget.leading ?? [const SizedBox.shrink()],
+                      ),
+                      Expanded(
+                        child: listenerWrapper(items),
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: widget.trailing ?? [const SizedBox.shrink()],
+                      ),
+                    ],
+                  )
                 ],
               ),
             ),

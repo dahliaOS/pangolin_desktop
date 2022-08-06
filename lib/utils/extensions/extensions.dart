@@ -17,13 +17,14 @@ limitations under the License.
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/services/langpacks.dart';
-import 'package:pangolin/utils/data/common_data.dart';
+import 'package:pangolin/utils/data/constants.dart';
+import 'package:pangolin/utils/other/resource_pointer.dart';
+import 'package:pangolin/utils/providers/locale_provider.dart';
 import 'package:xdg_desktop/xdg_desktop.dart';
 import 'package:yatl_flutter/yatl_flutter.dart';
 
 export 'package:flutter/material.dart';
 export 'package:pangolin/utils/extensions/extensions.dart';
-export 'package:pangolin/utils/extensions/preference_extension.dart';
 export 'package:pangolin/utils/icons/icons_x.dart';
 
 extension ThemeDataX on ThemeData {
@@ -50,8 +51,6 @@ extension ColorsX on Color {
 
 extension BuildContextX on BuildContext {
   ThemeData get theme => Theme.of(this);
-
-  CommonData get commonData => CommonData.of(this);
 
   MediaQueryData get mediaQuery => MediaQuery.of(this);
   Size get mSize => mediaQuery.size;
@@ -89,13 +88,6 @@ extension BuildContextX on BuildContext {
   FocusScopeNode get focusScope => FocusScope.of(this);
 
   OverlayState? get overlay => Overlay.of(this);
-}
-
-extension CommonDataX on CommonData {
-  BorderRadius get borderRadiusSmall => borderRadius(BorderRadiusType.small);
-  BorderRadius get borderRadiusMedium => borderRadius(BorderRadiusType.medium);
-  BorderRadius get borderRadiusBig => borderRadius(BorderRadiusType.big);
-  BorderRadius get borderRadiusRound => borderRadius(BorderRadiusType.round);
 }
 
 mixin ThemeConstants {
@@ -147,5 +139,50 @@ extension DesktopEntryLocalizer on DesktopEntry {
             locale.toIntlLocale(),
           )
         : genericName?.resolve(locale);
+  }
+}
+
+extension ResourcePointerUtils on String {
+  Resource toResource() {
+    return Resource.parse(this);
+  }
+
+  Color? toColor() {
+    final Resource resource;
+
+    try {
+      resource = toResource();
+    } catch (e) {
+      return null;
+    }
+
+    if (resource is! ColorResource) return null;
+
+    return resource.resolve();
+  }
+}
+
+extension BuiltinColorLabel on BuiltinColor {
+  String get label {
+    switch (this) {
+      case BuiltinColor.red:
+        return strings.settings.pagesCustomizationThemeColorRed;
+      case BuiltinColor.orange:
+        return strings.settings.pagesCustomizationThemeColorOrange;
+      case BuiltinColor.yellow:
+        return strings.settings.pagesCustomizationThemeColorGold;
+      case BuiltinColor.green:
+        return strings.settings.pagesCustomizationThemeColorGreen;
+      case BuiltinColor.teal:
+        return strings.settings.pagesCustomizationThemeColorTeal;
+      case BuiltinColor.blue:
+        return strings.settings.pagesCustomizationThemeColorBlue;
+      case BuiltinColor.purple:
+        return strings.settings.pagesCustomizationThemeColorPruple;
+      case BuiltinColor.cyan:
+        return strings.settings.pagesCustomizationThemeColorAqua;
+      case BuiltinColor.grey:
+        return strings.settings.pagesCustomizationThemeColorAnthracite;
+    }
   }
 }

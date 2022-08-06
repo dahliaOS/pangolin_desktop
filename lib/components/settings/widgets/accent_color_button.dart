@@ -14,32 +14,32 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:pangolin/components/settings/models/settings_accent_data_model.dart';
-import 'package:pangolin/utils/data/common_data.dart';
+import 'package:pangolin/services/customization.dart';
+import 'package:pangolin/utils/data/constants.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
-import 'package:pangolin/utils/providers/customization_provider.dart';
+import 'package:pangolin/utils/other/resource_pointer.dart';
+import 'package:pangolin/widgets/services.dart';
 
-class AccentColorButton extends StatefulWidget {
-  final AccentColorDataModel model;
-  const AccentColorButton({Key? key, required this.model}) : super(key: key);
+class AccentColorButton extends StatelessWidget
+    with StatelessServiceListener<CustomizationService> {
+  final BuiltinColor color;
+
+  const AccentColorButton({
+    super.key,
+    required this.color,
+  });
 
   @override
-  State<AccentColorButton> createState() => _AccentColorButtonState();
-}
+  Widget buildChild(BuildContext context, CustomizationService service) {
+    final bool selected = service.accentColor == color.resource;
 
-class _AccentColorButtonState extends State<AccentColorButton> {
-  @override
-  Widget build(BuildContext context) {
-    final _customizationProvider = CustomizationProvider.of(context);
     return Tooltip(
-      message: widget.model.label,
+      message: color.label,
       child: InkWell(
-        borderRadius:
-            CommonData.of(context).borderRadius(BorderRadiusType.small),
+        customBorder: Constants.smallShape,
         mouseCursor: SystemMouseCursors.click,
         onTap: () {
-          _customizationProvider.accentColor = widget.model.color.value;
-          setState(() {});
+          service.accentColor = color.resource;
         },
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -47,17 +47,11 @@ class _AccentColorButtonState extends State<AccentColorButton> {
             children: [
               Center(
                 child: Container(
-                  height: _customizationProvider.accentColor ==
-                          widget.model.color.value
-                      ? 64
-                      : 48,
-                  width: _customizationProvider.accentColor ==
-                          widget.model.color.value
-                      ? 64
-                      : 48,
+                  height: selected ? 64 : 48,
+                  width: selected ? 64 : 48,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
-                    color: Color(widget.model.color.value),
+                    color: color.value,
                   ),
                 ),
               ),

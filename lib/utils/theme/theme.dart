@@ -15,22 +15,24 @@ limitations under the License.
 */
 
 import 'package:animations/animations.dart';
+import 'package:pangolin/services/customization.dart';
+import 'package:pangolin/utils/data/constants.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
-import 'package:pangolin/utils/providers/customization_provider.dart';
 
 ThemeData theme(BuildContext context) {
-  final _customizationProvider = CustomizationProvider.of(context);
+  final CustomizationService customization = CustomizationService.current;
 
-  final bool darkMode = _customizationProvider.darkMode;
+  final bool darkMode = customization.darkMode;
 
-  final Color accentColor = Color(_customizationProvider.accentColor);
+  final Color accentColor =
+      customization.accentColor.resolve() ?? BuiltinColor.orange.value;
   final Color foregroundColor = context.theme.foregroundColor;
   final Color backgroundColor = darkMode ? Colors.black : Colors.white;
   final Color surfaceForegroundColor = darkMode ? Colors.white : Colors.black;
   final Color surfaceColor = Color(darkMode ? 0xff1E1E1E : 0xffffffff);
   final Color cardColor = Color(darkMode ? 0xFF2c2c2c : 0xFFEBEBEB);
 
-  final String fontFamily = _customizationProvider.fontFamily;
+  final String fontFamily = customization.fontFamily;
 
   final Brightness brightness = darkMode ? Brightness.dark : Brightness.light;
 

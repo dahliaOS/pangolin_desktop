@@ -13,7 +13,7 @@ limitations under the License.
 
 import 'package:flutter/material.dart';
 import 'package:pangolin/utils/context_menus/context_menu_item.dart';
-import 'package:pangolin/utils/data/common_data.dart';
+import 'package:pangolin/utils/data/constants.dart';
 import 'package:pangolin/widgets/global/box/box_container.dart';
 
 class ContextMenu extends StatefulWidget {
@@ -29,7 +29,7 @@ class _ContextMenuState extends State<ContextMenu> {
   @override
   Widget build(BuildContext context) {
     return BoxSurface(
-      borderRadius: CommonData.of(context).borderRadius(BorderRadiusType.small),
+      shape: Constants.smallShape,
       child: SingleChildScrollView(
         child: SizedBox(
           child: Column(

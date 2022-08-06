@@ -60,3 +60,52 @@ class _ServiceBuilderWidgetState extends State<ServiceBuilderWidget> {
     return widget.builder(context, started, widget.child);
   }
 }
+
+class ListenableServiceBuilder<T extends ListenableService<T>>
+    extends StatelessWidget {
+  final TransitionBuilder builder;
+  final Widget? child;
+
+  const ListenableServiceBuilder({
+    required this.builder,
+    this.child,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: ServiceManager.getService<T>()!,
+      builder: builder,
+      child: child,
+    );
+  }
+}
+
+mixin StatelessServiceListener<S extends ListenableService<S>>
+    on StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final S service = ServiceManager.getService<S>()!;
+
+    return ListenableServiceBuilder<S>(
+      builder: (context, _) => buildChild(context, service),
+    );
+  }
+
+  Widget buildChild(BuildContext context, S service);
+}
+
+mixin StateServiceListener<S extends ListenableService<S>,
+    T extends StatefulWidget> on State<T> {
+  @override
+  Widget build(BuildContext context) {
+    final S service = ServiceManager.getService<S>()!;
+
+    return ListenableServiceBuilder<S>(
+      builder: (context, _) => buildChild(context, service),
+    );
+  }
+
+  Widget buildChild(BuildContext context, S service);
+}

@@ -14,15 +14,15 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:pangolin/components/overlays/launcher/widgets/app_launcher_button.dart';
+import 'package:collection/collection.dart';
+import 'package:pangolin/components/overlays/launcher/app_launcher.dart';
 import 'package:pangolin/components/overlays/search/search_overlay.dart';
 import 'package:pangolin/components/overlays/search/widgets/searchbar.dart';
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/services/application.dart';
 import 'package:pangolin/utils/action_manager/action_manager.dart';
-import 'package:pangolin/utils/data/common_data.dart';
+import 'package:pangolin/utils/data/constants.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
-import 'package:pangolin/utils/providers/customization_provider.dart';
 import 'package:pangolin/utils/providers/locale_provider.dart';
 import 'package:pangolin/utils/providers/search_provider.dart';
 import 'package:pangolin/utils/wm/wm_api.dart';
@@ -49,7 +49,7 @@ class _LauncherOverlayState extends State<LauncherOverlay>
     super.initState();
     ac = AnimationController(
       vsync: this,
-      duration: CommonData.of(context).animationDuration(),
+      duration: Constants.animationDuration,
     );
   }
 
@@ -76,11 +76,10 @@ class _LauncherOverlayState extends State<LauncherOverlay>
   final _focusNode = FocusNode();
   @override
   Widget build(BuildContext context) {
-    final _customizationProvider = CustomizationProvider.of(context);
     final _shell = Shell.of(context);
     final Animation<double> _animation = CurvedAnimation(
       parent: ac,
-      curve: CommonData.of(context).animationCurve(),
+      curve: Constants.animationCurve,
     );
     final _controller = PageController();
 
@@ -89,15 +88,10 @@ class _LauncherOverlayState extends State<LauncherOverlay>
     if (!controller.showing) return const SizedBox();
 
     return Positioned(
-      top: !_customizationProvider.isTaskbarTop ? 0 : 48,
-      bottom: _customizationProvider.isTaskbarTop
-          ? 0
-          : _customizationProvider.isTaskbarLeft ||
-                  _customizationProvider.isTaskbarRight
-              ? 0
-              : 48,
-      left: _customizationProvider.isTaskbarLeft ? 48 : 0,
-      right: _customizationProvider.isTaskbarRight ? 48 : 0,
+      top: 0,
+      bottom: 48,
+      left: 0,
+      right: 0,
       child: GestureDetector(
         behavior: HitTestBehavior.opaque,
         onVerticalDragUpdate: (details) {
@@ -127,9 +121,7 @@ class _LauncherOverlayState extends State<LauncherOverlay>
                 opacity: _animation,
                 child: ScaleTransition(
                   scale: _animation,
-                  alignment: _customizationProvider.taskbarPosition != 0
-                      ? FractionalOffset.bottomCenter
-                      : FractionalOffset.topCenter,
+                  alignment: FractionalOffset.bottomCenter,
                   child: Stack(
                     children: [
                       Positioned(
@@ -242,77 +234,54 @@ class _LauncherCategoriesState extends State<LauncherCategories> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Transform.scale(
-          scale: 1.0,
-          child: Container(
-            margin: const EdgeInsets.only(top: 33 + (1 / 3), bottom: 8),
-            child: BoxContainer(
-              borderRadius:
-                  CommonData.of(context).borderRadius(BorderRadiusType.round),
-              // have to give explicit size, as the child ListView can't calculate its Y height
-              height: 42,
-              child: ListView.builder(
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                itemCount: launcherCategories.length,
-                itemBuilder: (context, index) {
-                  return Material(
-                    borderRadius: CommonData.of(context)
-                        .borderRadius(BorderRadiusType.round),
-                    color: _selected == index
-                        ? Theme.of(context).colorScheme.secondary
-                        : Colors.transparent,
-                    child: InkWell(
-                      borderRadius: CommonData.of(context)
-                          .borderRadius(BorderRadiusType.round),
-                      onTap: () {
-                        setState(() {
-                          _selected = index;
-                        });
-                        widget.controller?.animateToPage(
-                          index,
-                          duration: const Duration(milliseconds: 300),
-                          curve: Curves.easeInOut,
-                        );
-                      },
-                      mouseCursor: SystemMouseCursors.click,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 8.0,
-                          horizontal: 18,
-                        ),
-                        child: Center(
-                          child: Text(
-                            launcherCategories[index],
-                            style: TextStyle(
-                              fontWeight: _selected == index
-                                  ? FontWeight.bold
-                                  : FontWeight.normal,
-                              color: _selected == index
-                                  ? context.theme.colorScheme.secondary
-                                              .computeLuminance() <
-                                          0.4
-                                      ? !context.theme.darkMode
-                                          ? CommonData.of(context)
-                                              .textColorAlt()
-                                          : CommonData.of(context).textColor()
-                                      : CommonData.of(context).textColor()
-                                  : CommonData.of(context).textColor(),
-                            ),
-                          ),
+    return Padding(
+      padding: const EdgeInsets.only(top: 33 + (1 / 3), bottom: 8),
+      child: IntrinsicWidth(
+        child: BoxContainer(
+          shape: Constants.circularShape,
+          // have to give explicit size, as the child ListView can't calculate its Y height
+          height: 42,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: launcherCategories.mapIndexed((index, item) {
+              return Material(
+                shape: Constants.circularShape,
+                clipBehavior: Clip.antiAlias,
+                color: _selected == index
+                    ? Theme.of(context).colorScheme.secondary
+                    : Colors.transparent,
+                child: InkWell(
+                  onTap: () {
+                    setState(() => _selected = index);
+                    widget.controller?.animateToPage(
+                      index,
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.easeInOut,
+                    );
+                  },
+                  mouseCursor: SystemMouseCursors.click,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 8.0,
+                      horizontal: 18,
+                    ),
+                    child: Center(
+                      child: Text(
+                        item,
+                        style: TextStyle(
+                          fontWeight: _selected == index
+                              ? FontWeight.bold
+                              : FontWeight.normal,
                         ),
                       ),
                     ),
-                  );
-                },
-              ),
-            ),
+                  ),
+                ),
+              );
+            }).toList(),
           ),
         ),
-      ],
+      ),
     );
   }
 }
@@ -439,8 +408,7 @@ class _LauncherActionMenuState extends State<LauncherActionMenu> {
         width: 28 * 3 + 16 * 4,
         height: 32 + 16,
         child: BoxContainer(
-          borderRadius:
-              CommonData.of(context).borderRadius(BorderRadiusType.medium),
+          shape: Constants.mediumShape,
           child: Material(
             color: Colors.transparent,
             child: Row(
@@ -486,8 +454,7 @@ class _LauncherActionMenuState extends State<LauncherActionMenu> {
           message: title,
           verticalOffset: -64,
           child: InkWell(
-            borderRadius:
-                CommonData.of(context).borderRadius(BorderRadiusType.medium),
+            customBorder: Constants.mediumShape,
             onTap: onPressed,
             mouseCursor: SystemMouseCursors.click,
             child: Icon(

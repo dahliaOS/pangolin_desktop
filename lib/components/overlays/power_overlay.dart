@@ -18,7 +18,7 @@ import 'dart:async';
 
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/utils/action_manager/action_manager.dart';
-import 'package:pangolin/utils/data/common_data.dart';
+import 'package:pangolin/utils/data/constants.dart';
 import 'package:pangolin/utils/data/globals.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/locale_provider.dart';
@@ -42,7 +42,7 @@ class _PowerOverlayState extends State<PowerOverlay>
     super.initState();
     ac = AnimationController(
       vsync: this,
-      duration: CommonData.of(context).animationDuration(),
+      duration: Constants.animationDuration,
     );
     ac.forward();
   }
@@ -71,7 +71,7 @@ class _PowerOverlayState extends State<PowerOverlay>
 
     final Animation<double> _animation = CurvedAnimation(
       parent: ac,
-      curve: CommonData.of(context).animationCurve(),
+      curve: Constants.animationCurve,
     );
 
     return Stack(
@@ -98,8 +98,7 @@ class _PowerOverlayState extends State<PowerOverlay>
                   color: Colors.transparent,
                   child: BoxSurface(
                     dropShadow: true,
-                    borderRadius: CommonData.of(context)
-                        .borderRadius(BorderRadiusType.big),
+                    shape: Constants.bigShape,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -176,7 +175,7 @@ class _PowerOverlayState extends State<PowerOverlay>
         width: 280,
         child: Material(
           clipBehavior: Clip.antiAlias,
-          borderRadius: context.commonData.borderRadiusSmall,
+          shape: Constants.smallShape,
           color: context.theme.accent,
           child: InkWell(
             onTap: onPressed,

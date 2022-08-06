@@ -11,8 +11,8 @@ import 'package:path/path.dart' as p;
 import 'package:xdg_desktop/xdg_desktop.dart';
 import 'package:xdg_directories/xdg_directories.dart' as xdg;
 
-abstract class ApplicationService extends Service<ApplicationService>
-    with ChangeNotifier, LoggerProvider {
+abstract class ApplicationService extends ListenableService<ApplicationService>
+    with LoggerProvider {
   ApplicationService();
 
   static ApplicationService get current {
@@ -156,7 +156,7 @@ class _BuiltInApplicationService extends ApplicationService {
       final DesktopEntry entry = DesktopEntry(
         type: DesktopEntryType.application,
         name: LocalizedString(app.name),
-        icon: LocalizedString("asset://assets/icons/${app.iconName}.png"),
+        icon: LocalizedString("image:dahlia#icons/${app.iconName}.png"),
         exec: exec,
         categories: app.category != null ? [app.category!.name] : null,
       );

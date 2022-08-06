@@ -14,18 +14,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:pangolin/components/settings/models/settings_accent_data_model.dart';
 import 'package:pangolin/components/settings/models/settings_taskbar_data_model.dart';
 import 'package:pangolin/components/settings/models/settings_theme_data_model.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
-import 'package:pangolin/utils/providers/locale_provider.dart';
 
 class SettingsPresets {
   const SettingsPresets._();
-
-  //List with presets for the system accent colors
-  static List<AccentColorDataModel> get accentColorPresets =>
-      getAccentColorPresets();
 
   //List with presets for the system theme modes
   //TODO add automatic option based on time / sunrise-sunset
@@ -65,51 +59,6 @@ class SettingsPresets {
         const TaskbarAlignmentModelData(
           label: "Center",
           centered: true,
-        ),
-      ],
-      growable: false,
-    );
-  }
-
-  static List<AccentColorDataModel> getAccentColorPresets() {
-//load the data for the accent color presets
-    return List.from(
-      [
-        AccentColorDataModel(
-          const Color(0xFFFF5722),
-          strings.settings.pagesCustomizationThemeColorOrange,
-        ),
-        AccentColorDataModel(
-          const Color(0xFFD32F2F),
-          strings.settings.pagesCustomizationThemeColorRed,
-        ),
-        AccentColorDataModel(
-          const Color(0xFF078D48),
-          strings.settings.pagesCustomizationThemeColorGreen,
-        ),
-        AccentColorDataModel(
-          const Color(0xFF0067C0),
-          strings.settings.pagesCustomizationThemeColorBlue,
-        ),
-        AccentColorDataModel(
-          const Color(0xFF00594F),
-          strings.settings.pagesCustomizationThemeColorTeal,
-        ),
-        AccentColorDataModel(
-          const Color(0xFF6200EE),
-          strings.settings.pagesCustomizationThemeColorPruple,
-        ),
-        AccentColorDataModel(
-          const Color(0xFF00BCD4),
-          strings.settings.pagesCustomizationThemeColorAqua,
-        ),
-        AccentColorDataModel(
-          const Color(0xFFFFC107),
-          strings.settings.pagesCustomizationThemeColorGold,
-        ),
-        AccentColorDataModel(
-          const Color(0xFF455a64),
-          strings.settings.pagesCustomizationThemeColorAnthracite,
         ),
       ],
       growable: false,

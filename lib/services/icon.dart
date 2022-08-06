@@ -3,19 +3,18 @@ import 'dart:io';
 
 import 'package:collection/collection.dart';
 import 'package:dbus/dbus.dart';
-import 'package:flutter/foundation.dart';
 import 'package:gsettings/gsettings.dart';
 import 'package:pangolin/services/service.dart';
 import 'package:pangolin/utils/other/benchmark.dart';
 import 'package:pangolin/utils/other/log.dart';
-import 'package:pangolin/widgets/global/icon/cache.dart';
+import 'package:pangolin/widgets/global/resource/icon/cache.dart';
 import 'package:path/path.dart' as p;
 import 'package:xdg_desktop/xdg_desktop.dart';
 import 'package:xdg_directories/xdg_directories.dart' as xdg;
 
 typedef _IconCache = Map<String, _CachedIconSet>;
 
-abstract class IconService extends Service<IconService> with ChangeNotifier {
+abstract class IconService extends ListenableService<IconService> {
   IconService();
 
   static IconService get current {

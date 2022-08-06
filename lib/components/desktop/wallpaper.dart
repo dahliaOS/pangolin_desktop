@@ -14,33 +14,37 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:pangolin/components/desktop/wallpaper_picker.dart';
 import 'package:pangolin/components/shell/desktop.dart';
+import 'package:pangolin/services/customization.dart';
 import 'package:pangolin/utils/context_menus/context_menu.dart';
 import 'package:pangolin/utils/context_menus/context_menu_item.dart';
 import 'package:pangolin/utils/context_menus/core/context_menu_region.dart';
 import 'package:pangolin/utils/data/globals.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
-import 'package:pangolin/utils/providers/customization_provider.dart';
 import 'package:pangolin/utils/wm/wm_api.dart';
+import 'package:pangolin/widgets/global/resource/image/image.dart';
+import 'package:pangolin/widgets/services.dart';
 import 'package:provider/provider.dart';
 
-class WallpaperLayer extends StatelessWidget {
-  const WallpaperLayer({Key? key}) : super(key: key);
+class WallpaperLayer extends StatelessWidget
+    with StatelessServiceListener<CustomizationService> {
+  const WallpaperLayer({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    // fetch image from properties
-    final String image = CustomizationProvider.of(context).wallpaper;
-
+  Widget buildChild(BuildContext context, CustomizationService service) {
     //get Bing Wallpaper of the Day data
     getBingWallpaper();
-    //return const SizedBox();
+
     return SizedBox.expand(
       child: ChangeNotifierProvider.value(
         value: Desktop.wmController,
-        child: _WallpaperContextMenu(child: wallpaperImage(image)),
+        child: _WallpaperContextMenu(
+          child: ResourceImage(
+            resource: service.wallpaper,
+            fit: BoxFit.cover,
+          ),
+        ),
       ),
     );
   }
@@ -85,25 +89,6 @@ class _WallpaperContextMenu extends StatelessWidget {
         ],
       ),
       child: _child,
-    );
-  }
-}
-
-Widget wallpaperImage(String source) {
-  if (source.startsWith("http")) {
-    return CachedNetworkImage(
-      imageUrl: source,
-      fit: BoxFit.cover,
-      cacheKey: source,
-      useOldImageOnUrlChange: true,
-      fadeInDuration: const Duration(milliseconds: 1000),
-      fadeInCurve: Curves.easeInOut,
-      fadeOutCurve: Curves.easeInOut,
-    );
-  } else {
-    return Image.asset(
-      source,
-      fit: BoxFit.cover,
     );
   }
 }

@@ -21,10 +21,11 @@ import 'package:pangolin/components/settings/widgets/settings_content_header.dar
 import 'package:pangolin/components/settings/widgets/settings_page.dart';
 import 'package:pangolin/components/settings/widgets/taskbar_alignment_button.dart';
 import 'package:pangolin/components/settings/widgets/theme_mode_button.dart';
-import 'package:pangolin/services/preferences.dart';
+import 'package:pangolin/services/customization.dart';
+import 'package:pangolin/utils/data/constants.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
-import 'package:pangolin/utils/providers/customization_provider.dart';
 import 'package:pangolin/utils/providers/locale_provider.dart';
+import 'package:pangolin/widgets/services.dart';
 
 class SettingsPageCustomization extends StatefulWidget {
   const SettingsPageCustomization({Key? key}) : super(key: key);
@@ -34,10 +35,10 @@ class SettingsPageCustomization extends StatefulWidget {
       _SettingsPageCustomizationState();
 }
 
-class _SettingsPageCustomizationState extends State<SettingsPageCustomization> {
+class _SettingsPageCustomizationState extends State<SettingsPageCustomization>
+    with StateServiceListener<CustomizationService, SettingsPageCustomization> {
   @override
-  Widget build(BuildContext context) {
-    final _provider = CustomizationProvider.of(context);
+  Widget buildChild(BuildContext context, CustomizationService service) {
     return SettingsPage(
       title: strings.settings.pagesCustomizationTitle,
       cards: [
@@ -62,8 +63,8 @@ class _SettingsPageCustomizationState extends State<SettingsPageCustomization> {
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: SettingsPresets.accentColorPresets
-                      .map((e) => AccentColorButton(model: e))
+                  children: BuiltinColor.values
+                      .map((e) => AccentColorButton(color: e))
                       .toList(),
                 ),
               ),
@@ -86,73 +87,6 @@ class _SettingsPageCustomizationState extends State<SettingsPageCustomization> {
                       .toList(),
                 ),
               ),
-            ),
-          ],
-        ),
-        SettingsContentHeader(strings.settings.pagesCustomizationWindowOptions),
-        SettingsCard(
-          children: [
-            ListTile(
-              title: Text(
-                strings.settings
-                    .pagesCustomizationWindowOptionsBorderRadiusTitle(
-                  PreferencesService.current.get("windowBorderRadius")!,
-                ),
-              ),
-              subtitle: Text(
-                strings.settings
-                    .pagesCustomizationWindowOptionsBorderRadiusSubtitle,
-              ),
-              trailing: Builder(
-                builder: (context) {
-                  final double value = PreferencesService.current
-                      .get<double>("windowBorderRadius")!;
-                  return SizedBox(
-                    width: 256,
-                    child: Slider(
-                      divisions: 4,
-                      min: 8.0,
-                      max: 24.0,
-                      onChanged: (double val) {
-                        PreferencesService.current
-                            .set("windowBorderRadius", val);
-                      },
-                      value: value,
-                    ),
-                  );
-                },
-              ),
-            ),
-            SwitchListTile(
-              title: Text(
-                strings.settings
-                    .pagesCustomizationWindowOptionsColoredTitlebarsTitle,
-              ),
-              subtitle: Text(
-                strings.settings
-                    .pagesCustomizationWindowOptionsColoredTitlebarsSubtitle,
-              ),
-              value: _provider.coloredTitlebars,
-              onChanged: (value) {
-                _provider.coloredTitlebars = value;
-              },
-            ),
-            //TODO add translation
-            SwitchListTile(
-              title: Text(
-                strings.settings
-                    .pagesCustomizationWindowOptionsTransparentColoredTitlebarsTitle,
-              ),
-              subtitle: Text(
-                strings.settings
-                    .pagesCustomizationWindowOptionsTransparentColoredTitlebarsSubtitle,
-              ),
-              value: _provider.transparentColoredTitlebars,
-              onChanged: _provider.coloredTitlebars
-                  ? (value) {
-                      _provider.transparentColoredTitlebars = value;
-                    }
-                  : null,
             ),
           ],
         ),

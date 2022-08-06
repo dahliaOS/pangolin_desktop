@@ -15,7 +15,7 @@ limitations under the License.
 */
 
 import 'package:pangolin/components/shell/shell.dart';
-import 'package:pangolin/utils/data/common_data.dart';
+import 'package:pangolin/utils/data/constants.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 
 class TaskbarElement extends StatefulWidget {
@@ -44,8 +44,6 @@ class _TaskbarElementState extends State<TaskbarElement> {
     final _accentColor = _theme.colorScheme.secondary;
     final _shell = Shell.of(context);
     final _darkMode = _theme.brightness == Brightness.dark;
-    final _borderRadius =
-        CommonData.of(context).borderRadius(BorderRadiusType.small);
 
     return SizedBox.fromSize(
       size: widget.size ?? const Size(48, 48),
@@ -59,8 +57,10 @@ class _TaskbarElementState extends State<TaskbarElement> {
           onExit: (state) => setState(() => _hover = false),
           child: Padding(
             padding: const EdgeInsets.all(4.0),
-            child: ClipRRect(
-              borderRadius: _borderRadius,
+            child: Material(
+              type: MaterialType.transparency,
+              shape: Constants.smallShape,
+              clipBehavior: Clip.antiAlias,
               child: ValueListenableBuilder<bool>(
                 valueListenable: widget.overlayID != null
                     ? _shell.getShowingNotifier(widget.overlayID!)
@@ -78,7 +78,8 @@ class _TaskbarElementState extends State<TaskbarElement> {
                       size: widget.iconSize ?? 20,
                     ),
                     child: Material(
-                      borderRadius: _borderRadius,
+                      shape: Constants.smallShape,
+                      clipBehavior: Clip.antiAlias,
                       color: _hover
                           ? context.theme.hoverColor
                           : Colors.transparent,

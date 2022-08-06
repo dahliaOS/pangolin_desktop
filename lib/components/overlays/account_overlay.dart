@@ -18,7 +18,7 @@ import 'dart:async';
 
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/utils/action_manager/action_manager.dart';
-import 'package:pangolin/utils/data/common_data.dart';
+import 'package:pangolin/utils/data/constants.dart';
 import 'package:pangolin/utils/data/globals.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/widgets/global/box/box_container.dart';
@@ -41,7 +41,7 @@ class _AccountOverlayState extends State<AccountOverlay>
     super.initState();
     ac = AnimationController(
       vsync: this,
-      duration: CommonData.of(context).animationDuration(),
+      duration: Constants.animationDuration,
     );
     ac.forward();
   }
@@ -70,7 +70,7 @@ class _AccountOverlayState extends State<AccountOverlay>
 
     final Animation<double> _animation = CurvedAnimation(
       parent: ac,
-      curve: CommonData.of(context).animationCurve(),
+      curve: Constants.animationCurve,
     );
 
     return Stack(
@@ -97,8 +97,7 @@ class _AccountOverlayState extends State<AccountOverlay>
                   color: Colors.transparent,
                   child: BoxSurface(
                     dropShadow: true,
-                    borderRadius: CommonData.of(context)
-                        .borderRadius(BorderRadiusType.big),
+                    shape: Constants.bigShape,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -175,8 +174,8 @@ class _AccountOverlayState extends State<AccountOverlay>
         height: 48,
         width: 280,
         child: Material(
+          shape: Constants.smallShape,
           clipBehavior: Clip.antiAlias,
-          borderRadius: context.commonData.borderRadiusSmall,
           color: context.theme.accent,
           child: InkWell(
             onTap: onPressed,

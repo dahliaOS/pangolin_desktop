@@ -24,10 +24,9 @@ import 'package:pangolin/components/overlays/power_overlay.dart';
 import 'package:pangolin/components/overlays/quick_settings/quick_settings_overlay.dart';
 import 'package:pangolin/components/overlays/search/search_overlay.dart';
 import 'package:pangolin/components/shell/shell.dart';
-import 'package:pangolin/services/preferences.dart';
+import 'package:pangolin/services/customization.dart';
 import 'package:pangolin/utils/data/app_list.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
-import 'package:pangolin/utils/providers/customization_provider.dart';
 import 'package:pangolin/utils/wm/layout.dart';
 import 'package:pangolin/utils/wm/wm.dart';
 
@@ -79,7 +78,7 @@ class _DesktopState extends State<Desktop> {
       // ignore: avoid_print
       print("Initilized Desktop Shell");
 
-      if (PreferencesService.current.get("initialStart")!) {
+      if (CustomizationService.current.showWelcomeScreen) {
         showDialog(
           barrierColor: Colors.transparent,
           context: context,
@@ -97,13 +96,7 @@ class _DesktopState extends State<Desktop> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    final _customizationProvider = CustomizationProvider.of(context);
-    Desktop.wmController.wmInsets = EdgeInsets.only(
-      left: _customizationProvider.isTaskbarLeft ? 48 : 0,
-      top: _customizationProvider.isTaskbarTop ? 48 : 0,
-      right: _customizationProvider.isTaskbarRight ? 48 : 0,
-      bottom: _customizationProvider.isTaskbarBottom ? 48 : 0,
-    );
+    Desktop.wmController.wmInsets = const EdgeInsets.only(bottom: 48);
   }
 
   @override

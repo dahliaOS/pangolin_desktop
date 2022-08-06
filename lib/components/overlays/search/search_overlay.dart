@@ -18,7 +18,7 @@ import 'package:pangolin/components/overlays/search/widgets/search_tile.dart';
 import 'package:pangolin/components/overlays/search/widgets/searchbar.dart';
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/services/search.dart';
-import 'package:pangolin/utils/data/common_data.dart';
+import 'package:pangolin/utils/data/constants.dart';
 import 'package:pangolin/utils/data/globals.dart';
 import 'package:pangolin/utils/data/models/application.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
@@ -47,7 +47,7 @@ class _SearchOverlayState extends State<SearchOverlay>
     super.initState();
     ac = AnimationController(
       vsync: this,
-      duration: CommonData.of(context).animationDuration(),
+      duration: Constants.animationDuration,
     );
     ac.forward();
   }
@@ -75,7 +75,7 @@ class _SearchOverlayState extends State<SearchOverlay>
   Widget build(BuildContext context) {
     final Animation<double> _animation = CurvedAnimation(
       parent: ac,
-      curve: CommonData.of(context).animationCurve(),
+      curve: Constants.animationCurve,
     );
     final _searchProvider = SearchProvider.of(context);
     _focusNode.requestFocus();
@@ -95,10 +95,9 @@ class _SearchOverlayState extends State<SearchOverlay>
             alignment: FractionalOffset.bottomCenter,
             child: BoxSurface(
               dropShadow: true,
-              borderRadius:
-                  CommonData.of(context).borderRadius(BorderRadiusType.big),
               width: 500,
               height: 324,
+              shape: Constants.bigShape,
               child: Column(
                 children: [
                   Container(
@@ -107,8 +106,6 @@ class _SearchOverlayState extends State<SearchOverlay>
                     height: 48 + 10,
                     child: Searchbar(
                       color: Theme.of(context).backgroundColor.withOpacity(0.2),
-                      borderRadius: CommonData.of(context)
-                          .borderRadius(BorderRadiusType.medium),
                       focusNode: _focusNode,
                       controller: _controller,
                       hint: strings.searchOverlay.hint,
@@ -141,10 +138,9 @@ class _SearchOverlayState extends State<SearchOverlay>
                                   ),
                                   child: Text(
                                     strings.searchOverlay.results,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontSize: 17,
                                       fontWeight: FontWeight.w600,
-                                      color: CommonData.of(context).textColor(),
                                     ),
                                   ),
                                 ),
@@ -175,10 +171,9 @@ class _SearchOverlayState extends State<SearchOverlay>
                                   ),
                                   child: Text(
                                     strings.searchOverlay.recent,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontSize: 17,
                                       fontWeight: FontWeight.w600,
-                                      color: CommonData.of(context).textColor(),
                                     ),
                                   ),
                                 ),

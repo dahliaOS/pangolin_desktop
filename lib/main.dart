@@ -22,6 +22,7 @@ import "package:intl/locale.dart" as intl;
 import 'package:logging/logging.dart';
 import 'package:pangolin/components/shell/desktop.dart';
 import 'package:pangolin/services/application.dart';
+import 'package:pangolin/services/customization.dart';
 import 'package:pangolin/services/icon.dart';
 import 'package:pangolin/services/langpacks.dart';
 import 'package:pangolin/services/preferences.dart';
@@ -32,14 +33,13 @@ import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/other/date_time_manager.dart';
 import 'package:pangolin/utils/providers/clock_provider.dart';
 import 'package:pangolin/utils/providers/connection_provider.dart';
-import 'package:pangolin/utils/providers/customization_provider.dart';
 import 'package:pangolin/utils/providers/icon_provider.dart';
 import 'package:pangolin/utils/providers/io_provider.dart';
 import 'package:pangolin/utils/providers/locale_provider.dart';
 import 'package:pangolin/utils/providers/misc_provider.dart';
 import 'package:pangolin/utils/providers/search_provider.dart';
 import 'package:pangolin/utils/theme/theme.dart';
-import 'package:pangolin/widgets/service_builder.dart';
+import 'package:pangolin/widgets/services.dart';
 import 'package:provider/provider.dart';
 import 'package:yatl_flutter/yatl_flutter.dart';
 
@@ -91,6 +91,7 @@ Future<void> main() async {
           PreferencesService.build,
           PreferencesService.fallback(),
         ),
+        const ServiceEntry<CustomizationService>(CustomizationService.build),
       ],
       onLoaded: () async {
         //initialize scheduler for time and date
@@ -116,9 +117,6 @@ Future<void> main() async {
               ),
               ChangeNotifierProvider<IOProvider>.value(
                 value: IOProvider(),
-              ),
-              ChangeNotifierProvider<CustomizationProvider>.value(
-                value: CustomizationProvider(),
               ),
               ChangeNotifierProvider<MiscProvider>.value(
                 value: MiscProvider(),
@@ -147,18 +145,23 @@ class Pangolin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: const Desktop(),
-      theme: theme(context),
-      supportedLocales: context.supportedLocales,
-      locale: context.locale,
-      localizationsDelegates: [
-        GlobalWidgetsLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-        context.localizationsDelegate,
-      ],
-      debugShowCheckedModeBanner: false,
+    return ListenableServiceBuilder<CustomizationService>(
+      builder: (context, child) {
+        return MaterialApp(
+          home: child,
+          theme: theme(context),
+          supportedLocales: context.supportedLocales,
+          locale: context.locale,
+          localizationsDelegates: [
+            GlobalWidgetsLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+            context.localizationsDelegate,
+          ],
+          debugShowCheckedModeBanner: false,
+        );
+      },
+      child: const Desktop(),
     );
   }
 }

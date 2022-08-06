@@ -20,7 +20,6 @@ import 'package:pangolin/utils/context_menus/context_menu.dart';
 import 'package:pangolin/utils/context_menus/context_menu_item.dart';
 import 'package:pangolin/utils/context_menus/core/context_menu_region.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
-import 'package:pangolin/utils/providers/customization_provider.dart';
 import 'package:pangolin/utils/wm/wm.dart';
 
 class PangolinWindowToolbar extends StatefulWidget {
@@ -51,18 +50,6 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
     final properties = WindowPropertyRegistry.of(context);
     final layout = LayoutState.of(context);
     final fgColor = !context.theme.darkMode ? Colors.grey[900]! : Colors.white;
-    final _customizationProvider = CustomizationProvider.of(context);
-    Color widgetColor() {
-      if (_customizationProvider.coloredTitlebars) {
-        if (_customizationProvider.transparentColoredTitlebars &&
-            widget.barColor.opacity >= 0.5) {
-          return widget.barColor.op(0.5);
-        } else {
-          return widget.barColor;
-        }
-      }
-      return Colors.transparent;
-    }
 
     return GestureDetector(
       child: ContextMenuRegion(
@@ -126,12 +113,10 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
         child: SizedBox(
           height: 40,
           child: Material(
-            color: widgetColor(),
+            type: MaterialType.transparency,
             child: IconTheme.merge(
               data: IconThemeData(
-                color: _customizationProvider.coloredTitlebars
-                    ? widget.textColor
-                    : fgColor,
+                color: fgColor,
                 size: 20,
               ),
               child: Stack(
@@ -188,9 +173,7 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
                     child: Text(
                       properties.info.title,
                       style: TextStyle(
-                        color: _customizationProvider.coloredTitlebars
-                            ? widget.textColor
-                            : fgColor,
+                        color: fgColor,
                       ),
                       overflow: TextOverflow.ellipsis,
                     ),

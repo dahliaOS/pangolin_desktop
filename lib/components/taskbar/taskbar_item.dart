@@ -14,14 +14,15 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'package:pangolin/services/customization.dart';
 import 'package:pangolin/utils/context_menus/context_menu.dart';
 import 'package:pangolin/utils/context_menus/context_menu_item.dart';
 import 'package:pangolin/utils/context_menus/core/context_menu_region.dart';
 import 'package:pangolin/utils/data/app_list.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
-import 'package:pangolin/utils/providers/customization_provider.dart';
 import 'package:pangolin/utils/wm/wm.dart';
 import 'package:pangolin/utils/wm/wm_api.dart';
+import 'package:pangolin/widgets/services.dart';
 
 class TaskbarItem extends StatefulWidget {
   final String packageName;
@@ -32,7 +33,9 @@ class TaskbarItem extends StatefulWidget {
 }
 
 class _TaskbarItemState extends State<TaskbarItem>
-    with SingleTickerProviderStateMixin {
+    with
+        SingleTickerProviderStateMixin,
+        StateServiceListener<CustomizationService, TaskbarItem> {
   late AnimationController _ac;
   late Animation<double> _anim;
   bool _hovering = false;
@@ -57,7 +60,7 @@ class _TaskbarItemState extends State<TaskbarItem>
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget buildChild(BuildContext context, CustomizationService service) {
     //Selected App
     final _app = applications
         .firstWhere((element) => element.packageName == widget.packageName);
@@ -97,7 +100,6 @@ class _TaskbarItemState extends State<TaskbarItem>
       _ac.animateBack(0);
     }
 
-    final _customizationProvider = CustomizationProvider.of(context);
     //Build Widget
     final Widget finalWidget = LayoutBuilder(
       builder: (context, constraints) => Padding(
@@ -118,12 +120,11 @@ class _TaskbarItemState extends State<TaskbarItem>
                 ),
                 ContextMenuItem(
                   icon: Icons.push_pin_outlined,
-                  title: _customizationProvider.pinnedApps
-                          .contains(_app.packageName)
+                  title: service.pinnedApps.contains(_app.packageName)
                       ? "Unpin from Taskbar"
                       : "Pin to Taskbar",
                   onTap: () {
-                    _customizationProvider.togglePinnedApp(_app.packageName);
+                    //_customizationProvider.togglePinnedApp(_app.packageName);
                   },
                   shortcut: "",
                 ),

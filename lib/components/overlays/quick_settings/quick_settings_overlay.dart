@@ -25,17 +25,18 @@ import 'package:pangolin/components/overlays/quick_settings/widgets/qs_shortcut_
 import 'package:pangolin/components/overlays/quick_settings/widgets/qs_slider.dart';
 import 'package:pangolin/components/overlays/quick_settings/widgets/qs_toggle_button.dart';
 import 'package:pangolin/components/shell/shell.dart';
+import 'package:pangolin/services/customization.dart';
 import 'package:pangolin/utils/action_manager/action_manager.dart';
-import 'package:pangolin/utils/data/common_data.dart';
+import 'package:pangolin/utils/data/constants.dart';
 import 'package:pangolin/utils/data/globals.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/other/date_time_manager.dart';
 import 'package:pangolin/utils/providers/connection_provider.dart';
-import 'package:pangolin/utils/providers/customization_provider.dart';
 import 'package:pangolin/utils/providers/io_provider.dart';
 import 'package:pangolin/utils/providers/locale_provider.dart';
 import 'package:pangolin/widgets/global/box/box_container.dart';
 import 'package:pangolin/widgets/global/quick_button.dart';
+import 'package:pangolin/widgets/services.dart';
 import 'package:yatl_flutter/yatl_flutter.dart';
 
 class QuickSettingsOverlay extends ShellOverlay {
@@ -48,17 +49,14 @@ class QuickSettingsOverlay extends ShellOverlay {
 }
 
 class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
-    with SingleTickerProviderStateMixin, ShellOverlayState {
-  late AnimationController ac;
-
-  @override
-  void initState() {
-    super.initState();
-    ac = AnimationController(
-      vsync: this,
-      duration: CommonData.of(context).animationDuration(),
-    );
-  }
+    with
+        SingleTickerProviderStateMixin,
+        ShellOverlayState,
+        StateServiceListener<CustomizationService, QuickSettingsOverlay> {
+  late final AnimationController ac = AnimationController(
+    vsync: this,
+    duration: Constants.animationDuration,
+  );
 
   @override
   void dispose() {
@@ -79,43 +77,27 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
   }
 
   @override
-  Widget build(BuildContext context) {
-    final _customizationProvider = CustomizationProvider.of(context);
+  Widget buildChild(BuildContext context, CustomizationService service) {
     // _getTime(context);
     final Animation<double> _animation = CurvedAnimation(
       parent: ac,
-      curve: CommonData.of(context).animationCurve(),
+      curve: Constants.animationCurve,
     );
 
     if (!controller.showing) return const SizedBox();
 
     return Positioned(
-      bottom: _customizationProvider.isTaskbarRight ||
-              _customizationProvider.isTaskbarLeft
-          ? 8
-          : !_customizationProvider.isTaskbarTop
-              ? 48 + 8
-              : null,
-      top: _customizationProvider.isTaskbarTop ? 48 + 8 : null,
-      right: _customizationProvider.isTaskbarRight
-          ? 48 + 8
-          : _customizationProvider.isTaskbarLeft
-              ? null
-              : 8,
-      left: _customizationProvider.isTaskbarLeft ? 48 + 8 : null,
+      bottom: 56, // Bottom insets + some padding (8)
+      right: 8,
       child: AnimatedBuilder(
         animation: _animation,
         builder: (context, chilld) => FadeTransition(
           opacity: _animation,
           child: ScaleTransition(
             scale: _animation,
-            alignment: FractionalOffset(
-              0.8,
-              !_customizationProvider.isTaskbarTop ? 1.0 : 0.0,
-            ),
+            alignment: const FractionalOffset(0.8, 1.0),
             child: BoxSurface(
-              borderRadius:
-                  CommonData.of(context).borderRadius(BorderRadiusType.big),
+              shape: Constants.bigShape,
               width: 540,
               height: 474,
               dropShadow: true,
@@ -123,7 +105,7 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
                 padding: const EdgeInsets.all(16.0),
                 child: MaterialApp(
                   routes: {
-                    "/": (context) => const QsMain(),
+                    "/": (context) => QsMain(service: service),
                     "/pages/account": (context) => const QsAccountPage(),
                     "/pages/network": (context) => const QsNetworkPage(),
                     "/pages/theme": (context) => const QsThemePage(),
@@ -144,7 +126,12 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
 }
 
 class QsMain extends StatelessWidget {
-  const QsMain({Key? key}) : super(key: key);
+  final CustomizationService service;
+
+  const QsMain({
+    required this.service,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -201,8 +188,6 @@ class QsMain extends StatelessWidget {
             Builder(
               builder: (context) {
                 final _connectionProvider = ConnectionProvider.of(context);
-                final _customizationProvider =
-                    CustomizationProvider.of(context);
                 return Column(
                   children: [
                     Row(
@@ -307,8 +292,7 @@ class QsMain extends StatelessWidget {
                               .quicksettingsOverlay.quickControlsThemeTitle,
                           icon: Icons.palette_outlined,
                           value: true,
-                          onPressed: () => _customizationProvider.darkMode =
-                              !_customizationProvider.darkMode,
+                          onPressed: () => service.darkMode = !service.darkMode,
                           onMenuPressed: () =>
                               Navigator.pushNamed(context, "/pages/theme"),
                         ),

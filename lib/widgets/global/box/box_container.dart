@@ -20,7 +20,7 @@ import 'package:pangolin/widgets/global/acrylic/acrylic.dart';
 class BoxSurface extends StatelessWidget {
   final EdgeInsetsGeometry? padding;
   final EdgeInsetsGeometry? margin;
-  final BorderRadius borderRadius;
+  final OutlinedBorder shape;
   final Widget? child;
   final double? width;
   final double? height;
@@ -30,7 +30,7 @@ class BoxSurface extends StatelessWidget {
   const BoxSurface({
     Key? key,
     this.child,
-    this.borderRadius = BorderRadius.zero,
+    this.shape = const RoundedRectangleBorder(),
     this.padding,
     this.margin,
     this.width,
@@ -47,10 +47,7 @@ class BoxSurface extends StatelessWidget {
       padding: padding,
       margin: margin,
       decoration: ShapeDecoration(
-        shape: RoundedRectangleBorder(
-          // Set border radius of the surface area
-          borderRadius: borderRadius,
-        ),
+        shape: shape,
         shadows: dropShadow
             ? [
                 BoxShadow(
@@ -64,9 +61,7 @@ class BoxSurface extends StatelessWidget {
       ),
       foregroundDecoration: ShapeDecoration(
         color: Colors.transparent,
-        shape: RoundedRectangleBorder(
-          // Set border radius of the surface area
-          borderRadius: borderRadius,
+        shape: shape.copyWith(
           // Create outline around the surface
           side: outline
               ? BorderSide(
@@ -76,12 +71,10 @@ class BoxSurface extends StatelessWidget {
               : BorderSide.none,
         ),
       ),
-      child: ClipRRect(
-        borderRadius: borderRadius,
-        child: AcrylicLayer(
-          isBackground: true,
-          child: child ?? Container(),
-        ),
+      clipBehavior: Clip.antiAlias,
+      child: AcrylicLayer(
+        isBackground: true,
+        child: child ?? Container(),
       ),
     );
   }
@@ -90,7 +83,7 @@ class BoxSurface extends StatelessWidget {
 class BoxContainer extends StatelessWidget {
   final EdgeInsetsGeometry? padding;
   final EdgeInsetsGeometry? margin;
-  final BorderRadius borderRadius;
+  final OutlinedBorder shape;
   final Widget? child;
   final double? width;
   final double? height;
@@ -100,7 +93,7 @@ class BoxContainer extends StatelessWidget {
   const BoxContainer({
     Key? key,
     this.child,
-    this.borderRadius = BorderRadius.zero,
+    this.shape = const RoundedRectangleBorder(),
     this.padding,
     this.margin,
     this.width,
@@ -117,11 +110,9 @@ class BoxContainer extends StatelessWidget {
       height: height,
       padding: padding,
       margin: margin,
-      foregroundDecoration: ShapeDecoration(
+      decoration: ShapeDecoration(
         color: Colors.transparent,
-        shape: RoundedRectangleBorder(
-          // Set border radius of the surface area
-          borderRadius: borderRadius,
+        shape: shape.copyWith(
           // Create outline around the surface
           side: outline
               ? BorderSide(
@@ -133,14 +124,12 @@ class BoxContainer extends StatelessWidget {
               : BorderSide.none,
         ),
       ),
-      child: ClipRRect(
-        borderRadius: borderRadius,
-        child: AcrylicLayer(
-          opacity: opacity,
-          enableBlur: false,
-          enableNoise: false,
-          child: child ?? Container(),
-        ),
+      clipBehavior: Clip.antiAlias,
+      child: AcrylicLayer(
+        opacity: opacity,
+        enableBlur: false,
+        enableNoise: false,
+        child: child ?? Container(),
       ),
     );
   }

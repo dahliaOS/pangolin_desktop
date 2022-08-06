@@ -15,118 +15,108 @@ limitations under the License.
 */
 
 import 'package:pangolin/components/settings/models/settings_taskbar_data_model.dart';
-import 'package:pangolin/utils/data/common_data.dart';
+import 'package:pangolin/utils/data/constants.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
-import 'package:pangolin/utils/providers/customization_provider.dart';
 
 class TaskbarAlignmentButton extends StatelessWidget {
   final TaskbarAlignmentModelData model;
-  const TaskbarAlignmentButton({Key? key, required this.model})
-      : super(key: key);
+  final bool selected;
+
+  const TaskbarAlignmentButton({
+    super.key,
+    required this.model,
+    this.selected = false,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final _customizationProvider = CustomizationProvider.of(context);
-    final bool isCentered = _customizationProvider.centerTaskbar;
     final bool _isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
-    return ClipRRect(
-      borderRadius: CommonData.of(context).borderRadius(
-        BorderRadiusType.small,
-      ),
-      child: InkWell(
-        borderRadius: CommonData.of(context).borderRadius(
-          BorderRadiusType.small,
+    return InkWell(
+      customBorder: Constants.smallShape,
+      mouseCursor: SystemMouseCursors.click,
+      onTap: () {
+        //_customizationProvider.centerTaskbar = model.centered;
+      },
+      child: Container(
+        clipBehavior: Clip.antiAlias,
+        decoration: BoxDecoration(
+          color: selected ? context.theme.accent : Colors.transparent,
         ),
-        mouseCursor: SystemMouseCursors.click,
-        onTap: () {
-          _customizationProvider.centerTaskbar = model.centered;
-        },
-        child: Container(
-          clipBehavior: Clip.antiAlias,
-          decoration: BoxDecoration(
-            color: isCentered == model.centered
-                ? context.theme.accent
-                : Colors.transparent,
-          ),
-          child: Padding(
-            padding:
-                const EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
-            child: Column(
-              children: [
-                Container(
-                  width: 8 * 64,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    border: borderStyle(isDarkMode: _isDarkMode),
-                    color: Theme.of(context).backgroundColor,
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        Row(
-                          children: [
-                            _taskbarElement(context),
-                            const SizedBox(width: 8),
-                            _taskbarElement(context),
-                            const SizedBox(width: 8),
-                            _taskbarElement(context),
-                            if (!model.centered) ...[
-                              const SizedBox(width: 16),
-                              _taskbarElement(context, shaded: true),
-                              const SizedBox(width: 8),
-                              _taskbarElement(context, shaded: true),
-                              const SizedBox(width: 8),
-                              _taskbarElement(context, shaded: true),
-                              const SizedBox(width: 8),
-                              _taskbarElement(context, shaded: true),
-                              const SizedBox(width: 8),
-                              _taskbarElement(context, shaded: true),
-                            ],
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: model.centered
-                              ? [
-                                  _taskbarElement(context, shaded: true),
-                                  const SizedBox(width: 8),
-                                  _taskbarElement(context, shaded: true),
-                                  const SizedBox(width: 8),
-                                  _taskbarElement(context, shaded: true),
-                                  const SizedBox(width: 8),
-                                  _taskbarElement(context, shaded: true),
-                                  const SizedBox(width: 8),
-                                  _taskbarElement(context, shaded: true),
-                                ]
-                              : [],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            _taskbarElement(context, multiplier: 1.75),
-                            const SizedBox(width: 8),
-                            _taskbarElement(context, multiplier: 1.75),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
+          child: Column(
+            children: [
+              Container(
+                width: 8 * 64,
+                height: 40,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  border: borderStyle(isDarkMode: _isDarkMode),
+                  color: Theme.of(context).backgroundColor,
                 ),
-                const SizedBox(height: 8),
-                Text(
-                  model.label,
-                  style: Theme.of(context).textTheme.subtitle1?.copyWith(
-                        color: isCentered == model.centered
-                            ? context.theme.foregroundColor
-                            : null,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Row(
+                        children: [
+                          _taskbarElement(context),
+                          const SizedBox(width: 8),
+                          _taskbarElement(context),
+                          const SizedBox(width: 8),
+                          _taskbarElement(context),
+                          if (!model.centered) ...[
+                            const SizedBox(width: 16),
+                            _taskbarElement(context, shaded: true),
+                            const SizedBox(width: 8),
+                            _taskbarElement(context, shaded: true),
+                            const SizedBox(width: 8),
+                            _taskbarElement(context, shaded: true),
+                            const SizedBox(width: 8),
+                            _taskbarElement(context, shaded: true),
+                            const SizedBox(width: 8),
+                            _taskbarElement(context, shaded: true),
+                          ],
+                        ],
                       ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: model.centered
+                            ? [
+                                _taskbarElement(context, shaded: true),
+                                const SizedBox(width: 8),
+                                _taskbarElement(context, shaded: true),
+                                const SizedBox(width: 8),
+                                _taskbarElement(context, shaded: true),
+                                const SizedBox(width: 8),
+                                _taskbarElement(context, shaded: true),
+                                const SizedBox(width: 8),
+                                _taskbarElement(context, shaded: true),
+                              ]
+                            : [],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          _taskbarElement(context, multiplier: 1.75),
+                          const SizedBox(width: 8),
+                          _taskbarElement(context, multiplier: 1.75),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              ],
-            ),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                model.label,
+                style: Theme.of(context).textTheme.subtitle1?.copyWith(
+                      color: selected ? context.theme.foregroundColor : null,
+                    ),
+              ),
+            ],
           ),
         ),
       ),

@@ -23,7 +23,7 @@ import 'package:pangolin/components/overlays/launcher/compact_launcher_overlay.d
 import 'package:pangolin/components/overlays/launcher/launcher_overlay.dart';
 import 'package:pangolin/components/overlays/power_overlay.dart';
 import 'package:pangolin/components/shell/shell.dart';
-import 'package:pangolin/utils/data/common_data.dart';
+import 'package:pangolin/utils/data/constants.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/misc_provider.dart';
 import 'package:pangolin/utils/wm/wm_api.dart';
@@ -34,7 +34,7 @@ class ActionManager {
   static Future<void> showPowerMenu(BuildContext context) async {
     final shell = Shell.of(context, listen: false);
     shell.dismissEverything();
-    await Future.delayed(CommonData.of(context).animationDuration());
+    await Future.delayed(Constants.animationDuration);
     shell.showOverlay(
       PowerOverlay.overlayId,
       dismissEverything: false,
@@ -44,7 +44,7 @@ class ActionManager {
   static Future<void> showAccountMenu(BuildContext context) async {
     final shell = Shell.of(context, listen: false);
     shell.dismissEverything();
-    await Future.delayed(CommonData.of(context).animationDuration());
+    await Future.delayed(Constants.animationDuration);
     shell.showOverlay(
       AccountOverlay.overlayId,
       dismissEverything: false,
@@ -56,7 +56,7 @@ class ActionManager {
     final MiscProvider _miscProvider = MiscProvider.of(context, listen: false);
     shell.dismissEverything();
     _miscProvider.compactLauncher = !_miscProvider.compactLauncher;
-    await Future.delayed(CommonData.of(context).animationDuration());
+    await Future.delayed(Constants.animationDuration);
     shell.showOverlay(
       _miscProvider.compactLauncher
           ? CompactLauncherOverlay.overlayId
