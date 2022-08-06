@@ -14,6 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'package:flutter/material.dart';
 import 'package:pangolin/components/desktop/wallpaper.dart';
 import 'package:pangolin/components/desktop/welcome_screen.dart';
 import 'package:pangolin/components/overlays/account_overlay.dart';
@@ -26,7 +27,6 @@ import 'package:pangolin/components/overlays/search/search_overlay.dart';
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/services/customization.dart';
 import 'package:pangolin/utils/data/app_list.dart';
-import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/wm/layout.dart';
 import 'package:pangolin/utils/wm/wm.dart';
 
@@ -34,7 +34,7 @@ class Desktop extends StatefulWidget {
   static final WindowHierarchyController wmController =
       WindowHierarchyController();
 
-  const Desktop({Key? key}) : super(key: key);
+  const Desktop({super.key});
 
   @override
   _DesktopState createState() => _DesktopState();

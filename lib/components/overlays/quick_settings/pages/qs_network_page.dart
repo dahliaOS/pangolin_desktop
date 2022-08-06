@@ -1,9 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:pangolin/components/overlays/quick_settings/widgets/qs_titlebar.dart';
 import 'package:pangolin/services/network_manager.dart';
-import 'package:pangolin/utils/extensions/extensions.dart';
 
 class QsNetworkPage extends StatelessWidget {
-  const QsNetworkPage({Key? key}) : super(key: key);
+  const QsNetworkPage({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -14,12 +14,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'package:flutter/material.dart';
 import 'package:pangolin/components/settings/widgets/settings_page.dart';
-import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/locale_provider.dart';
 
 class SettingsPageDisplay extends StatefulWidget {
-  const SettingsPageDisplay({Key? key}) : super(key: key);
+  const SettingsPageDisplay({super.key});
 
   @override
   State<SettingsPageDisplay> createState() => _SettingsPageDisplayState();

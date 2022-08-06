@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:intl/intl.dart';
 import 'package:pangolin/services/customization.dart';
 import 'package:pangolin/services/service.dart';
-import 'package:pangolin/utils/extensions/extensions.dart';
 
 abstract class DateTimeService extends ListenableService<DateTimeService> {
   DateTimeService();

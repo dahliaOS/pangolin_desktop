@@ -14,12 +14,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'package:flutter/material.dart';
 import 'package:pangolin/components/settings/widgets/settings_page.dart';
-import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/locale_provider.dart';
 
 class SettingsPageNotifications extends StatelessWidget {
-  const SettingsPageNotifications({Key? key}) : super(key: key);
+  const SettingsPageNotifications({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -17,10 +17,9 @@ limitations under the License.
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/overlays/overview_overlay.dart';
 import 'package:pangolin/components/taskbar/taskbar_element.dart';
-import 'package:pangolin/utils/extensions/extensions.dart';
 
 class OverviewButton extends StatelessWidget {
-  const OverviewButton({Key? key}) : super(key: key);
+  const OverviewButton({super.key});
 
   @override
   Widget build(BuildContext context) {

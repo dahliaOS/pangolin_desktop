@@ -190,8 +190,8 @@ abstract class ShellOverlay extends StatefulWidget {
 
   ShellOverlay({
     required this.id,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   ShellOverlayState createState();

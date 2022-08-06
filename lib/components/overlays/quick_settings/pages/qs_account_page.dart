@@ -14,11 +14,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'package:flutter/material.dart';
 import 'package:pangolin/components/overlays/quick_settings/widgets/qs_titlebar.dart';
-import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/widgets/global/quick_button.dart';
 
 class QsAccountPage extends StatelessWidget {
+  // ignore: use_super_parameters
   const QsAccountPage({Key? key}) : super(key: key);
 
   @override

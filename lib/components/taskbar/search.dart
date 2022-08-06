@@ -19,7 +19,7 @@ import 'package:pangolin/components/overlays/search/search_overlay.dart';
 import 'package:pangolin/components/taskbar/taskbar_element.dart';
 
 class SearchButton extends StatelessWidget {
-  const SearchButton({Key? key}) : super(key: key);
+  const SearchButton({super.key});
 
   @override
   Widget build(BuildContext context) {

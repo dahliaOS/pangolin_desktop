@@ -1,14 +1,13 @@
+import 'package:flutter/material.dart';
 import 'package:pangolin/components/overlays/quick_settings/widgets/qs_titlebar.dart';
-import 'package:pangolin/components/settings/data/presets.dart';
 import 'package:pangolin/components/settings/widgets/accent_color_button.dart';
 import 'package:pangolin/services/customization.dart';
 import 'package:pangolin/utils/data/constants.dart';
-import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/widgets/services.dart';
 
 class QsThemePage extends StatelessWidget
     with StatelessServiceListener<CustomizationService> {
-  const QsThemePage({Key? key}) : super(key: key);
+  const QsThemePage({super.key});
 
   @override
   Widget buildChild(BuildContext context, CustomizationService service) {

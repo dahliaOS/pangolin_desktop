@@ -16,7 +16,7 @@ import 'package:flutter/material.dart';
 class SettingsHeader extends StatelessWidget {
   final String? heading;
 
-  const SettingsHeader({required this.heading, Key? key}) : super(key: key);
+  const SettingsHeader({required this.heading, super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -14,6 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'package:flutter/material.dart';
 import 'package:pangolin/components/overlays/search/widgets/search_tile.dart';
 import 'package:pangolin/components/overlays/search/widgets/searchbar.dart';
 import 'package:pangolin/components/shell/shell.dart';
@@ -22,7 +23,6 @@ import 'package:pangolin/services/search.dart';
 import 'package:pangolin/utils/data/constants.dart';
 import 'package:pangolin/utils/data/globals.dart';
 import 'package:pangolin/utils/data/models/application.dart';
-import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/locale_provider.dart';
 import 'package:pangolin/widgets/global/box/box_container.dart';
 import 'package:pangolin/widgets/services.dart';
@@ -77,7 +77,7 @@ class _SearchOverlayState extends State<SearchOverlay>
 
   @override
   Widget buildChild(BuildContext context, CustomizationService service) {
-    final Animation<double> _animation = CurvedAnimation(
+    final Animation<double> animation = CurvedAnimation(
       parent: ac,
       curve: Constants.animationCurve,
     );
@@ -90,11 +90,11 @@ class _SearchOverlayState extends State<SearchOverlay>
       left: horizontalPadding(context, 600),
       right: horizontalPadding(context, 600),
       child: AnimatedBuilder(
-        animation: _animation,
+        animation: animation,
         builder: (context, child) => FadeTransition(
-          opacity: _animation,
+          opacity: animation,
           child: ScaleTransition(
-            scale: _animation,
+            scale: animation,
             alignment: FractionalOffset.bottomCenter,
             child: BoxSurface(
               dropShadow: true,

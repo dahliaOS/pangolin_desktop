@@ -14,12 +14,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'package:flutter/material.dart';
 import 'package:pangolin/components/settings/widgets/settings_page.dart';
-import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/locale_provider.dart';
 
 class SettingsPageLocale extends StatefulWidget {
-  const SettingsPageLocale({Key? key}) : super(key: key);
+  const SettingsPageLocale({super.key});
 
   @override
   _SettingsPageLocaleState createState() => _SettingsPageLocaleState();

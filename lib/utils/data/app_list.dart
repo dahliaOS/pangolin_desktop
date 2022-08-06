@@ -16,11 +16,11 @@ import 'package:app_store/main.dart';
 import 'package:calculator/calculator.dart';
 import 'package:dahlia_clock/main.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:graft/main.dart';
 import 'package:media/main.dart';
 import 'package:pangolin/components/settings/settings.dart';
 import 'package:pangolin/utils/data/models/application.dart';
-import 'package:pangolin/utils/extensions/extensions.dart';
 // Stub import
 import 'package:pangolin/utils/other/apps_stub.dart'
     if (dart.library.io) 'package:terminal/main.dart';

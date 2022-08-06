@@ -14,15 +14,16 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'package:flutter/material.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 
 class QsShortcutButton extends StatefulWidget {
   const QsShortcutButton({
-    Key? key,
+    super.key,
     this.onPressed,
     this.title,
     this.icon,
-  }) : super(key: key);
+  });
   final VoidCallback? onPressed;
   final String? title;
   final IconData? icon;

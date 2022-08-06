@@ -16,6 +16,7 @@ limitations under the License.
 
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/utils/action_manager/action_manager.dart';
 import 'package:pangolin/utils/data/constants.dart';
@@ -26,7 +27,7 @@ import 'package:pangolin/widgets/global/box/box_container.dart';
 class AccountOverlay extends ShellOverlay {
   static const String overlayId = "account";
 
-  AccountOverlay({Key? key}) : super(key: key, id: overlayId);
+  AccountOverlay({super.key}) : super(id: overlayId);
 
   @override
   _AccountOverlayState createState() => _AccountOverlayState();
@@ -68,7 +69,7 @@ class _AccountOverlayState extends State<AccountOverlay>
   Widget build(BuildContext context) {
     if (!controller.showing) return const SizedBox();
 
-    final Animation<double> _animation = CurvedAnimation(
+    final Animation<double> animation = CurvedAnimation(
       parent: ac,
       curve: Constants.animationCurve,
     );
@@ -87,11 +88,11 @@ class _AccountOverlayState extends State<AccountOverlay>
           top: verticalPadding(context, 500),
           bottom: verticalPadding(context, 500),
           child: AnimatedBuilder(
-            animation: _animation,
+            animation: animation,
             builder: (context, child) => FadeTransition(
-              opacity: _animation,
+              opacity: animation,
               child: ScaleTransition(
-                scale: _animation,
+                scale: animation,
                 alignment: FractionalOffset.center,
                 child: Material(
                   color: Colors.transparent,

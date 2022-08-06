@@ -14,6 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'package:flutter/material.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/widgets/global/acrylic/acrylic.dart';
 
@@ -28,7 +29,7 @@ class BoxSurface extends StatelessWidget {
   final bool dropShadow;
 
   const BoxSurface({
-    Key? key,
+    super.key,
     this.child,
     this.shape = const RoundedRectangleBorder(),
     this.padding,
@@ -37,7 +38,7 @@ class BoxSurface extends StatelessWidget {
     this.height,
     this.outline = false,
     this.dropShadow = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +92,7 @@ class BoxContainer extends StatelessWidget {
   final double opacity;
 
   const BoxContainer({
-    Key? key,
+    super.key,
     this.child,
     this.shape = const RoundedRectangleBorder(),
     this.padding,
@@ -100,11 +101,11 @@ class BoxContainer extends StatelessWidget {
     this.height,
     this.outline = false,
     this.opacity = 0.5,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
-    final bool _darkMode = Theme.of(context).darkMode;
+    final bool darkMode = Theme.of(context).darkMode;
     return Container(
       width: width,
       height: height,
@@ -116,7 +117,7 @@ class BoxContainer extends StatelessWidget {
           // Create outline around the surface
           side: outline
               ? BorderSide(
-                  color: _darkMode
+                  color: darkMode
                       ? Colors.white.withOpacity(0.1)
                       : Colors.black.withOpacity(0.2),
                   width: 2,

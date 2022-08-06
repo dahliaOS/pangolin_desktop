@@ -15,6 +15,7 @@ limitations under the License.
 */
 
 import 'package:collection/collection.dart';
+import 'package:flutter/material.dart';
 import 'package:pangolin/components/overlays/launcher/app_launcher.dart';
 import 'package:pangolin/components/overlays/search/search_overlay.dart';
 import 'package:pangolin/components/overlays/search/widgets/searchbar.dart';
@@ -33,7 +34,7 @@ import 'package:yatl_flutter/yatl_flutter.dart';
 class LauncherOverlay extends ShellOverlay {
   static const String overlayId = 'launcher';
 
-  LauncherOverlay({Key? key}) : super(key: key, id: overlayId);
+  LauncherOverlay({super.key}) : super(id: overlayId);
 
   @override
   _LauncherOverlayState createState() => _LauncherOverlayState();
@@ -72,15 +73,16 @@ class _LauncherOverlayState extends State<LauncherOverlay>
     controller.showing = false;
   }
 
-  final _focusNode = FocusNode();
+  final FocusNode _focusNode = FocusNode();
+  final PageController _controller = PageController();
+
   @override
   Widget build(BuildContext context) {
-    final _shell = Shell.of(context);
-    final Animation<double> _animation = CurvedAnimation(
+    final ShellState shell = Shell.of(context);
+    final Animation<double> animation = CurvedAnimation(
       parent: ac,
       curve: Constants.animationCurve,
     );
-    final _controller = PageController();
 
     _focusNode.requestFocus();
 
@@ -105,21 +107,21 @@ class _LauncherOverlayState extends State<LauncherOverlay>
             ac.animateBack(1.0);
           } else {
             await ac.reverse();
-            _shell.dismissOverlay(LauncherOverlay.overlayId);
+            shell.dismissOverlay(LauncherOverlay.overlayId);
           }
         },
         onTap: () async {
           await ac.reverse();
-          _shell.dismissOverlay(LauncherOverlay.overlayId);
+          shell.dismissOverlay(LauncherOverlay.overlayId);
         },
         child: Stack(
           children: [
             AnimatedBuilder(
-              animation: _animation,
+              animation: animation,
               builder: (context, child) => FadeTransition(
-                opacity: _animation,
+                opacity: animation,
                 child: ScaleTransition(
-                  scale: _animation,
+                  scale: animation,
                   alignment: FractionalOffset.bottomCenter,
                   child: Stack(
                     children: [
@@ -155,29 +157,30 @@ class _LauncherOverlayState extends State<LauncherOverlay>
 
 class Search extends StatefulWidget {
   const Search({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<Search> createState() => _SearchState();
 }
 
 class _SearchState extends State<Search> {
+  final FocusNode _focusNode = FocusNode();
+
   @override
   Widget build(BuildContext context) {
-    final _shell = Shell.of(context);
-    final FocusNode _focusNode = FocusNode();
-    _focusNode.requestFocus();
+    final ShellState shell = Shell.of(context);
 
     return RawKeyboardListener(
       focusNode: _focusNode,
+      autofocus: true,
       onKey: (event) async {
         if (event.character == null ||
             !RegExp("[a-zA-Z]").hasMatch(event.character!)) return;
 
-        _shell.dismissOverlay(LauncherOverlay.overlayId);
+        shell.dismissOverlay(LauncherOverlay.overlayId);
         await Future.delayed(const Duration(milliseconds: 150));
-        _shell.showOverlay(
+        shell.showOverlay(
           SearchOverlay.overlayId,
           args: {"searchQuery": event.character},
           dismissEverything: false,
@@ -187,8 +190,8 @@ class _SearchState extends State<Search> {
         padding: const EdgeInsets.only(top: 50),
         child: Searchbar(
           onTextChanged: (change) {
-            _shell.dismissOverlay(LauncherOverlay.overlayId);
-            _shell.showOverlay(
+            shell.dismissOverlay(LauncherOverlay.overlayId);
+            shell.showOverlay(
               SearchOverlay.overlayId,
               args: {"searchQuery": change},
               dismissEverything: false,
@@ -209,7 +212,7 @@ class _SearchState extends State<Search> {
 class LauncherCategories extends StatefulWidget {
   final PageController? controller;
 
-  const LauncherCategories({this.controller, Key? key}) : super(key: key);
+  const LauncherCategories({this.controller, super.key});
 
   @override
   _LauncherCategoriesState createState() => _LauncherCategoriesState();
@@ -287,7 +290,7 @@ class _LauncherCategoriesState extends State<LauncherCategories> {
 
 class LauncherGrid extends StatelessWidget {
   final PageController? controller;
-  const LauncherGrid({required this.controller, Key? key}) : super(key: key);
+  const LauncherGrid({required this.controller, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -390,7 +393,7 @@ class LauncherGrid extends StatelessWidget {
 // Power Menu
 
 class LauncherActionMenu extends StatefulWidget {
-  const LauncherActionMenu({Key? key}) : super(key: key);
+  const LauncherActionMenu({super.key});
 
   @override
   _LauncherActionMenuState createState() => _LauncherActionMenuState();

@@ -17,6 +17,7 @@ import 'dart:developer';
 import 'dart:io' show Platform;
 
 import 'package:flutter/foundation.dart' show kDebugMode, kIsWeb;
+import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import "package:intl/locale.dart" as intl;
 import 'package:logging/logging.dart';
@@ -30,7 +31,6 @@ import 'package:pangolin/services/preferences.dart';
 import 'package:pangolin/services/search.dart';
 import 'package:pangolin/services/visual_engine/visual_engine.dart';
 import 'package:pangolin/utils/data/dap_index.dart';
-import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/locale_provider.dart';
 import 'package:pangolin/utils/theme/theme.dart';
 import 'package:pangolin/widgets/services.dart';

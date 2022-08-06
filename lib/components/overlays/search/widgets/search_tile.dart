@@ -16,10 +16,10 @@ limitations under the License.
 
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:pangolin/services/customization.dart';
 import 'package:pangolin/utils/data/app_list.dart';
 import 'package:pangolin/utils/data/models/application.dart';
-import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/locale_provider.dart';
 import 'package:pangolin/widgets/services.dart';
 

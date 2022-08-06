@@ -4,7 +4,7 @@ library stub;
 import 'package:flutter/widgets.dart';
 
 class Files extends StatelessWidget {
-  const Files({Key? key}) : super(key: key);
+  const Files({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class Files extends StatelessWidget {
 }
 
 class Terminal extends StatelessWidget {
-  const Terminal({Key? key}) : super(key: key);
+  const Terminal({super.key});
 
   @override
   Widget build(BuildContext context) {

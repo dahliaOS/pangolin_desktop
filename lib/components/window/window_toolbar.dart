@@ -14,6 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pangolin/components/shell/effects.dart';
 import 'package:pangolin/utils/context_menus/context_menu.dart';
@@ -26,10 +27,10 @@ class PangolinWindowToolbar extends StatefulWidget {
   static const double dockEdgeSize = 40;
 
   const PangolinWindowToolbar({
-    Key? key,
+    super.key,
     required this.barColor,
     required this.textColor,
-  }) : super(key: key);
+  });
 
   final Color barColor;
   final Color textColor;
@@ -359,11 +360,11 @@ class WindowToolbarButton extends StatelessWidget {
   final Color? hoverColor;
 
   const WindowToolbarButton({
-    Key? key,
+    super.key,
     required this.icon,
     required this.onTap,
     this.hoverColor,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

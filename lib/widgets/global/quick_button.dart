@@ -14,11 +14,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'package:flutter/material.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 
 class QuickActionButton extends StatefulWidget {
   const QuickActionButton({
-    Key? key,
+    super.key,
     this.onPressed,
     this.title,
     this.leading,
@@ -27,7 +28,7 @@ class QuickActionButton extends StatefulWidget {
     this.textStyle,
     this.margin,
     this.size,
-  }) : super(key: key);
+  });
 
   final VoidCallback? onPressed;
   final String? title;

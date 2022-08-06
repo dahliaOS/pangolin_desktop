@@ -23,8 +23,6 @@ import 'package:pangolin/utils/providers/locale_provider.dart';
 import 'package:xdg_desktop/xdg_desktop.dart';
 import 'package:yatl_flutter/yatl_flutter.dart';
 
-export 'package:flutter/material.dart';
-
 extension ThemeDataX on ThemeData {
   bool get darkMode => brightness == Brightness.dark;
 

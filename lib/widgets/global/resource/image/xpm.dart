@@ -3,7 +3,7 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 
-import 'package:pangolin/utils/extensions/extensions.dart';
+import 'package:flutter/material.dart';
 
 class XpmParser {
   static final RegExp _varDeclRegex = RegExp(

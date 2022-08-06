@@ -16,6 +16,7 @@ limitations under the License.
 
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/services/customization.dart';
 import 'package:pangolin/utils/data/constants.dart';

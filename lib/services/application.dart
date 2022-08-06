@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:pangolin/services/langpacks.dart';
 import 'package:pangolin/services/service.dart';
 import 'package:pangolin/utils/data/app_list.dart';
@@ -171,9 +172,7 @@ class _BuiltInApplicationService extends ApplicationService {
   List<DesktopEntry> listApplications({bool sort = false}) => entries;
 
   @override
-  void startApp(DesktopEntry app) {
-    final Widget? content = builders[app];
-  }
+  void startApp(DesktopEntry app) {}
 
   @override
   void stop() {

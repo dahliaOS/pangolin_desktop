@@ -18,6 +18,7 @@ limitations under the License.
 
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:pangolin/components/overlays/account_overlay.dart';
 import 'package:pangolin/components/overlays/launcher/compact_launcher_overlay.dart';
 import 'package:pangolin/components/overlays/launcher/launcher_overlay.dart';
@@ -25,7 +26,6 @@ import 'package:pangolin/components/overlays/power_overlay.dart';
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/services/customization.dart';
 import 'package:pangolin/utils/data/constants.dart';
-import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/wm/wm_api.dart';
 
 class ActionManager {

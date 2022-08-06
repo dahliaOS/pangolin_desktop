@@ -16,6 +16,7 @@ limitations under the License.
 
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:pangolin/components/overlays/launcher/app_launcher.dart';
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/services/application.dart';
@@ -31,7 +32,7 @@ import 'package:yatl_flutter/yatl_flutter.dart';
 class CompactLauncherOverlay extends ShellOverlay {
   static const String overlayId = 'compactlauncher';
 
-  CompactLauncherOverlay({Key? key}) : super(key: key, id: overlayId);
+  CompactLauncherOverlay({super.key}) : super(id: overlayId);
 
   @override
   _CompactLauncherOverlayState createState() => _CompactLauncherOverlayState();
@@ -64,7 +65,7 @@ class _CompactLauncherOverlayState extends State<CompactLauncherOverlay>
 
   @override
   Widget build(BuildContext context) {
-    final Animation<double> _animation = CurvedAnimation(
+    final Animation<double> animation = CurvedAnimation(
       parent: ac,
       curve: Constants.animationCurve,
     );
@@ -75,11 +76,11 @@ class _CompactLauncherOverlayState extends State<CompactLauncherOverlay>
       bottom: 56,
       left: 8,
       child: AnimatedBuilder(
-        animation: _animation,
+        animation: animation,
         builder: (context, chilld) => FadeTransition(
-          opacity: _animation,
+          opacity: animation,
           child: ScaleTransition(
-            scale: _animation,
+            scale: animation,
             alignment: const FractionalOffset(0.025, 1.0),
             child: BoxSurface(
               shape: Constants.bigShape,
@@ -106,6 +107,7 @@ class _CompactLauncherOverlayState extends State<CompactLauncherOverlay>
 }
 
 class CompactLauncher extends StatelessWidget {
+  // ignore: use_super_parameters
   const CompactLauncher({Key? key}) : super(key: key);
 
   @override

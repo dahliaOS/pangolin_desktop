@@ -30,7 +30,7 @@ class Searchbar extends StatelessWidget {
   final ValueChanged<String>? onTextChanged;
 
   const Searchbar({
-    Key? key,
+    super.key,
     required this.leading,
     required this.trailing,
     required this.hint,
@@ -40,7 +40,7 @@ class Searchbar extends StatelessWidget {
     this.text = "",
     this.color,
     this.onTextChanged,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

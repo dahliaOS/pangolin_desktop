@@ -21,7 +21,7 @@ void main() {
 }
 
 class ValueDemoApp extends StatelessWidget {
-  const ValueDemoApp({Key? key}) : super(key: key);
+  const ValueDemoApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,7 @@ class ValueDemoApp extends StatelessWidget {
 }
 
 class ValueDemoHomePage extends StatefulWidget {
-  const ValueDemoHomePage({Key? key}) : super(key: key);
+  const ValueDemoHomePage({super.key});
   @override
   _ValueDemoHomePageState createState() => _ValueDemoHomePageState();
 }

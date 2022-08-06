@@ -15,6 +15,7 @@ limitations under the License.
 */
 
 import 'package:animations/animations.dart';
+import 'package:flutter/material.dart';
 import 'package:pangolin/services/customization.dart';
 import 'package:pangolin/utils/data/constants.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
@@ -125,7 +126,6 @@ ThemeData theme(BuildContext context) {
       headlineLarge: TextStyle(fontSize: 13), */
     ),
     dialogBackgroundColor: backgroundColor,
-    toggleableActiveColor: accentColor,
     platform: TargetPlatform.fuchsia,
     sliderTheme: SliderThemeData(
       overlayColor: accentColor.op(0.1),

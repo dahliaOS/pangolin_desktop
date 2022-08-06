@@ -14,6 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'package:flutter/material.dart';
 import 'package:pangolin/components/settings/data/presets.dart';
 import 'package:pangolin/components/settings/widgets/accent_color_button.dart';
 import 'package:pangolin/components/settings/widgets/settings_card.dart';
@@ -23,12 +24,11 @@ import 'package:pangolin/components/settings/widgets/taskbar_alignment_button.da
 import 'package:pangolin/components/settings/widgets/theme_mode_button.dart';
 import 'package:pangolin/services/customization.dart';
 import 'package:pangolin/utils/data/constants.dart';
-import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/locale_provider.dart';
 import 'package:pangolin/widgets/services.dart';
 
 class SettingsPageCustomization extends StatefulWidget {
-  const SettingsPageCustomization({Key? key}) : super(key: key);
+  const SettingsPageCustomization({super.key});
 
   @override
   _SettingsPageCustomizationState createState() =>

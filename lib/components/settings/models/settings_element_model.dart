@@ -21,8 +21,8 @@ abstract class SettingsElementModel extends StatefulWidget {
 
   const SettingsElementModel({
     required this.type,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 }
 
 // Types of SettingsCards

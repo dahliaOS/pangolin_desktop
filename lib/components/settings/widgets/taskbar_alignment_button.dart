@@ -14,6 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'package:flutter/material.dart';
 import 'package:pangolin/components/settings/models/settings_taskbar_data_model.dart';
 import 'package:pangolin/utils/data/constants.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
@@ -30,7 +31,7 @@ class TaskbarAlignmentButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool _isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return InkWell(
       customBorder: Constants.smallShape,
@@ -52,7 +53,7 @@ class TaskbarAlignmentButton extends StatelessWidget {
                 height: 40,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
-                  border: borderStyle(isDarkMode: _isDarkMode),
+                  border: borderStyle(isDarkMode: isDarkMode),
                   color: Theme.of(context).backgroundColor,
                 ),
                 child: Padding(
@@ -137,7 +138,7 @@ class TaskbarAlignmentButton extends StatelessWidget {
     double multiplier = 1,
     bool shaded = false,
   }) {
-    final bool _isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final hslBgc =
         HSLColor.fromColor(Theme.of(context).scaffoldBackgroundColor);
     return Container(
@@ -145,7 +146,7 @@ class TaskbarAlignmentButton extends StatelessWidget {
       height: 20,
       decoration: BoxDecoration(
         border: Border.all(
-          color: !_isDarkMode
+          color: !isDarkMode
               ? Colors.black.withOpacity(0.2)
               : Colors.white.withOpacity(0.2),
           width: 2,

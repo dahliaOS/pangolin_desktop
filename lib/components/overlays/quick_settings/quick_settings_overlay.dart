@@ -17,6 +17,7 @@ limitations under the License.
 import 'dart:async';
 
 import 'package:battery_plus/battery_plus.dart';
+import 'package:flutter/material.dart';
 import 'package:pangolin/components/overlays/quick_settings/pages/qs_account_page.dart';
 import 'package:pangolin/components/overlays/quick_settings/pages/qs_language_page.dart';
 import 'package:pangolin/components/overlays/quick_settings/pages/qs_network_page.dart';

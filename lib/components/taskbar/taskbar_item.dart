@@ -14,19 +14,20 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'package:flutter/material.dart';
 import 'package:pangolin/services/customization.dart';
 import 'package:pangolin/utils/context_menus/context_menu.dart';
 import 'package:pangolin/utils/context_menus/context_menu_item.dart';
 import 'package:pangolin/utils/context_menus/core/context_menu_region.dart';
 import 'package:pangolin/utils/data/app_list.dart';
-import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/wm/wm.dart';
 import 'package:pangolin/utils/wm/wm_api.dart';
 import 'package:pangolin/widgets/services.dart';
 
 class TaskbarItem extends StatefulWidget {
   final String packageName;
-  const TaskbarItem({required this.packageName, Key? key}) : super(key: key);
+
+  const TaskbarItem({required this.packageName, super.key});
 
   @override
   _TaskbarItemState createState() => _TaskbarItemState();
@@ -62,7 +63,7 @@ class _TaskbarItemState extends State<TaskbarItem>
   @override
   Widget buildChild(BuildContext context, CustomizationService service) {
     //Selected App
-    final _app = applications
+    final app = applications
         .firstWhere((element) => element.packageName == widget.packageName);
 
     //Running apps
@@ -114,13 +115,13 @@ class _TaskbarItemState extends State<TaskbarItem>
               items: [
                 ContextMenuItem(
                   icon: Icons.info_outline_rounded,
-                  title: _app.name,
+                  title: app.name,
                   onTap: () {},
                   shortcut: "",
                 ),
                 ContextMenuItem(
                   icon: Icons.push_pin_outlined,
-                  title: service.pinnedApps.contains(_app.packageName)
+                  title: service.pinnedApps.contains(app.packageName)
                       ? "Unpin from Taskbar"
                       : "Pin to Taskbar",
                   onTap: () {
@@ -179,7 +180,7 @@ class _TaskbarItemState extends State<TaskbarItem>
                                   ? entry?.registry.info.icon ??
                                       const NetworkImage("")
                                   : AssetImage(
-                                      "assets/icons/${_app.iconName}.png",
+                                      "assets/icons/${app.iconName}.png",
                                     ),
                             ),
                           ),
@@ -222,7 +223,7 @@ class _TaskbarItemState extends State<TaskbarItem>
         ),
       ),
     );
-    if (!_app.canBeOpened) {
+    if (!app.canBeOpened) {
       return IgnorePointer(
         child: Opacity(
           opacity: 0.4,

@@ -69,7 +69,7 @@ class WmAPI {
       return;
       // throw 'The app couldn not be opened';
     }
-    final LiveWindowEntry _window = windowEntry.newInstance(
+    final LiveWindowEntry window = windowEntry.newInstance(
       content: application.app,
       overrideProperties: {
         WindowEntry.title: application.name,
@@ -92,7 +92,7 @@ class WmAPI {
       ),
     );
 
-    pushWindowEntry(_window);
+    pushWindowEntry(window);
   }
 
   void minimizeAll() {

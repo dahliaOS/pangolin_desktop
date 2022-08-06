@@ -89,9 +89,9 @@ class ServiceManager with LoggerProvider {
   }
 
   Future<void> _waitForService<T extends Service<T>>() {
-    final Completer<void>? _completer = _completionTracker[T];
+    final Completer<void>? completer = _completionTracker[T];
 
-    if (_completer == null) {
+    if (completer == null) {
       throw Exception(
         "Can't wait for Service $T because it was not registered",
       );
@@ -133,9 +133,9 @@ class ServiceManager with LoggerProvider {
   }
 
   Future<void> _startWithFallback(
-    final Type type,
-    final ServiceBuilder<Service<dynamic>> builder,
-    final Service<dynamic>? fallback,
+    Type type,
+    ServiceBuilder<Service<dynamic>> builder,
+    Service<dynamic>? fallback,
   ) async {
     try {
       final Service<dynamic> service = await builder();

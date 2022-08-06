@@ -21,9 +21,8 @@ class SettingsContentHeader extends SettingsElementModel {
   final String title;
   const SettingsContentHeader(
     this.title, {
-    Key? key,
+    super.key,
   }) : super(
-          key: key,
           type: SettingsElementModelType.contentHeader,
         );
 

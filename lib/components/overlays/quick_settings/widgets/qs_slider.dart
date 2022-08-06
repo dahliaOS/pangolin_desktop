@@ -14,17 +14,18 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'package:flutter/material.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 
 class QsSlider extends StatefulWidget {
   const QsSlider({
-    Key? key,
+    super.key,
     this.icon,
     this.onChanged,
     this.value,
     this.steps,
     this.onIconTap,
-  }) : super(key: key);
+  });
 
   final IconData? icon;
   final void Function(double)? onChanged;

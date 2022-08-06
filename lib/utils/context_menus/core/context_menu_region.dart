@@ -20,12 +20,13 @@ import 'package:pangolin/utils/wm/wm.dart';
 
 class ContextMenuRegion extends StatefulWidget {
   const ContextMenuRegion({
-    Key? key,
+    super.key,
     required this.contextMenu,
     this.child,
     this.useLongPress = true,
     this.centerAboveElement,
-  }) : super(key: key);
+  });
+
   final ContextMenu contextMenu;
   final Widget? child;
   final bool useLongPress;
@@ -77,18 +78,18 @@ class _ContextMenuRegionState extends State<ContextMenuRegion> {
     Offset globalPosition,
     BoxConstraints constraints,
   ) {
-    final RenderBox _box =
+    final RenderBox box =
         _globalKey.currentContext!.findRenderObject()! as RenderBox;
-    final buttonRect = _box.localToGlobal(Offset.zero);
+    final buttonRect = box.localToGlobal(Offset.zero);
     final bool centerAboveElement = widget.centerAboveElement ?? false;
 
-    final List<int> _length = List.empty(growable: true);
+    final List<int> length = List.empty(growable: true);
     for (final ContextMenuItem element in widget.contextMenu.items) {
-      _length.add(element.title.characters.length);
+      length.add(element.title.characters.length);
     }
-    _length.sort();
+    length.sort();
     final Size size =
-        Size(64 + (_length.last * 8.8), widget.contextMenu.items.length * 44);
+        Size(64 + (length.last * 8.8), widget.contextMenu.items.length * 44);
     final double x;
     final double y;
 

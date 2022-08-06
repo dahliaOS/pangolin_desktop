@@ -17,8 +17,9 @@ import 'package:pangolin/utils/data/constants.dart';
 import 'package:pangolin/widgets/global/box/box_container.dart';
 
 class ContextMenu extends StatefulWidget {
-  const ContextMenu({Key? key, required this.items}) : super(key: key);
   final List<ContextMenuItem> items;
+
+  const ContextMenu({super.key, required this.items});
 
   @override
   _ContextMenuState createState() => _ContextMenuState();

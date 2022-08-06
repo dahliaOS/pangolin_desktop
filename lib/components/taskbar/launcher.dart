@@ -14,11 +14,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'package:flutter/material.dart';
 import 'package:pangolin/components/overlays/launcher/compact_launcher_overlay.dart';
 import 'package:pangolin/components/overlays/launcher/launcher_overlay.dart';
 import 'package:pangolin/components/taskbar/taskbar_element.dart';
 import 'package:pangolin/services/customization.dart';
-import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/widgets/services.dart';
 
 //TODO: Context menu for changing the taskbar's icon is cut off.

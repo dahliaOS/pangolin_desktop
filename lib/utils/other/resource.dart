@@ -1,9 +1,9 @@
 import 'dart:ui' as ui show Color;
 
 import 'package:collection/collection.dart';
+import 'package:flutter/material.dart';
 import 'package:pangolin/services/icon.dart';
 import 'package:pangolin/utils/data/constants.dart';
-import 'package:pangolin/utils/extensions/extensions.dart';
 
 abstract class Resource<T extends Enum, V> {
   static final RegExp _syntaxRegex =

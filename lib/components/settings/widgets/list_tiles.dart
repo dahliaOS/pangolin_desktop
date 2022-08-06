@@ -1,6 +1,6 @@
 import 'dart:math' as math;
 
-import 'package:pangolin/utils/extensions/extensions.dart';
+import 'package:flutter/material.dart';
 
 class ExpandableSwitchListTile extends StatelessWidget {
   final Widget? content;
@@ -11,14 +11,14 @@ class ExpandableSwitchListTile extends StatelessWidget {
   final ValueChanged<bool> onChanged;
 
   const ExpandableSwitchListTile({
-    Key? key,
+    super.key,
     this.content,
     this.title,
     this.subtitle,
     this.leading,
     required this.value,
     required this.onChanged,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -56,13 +56,13 @@ class ExpandableListTile extends StatefulWidget {
   final Widget? leading;
   final bool value;
   const ExpandableListTile({
-    Key? key,
+    super.key,
     this.content,
     this.title,
     this.subtitle,
     this.leading,
     required this.value,
-  }) : super(key: key);
+  });
 
   @override
   State<ExpandableListTile> createState() => _ExpandableListTileState();
@@ -135,14 +135,14 @@ class RouterListTile extends StatelessWidget {
   final String? route;
 
   const RouterListTile({
-    Key? key,
+    super.key,
     this.onTap,
     this.onLongPress,
     this.title,
     this.subtitle,
     this.leading,
     this.route,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

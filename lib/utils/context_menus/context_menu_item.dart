@@ -16,6 +16,7 @@ import 'package:pangolin/utils/wm/wm_api.dart';
 import 'package:utopia_wm/wm.dart';
 
 class ContextMenuItem extends StatelessWidget {
+  // ignore: use_super_parameters
   const ContextMenuItem({
     Key? key,
     required this.icon,
@@ -37,9 +38,9 @@ class ContextMenuItem extends StatelessWidget {
         child: InkWell(
           onTap: onTap != null
               ? () {
-                  final _properties =
+                  final properties =
                       WindowPropertyRegistry.of(context, listen: false);
-                  WmAPI.of(context).popWindowEntry(_properties.info.id);
+                  WmAPI.of(context).popWindowEntry(properties.info.id);
                   onTap?.call();
                 }
               : null,

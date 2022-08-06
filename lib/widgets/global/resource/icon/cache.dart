@@ -123,7 +123,7 @@ class IconCache {
     return h.toUnsigned(32);
   }
 
-  List<String>? lookup(final String name) {
+  List<String>? lookup(String name) {
     final List<String> ret = [];
 
     final int hash = _iconNameHash(name);

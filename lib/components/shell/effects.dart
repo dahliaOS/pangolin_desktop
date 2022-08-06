@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/shell/desktop.dart';
-import 'package:pangolin/services/preferences.dart';
 import 'package:pangolin/utils/data/constants.dart';
 import 'package:pangolin/utils/wm/layout.dart';
 import 'package:pangolin/widgets/global/box/box_container.dart';

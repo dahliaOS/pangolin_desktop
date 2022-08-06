@@ -17,12 +17,11 @@ limitations under the License.
 import 'dart:math';
 
 import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
 import 'package:pangolin/components/overlays/launcher/launcher_overlay.dart';
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/components/taskbar/taskbar_item.dart';
 import 'package:pangolin/services/customization.dart';
-import 'package:pangolin/services/preferences.dart';
-import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/wm/wm.dart';
 import 'package:pangolin/widgets/global/box/box_container.dart';
 import 'package:pangolin/widgets/services.dart';
@@ -34,8 +33,8 @@ class Taskbar extends StatefulWidget {
   const Taskbar({
     required this.leading,
     required this.trailing,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   _TaskbarState createState() => _TaskbarState();
@@ -84,9 +83,7 @@ class _TaskbarState extends State<Taskbar>
           .map<Widget>(
             (e) => e != ""
                 ? TaskbarItem(key: ValueKey(e), packageName: e)
-                : SizedBox.shrink(
-                    key: ValueKey(Random()),
-                  ),
+                : SizedBox.shrink(key: ValueKey(Random())),
           )
           .toList(),
     );

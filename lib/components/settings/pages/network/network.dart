@@ -17,6 +17,7 @@ limitations under the License.
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:pangolin/components/settings/widgets/list_tiles.dart';
 import 'package:pangolin/components/settings/widgets/settings_card.dart';
 import 'package:pangolin/components/settings/widgets/settings_content_header.dart';
@@ -26,7 +27,7 @@ import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/locale_provider.dart';
 
 class SettingsPageNetwork extends StatefulWidget {
-  const SettingsPageNetwork({Key? key}) : super(key: key);
+  const SettingsPageNetwork({super.key});
 
   @override
   _SettingsPageNetworkState createState() => _SettingsPageNetworkState();

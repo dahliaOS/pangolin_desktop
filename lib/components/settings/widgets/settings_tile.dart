@@ -18,11 +18,11 @@ class SettingsTile extends StatelessWidget {
   final String? title;
   final EdgeInsetsGeometry? margin;
   const SettingsTile({
-    Key? key,
+    super.key,
     required this.child,
     this.margin,
     this.title,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

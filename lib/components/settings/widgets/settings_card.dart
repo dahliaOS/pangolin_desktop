@@ -1,9 +1,9 @@
-import 'package:pangolin/utils/extensions/extensions.dart';
+import 'package:flutter/material.dart';
 
 class SettingsCard extends StatelessWidget {
   final List<Widget>? children;
 
-  const SettingsCard({Key? key, this.children}) : super(key: key);
+  const SettingsCard({super.key, this.children});
 
   @override
   Widget build(BuildContext context) {

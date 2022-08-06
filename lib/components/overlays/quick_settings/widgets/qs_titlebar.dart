@@ -14,12 +14,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'package:flutter/material.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/widgets/global/quick_button.dart';
 
 class QsTitlebar extends StatelessWidget implements PreferredSizeWidget {
-  const QsTitlebar({Key? key, this.leading, this.title, this.trailing})
-      : super(key: key);
+  const QsTitlebar({super.key, this.leading, this.title, this.trailing});
 
   final Widget? leading;
   final String? title;
@@ -60,7 +60,7 @@ class QsTitlebar extends StatelessWidget implements PreferredSizeWidget {
 }
 
 class BackButton extends StatelessWidget {
-  const BackButton({Key? key}) : super(key: key);
+  const BackButton({super.key});
 
   @override
   Widget build(BuildContext context) {

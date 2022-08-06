@@ -14,6 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'package:flutter/material.dart';
 import 'package:pangolin/components/settings/models/settings_theme_data_model.dart';
 import 'package:pangolin/services/customization.dart';
 import 'package:pangolin/utils/data/constants.dart';
@@ -22,7 +23,8 @@ import 'package:pangolin/widgets/services.dart';
 
 class ThemeModeButton extends StatefulWidget {
   final ThemeModeDataModel model;
-  const ThemeModeButton({Key? key, required this.model}) : super(key: key);
+
+  const ThemeModeButton({super.key, required this.model});
 
   @override
   State<ThemeModeButton> createState() => _ThemeModeButtonState();

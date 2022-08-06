@@ -14,6 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'package:flutter/material.dart';
 import 'package:pangolin/components/desktop/wallpaper_picker.dart';
 import 'package:pangolin/components/shell/desktop.dart';
 import 'package:pangolin/services/customization.dart';
@@ -21,7 +22,6 @@ import 'package:pangolin/utils/context_menus/context_menu.dart';
 import 'package:pangolin/utils/context_menus/context_menu_item.dart';
 import 'package:pangolin/utils/context_menus/core/context_menu_region.dart';
 import 'package:pangolin/utils/data/globals.dart';
-import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/wm/wm_api.dart';
 import 'package:pangolin/widgets/global/resource/image/image.dart';
 import 'package:pangolin/widgets/services.dart';
@@ -53,9 +53,8 @@ class WallpaperLayer extends StatelessWidget
 class _WallpaperContextMenu extends StatelessWidget {
   const _WallpaperContextMenu({
     required Widget child,
-    Key? key,
-  })  : _child = child,
-        super(key: key);
+    super.key,
+  }) : _child = child;
 
   final Widget _child;
 

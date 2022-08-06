@@ -15,6 +15,7 @@ limitations under the License.
 */
 
 import 'package:animations/animations.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:pangolin/components/overlays/search/widgets/searchbar.dart';
 import 'package:pangolin/components/settings/pages/about.dart';
@@ -34,7 +35,7 @@ import 'package:provider/provider.dart';
 import 'package:yatl_flutter/yatl_flutter.dart';
 
 class Settings extends StatelessWidget {
-  const Settings({Key? key}) : super(key: key);
+  const Settings({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -65,9 +66,7 @@ class Settings extends StatelessWidget {
 }
 
 class _SettingsHome extends StatefulWidget {
-  const _SettingsHome({
-    Key? key,
-  }) : super(key: key);
+  const _SettingsHome();
 
   @override
   State<_SettingsHome> createState() => _SettingsHomeState();
@@ -245,9 +244,8 @@ class _SettingsSearchBar extends StatelessWidget {
   final bool isExpanded;
 
   const _SettingsSearchBar({
-    Key? key,
     required this.isExpanded,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
