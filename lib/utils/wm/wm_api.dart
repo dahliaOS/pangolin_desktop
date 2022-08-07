@@ -29,7 +29,7 @@ class WmAPI {
   late final WindowHierarchyController _windowHierarchy =
       WindowHierarchy.of(context, listen: false);
 
-  late final ShellState _shellState = Shell.of(context, listen: false);
+  late final ShellState _shell = Shell.of(context, listen: false);
 
   static const WindowEntry windowEntry = WindowEntry(
     features: [
@@ -96,10 +96,10 @@ class WmAPI {
   }
 
   void minimizeAll() {
-    _shellState.minimizedWindowsCache.clear();
+    _shell.minimizedWindowsCache.clear();
     for (final LiveWindowEntry e in _windowHierarchy.entries) {
       if (e.layoutState.minimized) {
-        _shellState.minimizedWindowsCache.add(e.registry.info.id);
+        _shell.minimizedWindowsCache.add(e.registry.info.id);
       } else {
         e.layoutState.minimized = true;
       }
@@ -109,7 +109,7 @@ class WmAPI {
   void undoMinimizeAll() {
     for (final LiveWindowEntry e in _windowHierarchy.entries) {
       e.layoutState.minimized =
-          _shellState.minimizedWindowsCache.contains(e.registry.info.id);
+          _shell.minimizedWindowsCache.contains(e.registry.info.id);
     }
   }
 }

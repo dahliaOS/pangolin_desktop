@@ -16,6 +16,7 @@ limitations under the License.
 
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:pangolin/services/customization.dart';
 import 'package:pangolin/services/langpacks.dart';
 import 'package:pangolin/utils/data/constants.dart';
 import 'package:pangolin/utils/other/resource.dart';
@@ -179,6 +180,20 @@ extension BuiltinColorLabel on BuiltinColor {
         return strings.settings.pagesCustomizationThemeColorAqua;
       case BuiltinColor.grey:
         return strings.settings.pagesCustomizationThemeColorAnthracite;
+    }
+  }
+}
+
+extension CustomizationServiceX on CustomizationService {
+  void addRecentWallpaper(ImageResource wallpaper) {
+    recentWallpapers = [...recentWallpapers, wallpaper];
+  }
+
+  void togglePinnedApp(String packageName) {
+    if (pinnedApps.contains(packageName)) {
+      pinnedApps = List.from(pinnedApps)..remove(packageName);
+    } else {
+      pinnedApps = List.from(pinnedApps)..add(packageName);
     }
   }
 }

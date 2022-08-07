@@ -14,6 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
@@ -92,7 +93,7 @@ List<String> wallpapers = [
   "images/wallpapers/beach.jpg",
 ];
 
-Future<BingWallpaper> getBingWallpaper() async {
+Future<BingImageOfTheDay?> getBingWallpaper() async {
   final response = await get(
     Uri.parse(
       'http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US',
@@ -102,8 +103,9 @@ Future<BingWallpaper> getBingWallpaper() async {
       "Access-Control-Allow-Methods": "POST, GET, OPTIONS, PUT, DELETE, HEAD",
     },
   );
+
   if (response.statusCode == 200) {
-    return bingWallpaperFromJson(response.body);
+    return bingParser.validate(jsonDecode(response.body));
   } else {
     throw Exception(
       "Failed to fetch data from the Bing's Wallpaper of the Day API.",

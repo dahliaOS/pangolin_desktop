@@ -16,8 +16,10 @@ limitations under the License.
 
 import 'package:flutter/material.dart';
 import 'package:pangolin/services/customization.dart';
+import 'package:pangolin/utils/api_models/bing_wallpaper_api_model.dart';
 import 'package:pangolin/utils/data/constants.dart';
 import 'package:pangolin/utils/data/globals.dart';
+import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/other/resource.dart';
 import 'package:pangolin/widgets/global/box/box_container.dart';
 import 'package:pangolin/widgets/global/resource/image/image.dart';
@@ -48,9 +50,7 @@ class _WallpaperPickerState extends State<WallpaperPicker>
     final List<ImageResource> recentWallpapers =
         service.recentWallpapers.reversed.toList();
     final List<ImageResource> builtinWalls = wallpapers
-        .map(
-          (e) => ImageResource(type: ImageResourceType.dahlia, value: e),
-        )
+        .map((e) => ImageResource(type: ImageResourceType.dahlia, value: e))
         .toList();
 
     return GestureDetector(
@@ -112,10 +112,7 @@ class _WallpaperPickerState extends State<WallpaperPicker>
                         child: InkWell(
                           onTap: () {
                             service.wallpaper = builtinWalls[index];
-                            service.recentWallpapers = [
-                              ...service.recentWallpapers,
-                              service.wallpaper,
-                            ];
+                            service.addRecentWallpaper(service.wallpaper);
                           },
                           child: Stack(
                             children: [
@@ -210,10 +207,7 @@ class _WallpaperPickerState extends State<WallpaperPicker>
                             type: ImageResourceType.network,
                             value: text,
                           );
-                          service.recentWallpapers = [
-                            ...service.recentWallpapers,
-                            service.wallpaper,
-                          ];
+                          service.addRecentWallpaper(service.wallpaper);
                           Navigator.pop(context);
                         } else {
                           Navigator.pop(context);
@@ -232,16 +226,17 @@ class _WallpaperPickerState extends State<WallpaperPicker>
                       borderRadius: BorderRadius.circular(8),
                     ),
                     onPressed: () async {
-                      final bingresponse = await getBingWallpaper();
+                      final BingImageOfTheDay? wallpaper =
+                          await getBingWallpaper();
+
+                      if (wallpaper == null) return;
+
                       service.wallpaper = ImageResource(
                         type: ImageResourceType.network,
-                        value:
-                            'https://bing.com${bingresponse.images.first.url}',
+                        value: wallpaper.images.first.url.toString(),
                       );
-                      service.recentWallpapers = [
-                        ...service.recentWallpapers,
-                        service.wallpaper,
-                      ];
+                      service.addRecentWallpaper(service.wallpaper);
+
                       if (mounted) Navigator.pop(context);
                     },
                     label: const Text(
@@ -267,6 +262,7 @@ class _WallpaperPickerState extends State<WallpaperPicker>
                           type: ImageResourceType.network,
                           value: _controller.text,
                         );
+                        service.addRecentWallpaper(service.wallpaper);
                         Navigator.pop(context);
                       } else {
                         Navigator.pop(context);

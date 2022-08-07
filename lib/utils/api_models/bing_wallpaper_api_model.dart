@@ -1,114 +1,152 @@
-// To parse this JSON data, do
-//
-//     final bingWallpaper = bingWallpaperFromJson(jsonString);
+import 'package:pangolin/utils/other/json.dart';
 
-import 'dart:convert';
+const bingParser = JsonObjectWithTransformer<BingImageOfTheDay>(
+  transformer: BingImageOfTheDay.parse,
+  fields: [
+    JsonObjectField(
+      name: "images",
+      type: JsonArray(
+        type: JsonObjectWithTransformer(
+          transformer: BingImage.parse,
+          fields: [
+            JsonObjectField(
+              name: "startdate",
+              type: JsonConstantWithTransformer(
+                type: JsonString(validator: _dateValidator),
+                transformer: _dateTransformer,
+              ),
+            ),
+            JsonObjectField(
+              name: "fullstartdate",
+              type: JsonConstantWithTransformer(
+                type: JsonString(validator: _dateValidator),
+                transformer: _dateTransformer,
+              ),
+            ),
+            JsonObjectField(
+              name: "enddate",
+              type: JsonConstantWithTransformer(
+                type: JsonString(validator: _dateValidator),
+                transformer: _dateTransformer,
+              ),
+            ),
+            JsonObjectField(
+              name: "url",
+              type: JsonConstantWithTransformer(
+                type: JsonString(),
+                transformer: _urlTransformer,
+              ),
+            ),
+            JsonObjectField(
+              name: "urlbase",
+              type: JsonConstantWithTransformer(
+                type: JsonString(),
+                transformer: _urlTransformer,
+              ),
+            ),
+            JsonObjectField(
+              name: "copyright",
+              type: JsonString(),
+            ),
+            JsonObjectField(
+              name: "copyrightlink",
+              type: JsonString(),
+            ),
+            JsonObjectField(
+              name: "title",
+              type: JsonString(),
+            ),
+            JsonObjectField(
+              name: "quiz",
+              type: JsonConstantWithTransformer(
+                type: JsonString(),
+                transformer: _urlTransformer,
+              ),
+            ),
+            JsonObjectField(
+              name: "wp",
+              type: JsonBoolean(),
+            ),
+            JsonObjectField(
+              name: "hsh",
+              type: JsonString(),
+            ),
+            JsonObjectField(
+              name: "drk",
+              type: JsonNumber(),
+            ),
+            JsonObjectField(
+              name: "top",
+              type: JsonNumber(),
+            ),
+            JsonObjectField(
+              name: "bot",
+              type: JsonNumber(),
+            ),
+            JsonObjectField(
+              name: "hs",
+              type: JsonArray(type: JsonConstant()),
+            ),
+          ],
+        ),
+      ),
+    ),
+    JsonObjectField(
+      name: "tooltips",
+      type: JsonObjectWithTransformer(
+        transformer: BingTooltips.parse,
+        fields: [
+          JsonObjectField(
+            name: "loading",
+            type: JsonString(),
+          ),
+          JsonObjectField(
+            name: "previous",
+            type: JsonString(),
+          ),
+          JsonObjectField(
+            name: "next",
+            type: JsonString(),
+          ),
+          JsonObjectField(
+            name: "walle",
+            type: JsonString(),
+          ),
+          JsonObjectField(
+            name: "walls",
+            type: JsonString(),
+          ),
+        ],
+      ),
+    ),
+  ],
+);
 
-BingWallpaper bingWallpaperFromJson(String str) =>
-    BingWallpaper.fromJson(json.decode(str) as Map<String, dynamic>);
+class BingImageOfTheDay {
+  final List<BingImage> images;
+  final BingTooltips tooltips;
 
-String bingWallpaperToJson(BingWallpaper data) => json.encode(data.toJson());
-
-class BingWallpaper {
-  BingWallpaper({
+  const BingImageOfTheDay({
     required this.images,
     required this.tooltips,
   });
 
-  final List<Image> images;
-  final Tooltips tooltips;
-
-  factory BingWallpaper.fromJson(Map<String, dynamic> json) => BingWallpaper(
-        images: List<Image>.from(
-          (json["images"] as List<dynamic>).map(
-            (x) => Image.fromJson(
-              x as Map<String, dynamic>,
-            ),
-          ),
-        ),
-        tooltips: Tooltips.fromJson(json["tooltips"] as Map<String, dynamic>),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "images": List<dynamic>.from(images.map((x) => x.toJson())),
-        "tooltips": tooltips.toJson(),
-      };
+  factory BingImageOfTheDay.parse(Map<String, dynamic> json) {
+    return BingImageOfTheDay(
+      images: (json["images"] as List).cast<BingImage>(),
+      tooltips: json["tooltips"] as BingTooltips,
+    );
+  }
 }
 
-class Image {
-  Image({
-    required this.startdate,
-    required this.fullstartdate,
-    required this.enddate,
-    required this.url,
-    required this.urlbase,
-    required this.copyright,
-    required this.copyrightlink,
-    required this.title,
-    required this.quiz,
-    required this.wp,
-    required this.hsh,
-    required this.drk,
-    required this.top,
-    required this.bot,
-    required this.hs,
-  });
+class BingTooltips {
+  final String loading;
+  final String previous;
+  final String next;
+  final String walle;
+  final String walls;
 
-  final String startdate;
-  final String fullstartdate;
-  final String enddate;
-  final String url;
-  final String urlbase;
-  final String copyright;
-  final String copyrightlink;
-  final String title;
-  final String quiz;
-  final bool wp;
-  final String hsh;
-  final int drk;
-  final int top;
-  final int bot;
-  final List<dynamic> hs;
-
-  factory Image.fromJson(Map<String, dynamic> json) => Image(
-        startdate: json["startdate"]! as String,
-        fullstartdate: json["fullstartdate"]! as String,
-        enddate: json["enddate"]! as String,
-        url: json["url"]! as String,
-        urlbase: json["urlbase"]! as String,
-        copyright: json["copyright"]! as String,
-        copyrightlink: json["copyrightlink"]! as String,
-        title: json["title"]! as String,
-        quiz: json["quiz"]! as String,
-        wp: json["wp"]! as bool,
-        hsh: json["hsh"]! as String,
-        drk: json["drk"]! as int,
-        top: json["top"]! as int,
-        bot: json["bot"]! as int,
-        hs: json["hs"]! as List<dynamic>,
-      );
-
-  Map<String, dynamic> toJson() => {
-        "startdate": startdate,
-        "fullstartdate": fullstartdate,
-        "enddate": enddate,
-        "url": url,
-        "urlbase": urlbase,
-        "copyright": copyright,
-        "copyrightlink": copyrightlink,
-        "title": title,
-        "quiz": quiz,
-        "wp": wp,
-        "hsh": hsh,
-        "drk": drk,
-        "top": top,
-        "bot": bot,
-        "hs": List<dynamic>.from(hs.map((x) => x)),
-      };
-}
-
-class Tooltips {
-  Tooltips({
+  const BingTooltips({
     required this.loading,
     required this.previous,
     required this.next,
@@ -116,25 +154,76 @@ class Tooltips {
     required this.walls,
   });
 
-  final String loading;
-  final String previous;
-  final String next;
-  final String walle;
-  final String walls;
+  factory BingTooltips.parse(Map<String, dynamic> json) {
+    return BingTooltips(
+      loading: json["loading"] as String,
+      previous: json["previous"] as String,
+      next: json["next"] as String,
+      walle: json["walle"] as String,
+      walls: json["walls"] as String,
+    );
+  }
+}
 
-  factory Tooltips.fromJson(Map<String, dynamic> json) => Tooltips(
-        loading: json["loading"]! as String,
-        previous: json["previous"]! as String,
-        next: json["next"]! as String,
-        walle: json["walle"]! as String,
-        walls: json["walls"]! as String,
-      );
+class BingImage {
+  final DateTime startDate;
+  final DateTime fullStartDate;
+  final DateTime endDate;
+  final Uri url;
+  final Uri urlBase;
+  final String copyright;
+  final String copyrightLink;
+  final String title;
+  final Uri quiz;
+  final bool wp;
+  final String hash;
+  final num drk;
+  final num top;
+  final num bot;
 
-  Map<String, dynamic> toJson() => {
-        "loading": loading,
-        "previous": previous,
-        "next": next,
-        "walle": walle,
-        "walls": walls,
-      };
+  const BingImage({
+    required this.startDate,
+    required this.fullStartDate,
+    required this.endDate,
+    required this.url,
+    required this.urlBase,
+    required this.copyright,
+    required this.copyrightLink,
+    required this.title,
+    required this.quiz,
+    required this.wp,
+    required this.hash,
+    required this.drk,
+    required this.top,
+    required this.bot,
+  });
+
+  factory BingImage.parse(Map<String, dynamic> json) {
+    return BingImage(
+      startDate: json["startdate"] as DateTime,
+      fullStartDate: json["fullstartdate"] as DateTime,
+      endDate: json["enddate"] as DateTime,
+      url: json["url"] as Uri,
+      urlBase: json["urlbase"] as Uri,
+      copyright: json["copyright"] as String,
+      copyrightLink: json["copyrightlink"] as String,
+      title: json["title"] as String,
+      quiz: json["quiz"] as Uri,
+      wp: json["wp"] as bool,
+      hash: json["hsh"] as String,
+      drk: json["drk"] as num,
+      top: json["top"] as num,
+      bot: json["bot"] as num,
+    );
+  }
+}
+
+bool _dateValidator(String date) {
+  return DateTime.tryParse(date.substring(0, 8)) != null;
+}
+
+DateTime _dateTransformer(String date) => DateTime.parse(date.substring(0, 8));
+
+Uri _urlTransformer(String orig) {
+  return Uri.parse("https://bing.com$orig");
 }

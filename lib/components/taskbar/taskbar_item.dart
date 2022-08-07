@@ -20,6 +20,7 @@ import 'package:pangolin/utils/context_menus/context_menu.dart';
 import 'package:pangolin/utils/context_menus/context_menu_item.dart';
 import 'package:pangolin/utils/context_menus/core/context_menu_region.dart';
 import 'package:pangolin/utils/data/app_list.dart';
+import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/wm/wm.dart';
 import 'package:pangolin/utils/wm/wm_api.dart';
 import 'package:pangolin/widgets/services.dart';
@@ -125,7 +126,7 @@ class _TaskbarItemState extends State<TaskbarItem>
                       ? "Unpin from Taskbar"
                       : "Pin to Taskbar",
                   onTap: () {
-                    //_customizationProvider.togglePinnedApp(_app.packageName);
+                    service.togglePinnedApp(app.packageName);
                   },
                   shortcut: "",
                 ),
@@ -170,51 +171,53 @@ class _TaskbarItemState extends State<TaskbarItem>
                   },
                   child: AnimatedBuilder(
                     animation: _anim,
-                    builder: (context, child) => Stack(
-                      children: [
-                        Center(
-                          child: Padding(
-                            padding: const EdgeInsets.fromLTRB(6.0, 5, 6, 7),
-                            child: Image(
-                              image: appIsRunning
-                                  ? entry?.registry.info.icon ??
-                                      const NetworkImage("")
-                                  : AssetImage(
-                                      "assets/icons/${app.iconName}.png",
-                                    ),
+                    builder: (context, child) {
+                      return Stack(
+                        children: [
+                          Center(
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(6.0, 5, 6, 7),
+                              child: Image(
+                                image: appIsRunning
+                                    ? entry?.registry.info.icon ??
+                                        const NetworkImage("")
+                                    : AssetImage(
+                                        "assets/icons/${app.iconName}.png",
+                                      ),
+                              ),
                             ),
                           ),
-                        ),
-                        AnimatedPositioned(
-                          duration: const Duration(milliseconds: 150),
-                          curve: Curves.ease,
-                          bottom: 1,
-                          left: appIsRunning
-                              ? _hovering
-                                  ? showSelected
-                                      ? 4
-                                      : 8
-                                  : showSelected
-                                      ? 4
-                                      : constraints.maxHeight / 2 - 8
-                              : 50 / 2,
-                          right: appIsRunning
-                              ? _hovering
-                                  ? showSelected
-                                      ? 4
-                                      : 8
-                                  : showSelected
-                                      ? 4
-                                      : constraints.maxHeight / 2 - 8
-                              : 50 / 2,
-                          height: 3,
-                          child: Material(
-                            borderRadius: BorderRadius.circular(2),
-                            color: Theme.of(context).colorScheme.secondary,
+                          AnimatedPositioned(
+                            duration: const Duration(milliseconds: 150),
+                            curve: Curves.ease,
+                            bottom: 1,
+                            left: appIsRunning
+                                ? _hovering
+                                    ? showSelected
+                                        ? 4
+                                        : 8
+                                    : showSelected
+                                        ? 4
+                                        : constraints.maxHeight / 2 - 8
+                                : 50 / 2,
+                            right: appIsRunning
+                                ? _hovering
+                                    ? showSelected
+                                        ? 4
+                                        : 8
+                                    : showSelected
+                                        ? 4
+                                        : constraints.maxHeight / 2 - 8
+                                : 50 / 2,
+                            height: 3,
+                            child: Material(
+                              borderRadius: BorderRadius.circular(2),
+                              color: Theme.of(context).colorScheme.secondary,
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
+                        ],
+                      );
+                    },
                   ),
                 ),
               ),

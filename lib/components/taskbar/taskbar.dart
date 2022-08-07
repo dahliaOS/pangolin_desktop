@@ -14,11 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'dart:math';
-
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:pangolin/components/overlays/launcher/launcher_overlay.dart';
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/components/taskbar/taskbar_item.dart';
 import 'package:pangolin/services/customization.dart';
@@ -45,17 +41,14 @@ class _TaskbarState extends State<Taskbar>
   @override
   Widget buildChild(BuildContext context, CustomizationService service) {
     final List<String> pinnedApps = service.pinnedApps;
-    final List<String> taskbarApps = pinnedApps.toList()
-      ..addAll(
-        WindowHierarchy.of(context)
-            .entries
-            .map<String>(
-              (e) => pinnedApps.contains(e.registry.extra.stableId)
-                  ? ""
-                  : e.registry.extra.stableId,
-            )
-            .toList(),
-      );
+    final List<String> taskbarApps = [
+      ...pinnedApps,
+      ...WindowHierarchy.of(context)
+          .entries
+          .where((e) => !pinnedApps.contains(e.registry.extra.stableId))
+          .map((e) => e.registry.extra.stableId)
+          .toList(),
+    ];
 
     final Widget items = ReorderableListView(
       shrinkWrap: true,
@@ -80,106 +73,44 @@ class _TaskbarState extends State<Taskbar>
         });
       },
       children: taskbarApps
-          .map<Widget>(
-            (e) => e != ""
-                ? TaskbarItem(key: ValueKey(e), packageName: e)
-                : SizedBox.shrink(key: ValueKey(Random())),
-          )
+          .map((e) => TaskbarItem(key: ValueKey(e), packageName: e))
           .toList(),
     );
-    double scroll = 0;
+
     return Positioned(
       left: 0,
       right: 0,
       bottom: 0,
       height: 48,
-      child: Listener(
-        onPointerSignal: (pointerSignal) {
-          if (pointerSignal is PointerScrollEvent) {
-            // do something when scrolled
-            setState(() {
-              scroll = scroll + pointerSignal.scrollDelta.dy;
-            });
-            if (scroll > 500) {
-              Shell.of(context).dismissOverlay(LauncherOverlay.overlayId);
-            }
-          }
-        },
-        // TODO Fix taskbar background position
-        /* child: ContextMenuRegion(
-          contextMenu: ContextMenu(
-            items: [
-              const ContextMenuItem(
-                icon: Icons.power_input_sharp,
-                title: "Taskbar Position",
-                onTap: null,
-                shortcut: "",
-              ),
-              ContextMenuItem(
-                icon: Icons.arrow_drop_down_rounded,
-                title: "Bottom",
-                onTap: () {
-                  _customizationProvider.taskbarPosition = 2.0;
-                },
-                shortcut: "",
-              ),
-              ContextMenuItem(
-                icon: Icons.arrow_drop_up_rounded,
-                title: "Top",
-                onTap: () {
-                  _customizationProvider.taskbarPosition = 0.0;
-                },
-                shortcut: "",
-              ),
-              ContextMenuItem(
-                icon: Icons.arrow_left_rounded,
-                title: "Left",
-                onTap: () {
-                  _customizationProvider.taskbarPosition = 1.0;
-                },
-                shortcut: "",
-              ),
-              ContextMenuItem(
-                icon: Icons.arrow_right_rounded,
-                title: "Right",
-                onTap: () {
-                  _customizationProvider.taskbarPosition = 3.0;
-                },
-                shortcut: "",
-              ),
-            ],
-          ), */
-        child: BoxContainer(
-          opacity: 0.25,
-          child: Material(
-            color: Colors.transparent,
-            child: Padding(
-              padding: const EdgeInsets.only(left: 4.0),
-              child: Stack(
-                children: [
-                  const SizedBox.shrink(),
-                  Row(
-                    children: [
+      child: BoxContainer(
+        opacity: 0.25,
+        child: Material(
+          color: Colors.transparent,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 4.0),
+            child: Stack(
+              children: [
+                const SizedBox.shrink(),
+                Row(
+                  children: [
+                    if (widget.leading != null)
                       Row(
                         mainAxisSize: MainAxisSize.min,
-                        children: widget.leading ?? [const SizedBox.shrink()],
+                        children: widget.leading ?? [],
                       ),
-                      Expanded(
-                        child: listenerWrapper(items),
-                      ),
+                    Expanded(child: listenerWrapper(items)),
+                    if (widget.trailing != null)
                       Row(
                         mainAxisSize: MainAxisSize.min,
-                        children: widget.trailing ?? [const SizedBox.shrink()],
+                        children: widget.trailing ?? [],
                       ),
-                    ],
-                  )
-                ],
-              ),
+                  ],
+                )
+              ],
             ),
           ),
         ),
       ),
-      /* ), */
     );
   }
 
