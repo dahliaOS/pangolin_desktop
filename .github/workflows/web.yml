@@ -17,6 +17,8 @@ jobs:
         name: Checkout repository
       - uses: subosito/flutter-action@v2.4.0
         name: Set up Flutter
+      - name: Setup Pages
+        uses: actions/configure-pages@v1
       - name: Switch Flutter channel
         run: flutter channel master
       - name: Make sure Flutter is up to date
@@ -31,19 +33,17 @@ jobs:
         run: flutter build web --release
       - name: Add CNAME
         run: echo "web.dahliaos.io" >> build/web/CNAME
-  deploy:
-    needs: build
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Setup Pages
-        uses: actions/configure-pages@v1
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
           path: '.'
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@main
