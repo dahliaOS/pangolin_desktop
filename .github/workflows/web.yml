@@ -1,4 +1,3 @@
-
 name: Build and Deploy to Web
 
 on:
@@ -25,11 +24,20 @@ jobs:
         run: flutter pub get && flutter pub upgrade
       - name: Build Pangolin for Web
         run: flutter build web --release
-      - name: Deploy to GitHub pages
-        run: |
-          echo "web.dahliaos.io" >> build/web/CNAME
-          git config user.name github-actions
-          git config user.email "action@github.com"
-          git --work-tree build/web add --all
-          git commit -m "Automatic deployment by github-actions"
-          git push origin HEAD:gh-pages --force
+      - name: Add CNAME
+        run: echo "web.dahliaos.io" >> build/web/CNAME
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Pages
+        uses: actions/configure-pages@v1
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: '.'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@main
