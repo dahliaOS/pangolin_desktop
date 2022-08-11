@@ -18,6 +18,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/services/customization.dart';
 import 'package:pangolin/services/langpacks.dart';
+import 'package:pangolin/services/notifications.dart';
 import 'package:pangolin/utils/data/constants.dart';
 import 'package:pangolin/utils/other/resource.dart';
 import 'package:pangolin/utils/providers/locale_provider.dart';
@@ -195,5 +196,11 @@ extension CustomizationServiceX on CustomizationService {
     } else {
       pinnedApps = List.from(pinnedApps)..add(packageName);
     }
+  }
+}
+
+extension NotificationServiceX on NotificationService {
+  UserNotification? getNotification(int id) {
+    return notifications.firstWhereOrNull((e) => e.id == id);
   }
 }

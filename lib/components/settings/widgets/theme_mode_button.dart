@@ -96,7 +96,7 @@ class _ThemeModeButtonState extends State<ThemeModeButton>
 
   Expanded _cardElement(ThemeModeDataModel model) {
     return Expanded(
-      child: Container(
+      child: DecoratedBox(
         decoration: BoxDecoration(
           border: Border.all(
             color: model.darkMode

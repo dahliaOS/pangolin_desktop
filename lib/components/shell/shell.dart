@@ -18,6 +18,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/overlays/launcher/launcher_overlay.dart';
+import 'package:pangolin/components/overlays/notifications/notification_overlay.dart';
 import 'package:pangolin/components/taskbar/launcher.dart';
 import 'package:pangolin/components/taskbar/overview.dart';
 import 'package:pangolin/components/taskbar/quick_settings.dart';
@@ -165,6 +166,13 @@ class ShellState extends State<Shell> {
                 },
                 behavior: HitTestBehavior.translucent,
               ),
+            ),
+            Positioned(
+              width: 420,
+              right: WindowHierarchy.of(context).wmInsets.right + 16,
+              //top: WindowHierarchy.of(context).wmInsets.top + 32,
+              bottom: WindowHierarchy.of(context).wmInsets.bottom + 16,
+              child: const NotificationQueue(),
             ),
           ],
         ),

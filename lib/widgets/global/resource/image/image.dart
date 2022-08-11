@@ -92,7 +92,6 @@ Widget _buildResourceIO(
             : null,
       );
     case ImageResourceType.file:
-    default:
       final String path = resolvedResource;
       final String ext = p.extension(path);
 
@@ -105,7 +104,14 @@ Widget _buildResourceIO(
             height: height,
             fit: fit,
           );
-        case ".png":
+        case ".xpm":
+          return XpmImage(
+            File(path),
+            width: width,
+            height: height,
+            fit: fit,
+          );
+        default:
           return Image.file(
             File(path),
             width: width,
@@ -116,17 +122,10 @@ Widget _buildResourceIO(
             fit: fit,
             errorBuilder: errorBuilder,
           );
-        case ".xpm":
-          return XpmImage(
-            File(path),
-            width: width,
-            height: height,
-            fit: fit,
-          );
       }
+    default:
+      return SizedBox(width: width, height: height);
   }
-
-  return SizedBox(width: width, height: height);
 }
 
 Widget _buildResourceWeb(
