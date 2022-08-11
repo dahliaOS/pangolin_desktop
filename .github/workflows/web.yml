@@ -3,6 +3,11 @@ name: Build and Deploy to Web
 on:
   push:
     branches: [ main ]
+    
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   build:
@@ -27,6 +32,7 @@ jobs:
       - name: Add CNAME
         run: echo "web.dahliaos.io" >> build/web/CNAME
   deploy:
+    needs: build
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
