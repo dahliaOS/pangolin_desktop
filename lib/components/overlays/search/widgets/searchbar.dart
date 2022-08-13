@@ -72,7 +72,9 @@ class Searchbar extends StatelessWidget {
                 focusNode: focusNode,
                 controller: controller,
                 textAlign: TextAlign.center,
+                maxLength: 15,
                 decoration: InputDecoration(
+                  counterText: "",
                   hintText: hint,
                   border: InputBorder.none,
                   focusedBorder: InputBorder.none,
