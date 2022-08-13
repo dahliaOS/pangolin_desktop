@@ -6,7 +6,6 @@ import 'package:dbus/dbus.dart';
 import 'package:gsettings/gsettings.dart';
 import 'package:pangolin/services/service.dart';
 import 'package:pangolin/utils/other/benchmark.dart';
-import 'package:pangolin/utils/other/log.dart';
 import 'package:pangolin/widgets/global/resource/icon/cache.dart';
 import 'package:path/path.dart' as p;
 import 'package:xdg_desktop/xdg_desktop.dart';
@@ -37,7 +36,7 @@ abstract class IconService extends ListenableService<IconService> {
   });
 }
 
-class _LinuxIconService extends IconService with LoggerProvider {
+class _LinuxIconService extends IconService {
   static final RegExp extRegexp = RegExp(r"(\.png|\.svg(z)?|\.xpm)^");
   final GSettings settings = GSettings("org.gnome.desktop.interface");
 

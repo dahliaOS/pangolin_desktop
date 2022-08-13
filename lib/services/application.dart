@@ -7,13 +7,12 @@ import 'package:pangolin/services/service.dart';
 import 'package:pangolin/utils/data/app_list.dart';
 import 'package:pangolin/utils/data/models/application.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
-import 'package:pangolin/utils/other/log.dart';
 import 'package:path/path.dart' as p;
 import 'package:xdg_desktop/xdg_desktop.dart';
 import 'package:xdg_directories/xdg_directories.dart' as xdg;
 
-abstract class ApplicationService extends ListenableService<ApplicationService>
-    with LoggerProvider {
+abstract class ApplicationService
+    extends ListenableService<ApplicationService> {
   ApplicationService();
 
   static ApplicationService get current {

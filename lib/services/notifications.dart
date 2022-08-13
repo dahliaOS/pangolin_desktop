@@ -4,12 +4,13 @@ import 'dart:typed_data';
 
 import 'package:collection/collection.dart';
 import 'package:dbus/dbus.dart';
+import 'package:pangolin/services/dbus.dart';
 import 'package:pangolin/services/dbus/image.dart';
+import 'package:pangolin/services/dbus/objects/notifications.dart';
 import 'package:pangolin/services/service.dart';
-import 'package:pangolin/utils/other/log.dart';
 
 abstract class NotificationService
-    extends ListenableService<NotificationService> with LoggerProvider {
+    extends ListenableService<NotificationService> {
   NotificationService();
 
   static NotificationService get current {
@@ -30,15 +31,15 @@ abstract class NotificationService
   void closeNotification(int id, NotificationCloseReason reason);
 }
 
-class _DbusNotificationService extends NotificationService {
-  final DBusServer _server = DBusServer();
+class _DbusNotificationService extends NotificationService
+    with DBusService<NotificationService> {
   final List<UserNotification> _notifications = [];
   final StreamController<NotificationServiceEvent> _controller =
       StreamController.broadcast();
 
-  late _DBusNotificationBackend backend = _DBusNotificationBackend(this);
+  @override
+  late final _DBusNotificationBackend backend = _DBusNotificationBackend(this);
 
-  DBusClient? _client;
   int _lastId = 0;
 
   @override
@@ -59,21 +60,10 @@ class _DbusNotificationService extends NotificationService {
   }
 
   @override
-  Future<void> start() async {
-    if (await _registerClient(DBusClient.session())) return;
-
-    final DBusAddress address = await _server.listenAddress(
-      DBusAddress.unix(
-        path: "${Directory.systemTemp.path}/pangolin-dbus",
-      ),
-    );
-
-    if (await _registerClient(DBusClient(address))) return;
-
-    throw Exception(
-      "Could not connect to a DBus instance, crashing the service to get fallback",
-    );
-  }
+  Set<DBusRequestNameFlag> get nameFlags => {
+        DBusRequestNameFlag.allowReplacement,
+        DBusRequestNameFlag.replaceExisting,
+      };
 
   void addNotification(UserNotification notification) {
     _notifications.add(notification);
@@ -104,44 +94,7 @@ class _DbusNotificationService extends NotificationService {
     _sendEvent(CloseNotificationEvent(id: id, reason: reason));
   }
 
-  Future<bool> _registerClient(DBusClient client) async {
-    try {
-      await client.requestName(
-        'org.freedesktop.Notifications',
-        flags: {
-          DBusRequestNameFlag.allowReplacement,
-          DBusRequestNameFlag.replaceExisting,
-        },
-      );
-      await client.registerObject(backend);
-      _client = client;
-      return true;
-    } catch (e) {
-      logger.warning(
-        "Could not register client $client for notification service, unregistering",
-      );
-      if (backend.client != null) {
-        await client.unregisterObject(backend);
-      }
-      await client.releaseName("org.freedesktop.Notifications");
-      await client.close();
-      _client = null;
-      return false;
-    }
-  }
-
   int getId() => _lastId += 1;
-
-  @override
-  Future<void> stop() async {
-    await _server.close();
-    if (backend.client != null) {
-      await _client?.unregisterObject(backend);
-    }
-    await _client?.releaseName("org.freedesktop.Notifications");
-    await _client?.close();
-    _client = null;
-  }
 
   void _sendEvent(NotificationServiceEvent event) {
     _controller.add(event);
@@ -171,223 +124,78 @@ class _DummyNotificationService extends NotificationService {
   }
 }
 
-class _DBusNotificationBackend extends DBusObject {
+class _DBusNotificationBackend extends NotificationsBase
+    with DBusServiceBackend {
   final _DbusNotificationService service;
 
   _DBusNotificationBackend(this.service)
-      : super(DBusObjectPath('/org/freedesktop/Notifications'));
+      : super(path: DBusObjectPath('/org/freedesktop/Notifications'));
 
   @override
-  List<DBusIntrospectInterface> introspect() {
-    return [
-      DBusIntrospectInterface(
-        'org.freedesktop.Notifications',
-        methods: [
-          DBusIntrospectMethod(
-            'GetServerInformation',
-            args: [
-              DBusIntrospectArgument(
-                DBusSignature('s'),
-                DBusArgumentDirection.out,
-                name: 'name',
-              ),
-              DBusIntrospectArgument(
-                DBusSignature('s'),
-                DBusArgumentDirection.out,
-                name: 'vendor',
-              ),
-              DBusIntrospectArgument(
-                DBusSignature('s'),
-                DBusArgumentDirection.out,
-                name: 'version',
-              ),
-              DBusIntrospectArgument(
-                DBusSignature('s'),
-                DBusArgumentDirection.out,
-                name: 'specVersion',
-              ),
-            ],
-          ),
-          DBusIntrospectMethod(
-            'GetCapabilities',
-            args: [
-              DBusIntrospectArgument(
-                DBusSignature("as"),
-                DBusArgumentDirection.out,
-                name: 'capabilities',
-              ),
-            ],
-          ),
-          DBusIntrospectMethod(
-            'CloseNotification',
-            args: [
-              DBusIntrospectArgument(
-                DBusSignature("u"),
-                DBusArgumentDirection.in_,
-                name: 'notificationId',
-              ),
-            ],
-          ),
-          DBusIntrospectMethod(
-            'Notify',
-            args: [
-              DBusIntrospectArgument(
-                DBusSignature("s"),
-                DBusArgumentDirection.in_,
-                name: 'appName',
-              ),
-              DBusIntrospectArgument(
-                DBusSignature("u"),
-                DBusArgumentDirection.in_,
-                name: 'replacesId',
-              ),
-              DBusIntrospectArgument(
-                DBusSignature("s"),
-                DBusArgumentDirection.in_,
-                name: 'appIcon',
-              ),
-              DBusIntrospectArgument(
-                DBusSignature("s"),
-                DBusArgumentDirection.in_,
-                name: 'summary',
-              ),
-              DBusIntrospectArgument(
-                DBusSignature("s"),
-                DBusArgumentDirection.in_,
-                name: 'body',
-              ),
-              DBusIntrospectArgument(
-                DBusSignature("as"),
-                DBusArgumentDirection.in_,
-                name: 'actions',
-              ),
-              DBusIntrospectArgument(
-                DBusSignature("a{sv}"),
-                DBusArgumentDirection.in_,
-                name: 'hints',
-              ),
-              DBusIntrospectArgument(
-                DBusSignature("i"),
-                DBusArgumentDirection.in_,
-                name: 'timeoutMs',
-              ),
-              DBusIntrospectArgument(
-                DBusSignature("u"),
-                DBusArgumentDirection.out,
-                name: 'notificationId',
-              ),
-            ],
-          ),
-        ],
-        signals: [
-          DBusIntrospectSignal(
-            'NotificationClosed',
-            args: [
-              DBusIntrospectArgument(
-                DBusSignature("u"),
-                DBusArgumentDirection.out,
-                name: 'notificationId',
-              ),
-              DBusIntrospectArgument(
-                DBusSignature("u"),
-                DBusArgumentDirection.out,
-                name: 'reason',
-              ),
-            ],
-          ),
-          DBusIntrospectSignal(
-            'ActionInvoked',
-            args: [
-              DBusIntrospectArgument(
-                DBusSignature("u"),
-                DBusArgumentDirection.out,
-                name: 'notificationId',
-              ),
-              DBusIntrospectArgument(
-                DBusSignature("s"),
-                DBusArgumentDirection.out,
-                name: 'action',
-              ),
-            ],
-          ),
-        ],
-      ),
-    ];
+  Future<DBusMethodResponse> doGetServerInformation() async {
+    return DBusMethodSuccessResponse([
+      const DBusString("pangolin"),
+      const DBusString("dahliaOS"),
+      const DBusString("1.0"),
+      const DBusString("1.2"),
+    ]);
   }
 
   @override
-  Future<DBusMethodResponse> handleMethodCall(DBusMethodCall methodCall) async {
-    switch (methodCall.name) {
-      case 'GetServerInformation':
-        return DBusMethodSuccessResponse([
-          const DBusString("pangolin"),
-          const DBusString("dahliaOS"),
-          const DBusString("1.0"),
-          const DBusString("1.2"),
-        ]);
-      case 'GetCapabilities':
-        return DBusMethodSuccessResponse([
-          DBusArray.string([
-            "actions",
-            "body",
-            "body-hyperlinks",
-            "body-markup",
-            "icon-static",
-            "persistence",
-          ]),
-        ]);
-      case 'Notify':
-        if (methodCall.signature != DBusSignature("susssasa{sv}i")) {
-          return DBusMethodErrorResponse.invalidArgs();
-        }
+  Future<DBusMethodResponse> doGetCapabilities() async {
+    return DBusMethodSuccessResponse([
+      DBusArray.string([
+        "actions",
+        "body",
+        "body-hyperlinks",
+        "body-markup",
+        "icon-static",
+        "persistence",
+      ]),
+    ]);
+  }
 
-        final int id = service.getId();
-        final String appName = methodCall.values[0].asString();
-        final int replacesId = methodCall.values[1].asUint32();
-        final String appIcon = methodCall.values[2].asString();
-        final String summary = methodCall.values[3].asString();
-        final String body = methodCall.values[4].asString();
-        final List<DBusValue> actions = methodCall.values[5].asArray();
-        final Map<String, DBusValue> hints =
-            methodCall.values[6].asStringVariantDict();
-        final int expireTimeout = methodCall.values[7].asInt32();
+  @override
+  Future<DBusMethodResponse> doNotify(
+    String appName,
+    int replaces,
+    String icon,
+    String summary,
+    String body,
+    List<String> actions,
+    Map<String, DBusValue> hints,
+    int timeout,
+  ) async {
+    final int id = service.getId();
 
-        final UserNotification notification = UserNotification(
-          owner: this,
-          id: id,
-          appName: appName,
-          appIcon: appIcon.isNotEmpty ? appIcon : null,
-          summary: summary,
-          body: body,
-          actions: _parseReceivedActions(actions),
-          expireTimeout: expireTimeout,
-          image: _getImage(hints),
-        );
+    final UserNotification notification = UserNotification(
+      owner: this,
+      id: id,
+      appName: appName,
+      appIcon: icon.isNotEmpty ? icon : null,
+      summary: summary,
+      body: body,
+      actions: _parseReceivedActions(actions),
+      expireTimeout: timeout,
+      image: _getImage(hints),
+    );
 
-        if (replacesId > 0) {
-          final bool replaced =
-              service.replaceNotification(replacesId, notification);
+    if (replaces > 0) {
+      final bool replaced = service.replaceNotification(replaces, notification);
 
-          if (!replaced) service.addNotification(notification);
-        } else {
-          service.addNotification(notification);
-        }
-
-        return DBusMethodSuccessResponse([DBusUint32(id)]);
-      case 'CloseNotification':
-        if (methodCall.signature != DBusSignature("u")) {
-          return DBusMethodErrorResponse.invalidArgs();
-        }
-        final DBusUint32 id = methodCall.values[0] as DBusUint32;
-        service.closeNotification(
-          id.value,
-          NotificationCloseReason.closed,
-        );
-
-        return DBusMethodSuccessResponse([]);
+      if (!replaced) service.addNotification(notification);
+    } else {
+      service.addNotification(notification);
     }
 
-    return DBusMethodErrorResponse.unknownMethod();
+    return DBusMethodSuccessResponse([DBusUint32(id)]);
+  }
+
+  @override
+  Future<DBusMethodResponse> doCloseNotification(int id) async {
+    service.closeNotification(id, NotificationCloseReason.closed);
+
+    return DBusMethodSuccessResponse([]);
   }
 
   DBusImage? _getImage(Map<String, DBusValue> hints) {
@@ -437,20 +245,21 @@ class _DBusNotificationBackend extends DBusObject {
     return NameDBusImage(data.asString());
   }
 
-  List<NotificationAction> _parseReceivedActions(List<DBusValue> array) {
+  List<NotificationAction> _parseReceivedActions(List<String> array) {
     if (array.length % 2 != 0) {
       throw DBusMethodErrorResponse.invalidArgs();
     }
-    final List<String> stringActions =
-        array.map((e) => (e as DBusString).value).toList();
 
     final List<NotificationAction> actions = [];
-    for (int i = 0; i < stringActions.length; i += 2) {
-      actions.add(NotificationAction(stringActions[i], stringActions[i + 1]));
+    for (int i = 0; i < array.length; i += 2) {
+      actions.add(NotificationAction(array[i], array[i + 1]));
     }
 
     return actions;
   }
+
+  @override
+  String get interface => 'org.freedesktop.Notifications';
 }
 
 class UserNotification {

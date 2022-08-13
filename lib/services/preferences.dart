@@ -1,11 +1,9 @@
 import 'dart:async';
 
 import 'package:pangolin/services/service.dart';
-import 'package:pangolin/utils/other/log.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-abstract class PreferencesService extends Service<PreferencesService>
-    with LoggerProvider {
+abstract class PreferencesService extends Service<PreferencesService> {
   PreferencesService();
 
   static PreferencesService get current {

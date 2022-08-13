@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:pangolin/utils/other/log.dart';
 
-abstract class Service<T extends Service<T>> {
+abstract class Service<T extends Service<T>> with LoggerProvider {
   bool _running = false;
   bool get running => _running;
 

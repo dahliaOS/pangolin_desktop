@@ -3,12 +3,13 @@ import 'dart:io';
 
 import 'package:collection/collection.dart';
 import 'package:dbus/dbus.dart';
+import 'package:pangolin/services/dbus.dart';
+import 'package:pangolin/services/dbus/objects/remote/status_item.dart';
+import 'package:pangolin/services/dbus/objects/status_watcher.dart';
 import 'package:pangolin/services/dbus/status_item.dart';
 import 'package:pangolin/services/service.dart';
-import 'package:pangolin/utils/other/log.dart';
 
-abstract class TrayService extends ListenableService<TrayService>
-    with LoggerProvider {
+abstract class TrayService extends ListenableService<TrayService> {
   TrayService();
 
   static TrayService get current {
@@ -26,32 +27,34 @@ abstract class TrayService extends ListenableService<TrayService>
   List<StatusNotifierItem> get items;
 }
 
-class _DbusTrayService extends TrayService {
-  final DBusServer _server = DBusServer();
+class _DbusTrayService extends TrayService with DBusService {
   final List<StatusNotifierItem> _items = [];
+
+  @override
   late final _DBusTrayBackend backend = _DBusTrayBackend(this);
 
   List<String> get _dbusItems =>
       _items.map((e) => '${e.object.name}${e.object.path.value}').toList();
 
   StreamSubscription? _nameSubscription;
-  DBusClient? _client;
 
   @override
   List<StatusNotifierItem> get items => List.from(_items);
 
   Future<void> registerItem(String name, String path) async {
     final StatusNotifierItemObject object =
-        StatusNotifierItemObject(_client!, name, DBusObjectPath(path));
+        StatusNotifierItemObject(client!, name, DBusObjectPath(path));
+
     final StatusNotifierItem item = await StatusNotifierItem.fromObject(object);
     _items.add(item);
     backend.emitStatusNotifierItemRegistered("$name$path");
     backend.emitPropertiesChanged(
-      _DBusTrayBackend.interface,
+      backend.interface,
       changedProperties: {
         'RegisteredStatusNotifierItems': DBusArray.string(_dbusItems),
       },
     );
+    logger.info("Registered tray item $name$path");
     notifyListeners();
   }
 
@@ -59,6 +62,9 @@ class _DbusTrayService extends TrayService {
     _items.remove(item);
     backend.emitStatusNotifierItemUnregistered(
       "${item.object.name}${item.object.path.value}",
+    );
+    logger.info(
+      "Unregistered tray item ${item.object.name}${item.object.path}",
     );
     notifyListeners();
   }
@@ -75,65 +81,24 @@ class _DbusTrayService extends TrayService {
   }
 
   @override
-  Future<void> start() async {
-    if (await _registerClient(DBusClient.session())) return;
-
-    final DBusAddress address = await _server.listenAddress(
-      DBusAddress.unix(
-        path: "${Directory.systemTemp.path}/pangolin-dbus",
-      ),
-    );
-
-    if (await _registerClient(DBusClient(address))) return;
-
-    throw Exception(
-      "Could not connect to a DBus instance, crashing the service to get fallback",
+  FutureOr<void> onClientRegistered() {
+    _nameSubscription = client!.nameOwnerChanged.listen(_nameOwnerChanged);
+    backend.emitStatusNotifierHostRegistered();
+    backend.emitPropertiesChanged(
+      backend.interface,
+      changedProperties: {
+        'IsStatusNotifierHostRegistered': const DBusBoolean(true),
+        'ProtocolVersion': const DBusInt32(0),
+        'RegisteredStatusNotifierItems': DBusArray.string([]),
+      },
     );
   }
 
   @override
-  Future<void> stop() async {
+  FutureOr<void> onClientUnregistering() {
     backend.emitStatusNotifierHostUnregistered();
-    if (backend.client != null) {
-      await _client?.unregisterObject(backend);
-    }
-    await _client?.releaseName(_DBusTrayBackend.interface);
-    await _client?.close();
-    _client = null;
-    await _server.close();
-  }
-
-  Future<bool> _registerClient(DBusClient client) async {
-    try {
-      _client = client;
-      await _client!.requestName(_DBusTrayBackend.interface);
-      await _client!.registerObject(backend);
-      _nameSubscription = _client!.nameOwnerChanged.listen(_nameOwnerChanged);
-      backend.emitStatusNotifierHostRegistered();
-      backend.emitPropertiesChanged(
-        _DBusTrayBackend.interface,
-        changedProperties: {
-          'IsStatusNotifierHostRegistered': const DBusBoolean(true),
-          'ProtocolVersion': const DBusInt32(0),
-          'RegisteredStatusNotifierItems': DBusArray.string([]),
-        },
-      );
-      return true;
-    } catch (e) {
-      logger.warning(
-        "Could not register client $client for tray service, unregistering",
-      );
-      backend.emitStatusNotifierHostUnregistered();
-      if (backend.client != null) {
-        await client.unregisterObject(backend);
-      }
-      await client.releaseName(_DBusTrayBackend.interface);
-      await client.close();
-      _nameSubscription?.cancel();
-      _nameSubscription = null;
-      _client = null;
-      return false;
-    }
+    _nameSubscription?.cancel();
+    _nameSubscription = null;
   }
 
   // Reserved for future use eventually
@@ -189,184 +154,60 @@ class _DummyTrayService extends TrayService {
   List<StatusNotifierItem> get items => [];
 }
 
-class _DBusTrayBackend extends DBusObject {
-  static const String interface = "org.kde.StatusNotifierWatcher";
+class _DBusTrayBackend extends StatusNotifierWatcherBase
+    with DBusServiceBackend {
+  @override
+  String interface = "org.kde.StatusNotifierWatcher";
 
   final _DbusTrayService service;
 
   _DBusTrayBackend(this.service)
-      : super(DBusObjectPath('/StatusNotifierWatcher'));
+      : super(path: DBusObjectPath('/StatusNotifierWatcher'));
 
   @override
-  List<DBusIntrospectInterface> introspect() {
-    return [
-      DBusIntrospectInterface(
-        'org.kde.StatusNotifierWatcher',
-        methods: [
-          DBusIntrospectMethod(
-            'RegisterStatusNotifierItem',
-            args: [
-              DBusIntrospectArgument(
-                DBusSignature('s'),
-                DBusArgumentDirection.in_,
-                name: 'service',
-              ),
-            ],
-          ),
-          DBusIntrospectMethod(
-            'RegisterStatusNotifierHost',
-            args: [
-              DBusIntrospectArgument(
-                DBusSignature('s'),
-                DBusArgumentDirection.in_,
-                name: 'service',
-              ),
-            ],
-          )
-        ],
-        signals: [
-          DBusIntrospectSignal(
-            'StatusNotifierItemRegistered',
-            args: [
-              DBusIntrospectArgument(
-                DBusSignature('s'),
-                DBusArgumentDirection.out,
-                name: 'service',
-              ),
-            ],
-          ),
-          DBusIntrospectSignal(
-            'StatusNotifierItemUnregistered',
-            args: [
-              DBusIntrospectArgument(
-                DBusSignature('s'),
-                DBusArgumentDirection.out,
-                name: 'service',
-              ),
-            ],
-          ),
-          DBusIntrospectSignal('StatusNotifierHostRegistered'),
-          DBusIntrospectSignal('StatusNotifierHostUnregistered')
-        ],
-        properties: [
-          DBusIntrospectProperty(
-            'RegisteredStatusNotifierItems',
-            DBusSignature('as'),
-            access: DBusPropertyAccess.read,
-          ),
-          DBusIntrospectProperty(
-            'IsStatusNotifierHostRegistered',
-            DBusSignature('b'),
-            access: DBusPropertyAccess.read,
-          ),
-          DBusIntrospectProperty(
-            'ProtocolVersion',
-            DBusSignature('i'),
-            access: DBusPropertyAccess.read,
-          ),
-        ],
-      ),
-    ];
-  }
-
-  @override
-  Future<DBusMethodResponse> handleMethodCall(DBusMethodCall methodCall) async {
-    switch (methodCall.name) {
-      case 'RegisterStatusNotifierItem':
-        if (methodCall.signature != DBusSignature.string) {
-          return DBusMethodErrorResponse.invalidArgs();
-        }
-
-        final String serviceValue = methodCall.values[0].asString();
-
-        final String name;
-        final String path;
-
-        if (serviceValue.startsWith("/")) {
-          name = methodCall.sender;
-          path = serviceValue;
-        } else {
-          name = serviceValue;
-          path = "/StatusNotifierItem";
-        }
-
-        service.registerItem(name, path);
-
-        return DBusMethodSuccessResponse([]);
-      case 'RegisterStatusNotifierHost':
-        if (methodCall.signature != DBusSignature.string) {
-          return DBusMethodErrorResponse.invalidArgs();
-        }
-
-        // We don't actually do anything
-        return DBusMethodSuccessResponse();
-    }
-
-    return DBusMethodErrorResponse.unknownMethod();
-  }
-
-  @override
-  Future<DBusMethodResponse> getProperty(String interface, String name) async {
-    switch (name) {
-      case 'IsStatusNotifierHostRegistered':
-        return DBusMethodSuccessResponse([const DBusBoolean(true)]);
-      case 'ProtocolVersion':
-        return DBusMethodSuccessResponse([const DBusInt32(0)]);
-      case 'RegisteredStatusNotifierItems':
-        return DBusMethodSuccessResponse(
-          [DBusArray.string(service._dbusItems)],
-        );
-    }
-
-    return DBusMethodErrorResponse.unknownProperty();
-  }
-
-  @override
-  Future<DBusMethodResponse> setProperty(
-    String interface,
-    String name,
-    DBusValue value,
+  Future<DBusMethodResponse> doRegisterStatusNotifierItem(
+    String sender,
+    String service,
   ) async {
-    switch (name) {
-      case 'RegisteredStatusNotifierItems':
-      case 'IsStatusNotifierHostRegistered':
-      case 'ProtocolVersion':
-        return DBusMethodErrorResponse.propertyReadOnly();
+    final String serviceValue = service;
+
+    final String name;
+    final String path;
+
+    if (serviceValue.startsWith("/")) {
+      name = sender;
+      path = serviceValue;
+    } else {
+      name = serviceValue;
+      path = "/StatusNotifierItem";
     }
 
-    return DBusMethodErrorResponse.unknownProperty();
+    this.service.registerItem(name, path);
+
+    return DBusMethodSuccessResponse();
   }
 
-  Future<void> emitStatusNotifierItemRegistered(String service) async {
-    await emitSignal(
-      'org.kde.StatusNotifierWatcher',
-      'StatusNotifierItemRegistered',
-      [DBusString(service)],
-    );
+  @override
+  Future<DBusMethodResponse> doRegisterStatusNotifierHost(
+    String service,
+  ) async {
+    // We don't actually do anything
+    return DBusMethodSuccessResponse();
   }
 
-  Future<void> emitStatusNotifierItemUnregistered(String service) async {
-    await emitSignal(
-      'org.kde.StatusNotifierWatcher',
-      'StatusNotifierItemUnregistered',
-      [DBusString(service)],
-    );
+  @override
+  Future<DBusMethodResponse> getIsStatusNotifierHostRegistered() async {
+    return DBusMethodSuccessResponse([const DBusBoolean(true)]);
   }
 
-  Future<void> emitStatusNotifierHostRegistered() async {
-    await emitSignal(
-      'org.kde.StatusNotifierWatcher',
-      'StatusNotifierHostRegistered',
-      [],
-    );
+  @override
+  Future<DBusMethodResponse> getProtocolVersion() async {
+    return DBusMethodSuccessResponse([const DBusInt32(0)]);
   }
 
-  Future<void> emitStatusNotifierHostUnregistered() async {
-    await emitSignal(
-      'org.kde.StatusNotifierWatcher',
-      'StatusNotifierHostUnregistered',
-      [],
-    );
+  @override
+  Future<DBusMethodResponse> getRegisteredStatusNotifierItems() async {
+    return DBusMethodSuccessResponse([DBusArray.string(service._dbusItems)]);
   }
 }
 

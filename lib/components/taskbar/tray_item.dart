@@ -63,22 +63,11 @@ class _TrayItemState extends State<TrayItem> {
           );
         },
         onSecondaryTapDown: (details) async {
-          /* widget.item.callContextMenu(
-            details.globalPosition.dx.round(),
-            details.globalPosition.dy.round(),
-          ); */
-          final DBusMenu? menu = widget.item.menu;
+          final MenuEntry? menu = widget.item.menu;
 
           if (menu == null) return;
 
-          final List<DBusValue> entries = await menu.callGetLayout(0, -1, []);
-
-          final MenuEntry? entry =
-              MenuEntry.fromDBus(menu, entries[1] as DBusStruct);
-
-          if (entry == null) return;
-
-          menu.callEvent(entry.id, "opened", DBusArray.string([]), 0);
+          menu.object.callEvent(menu.id, "opened", DBusArray.string([]), 0);
 
           await showMenu(
             context: context,
@@ -88,13 +77,13 @@ class _TrayItemState extends State<TrayItem> {
               details.globalPosition.dx,
               details.globalPosition.dy,
             ),
-            items: entry.children
+            items: menu.children
                 .where((e) => e.visible)
                 .map((e) => DBusMenuEntry(e))
                 .toList(),
           );
 
-          menu.callEvent(entry.id, "closed", DBusArray.string([]), 0);
+          menu.object.callEvent(menu.id, "closed", DBusArray.string([]), 0);
         },
         child: Listener(
           onPointerSignal: (event) {
@@ -115,10 +104,10 @@ class _TrayItemState extends State<TrayItem> {
             }
           },
           child: SizedBox.square(
-            dimension: 24,
+            dimension: 16,
             child: DBusImageWidget(
-              height: 24,
-              width: 24,
+              height: 16,
+              width: 16,
               themePath: widget.item.iconThemePath,
               image: widget.item.icon ?? const IconDataDBusImage(Icons.info),
             ),

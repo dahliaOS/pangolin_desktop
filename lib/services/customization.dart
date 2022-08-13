@@ -2,11 +2,10 @@ import 'dart:async';
 
 import 'package:pangolin/services/preferences.dart';
 import 'package:pangolin/services/service.dart';
-import 'package:pangolin/utils/other/log.dart';
 import 'package:pangolin/utils/other/resource.dart';
 
 abstract class CustomizationService
-    extends ListenableService<CustomizationService> with LoggerProvider {
+    extends ListenableService<CustomizationService> {
   CustomizationService();
 
   static CustomizationService get current {
