@@ -111,7 +111,7 @@ class _SettingsHomeState extends State<_SettingsHome> {
                                           vertical: 2.0,
                                           horizontal: 8,
                                         )
-                                      : const EdgeInsets.only(left: 0),
+                                      : const EdgeInsets.all(0),
                                   child: isSearch
                                       ? _SettingsSearchBar(
                                           isExpanded: isExpanded,
