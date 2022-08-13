@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
-import 'package:pangolin/utils/other/computation_pool.dart';
 import 'package:pangolin/utils/other/log.dart';
 
 abstract class Service<T extends Service<T>> {
@@ -49,11 +48,6 @@ class ServiceManager with LoggerProvider {
   final Map<Type, _ServiceBuilderWithFallback> _awaitingForStartup = {};
   static final ServiceManager _instance = ServiceManager._();
   final Map<Type, Service<dynamic>> _registeredServices = {};
-  final ComputationPool<Type, Service<dynamic>> _startupPool =
-      ComputationPool();
-  final ValueNotifier<int> _startedServicesCount = ValueNotifier(0);
-  final ValueNotifier<int> _totalRegisteredServices = ValueNotifier(0);
-  final Map<Type, Completer<void>> _completionTracker = {};
 
   ServiceManager._();
 
@@ -75,21 +69,16 @@ class ServiceManager with LoggerProvider {
 
   static T? getService<T extends Service<T>>() => _instance._getService<T>();
 
-  static ValueListenable<int> get startedServicesCount =>
-      _instance._startedServicesCount;
-  static ValueListenable<int> get totalRegisteredServices =>
-      _instance._totalRegisteredServices;
-
   void _registerService<T extends Service<T>>(
     ServiceBuilder<T> builder, [
     T? fallback,
   ]) {
     _awaitingForStartup[T] = _ServiceBuilderWithFallback<T>(builder, fallback);
-    _totalRegisteredServices.value += 1;
   }
 
   Future<void> _waitForService<T extends Service<T>>() {
-    final Completer<void>? completer = _completionTracker[T];
+    return Future.value();
+    /* final Completer<void>? completer = _completionTracker[T];
 
     if (completer == null) {
       throw Exception(
@@ -97,42 +86,33 @@ class ServiceManager with LoggerProvider {
       );
     }
 
-    return _completionTracker[T]!.future;
+    return _completionTracker[T]!.future; */
   }
 
   Future<void> _startServices() async {
-    _awaitingForStartup.forEach((type, builder) {
-      logger.info("Registering computation for $type");
-      _startupPool.registerComputation(type);
-      _completionTracker[type] = Completer<void>();
-      _startWithFallback(type, builder.builder, builder.fallback);
-    });
-
-    await _startupPool.waitForResults((type, service) {
-      logger.info("Loaded service $type");
-      _registeredServices[type] = service;
-      _completionTracker[type]?.complete();
-      _awaitingForStartup.remove(type);
-      _startedServicesCount.value += 1;
-    });
-
-    _completionTracker.clear();
-    _awaitingForStartup.clear();
-    _startupPool.dispose();
+    for (final MapEntry<Type, _ServiceBuilderWithFallback> awaiting
+        in _awaitingForStartup.entries) {
+      logger.info("Starting service ${awaiting.key}");
+      final Service<dynamic> service = await _startWithFallback(
+        awaiting.key,
+        awaiting.value.builder,
+        awaiting.value.fallback,
+      );
+      logger.info("Started service ${awaiting.key}");
+      _registeredServices[awaiting.key] = service;
+    }
   }
 
   Future<void> _stopServices() async {
     for (final Type type in _registeredServices.keys) {
       await _unregisterServiceByType(type);
-      _totalRegisteredServices.value -= 1;
-      _startedServicesCount.value -= 1;
     }
 
     // Better safe than sorry
     _registeredServices.clear();
   }
 
-  Future<void> _startWithFallback(
+  Future<Service<dynamic>> _startWithFallback(
     Type type,
     ServiceBuilder<Service<dynamic>> builder,
     Service<dynamic>? fallback,
@@ -142,8 +122,8 @@ class ServiceManager with LoggerProvider {
       await service.start();
       service._running = true;
 
-      _startupPool.completeComputation(type, service);
-      return;
+      //_startupPool.completeComputation(type, service);
+      return service;
     } catch (exception, stackTrace) {
       if (fallback == null) {
         logger.severe(
@@ -152,8 +132,8 @@ class ServiceManager with LoggerProvider {
           stackTrace,
         );
 
-        _startupPool.completeComputation(type, FailedService._(type));
-        return;
+        //_startupPool.completeComputation(type, FailedService._(type));
+        return FailedService._(type);
       }
 
       logger.warning(

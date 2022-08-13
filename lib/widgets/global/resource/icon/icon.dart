@@ -7,12 +7,14 @@ import 'package:pangolin/widgets/global/resource/image/image.dart';
 
 class ResourceIcon extends StatefulWidget {
   final IconResource resource;
+  final String? themePath;
   final double? size;
   final Color? color;
   final bool lookupForSize;
 
   const ResourceIcon({
     required this.resource,
+    this.themePath,
     this.size,
     this.color,
     this.lookupForSize = false,
@@ -42,31 +44,37 @@ class _ResourceIconState extends State<ResourceIcon> with LoggerProvider {
 
   @override
   Widget build(BuildContext context) {
-    final String? resolvedResource = widget.resource.resolve(
-      size: widget.lookupForSize ? widget.size?.toInt() : null,
-      fallback: "application-x-executable",
+    return FutureBuilder<String?>(
+      future: widget.resource.resolve(
+        size: widget.lookupForSize ? widget.size?.toInt() : null,
+        directory: widget.themePath,
+        fallback: "application-x-executable",
+      ),
+      builder: (context, snapshot) {
+        final String? resolvedResource = snapshot.data;
+
+        if (resolvedResource == null) {
+          return SizedBox.square(dimension: widget.size);
+        }
+
+        switch (widget.resource.subtype) {
+          case IconResourceType.dahlia:
+            return Icon(
+              Constants.builtinIcons[resolvedResource],
+              size: widget.size,
+              color: widget.color,
+            );
+          case IconResourceType.xdg:
+            return ResourceImage(
+              resource: ImageResource(
+                type: ImageResourceType.file,
+                value: resolvedResource,
+              ),
+              width: widget.size,
+              height: widget.size,
+            );
+        }
+      },
     );
-
-    if (resolvedResource == null) {
-      return SizedBox.square(dimension: widget.size);
-    }
-
-    switch (widget.resource.subtype) {
-      case IconResourceType.dahlia:
-        return Icon(
-          Constants.builtinIcons[resolvedResource],
-          size: widget.size,
-          color: widget.color,
-        );
-      case IconResourceType.xdg:
-        return ResourceImage(
-          resource: ImageResource(
-            type: ImageResourceType.file,
-            value: resolvedResource,
-          ),
-          width: widget.size,
-          height: widget.size,
-        );
-    }
   }
 }

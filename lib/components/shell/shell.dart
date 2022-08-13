@@ -25,8 +25,12 @@ import 'package:pangolin/components/taskbar/quick_settings.dart';
 import 'package:pangolin/components/taskbar/search.dart';
 import 'package:pangolin/components/taskbar/show_desktop.dart';
 import 'package:pangolin/components/taskbar/taskbar.dart';
+import 'package:pangolin/components/taskbar/tray_item.dart';
+import 'package:pangolin/services/dbus/status_item.dart';
+import 'package:pangolin/services/tray.dart';
 import 'package:pangolin/utils/wm/wm.dart';
 import 'package:pangolin/widgets/global/box/box_container.dart';
+import 'package:pangolin/widgets/services.dart';
 import 'package:provider/provider.dart';
 
 typedef ShellShownCallback = void Function(ShellState shell);
@@ -49,7 +53,8 @@ class Shell extends StatefulWidget {
   }
 }
 
-class ShellState extends State<Shell> {
+class ShellState extends State<Shell>
+    with StateServiceListener<TrayService, Shell> {
   final List<String> minimizedWindowsCache = [];
 
   @override
@@ -119,7 +124,7 @@ class ShellState extends State<Shell> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget buildChild(BuildContext context, TrayService service) {
     return Provider.value(
       value: this,
       child: SizedBox.expand(
@@ -144,8 +149,8 @@ class ShellState extends State<Shell> {
                 child: const BoxSurface(),
               ),
             ),
-            const Taskbar(
-              leading: [
+            Taskbar(
+              leading: const [
                 LauncherButton(),
                 SearchButton(),
                 OverviewButton(),
@@ -153,8 +158,15 @@ class ShellState extends State<Shell> {
               trailing: [
                 //TODO: here is the keyboard button
                 //KeyboardButton(),
-                QuickSettingsButton(),
-                ShowDesktopButton(),
+                ...service.items
+                    .where(
+                      (e) =>
+                          e.category !=
+                          StatusNotifierItemCategory.systemServices,
+                    )
+                    .map((e) => TrayItem(item: e)),
+                const QuickSettingsButton(),
+                const ShowDesktopButton(),
               ],
             ),
             ...widget.overlays,
@@ -170,7 +182,6 @@ class ShellState extends State<Shell> {
             Positioned(
               width: 420,
               right: WindowHierarchy.of(context).wmInsets.right + 16,
-              //top: WindowHierarchy.of(context).wmInsets.top + 32,
               bottom: WindowHierarchy.of(context).wmInsets.bottom + 16,
               child: const NotificationQueue(),
             ),

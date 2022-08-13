@@ -3,30 +3,32 @@ import 'dart:typed_data';
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
-import 'package:pangolin/components/overlays/notifications/widgets/notification.dart';
-import 'package:pangolin/services/notifications.dart';
+import 'package:pangolin/services/dbus/image.dart';
 import 'package:pangolin/utils/other/resource.dart';
 import 'package:pangolin/widgets/global/resource/icon/icon.dart';
 import 'package:pangolin/widgets/global/resource/image/image.dart';
 
-class NotificationImageWidget extends StatefulWidget {
-  final NotificationImage image;
+class DBusImageWidget extends StatefulWidget {
+  final DBusImage image;
   final double? width;
   final double? height;
 
-  const NotificationImageWidget({
+  /// Valid only for xdg icons
+  final String? themePath;
+
+  const DBusImageWidget({
     required this.image,
     this.width,
     this.height,
+    this.themePath,
     super.key,
   });
 
   @override
-  State<NotificationImageWidget> createState() =>
-      _NotificationImageWidgetState();
+  State<DBusImageWidget> createState() => _DBusImageWidgetState();
 }
 
-class _NotificationImageWidgetState extends State<NotificationImageWidget> {
+class _DBusImageWidgetState extends State<DBusImageWidget> {
   ui.Image? _rawImage;
 
   @override
@@ -36,7 +38,7 @@ class _NotificationImageWidgetState extends State<NotificationImageWidget> {
   }
 
   @override
-  void didUpdateWidget(covariant NotificationImageWidget oldWidget) {
+  void didUpdateWidget(covariant DBusImageWidget oldWidget) {
     if (widget.image != oldWidget.image) {
       _decodeImage();
     }
@@ -44,31 +46,56 @@ class _NotificationImageWidgetState extends State<NotificationImageWidget> {
     super.didUpdateWidget(oldWidget);
   }
 
-  void _decodeImage() {
-    final NotificationImage image = widget.image;
-    if (image is! RawNotificationImage) return;
+  DBusImage _selectBestForSize(Map<int, DBusImage> images) {
+    if (squareSize == null) return images.values.last;
 
-    final Uint8List bytes;
-    final int rowBytes;
-
-    if (!image.hasAlpha) {
-      bytes = _patchBytes(image.bytes, image.width, image.height);
-      rowBytes = image.rowStride + image.width;
-    } else {
-      bytes = image.bytes;
-      rowBytes = image.rowStride;
+    for (final int size in images.keys) {
+      if (size > squareSize!) {
+        return images[size]!;
+      }
     }
 
-    ui.decodeImageFromPixels(
-      bytes,
-      image.width,
-      image.height,
-      ui.PixelFormat.rgba8888,
-      _updateImage,
-      rowBytes: rowBytes,
-      targetWidth: widget.width?.round(),
-      targetHeight: widget.height?.round(),
-    );
+    return images.values.last;
+  }
+
+  Future<void> _decodeImage() async {
+    DBusImage image = widget.image;
+
+    if (image is RawDBusImageCollection) {
+      image = _selectBestForSize(image.pixmaps);
+    }
+
+    if (image is RawDBusImage) {
+      final Uint8List bytes;
+      final int rowBytes;
+
+      if (!image.hasAlpha) {
+        bytes = _patchBytes(image.bytes, image.width, image.height);
+        rowBytes = image.rowStride + image.width;
+      } else {
+        bytes = image.bytes;
+        rowBytes = image.rowStride;
+      }
+
+      ui.decodeImageFromPixels(
+        bytes,
+        image.width,
+        image.height,
+        ui.PixelFormat.rgba8888,
+        _updateImage,
+        rowBytes: rowBytes,
+        targetWidth: widget.width?.round(),
+        targetHeight: widget.height?.round(),
+      );
+    } else if (image is PngDBusImage) {
+      final ui.Codec codec = await ui.instantiateImageCodec(
+        image.bytes,
+        targetWidth: widget.width?.round(),
+        targetHeight: widget.height?.round(),
+      );
+      final ui.FrameInfo frame = await codec.getNextFrame();
+      _updateImage(frame.image);
+    }
   }
 
   Uint8List _patchBytes(Uint8List bytes, int width, int height) {
@@ -103,12 +130,16 @@ class _NotificationImageWidgetState extends State<NotificationImageWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final NotificationImage image = widget.image;
+    DBusImage image = widget.image;
 
-    if (image is PathNotificationImage) {
-      final Uri? uri = Uri.tryParse(image.path);
+    if (image is RawDBusImageCollection) {
+      image = _selectBestForSize(image.pixmaps);
+    }
 
-      if (uri != null && (uri.scheme == "file" || image.path.startsWith("/"))) {
+    if (image is NameDBusImage) {
+      final Uri? uri = Uri.tryParse(image.name);
+
+      if (uri != null && (uri.scheme == "file" || image.name.startsWith("/"))) {
         return ResourceImage(
           resource: ImageResource(
             type: ImageResourceType.file,
@@ -122,12 +153,13 @@ class _NotificationImageWidgetState extends State<NotificationImageWidget> {
         return ResourceIcon(
           resource: IconResource(
             type: IconResourceType.xdg,
-            value: image.path,
+            value: image.name,
           ),
           size: squareSize,
+          themePath: widget.themePath,
         );
       }
-    } else if (image is RawNotificationImage) {
+    } else if (image is RawDBusImage) {
       if (_rawImage != null) {
         return CustomPaint(
           painter: _UiImagePainter(_rawImage!),
@@ -137,7 +169,22 @@ class _NotificationImageWidgetState extends State<NotificationImageWidget> {
           ),
         );
       }
-    } else if (image is IconDataNotificationImage) {
+    } else if (image is PngDBusImage) {
+      return Image.memory(
+        image.bytes,
+        width: widget.width,
+        height: widget.height,
+      );
+      /* if (_rawImage != null) {
+        return CustomPaint(
+          painter: _UiImagePainter(_rawImage!),
+          size: Size(
+            widget.width ?? double.infinity,
+            widget.height ?? double.infinity,
+          ),
+        );
+      } */
+    } else if (image is IconDataDBusImage) {
       return Icon(
         image.data,
         size: squareSize,

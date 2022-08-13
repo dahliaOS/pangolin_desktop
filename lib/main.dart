@@ -30,6 +30,7 @@ import 'package:pangolin/services/langpacks.dart';
 import 'package:pangolin/services/notifications.dart';
 import 'package:pangolin/services/preferences.dart';
 import 'package:pangolin/services/search.dart';
+import 'package:pangolin/services/tray.dart';
 import 'package:pangolin/services/visual_engine/visual_engine.dart';
 import 'package:pangolin/utils/data/dap_index.dart';
 import 'package:pangolin/utils/providers/locale_provider.dart';
@@ -84,6 +85,10 @@ Future<void> main() async {
         ServiceEntry<PreferencesService>(
           PreferencesService.build,
           PreferencesService.fallback(),
+        ),
+        ServiceEntry<TrayService>(
+          TrayService.build,
+          TrayService.fallback(),
         ),
         ServiceEntry<NotificationService>(
           NotificationService.build,

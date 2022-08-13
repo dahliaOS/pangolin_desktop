@@ -1,9 +1,10 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:pangolin/components/overlays/notifications/widgets/image.dart';
+import 'package:pangolin/services/dbus/image.dart';
 import 'package:pangolin/services/notifications.dart';
 import 'package:pangolin/utils/data/constants.dart';
 import 'package:pangolin/widgets/global/box/box_container.dart';
+import 'package:pangolin/widgets/global/dbus/image.dart';
 import 'package:pangolin/widgets/global/markup.dart';
 import 'package:pangolin/widgets/global/separated_flex.dart';
 
@@ -88,10 +89,10 @@ class _NotificationBody extends StatelessWidget {
                   decoration:
                       const ShapeDecoration(shape: Constants.smallShape),
                   clipBehavior: Clip.antiAlias,
-                  child: NotificationImageWidget(
+                  child: DBusImageWidget(
                     image: notification.image ??
                         notification.appImage ??
-                        const IconDataNotificationImage(
+                        const IconDataDBusImage(
                           Icons.notifications_active,
                         ),
                     width: 56,
@@ -113,7 +114,7 @@ class _NotificationBody extends StatelessWidget {
                             children: [
                               if (notification.image != null &&
                                   notification.appImage != null)
-                                NotificationImageWidget(
+                                DBusImageWidget(
                                   image: notification.appImage!,
                                   width: 16,
                                   height: 16,
@@ -204,12 +205,5 @@ class _NotificationActionButton extends StatelessWidget {
 }
 
 extension on UserNotification {
-  NotificationImage? get appImage =>
-      appIcon != null ? PathNotificationImage(appIcon!) : null;
-}
-
-class IconDataNotificationImage extends NotificationImage {
-  final IconData data;
-
-  const IconDataNotificationImage(this.data);
+  DBusImage? get appImage => appIcon != null ? NameDBusImage(appIcon!) : null;
 }

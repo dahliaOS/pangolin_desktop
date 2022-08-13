@@ -30,6 +30,11 @@ abstract class IconService extends ListenableService<IconService> {
   factory IconService.fallback() = _StraightThroughIconServiceImpl;
 
   String? lookup(String name, {int? size, String? fallback});
+  Future<String?> lookupFromDirectory(
+    String directory,
+    String name, {
+    String? fallback,
+  });
 }
 
 class _LinuxIconService extends IconService with LoggerProvider {
@@ -82,6 +87,33 @@ class _LinuxIconService extends IconService with LoggerProvider {
       "Nothing found for $fixedName, took ${benchmark.duration.inMilliseconds}ms",
     );
     return null;
+  }
+
+  @override
+  Future<String?> lookupFromDirectory(
+    String directory,
+    String name, {
+    String? fallback,
+  }) async {
+    if (FileSystemEntity.typeSync(directory) !=
+        FileSystemEntityType.directory) {
+      return null;
+    }
+
+    final Directory dir = Directory(directory);
+    final List<FileSystemEntity> entities = await dir.list().toList();
+
+    final File? file = entities.firstWhereOrNull((e) {
+      if (e is! File) return false;
+
+      final String fileName = p.basenameWithoutExtension(e.path);
+
+      if (fileName != name) return false;
+
+      return true;
+    }) as File?;
+
+    return file?.path ?? (fallback != null ? lookup(fallback) : null);
   }
 
   @override
@@ -409,6 +441,14 @@ class _LinuxIconService extends IconService with LoggerProvider {
 class _StraightThroughIconServiceImpl extends IconService {
   @override
   String? lookup(String name, {int? size, String? fallback}) => name;
+
+  @override
+  Future<String?> lookupFromDirectory(
+    String directory,
+    String name, {
+    String? fallback,
+  }) async =>
+      name;
 
   @override
   FutureOr<void> start() {

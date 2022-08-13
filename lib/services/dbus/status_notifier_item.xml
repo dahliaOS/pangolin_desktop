@@ -1,0 +1,50 @@
+<!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 
+1.0//EN" "http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
+<node>
+    <interface name="org.kde.StatusNotifierItem">
+        <property access="read" type="s" name="Category" />
+        <property access="read" type="s" name="Id" />
+        <property access="read" type="s" name="Title" />
+        <property access="read" type="s" name="Status" />
+        <property access="read" type="i" name="WindowId" />
+        <property access="read" type="s" name="IconThemePath" />
+        <property access="read" type="o" name="Menu" />
+        <property access="read" type="b" name="ItemIsMenu" />
+        <property access="read" type="s" name="IconName" />
+        <property access="read" type="a(iiay)" name="IconPixmap" />
+        <property access="read" type="s" name="OverlayIconName" />
+        <property access="read" type="a(iiay)" name="OverlayIconPixmap" />
+        <property access="read" type="s" name="AttentionIconName" />
+        <property access="read" type="a(iiay)" name="AttentionIconPixmap" />
+        <property access="read" type="s" name="AttentionMovieName" />
+        <property access="read" type="(sa(iiay)ss)" name="ToolTip" />
+        <method name="ContextMenu">
+            <arg direction="in" type="i" name="x" />
+            <arg direction="in" type="i" name="y" />
+        </method>
+        <method name="Activate">
+            <arg direction="in" type="i" name="x" />
+            <arg direction="in" type="i" name="y" />
+        </method>
+        <method name="SecondaryActivate">
+            <arg direction="in" type="i" name="x" />
+            <arg direction="in" type="i" name="y" />
+        </method>
+        <method name="Scroll">
+            <arg direction="in" type="i" name="delta" />
+            <arg direction="in" type="s" name="orientation" />
+        </method>
+        <signal name="NewTitle" />
+        <signal name="NewIcon" />
+        <signal name="NewAttentionIcon" />
+        <signal name="NewOverlayIcon" />
+        <signal name="NewMenu" />
+        <signal name="NewToolTip" />
+        <signal name="NewStatus">
+            <arg type="s" name="status" />
+        </signal>
+        <signal name="NewIconThemePath">
+            <arg type="s" name="icon_theme_path" direction="out" />
+        </signal>
+    </interface>
+</node>

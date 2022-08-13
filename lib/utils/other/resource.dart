@@ -117,19 +117,32 @@ class ImageResource extends Resource<ImageResourceType, String> {
   }
 }
 
-class IconResource extends Resource<IconResourceType, String?> {
+class IconResource extends Resource<IconResourceType, Future<String?>> {
   const IconResource({
     required IconResourceType type,
     required String value,
   }) : super._(ResourceType.icon, type, value);
 
   @override
-  String? resolve({int? size, String? fallback}) {
+  Future<String?> resolve({
+    int? size,
+    String? directory,
+    String? fallback,
+  }) async {
     switch (subtype) {
       case IconResourceType.dahlia:
         return value;
       case IconResourceType.xdg:
         if (value.startsWith("/")) return value;
+
+        if (directory != null && directory.isNotEmpty) {
+          return IconService.current.lookupFromDirectory(
+            directory,
+            value,
+            fallback: fallback,
+          );
+        }
+
         return IconService.current
             .lookup(value, size: size, fallback: fallback);
     }

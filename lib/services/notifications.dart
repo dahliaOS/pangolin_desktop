@@ -4,6 +4,7 @@ import 'dart:typed_data';
 
 import 'package:collection/collection.dart';
 import 'package:dbus/dbus.dart';
+import 'package:pangolin/services/dbus/image.dart';
 import 'package:pangolin/services/service.dart';
 import 'package:pangolin/utils/other/log.dart';
 
@@ -35,8 +36,7 @@ class _DbusNotificationService extends NotificationService {
   final StreamController<NotificationServiceEvent> _controller =
       StreamController.broadcast();
 
-  late _DbusNotificationServer notificationServer =
-      _DbusNotificationServer(this);
+  late _DBusNotificationBackend backend = _DBusNotificationBackend(this);
 
   DBusClient? _client;
   int _lastId = 0;
@@ -113,15 +113,15 @@ class _DbusNotificationService extends NotificationService {
           DBusRequestNameFlag.replaceExisting,
         },
       );
-      await client.registerObject(notificationServer);
+      await client.registerObject(backend);
       _client = client;
       return true;
     } catch (e) {
       logger.warning(
         "Could not register client $client for notification service, unregistering",
       );
-      if (notificationServer.client != null) {
-        await client.unregisterObject(notificationServer);
+      if (backend.client != null) {
+        await client.unregisterObject(backend);
       }
       await client.releaseName("org.freedesktop.Notifications");
       await client.close();
@@ -135,7 +135,12 @@ class _DbusNotificationService extends NotificationService {
   @override
   Future<void> stop() async {
     await _server.close();
+    if (backend.client != null) {
+      await _client?.unregisterObject(backend);
+    }
+    await _client?.releaseName("org.freedesktop.Notifications");
     await _client?.close();
+    _client = null;
   }
 
   void _sendEvent(NotificationServiceEvent event) {
@@ -166,10 +171,10 @@ class _DummyNotificationService extends NotificationService {
   }
 }
 
-class _DbusNotificationServer extends DBusObject {
+class _DBusNotificationBackend extends DBusObject {
   final _DbusNotificationService service;
 
-  _DbusNotificationServer(this.service)
+  _DBusNotificationBackend(this.service)
       : super(DBusObjectPath('/org/freedesktop/Notifications'));
 
   @override
@@ -333,7 +338,7 @@ class _DbusNotificationServer extends DBusObject {
         ]);
       case 'Notify':
         if (methodCall.signature != DBusSignature("susssasa{sv}i")) {
-          throw DBusMethodErrorResponse.invalidArgs();
+          return DBusMethodErrorResponse.invalidArgs();
         }
 
         final int id = service.getId();
@@ -371,7 +376,7 @@ class _DbusNotificationServer extends DBusObject {
         return DBusMethodSuccessResponse([DBusUint32(id)]);
       case 'CloseNotification':
         if (methodCall.signature != DBusSignature("u")) {
-          throw DBusMethodErrorResponse.invalidArgs();
+          return DBusMethodErrorResponse.invalidArgs();
         }
         final DBusUint32 id = methodCall.values[0] as DBusUint32;
         service.closeNotification(
@@ -381,11 +386,12 @@ class _DbusNotificationServer extends DBusObject {
 
         return DBusMethodSuccessResponse([]);
     }
+
     return DBusMethodErrorResponse.unknownMethod();
   }
 
-  NotificationImage? _getImage(Map<String, DBusValue> hints) {
-    NotificationImage? image;
+  DBusImage? _getImage(Map<String, DBusValue> hints) {
+    DBusImage? image;
 
     image ??= _getRawImage(hints["image-data"]);
     image ??= _getRawImage(hints["image_data"]);
@@ -396,7 +402,7 @@ class _DbusNotificationServer extends DBusObject {
     return image;
   }
 
-  RawNotificationImage? _getRawImage(DBusValue? data) {
+  RawDBusImage? _getRawImage(DBusValue? data) {
     if (data == null) return null;
 
     if (data.signature != DBusSignature("(iiibiiay)")) {
@@ -412,7 +418,7 @@ class _DbusNotificationServer extends DBusObject {
     final Uint8List bytes =
         Uint8List.fromList(struct[6].asByteArray().toList());
 
-    return RawNotificationImage(
+    return RawDBusImage(
       width: width,
       height: height,
       rowStride: rowStride,
@@ -421,14 +427,14 @@ class _DbusNotificationServer extends DBusObject {
     );
   }
 
-  PathNotificationImage? _getPathImage(DBusValue? data) {
+  NameDBusImage? _getPathImage(DBusValue? data) {
     if (data == null) return null;
 
     if (data.signature != DBusSignature.string) {
       return null;
     }
 
-    return PathNotificationImage(data.asString());
+    return NameDBusImage(data.asString());
   }
 
   List<NotificationAction> _parseReceivedActions(List<DBusValue> array) {
@@ -456,7 +462,7 @@ class UserNotification {
   final String body;
   final List<NotificationAction> actions;
   final int expireTimeout;
-  final NotificationImage? image;
+  final DBusImage? image;
 
   const UserNotification({
     required this.owner,
@@ -547,30 +553,4 @@ enum NotificationEventType {
   show,
   replace,
   close,
-}
-
-abstract class NotificationImage {
-  const NotificationImage();
-}
-
-class RawNotificationImage extends NotificationImage {
-  final int width;
-  final int height;
-  final int rowStride;
-  final bool hasAlpha;
-  final Uint8List bytes;
-
-  const RawNotificationImage({
-    required this.width,
-    required this.height,
-    required this.rowStride,
-    required this.hasAlpha,
-    required this.bytes,
-  });
-}
-
-class PathNotificationImage extends NotificationImage {
-  final String path;
-
-  const PathNotificationImage(this.path);
 }
