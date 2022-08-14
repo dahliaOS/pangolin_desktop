@@ -2,8 +2,6 @@ name: Feature request
 description: Request a new feature
 title: "[FEATURE REQUEST] <title>"
 labels: [enhancement]
-assignees:
-  - SincerelyFaust
 body:
   - type: checkboxes
     attributes:

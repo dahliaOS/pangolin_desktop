@@ -2,8 +2,6 @@ name: Bug
 description: File a bug/issue
 title: "[BUG] <title>"
 labels: [bug]
-assignees:
-  - SincerelyFaust
 body:
   - type: checkboxes
     attributes:
