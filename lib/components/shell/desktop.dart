@@ -19,6 +19,7 @@ import 'package:pangolin/components/desktop/wallpaper.dart';
 import 'package:pangolin/components/overlays/account_overlay.dart';
 import 'package:pangolin/components/overlays/launcher/compact_launcher_overlay.dart';
 import 'package:pangolin/components/overlays/launcher/launcher_overlay.dart';
+import 'package:pangolin/components/overlays/notifications/overlay.dart';
 import 'package:pangolin/components/overlays/overview_overlay.dart';
 import 'package:pangolin/components/overlays/power_overlay.dart';
 import 'package:pangolin/components/overlays/quick_settings/quick_settings_overlay.dart';
@@ -72,6 +73,7 @@ class _DesktopState extends State<Desktop> {
               PowerOverlay(),
               AccountOverlay(),
               WelcomeOverlay(),
+              NotificationsOverlay(),
             ],
             onShellShown: (shell) {
               if (CustomizationService.current.showWelcomeScreen) {

@@ -18,8 +18,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/overlays/launcher/launcher_overlay.dart';
-import 'package:pangolin/components/overlays/notifications/notification_overlay.dart';
+import 'package:pangolin/components/overlays/notifications/queue.dart';
 import 'package:pangolin/components/taskbar/launcher.dart';
+import 'package:pangolin/components/taskbar/notifications.dart';
 import 'package:pangolin/components/taskbar/overview.dart';
 import 'package:pangolin/components/taskbar/quick_settings.dart';
 import 'package:pangolin/components/taskbar/search.dart';
@@ -166,6 +167,7 @@ class ShellState extends State<Shell>
                     )
                     .map((e) => TrayItem(item: e)),
                 const QuickSettingsButton(),
+                const NotificationsButton(),
                 const ShowDesktopButton(),
               ],
             ),
@@ -181,8 +183,8 @@ class ShellState extends State<Shell>
             ),
             Positioned(
               width: 420,
-              right: WindowHierarchy.of(context).wmInsets.right + 16,
-              bottom: WindowHierarchy.of(context).wmInsets.bottom + 16,
+              right: WindowHierarchy.of(context).wmInsets.right + 8,
+              bottom: WindowHierarchy.of(context).wmInsets.bottom + 8,
               child: const NotificationQueue(),
             ),
           ],

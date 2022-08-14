@@ -57,6 +57,8 @@ class _DbusNotificationService extends NotificationService
 
     notif.sendClose(reason);
     _notifications.remove(notif);
+    _sendEvent(CloseNotificationEvent(id: id, reason: reason));
+    notifyListeners();
   }
 
   @override

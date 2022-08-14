@@ -30,13 +30,13 @@ class NotificationView extends StatelessWidget {
       shape: Constants.mediumShape,
       clipBehavior: Clip.antiAlias,
       child: SeparatedFlex(
-        separator: const SizedBox(height: 4),
+        separator: const SizedBox(height: 2),
         children: [
           _NotificationBody(notification: notification, onClose: onClose),
           if (actions.isNotEmpty)
             SeparatedFlex(
               axis: Axis.horizontal,
-              separator: const SizedBox(width: 4),
+              separator: const SizedBox(width: 2),
               children: actions
                   .map(
                     (e) => Expanded(
@@ -75,7 +75,12 @@ class _NotificationBody extends StatelessWidget {
         type: MaterialType.transparency,
         child: InkWell(
           onTap: () {
+            if (!notification.actions.any((e) => e.key == "default")) return;
             notification.invokeAction("default");
+            NotificationService.current.closeNotification(
+              notification.id,
+              NotificationCloseReason.closed,
+            );
           },
           child: Padding(
             padding: const EdgeInsets.all(12),
@@ -185,7 +190,13 @@ class _NotificationActionButton extends StatelessWidget {
       child: Material(
         type: MaterialType.transparency,
         child: InkWell(
-          onTap: () => notification.invokeAction(action.key),
+          onTap: () {
+            notification.invokeAction(action.key);
+            NotificationService.current.closeNotification(
+              notification.id,
+              NotificationCloseReason.closed,
+            );
+          },
           child: Center(
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 8),
