@@ -1,7 +1,6 @@
 <p align="center">
   <img width="80%" src="https://github.com/dahliaOS/brand/blob/master/pangolin/svg/logotypewhitetext.svg#gh-dark-mode-only" />
   <img width="80%" src="https://github.com/dahliaOS/brand/blob/master/pangolin/svg/logotypeblacktext.svg#gh-light-mode-only" />
-  
 </p>
 
 <p align="center">
@@ -11,39 +10,60 @@
 <a href="https://dahliaos.io/donate">Donate</a> •
 <a href="https://docs.dahliaos.io">Documentation</a>
 
-# Pangolin Desktop UI [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=dahliaOS%20is%20a%20modern,%20secure,%20lightweight%20and%20responsive%20operating%20system,%20combining%20the%20best%20of%20GNU/Linux%20and%20Fuchsia%20OS&url=https://dahliaos.io&via=realdahliaos&hashtags=dahliaos,linux,zircon,flutter,dart,fuchsia,opensource)
-[![Build and Deploy to Web](https://github.com/dahliaOS/pangolin_desktop/actions/workflows/web.yml/badge.svg?branch=main)](https://github.com/dahliaOS/pangolin_desktop/actions/workflows/web.yml)
-[![Locale Generator](https://github.com/dahliaOS/pangolin_desktop/actions/workflows/locale_gen.yml/badge.svg?branch=main)](https://github.com/dahliaOS/pangolin_desktop/actions/workflows/locale_gen.yml)
-![Demo](https://img.shields.io/website?url=https%3A%2F%2Fweb.dahliaos.io)
+# Pangolin Desktop
+[![Build and Deploy to Web](https://img.shields.io/github/workflow/status/dahliaOS/pangolin_desktop/Build%20and%20Deploy%20to%20Web?label=Build%20and%20Deploy%20to%20Web&logo=github)](https://github.com/dahliaOS/pangolin_desktop/actions/workflows/web.yml)
+[![Locale Generator](https://img.shields.io/github/workflow/status/dahliaOS/pangolin_desktop/Locale%20generator?label=Locale%20Generator&logo=github)](https://github.com/dahliaOS/pangolin_desktop/actions/workflows/locale_gen.yml)
+[![Demo](https://img.shields.io/website?label=Web%20Build&url=https%3A%2F%2Fweb.dahliaos.io)](https://web.dahliaos.io)
 [![Crowdin](https://badges.crowdin.net/e/1a53a75fb38f15843d4eb6d9b9e4215a/localized.svg)](https://translate.dahliaos.io/pangolin)
-![GitHub](https://img.shields.io/github/license/dahliaos/pangolin-desktop?color=brightgreen)
 
- - **Pangolin UI** is a Desktop shell for dahliaOS, written in Flutter, runs on Linux and Zircon
- - **Pangolin** was named after a shelled animal like the [Armadillo UI](https://9to5google.com/2018/12/26/fuchsia-armadillo-ui-gone/)
- - **Pangolin Desktop** is based on the deprecated Capybara shell, with a custom window management system built from the ground up
- - You can check it online [here](https://web.dahliaos.io)!
+ - 🖥 **Pangolin** is the desktop shell of dahliaOS.
+ - 💙 **Written** in Dart/Flutter.
+ - 🏝 **[Utopia](https://github.com/dahliaOS/utopia)** is the window manager of Pangolin.
+ - 🐚 **Pangolin** was named after a shelled animal like the [Armadillo UI](https://9to5google.com/2018/12/26/fuchsia-armadillo-ui-gone/).
+ - 🌐 **Check** the web preview [here](https://web.dahliaos.io).
 
 <p align="center">
   <img width="100%" src="https://docs.dahliaos.io/docs/pangolin/settings.png"
 </p>
 
-> Pangolin Desktop, settings and start menu.
+> Settings and start menu, commit [876180d](https://github.com/dahliaOS/pangolin_desktop/commit/876180df15d3b6c8720fb7474d1bcf1b5202fc67).
 
 <p align="center">
   <img width="100%" src="https://docs.dahliaos.io/docs/pangolin/search.png"
 </p>
 
-> Pangolin Desktop, Calculator, Terminal, Notes and search.
+> Calculator, Terminal, Notes and search, commit [876180d](https://github.com/dahliaOS/pangolin_desktop/commit/876180df15d3b6c8720fb7474d1bcf1b5202fc67).
 
-## Build Pangolin Desktop
+## Development
 
-### Prerequisites (On Debian/Ubuntu)
+To develop and locally test Pangolin:
 
+### Step 1. Install development tools
+
+1. Install [Flutter](https://docs.flutter.dev/get-started/install)
+2. Install an IDE of your choice (we recommend [VSCode](https://code.visualstudio.com/))
+    * We also recommend installing Dart and Flutter extensions if you're opting in for VSCode.
+    For other IDEs, please inform yourself.
+
+### Step 2. Install dependencies
+
+Install pub dependencies required to run Pangolin by running:
+
+```dart
+flutter pub get
 ```
-sudo apt install build-essential clang pkg-config libgtk-3-dev make cmake ninja-build
+
+### Step 3. Run Pangolin
+
+**Note**: You can run Pangolin on any platform that Flutter supports but we recommend running it on Linux as some features of Pangolin are designed exclusively for Linux and won't work on other platforms.
+
+Run Pangolin by running:
+
+```dart
+flutter run
 ```
 
-If you're interested in building Pangolin, you can refer to [Building and Running Pangolin](https://github.com/dahliaOS/pangolin_desktop/wiki/Compile-Pangolin-Desktop)
+Flutter has hot reloading so no need to restart the instance when it's running!
 
 ## Contribute
 
