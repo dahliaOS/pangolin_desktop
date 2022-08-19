@@ -1,6 +1,7 @@
+import 'dart:typed_data';
+
 import 'package:collection/collection.dart';
 import 'package:dbus/dbus.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart' show ShortcutActivator;
 import 'package:pangolin/services/dbus/image.dart';
 import 'package:pangolin/services/dbus/objects/remote/dbusmenu.dart';
