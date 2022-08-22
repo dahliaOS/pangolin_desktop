@@ -203,4 +203,6 @@
     <string name="settings.pages.about.software_update_tile.title">dahliaOS jest aktualny - %s</string>
     <string name="settings.pages.about.software_update_tile.subtitle">Ostatnio sprawdzone: %s</string>
     <string name="settings.pages.about.software_update_tile.button">Sprawdź dostępność aktualizacji</string>
+    <string name="apps.app_store" comment="App store application name">App Store</string>
+    <string name="apps.app_store_description" comment="App Store application description">Wyselekcjonowany rynek dla aplikacji innych firm</string>
 </resources>
