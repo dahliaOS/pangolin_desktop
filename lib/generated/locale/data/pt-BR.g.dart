@@ -5,7 +5,7 @@ class _$PtBRLocaleData extends LocaleData {
   const _$PtBRLocaleData._()
       : super(
           locale: "pt-BR",
-          translationProgress: 178,
+          translationProgress: 180,
         );
 
   @override
@@ -228,5 +228,7 @@ class _$PtBRLocaleData extends LocaleData {
         "Última verificação: {{}}",
     "settings.pages.about.software_update_tile.button":
         "Procurar por atualizações",
+    "apps.app_store": "Loja de aplicativos",
+    "apps.app_store_description": "Mercado curado para aplicações de terceiros",
   };
 }

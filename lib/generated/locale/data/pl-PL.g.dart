@@ -5,7 +5,7 @@ class _$PlPLLocaleData extends LocaleData {
   const _$PlPLLocaleData._()
       : super(
           locale: "pl-PL",
-          translationProgress: 178,
+          translationProgress: 180,
         );
 
   @override
@@ -231,5 +231,8 @@ class _$PlPLLocaleData extends LocaleData {
         "Ostatnio sprawdzone: {{}}",
     "settings.pages.about.software_update_tile.button":
         "Sprawdź dostępność aktualizacji",
+    "apps.app_store": "App Store",
+    "apps.app_store_description":
+        "Wyselekcjonowany rynek dla aplikacji innych firm",
   };
 }

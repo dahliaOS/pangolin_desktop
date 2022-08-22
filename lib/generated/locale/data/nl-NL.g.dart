@@ -5,7 +5,7 @@ class _$NlNLLocaleData extends LocaleData {
   const _$NlNLLocaleData._()
       : super(
           locale: "nl-NL",
-          translationProgress: 178,
+          translationProgress: 180,
         );
 
   @override
@@ -228,5 +228,8 @@ class _$NlNLLocaleData extends LocaleData {
         "Laatst gecontroleerd: {{}}",
     "settings.pages.about.software_update_tile.button":
         "Controleer voor updates",
+    "apps.app_store": "App Store",
+    "apps.app_store_description":
+        "Samengestelde marktplaats voor applicaties van derden",
   };
 }

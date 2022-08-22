@@ -5,7 +5,7 @@ class _$DeDELocaleData extends LocaleData {
   const _$DeDELocaleData._()
       : super(
           locale: "de-DE",
-          translationProgress: 178,
+          translationProgress: 180,
         );
 
   @override
@@ -231,5 +231,8 @@ class _$DeDELocaleData extends LocaleData {
         "Zuletzt überprüft: {{}}",
     "settings.pages.about.software_update_tile.button":
         "Auf Updates überprüfen",
+    "apps.app_store": "App Store",
+    "apps.app_store_description":
+        "Kuratierter Marktplatz für Anwendungen von Drittanbietern",
   };
 }

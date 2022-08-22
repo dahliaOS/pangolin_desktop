@@ -5,7 +5,7 @@ class _$ArSALocaleData extends LocaleData {
   const _$ArSALocaleData._()
       : super(
           locale: "ar-SA",
-          translationProgress: 178,
+          translationProgress: 180,
         );
 
   @override
@@ -216,5 +216,7 @@ class _$ArSALocaleData extends LocaleData {
     "settings.pages.about.software_update_tile.title": "dahliaOS محدث - s%",
     "settings.pages.about.software_update_tile.subtitle": "آخر تحقق : s%",
     "settings.pages.about.software_update_tile.button": "تحقق من وجود تحديثات",
+    "apps.app_store": "متجر التطبيقات",
+    "apps.app_store_description": "سوق منظم لتطبيقات الطرف الثالث",
   };
 }

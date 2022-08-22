@@ -5,7 +5,7 @@ class _$RoROLocaleData extends LocaleData {
   const _$RoROLocaleData._()
       : super(
           locale: "ro-RO",
-          translationProgress: 178,
+          translationProgress: 180,
         );
 
   @override
@@ -223,5 +223,7 @@ class _$RoROLocaleData extends LocaleData {
         "Ultima verificare: {{}}",
     "settings.pages.about.software_update_tile.button":
         "Verificare actualizări",
+    "apps.app_store": "Magazin de aplicații",
+    "apps.app_store_description": "Piață curată pentru aplicații terțe",
   };
 }
