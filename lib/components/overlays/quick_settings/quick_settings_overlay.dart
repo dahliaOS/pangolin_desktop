@@ -373,7 +373,7 @@ class QsMain extends StatelessWidget
                 Builder(
                   builder: (context) {
                     return FutureBuilder(
-                      future: Battery().batteryLevel,
+                      future: '${Battery().batteryLevel}%',
                       builder: (context, AsyncSnapshot<int?> data) {
                         final String batteryPercentage = data.data
                                 ?.toString() ??
