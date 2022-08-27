@@ -373,14 +373,14 @@ class QsMain extends StatelessWidget
                 Builder(
                   builder: (context) {
                     return FutureBuilder(
-                      future: '${Battery().batteryLevel}%',
+                      future: Battery().batteryLevel,
                       builder: (context, AsyncSnapshot<int?> data) {
                         final String batteryPercentage = data.data
                                 ?.toString() ??
                             strings.quicksettingsOverlay.shortcutsEnergyMode;
                         return QuickActionButton(
                           leading: const Icon(Icons.battery_charging_full),
-                          title: batteryPercentage,
+                          title: data.data != null ? batteryPercentage+"%" : batteryPercentage,
                           margin: EdgeInsets.zero,
                           isCircular: false,
                         );
