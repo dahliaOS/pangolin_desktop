@@ -16,10 +16,10 @@ limitations under the License.
 
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/shell/shell.dart';
+import 'package:pangolin/services/wm.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/locale_provider.dart';
 import 'package:pangolin/utils/wm/wm.dart';
-import 'package:pangolin/utils/wm/wm_api.dart';
 
 class ShowDesktopButton extends StatefulWidget {
   const ShowDesktopButton({super.key});
@@ -48,9 +48,9 @@ class _ShowDesktopButtonState extends State<ShowDesktopButton> {
           if (WindowHierarchy.of(context, listen: false)
               .entries
               .any((e) => e.layoutState.minimized == false)) {
-            WmAPI.of(context).minimizeAll();
+            WindowManagerService.current.minimizeEverything();
           } else {
-            WmAPI.of(context).undoMinimizeAll();
+            WindowManagerService.current.unminimizeEverything();
           }
         },
         child: SizedBox(

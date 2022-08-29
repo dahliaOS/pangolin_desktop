@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pangolin/components/shell/desktop.dart';
+import 'package:pangolin/services/wm.dart';
 import 'package:pangolin/utils/data/constants.dart';
 import 'package:pangolin/utils/wm/layout.dart';
 import 'package:pangolin/widgets/global/box/box_container.dart';
@@ -46,12 +46,12 @@ class EffectsLayerState extends State<EffectsLayer>
   void initState() {
     super.initState();
     widget.controller._state = this;
-    Desktop.wmController.addListener(_updateState);
+    WindowManagerService.current.controller.addListener(_updateState);
   }
 
   @override
   void dispose() {
-    Desktop.wmController.removeListener(_updateState);
+    WindowManagerService.current.controller.removeListener(_updateState);
     //widget.controller.dispose();
     super.dispose();
   }
@@ -115,7 +115,10 @@ class EffectsLayerState extends State<EffectsLayer>
 
     _rectController.value = 0;
     _rectTween.end = _insetRectForDock(
-      PangolinLayoutDelegate.getRectForDock(dock, Desktop.wmController),
+      PangolinLayoutDelegate.getRectForDock(
+        dock,
+        WindowManagerService.current.controller,
+      ),
       dock,
     );
 

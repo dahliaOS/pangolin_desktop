@@ -15,14 +15,15 @@ limitations under the License.
 */
 
 import 'package:flutter/material.dart';
+import 'package:pangolin/services/application.dart';
 import 'package:pangolin/services/customization.dart';
+import 'package:pangolin/services/wm.dart';
 import 'package:pangolin/utils/context_menus/context_menu.dart';
 import 'package:pangolin/utils/context_menus/context_menu_item.dart';
 import 'package:pangolin/utils/context_menus/core/context_menu_region.dart';
 import 'package:pangolin/utils/data/app_list.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/wm/wm.dart';
-import 'package:pangolin/utils/wm/wm_api.dart';
 import 'package:pangolin/widgets/services.dart';
 
 class TaskbarItem extends StatefulWidget {
@@ -134,8 +135,8 @@ class _TaskbarItemState extends State<TaskbarItem>
                   ContextMenuItem(
                     icon: Icons.close_outlined,
                     title: "Close Window",
-                    onTap: () => WmAPI.of(context)
-                        .popWindowEntry(entry!.registry.info.id),
+                    onTap: () => WindowManagerService.current
+                        .pop(entry!.registry.info.id),
                     shortcut: "",
                   ),
               ],
@@ -165,7 +166,7 @@ class _TaskbarItemState extends State<TaskbarItem>
                     if (appIsRunning) {
                       _onTap(context, entry!);
                     } else {
-                      WmAPI.of(context).openApp(widget.packageName);
+                      ApplicationService.current.startApp(widget.packageName);
                       //print(packageName);
                     }
                   },

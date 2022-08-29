@@ -15,7 +15,7 @@ limitations under the License.
 */
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/shell/shell.dart';
-import 'package:pangolin/utils/wm/wm_api.dart';
+import 'package:pangolin/services/application.dart';
 
 class Application {
   final String name;
@@ -65,7 +65,7 @@ class Application {
 
   void launch(BuildContext context) {
     Shell.of(context, listen: false).dismissEverything();
-    WmAPI.of(context).openApp(packageName);
+    ApplicationService.current.startApp(packageName);
   }
 }
 

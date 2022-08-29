@@ -380,7 +380,9 @@ class QsMain extends StatelessWidget
                             strings.quicksettingsOverlay.shortcutsEnergyMode;
                         return QuickActionButton(
                           leading: const Icon(Icons.battery_charging_full),
-                          title: data.data != null ? batteryPercentage+"%" : batteryPercentage,
+                          title: data.data != null
+                              ? "$batteryPercentage%"
+                              : batteryPercentage,
                           margin: EdgeInsets.zero,
                           isCircular: false,
                         );

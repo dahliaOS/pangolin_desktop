@@ -49,7 +49,7 @@ class AppLauncherButton extends StatelessWidget {
             /* onLongPress: () =>
                 _customizationProvider.togglePinnedApp(application.packageName), */
             onTap: () async {
-              await ApplicationService.current.startApp(application);
+              await ApplicationService.current.startApp(application.id);
               // ignore: use_build_context_synchronously
               Shell.of(context, listen: false).dismissEverything();
             },
@@ -143,7 +143,7 @@ class _AppLauncherTileState extends State<AppLauncherTile> {
             ),
           ),
           onTap: () async {
-            await ApplicationService.current.startApp(widget.application);
+            await ApplicationService.current.startApp(widget.application.id);
             if (mounted) Shell.of(context, listen: false).dismissEverything();
             // if (widget.application.systemExecutable == true) {
             //   Process.run(

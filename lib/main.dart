@@ -32,6 +32,7 @@ import 'package:pangolin/services/preferences.dart';
 import 'package:pangolin/services/search.dart';
 import 'package:pangolin/services/tray.dart';
 import 'package:pangolin/services/visual_engine/visual_engine.dart';
+import 'package:pangolin/services/wm.dart';
 import 'package:pangolin/utils/data/dap_index.dart';
 import 'package:pangolin/utils/providers/locale_provider.dart';
 import 'package:pangolin/utils/theme/theme.dart';
@@ -70,6 +71,7 @@ Future<void> main() async {
     ServiceBuilderWidget(
       services: [
         const ServiceEntry<SearchService>(SearchService.build),
+        const ServiceEntry<WindowManagerService>(WindowManagerService.build),
         ServiceEntry<LangPacksService>(
           LangPacksService.build,
           LangPacksService.fallback(),

@@ -16,12 +16,12 @@ limitations under the License.
 
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/desktop/wallpaper_picker.dart';
-import 'package:pangolin/components/shell/desktop.dart';
+import 'package:pangolin/services/application.dart';
 import 'package:pangolin/services/customization.dart';
+import 'package:pangolin/services/wm.dart';
 import 'package:pangolin/utils/context_menus/context_menu.dart';
 import 'package:pangolin/utils/context_menus/context_menu_item.dart';
 import 'package:pangolin/utils/context_menus/core/context_menu_region.dart';
-import 'package:pangolin/utils/wm/wm_api.dart';
 import 'package:pangolin/widgets/global/resource/image/image.dart';
 import 'package:pangolin/widgets/services.dart';
 import 'package:provider/provider.dart';
@@ -34,7 +34,7 @@ class WallpaperLayer extends StatelessWidget
   Widget buildChild(BuildContext context, CustomizationService service) {
     return SizedBox.expand(
       child: ChangeNotifierProvider.value(
-        value: Desktop.wmController,
+        value: WindowManagerService.current.controller,
         child: _WallpaperContextMenu(
           child: ResourceImage(
             resource: service.wallpaper,
@@ -74,7 +74,7 @@ class _WallpaperContextMenu extends StatelessWidget {
           ),
           ContextMenuItem(
             onTap: () {
-              WmAPI.of(context).openApp("io.dahlia.settings");
+              ApplicationService.current.startApp("io.dahlia.settings");
             },
             icon: Icons.settings_outlined,
             title: "Settings",

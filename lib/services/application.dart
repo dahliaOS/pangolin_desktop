@@ -1,13 +1,20 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:pangolin/components/window/window_surface.dart';
+import 'package:pangolin/components/window/window_toolbar.dart';
 import 'package:pangolin/services/langpacks.dart';
 import 'package:pangolin/services/service.dart';
-import 'package:pangolin/utils/data/app_list.dart';
+import 'package:pangolin/services/wm.dart';
+import 'package:pangolin/utils/data/app_list.dart' as app_list;
+import 'package:pangolin/utils/data/constants.dart';
 import 'package:pangolin/utils/data/models/application.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
+import 'package:pangolin/utils/wm/properties.dart';
 import 'package:path/path.dart' as p;
+import 'package:utopia_wm/wm.dart';
 import 'package:xdg_desktop/xdg_desktop.dart';
 import 'package:xdg_directories/xdg_directories.dart' as xdg;
 
@@ -29,7 +36,8 @@ abstract class ApplicationService
 
   List<DesktopEntry> listApplications();
 
-  FutureOr<void> startApp(DesktopEntry app);
+  FutureOr<void> startApp(String name);
+  DesktopEntry? getApp(String name);
 }
 
 class _LinuxApplicationService extends ApplicationService {
@@ -40,7 +48,16 @@ class _LinuxApplicationService extends ApplicationService {
   List<DesktopEntry> listApplications() => entries.values.toList();
 
   @override
-  void startApp(DesktopEntry app) {
+  void startApp(String name) {
+    final DesktopEntry? app = getApp(name);
+
+    if (app == null) {
+      logger.warning(
+        "The specified app $name can't be opened as it doesn't exist",
+      );
+      return;
+    }
+
     final List<String> commandParts = app.exec!.split(" ");
     commandParts.removeWhere((e) => e.startsWith(RegExp("%[fuFU]")));
 
@@ -64,6 +81,9 @@ class _LinuxApplicationService extends ApplicationService {
     }
     _loadFolder("/usr/share/applications");
   }
+
+  @override
+  DesktopEntry? getApp(String name) => null;
 
   Future<void> _loadFolder(String path) async {
     final Directory directory = Directory(path);
@@ -92,7 +112,7 @@ class _LinuxApplicationService extends ApplicationService {
 
     final String content = await entity.readAsString();
     try {
-      final DesktopEntry entry = DesktopEntry.fromIni(content);
+      final DesktopEntry entry = DesktopEntry.fromIni(entity.path, content);
       if (entry.noDisplay == true || entry.hidden == true) return;
 
       if (entry.tryExec != null && !File(entry.tryExec!).existsSync()) return;
@@ -141,23 +161,50 @@ class _LinuxApplicationService extends ApplicationService {
 }
 
 class _BuiltInApplicationService extends ApplicationService {
-  final List<DesktopEntry> entries = [];
+  final List<_BuiltinDesktopEntry> entries = [];
   final Map<DesktopEntry, Widget> builders = {};
+
+  static const WindowEntry windowEntry = WindowEntry(
+    features: [
+      ResizeWindowFeature(),
+      SurfaceWindowFeature(),
+      FocusableWindowFeature(),
+      ToolbarWindowFeature(),
+    ],
+    layoutInfo: FreeformLayoutInfo(
+      position: Offset(32, 32),
+      size: Size(1280, 720),
+    ),
+    properties: {
+      ResizeWindowFeature.minSize: Size(480, 360),
+      SurfaceWindowFeature.elevation: 4.0,
+      SurfaceWindowFeature.shape: Constants.mediumShape,
+      SurfaceWindowFeature.background: PangolinWindowSurface(),
+      ToolbarWindowFeature.widget: PangolinWindowToolbar(
+        barColor: Colors.transparent,
+        textColor: Colors.black,
+      ),
+      ToolbarWindowFeature.size: 40.0,
+    },
+  );
 
   @override
   void start() {
-    for (final Application app in applications) {
+    for (final Application app in app_list.applications) {
       String exec = app.packageName;
 
       if (app.runtimeFlags.isNotEmpty) {
         exec += " ${app.runtimeFlags.join(" ")}";
       }
 
-      final DesktopEntry entry = DesktopEntry(
+      final _BuiltinDesktopEntry entry = _BuiltinDesktopEntry(
+        id: app.packageName,
+        content: app.app,
         type: DesktopEntryType.application,
         name: LocalizedString(app.name),
         icon: LocalizedString("image:dahlia#icons/${app.iconName}.png"),
         exec: exec,
+        version: app.version,
         categories: app.category != null ? [app.category!.name] : null,
       );
 
@@ -168,14 +215,57 @@ class _BuiltInApplicationService extends ApplicationService {
   }
 
   @override
-  List<DesktopEntry> listApplications({bool sort = false}) => entries;
+  _BuiltinDesktopEntry? getApp(String name) =>
+      entries.firstWhereOrNull((e) => e.id == name);
 
   @override
-  void startApp(DesktopEntry app) {}
+  List<_BuiltinDesktopEntry> listApplications() => entries;
+
+  @override
+  void startApp(String name) {
+    final _BuiltinDesktopEntry? app = getApp(name);
+
+    if (app == null) {
+      logger.warning(
+        "The specified app $name can't be opened as it doesn't exist",
+      );
+      return;
+    }
+
+    WindowManagerService.current.push(
+      windowEntry.newInstance(
+        content: app.content,
+        overrideProperties: {
+          WindowExtras.stableId: app.id,
+          WindowEntry.title: app.name.main,
+          WindowEntry.icon: app.icon != null
+              ? AssetImage(
+                  app.icon!.main.toResource().resolve().toString(),
+                )
+              : null,
+        },
+      ),
+    );
+  }
 
   @override
   void stop() {
     entries.clear();
     builders.clear();
   }
+}
+
+class _BuiltinDesktopEntry extends DesktopEntry {
+  final Widget content;
+
+  const _BuiltinDesktopEntry({
+    required super.id,
+    required this.content,
+    required super.type,
+    super.version,
+    required super.name,
+    super.icon,
+    super.exec,
+    super.categories,
+  });
 }

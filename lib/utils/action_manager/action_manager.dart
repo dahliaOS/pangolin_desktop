@@ -24,9 +24,9 @@ import 'package:pangolin/components/overlays/launcher/compact_launcher_overlay.d
 import 'package:pangolin/components/overlays/launcher/launcher_overlay.dart';
 import 'package:pangolin/components/overlays/power_overlay.dart';
 import 'package:pangolin/components/shell/shell.dart';
+import 'package:pangolin/services/application.dart';
 import 'package:pangolin/services/customization.dart';
 import 'package:pangolin/utils/data/constants.dart';
-import 'package:pangolin/utils/wm/wm_api.dart';
 
 class ActionManager {
   const ActionManager._();
@@ -67,7 +67,7 @@ class ActionManager {
   static void openSettings(BuildContext context) {
     final shell = Shell.of(context, listen: false);
     shell.dismissEverything();
-    WmAPI.of(context).openApp("io.dahlia.settings");
+    ApplicationService.current.startApp("io.dahlia.settings");
   }
 
   static void powerOff() {

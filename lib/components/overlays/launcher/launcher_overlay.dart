@@ -21,11 +21,11 @@ import 'package:pangolin/components/overlays/search/search_overlay.dart';
 import 'package:pangolin/components/overlays/search/widgets/searchbar.dart';
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/services/application.dart';
+import 'package:pangolin/services/wm.dart';
 import 'package:pangolin/utils/action_manager/action_manager.dart';
 import 'package:pangolin/utils/data/constants.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/locale_provider.dart';
-import 'package:pangolin/utils/wm/wm_api.dart';
 import 'package:pangolin/widgets/global/box/box_container.dart';
 import 'package:pangolin/widgets/global/quick_button.dart';
 import 'package:xdg_desktop/xdg_desktop.dart';
@@ -62,14 +62,14 @@ class _LauncherOverlayState extends State<LauncherOverlay>
   @override
   Future<void> requestShow(Map<String, dynamic> args) async {
     controller.showing = true;
-    WmAPI.of(context).minimizeAll();
+    WindowManagerService.current.minimizeEverything();
     await ac.forward();
   }
 
   @override
   Future<void> requestDismiss(Map<String, dynamic> args) async {
     await ac.reverse();
-    if (mounted) WmAPI.of(context).undoMinimizeAll();
+    if (mounted) WindowManagerService.current.unminimizeEverything();
     controller.showing = false;
   }
 

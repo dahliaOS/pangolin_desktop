@@ -27,14 +27,12 @@ import 'package:pangolin/components/overlays/search/search_overlay.dart';
 import 'package:pangolin/components/overlays/welcome_overlay.dart';
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/services/customization.dart';
+import 'package:pangolin/services/wm.dart';
 import 'package:pangolin/utils/data/app_list.dart';
 import 'package:pangolin/utils/wm/layout.dart';
 import 'package:pangolin/utils/wm/wm.dart';
 
 class Desktop extends StatefulWidget {
-  static final WindowHierarchyController wmController =
-      WindowHierarchyController();
-
   const Desktop({super.key});
 
   @override
@@ -61,7 +59,7 @@ class _DesktopState extends State<Desktop> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       //Desktop.wmController.addWindowEntry(wallpaperEntry.newInstance());
-      Desktop.wmController.addWindowEntry(
+      WindowManagerService.current.push(
         shellEntry.newInstance(
           content: Shell(
             overlays: [
@@ -94,7 +92,8 @@ class _DesktopState extends State<Desktop> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    Desktop.wmController.wmInsets = const EdgeInsets.only(bottom: 48);
+    WindowManagerService.current.controller.wmInsets =
+        const EdgeInsets.only(bottom: 48);
   }
 
   @override
@@ -105,7 +104,7 @@ class _DesktopState extends State<Desktop> {
           const WallpaperLayer(),
           Positioned.fill(
             child: WindowHierarchy(
-              controller: Desktop.wmController,
+              controller: WindowManagerService.current.controller,
               layoutDelegate: const PangolinLayoutDelegate(),
             ),
           ),

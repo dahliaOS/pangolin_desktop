@@ -12,7 +12,7 @@ limitations under the License.
 */
 
 import 'package:flutter/material.dart';
-import 'package:pangolin/utils/wm/wm_api.dart';
+import 'package:pangolin/services/wm.dart';
 import 'package:utopia_wm/wm.dart';
 
 class ContextMenuItem extends StatelessWidget {
@@ -40,7 +40,7 @@ class ContextMenuItem extends StatelessWidget {
               ? () {
                   final properties =
                       WindowPropertyRegistry.of(context, listen: false);
-                  WmAPI.of(context).popWindowEntry(properties.info.id);
+                  WindowManagerService.current.pop(properties.info.id);
                   onTap?.call();
                 }
               : null,
