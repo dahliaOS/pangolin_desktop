@@ -191,6 +191,8 @@ class _BuiltInApplicationService extends ApplicationService {
   @override
   void start() {
     for (final Application app in app_list.applications) {
+      if (!app.canBeOpened) continue;
+
       String exec = app.packageName;
 
       if (app.runtimeFlags.isNotEmpty) {
