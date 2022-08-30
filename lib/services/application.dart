@@ -83,7 +83,9 @@ class _LinuxApplicationService extends ApplicationService {
   }
 
   @override
-  DesktopEntry? getApp(String name) => null;
+  DesktopEntry? getApp(String name) => entries.values.firstWhereOrNull(
+        (e) => e.id == name,
+      );
 
   Future<void> _loadFolder(String path) async {
     final Directory directory = Directory(path);
