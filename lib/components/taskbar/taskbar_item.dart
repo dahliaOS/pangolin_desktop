@@ -21,10 +21,12 @@ import 'package:pangolin/services/wm.dart';
 import 'package:pangolin/utils/context_menus/context_menu.dart';
 import 'package:pangolin/utils/context_menus/context_menu_item.dart';
 import 'package:pangolin/utils/context_menus/core/context_menu_region.dart';
-import 'package:pangolin/utils/data/app_list.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/wm/wm.dart';
+import 'package:pangolin/widgets/global/resource/auto_image.dart';
 import 'package:pangolin/widgets/services.dart';
+import 'package:xdg_desktop/xdg_desktop.dart';
+import 'package:yatl_flutter/yatl_flutter.dart';
 
 class TaskbarItem extends StatefulWidget {
   final String packageName;
@@ -65,12 +67,16 @@ class _TaskbarItemState extends State<TaskbarItem>
   @override
   Widget buildChild(BuildContext context, CustomizationService service) {
     //Selected App
-    final app = applications
-        .firstWhere((element) => element.packageName == widget.packageName);
+    final DesktopEntry? app =
+        ApplicationService.current.getApp(widget.packageName);
+
+    if (app == null) {
+      throw Exception("Bad app");
+    }
 
     //Running apps
     //// ITS FAILING HERE
-    final hierarchy = WindowHierarchy.of(context);
+    final hierarchy = WindowManagerService.current.controller;
     final windows = hierarchy.entries;
     //Check if App is running or just pinned
     final bool appIsRunning = windows.any(
@@ -117,17 +123,17 @@ class _TaskbarItemState extends State<TaskbarItem>
               items: [
                 ContextMenuItem(
                   icon: Icons.info_outline_rounded,
-                  title: app.name,
+                  title: app.getLocalizedName(context.locale),
                   onTap: () {},
                   shortcut: "",
                 ),
                 ContextMenuItem(
                   icon: Icons.push_pin_outlined,
-                  title: service.pinnedApps.contains(app.packageName)
+                  title: service.pinnedApps.contains(app.id)
                       ? "Unpin from Taskbar"
                       : "Pin to Taskbar",
                   onTap: () {
-                    service.togglePinnedApp(app.packageName);
+                    service.togglePinnedApp(app.id);
                   },
                   shortcut: "",
                 ),
@@ -178,14 +184,15 @@ class _TaskbarItemState extends State<TaskbarItem>
                           Center(
                             child: Padding(
                               padding: const EdgeInsets.fromLTRB(6.0, 5, 6, 7),
-                              child: Image(
-                                image: appIsRunning
-                                    ? entry?.registry.info.icon ??
-                                        const NetworkImage("")
-                                    : AssetImage(
-                                        "assets/icons/${app.iconName}.png",
-                                      ),
-                              ),
+                              child: appIsRunning
+                                  ? Image(
+                                      image: entry?.registry.info.icon ??
+                                          const NetworkImage(""),
+                                    )
+                                  : AutoVisualResource(
+                                      resource: app.icon!.main,
+                                      size: 36,
+                                    ),
                             ),
                           ),
                           AnimatedPositioned(
@@ -227,14 +234,7 @@ class _TaskbarItemState extends State<TaskbarItem>
         ),
       ),
     );
-    if (!app.canBeOpened) {
-      return IgnorePointer(
-        child: Opacity(
-          opacity: 0.4,
-          child: finalWidget,
-        ),
-      );
-    }
+
     return finalWidget;
   }
 

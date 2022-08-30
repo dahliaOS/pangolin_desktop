@@ -17,11 +17,10 @@ limitations under the License.
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/services/application.dart';
+import 'package:pangolin/services/customization.dart';
 import 'package:pangolin/utils/data/constants.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
-import 'package:pangolin/utils/other/resource.dart';
-import 'package:pangolin/widgets/global/resource/icon/icon.dart';
-import 'package:pangolin/widgets/global/resource/image/image.dart';
+import 'package:pangolin/widgets/global/resource/auto_image.dart';
 import 'package:pangolin/widgets/quick_button.dart';
 import 'package:xdg_desktop/xdg_desktop.dart';
 import 'package:yatl_flutter/yatl_flutter.dart';
@@ -56,7 +55,10 @@ class AppLauncherButton extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                _buildIconWidget(application.icon?.main ?? "", 64),
+                AutoVisualResource(
+                  resource: application.icon?.main ?? "",
+                  size: 64,
+                ),
                 Text(
                   application.getLocalizedName(context.locale),
                   textAlign: TextAlign.center,
@@ -99,7 +101,10 @@ class _AppLauncherTileState extends State<AppLauncherTile> {
           dense: true,
           leading: SizedBox.fromSize(
             size: const Size.square(32),
-            child: _buildIconWidget(widget.application.icon?.main ?? "", 32),
+            child: AutoVisualResource(
+              resource: widget.application.icon?.main ?? "",
+              size: 32,
+            ),
           ),
           title: Text(
             widget.application.getLocalizedName(context.locale),
@@ -123,8 +128,8 @@ class _AppLauncherTileState extends State<AppLauncherTile> {
                   padding: EdgeInsets.zero,
                   leading: const Icon(Icons.push_pin_rounded),
                   onPressed: () {
-                    // customizationProvider
-                    //     .togglePinnedApp(widget.application.packageName);
+                    CustomizationService.current
+                        .togglePinnedApp(widget.application.id);
                   },
                 ),
                 const QuickActionButton(
@@ -157,27 +162,4 @@ class _AppLauncherTileState extends State<AppLauncherTile> {
       ),
     );
   }
-}
-
-Widget _buildIconWidget(String icon, double size) {
-  final Resource? resource = Resource.tryParse(icon);
-
-  if (resource == null || resource is IconResource) {
-    return ResourceIcon(
-      resource: resource as IconResource? ??
-          IconResource(type: IconResourceType.xdg, value: icon),
-      size: size,
-      lookupForSize: true,
-    );
-  }
-
-  if (resource is ImageResource) {
-    return ResourceImage(
-      resource: resource,
-      width: size,
-      height: size,
-    );
-  }
-
-  return SizedBox.square(dimension: size);
 }
