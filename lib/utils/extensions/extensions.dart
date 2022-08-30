@@ -138,6 +138,23 @@ extension DesktopEntryLocalizer on DesktopEntry {
           )
         : genericName?.resolve(locale);
   }
+
+  List<String>? getLocalizedKeywords(Locale locale) {
+    if (domainKey != null && keywords != null) {
+      final String translatedFromLangPack =
+          LangPacksService.current.cacheLookup(
+        extra[domainKey]!,
+        "${keywords!.main.join(";")};",
+        locale.toIntlLocale(),
+      );
+      final List<String> parts = translatedFromLangPack.split(";");
+      parts.removeLast();
+
+      return parts;
+    }
+
+    return keywords?.resolve(locale);
+  }
 }
 
 extension ResourcePointerUtils on String {

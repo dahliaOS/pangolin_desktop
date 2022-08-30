@@ -28,7 +28,6 @@ import 'package:pangolin/components/overlays/welcome_overlay.dart';
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/services/customization.dart';
 import 'package:pangolin/services/wm.dart';
-import 'package:pangolin/utils/data/app_list.dart';
 import 'package:pangolin/utils/wm/layout.dart';
 import 'package:pangolin/utils/wm/wm.dart';
 
@@ -83,9 +82,6 @@ class _DesktopState extends State<Desktop> {
       );
       // ignore: avoid_print
       print("Initilized Desktop Shell");
-
-      //sort application list in alphabetical order
-      applications.sort((a, b) => a.packageName.compareTo(b.packageName));
     });
   }
 

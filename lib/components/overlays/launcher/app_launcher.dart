@@ -45,12 +45,12 @@ class AppLauncherButton extends StatelessWidget {
           shape: Constants.mediumShape,
           clipBehavior: Clip.antiAlias,
           child: InkWell(
-            /* onLongPress: () =>
-                _customizationProvider.togglePinnedApp(application.packageName), */
+            onLongPress: () =>
+                CustomizationService.current.togglePinnedApp(application.id),
             onTap: () async {
+              final ShellState shell = Shell.of(context, listen: false);
               await ApplicationService.current.startApp(application.id);
-              // ignore: use_build_context_synchronously
-              Shell.of(context, listen: false).dismissEverything();
+              shell.dismissEverything();
             },
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,

@@ -14,14 +14,16 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'dart:io';
-
 import 'package:flutter/material.dart';
+import 'package:pangolin/components/shell/shell.dart';
+import 'package:pangolin/services/application.dart';
 import 'package:pangolin/services/customization.dart';
-import 'package:pangolin/utils/data/app_list.dart';
-import 'package:pangolin/utils/data/models/application.dart';
+import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/locale_provider.dart';
+import 'package:pangolin/widgets/global/resource/auto_image.dart';
 import 'package:pangolin/widgets/services.dart';
+import 'package:xdg_desktop/xdg_desktop.dart';
+import 'package:yatl_flutter/yatl_flutter.dart';
 
 class SearchTile extends StatefulWidget {
   final String packageName;
@@ -35,7 +37,8 @@ class _SearchTileState extends State<SearchTile>
     with StateServiceListener<CustomizationService, SearchTile> {
   @override
   Widget buildChild(BuildContext context, CustomizationService service) {
-    final Application application = getApp(widget.packageName);
+    final DesktopEntry application =
+        ApplicationService.current.getApp(widget.packageName)!;
 
     return Material(
       borderRadius: BorderRadius.circular(8),
@@ -44,33 +47,30 @@ class _SearchTileState extends State<SearchTile>
         contentPadding: const EdgeInsets.fromLTRB(16, 0, 16, 2),
         autofocus: true,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        title: Text(application.name),
+        title: Text(application.getLocalizedName(context.locale)),
         leading: Column(
           children: [
             const SizedBox(
               height: 6,
             ),
-            getAppIcon(
-              iconPath: application.iconName,
-              usesRuntime: application.systemExecutable,
-              height: 30,
+            AutoVisualResource(
+              resource: application.icon!.main,
+              size: 30,
             ),
           ],
         ),
         trailing: Text(strings.searchOverlay.app),
-        subtitle: Text(application.description ?? ""),
-        onTap: () {
+        subtitle: application.comment != null
+            ? Text(application.getLocalizedComment(context.locale)!)
+            : null,
+        onTap: () async {
           service.recentSearchResults = [
             ...service.recentSearchResults,
-            application.packageName
+            application.id
           ];
-          if (application.systemExecutable == true) {
-            Process.run(
-              'io.dahliaos.web_runtime.dap',
-              application.runtimeFlags,
-            );
-          }
-          application.launch(context);
+          final ShellState shell = Shell.of(context, listen: false);
+          await ApplicationService.current.startApp(application.id);
+          shell.dismissEverything();
         },
       ),
     );

@@ -22,10 +22,11 @@ import 'package:pangolin/services/customization.dart';
 import 'package:pangolin/services/search.dart';
 import 'package:pangolin/utils/data/constants.dart';
 import 'package:pangolin/utils/data/globals.dart';
-import 'package:pangolin/utils/data/models/application.dart';
 import 'package:pangolin/utils/providers/locale_provider.dart';
 import 'package:pangolin/widgets/global/box/box_container.dart';
 import 'package:pangolin/widgets/services.dart';
+import 'package:xdg_desktop/xdg_desktop.dart';
+import 'package:yatl_flutter/yatl_flutter.dart';
 
 class SearchOverlay extends ShellOverlay {
   static const String overlayId = "search";
@@ -44,7 +45,7 @@ class _SearchOverlayState extends State<SearchOverlay>
   late AnimationController ac;
   final _controller = TextEditingController();
   final _focusNode = FocusNode();
-  final List<Application> results = [];
+  final List<DesktopEntry> results = [];
 
   @override
   void initState() {
@@ -117,7 +118,10 @@ class _SearchOverlayState extends State<SearchOverlay>
                       onTextChanged: (text) async {
                         results.clear();
                         results.addAll(
-                          await SearchService.current.search(text),
+                          await SearchService.current.search(
+                            text,
+                            context.locale,
+                          ),
                         );
                         setState(() {});
                       },
@@ -155,9 +159,8 @@ class _SearchOverlayState extends State<SearchOverlay>
                                   shrinkWrap: true,
                                   itemCount: results.length,
                                   physics: const BouncingScrollPhysics(),
-                                  itemBuilder: (_, index) => SearchTile(
-                                    results[index].packageName,
-                                  ),
+                                  itemBuilder: (_, index) =>
+                                      SearchTile(results[index].id),
                                 ),
                               ],
                             ),

@@ -15,10 +15,12 @@ limitations under the License.
 */
 
 import 'dart:async';
+import 'dart:ui' as ui;
 
+import 'package:pangolin/services/application.dart';
 import 'package:pangolin/services/service.dart';
-import 'package:pangolin/utils/data/app_list.dart';
-import 'package:pangolin/utils/data/models/application.dart';
+import 'package:pangolin/utils/extensions/extensions.dart';
+import 'package:xdg_desktop/xdg_desktop.dart';
 
 abstract class SearchService extends Service<SearchService> {
   SearchService();
@@ -31,15 +33,38 @@ abstract class SearchService extends Service<SearchService> {
     return _SearchServiceImpl();
   }
 
-  FutureOr<List<Application>> search(String term);
+  FutureOr<List<DesktopEntry>> search(String term, [ui.Locale? locale]);
 }
 
 class _SearchServiceImpl extends SearchService {
   @override
-  List<Application> search(String term) {
-    return applications
-        .where((app) => app.name.toLowerCase().contains(term.toLowerCase()))
-        .toList();
+  List<DesktopEntry> search(String term, [ui.Locale? locale]) {
+    final List<DesktopEntry> entries =
+        ApplicationService.current.listApplications();
+
+    return entries.where((app) {
+      final String name =
+          _localizeWithLocale(locale, app.getLocalizedName) ?? app.name.main;
+      final String comment =
+          _localizeWithLocale(locale, app.getLocalizedComment) ??
+              app.comment?.main ??
+              "";
+      final List<String> keywords =
+          _localizeWithLocale(locale, app.getLocalizedKeywords) ??
+              app.keywords?.main ??
+              [];
+
+      return name.caseInsensitiveContains(term) ||
+          comment.caseInsensitiveContains(term) ||
+          keywords.any((e) => e.caseInsensitiveContains(term));
+    }).toList();
+  }
+
+  T? _localizeWithLocale<T>(
+    ui.Locale? locale,
+    T? Function(ui.Locale) callback,
+  ) {
+    return locale != null ? callback(locale) : null;
   }
 
   @override
@@ -50,5 +75,11 @@ class _SearchServiceImpl extends SearchService {
   @override
   FutureOr<void> stop() {
     // noop
+  }
+}
+
+extension on String {
+  bool caseInsensitiveContains(String other) {
+    return toLowerCase().contains(other.toLowerCase());
   }
 }
