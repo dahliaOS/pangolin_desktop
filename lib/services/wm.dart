@@ -75,7 +75,7 @@ class _WindowManagerServiceImpl extends WindowManagerService {
     for (final LiveWindowEntry entry in controller.entries) {
       final bool? cachedStatus = _minimizedCache[entry.registry.info.id];
 
-      entry.layoutState.minimized = cachedStatus ?? true;
+      entry.layoutState.minimized = cachedStatus ?? false;
     }
 
     _minimizedCache.clear();

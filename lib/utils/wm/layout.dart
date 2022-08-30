@@ -20,7 +20,7 @@ class PangolinLayoutDelegate extends LayoutDelegate<FreeformLayoutInfo> {
         WindowEntryUtils.getEntriesByFocus(entries, focusHierarchy);
 
     final LiveWindowEntry? entry = liveEntries.firstWhereOrNull(
-      (e) => e.layoutState.fullscreen || e.registry.extra.stableId == "shell",
+      (e) => e.layoutState.fullscreen || e.registry.extra.appId == "shell",
     );
     final int effectLayerIndex;
     if (entry != null && liveEntries.indexOf(entry) > 0) {
@@ -38,7 +38,7 @@ class PangolinLayoutDelegate extends LayoutDelegate<FreeformLayoutInfo> {
         children.add(layer);
       }
 
-      if (entry.registry.extra.stableId != "shell") {
+      if (entry.registry.extra.appId != "shell") {
         children.add(
           _WindowLayoutBuilder(
             window: entry,

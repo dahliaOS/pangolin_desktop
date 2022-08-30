@@ -22,6 +22,7 @@ dependencies:
     git:
       url: https://github.com/dahliaOS/clock.git
   dbus: ^0.7.4
+  diffutil_dart: ^3.0.0
   files:
     git:
       url: https://github.com/dahliaOS/files.git
@@ -49,6 +50,7 @@ dependencies:
   pausable_timer: ^1.0.0+5
   provider: ^6.0.1
   recase: ^4.0.0
+  reorderables: ^0.5.0
   shared_preferences: ^2.0.15
   system_logs:
     git:

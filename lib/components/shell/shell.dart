@@ -19,6 +19,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/overlays/launcher/launcher_overlay.dart';
 import 'package:pangolin/components/overlays/notifications/queue.dart';
+import 'package:pangolin/components/taskbar/app_list.dart';
 import 'package:pangolin/components/taskbar/launcher.dart';
 import 'package:pangolin/components/taskbar/notifications.dart';
 import 'package:pangolin/components/taskbar/overview.dart';
@@ -156,6 +157,8 @@ class ShellState extends State<Shell>
                 SearchButton(),
                 OverviewButton(),
               ],
+              centerRelativeToScreen: true,
+              center: const [AppListElement()],
               trailing: [
                 //TODO: here is the keyboard button
                 //KeyboardButton(),

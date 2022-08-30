@@ -80,24 +80,24 @@ class _TaskbarItemState extends State<TaskbarItem>
     final windows = hierarchy.entries;
     //Check if App is running or just pinned
     final bool appIsRunning = windows.any(
-      (element) => element.registry.extra.stableId == widget.packageName,
+      (element) => element.registry.extra.appId == widget.packageName,
     );
     //get the WindowEntry when the App is running
     final LiveWindowEntry? entry = appIsRunning
         ? windows.firstWhere(
-            (element) => element.registry.extra.stableId == widget.packageName,
+            (element) => element.registry.extra.appId == widget.packageName,
           )
         : null;
     //check if the App is focused
     final LiveWindowEntry? focusedEntry = appIsRunning
         ? windows.firstWhere(
             (element) =>
-                element.registry.extra.stableId ==
-                hierarchy.sortedEntries.last.registry.extra.stableId,
+                element.registry.extra.appId ==
+                hierarchy.sortedEntries.last.registry.extra.appId,
           )
         : null;
     final bool focused = windows.length > 1 &&
-        (focusedEntry?.registry.extra.stableId == widget.packageName &&
+        (focusedEntry?.registry.extra.appId == widget.packageName &&
             !windows.last.layoutState.minimized);
 
     final bool showSelected =

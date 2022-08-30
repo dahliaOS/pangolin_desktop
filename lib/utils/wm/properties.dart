@@ -10,9 +10,9 @@ class ExtraWindowProperties {
 
   const ExtraWindowProperties.mapFrom(this._registry);
 
-  String get stableId => _registry.get(WindowExtras.stableId)!;
+  String get appId => _registry.get(WindowExtras.stableId)!;
 
-  set stableId(String value) => _registry.set(WindowExtras.stableId, value);
+  set appId(String value) => _registry.set(WindowExtras.stableId, value);
 }
 
 extension ExtraRegistryUtils on WindowPropertyRegistry {
