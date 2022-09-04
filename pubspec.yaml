@@ -23,6 +23,8 @@ dependencies:
       url: https://github.com/dahliaOS/clock.git
   dbus: ^0.7.4
   diffutil_dart: ^3.0.0
+  dsettings:
+    path: ../dsettings
   files:
     git:
       url: https://github.com/dahliaOS/files.git

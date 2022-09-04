@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:dsettings/dsettings.dart';
 import 'package:pangolin/services/preferences.dart';
 import 'package:pangolin/services/service.dart';
 import 'package:pangolin/utils/other/resource.dart';
@@ -202,11 +203,14 @@ class _CustomizationServiceImpl extends CustomizationService {
       PreferencesService.current.clear();
       _set(Preference.databaseVersion, 2);
     }
+
+    PreferencesService.current.setScheme(Preference.scheme);
+    PreferencesService.current.addListener(notifyListeners);
   }
 
   @override
   FutureOr<void> stop() {
-    // noop
+    PreferencesService.current.removeListener(notifyListeners);
   }
 
   T _get<T>(Preference<T> pref) {
@@ -272,10 +276,25 @@ enum Preference<T> {
   enableWifi<bool>("enable_wifi", true),
   enableBluetooth<bool>("enable_bluetooth", true),
   enableAirplaneMode<bool>("enable_airplane_mode", false),
+  taskbarConfiguration<List<String>>("taskbar_configuration", []),
   recentSearchResults<List<String>>("recent_search_results", []);
 
   final String key;
   final T defaultValue;
+
+  static DSettingsTableScheme get scheme {
+    return Map.fromEntries(
+      values.map(
+        (e) => MapEntry(
+          e.key,
+          DSettingsEntry(
+            DSettingsTableType.fromValue(e.defaultValue)!,
+            e.defaultValue,
+          ),
+        ),
+      ),
+    );
+  }
 
   const Preference(this.key, this.defaultValue);
 }

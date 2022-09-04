@@ -7,7 +7,6 @@ import 'package:pangolin/services/application.dart';
 import 'package:pangolin/services/customization.dart';
 import 'package:pangolin/services/wm.dart';
 import 'package:pangolin/utils/wm/properties.dart';
-import 'package:reorderables/reorderables.dart';
 
 class AppListElement extends StatefulWidget {
   const AppListElement({super.key});

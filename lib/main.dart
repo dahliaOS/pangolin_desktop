@@ -31,7 +31,6 @@ import 'package:pangolin/services/notifications.dart';
 import 'package:pangolin/services/preferences.dart';
 import 'package:pangolin/services/search.dart';
 import 'package:pangolin/services/tray.dart';
-import 'package:pangolin/services/visual_engine/visual_engine.dart';
 import 'package:pangolin/services/wm.dart';
 import 'package:pangolin/utils/data/dap_index.dart';
 import 'package:pangolin/utils/providers/locale_provider.dart';
@@ -99,10 +98,6 @@ Future<void> main() async {
         const ServiceEntry<CustomizationService>(CustomizationService.build),
         const ServiceEntry<DateTimeService>(DateTimeService.build),
       ],
-      onLoaded: () async {
-        //load visual engine
-        await loadVisualEngine();
-      },
       builder: (context, loaded, child) {
         if (!loaded) return const ColoredBox(color: Colors.black);
 
