@@ -24,7 +24,8 @@ dependencies:
   dbus: ^0.7.4
   diffutil_dart: ^3.0.0
   dsettings:
-    path: ../dsettings
+    git:
+      url: https://github.com/dahliaOS/dsettings
   files:
     git:
       url: https://github.com/dahliaOS/files.git
