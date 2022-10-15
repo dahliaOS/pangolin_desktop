@@ -203,4 +203,6 @@
     <string name="settings.pages.about.software_update_tile.title">dahliaOS नवीनतम है। - %s</string>
     <string name="settings.pages.about.software_update_tile.subtitle">आखरी बार अपडेट चैक किया: %s</string>
     <string name="settings.pages.about.software_update_tile.button">अपडेट चैक करें।</string>
+    <string name="apps.app_store" comment="App store application name">ऐप स्टोर</string>
+    <string name="apps.app_store_description" comment="App Store application description">तृतीय-पक्ष एप्लिकेशन के लिए क्यूरेटेड मार्केटप्लेस</string>
 </resources>
