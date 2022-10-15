@@ -1,0 +1,226 @@
+part of '../data.dart';
+
+// ignore_for_file: file_names
+class _$HeILLocaleData extends LocaleData {
+  const _$HeILLocaleData._()
+      : super(
+          locale: "he-IL",
+          translationProgress: 180,
+        );
+
+  @override
+  final Map<String, String> data = const {
+    "global.account.local": "חשבון מקומי",
+    "global.account.user_accounts": "חשבונות משתמשים",
+    "global.on": "מופעל",
+    "global.off": "כבוי",
+    "global.settings": "הגדרות",
+    "global.coming_soon": "בקרוב",
+    "global.save": "שמירה",
+    "global.search": "חיפוש",
+    "apps.authenticator": "מאמת",
+    "apps.calculator": "מחשבון",
+    "apps.clock": "שעון",
+    "apps.containers": "Graft",
+    "apps.disks": "כוננים",
+    "apps.files": "קבצים",
+    "apps.media": "מדיה",
+    "apps.music": "מוזיקה",
+    "apps.notes": "עורך טקסט",
+    "apps.notesmobile": "הערות (לנייד)",
+    "apps.messages": "הודעות",
+    "apps.rootterminal": "מסוף Root",
+    "apps.settings": "הגדרות",
+    "apps.systemlogs": "יומני מערכת",
+    "apps.taskmanager": "מנהל המשימות",
+    "apps.terminal": "מסוף",
+    "apps.themedemo": "דמו סגנונות",
+    "apps.welcome": "ברוך בואך",
+    "apps.help": "עזרה",
+    "apps.web": "דפדפן רשת",
+    "apps.authenticator_description": "אימות דו־שלבי",
+    "apps.calculator_description": "חישוב פעולות בסיסיות",
+    "apps.clock_description": "מעקב אחר זמן השימוש",
+    "apps.containers_description": "ניהול מכלים ומכונות וירטואליות",
+    "apps.disks_description": "ניהול כוננים ומחיצות",
+    "apps.files_description": "עיון בקבצים ובתיקיות",
+    "apps.media_description": "עיון וצפייה בתמונות ובסרטונים",
+    "apps.music_description": "האזנה למוזיקה",
+    "apps.notes_description": "יצירת מסמכים ועריכתם",
+    "apps.notesmobile_description": "הערות (לנייד)",
+    "apps.messages_description": "הודעות",
+    "apps.rootterminal_description": "הרצת פקודות כמנהל",
+    "apps.settings_description": "שינוי הגדרות המערכת",
+    "apps.systemlogs_description": "הצגה וניפוי של תקלות בתוכנה",
+    "apps.taskmanager_description": "מעקב אחר ביצועי המערכת",
+    "apps.terminal_description": "גישה לשורת הפקודה",
+    "apps.themedemo_description": "הדגמה פנימית לערכות עיצוב של יישומים",
+    "apps.welcome_description": "למידע נוסף על dahliaOS",
+    "apps.help_description": "שאלות נפוצות ותמיכה",
+    "apps.web_description": "גלישה ברשת",
+    "misc.featurenotimplemented_title": "התכונה עדיין לא נוספה",
+    "misc.featurenotimplemented_value":
+        "יכולת זו אינה זמינה כעת במהדורת הפנגולין שלך, נא לבקר ב־dahliaos.io לפרטים נוספים",
+    "overviewOverlay.new_desktop": "שולחן עבודה חדש",
+    "powerOverlay.title": "תפריט הפעלה",
+    "powerOverlay.subtitle": "נא לבחור את הפעולה שברצונך לבצע",
+    "powerOverlay.poweroff": "כיבוי",
+    "powerOverlay.sleep": "מצב שינה",
+    "powerOverlay.restart": "הפעלה מחדש",
+    "searchOverlay.hint": "חיפוש במכשיר, באפליקציות וברשת",
+    "searchOverlay.results": "תוצאות",
+    "searchOverlay.recent": "לאחרונה",
+    "searchOverlay.app": "אפליקציה",
+    "launcherOverlay.categories.all_applications": "כל האפליקציות",
+    "launcherOverlay.categories.internet": "אינטרנט",
+    "launcherOverlay.categories.media": "מדיה",
+    "launcherOverlay.categories.gaming": "משחקים",
+    "launcherOverlay.categories.development": "פיתוח",
+    "launcherOverlay.categories.office": "משרד",
+    "launcherOverlay.categories.system": "מערכת",
+    "quicksettingsOverlay.quick_controls": "הגדרות מהירות",
+    "quicksettingsOverlay.quick_controls.network.title": "רשתות",
+    "quicksettingsOverlay.quick_controls.network.subtitle_connected":
+        "יש חיבור",
+    "quicksettingsOverlay.quick_controls.network.subtitle_disconnected":
+        "אין חיבור",
+    "quicksettingsOverlay.quick_controls.bluetooth.title": "‏Bluetooth",
+    "quicksettingsOverlay.quick_controls.blueooth.subtitle_connected":
+        "יש חיבור",
+    "quicksettingsOverlay.quick_controls.blueooth.subtitle_disconnected":
+        "אין חיבור",
+    "quicksettingsOverlay.quick_controls.airplane_mode.title": "מצב טיסה",
+    "quicksettingsOverlay.quick_controls.language.title": "שפה",
+    "quicksettingsOverlay.quick_controls.theme.title": "ערכת נושא",
+    "quicksettingsOverlay.quick_controls.donotdisturb.title": "נא לא להפריע",
+    "quicksettingsOverlay.shortcuts.title": "קיצורי דרך",
+    "quicksettingsOverlay.shortcuts.new_event": "אירוע חדש",
+    "quicksettingsOverlay.shortcuts.alpha_build": "גרסת אלפא",
+    "quicksettingsOverlay.shortcuts.energy_mode": "מצב צריכת חשמל: ביצועים",
+    "quicksettingsOverlay.pages.network.title": "הגדרות רשת",
+    "quicksettingsOverlay.pages.theme.title": "הגדרות ערכת נושא",
+    "desktop.wallpaper_picker.gone": "שגיאה\nלא ניתן להשתמש בתמונה הזאת",
+    "desktop.wallpaper_picker.url_wallpaper.hint": "קביעת רקע מכתובת",
+    "desktop.wallpaper_picker.url_wallpaper.label": "כתובת הרקע",
+    "desktop.wallpaper_picker.bing_wallpaper_button": "שימוש ברקע של Bing",
+    "desktop.desktop_context_menu.change_wallpaper": "שינוי רקע",
+    "desktop.desktop_context_menu.settings": "הגדרות",
+    "desktop.misc.show_desktop": "הצגת שולחן העבודה",
+    "settings.headers.connectivity": "חיבוריות",
+    "settings.headers.personalize": "התאמה אישית",
+    "settings.headers.device": "מכשיר ואפליקציות",
+    "settings.headers.system": "מערכת",
+    "settings.pages.network.title": "רשת ואינטרנט",
+    "settings.pages.network.subtitle": "רשת אלחוטית, רשת קווית, שימוש בנתונים",
+    "settings.pages.network.wifi": "רשת אלחוטית",
+    "settings.pages.network.wifi_switch_tile.title": "רשת אלחוטית",
+    "settings.pages.network.wifi_switch_tile.subtitle_enabled":
+        "הרשת האלחוטית מופעלת",
+    "settings.pages.network.wifi_switch_tile.subtitle_disabled":
+        "הרשת האלחוטית מושבתת",
+    "settings.pages.network.wifi_preferences_tile.title": "העדפות רשת אלחוטית",
+    "settings.pages.network.wifi_preferences_tile.subtitle":
+        "חיבור אוטומטי לרשת האלחוטית, אפשרויות סריקה",
+    "settings.pages.network.wifi_saved_networks_tile.title": "רשתות שמורות",
+    "settings.pages.network.wifi_saved_networks_tile.subtitle": "{{}} רשתות",
+    "settings.pages.network.wifi_data_usage_tile.title":
+        "שימוש בנתוני רשת אלחוטית",
+    "settings.pages.network.wifi_data_usage_tile.subtitle":
+        "שימוש בנתונים לחודש הזה",
+    "settings.pages.network.ethernet": "רשת קווית",
+    "settings.pages.network.ethernet_switch_tile.title": "רשת קווית",
+    "settings.pages.network.ethernet_switch_tile.subtitle_enabled":
+        "הרשת הקווית מופעלת",
+    "settings.pages.network.ethernet_switch_tile.subtitle_disabled":
+        "הרשת הקווית מושבתת",
+    "settings.pages.network.ethernet_data_usage_tile.title":
+        "שימוש בנתוני רשת אלחוטית",
+    "settings.pages.network.ethernet_data_usage_tile.subtitle":
+        "שימוש בנתונים לחודש הזה",
+    "settings.pages.network.network_options": "אפשרויות רשת",
+    "settings.pages.network.network_options.vpn_tile.title":
+        "רשת פרטית וירטואלית (VPN)",
+    "settings.pages.network.network_options.vpn_tile.subtitle": "ללא",
+    "settings.pages.network.network_options.vpn_tile.button": "אפשרויות VPN",
+    "settings.pages.network.network_options.dns_tile.title": "‏DNS פרטי",
+    "settings.pages.network.network_options.dns_tile.subtitle": "אוטומטי",
+    "settings.pages.network.network_options.dns_tile.button": "אפשרויות DNS",
+    "settings.pages.connections.title": "מכשירים מחוברים",
+    "settings.pages.connections.subtitle": "‏Bluetooth, מדפסת, מכשירי USB",
+    "settings.pages.connections.bluetooth": "‏Bluetooth",
+    "settings.pages.connections.bluetooth_switch_tile.title": "‏Bluetooth",
+    "settings.pages.connections.bluetooth_switch_tile.subtitle_enabled":
+        "ה־Bluetooth מופעל",
+    "settings.pages.connections.bluetooth_switch_tile.subtitle_disabled":
+        "ה־Bluetooth מושבת",
+    "settings.pages.connections.bluetooth_file_transfer_tile.title":
+        "הקבצים התקבלו דרך Bluetooth",
+    "settings.pages.connections.phone_integration": "סינכרון עם הטלפון",
+    "settings.pages.connections.phone_integration_tile.title":
+        "סינכרון עם הטלפון",
+    "settings.pages.connections.phone_integration_tile.subtitle":
+        "הסנכרון עם טלפון סלולרי אינו פעיל כרגע",
+    "settings.pages.customization.title": "התאמה אישית",
+    "settings.pages.customization.subtitle": "לחוויה מותאמת אישית",
+    "settings.pages.customization.theme": "ערכת נושא",
+    "settings.pages.customization.theme_mode_light": "בהירה",
+    "settings.pages.customization.theme_mode_dark": "כהה",
+    "settings.pages.customization.theme_color_orange": "כתום",
+    "settings.pages.customization.theme_color_red": "אדום",
+    "settings.pages.customization.theme_color_green": "ירוק",
+    "settings.pages.customization.theme_color_blue": "כחול",
+    "settings.pages.customization.theme_color_teal": "טורקיז",
+    "settings.pages.customization.theme_color_pruple": "סגול",
+    "settings.pages.customization.theme_color_aqua": "מים",
+    "settings.pages.customization.theme_color_gold": "זהב",
+    "settings.pages.customization.theme_color_anthracite": "סלע",
+    "settings.pages.customization.taskbar_alignment": "יישור שורת המשימות",
+    "settings.pages.customization.taskbar_alignment_start": "להתחלה",
+    "settings.pages.customization.taskbar_alignment_center": "לאמצע",
+    "settings.pages.customization.window_options": "אפשרויות חלון",
+    "settings.pages.customization.window_options_border_radius.title":
+        "רדיוס גבול חלון - {{}}",
+    "settings.pages.customization.window_options_border_radius.subtitle":
+        "שינוי רדיוס גבולות החלון",
+    "settings.pages.customization.window_options_colored_titlebars.title":
+        "שורות כותרת צבעוניות",
+    "settings.pages.customization.window_options_colored_titlebars.subtitle":
+        "צביעת שורות הכותרת של החלונות בצבע נושא מותאם אישית",
+    "settings.pages.customization.window_options_transparent_colored_titlebars.title":
+        "שורות כותרת צבעוניות ושקופות",
+    "settings.pages.customization.window_options_transparent_colored_titlebars.subtitle":
+        "הענקת שקיפות לשורות הכותרת הצבעוניות",
+    "settings.pages.display.title": "תצוגה",
+    "settings.pages.display.subtitle": "רזולוציה, החשכת מסך, התאמת גודל",
+    "settings.pages.sound.title": "שמע",
+    "settings.pages.sound.subtitle":
+        "עוצמת שמע, מצב \"נא לא להפריע\", צלילי כניסה למערכת",
+    "settings.pages.locale.title": "המקמה",
+    "settings.pages.locale.subtitle": "שפה, תאריך ושעה, פריסת מקלדת",
+    "settings.pages.notifications.title": "התראות",
+    "settings.pages.notifications.subtitle": "צליל התראה, בחירת יישום",
+    "settings.pages.applications.title": "אפליקציות",
+    "settings.pages.applications.subtitle":
+        "אפליקציות מותקנות, אפליקציות ברירת מחדל",
+    "settings.pages.developer_options.title": "אפשרויות למפתחים",
+    "settings.pages.developer_options.subtitle":
+        "דגלוני יכולות, אפשרויות מתקדמות",
+    "settings.pages.developer_options.developer_mode_tile.title": "מצב מפתחים",
+    "settings.pages.developer_options.developer_mode_tile.subtitle":
+        "הפעלת תכונות מתקדמות לניפוי תקלות",
+    "settings.pages.about.title": "מידע כללי על המכשיר",
+    "settings.pages.about.subtitle": "גרסת המערכת, מידע על המכשיר",
+    "settings.pages.about.system_information": "מידע על המערכת",
+    "settings.pages.about.system_information_environment": "סביבה",
+    "settings.pages.about.system_information_architecture": "ארכיטקטורה",
+    "settings.pages.about.system_information_desktop": "שולחן עבודה",
+    "settings.pages.about.software_update": "עדכון תוכנה",
+    "settings.pages.about.software_update_tile.title":
+        "‏dahliaOS מעודכנת - {{}}",
+    "settings.pages.about.software_update_tile.subtitle":
+        "הבדיקה האחרונה: {{}}",
+    "settings.pages.about.software_update_tile.button": "בדיקה אחר עדכונים",
+    "apps.app_store": "חנות אפליקציות",
+    "apps.app_store_description": "שוק שאוצר בתוכו אפליקציות צד־שלישי",
+  };
+}

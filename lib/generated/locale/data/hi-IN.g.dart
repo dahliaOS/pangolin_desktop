@@ -5,7 +5,7 @@ class _$HiINLocaleData extends LocaleData {
   const _$HiINLocaleData._()
       : super(
           locale: "hi-IN",
-          translationProgress: 178,
+          translationProgress: 180,
         );
 
   @override
@@ -223,5 +223,8 @@ class _$HiINLocaleData extends LocaleData {
     "settings.pages.about.software_update_tile.subtitle":
         "आखरी बार अपडेट चैक किया: {{}}",
     "settings.pages.about.software_update_tile.button": "अपडेट चैक करें।",
+    "apps.app_store": "ऐप स्टोर",
+    "apps.app_store_description":
+        "तृतीय-पक्ष एप्लिकेशन के लिए क्यूरेटेड मार्केटप्लेस",
   };
 }
