@@ -11,9 +11,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3.0.2
         name: Checkout repository
-      - uses: subosito/flutter-action@v2.4.0
-        name: Prepare Flutter SDK
-      - run: flutter channel dev
+      - uses: subosito/flutter-action@v2.7.1
+        with:
+          channel: dev
         name: Switch Flutter channel
       - run: flutter pub get && flutter pub upgrade
         name: Get dependencies
