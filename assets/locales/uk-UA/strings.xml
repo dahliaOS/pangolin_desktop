@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Global Strings -->
+    <string name="global.account.local">Локальний обліковий запис</string>
+    <string name="global.account.user_accounts">Облікові записи користувачів</string>
+    <string name="global.on">Увімкнено</string>
+    <string name="global.off">Вимкнено</string>
+    <string name="global.settings">Налаштування</string>
+    <string name="global.coming_soon">Незабаром</string>
+    <string name="global.save">Зберегти</string>
+    <string name="global.search">Пошук</string>
+    <!-- App Names-->
+    <string name="apps.authenticator">Автентифікатор</string>
+    <string name="apps.calculator">Калькулятор</string>
+    <string name="apps.clock">Годинник</string>
+    <string name="apps.containers" comment="Do not actually translate this string, just write &quot;Graft&quot; as the translation">Graft</string>
+    <string name="apps.disks">Диски</string>
+    <string name="apps.files">Файли</string>
+    <string name="apps.media">Медіа</string>
+    <string name="apps.music">Музика</string>
+    <string name="apps.notes">Текстовий редактор</string>
+    <string name="apps.notesmobile">Нотатки (мобільна версія)</string>
+    <string name="apps.messages">Повідомлення</string>
+    <string name="apps.rootterminal">Термінал адміністратора</string>
+    <string name="apps.settings">Налаштування</string>
+    <string name="apps.systemlogs">Системний журнал</string>
+    <string name="apps.taskmanager">Диспетчер завдань</string>
+    <string name="apps.terminal">Термінал</string>
+    <string name="apps.themedemo">Попередній перегляд теми</string>
+    <string name="apps.welcome">Ласкаво просимо</string>
+    <string name="apps.help">Довідка</string>
+    <string name="apps.web">Браузер</string>
+    <!-- App Descriptions-->
+    <string name="apps.authenticator_description">Двофакторна авторизація</string>
+    <string name="apps.calculator_description">Виконання основних розрахунків</string>
+    <string name="apps.clock_description">Зберігати час перегляду</string>
+    <string name="apps.containers_description">Управління контейнерами та віртуальними машинами</string>
+    <string name="apps.disks_description">Керування дисками та розділами</string>
+    <string name="apps.files_description">Перегляд файлів і папок</string>
+    <string name="apps.media_description">Завантажити та переглянути фото та відео</string>
+    <string name="apps.music_description">Слухати музику</string>
+    <string name="apps.notes_description">Створення та редагування документів</string>
+    <string name="apps.notesmobile_description">Нотатки (мобільна версія)</string>
+    <string name="apps.messages_description">Повідомлення</string>
+    <string name="apps.rootterminal_description">Запустити команди від імені адміністратора</string>
+    <string name="apps.settings_description">Налаштунки параметрів системи</string>
+    <string name="apps.systemlogs_description">Перегляд та налагодження програмного забезпечення проблем</string>
+    <string name="apps.taskmanager_description">Швидкодія системи</string>
+    <string name="apps.terminal_description">Доступ до командного рядка</string>
+    <string name="apps.themedemo_description">Попередній перегляд персоналізації додатків</string>
+    <string name="apps.welcome_description">Переглянути інформацію про dahliaOS</string>
+    <string name="apps.help_description">Часті запитання та підтримка</string>
+    <string name="apps.web_description">Переглянути в інтернеті</string>
+    <!-- Feature Not Implemented-->
+    <string name="misc.featurenotimplemented_title">Функція у розробці</string>
+    <string name="misc.featurenotimplemented_value">Ця функція недоступна у цій версії Pangolin. Будь ласка, перевірте офіційний сайт на наявність новішої версії</string>
+    <!-- Overlays -->
+    <!-- Overview -->
+    <string name="overviewOverlay.new_desktop">Новий робочий стіл</string>
+    <!-- Power menu -->
+    <string name="powerOverlay.title">Меню живлення</string>
+    <string name="powerOverlay.subtitle">Виберіть, що ви хочете зробити</string>
+    <string name="powerOverlay.poweroff">Вимкнути живлення</string>
+    <string name="powerOverlay.sleep">Режим сну</string>
+    <string name="powerOverlay.restart">Перезапустити</string>
+    <!-- Search -->
+    <string name="searchOverlay.hint">Пошук пристроїв, програм та в інтернеті</string>
+    <string name="searchOverlay.results">Результати</string>
+    <string name="searchOverlay.recent">Нещодавні</string>
+    <string name="searchOverlay.app">Програми</string>
+    <!-- Launcher -->
+    <string name="launcherOverlay.categories.all_applications">Усі додатки</string>
+    <string name="launcherOverlay.categories.internet">Інтернет</string>
+    <string name="launcherOverlay.categories.media">Медіа</string>
+    <string name="launcherOverlay.categories.gaming">Ігри</string>
+    <string name="launcherOverlay.categories.development">Розробка</string>
+    <string name="launcherOverlay.categories.office">Офіс</string>
+    <string name="launcherOverlay.categories.system">Система</string>
+    <!-- Quick Settings -->
+    <string name="quicksettingsOverlay.quick_controls">Швидкі налаштування</string>
+    <string name="quicksettingsOverlay.quick_controls.network.title">Мережа</string>
+    <string name="quicksettingsOverlay.quick_controls.network.subtitle_connected">ПІДКЛЮЧЕНО</string>
+    <string name="quicksettingsOverlay.quick_controls.network.subtitle_disconnected">ВІДКЛЮЧЕНО</string>
+    <string name="quicksettingsOverlay.quick_controls.bluetooth.title">Bluetooth</string>
+    <string name="quicksettingsOverlay.quick_controls.blueooth.subtitle_connected">ПІДКЛЮЧЕНО</string>
+    <string name="quicksettingsOverlay.quick_controls.blueooth.subtitle_disconnected">ВІДКЛЮЧЕНО</string>
+    <string name="quicksettingsOverlay.quick_controls.airplane_mode.title">Режим польоту</string>
+    <string name="quicksettingsOverlay.quick_controls.language.title">Мова</string>
+    <string name="quicksettingsOverlay.quick_controls.theme.title">Тема</string>
+    <string name="quicksettingsOverlay.quick_controls.donotdisturb.title">Не турбувати</string>
+    <string name="quicksettingsOverlay.shortcuts.title">Гарячі клавіші</string>
+    <string name="quicksettingsOverlay.shortcuts.new_event">Нова подія</string>
+    <string name="quicksettingsOverlay.shortcuts.alpha_build">Альфа-версія</string>
+    <string name="quicksettingsOverlay.shortcuts.energy_mode">Енергорежим: продуктивність</string>
+    <string name="quicksettingsOverlay.pages.network.title">Налаштування мережі</string>
+    <string name="quicksettingsOverlay.pages.theme.title">Налаштування теми</string>
+    <!-- Wallpaper Picker -->
+    <string name="desktop.wallpaper_picker.gone">Помилка\n-це зображення не може бути використано</string>
+    <string name="desktop.wallpaper_picker.url_wallpaper.hint">Встановити шпалери за URL-адресою</string>
+    <string name="desktop.wallpaper_picker.url_wallpaper.label">URL-адреса шпалер</string>
+    <string name="desktop.wallpaper_picker.bing_wallpaper_button">Використовувати шпалери Bing</string>
+    <!-- Desktop Context Menu -->
+    <string name="desktop.desktop_context_menu.change_wallpaper">Змінити шпалери</string>
+    <string name="desktop.desktop_context_menu.settings">Налаштування</string>
+    <!-- Misc -->
+    <string name="desktop.misc.show_desktop">Показати робочий стіл</string>
+    <!-- Settings -->
+    <!-- Headers -->
+    <string name="settings.headers.connectivity">Зв\'язок</string>
+    <string name="settings.headers.personalize">Персоналізувати</string>
+    <string name="settings.headers.device">Пристрій &amp; додатки</string>
+    <string name="settings.headers.system">Система</string>
+    <!-- Network & internet -->
+    <string name="settings.pages.network.title">Мережа &amp; Інтернет</string>
+    <string name="settings.pages.network.subtitle">Wi-Fi, Ethernet, використання даних</string>
+    <string name="settings.pages.network.wifi">Wi-Fi</string>
+    <string name="settings.pages.network.wifi_switch_tile.title">Wi-Fi</string>
+    <string name="settings.pages.network.wifi_switch_tile.subtitle_enabled">Wi-Fi увімкнено</string>
+    <string name="settings.pages.network.wifi_switch_tile.subtitle_disabled">Wi-Fi вимкнено</string>
+    <string name="settings.pages.network.wifi_preferences_tile.title">Налаштування Wi-Fi</string>
+    <string name="settings.pages.network.wifi_preferences_tile.subtitle">Розумне з\'єднання Wi-Fi, параметри сканування</string>
+    <string name="settings.pages.network.wifi_saved_networks_tile.title">Збережені мережі</string>
+    <string name="settings.pages.network.wifi_saved_networks_tile.subtitle">%s мереж</string>
+    <string name="settings.pages.network.wifi_data_usage_tile.title">Використання трафіку Wi-Fi</string>
+    <string name="settings.pages.network.wifi_data_usage_tile.subtitle">Використання трафіку цього місяця</string>
+    <string name="settings.pages.network.ethernet">Ethernet</string>
+    <string name="settings.pages.network.ethernet_switch_tile.title">Ethernet</string>
+    <string name="settings.pages.network.ethernet_switch_tile.subtitle_enabled">Ethernet увімкнено</string>
+    <string name="settings.pages.network.ethernet_switch_tile.subtitle_disabled">Ethernet вимкнено</string>
+    <string name="settings.pages.network.ethernet_data_usage_tile.title">Використання трафіку Wi-Fi</string>
+    <string name="settings.pages.network.ethernet_data_usage_tile.subtitle">Використання трафіку цього місяця</string>
+    <string name="settings.pages.network.network_options">Параметри мережі</string>
+    <string name="settings.pages.network.network_options.vpn_tile.title">Віртуальна приватна мережа (VPN)</string>
+    <string name="settings.pages.network.network_options.vpn_tile.subtitle">Відсутні</string>
+    <string name="settings.pages.network.network_options.vpn_tile.button">Налаштування VPN</string>
+    <string name="settings.pages.network.network_options.dns_tile.title">Приватний DNS</string>
+    <string name="settings.pages.network.network_options.dns_tile.subtitle">Автоматично</string>
+    <string name="settings.pages.network.network_options.dns_tile.button">Параметри DNS</string>
+    <!-- Connected devices -->
+    <string name="settings.pages.connections.title">Під\'єднані пристрої</string>
+    <string name="settings.pages.connections.subtitle">Bluetooth, принтер, USB-пристрої</string>
+    <string name="settings.pages.connections.bluetooth">Bluetooth</string>
+    <string name="settings.pages.connections.bluetooth_switch_tile.title">Bluetooth</string>
+    <string name="settings.pages.connections.bluetooth_switch_tile.subtitle_enabled">Bluetooth увімкнений</string>
+    <string name="settings.pages.connections.bluetooth_switch_tile.subtitle_disabled">Bluetooth вимкнено</string>
+    <string name="settings.pages.connections.bluetooth_file_transfer_tile.title">Файли, отримані через Bluetooth</string>
+    <string name="settings.pages.connections.phone_integration">Під\'єднання телефону</string>
+    <string name="settings.pages.connections.phone_integration_tile.title">Під\'єднання телефону</string>
+    <string name="settings.pages.connections.phone_integration_tile.subtitle">Під\'єднання телефону вимкнене</string>
+    <!-- Customization -->
+    <string name="settings.pages.customization.title">Персоналізація</string>
+    <string name="settings.pages.customization.subtitle">Персоналізуйте свій пристрій під себе</string>
+    <string name="settings.pages.customization.theme">Тема</string>
+    <string name="settings.pages.customization.theme_mode_light">Світла</string>
+    <string name="settings.pages.customization.theme_mode_dark">Темна</string>
+    <string name="settings.pages.customization.theme_color_orange">Помаранчева</string>
+    <string name="settings.pages.customization.theme_color_red">Червоний</string>
+    <string name="settings.pages.customization.theme_color_green">Зелений</string>
+    <string name="settings.pages.customization.theme_color_blue">Синій</string>
+    <string name="settings.pages.customization.theme_color_teal">Зелено-блакитний</string>
+    <string name="settings.pages.customization.theme_color_pruple" comment="settings.pages.customization.theme_color_purple">Фіолетовий</string>
+    <string name="settings.pages.customization.theme_color_aqua">Бірюзовий</string>
+    <string name="settings.pages.customization.theme_color_gold">Золота</string>
+    <string name="settings.pages.customization.theme_color_anthracite">Антрацитовий</string>
+    <string name="settings.pages.customization.taskbar_alignment">Вирівнювання панелі завдань</string>
+    <string name="settings.pages.customization.taskbar_alignment_start">Розпочати</string>
+    <string name="settings.pages.customization.taskbar_alignment_center">Центрувати</string>
+    <string name="settings.pages.customization.window_options">Опції вікна</string>
+    <string name="settings.pages.customization.window_options_border_radius.title">Радіус округлення вікна - %s</string>
+    <string name="settings.pages.customization.window_options_border_radius.subtitle">Змінити радіус межі вікна</string>
+    <string name="settings.pages.customization.window_options_colored_titlebars.title">Кольорові заголовки</string>
+    <string name="settings.pages.customization.window_options_colored_titlebars.subtitle">Надати заголовку вікна колір акценту</string>
+    <string name="settings.pages.customization.window_options_transparent_colored_titlebars.title">Прозорі кольорові заголовки</string>
+    <string name="settings.pages.customization.window_options_transparent_colored_titlebars.subtitle">Додати прозорість до кольорових заголовків</string>
+    <!-- Display -->
+    <string name="settings.pages.display.title">Параметри дисплея</string>
+    <string name="settings.pages.display.subtitle">Роздільна здатність, час очікування екрана, масштабування</string>
+    <!-- Sound -->
+    <string name="settings.pages.sound.title">Аудіо</string>
+    <string name="settings.pages.sound.subtitle">Гучність, режим \"Не турбувати\", звук ввімкнення</string>
+    <!-- Locale -->
+    <string name="settings.pages.locale.title">Локалізація</string>
+    <string name="settings.pages.locale.subtitle">Мова, час і дата, розкладка клавіатури</string>
+    <!-- Notifications -->
+    <string name="settings.pages.notifications.title">Сповіщення</string>
+    <string name="settings.pages.notifications.subtitle">Вибір звукових сповіщень для програм</string>
+    <!-- Applications -->
+    <string name="settings.pages.applications.title">Додатки</string>
+    <string name="settings.pages.applications.subtitle">Встановлені додатки, додатки за замовчуванням</string>
+    <!-- Developer options -->
+    <string name="settings.pages.developer_options.title">Параметри розробника</string>
+    <string name="settings.pages.developer_options.subtitle">Перемикачі функцій, додаткові налаштування</string>
+    <string name="settings.pages.developer_options.developer_mode_tile.title">Режим розробника</string>
+    <string name="settings.pages.developer_options.developer_mode_tile.subtitle">Активувати додаткові функції налагодження</string>
+    <!-- About device -->
+    <string name="settings.pages.about.title">Інформація про пристрій</string>
+    <string name="settings.pages.about.subtitle">Версія системи, інформація про пристрій</string>
+    <string name="settings.pages.about.system_information">Системна інформація</string>
+    <string name="settings.pages.about.system_information_environment">Навколишнє середовище</string>
+    <string name="settings.pages.about.system_information_architecture">Архітектура</string>
+    <string name="settings.pages.about.system_information_desktop">Робочий стіл</string>
+    <string name="settings.pages.about.software_update">Оновлення програмного забезпечення</string>
+    <string name="settings.pages.about.software_update_tile.title">dahliaOS є найновішою - %s</string>
+    <string name="settings.pages.about.software_update_tile.subtitle">Остання перевірка: %s</string>
+    <string name="settings.pages.about.software_update_tile.button">Перевірити наявність оновлень</string>
+    <string name="apps.app_store" comment="App store application name">Магазин додатків</string>
+    <string name="apps.app_store_description" comment="App Store application description">Керований ринок для сторонніх додатків</string>
+</resources>
