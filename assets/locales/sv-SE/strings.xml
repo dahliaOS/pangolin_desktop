@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Global Strings -->
+    <string name="global.account.local">Lokalt konto</string>
+    <string name="global.account.user_accounts">Användarkonton</string>
+    <string name="global.on">På</string>
+    <string name="global.off">Av</string>
+    <string name="global.settings">Inställningar</string>
+    <string name="global.coming_soon">Kommer snart</string>
+    <string name="global.save">Spara</string>
+    <string name="global.search">Sök</string>
+    <!-- App Names-->
+    <string name="apps.authenticator">Autentiserare</string>
+    <string name="apps.calculator">Kalkylator</string>
+    <string name="apps.clock">Klocka</string>
+    <string name="apps.containers" comment="Do not actually translate this string, just write &quot;Graft&quot; as the translation">Graft</string>
+    <string name="apps.disks">Diskar</string>
+    <string name="apps.files">Filer</string>
+    <string name="apps.media">Media</string>
+    <string name="apps.music">Musik</string>
+    <string name="apps.notes">Textredigerare</string>
+    <string name="apps.notesmobile">Anteckningar (Mobil)</string>
+    <string name="apps.messages">Meddelanden</string>
+    <string name="apps.rootterminal">Root-terminal</string>
+    <string name="apps.settings">Inställningar</string>
+    <string name="apps.systemlogs">Systemloggar</string>
+    <string name="apps.taskmanager">Aktivitetshanterare</string>
+    <string name="apps.terminal">Terminal</string>
+    <string name="apps.themedemo">Demo för Tema</string>
+    <string name="apps.welcome">Välkommen</string>
+    <string name="apps.help">Hjälp</string>
+    <string name="apps.web">Webbläsare</string>
+    <!-- App Descriptions-->
+    <string name="apps.authenticator_description">Tvåfaktorsauktorisering</string>
+    <string name="apps.calculator_description">Utför enkla beräkningar</string>
+    <string name="apps.clock_description">Håll koll på tiden</string>
+    <string name="apps.containers_description">Hantera behållare och virtuella maskiner</string>
+    <string name="apps.disks_description">Hantera diskar och partitioner</string>
+    <string name="apps.files_description">Bläddra bland filer och mappar</string>
+    <string name="apps.media_description">Bläddra och titta på foton och videor</string>
+    <string name="apps.music_description">Lyssna på musik</string>
+    <string name="apps.notes_description">Skapa och redigera dokument</string>
+    <string name="apps.notesmobile_description">Anteckningar (Mobil)</string>
+    <string name="apps.messages_description">Meddelanden</string>
+    <string name="apps.rootterminal_description">Kör kommandon som superanvändare</string>
+    <string name="apps.settings_description">Justera systeminställningar</string>
+    <string name="apps.systemlogs_description">Inspektera och felsök mjukvaruproblem</string>
+    <string name="apps.taskmanager_description">Se över systemprestanda</string>
+    <string name="apps.terminal_description">Få tillgång till kommandoraden</string>
+    <string name="apps.themedemo_description">Intern demonstration för appteman</string>
+    <string name="apps.welcome_description">Se information om dahliaOS</string>
+    <string name="apps.help_description">Vanliga Frågor och Stöd</string>
+    <string name="apps.web_description">Sök på Webben</string>
+    <!-- Feature Not Implemented-->
+    <string name="misc.featurenotimplemented_title">Funktionen är inte implementerad</string>
+    <string name="misc.featurenotimplemented_value">Denna funktion är för närvarande inte tillgänglig på din version av Pangolin, se dahliaos.io för vidare information</string>
+    <!-- Overlays -->
+    <!-- Overview -->
+    <string name="overviewOverlay.new_desktop">Nytt skrivbord</string>
+    <!-- Power menu -->
+    <string name="powerOverlay.title">Avstängningsmeny</string>
+    <string name="powerOverlay.subtitle">Välj vad du vill göra</string>
+    <string name="powerOverlay.poweroff">Stäng av</string>
+    <string name="powerOverlay.sleep">Gå i viloläge</string>
+    <string name="powerOverlay.restart">Starta om</string>
+    <!-- Search -->
+    <string name="searchOverlay.hint">Sök på enheten, appar och webben</string>
+    <string name="searchOverlay.results">Resultat</string>
+    <string name="searchOverlay.recent">Senaste</string>
+    <string name="searchOverlay.app">App</string>
+    <!-- Launcher -->
+    <string name="launcherOverlay.categories.all_applications">Alla applikationer</string>
+    <string name="launcherOverlay.categories.internet">Internet</string>
+    <string name="launcherOverlay.categories.media">Media</string>
+    <string name="launcherOverlay.categories.gaming">Spel</string>
+    <string name="launcherOverlay.categories.development">Utveckling</string>
+    <string name="launcherOverlay.categories.office">Kontor</string>
+    <string name="launcherOverlay.categories.system">System</string>
+    <!-- Quick Settings -->
+    <string name="quicksettingsOverlay.quick_controls">Snabbkontroller</string>
+    <string name="quicksettingsOverlay.quick_controls.network.title">Nätverk</string>
+    <string name="quicksettingsOverlay.quick_controls.network.subtitle_connected">Ansluten</string>
+    <string name="quicksettingsOverlay.quick_controls.network.subtitle_disconnected">Frånkopplad</string>
+    <string name="quicksettingsOverlay.quick_controls.bluetooth.title">Bluetooth</string>
+    <string name="quicksettingsOverlay.quick_controls.blueooth.subtitle_connected">Ansluten</string>
+    <string name="quicksettingsOverlay.quick_controls.blueooth.subtitle_disconnected">Frånkopplad</string>
+    <string name="quicksettingsOverlay.quick_controls.airplane_mode.title">Flygplansläge</string>
+    <string name="quicksettingsOverlay.quick_controls.language.title">Språk</string>
+    <string name="quicksettingsOverlay.quick_controls.theme.title">Tema</string>
+    <string name="quicksettingsOverlay.quick_controls.donotdisturb.title">Stör ej</string>
+    <string name="quicksettingsOverlay.shortcuts.title">Genvägar</string>
+    <string name="quicksettingsOverlay.shortcuts.new_event">Ny händelse</string>
+    <string name="quicksettingsOverlay.shortcuts.alpha_build">Alfaversion</string>
+    <string name="quicksettingsOverlay.shortcuts.energy_mode">Energiläge: prestanda</string>
+    <string name="quicksettingsOverlay.pages.network.title">Nätverksinställningar</string>
+    <string name="quicksettingsOverlay.pages.theme.title">Temainställningar</string>
+    <!-- Wallpaper Picker -->
+    <string name="desktop.wallpaper_picker.gone">Fel\nDen bilden kan inte användas</string>
+    <string name="desktop.wallpaper_picker.url_wallpaper.hint">Sätt skrivbordsbakgrund från URL</string>
+    <string name="desktop.wallpaper_picker.url_wallpaper.label">URL för skrivbordsbakgrund</string>
+    <string name="desktop.wallpaper_picker.bing_wallpaper_button">Använd skrivbordsbakgrund från Bing</string>
+    <!-- Desktop Context Menu -->
+    <string name="desktop.desktop_context_menu.change_wallpaper">Ändra skrivbordsbakgrund</string>
+    <string name="desktop.desktop_context_menu.settings">Inställningar</string>
+    <!-- Misc -->
+    <string name="desktop.misc.show_desktop">Visa skrivbord</string>
+    <!-- Settings -->
+    <!-- Headers -->
+    <string name="settings.headers.connectivity">Anslutning</string>
+    <string name="settings.headers.personalize">Anpassa</string>
+    <string name="settings.headers.device">Enhet &amp; applikationer</string>
+    <string name="settings.headers.system">System</string>
+    <!-- Network & internet -->
+    <string name="settings.pages.network.title">Nätverk &amp; internet</string>
+    <string name="settings.pages.network.subtitle">Wi-Fi, ethernet, dataanvändning</string>
+    <string name="settings.pages.network.wifi">Wi-Fi</string>
+    <string name="settings.pages.network.wifi_switch_tile.title">Wi-Fi</string>
+    <string name="settings.pages.network.wifi_switch_tile.subtitle_enabled">Wi-Fi är aktiverat</string>
+    <string name="settings.pages.network.wifi_switch_tile.subtitle_disabled">Wi-Fi är avaktiverat</string>
+    <string name="settings.pages.network.wifi_preferences_tile.title">Wi-Fi-preferenser</string>
+    <string name="settings.pages.network.wifi_preferences_tile.subtitle">Smart Wi-Fi-anslutning, skanningsalternativ</string>
+    <string name="settings.pages.network.wifi_saved_networks_tile.title">Sparade nätverk</string>
+    <string name="settings.pages.network.wifi_saved_networks_tile.subtitle">%s nätverk</string>
+    <string name="settings.pages.network.wifi_data_usage_tile.title">Dataanvändning för Wi-Fi</string>
+    <string name="settings.pages.network.wifi_data_usage_tile.subtitle">Dataanvändning för denna månad</string>
+    <string name="settings.pages.network.ethernet">Ethernet</string>
+    <string name="settings.pages.network.ethernet_switch_tile.title">Ethernet</string>
+    <string name="settings.pages.network.ethernet_switch_tile.subtitle_enabled">Ethernet är aktiverat</string>
+    <string name="settings.pages.network.ethernet_switch_tile.subtitle_disabled">Ethernet är avaktiverat</string>
+    <string name="settings.pages.network.ethernet_data_usage_tile.title">Dataanvändning för Wi-Fi</string>
+    <string name="settings.pages.network.ethernet_data_usage_tile.subtitle">Dataanvändning för denna månad</string>
+    <string name="settings.pages.network.network_options">Nätverksalternativ</string>
+    <string name="settings.pages.network.network_options.vpn_tile.title">Virtuellt Privat Nätverk (VPN)</string>
+    <string name="settings.pages.network.network_options.vpn_tile.subtitle">Inga</string>
+    <string name="settings.pages.network.network_options.vpn_tile.button">VPN-alternativ</string>
+    <string name="settings.pages.network.network_options.dns_tile.title">Privat DNS</string>
+    <string name="settings.pages.network.network_options.dns_tile.subtitle">Automatisk</string>
+    <string name="settings.pages.network.network_options.dns_tile.button">DNS-alternativ</string>
+    <!-- Connected devices -->
+    <string name="settings.pages.connections.title">Anslutna enheter</string>
+    <string name="settings.pages.connections.subtitle">Bluetooth, skrivare, USB-enheter</string>
+    <string name="settings.pages.connections.bluetooth">Bluetooth</string>
+    <string name="settings.pages.connections.bluetooth_switch_tile.title">Bluetooth</string>
+    <string name="settings.pages.connections.bluetooth_switch_tile.subtitle_enabled">Bluetooth är aktiverat</string>
+    <string name="settings.pages.connections.bluetooth_switch_tile.subtitle_disabled">Bluetooth är avaktiverat</string>
+    <string name="settings.pages.connections.bluetooth_file_transfer_tile.title">Filer mottagna via Bluetooth</string>
+    <string name="settings.pages.connections.phone_integration">Telefonintegration</string>
+    <string name="settings.pages.connections.phone_integration_tile.title">Telefonintegration</string>
+    <string name="settings.pages.connections.phone_integration_tile.subtitle">Telefonintegration är avaktiverad</string>
+    <!-- Customization -->
+    <string name="settings.pages.customization.title">Anpassning</string>
+    <string name="settings.pages.customization.subtitle">Anpassa din upplevelse</string>
+    <string name="settings.pages.customization.theme">Tema</string>
+    <string name="settings.pages.customization.theme_mode_light">Ljus</string>
+    <string name="settings.pages.customization.theme_mode_dark">Mörk</string>
+    <string name="settings.pages.customization.theme_color_orange">Orange</string>
+    <string name="settings.pages.customization.theme_color_red">Röd</string>
+    <string name="settings.pages.customization.theme_color_green">Grön</string>
+    <string name="settings.pages.customization.theme_color_blue">Blå</string>
+    <string name="settings.pages.customization.theme_color_teal">Turkos</string>
+    <string name="settings.pages.customization.theme_color_pruple" comment="settings.pages.customization.theme_color_purple">Lila</string>
+    <string name="settings.pages.customization.theme_color_aqua">Cyan</string>
+    <string name="settings.pages.customization.theme_color_gold">Guld</string>
+    <string name="settings.pages.customization.theme_color_anthracite">Antracit</string>
+    <string name="settings.pages.customization.taskbar_alignment">Aktivitetsfältets placering</string>
+    <string name="settings.pages.customization.taskbar_alignment_start">Start</string>
+    <string name="settings.pages.customization.taskbar_alignment_center">Center</string>
+    <string name="settings.pages.customization.window_options">Fönsteralternativ</string>
+    <string name="settings.pages.customization.window_options_border_radius.title">Fönsterkantsradie - %s</string>
+    <string name="settings.pages.customization.window_options_border_radius.subtitle">Ändra fönsterkantsradien</string>
+    <string name="settings.pages.customization.window_options_colored_titlebars.title">Färgade titellister</string>
+    <string name="settings.pages.customization.window_options_colored_titlebars.subtitle">Ge fönstrets titlellister en anpassad accentfärg</string>
+    <string name="settings.pages.customization.window_options_transparent_colored_titlebars.title">Transparenta färgade titellister</string>
+    <string name="settings.pages.customization.window_options_transparent_colored_titlebars.subtitle">Sätt transparans på de färgade titellisterna</string>
+    <!-- Display -->
+    <string name="settings.pages.display.title">Display</string>
+    <string name="settings.pages.display.subtitle">Upplösning, skärmtimeout, skalning</string>
+    <!-- Sound -->
+    <string name="settings.pages.sound.title">Ljud</string>
+    <string name="settings.pages.sound.subtitle">Volym, stör ej, startljud</string>
+    <!-- Locale -->
+    <string name="settings.pages.locale.title">Lokalt</string>
+    <string name="settings.pages.locale.subtitle">Språk, tid och datum, tangentbordslayout</string>
+    <!-- Notifications -->
+    <string name="settings.pages.notifications.title">Notifikationer</string>
+    <string name="settings.pages.notifications.subtitle">Notifikationsljud, appval</string>
+    <!-- Applications -->
+    <string name="settings.pages.applications.title">Applikationer</string>
+    <string name="settings.pages.applications.subtitle">Installerade appar, standardappar</string>
+    <!-- Developer options -->
+    <string name="settings.pages.developer_options.title">Utvecklaralternativ</string>
+    <string name="settings.pages.developer_options.subtitle">Funktionsflaggor, avancerade alternativ</string>
+    <string name="settings.pages.developer_options.developer_mode_tile.title">Utvecklarläge</string>
+    <string name="settings.pages.developer_options.developer_mode_tile.subtitle">Aktivera avancerade felsökningsfunktioner</string>
+    <!-- About device -->
+    <string name="settings.pages.about.title">Om enheten</string>
+    <string name="settings.pages.about.subtitle">Systemversion, enhetsinformation</string>
+    <string name="settings.pages.about.system_information">Systeminformation</string>
+    <string name="settings.pages.about.system_information_environment">Miljö</string>
+    <string name="settings.pages.about.system_information_architecture">Arkitektur</string>
+    <string name="settings.pages.about.system_information_desktop">Skrivbord</string>
+    <string name="settings.pages.about.software_update">Mjukvaruuppdatering</string>
+    <string name="settings.pages.about.software_update_tile.title">dahliaOS är uppdaterad - %s</string>
+    <string name="settings.pages.about.software_update_tile.subtitle">Senast kontrollerad: %s</string>
+    <string name="settings.pages.about.software_update_tile.button">Sök efter uppdateringar</string>
+    <string name="apps.app_store" comment="App store application name">App-butik</string>
+    <string name="apps.app_store_description" comment="App Store application description">Kuraterad marknadsplats för tredjepartsapplikationer</string>
+</resources>
