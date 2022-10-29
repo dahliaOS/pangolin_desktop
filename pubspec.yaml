@@ -61,10 +61,7 @@ dependencies:
   task_manager:
     git:
       url: https://github.com/dahliaOS/task_manager.git
-  terminal:
-    git:
-      url: https://github.com/dahliaOS/terminal.git
-      ref: main
+  
   text_editor:
     git:
       url: https://github.com/dahliaOS/text_editor.git
