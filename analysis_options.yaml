@@ -7,12 +7,12 @@ analyzer:
 
 linter:
   rules:
-    public_member_api_docs: false
+    avoid_equals_and_hash_code_on_mutable_classes: false
+    avoid_slow_async_io: false
     library_private_types_in_public_api: false
     lines_longer_than_80_chars: false
-    no_default_cases: false
-    avoid_equals_and_hash_code_on_mutable_classes: false
     no_adjacent_strings_in_list: false
+    no_default_cases: false
     only_throw_errors: false
     prefer_asserts_with_message: false
-    avoid_slow_async_io: false
+    public_member_api_docs: false
