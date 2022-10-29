@@ -47,7 +47,7 @@ class _SettingsPageNetworkState extends State<SettingsPageNetwork> {
                 children: [
                   ListTile(
                     //TODO add localization String
-                    title: Text("Not supported on this platform"),
+                    title: Text('Not supported on this platform'),
                   ),
                 ],
               ),
@@ -81,7 +81,7 @@ class _SettingsPageNetworkState extends State<SettingsPageNetwork> {
                             : const [
                                 Center(
                                   //TODO same as above
-                                  child: Text("Not supported on this platform"),
+                                  child: Text('Not supported on this platform'),
                                 ),
                               ],
                       ),
@@ -106,7 +106,7 @@ class _SettingsPageNetworkState extends State<SettingsPageNetwork> {
                     ),
                     subtitle: Text(
                       strings.settings
-                          .pagesNetworkWifiSavedNetworksTileSubtitle("8"),
+                          .pagesNetworkWifiSavedNetworksTileSubtitle('8'),
                     ),
                     leading: const Icon(Icons.save_rounded),
                   ),

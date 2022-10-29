@@ -15,7 +15,6 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:pangolin/utils/context_menus/context_menu.dart';
-import 'package:pangolin/utils/context_menus/context_menu_item.dart';
 import 'package:pangolin/utils/wm/wm.dart';
 
 class ContextMenuRegion extends StatefulWidget {
@@ -46,8 +45,8 @@ class _ContextMenuRegionState extends State<ContextMenuRegion> {
       alwaysOnTopMode: AlwaysOnTopMode.systemOverlay,
     ),
     properties: {
-      WindowExtras.stableId: "shell:context_menu",
-      WindowEntry.title: "Context menu",
+      WindowExtras.stableId: 'shell:context_menu',
+      WindowEntry.title: 'Context menu',
       WindowEntry.showOnTaskbar: false,
       WindowEntry.icon: null,
     },
@@ -78,24 +77,24 @@ class _ContextMenuRegionState extends State<ContextMenuRegion> {
     Offset globalPosition,
     BoxConstraints constraints,
   ) {
-    final RenderBox box =
+    final box =
         _globalKey.currentContext!.findRenderObject()! as RenderBox;
     final buttonRect = box.localToGlobal(Offset.zero);
-    final bool centerAboveElement = widget.centerAboveElement ?? false;
+    final centerAboveElement = widget.centerAboveElement ?? false;
 
-    final List<int> length = List.empty(growable: true);
-    for (final ContextMenuItem element in widget.contextMenu.items) {
+    final length = List<int>.empty(growable: true);
+    for (final element in widget.contextMenu.items) {
       length.add(element.title.characters.length);
     }
     length.sort();
-    final Size size =
+    final size =
         Size(64 + (length.last * 8.8), widget.contextMenu.items.length * 44);
     final double x;
     final double y;
 
     if (centerAboveElement) {
       x = max(
-        4.0,
+        4,
         min(
           MediaQuery.of(context).size.width - 200,
           buttonRect.dx - 100 + (constraints.maxHeight / 2),

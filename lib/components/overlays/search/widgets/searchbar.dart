@@ -19,15 +19,6 @@ import 'package:pangolin/utils/data/constants.dart';
 import 'package:pangolin/widgets/global/box/box_container.dart';
 
 class Searchbar extends StatelessWidget {
-  final Widget? leading;
-  final Widget? trailing;
-  final String? hint;
-  final String text;
-  final Color? color;
-  final bool outline;
-  final TextEditingController? controller;
-  final FocusNode? focusNode;
-  final ValueChanged<String>? onTextChanged;
 
   const Searchbar({
     super.key,
@@ -37,10 +28,19 @@ class Searchbar extends StatelessWidget {
     required this.controller,
     this.outline = false,
     this.focusNode,
-    this.text = "",
+    this.text = '',
     this.color,
     this.onTextChanged,
   });
+  final Widget? leading;
+  final Widget? trailing;
+  final String? hint;
+  final String text;
+  final Color? color;
+  final bool outline;
+  final TextEditingController? controller;
+  final FocusNode? focusNode;
+  final ValueChanged<String>? onTextChanged;
 
   @override
   Widget build(BuildContext context) {

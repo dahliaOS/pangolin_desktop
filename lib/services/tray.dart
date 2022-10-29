@@ -12,6 +12,8 @@ import 'package:pangolin/services/service.dart';
 abstract class TrayService extends ListenableService<TrayService> {
   TrayService();
 
+  factory TrayService.fallback() = _DummyTrayService;
+
   static TrayService get current {
     return ServiceManager.getService<TrayService>()!;
   }
@@ -21,8 +23,6 @@ abstract class TrayService extends ListenableService<TrayService> {
 
     return _DbusTrayService();
   }
-
-  factory TrayService.fallback() = _DummyTrayService;
 
   List<StatusNotifierItem> get items;
 }
@@ -36,42 +36,41 @@ class _DbusTrayService extends TrayService with DBusService {
   List<String> get _dbusItems =>
       _items.map((e) => '${e.object.name}${e.object.path.value}').toList();
 
-  StreamSubscription? _nameSubscription;
+  StreamSubscription<DBusNameOwnerChangedEvent>? _nameSubscription;
 
   @override
   List<StatusNotifierItem> get items => List.from(_items);
 
   Future<void> registerItem(String name, String path) async {
-    final StatusNotifierItemObject object =
+    final object =
         StatusNotifierItemObject(client!, name, DBusObjectPath(path));
 
-    final StatusNotifierItem item = await StatusNotifierItem.fromObject(object);
+    final item = await StatusNotifierItem.fromObject(object);
     _items.add(item);
-    backend.emitStatusNotifierItemRegistered("$name$path");
-    backend.emitPropertiesChanged(
+    await backend.emitStatusNotifierItemRegistered('$name$path');
+    await backend.emitPropertiesChanged(
       backend.interface,
       changedProperties: {
         'RegisteredStatusNotifierItems': DBusArray.string(_dbusItems),
       },
     );
-    logger.info("Registered tray item $name$path");
+    logger.info('Registered tray item $name$path');
     notifyListeners();
   }
 
   void unregisterItem(StatusNotifierItem item) {
     _items.remove(item);
     backend.emitStatusNotifierItemUnregistered(
-      "${item.object.name}${item.object.path.value}",
+      '${item.object.name}${item.object.path.value}',
     );
     logger.info(
-      "Unregistered tray item ${item.object.name}${item.object.path}",
+      'Unregistered tray item ${item.object.name}${item.object.path}',
     );
     notifyListeners();
   }
 
   void _nameOwnerChanged(DBusNameOwnerChangedEvent event) {
-    final StatusNotifierItem? obj =
-        _items.firstWhereOrNull((e) => e.object.name == event.name);
+    final obj = _items.firstWhereOrNull((e) => e.object.name == event.name);
 
     if (obj != null) {
       if (event.newOwner != null && event.newOwner!.isNotEmpty) return;
@@ -83,15 +82,16 @@ class _DbusTrayService extends TrayService with DBusService {
   @override
   FutureOr<void> onClientRegistered() {
     _nameSubscription = client!.nameOwnerChanged.listen(_nameOwnerChanged);
-    backend.emitStatusNotifierHostRegistered();
-    backend.emitPropertiesChanged(
-      backend.interface,
-      changedProperties: {
-        'IsStatusNotifierHostRegistered': const DBusBoolean(true),
-        'ProtocolVersion': const DBusInt32(0),
-        'RegisteredStatusNotifierItems': DBusArray.string([]),
-      },
-    );
+    backend
+      ..emitStatusNotifierHostRegistered()
+      ..emitPropertiesChanged(
+        backend.interface,
+        changedProperties: {
+          'IsStatusNotifierHostRegistered': const DBusBoolean(true),
+          'ProtocolVersion': const DBusInt32(0),
+          'RegisteredStatusNotifierItems': DBusArray.string([]),
+        },
+      );
   }
 
   @override
@@ -104,10 +104,10 @@ class _DbusTrayService extends TrayService with DBusService {
   // Reserved for future use eventually
   // ignore: unused_element
   Future<void> _seekWanderingNotifierItems(DBusClient client) async {
-    final List<String> names = await client.listNames();
+    final names = await client.listNames();
 
-    for (final String name in names) {
-      final DBusMethodSuccessResponse response = await client
+    for (final name in names) {
+      final response = await client
           .callMethod(
             destination: name,
             path: DBusObjectPath.root,
@@ -118,22 +118,21 @@ class _DbusTrayService extends TrayService with DBusService {
           .timeout(
             const Duration(seconds: 1),
             onTimeout: () => DBusMethodSuccessResponse([
-              const DBusString(""),
+              const DBusString(''),
             ]),
           );
 
-      final String contents = response.returnValues[0].asString();
+      final contents = response.returnValues[0].asString();
 
       if (contents.isEmpty) continue;
 
-      final DBusIntrospectNode node =
-          parseDBusIntrospectXml(response.returnValues[0].asString());
+      final node = parseDBusIntrospectXml(response.returnValues[0].asString());
 
-      final DBusIntrospectInterface? interface = node.interfaces
-          .firstWhereOrNull((e) => e.name == "org.kde.StatusNotifierItem");
+      final interface = node.interfaces
+          .firstWhereOrNull((e) => e.name == 'org.kde.StatusNotifierItem');
 
       if (interface != null) {
-        registerItem(name, "/");
+        await registerItem(name, '/');
       }
     }
   }
@@ -155,34 +154,33 @@ class _DummyTrayService extends TrayService {
 }
 
 class _DBusTrayBackend extends StatusNotifierWatcherBase
-    with DBusServiceBackend {
-  @override
-  String interface = "org.kde.StatusNotifierWatcher";
-
-  final _DbusTrayService service;
-
+    with DBusServiceBackend<dynamic> {
   _DBusTrayBackend(this.service)
       : super(path: DBusObjectPath('/StatusNotifierWatcher'));
+  @override
+  String interface = 'org.kde.StatusNotifierWatcher';
+
+  final _DbusTrayService service;
 
   @override
   Future<DBusMethodResponse> doRegisterStatusNotifierItem(
     String sender,
     String service,
   ) async {
-    final String serviceValue = service;
+    final serviceValue = service;
 
     final String name;
     final String path;
 
-    if (serviceValue.startsWith("/")) {
+    if (serviceValue.startsWith('/')) {
       name = sender;
       path = serviceValue;
     } else {
       name = serviceValue;
-      path = "/StatusNotifierItem";
+      path = '/StatusNotifierItem';
     }
 
-    this.service.registerItem(name, path);
+    await this.service.registerItem(name, path);
 
     return DBusMethodSuccessResponse();
   }
@@ -212,7 +210,6 @@ class _DBusTrayBackend extends StatusNotifierWatcherBase
 }
 
 class SystemTrayItem {
-  final DBusRemoteObject owner;
-
   const SystemTrayItem(this.owner);
+  final DBusRemoteObject owner;
 }

@@ -13,6 +13,8 @@ abstract class NotificationService
     extends ListenableService<NotificationService> {
   NotificationService();
 
+  factory NotificationService.fallback() = _DummyNotificationService;
+
   static NotificationService get current {
     return ServiceManager.getService<NotificationService>()!;
   }
@@ -22,8 +24,6 @@ abstract class NotificationService
 
     return _DbusNotificationService();
   }
-
-  factory NotificationService.fallback() = _DummyNotificationService;
 
   List<UserNotification> get notifications;
   Stream<NotificationServiceEvent> get events;
@@ -50,8 +50,7 @@ class _DbusNotificationService extends NotificationService
 
   @override
   void closeNotification(int id, NotificationCloseReason reason) {
-    final UserNotification? notif =
-        _notifications.firstWhereOrNull((e) => e.id == id);
+    final notif = _notifications.firstWhereOrNull((e) => e.id == id);
 
     if (notif == null) return;
 
@@ -74,11 +73,11 @@ class _DbusNotificationService extends NotificationService
   }
 
   bool replaceNotification(int replaces, UserNotification notification) {
-    final int indexOf = _notifications.indexWhere((e) => e.id == replaces);
+    final indexOf = _notifications.indexWhere((e) => e.id == replaces);
 
     if (indexOf == -1) {
       logger.warning(
-        "Tried replacing a non existing notification $replaces",
+        'Tried replacing a non existing notification $replaces',
       );
       return false;
     }
@@ -127,19 +126,18 @@ class _DummyNotificationService extends NotificationService {
 }
 
 class _DBusNotificationBackend extends NotificationsBase
-    with DBusServiceBackend {
-  final _DbusNotificationService service;
-
+    with DBusServiceBackend<dynamic> {
   _DBusNotificationBackend(this.service)
       : super(path: DBusObjectPath('/org/freedesktop/Notifications'));
+  final _DbusNotificationService service;
 
   @override
   Future<DBusMethodResponse> doGetServerInformation() async {
     return DBusMethodSuccessResponse([
-      const DBusString("pangolin"),
-      const DBusString("dahliaOS"),
-      const DBusString("1.0"),
-      const DBusString("1.2"),
+      const DBusString('pangolin'),
+      const DBusString('dahliaOS'),
+      const DBusString('1.0'),
+      const DBusString('1.2'),
     ]);
   }
 
@@ -147,12 +145,12 @@ class _DBusNotificationBackend extends NotificationsBase
   Future<DBusMethodResponse> doGetCapabilities() async {
     return DBusMethodSuccessResponse([
       DBusArray.string([
-        "actions",
-        "body",
-        "body-hyperlinks",
-        "body-markup",
-        "icon-static",
-        "persistence",
+        'actions',
+        'body',
+        'body-hyperlinks',
+        'body-markup',
+        'icon-static',
+        'persistence',
       ]),
     ]);
   }
@@ -168,9 +166,9 @@ class _DBusNotificationBackend extends NotificationsBase
     Map<String, DBusValue> hints,
     int timeout,
   ) async {
-    final int id = service.getId();
+    final id = service.getId();
 
-    final UserNotification notification = UserNotification(
+    final notification = UserNotification(
       owner: this,
       id: id,
       appName: appName,
@@ -183,7 +181,7 @@ class _DBusNotificationBackend extends NotificationsBase
     );
 
     if (replaces > 0) {
-      final bool replaced = service.replaceNotification(replaces, notification);
+      final replaced = service.replaceNotification(replaces, notification);
 
       if (!replaced) service.addNotification(notification);
     } else {
@@ -203,11 +201,11 @@ class _DBusNotificationBackend extends NotificationsBase
   DBusImage? _getImage(Map<String, DBusValue> hints) {
     DBusImage? image;
 
-    image ??= _getRawImage(hints["image-data"]);
-    image ??= _getRawImage(hints["image_data"]);
-    image ??= _getPathImage(hints["image-path"]);
-    image ??= _getPathImage(hints["image_path"]);
-    image ??= _getRawImage(hints["icon_data"]);
+    image ??= _getRawImage(hints['image-data']);
+    image ??= _getRawImage(hints['image_data']);
+    image ??= _getPathImage(hints['image-path']);
+    image ??= _getPathImage(hints['image_path']);
+    image ??= _getRawImage(hints['icon_data']);
 
     return image;
   }
@@ -215,18 +213,17 @@ class _DBusNotificationBackend extends NotificationsBase
   RawDBusImage? _getRawImage(DBusValue? data) {
     if (data == null) return null;
 
-    if (data.signature != DBusSignature("(iiibiiay)")) {
+    if (data.signature != DBusSignature('(iiibiiay)')) {
       return null;
     }
 
-    final List<DBusValue> struct = data.asStruct();
+    final struct = data.asStruct();
 
-    final int width = struct[0].asInt32();
-    final int height = struct[1].asInt32();
-    final int rowStride = struct[2].asInt32();
-    final bool hasAlpha = struct[3].asBoolean();
-    final Uint8List bytes =
-        Uint8List.fromList(struct[6].asByteArray().toList());
+    final width = struct[0].asInt32();
+    final height = struct[1].asInt32();
+    final rowStride = struct[2].asInt32();
+    final hasAlpha = struct[3].asBoolean();
+    final bytes = Uint8List.fromList(struct[6].asByteArray().toList());
 
     return RawDBusImage(
       width: width,
@@ -252,8 +249,8 @@ class _DBusNotificationBackend extends NotificationsBase
       throw DBusMethodErrorResponse.invalidArgs();
     }
 
-    final List<NotificationAction> actions = [];
-    for (int i = 0; i < array.length; i += 2) {
+    final actions = <NotificationAction>[];
+    for (var i = 0; i < array.length; i += 2) {
       actions.add(NotificationAction(array[i], array[i + 1]));
     }
 
@@ -265,16 +262,6 @@ class _DBusNotificationBackend extends NotificationsBase
 }
 
 class UserNotification {
-  final DBusObject owner;
-  final int id;
-  final String appName;
-  final String? appIcon;
-  final String summary;
-  final String body;
-  final List<NotificationAction> actions;
-  final int expireTimeout;
-  final DBusImage? image;
-
   const UserNotification({
     required this.owner,
     required this.id,
@@ -286,6 +273,15 @@ class UserNotification {
     required this.expireTimeout,
     required this.image,
   });
+  final DBusObject owner;
+  final int id;
+  final String appName;
+  final String? appIcon;
+  final String summary;
+  final String body;
+  final List<NotificationAction> actions;
+  final int expireTimeout;
+  final DBusImage? image;
 
   void sendClose(NotificationCloseReason reason) {
     owner.emitSignal(
@@ -305,10 +301,9 @@ class UserNotification {
 }
 
 class NotificationAction {
+  const NotificationAction(this.key, this.label);
   final String key;
   final String label;
-
-  const NotificationAction(this.key, this.label);
 
   @override
   int get hashCode => Object.hash(key, label);
@@ -330,13 +325,12 @@ enum NotificationCloseReason {
 }
 
 abstract class NotificationServiceEvent {
-  final int id;
-  final NotificationEventType type;
-
   const NotificationServiceEvent({
     required this.id,
     required this.type,
   });
+  final int id;
+  final NotificationEventType type;
 }
 
 class ShowNotificationEvent extends NotificationServiceEvent {
@@ -345,19 +339,17 @@ class ShowNotificationEvent extends NotificationServiceEvent {
 }
 
 class ReplaceNotificationEvent extends NotificationServiceEvent {
-  final int oldId;
-
   const ReplaceNotificationEvent({required this.oldId, required super.id})
       : super(type: NotificationEventType.replace);
+  final int oldId;
 }
 
 class CloseNotificationEvent extends NotificationServiceEvent {
-  final NotificationCloseReason reason;
-
   const CloseNotificationEvent({
     required super.id,
     required this.reason,
   }) : super(type: NotificationEventType.close);
+  final NotificationCloseReason reason;
 }
 
 enum NotificationEventType {

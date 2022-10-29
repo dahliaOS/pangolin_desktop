@@ -22,9 +22,9 @@ import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/widgets/services.dart';
 
 class ThemeModeButton extends StatefulWidget {
-  final ThemeModeDataModel model;
 
   const ThemeModeButton({super.key, required this.model});
+  final ThemeModeDataModel model;
 
   @override
   State<ThemeModeButton> createState() => _ThemeModeButtonState();
@@ -46,7 +46,7 @@ class _ThemeModeButtonState extends State<ThemeModeButton>
           service.darkMode = widget.model.darkMode;
         },
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
+          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
           child: Column(
             children: [
               Container(
@@ -57,7 +57,7 @@ class _ThemeModeButtonState extends State<ThemeModeButton>
                   color: Color(widget.model.color.value),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8),
                   child: Row(
                     children: [
                       _cardElement(widget.model),

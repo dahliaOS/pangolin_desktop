@@ -5,10 +5,6 @@ import 'dart:typed_data';
 import 'package:path/path.dart' as p;
 
 class IconCache {
-  final File file;
-  final List<String> directories;
-  final Uint8List data;
-  bool isValid;
 
   IconCache._({
     required this.file,
@@ -16,34 +12,38 @@ class IconCache {
     required this.data,
     this.isValid = false,
   });
+  final File file;
+  final List<String> directories;
+  final Uint8List data;
+  bool isValid;
 
   static Future<IconCache?> create(String dirName) async {
-    final File info = File(p.join(dirName, "icon-theme.cache"));
-    final FileStat infoStat = await info.stat();
-    final FileStat dirStat = await Directory(dirName).stat();
-    final DateTime infoLastMod = infoStat.modified;
-    final DateTime dirLastMod = dirStat.modified;
+    final info = File(p.join(dirName, 'icon-theme.cache'));
+    final infoStat = await info.stat();
+    final dirStat = await Directory(dirName).stat();
+    final infoLastMod = infoStat.modified;
+    final dirLastMod = dirStat.modified;
 
     if (!await info.exists() || infoLastMod.isBefore(dirLastMod)) return null;
 
-    final File file = File(info.absolute.path);
+    final file = File(info.absolute.path);
 
-    final Uint8List data = await file.readAsBytes();
+    final data = await file.readAsBytes();
 
     if (_read16(data, 0) != 1) return null;
 
-    final DateTime lastModified = await info.lastModified();
-    final int dirListOffset = _read32(data, 8);
-    final int dirListLen = _read32(data, dirListOffset);
-    bool isValid = true;
+    final lastModified = await info.lastModified();
+    final dirListOffset = _read32(data, 8);
+    final dirListLen = _read32(data, dirListOffset);
+    var isValid = true;
 
-    final List<String> directories = [];
-    for (int i = 0; i < dirListLen; ++i) {
-      final int offset = _read32(data, dirListOffset + 4 + 4 * i);
+    final directories = <String>[];
+    for (var i = 0; i < dirListLen; ++i) {
+      final offset = _read32(data, dirListOffset + 4 + 4 * i);
 
-      final Directory dir =
+      final dir =
           Directory(p.join(dirName, _readString(data, offset)));
-      final FileStat dirStat = await dir.stat();
+      final dirStat = await dir.stat();
       if (!isValid ||
           offset > data.length ||
           lastModified.isBefore(dirStat.modified)) {
@@ -63,7 +63,7 @@ class IconCache {
   }
 
   int read16(int offset) {
-    final int value = _read16(data, offset);
+    final value = _read16(data, offset);
 
     if (value == -1) {
       isValid = false;
@@ -74,7 +74,7 @@ class IconCache {
   }
 
   int read32(int offset) {
-    final int value = _read32(data, offset);
+    final value = _read32(data, offset);
 
     if (value == -1) {
       isValid = false;
@@ -112,9 +112,9 @@ class IconCache {
   }
 
   int _iconNameHash(String key) {
-    int index = 0;
+    var index = 0;
     int p() => key.codeUnitAt(index);
-    int h = p();
+    var h = p();
 
     for (index += 1; index < key.length; index++) {
       h = (h << 5) - h + p();
@@ -124,28 +124,28 @@ class IconCache {
   }
 
   List<String>? lookup(String name) {
-    final List<String> ret = [];
+    final ret = <String>[];
 
-    final int hash = _iconNameHash(name);
+    final hash = _iconNameHash(name);
 
-    final int hashOffset = read32(4);
-    final int hashBucketCount = read32(hashOffset);
+    final hashOffset = read32(4);
+    final hashBucketCount = read32(hashOffset);
 
-    final int bucketIndex = (hash % hashBucketCount).toUnsigned(32);
-    int bucketOffset = read32(hashOffset + 4 + bucketIndex * 4);
+    final bucketIndex = (hash % hashBucketCount).toUnsigned(32);
+    var bucketOffset = read32(hashOffset + 4 + bucketIndex * 4);
 
     while (bucketOffset > 0 && bucketOffset <= data.length - 12) {
-      final int nameOff = read32(bucketOffset + 4);
+      final nameOff = read32(bucketOffset + 4);
       if (nameOff < data.length && _readString(data, nameOff) == name) {
-        final int dirListOffset = read32(8);
-        final int dirListLen = read32(dirListOffset);
+        final dirListOffset = read32(8);
+        final dirListLen = read32(dirListOffset);
 
-        final int listOffset = read32(bucketOffset + 8);
-        final int listLen = read32(listOffset);
+        final listOffset = read32(bucketOffset + 8);
+        final listLen = read32(listOffset);
 
-        for (int j = 0; j < listLen; ++j) {
-          final int dirIndex = read16(listOffset + 4 + 8 * j);
-          final int o = read32(dirListOffset + 4 + dirIndex * 4);
+        for (var j = 0; j < listLen; ++j) {
+          final dirIndex = read16(listOffset + 4 + 8 * j);
+          final o = read32(dirListOffset + 4 + dirIndex * 4);
 
           if (!isValid || dirIndex >= dirListLen || o > data.length) {
             isValid = false;

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:pangolin/services/service.dart';
 
 class ServiceEntry<T extends Service<T>> {
-  final ServiceBuilder<T> builder;
-  final T? fallback;
 
   const ServiceEntry(this.builder, [this.fallback]);
+  final ServiceBuilder<T> builder;
+  final T? fallback;
 
   void register() {
     ServiceManager.registerService<T>(builder, fallback: fallback);
@@ -13,10 +13,6 @@ class ServiceEntry<T extends Service<T>> {
 }
 
 class ServiceBuilderWidget extends StatefulWidget {
-  final List<ServiceEntry> services;
-  final ValueWidgetBuilder<bool> builder;
-  final Future<void> Function()? onLoaded;
-  final Widget? child;
 
   const ServiceBuilderWidget({
     required this.services,
@@ -25,6 +21,10 @@ class ServiceBuilderWidget extends StatefulWidget {
     this.child,
     super.key,
   });
+  final List<ServiceEntry> services;
+  final ValueWidgetBuilder<bool> builder;
+  final Future<void> Function()? onLoaded;
+  final Widget? child;
 
   @override
   State<ServiceBuilderWidget> createState() => _ServiceBuilderWidgetState();
@@ -36,7 +36,7 @@ class _ServiceBuilderWidgetState extends State<ServiceBuilderWidget> {
   @override
   void initState() {
     super.initState();
-    for (final ServiceEntry entry in widget.services) {
+    for (final entry in widget.services) {
       entry.register();
     }
     _startServices();
@@ -63,14 +63,14 @@ class _ServiceBuilderWidgetState extends State<ServiceBuilderWidget> {
 
 class ListenableServiceBuilder<T extends ListenableService<T>>
     extends StatelessWidget {
-  final TransitionBuilder builder;
-  final Widget? child;
 
   const ListenableServiceBuilder({
     required this.builder,
     this.child,
     super.key,
   });
+  final TransitionBuilder builder;
+  final Widget? child;
 
   @override
   Widget build(BuildContext context) {
@@ -86,7 +86,7 @@ mixin StatelessServiceListener<S extends ListenableService<S>>
     on StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final S service = ServiceManager.getService<S>()!;
+    final service = ServiceManager.getService<S>()!;
 
     return ListenableServiceBuilder<S>(
       builder: (context, _) => buildChild(context, service),
@@ -100,7 +100,7 @@ mixin StateServiceListener<S extends ListenableService<S>,
     T extends StatefulWidget> on State<T> {
   @override
   Widget build(BuildContext context) {
-    final S service = ServiceManager.getService<S>()!;
+    final service = ServiceManager.getService<S>()!;
 
     return ListenableServiceBuilder<S>(
       builder: (context, _) => buildChild(context, service),

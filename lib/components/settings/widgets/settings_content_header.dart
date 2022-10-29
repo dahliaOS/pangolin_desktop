@@ -18,13 +18,13 @@ import 'package:flutter/material.dart';
 import 'package:pangolin/components/settings/models/settings_element_model.dart';
 
 class SettingsContentHeader extends SettingsElementModel {
-  final String title;
   const SettingsContentHeader(
     this.title, {
     super.key,
   }) : super(
           type: SettingsElementModelType.contentHeader,
         );
+  final String title;
 
   @override
   _SettingsContentHeaderState createState() => _SettingsContentHeaderState();
@@ -34,7 +34,7 @@ class _SettingsContentHeaderState extends State<SettingsContentHeader> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 4.0),
+      padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
       child: Align(
         alignment: Alignment.centerLeft,
         child: Text(

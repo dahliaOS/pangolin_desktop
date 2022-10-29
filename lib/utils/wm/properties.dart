@@ -2,13 +2,13 @@ import 'package:pangolin/utils/wm/wm.dart';
 
 class WindowExtras {
   static const WindowPropertyKey<String?> stableId =
-      WindowPropertyKey("window.stableId", null, readonly: true);
+      WindowPropertyKey('window.stableId', null, readonly: true);
 }
 
 class ExtraWindowProperties {
-  final WindowPropertyRegistry _registry;
 
   const ExtraWindowProperties.mapFrom(this._registry);
+  final WindowPropertyRegistry _registry;
 
   String get appId => _registry.get(WindowExtras.stableId)!;
 

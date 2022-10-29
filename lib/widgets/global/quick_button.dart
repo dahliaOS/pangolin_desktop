@@ -46,14 +46,14 @@ class QuickActionButton extends StatefulWidget {
 class _QuickActionButtonState extends State<QuickActionButton> {
   @override
   Widget build(BuildContext context) {
-    final bool titleIsNull = widget.title == null;
-    final bool leadingIsNull = widget.leading == null;
+    final titleIsNull = widget.title == null;
+    final leadingIsNull = widget.leading == null;
 
     return Padding(
-      padding: widget.margin ?? const EdgeInsets.symmetric(horizontal: 8.0),
+      padding: widget.margin ?? const EdgeInsets.symmetric(horizontal: 8),
       child: SizedBox(
         height: widget.size ?? 40,
-        width: widget.isCircular == true ? widget.size ?? 40 : null,
+        width: widget.isCircular ?? false ? widget.size ?? 40 : null,
         child: Material(
           clipBehavior: Clip.antiAlias,
           color: context.theme.backgroundColor.op(0.5),
@@ -64,7 +64,7 @@ class _QuickActionButtonState extends State<QuickActionButton> {
               padding: widget.padding ??
                   EdgeInsets.symmetric(
                     horizontal: !titleIsNull ? 12.0 : 8.0,
-                    vertical: 8.0,
+                    vertical: 8,
                   ),
               child: IconTheme.merge(
                 data: const IconThemeData(
@@ -76,7 +76,7 @@ class _QuickActionButtonState extends State<QuickActionButton> {
                         fontSize: 13,
                         fontWeight: FontWeight.normal,
                       ),
-                  child: !(widget.isCircular == true)
+                  child: !(widget.isCircular ?? false)
                       ? Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [

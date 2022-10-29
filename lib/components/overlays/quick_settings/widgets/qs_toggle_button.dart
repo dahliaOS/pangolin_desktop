@@ -20,12 +20,6 @@ import 'package:pangolin/utils/extensions/extensions.dart';
 
 // ignore: must_be_immutable
 class QsToggleButton extends StatefulWidget {
-  final ToggleProperty<String> title;
-  final ToggleProperty<String?>? subtitle;
-  final ToggleProperty<IconData> icon;
-  final bool enabled;
-  final ValueChanged<bool>? onPressed;
-  final VoidCallback? onMenuPressed;
 
   const QsToggleButton({
     super.key,
@@ -36,6 +30,12 @@ class QsToggleButton extends StatefulWidget {
     this.onPressed,
     this.onMenuPressed,
   });
+  final ToggleProperty<String> title;
+  final ToggleProperty<String?>? subtitle;
+  final ToggleProperty<IconData> icon;
+  final bool enabled;
+  final ValueChanged<bool>? onPressed;
+  final VoidCallback? onMenuPressed;
 
   @override
   _QsToggleButtonState createState() => _QsToggleButtonState();
@@ -46,9 +46,9 @@ class _QsToggleButtonState extends State<QsToggleButton> {
   Widget build(BuildContext context) {
     final theme = context.theme;
 
-    final Color color =
+    final color =
         widget.enabled ? theme.accent : theme.backgroundColor.withOpacity(0.5);
-    final String? subtitle = widget.subtitle?.resolve(enabled: widget.enabled);
+    final subtitle = widget.subtitle?.resolve(enabled: widget.enabled);
 
     return SizedBox(
       height: 60,
@@ -114,7 +114,7 @@ class _QsToggleButtonState extends State<QsToggleButton> {
                   child: InkWell(
                     onTap: widget.onMenuPressed,
                     child: Padding(
-                      padding: const EdgeInsets.all(6.0),
+                      padding: const EdgeInsets.all(6),
                       child: Icon(
                         Icons.chevron_right_rounded,
                         size: 20,
@@ -133,12 +133,12 @@ class _QsToggleButtonState extends State<QsToggleButton> {
 }
 
 class ToggleProperty<T> {
-  final T base;
-  final T? active;
 
   const ToggleProperty({required this.base, this.active});
 
   const ToggleProperty.singleState(this.base) : active = null;
+  final T base;
+  final T? active;
 
   // ignore: avoid_positional_boolean_parameters
   T resolve({required bool enabled}) => enabled ? active ?? base : base;

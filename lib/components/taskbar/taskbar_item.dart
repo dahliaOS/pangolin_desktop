@@ -25,13 +25,12 @@ import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/wm/wm.dart';
 import 'package:pangolin/widgets/global/resource/auto_image.dart';
 import 'package:pangolin/widgets/services.dart';
-import 'package:xdg_desktop/xdg_desktop.dart';
 import 'package:yatl_flutter/yatl_flutter.dart';
 
 class TaskbarItem extends StatefulWidget {
-  final String packageName;
 
   const TaskbarItem({required this.packageName, super.key});
+  final String packageName;
 
   @override
   _TaskbarItemState createState() => _TaskbarItemState();
@@ -67,11 +66,11 @@ class _TaskbarItemState extends State<TaskbarItem>
   @override
   Widget buildChild(BuildContext context, CustomizationService service) {
     //Selected App
-    final DesktopEntry? app =
+    final app =
         ApplicationService.current.getApp(widget.packageName);
 
     if (app == null) {
-      throw Exception("Bad app");
+      throw Exception('Bad app');
     }
 
     //Running apps
@@ -79,28 +78,28 @@ class _TaskbarItemState extends State<TaskbarItem>
     final hierarchy = WindowManagerService.current.controller;
     final windows = hierarchy.entries;
     //Check if App is running or just pinned
-    final bool appIsRunning = windows.any(
+    final appIsRunning = windows.any(
       (element) => element.registry.extra.appId == widget.packageName,
     );
     //get the WindowEntry when the App is running
-    final LiveWindowEntry? entry = appIsRunning
+    final entry = appIsRunning
         ? windows.firstWhere(
             (element) => element.registry.extra.appId == widget.packageName,
           )
         : null;
     //check if the App is focused
-    final LiveWindowEntry? focusedEntry = appIsRunning
+    final focusedEntry = appIsRunning
         ? windows.firstWhere(
             (element) =>
                 element.registry.extra.appId ==
                 hierarchy.sortedEntries.last.registry.extra.appId,
           )
         : null;
-    final bool focused = windows.length > 1 &&
+    final focused = windows.length > 1 &&
         (focusedEntry?.registry.extra.appId == widget.packageName &&
             !windows.last.layoutState.minimized);
 
-    final bool showSelected =
+    final showSelected =
         appIsRunning && focused && !entry!.layoutState.minimized;
 
     if (showSelected) {
@@ -112,7 +111,7 @@ class _TaskbarItemState extends State<TaskbarItem>
     //Build Widget
     final Widget finalWidget = LayoutBuilder(
       builder: (context, constraints) => Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 3.0),
+        padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 3),
         child: SizedBox(
           height: 44,
           width: 42,
@@ -125,25 +124,25 @@ class _TaskbarItemState extends State<TaskbarItem>
                   icon: Icons.info_outline_rounded,
                   title: app.getLocalizedName(context.locale),
                   onTap: () {},
-                  shortcut: "",
+                  shortcut: '',
                 ),
                 ContextMenuItem(
                   icon: Icons.push_pin_outlined,
                   title: service.pinnedApps.contains(app.id)
-                      ? "Unpin from Taskbar"
-                      : "Pin to Taskbar",
+                      ? 'Unpin from Taskbar'
+                      : 'Pin to Taskbar',
                   onTap: () {
                     service.togglePinnedApp(app.id);
                   },
-                  shortcut: "",
+                  shortcut: '',
                 ),
                 if (appIsRunning)
                   ContextMenuItem(
                     icon: Icons.close_outlined,
-                    title: "Close Window",
+                    title: 'Close Window',
                     onTap: () => WindowManagerService.current
                         .pop(entry!.registry.info.id),
-                    shortcut: "",
+                    shortcut: '',
                   ),
               ],
             ),
@@ -159,7 +158,7 @@ class _TaskbarItemState extends State<TaskbarItem>
                             .bodyText1
                             ?.color
                             ?.withOpacity(0.2)
-                        : Theme.of(context).backgroundColor.withOpacity(0.0))
+                        : Theme.of(context).backgroundColor.withOpacity(0))
                     : Colors.transparent,
                 child: InkWell(
                   onHover: (value) {
@@ -183,11 +182,11 @@ class _TaskbarItemState extends State<TaskbarItem>
                         children: [
                           Center(
                             child: Padding(
-                              padding: const EdgeInsets.fromLTRB(6.0, 5, 6, 7),
+                              padding: const EdgeInsets.fromLTRB(6, 5, 6, 7),
                               child: appIsRunning
                                   ? Image(
                                       image: entry?.registry.info.icon ??
-                                          const NetworkImage(""),
+                                          const NetworkImage(''),
                                     )
                                   : AutoVisualResource(
                                       resource: app.icon!.main,
@@ -242,7 +241,7 @@ class _TaskbarItemState extends State<TaskbarItem>
     final hierarchy = WindowHierarchy.of(context, listen: false);
     final windows = hierarchy.entriesByFocus;
 
-    final bool focused = hierarchy.isFocused(entry.registry.info.id);
+    final focused = hierarchy.isFocused(entry.registry.info.id);
     setState(() {});
     if (focused && !entry.layoutState.minimized) {
       entry.layoutState.minimized = true;

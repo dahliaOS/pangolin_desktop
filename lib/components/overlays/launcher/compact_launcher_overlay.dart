@@ -26,13 +26,11 @@ import 'package:pangolin/utils/data/globals.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/widgets/global/box/box_container.dart';
 import 'package:pangolin/widgets/global/quick_button.dart';
-import 'package:xdg_desktop/xdg_desktop.dart';
 import 'package:yatl_flutter/yatl_flutter.dart';
 
 class CompactLauncherOverlay extends ShellOverlay {
-  static const String overlayId = 'compactlauncher';
-
   CompactLauncherOverlay({super.key}) : super(id: overlayId);
+  static const String overlayId = 'compactlauncher';
 
   @override
   _CompactLauncherOverlayState createState() => _CompactLauncherOverlayState();
@@ -77,11 +75,11 @@ class _CompactLauncherOverlayState extends State<CompactLauncherOverlay>
       left: 8,
       child: AnimatedBuilder(
         animation: animation,
-        builder: (context, chilld) => FadeTransition(
+        builder: (context, child) => FadeTransition(
           opacity: animation,
           child: ScaleTransition(
             scale: animation,
-            alignment: const FractionalOffset(0.025, 1.0),
+            alignment: const FractionalOffset(0.025, 1),
             child: BoxSurface(
               shape: Constants.bigShape,
               height: 540,
@@ -123,32 +121,32 @@ class CompactLauncher extends StatelessWidget {
             child: Column(
               children: [
                 const QuickActionButton(
-                  margin: EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0),
+                  margin: EdgeInsets.only(left: 16, right: 16, top: 16),
                   leading: FlutterLogo(),
                 ),
                 const Spacer(),
                 const QuickActionButton(
-                  margin: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                  margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                   leading: Icon(Icons.edit_rounded),
                 ),
                 QuickActionButton(
                   margin: const EdgeInsets.symmetric(
-                    horizontal: 16.0,
-                    vertical: 8.0,
+                    horizontal: 16,
+                    vertical: 8,
                   ),
                   leading: const Icon(Icons.settings_outlined),
                   onPressed: () => ActionManager.openSettings(context),
                 ),
                 const QuickActionButton(
-                  margin: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                  margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                   leading: Icon(Icons.exit_to_app_rounded),
                 ),
                 QuickActionButton(
                   margin: const EdgeInsets.only(
-                    left: 16.0,
-                    right: 16.0,
-                    bottom: 16.0,
-                    top: 8.0,
+                    left: 16,
+                    right: 16,
+                    bottom: 16,
+                    top: 8,
                   ),
                   leading: const Icon(Icons.power_settings_new_rounded),
                   onPressed: () => ActionManager.showPowerMenu(context),
@@ -164,21 +162,21 @@ class CompactLauncher extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.all(16.0),
+                      padding: const EdgeInsets.all(16),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(username),
-                          const SizedBox(height: 2.0),
+                          const SizedBox(height: 2),
                           const Text(
-                            "Local Account",
+                            'Local Account',
                             style: TextStyle(fontSize: 12),
                           ),
                         ],
                       ),
                     ),
                     QuickActionButton(
-                      margin: const EdgeInsets.all(16.0),
+                      margin: const EdgeInsets.all(16),
                       leading: const Icon(Icons.open_in_full_rounded),
                       onPressed: () {
                         ActionManager.switchLauncher(context);
@@ -193,17 +191,16 @@ class CompactLauncher extends StatelessWidget {
                 child: AnimatedBuilder(
                   animation: ApplicationService.current,
                   builder: (context, _) {
-                    final List<DesktopEntry> applications =
-                        ApplicationService.current.listApplications();
-
-                    applications.sort(
-                      (a, b) => a
-                          .getLocalizedName(context.locale)
-                          .toLowerCase()
-                          .compareTo(
-                            b.getLocalizedName(context.locale).toLowerCase(),
-                          ),
-                    );
+                    final applications = ApplicationService.current
+                        .listApplications()
+                      ..sort(
+                        (a, b) => a
+                            .getLocalizedName(context.locale)
+                            .toLowerCase()
+                            .compareTo(
+                              b.getLocalizedName(context.locale).toLowerCase(),
+                            ),
+                      );
 
                     return ListView.separated(
                       itemCount: applications.length,

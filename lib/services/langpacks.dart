@@ -11,6 +11,8 @@ import 'package:path/path.dart' as p;
 abstract class LangPacksService extends Service<LangPacksService> {
   LangPacksService();
 
+  factory LangPacksService.fallback() = _StraightThroughLangPacksService;
+
   static LangPacksService get current {
     return ServiceManager.getService<LangPacksService>()!;
   }
@@ -20,8 +22,6 @@ abstract class LangPacksService extends Service<LangPacksService> {
 
     return _LinuxLangPacksService();
   }
-
-  factory LangPacksService.fallback() = _StraightThroughLangPacksService;
 
   FutureOr<void> warmup(String domain);
   FutureOr<String> lookup(String domain, String key, [Locale? locale]);
@@ -45,17 +45,17 @@ class _LinuxLangPacksService extends LangPacksService {
 
   @override
   Future<void> warmup(String domain) async {
-    final List<_MessageBundle> filteredBundles =
+    final filteredBundles =
         bundles.where((e) => e.domains.contains(domain)).toList();
 
-    final Map<Locale, _MessageCatalog> catalogs = {};
+    final catalogs = <Locale, _MessageCatalog>{};
 
-    for (final _MessageBundle bundle in filteredBundles) {
-      final File domainFile =
-          File(p.join(bundle.directory.path, "LC_MESSAGES", "$domain.mo"));
-      final Uint8List bytes = await domainFile.readAsBytes();
+    for (final bundle in filteredBundles) {
+      final domainFile =
+          File(p.join(bundle.directory.path, 'LC_MESSAGES', '$domain.mo'));
+      final bytes = await domainFile.readAsBytes();
 
-      final _MessageCatalog? catalog = parser.parse(bytes);
+      final catalog = parser.parse(bytes);
 
       if (catalog == null) continue;
 
@@ -67,20 +67,20 @@ class _LinuxLangPacksService extends LangPacksService {
 
   @override
   String cacheLookup(String domain, String key, [Locale? locale]) {
-    final _CachedMessageBundle? cacheBundle = cache[domain];
+    final cacheBundle = cache[domain];
 
     if (cacheBundle == null) return key;
 
-    locale ??= Locale.parse("en_US");
+    locale ??= Locale.parse('en_US');
 
-    final Locale? compatibleLocaleKey =
+    final compatibleLocaleKey =
         cacheBundle.catalogs.keys.firstWhereOrNull(
       (e) => e.isCompatibleWith(locale!),
     );
 
     if (compatibleLocaleKey == null) return key;
 
-    final _MessageCatalog? catalog = cacheBundle.catalogs[compatibleLocaleKey];
+    final catalog = cacheBundle.catalogs[compatibleLocaleKey];
 
     if (catalog == null) return key;
 
@@ -89,24 +89,24 @@ class _LinuxLangPacksService extends LangPacksService {
 
   @override
   Future<void> start() async {
-    await _populateFor("/usr/share/locale-langpack");
+    await _populateFor('/usr/share/locale-langpack');
   }
 
   Future<void> _populateFor(String path) async {
-    final List<FileSystemEntity> entities =
+    final entities =
         await Directory(path).list().toList();
 
-    for (final FileSystemEntity entity in entities) {
+    for (final entity in entities) {
       if (entity is! Directory) continue;
 
-      final String localeStr = p.basenameWithoutExtension(entity.path);
-      final Locale? locale = Locale.tryParse(localeStr);
+      final localeStr = p.basenameWithoutExtension(entity.path);
+      final locale = Locale.tryParse(localeStr);
 
       if (locale == null) continue;
 
-      final List<FileSystemEntity> children =
-          await Directory(p.join(entity.path, "LC_MESSAGES")).list().toList();
-      final List<String> domains =
+      final children =
+          await Directory(p.join(entity.path, 'LC_MESSAGES')).list().toList();
+      final domains =
           children.map((e) => p.basenameWithoutExtension(e.path)).toList();
 
       bundles.add(_MessageBundle(locale, entity, domains));
@@ -148,17 +148,17 @@ class _StraightThroughLangPacksService extends LangPacksService {
 }
 
 class _MessageBundle {
+
+  const _MessageBundle(this.locale, this.directory, this.domains);
   final Locale locale;
   final Directory directory;
   final List<String> domains;
-
-  const _MessageBundle(this.locale, this.directory, this.domains);
 }
 
 class _CachedMessageBundle {
-  final Map<Locale, _MessageCatalog> catalogs;
 
   const _CachedMessageBundle(this.catalogs);
+  final Map<Locale, _MessageCatalog> catalogs;
 }
 
 // https://www.gnu.org/software/gettext/manual/gettext.html#MO-Files
@@ -168,7 +168,7 @@ class _MessageCatalogParser {
   const _MessageCatalogParser();
 
   _MessageCatalog? parse(Uint8List bytes) {
-    final ByteData data = ByteData.sublistView(bytes);
+    final data = ByteData.sublistView(bytes);
     final Endian endian;
 
     switch (data.getUint32(0)) {
@@ -182,28 +182,28 @@ class _MessageCatalogParser {
         return null;
     }
 
-    final int nstrings = data.getUint32(8, endian);
-    final int stringTableOffset = data.getUint32(12, endian);
-    final int translationsTableOffset = data.getUint32(16, endian);
+    final nstrings = data.getUint32(8, endian);
+    final stringTableOffset = data.getUint32(12, endian);
+    final translationsTableOffset = data.getUint32(16, endian);
 
-    final Map<_MsgId, _MsgStr> translations = {};
+    final translations = <_MsgId, _MsgStr>{};
 
-    for (int i = 0; i < nstrings; i++) {
-      final int strLen = data.getUint32(stringTableOffset + i * 8, endian);
-      final int strOffset =
+    for (var i = 0; i < nstrings; i++) {
+      final strLen = data.getUint32(stringTableOffset + i * 8, endian);
+      final strOffset =
           data.getUint32(stringTableOffset + i * 8 + 4, endian);
-      final int trnLen =
+      final trnLen =
           data.getUint32(translationsTableOffset + i * 8, endian);
-      final int trnOffset =
+      final trnOffset =
           data.getUint32(translationsTableOffset + i * 8 + 4, endian);
 
-      int strCurrOffset = 0;
-      final List<List<int>> origStrings = [];
-      for (int i = 0; i < strLen; i++) {
+      var strCurrOffset = 0;
+      final origStrings = <List<int>>[];
+      for (var i = 0; i < strLen; i++) {
         if (strCurrOffset >= origStrings.length) {
           origStrings.add([]);
         }
-        final int char = data.getUint8(strOffset + i);
+        final char = data.getUint8(strOffset + i);
 
         if (char == 0) {
           strCurrOffset++;
@@ -212,13 +212,13 @@ class _MessageCatalogParser {
         origStrings[strCurrOffset].add(char);
       }
 
-      int trnCurrOffset = 0;
-      final List<List<int>> trnStrings = [];
-      for (int i = 0; i < trnLen; i++) {
+      var trnCurrOffset = 0;
+      final trnStrings = <List<int>>[];
+      for (var i = 0; i < trnLen; i++) {
         if (trnCurrOffset >= trnStrings.length) {
           trnStrings.add([]);
         }
-        final int char = data.getUint8(trnOffset + i);
+        final char = data.getUint8(trnOffset + i);
 
         if (char == 0) {
           trnCurrOffset++;
@@ -229,12 +229,12 @@ class _MessageCatalogParser {
 
       if (origStrings.length != trnStrings.length) continue;
 
-      final List<String>? plurals = origStrings.length > 1
+      final plurals = origStrings.length > 1
           ? origStrings.sublist(1).map((e) => e.toUtf8()).toList()
           : null;
 
-      final _MsgId msgId = _MsgId(origStrings[0].toUtf8(), plurals);
-      final _MsgStr msgStr =
+      final msgId = _MsgId(origStrings[0].toUtf8(), plurals);
+      final msgStr =
           _MsgStr(trnStrings.map((e) => e.toUtf8()).toList());
 
       translations[msgId] = msgStr;
@@ -245,9 +245,9 @@ class _MessageCatalogParser {
 }
 
 class _MessageCatalog {
-  final Map<_MsgId, _MsgStr> translations;
 
   const _MessageCatalog(this.translations);
+  final Map<_MsgId, _MsgStr> translations;
 
   String? operator [](String key) {
     String? result;
@@ -259,7 +259,7 @@ class _MessageCatalog {
       }
 
       if (id.plurals != null && id.plurals!.contains(key)) {
-        final int indexOf = id.plurals!.indexOf(key);
+        final indexOf = id.plurals!.indexOf(key);
 
         result = str[indexOf + 1];
         return;
@@ -271,16 +271,16 @@ class _MessageCatalog {
 }
 
 class _MsgId {
-  final String id;
-  final List<String>? plurals;
 
   const _MsgId(this.id, [this.plurals]);
+  final String id;
+  final List<String>? plurals;
 }
 
 class _MsgStr {
-  final List<String> strings;
 
   const _MsgStr(this.strings);
+  final List<String> strings;
 
   String operator [](int index) {
     return strings[index];
@@ -295,17 +295,17 @@ extension _BufferToString on List<int> {
 
 extension _LocaleIsCompatible on Locale {
   bool isCompatibleWith(Locale other) {
-    final bool everythingMatches = scriptCode == other.scriptCode &&
+    final everythingMatches = scriptCode == other.scriptCode &&
         countryCode == other.countryCode &&
         languageCode == other.languageCode;
 
-    final bool countryAndLangMatches =
+    final countryAndLangMatches =
         countryCode == other.countryCode && languageCode == other.languageCode;
 
-    final bool scriptAndLangMatches =
+    final scriptAndLangMatches =
         scriptCode == other.scriptCode && languageCode == other.languageCode;
 
-    final bool langMatches = languageCode == other.languageCode;
+    final langMatches = languageCode == other.languageCode;
 
     return everythingMatches ||
         countryAndLangMatches ||

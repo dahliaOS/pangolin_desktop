@@ -5,10 +5,9 @@ import 'package:pangolin/utils/wm/wm.dart';
 import 'package:provider/provider.dart';
 
 class PangolinLayoutDelegate extends LayoutDelegate<FreeformLayoutInfo> {
+  const PangolinLayoutDelegate();
   static final EffectsLayerController _effectsController =
       EffectsLayerController();
-
-  const PangolinLayoutDelegate();
 
   @override
   Widget layout(
@@ -16,11 +15,11 @@ class PangolinLayoutDelegate extends LayoutDelegate<FreeformLayoutInfo> {
     List<LiveWindowEntry> entries,
     List<String> focusHierarchy,
   ) {
-    final List<LiveWindowEntry> liveEntries =
+    final liveEntries =
         WindowEntryUtils.getEntriesByFocus(entries, focusHierarchy);
 
-    final LiveWindowEntry? entry = liveEntries.firstWhereOrNull(
-      (e) => e.layoutState.fullscreen || e.registry.extra.appId == "shell",
+    final entry = liveEntries.firstWhereOrNull(
+      (e) => e.layoutState.fullscreen || e.registry.extra.appId == 'shell',
     );
     final int effectLayerIndex;
     if (entry != null && liveEntries.indexOf(entry) > 0) {
@@ -29,16 +28,16 @@ class PangolinLayoutDelegate extends LayoutDelegate<FreeformLayoutInfo> {
       effectLayerIndex = -1;
     }
 
-    final List<Widget> children = [];
-    for (int i = 0; i < liveEntries.length; i++) {
-      final LiveWindowEntry entry = liveEntries[i];
+    final children = <Widget>[];
+    for (var i = 0; i < liveEntries.length; i++) {
+      final entry = liveEntries[i];
 
       if (effectLayerIndex == i) {
         final Widget layer = EffectsLayer(controller: _effectsController);
         children.add(layer);
       }
 
-      if (entry.registry.extra.appId != "shell") {
+      if (entry.registry.extra.appId != 'shell') {
         children.add(
           _WindowLayoutBuilder(
             window: entry,
@@ -124,9 +123,8 @@ class PangolinLayoutDelegate extends LayoutDelegate<FreeformLayoutInfo> {
 }
 
 class _WindowLayoutBuilder extends StatefulWidget {
-  final LiveWindowEntry window;
-
   const _WindowLayoutBuilder({required this.window, super.key});
+  final LiveWindowEntry window;
 
   @override
   State<_WindowLayoutBuilder> createState() => _WindowLayoutBuilderState();
@@ -170,8 +168,9 @@ class _WindowLayoutBuilderState extends State<_WindowLayoutBuilder>
     }
 
     if (window.layoutState.rect != _rect) {
-      _rectTween.begin = window.layoutState.rect;
-      _rectTween.end = null;
+      _rectTween
+        ..begin = window.layoutState.rect
+        ..end = null;
       _controller.value = 0;
       _rect = _rectTween.begin!;
       _actualRect = _rectTween.begin!;
@@ -212,8 +211,7 @@ class _WindowLayoutBuilderState extends State<_WindowLayoutBuilder>
       );
 
   Rect _getWindowRect() {
-    final WindowHierarchyController hierarchy =
-        WindowHierarchy.of(context, listen: false);
+    final hierarchy = WindowHierarchy.of(context, listen: false);
 
     if (window.layoutState.fullscreen) {
       return hierarchy.displayBounds;
@@ -232,7 +230,7 @@ class _WindowLayoutBuilderState extends State<_WindowLayoutBuilder>
     return AnimatedBuilder(
       animation: _controller,
       builder: (context, child) {
-        final Rect rect = _controller.value > 0
+        final rect = _controller.value > 0
             ? _rectTween.evaluate(animation)!
             : _actualRect;
 

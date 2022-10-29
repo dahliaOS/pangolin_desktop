@@ -4,87 +4,87 @@ const bingParser = JsonObjectWithTransformer<BingImageOfTheDay>(
   transformer: BingImageOfTheDay.parse,
   fields: [
     JsonObjectField(
-      name: "images",
+      name: 'images',
       type: JsonArray(
         type: JsonObjectWithTransformer(
           transformer: BingImage.parse,
           fields: [
             JsonObjectField(
-              name: "startdate",
+              name: 'startdate',
               type: JsonConstantWithTransformer(
                 type: JsonString(validator: _dateValidator),
                 transformer: _dateTransformer,
               ),
             ),
             JsonObjectField(
-              name: "fullstartdate",
+              name: 'fullstartdate',
               type: JsonConstantWithTransformer(
                 type: JsonString(validator: _dateValidator),
                 transformer: _dateTransformer,
               ),
             ),
             JsonObjectField(
-              name: "enddate",
+              name: 'enddate',
               type: JsonConstantWithTransformer(
                 type: JsonString(validator: _dateValidator),
                 transformer: _dateTransformer,
               ),
             ),
             JsonObjectField(
-              name: "url",
+              name: 'url',
               type: JsonConstantWithTransformer(
                 type: JsonString(),
                 transformer: _urlTransformer,
               ),
             ),
             JsonObjectField(
-              name: "urlbase",
+              name: 'urlbase',
               type: JsonConstantWithTransformer(
                 type: JsonString(),
                 transformer: _urlTransformer,
               ),
             ),
             JsonObjectField(
-              name: "copyright",
+              name: 'copyright',
               type: JsonString(),
             ),
             JsonObjectField(
-              name: "copyrightlink",
+              name: 'copyrightlink',
               type: JsonString(),
             ),
             JsonObjectField(
-              name: "title",
+              name: 'title',
               type: JsonString(),
             ),
             JsonObjectField(
-              name: "quiz",
+              name: 'quiz',
               type: JsonConstantWithTransformer(
                 type: JsonString(),
                 transformer: _urlTransformer,
               ),
             ),
             JsonObjectField(
-              name: "wp",
+              name: 'wp',
               type: JsonBoolean(),
             ),
             JsonObjectField(
-              name: "hsh",
+              name: 'hsh',
               type: JsonString(),
             ),
             JsonObjectField(
-              name: "drk",
+              name: 'drk',
               type: JsonNumber(),
             ),
             JsonObjectField(
-              name: "top",
+              name: 'top',
               type: JsonNumber(),
             ),
             JsonObjectField(
-              name: "bot",
+              name: 'bot',
               type: JsonNumber(),
             ),
             JsonObjectField(
-              name: "hs",
+              name: 'hs',
               type: JsonArray(type: JsonConstant()),
             ),
           ],
@@ -92,28 +92,28 @@ const bingParser = JsonObjectWithTransformer<BingImageOfTheDay>(
       ),
     ),
     JsonObjectField(
-      name: "tooltips",
+      name: 'tooltips',
       type: JsonObjectWithTransformer(
         transformer: BingTooltips.parse,
         fields: [
           JsonObjectField(
-            name: "loading",
+            name: 'loading',
             type: JsonString(),
           ),
           JsonObjectField(
-            name: "previous",
+            name: 'previous',
             type: JsonString(),
           ),
           JsonObjectField(
-            name: "next",
+            name: 'next',
             type: JsonString(),
           ),
           JsonObjectField(
-            name: "walle",
+            name: 'walle',
             type: JsonString(),
           ),
           JsonObjectField(
-            name: "walls",
+            name: 'walls',
             type: JsonString(),
           ),
         ],
@@ -123,8 +123,6 @@ const bingParser = JsonObjectWithTransformer<BingImageOfTheDay>(
 );
 
 class BingImageOfTheDay {
-  final List<BingImage> images;
-  final BingTooltips tooltips;
 
   const BingImageOfTheDay({
     required this.images,
@@ -133,18 +131,15 @@ class BingImageOfTheDay {
 
   factory BingImageOfTheDay.parse(Map<String, dynamic> json) {
     return BingImageOfTheDay(
-      images: (json["images"] as List).cast<BingImage>(),
-      tooltips: json["tooltips"] as BingTooltips,
+      images: (json['images'] as List).cast<BingImage>(),
+      tooltips: json['tooltips'] as BingTooltips,
     );
   }
+  final List<BingImage> images;
+  final BingTooltips tooltips;
 }
 
 class BingTooltips {
-  final String loading;
-  final String previous;
-  final String next;
-  final String walle;
-  final String walls;
 
   const BingTooltips({
     required this.loading,
@@ -156,30 +151,21 @@ class BingTooltips {
 
   factory BingTooltips.parse(Map<String, dynamic> json) {
     return BingTooltips(
-      loading: json["loading"] as String,
-      previous: json["previous"] as String,
-      next: json["next"] as String,
-      walle: json["walle"] as String,
-      walls: json["walls"] as String,
+      loading: json['loading'] as String,
+      previous: json['previous'] as String,
+      next: json['next'] as String,
+      walle: json['walle'] as String,
+      walls: json['walls'] as String,
     );
   }
+  final String loading;
+  final String previous;
+  final String next;
+  final String walle;
+  final String walls;
 }
 
 class BingImage {
-  final DateTime startDate;
-  final DateTime fullStartDate;
-  final DateTime endDate;
-  final Uri url;
-  final Uri urlBase;
-  final String copyright;
-  final String copyrightLink;
-  final String title;
-  final Uri quiz;
-  final bool wp;
-  final String hash;
-  final num drk;
-  final num top;
-  final num bot;
 
   const BingImage({
     required this.startDate,
@@ -200,22 +186,36 @@ class BingImage {
 
   factory BingImage.parse(Map<String, dynamic> json) {
     return BingImage(
-      startDate: json["startdate"] as DateTime,
-      fullStartDate: json["fullstartdate"] as DateTime,
-      endDate: json["enddate"] as DateTime,
-      url: json["url"] as Uri,
-      urlBase: json["urlbase"] as Uri,
-      copyright: json["copyright"] as String,
-      copyrightLink: json["copyrightlink"] as String,
-      title: json["title"] as String,
-      quiz: json["quiz"] as Uri,
-      wp: json["wp"] as bool,
-      hash: json["hsh"] as String,
-      drk: json["drk"] as num,
-      top: json["top"] as num,
-      bot: json["bot"] as num,
+      startDate: json['startdate'] as DateTime,
+      fullStartDate: json['fullstartdate'] as DateTime,
+      endDate: json['enddate'] as DateTime,
+      url: json['url'] as Uri,
+      urlBase: json['urlbase'] as Uri,
+      copyright: json['copyright'] as String,
+      copyrightLink: json['copyrightlink'] as String,
+      title: json['title'] as String,
+      quiz: json['quiz'] as Uri,
+      wp: json['wp'] as bool,
+      hash: json['hsh'] as String,
+      drk: json['drk'] as num,
+      top: json['top'] as num,
+      bot: json['bot'] as num,
     );
   }
+  final DateTime startDate;
+  final DateTime fullStartDate;
+  final DateTime endDate;
+  final Uri url;
+  final Uri urlBase;
+  final String copyright;
+  final String copyrightLink;
+  final String title;
+  final Uri quiz;
+  final bool wp;
+  final String hash;
+  final num drk;
+  final num top;
+  final num bot;
 }
 
 bool _dateValidator(String date) {
@@ -225,5 +225,5 @@ bool _dateValidator(String date) {
 DateTime _dateTransformer(String date) => DateTime.parse(date.substring(0, 8));
 
 Uri _urlTransformer(String orig) {
-  return Uri.parse("https://bing.com$orig");
+  return Uri.parse('https://bing.com$orig');
 }

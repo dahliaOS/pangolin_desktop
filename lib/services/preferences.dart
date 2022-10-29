@@ -10,6 +10,8 @@ abstract class PreferencesService
     extends ListenableService<PreferencesService> {
   PreferencesService();
 
+  factory PreferencesService.fallback() = _SharedPrefPreferencesServiceImpl;
+
   static PreferencesService get current {
     return ServiceManager.getService<PreferencesService>()!;
   }
@@ -19,8 +21,6 @@ abstract class PreferencesService
 
     return _SharedPrefPreferencesServiceImpl();
   }
-
-  factory PreferencesService.fallback() = _SharedPrefPreferencesServiceImpl;
 
   T? get<T>(String key, [T? defaultValue]);
 
@@ -41,9 +41,9 @@ class _DSettingsPreferencesServiceImpl extends PreferencesService {
   final List<_DSettingsPendingWrite> _pendingWrites = [];
   final List<_DSettingsPendingDelete> _pendingDeletes = [];
 
-  StreamSubscription? _writeSub;
-  StreamSubscription? _deleteSub;
-  StreamSubscription? _clearSub;
+  StreamSubscription<dynamic>? _writeSub;
+  StreamSubscription<dynamic>? _deleteSub;
+  StreamSubscription<dynamic>? _clearSub;
 
   Timer? _pendingWritesTimer;
   Timer? _pendingDeletesTimer;
@@ -64,7 +64,7 @@ class _DSettingsPreferencesServiceImpl extends PreferencesService {
 
   @override
   T? get<T>(String key, [T? defaultValue]) {
-    final List<T> hack = <T>[];
+    final hack = <T>[];
 
     if (hack is List<List<String>>) {
       return (_preferences[key] as List?)?.cast<String>() as T? ?? defaultValue;
@@ -92,33 +92,34 @@ class _DSettingsPreferencesServiceImpl extends PreferencesService {
 
   @override
   FutureOr<void> start() async {
-    await client.requestName("io.dahlia.Pangolin");
+    await client.requestName('io.dahlia.Pangolin');
     dsettings = DSettings(client: client);
     table = await _getOrCreateTable();
 
-    final Map<String, DSettingsEntry> values = await table.readAll();
+    final values = await table.readAll();
 
     values.forEach((key, value) {
       _preferences[key] = value.value as Object;
     });
 
-    table.addSettingsWrittenListener(_onSettingsWritten);
-    table.addSettingsDeletedListener(_onSettingsDeleted);
-    table.addSettingsClearedListener(_onSettingsCleared);
+    table
+      ..addSettingsWrittenListener(_onSettingsWritten)
+      ..addSettingsDeletedListener(_onSettingsDeleted)
+      ..addSettingsClearedListener(_onSettingsCleared);
   }
 
   Future<DSettingsTable> _getOrCreateTable() async {
-    final DSettingsTable? table = await dsettings.getTable("pangolin");
+    final table = await dsettings.getTable('pangolin');
 
     if (table == null) {
-      await dsettings.createTable("pangolin", owner: "io.dahlia.Pangolin");
+      await dsettings.createTable('pangolin', owner: 'io.dahlia.Pangolin');
       return _getOrCreateTable();
     }
 
     return table;
   }
 
-  void _onSettingsWritten(Map<String, DSettingsEntry> data) {
+  void _onSettingsWritten(Map<String, DSettingsEntry<dynamic>> data) {
     data.forEach((key, value) {
       _preferences[key] = value.value as Object;
     });
@@ -174,12 +175,12 @@ class _DSettingsPreferencesServiceImpl extends PreferencesService {
     _pendingDeletesTimer = null;
   }
 
-  Future<void> _flush<T extends _DSettingsPendingOperation, O>(
+  Future<void> _flush<T extends _DSettingsPendingOperation<dynamic>, O>(
     List<T> operations,
     Future<void> Function(O param) callBatch,
     O Function(List<T> ops) transformer,
   ) {
-    final List<T> confirmedOperations = List.from(operations);
+    final confirmedOperations = List<T>.from(operations);
     operations.clear();
 
     return callBatch(transformer(confirmedOperations));
@@ -187,15 +188,14 @@ class _DSettingsPreferencesServiceImpl extends PreferencesService {
 }
 
 abstract class _DSettingsPendingOperation<T> {
-  final String setting;
-  final T value;
-  final _DSettingsPendingOperationType type;
-
   const _DSettingsPendingOperation({
     required this.setting,
     required this.value,
     required this.type,
   });
+  final String setting;
+  final T value;
+  final _DSettingsPendingOperationType type;
 }
 
 class _DSettingsPendingWrite extends _DSettingsPendingOperation<Object> {
@@ -230,7 +230,7 @@ class _SharedPrefPreferencesServiceImpl extends PreferencesService {
   @override
   T? get<T>(String key, [T? defaultValue]) {
     // This is an hack used to switch the type T without getting a value
-    final List<T> switchVal = <T>[];
+    final switchVal = <T>[];
 
     if (switchVal is List<int>) {
       return _sharedPreferences?.getInt(key) as T?;
@@ -253,7 +253,7 @@ class _SharedPrefPreferencesServiceImpl extends PreferencesService {
     }
 
     logger.warning(
-      "(preference $key) Unsupported type $T for PreferencesService, returning null",
+      '(preference $key) Unsupported type $T for PreferencesService, returning null',
     );
 
     return null;
@@ -262,23 +262,23 @@ class _SharedPrefPreferencesServiceImpl extends PreferencesService {
   @override
   Future<void> set<T>(String key, T value) async {
     if (value is int) {
-      _sharedPreferences?.setInt(key, value);
+      await _sharedPreferences?.setInt(key, value);
     }
 
     if (value is double) {
-      _sharedPreferences?.setDouble(key, value);
+      await _sharedPreferences?.setDouble(key, value);
     }
 
     if (value is bool) {
-      _sharedPreferences?.setBool(key, value);
+      await _sharedPreferences?.setBool(key, value);
     }
 
     if (value is String) {
-      _sharedPreferences?.setString(key, value);
+      await _sharedPreferences?.setString(key, value);
     }
 
     if (value is List<String>) {
-      _sharedPreferences?.setStringList(key, value);
+      await _sharedPreferences?.setStringList(key, value);
     }
   }
 
@@ -335,9 +335,8 @@ class _InMemoryPreferencesServiceImpl extends PreferencesService {
 }
 
 class MissingEntryException implements Exception {
-  final String key;
-
   const MissingEntryException(this.key);
+  final String key;
 
   @override
   String toString() {

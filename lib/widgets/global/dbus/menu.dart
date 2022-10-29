@@ -5,9 +5,8 @@ import 'package:pangolin/services/dbus/menu.dart';
 import 'package:pangolin/widgets/global/dbus/image.dart';
 
 class DBusMenuEntry extends PopupMenuEntry<int> {
+  const DBusMenuEntry(this.entry, {super.key});
   final MenuEntry entry;
-
-  const DBusMenuEntry(this.entry);
 
   @override
   State<DBusMenuEntry> createState() => _DBusMenuEntryState();
@@ -68,7 +67,7 @@ class _DBusMenuEntryState extends State<DBusMenuEntry> {
           onTap: () {
             entry.object.callEvent(
               entry.id,
-              "clicked",
+              'clicked',
               DBusArray.variant([]),
               0, //DateTime.now().millisecondsSinceEpoch,
             );
@@ -96,8 +95,8 @@ class _DBusMenuEntryState extends State<DBusMenuEntry> {
         );
       case EntryToggleType.radio:
         return Radio<int>(
-          value: entry.toggleState == true ? 1 : 0,
-          groupValue: entry.toggleState == true ? 1 : -1,
+          value: entry.toggleState ?? false ? 1 : 0,
+          groupValue: entry.toggleState ?? false ? 1 : -1,
           onChanged: (value) {},
         );
       case EntryToggleType.none:

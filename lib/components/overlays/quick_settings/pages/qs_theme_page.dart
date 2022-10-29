@@ -13,16 +13,16 @@ class QsThemePage extends StatelessWidget
   Widget buildChild(BuildContext context, CustomizationService service) {
     return Scaffold(
       appBar: const QsTitlebar(
-        title: "Theme Settings",
+        title: 'Theme Settings',
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8.0),
+        padding: const EdgeInsets.symmetric(vertical: 8),
         child: Column(
           children: [
             SwitchListTile(
               hoverColor: Colors.transparent,
               secondary: const Icon(Icons.brightness_6_rounded),
-              title: const Text("System Dark Mode"),
+              title: const Text('System Dark Mode'),
               value: service.darkMode,
               onChanged: (value) => service.darkMode = value,
             ),

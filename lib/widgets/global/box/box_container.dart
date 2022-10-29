@@ -19,14 +19,6 @@ import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/widgets/global/acrylic/acrylic.dart';
 
 class BoxSurface extends StatelessWidget {
-  final EdgeInsetsGeometry? padding;
-  final EdgeInsetsGeometry? margin;
-  final OutlinedBorder shape;
-  final Widget? child;
-  final double? width;
-  final double? height;
-  final bool outline;
-  final bool dropShadow;
 
   const BoxSurface({
     super.key,
@@ -39,6 +31,14 @@ class BoxSurface extends StatelessWidget {
     this.outline = false,
     this.dropShadow = false,
   });
+  final EdgeInsetsGeometry? padding;
+  final EdgeInsetsGeometry? margin;
+  final OutlinedBorder shape;
+  final Widget? child;
+  final double? width;
+  final double? height;
+  final bool outline;
+  final bool dropShadow;
 
   @override
   Widget build(BuildContext context) {
@@ -82,14 +82,6 @@ class BoxSurface extends StatelessWidget {
 }
 
 class BoxContainer extends StatelessWidget {
-  final EdgeInsetsGeometry? padding;
-  final EdgeInsetsGeometry? margin;
-  final OutlinedBorder shape;
-  final Widget? child;
-  final double? width;
-  final double? height;
-  final bool outline;
-  final double opacity;
 
   const BoxContainer({
     super.key,
@@ -102,10 +94,18 @@ class BoxContainer extends StatelessWidget {
     this.outline = false,
     this.opacity = 0.5,
   });
+  final EdgeInsetsGeometry? padding;
+  final EdgeInsetsGeometry? margin;
+  final OutlinedBorder shape;
+  final Widget? child;
+  final double? width;
+  final double? height;
+  final bool outline;
+  final double opacity;
 
   @override
   Widget build(BuildContext context) {
-    final bool darkMode = Theme.of(context).darkMode;
+    final darkMode = Theme.of(context).darkMode;
     return Container(
       width: width,
       height: height,

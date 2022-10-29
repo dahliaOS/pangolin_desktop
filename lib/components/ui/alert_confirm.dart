@@ -14,7 +14,7 @@ limitations under the License.
 import 'package:flutter/material.dart';
 
 bool alertConfirm(String title, String text, BuildContext context) {
-  showDialog(
+  showDialog<void>(
     context: context,
     builder: (BuildContext context) {
       // return object of type Dialog
@@ -27,7 +27,7 @@ bool alertConfirm(String title, String text, BuildContext context) {
             onPressed: () {
               Navigator.of(context).pop();
             },
-            child: const Text("OK"),
+            child: const Text('OK'),
           ),
         ],
       );

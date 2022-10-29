@@ -77,7 +77,6 @@ class StatusNotifierItemObjectNewToolTip extends DBusSignal {
 
 /// Signal data for org.kde.StatusNotifierItem.NewStatus.
 class StatusNotifierItemObjectNewStatus extends DBusSignal {
-  String get status => values[0].asString();
 
   StatusNotifierItemObjectNewStatus(DBusSignal signal)
       : super(
@@ -87,11 +86,11 @@ class StatusNotifierItemObjectNewStatus extends DBusSignal {
           name: signal.name,
           values: signal.values,
         );
+  String get status => values[0].asString();
 }
 
 /// Signal data for org.kde.StatusNotifierItem.NewIconThemePath.
 class StatusNotifierItemObjectNewIconThemePath extends DBusSignal {
-  String get iconThemePath => values[0].asString();
 
   StatusNotifierItemObjectNewIconThemePath(DBusSignal signal)
       : super(
@@ -101,9 +100,88 @@ class StatusNotifierItemObjectNewIconThemePath extends DBusSignal {
           name: signal.name,
           values: signal.values,
         );
+  String get iconThemePath => values[0].asString();
 }
 
 class StatusNotifierItemObject extends DBusRemoteObject {
+
+  StatusNotifierItemObject(
+    super.client,
+    String destination,
+    DBusObjectPath path,
+  ) : super(name: destination, path: path) {
+    newTitle = DBusRemoteObjectSignalStream(
+      object: this,
+      interface: 'org.kde.StatusNotifierItem',
+      name: 'NewTitle',
+      signature: DBusSignature(''),
+    )
+        .asBroadcastStream()
+        .map(StatusNotifierItemObjectNewTitle.new);
+
+    newIcon = DBusRemoteObjectSignalStream(
+      object: this,
+      interface: 'org.kde.StatusNotifierItem',
+      name: 'NewIcon',
+      signature: DBusSignature(''),
+    )
+        .asBroadcastStream()
+        .map(StatusNotifierItemObjectNewIcon.new);
+
+    newAttentionIcon = DBusRemoteObjectSignalStream(
+      object: this,
+      interface: 'org.kde.StatusNotifierItem',
+      name: 'NewAttentionIcon',
+      signature: DBusSignature(''),
+    )
+        .asBroadcastStream()
+        .map(StatusNotifierItemObjectNewAttentionIcon.new);
+
+    newOverlayIcon = DBusRemoteObjectSignalStream(
+      object: this,
+      interface: 'org.kde.StatusNotifierItem',
+      name: 'NewOverlayIcon',
+      signature: DBusSignature(''),
+    )
+        .asBroadcastStream()
+        .map(StatusNotifierItemObjectNewOverlayIcon.new);
+
+    newMenu = DBusRemoteObjectSignalStream(
+      object: this,
+      interface: 'org.kde.StatusNotifierItem',
+      name: 'NewMenu',
+      signature: DBusSignature(''),
+    )
+        .asBroadcastStream()
+        .map(StatusNotifierItemObjectNewMenu.new);
+
+    newToolTip = DBusRemoteObjectSignalStream(
+      object: this,
+      interface: 'org.kde.StatusNotifierItem',
+      name: 'NewToolTip',
+      signature: DBusSignature(''),
+    )
+        .asBroadcastStream()
+        .map(StatusNotifierItemObjectNewToolTip.new);
+
+    newStatus = DBusRemoteObjectSignalStream(
+      object: this,
+      interface: 'org.kde.StatusNotifierItem',
+      name: 'NewStatus',
+      signature: DBusSignature('s'),
+    )
+        .asBroadcastStream()
+        .map(StatusNotifierItemObjectNewStatus.new);
+
+    newIconThemePath = DBusRemoteObjectSignalStream(
+      object: this,
+      interface: 'org.kde.StatusNotifierItem',
+      name: 'NewIconThemePath',
+      signature: DBusSignature('s'),
+    )
+        .asBroadcastStream()
+        .map(StatusNotifierItemObjectNewIconThemePath.new);
+  }
   /// Stream of org.kde.StatusNotifierItem.NewTitle signals.
   late final Stream<StatusNotifierItemObjectNewTitle> newTitle;
 
@@ -128,87 +206,9 @@ class StatusNotifierItemObject extends DBusRemoteObject {
   /// Stream of org.kde.StatusNotifierItem.NewIconThemePath signals.
   late final Stream<StatusNotifierItemObjectNewIconThemePath> newIconThemePath;
 
-  StatusNotifierItemObject(
-    super.client,
-    String destination,
-    DBusObjectPath path,
-  ) : super(name: destination, path: path) {
-    newTitle = DBusRemoteObjectSignalStream(
-      object: this,
-      interface: 'org.kde.StatusNotifierItem',
-      name: 'NewTitle',
-      signature: DBusSignature(''),
-    )
-        .asBroadcastStream()
-        .map((signal) => StatusNotifierItemObjectNewTitle(signal));
-
-    newIcon = DBusRemoteObjectSignalStream(
-      object: this,
-      interface: 'org.kde.StatusNotifierItem',
-      name: 'NewIcon',
-      signature: DBusSignature(''),
-    )
-        .asBroadcastStream()
-        .map((signal) => StatusNotifierItemObjectNewIcon(signal));
-
-    newAttentionIcon = DBusRemoteObjectSignalStream(
-      object: this,
-      interface: 'org.kde.StatusNotifierItem',
-      name: 'NewAttentionIcon',
-      signature: DBusSignature(''),
-    )
-        .asBroadcastStream()
-        .map((signal) => StatusNotifierItemObjectNewAttentionIcon(signal));
-
-    newOverlayIcon = DBusRemoteObjectSignalStream(
-      object: this,
-      interface: 'org.kde.StatusNotifierItem',
-      name: 'NewOverlayIcon',
-      signature: DBusSignature(''),
-    )
-        .asBroadcastStream()
-        .map((signal) => StatusNotifierItemObjectNewOverlayIcon(signal));
-
-    newMenu = DBusRemoteObjectSignalStream(
-      object: this,
-      interface: 'org.kde.StatusNotifierItem',
-      name: 'NewMenu',
-      signature: DBusSignature(''),
-    )
-        .asBroadcastStream()
-        .map((signal) => StatusNotifierItemObjectNewMenu(signal));
-
-    newToolTip = DBusRemoteObjectSignalStream(
-      object: this,
-      interface: 'org.kde.StatusNotifierItem',
-      name: 'NewToolTip',
-      signature: DBusSignature(''),
-    )
-        .asBroadcastStream()
-        .map((signal) => StatusNotifierItemObjectNewToolTip(signal));
-
-    newStatus = DBusRemoteObjectSignalStream(
-      object: this,
-      interface: 'org.kde.StatusNotifierItem',
-      name: 'NewStatus',
-      signature: DBusSignature('s'),
-    )
-        .asBroadcastStream()
-        .map((signal) => StatusNotifierItemObjectNewStatus(signal));
-
-    newIconThemePath = DBusRemoteObjectSignalStream(
-      object: this,
-      interface: 'org.kde.StatusNotifierItem',
-      name: 'NewIconThemePath',
-      signature: DBusSignature('s'),
-    )
-        .asBroadcastStream()
-        .map((signal) => StatusNotifierItemObjectNewIconThemePath(signal));
-  }
-
   /// Gets org.kde.StatusNotifierItem.Category
   Future<String> getCategory() async {
-    final DBusValue value = await getProperty(
+    final value = await getProperty(
       'org.kde.StatusNotifierItem',
       'Category',
       signature: DBusSignature('s'),
@@ -218,7 +218,7 @@ class StatusNotifierItemObject extends DBusRemoteObject {
 
   /// Gets org.kde.StatusNotifierItem.Id
   Future<String> getId() async {
-    final DBusValue value = await getProperty(
+    final value = await getProperty(
       'org.kde.StatusNotifierItem',
       'Id',
       signature: DBusSignature('s'),
@@ -228,7 +228,7 @@ class StatusNotifierItemObject extends DBusRemoteObject {
 
   /// Gets org.kde.StatusNotifierItem.Title
   Future<String> getTitle() async {
-    final DBusValue value = await getProperty(
+    final value = await getProperty(
       'org.kde.StatusNotifierItem',
       'Title',
       signature: DBusSignature('s'),
@@ -238,7 +238,7 @@ class StatusNotifierItemObject extends DBusRemoteObject {
 
   /// Gets org.kde.StatusNotifierItem.Status
   Future<String> getStatus() async {
-    final DBusValue value = await getProperty(
+    final value = await getProperty(
       'org.kde.StatusNotifierItem',
       'Status',
       signature: DBusSignature('s'),
@@ -248,7 +248,7 @@ class StatusNotifierItemObject extends DBusRemoteObject {
 
   /// Gets org.kde.StatusNotifierItem.WindowId
   Future<int> getWindowId() async {
-    final DBusValue value = await getProperty(
+    final value = await getProperty(
       'org.kde.StatusNotifierItem',
       'WindowId',
       signature: DBusSignature('i'),
@@ -258,7 +258,7 @@ class StatusNotifierItemObject extends DBusRemoteObject {
 
   /// Gets org.kde.StatusNotifierItem.IconThemePath
   Future<String> getIconThemePath() async {
-    final DBusValue value = await getProperty(
+    final value = await getProperty(
       'org.kde.StatusNotifierItem',
       'IconThemePath',
       signature: DBusSignature('s'),
@@ -268,7 +268,7 @@ class StatusNotifierItemObject extends DBusRemoteObject {
 
   /// Gets org.kde.StatusNotifierItem.Menu
   Future<DBusObjectPath> getMenu() async {
-    final DBusValue value = await getProperty(
+    final value = await getProperty(
       'org.kde.StatusNotifierItem',
       'Menu',
       signature: DBusSignature('o'),
@@ -278,7 +278,7 @@ class StatusNotifierItemObject extends DBusRemoteObject {
 
   /// Gets org.kde.StatusNotifierItem.ItemIsMenu
   Future<bool> getItemIsMenu() async {
-    final DBusValue value = await getProperty(
+    final value = await getProperty(
       'org.kde.StatusNotifierItem',
       'ItemIsMenu',
       signature: DBusSignature('b'),
@@ -288,7 +288,7 @@ class StatusNotifierItemObject extends DBusRemoteObject {
 
   /// Gets org.kde.StatusNotifierItem.IconName
   Future<String> getIconName() async {
-    final DBusValue value = await getProperty(
+    final value = await getProperty(
       'org.kde.StatusNotifierItem',
       'IconName',
       signature: DBusSignature('s'),
@@ -298,7 +298,7 @@ class StatusNotifierItemObject extends DBusRemoteObject {
 
   /// Gets org.kde.StatusNotifierItem.IconPixmap
   Future<List<DBusStruct>> getIconPixmap() async {
-    final DBusValue value = await getProperty(
+    final value = await getProperty(
       'org.kde.StatusNotifierItem',
       'IconPixmap',
       signature: DBusSignature('a(iiay)'),
@@ -308,7 +308,7 @@ class StatusNotifierItemObject extends DBusRemoteObject {
 
   /// Gets org.kde.StatusNotifierItem.OverlayIconName
   Future<String> getOverlayIconName() async {
-    final DBusValue value = await getProperty(
+    final value = await getProperty(
       'org.kde.StatusNotifierItem',
       'OverlayIconName',
       signature: DBusSignature('s'),
@@ -318,7 +318,7 @@ class StatusNotifierItemObject extends DBusRemoteObject {
 
   /// Gets org.kde.StatusNotifierItem.OverlayIconPixmap
   Future<List<DBusStruct>> getOverlayIconPixmap() async {
-    final DBusValue value = await getProperty(
+    final value = await getProperty(
       'org.kde.StatusNotifierItem',
       'OverlayIconPixmap',
       signature: DBusSignature('a(iiay)'),
@@ -328,7 +328,7 @@ class StatusNotifierItemObject extends DBusRemoteObject {
 
   /// Gets org.kde.StatusNotifierItem.AttentionIconName
   Future<String> getAttentionIconName() async {
-    final DBusValue value = await getProperty(
+    final value = await getProperty(
       'org.kde.StatusNotifierItem',
       'AttentionIconName',
       signature: DBusSignature('s'),
@@ -338,7 +338,7 @@ class StatusNotifierItemObject extends DBusRemoteObject {
 
   /// Gets org.kde.StatusNotifierItem.AttentionIconPixmap
   Future<List<DBusStruct>> getAttentionIconPixmap() async {
-    final DBusValue value = await getProperty(
+    final value = await getProperty(
       'org.kde.StatusNotifierItem',
       'AttentionIconPixmap',
       signature: DBusSignature('a(iiay)'),
@@ -348,7 +348,7 @@ class StatusNotifierItemObject extends DBusRemoteObject {
 
   /// Gets org.kde.StatusNotifierItem.AttentionMovieName
   Future<String> getAttentionMovieName() async {
-    final DBusValue value = await getProperty(
+    final value = await getProperty(
       'org.kde.StatusNotifierItem',
       'AttentionMovieName',
       signature: DBusSignature('s'),
@@ -358,7 +358,7 @@ class StatusNotifierItemObject extends DBusRemoteObject {
 
   /// Gets org.kde.StatusNotifierItem.ToolTip
   Future<DBusStruct> getToolTip() async {
-    final DBusValue value = await getProperty(
+    final value = await getProperty(
       'org.kde.StatusNotifierItem',
       'ToolTip',
       signature: DBusSignature('(sa(iiay)ss)'),

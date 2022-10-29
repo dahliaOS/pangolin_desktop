@@ -192,11 +192,11 @@ class _CustomizationServiceImpl extends CustomizationService {
 
   @override
   Future<void> start() async {
-    logger.info("Will wait for preferences service to appear");
+    logger.info('Will wait for preferences service to appear');
     await ServiceManager.waitForService<PreferencesService>();
-    logger.info("Preference service is good to go");
+    logger.info('Preference service is good to go');
 
-    final int? rawDatabaseVersion =
+    final rawDatabaseVersion =
         PreferencesService.current.get<int>(Preference.databaseVersion.key);
 
     if (rawDatabaseVersion == null || rawDatabaseVersion < 2) {
@@ -217,9 +217,11 @@ class _CustomizationServiceImpl extends CustomizationService {
     return PreferencesService.current.get<T>(pref.key) ?? pref.defaultValue;
   }
 
-  T _getAsResource<T extends Resource>(Preference<String> pref) {
-    final String value = _get(pref);
-    final Resource? pointer = Resource.tryParse(value);
+  T _getAsResource<T extends Resource<Enum, dynamic>>(
+    Preference<String> pref,
+  ) {
+    final value = _get(pref);
+    final pointer = Resource.tryParse(value);
 
     if (pointer == null || pointer is! T) {
       return Resource.parse(pref.defaultValue) as T;
@@ -228,14 +230,14 @@ class _CustomizationServiceImpl extends CustomizationService {
     return pointer;
   }
 
-  List<T> _getAsResourceList<T extends Resource>(
+  List<T> _getAsResourceList<T extends Resource<Enum, dynamic>>(
     Preference<List<String>> pref,
   ) {
-    final List<String> values = _get(pref);
-    final List<T> resources = [];
+    final values = _get(pref);
+    final resources = <T>[];
 
-    for (final String pref in values) {
-      final Resource? res = Resource.tryParse(pref);
+    for (final pref in values) {
+      final res = Resource.tryParse(pref);
 
       if (res == null || res is! T) continue;
 
@@ -257,27 +259,29 @@ class _CustomizationServiceImpl extends CustomizationService {
 }
 
 enum Preference<T> {
-  databaseVersion<int>("database_version", 2),
-  locale<String>("locale", "en_US"),
-  showWelcomeScreen<bool>("show_welcome_screen", true),
-  darkMode<bool>("dark_mode", false),
-  enableEffects<bool>("enable_effects", true),
-  pinnedApps<List<String>>("pinned_apps", []),
-  recentWallpapers<List<String>>("recent_wallpapers", []),
-  launcherIcon<String>("launcher_icon", "icon:dahlia#launcher_1"),
-  accentColor<String>("accent_color", "color:dahlia#orange"),
-  fontFamily<String>("font_family", "Roboto"),
-  wallpaper<String>("wallpaper", "image:dahlia#images/wallpapers/modern.png"),
-  compactLauncher<bool>("compact_launcher", false),
-  volume<double>("volume", 0.5),
-  muteVolume<bool>("mute_volume", false),
-  brightness<double>("brightness", 0.5),
-  autoBrightness<bool>("auto_brightness", true),
-  enableWifi<bool>("enable_wifi", true),
-  enableBluetooth<bool>("enable_bluetooth", true),
-  enableAirplaneMode<bool>("enable_airplane_mode", false),
-  taskbarConfiguration<List<String>>("taskbar_configuration", []),
-  recentSearchResults<List<String>>("recent_search_results", []);
+  databaseVersion<int>('database_version', 2),
+  locale<String>('locale', 'en_US'),
+  showWelcomeScreen<bool>('show_welcome_screen', true),
+  darkMode<bool>('dark_mode', false),
+  enableEffects<bool>('enable_effects', true),
+  pinnedApps<List<String>>('pinned_apps', []),
+  recentWallpapers<List<String>>('recent_wallpapers', []),
+  launcherIcon<String>('launcher_icon', 'icon:dahlia#launcher_1'),
+  accentColor<String>('accent_color', 'color:dahlia#orange'),
+  fontFamily<String>('font_family', 'Roboto'),
+  wallpaper<String>('wallpaper', 'image:dahlia#images/wallpapers/modern.png'),
+  compactLauncher<bool>('compact_launcher', false),
+  volume<double>('volume', 0.5),
+  muteVolume<bool>('mute_volume', false),
+  brightness<double>('brightness', 0.5),
+  autoBrightness<bool>('auto_brightness', true),
+  enableWifi<bool>('enable_wifi', true),
+  enableBluetooth<bool>('enable_bluetooth', true),
+  enableAirplaneMode<bool>('enable_airplane_mode', false),
+  taskbarConfiguration<List<String>>('taskbar_configuration', []),
+  recentSearchResults<List<String>>('recent_search_results', []);
+
+  const Preference(this.key, this.defaultValue);
 
   final String key;
   final T defaultValue;
@@ -295,6 +299,4 @@ enum Preference<T> {
       ),
     );
   }
-
-  const Preference(this.key, this.defaultValue);
 }

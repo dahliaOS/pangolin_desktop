@@ -3,12 +3,6 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
 class ExpandableSwitchListTile extends StatelessWidget {
-  final Widget? content;
-  final Widget? title;
-  final Widget? subtitle;
-  final Widget? leading;
-  final bool value;
-  final ValueChanged<bool> onChanged;
 
   const ExpandableSwitchListTile({
     super.key,
@@ -19,15 +13,21 @@ class ExpandableSwitchListTile extends StatelessWidget {
     required this.value,
     required this.onChanged,
   });
+  final Widget? content;
+  final Widget? title;
+  final Widget? subtitle;
+  final Widget? leading;
+  final bool value;
+  final ValueChanged<bool> onChanged;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         SwitchListTile(
-          title: title ?? const Text("Expandable List Tile"),
+          title: title ?? const Text('Expandable List Tile'),
           subtitle:
-              subtitle ?? const Text("Description of an Expandable List Tile"),
+              subtitle ?? const Text('Description of an Expandable List Tile'),
           secondary: leading,
           value: value,
           onChanged: onChanged,
@@ -35,7 +35,7 @@ class ExpandableSwitchListTile extends StatelessWidget {
         Offstage(
           offstage: !value,
           child: Padding(
-            padding: const EdgeInsets.all(24.0),
+            padding: const EdgeInsets.all(24),
             child: content ??
                 const FlutterLogo(
                   curve: Curves.easeInOutExpo,
@@ -50,11 +50,6 @@ class ExpandableSwitchListTile extends StatelessWidget {
 }
 
 class ExpandableListTile extends StatefulWidget {
-  final Widget? content;
-  final Widget? title;
-  final Widget? subtitle;
-  final Widget? leading;
-  final bool value;
   const ExpandableListTile({
     super.key,
     this.content,
@@ -63,6 +58,11 @@ class ExpandableListTile extends StatefulWidget {
     this.leading,
     required this.value,
   });
+  final Widget? content;
+  final Widget? title;
+  final Widget? subtitle;
+  final Widget? leading;
+  final bool value;
 
   @override
   State<ExpandableListTile> createState() => _ExpandableListTileState();
@@ -90,14 +90,14 @@ class _ExpandableListTileState extends State<ExpandableListTile> {
     return Column(
       children: [
         ListTile(
-          title: widget.title ?? const Text("Expandable List Tile"),
+          title: widget.title ?? const Text('Expandable List Tile'),
           subtitle: widget.subtitle,
           leading: widget.leading,
           dense: true,
           trailing: Transform.rotate(
             angle: _value ? math.pi / 2 : -math.pi / 2,
             child: const Padding(
-              padding: EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(8),
               child: Icon(Icons.chevron_left),
             ),
           ),
@@ -110,7 +110,7 @@ class _ExpandableListTileState extends State<ExpandableListTile> {
         Offstage(
           offstage: !_value,
           child: Padding(
-            padding: const EdgeInsets.all(24.0),
+            padding: const EdgeInsets.all(24),
             child: widget.content ??
                 const FlutterLogo(
                   curve: Curves.easeInOutExpo,
@@ -125,14 +125,6 @@ class _ExpandableListTileState extends State<ExpandableListTile> {
 }
 
 class RouterListTile extends StatelessWidget {
-  final VoidCallback? onTap;
-  final VoidCallback? onLongPress;
-
-  final Widget? title;
-  final Widget? subtitle;
-  final Widget? leading;
-
-  final String? route;
 
   const RouterListTile({
     super.key,
@@ -143,6 +135,14 @@ class RouterListTile extends StatelessWidget {
     this.leading,
     this.route,
   });
+  final VoidCallback? onTap;
+  final VoidCallback? onLongPress;
+
+  final Widget? title;
+  final Widget? subtitle;
+  final Widget? leading;
+
+  final String? route;
 
   @override
   Widget build(BuildContext context) {
@@ -152,16 +152,16 @@ class RouterListTile extends StatelessWidget {
             //TODO implement router navigation
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
-                content: Text("Not implemented yet"),
+                content: Text('Not implemented yet'),
               ),
             );
           },
       onLongPress: onLongPress,
-      title: title ?? const Text("Router List Tile"),
-      subtitle: subtitle ?? const Text("Description of a Router List Tile"),
+      title: title ?? const Text('Router List Tile'),
+      subtitle: subtitle ?? const Text('Description of a Router List Tile'),
       leading: leading,
       trailing: const Padding(
-        padding: EdgeInsets.all(8.0),
+        padding: EdgeInsets.all(8),
         child: Icon(Icons.chevron_right),
       ),
     );

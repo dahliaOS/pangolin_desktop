@@ -9,20 +9,20 @@ import 'package:pangolin/widgets/global/markup.dart';
 import 'package:pangolin/widgets/global/separated_flex.dart';
 
 class NotificationView extends StatelessWidget {
-  final UserNotification notification;
-  final ValueChanged<int>? onClose;
 
   const NotificationView({
     required this.notification,
     this.onClose,
     super.key,
   });
+  final UserNotification notification;
+  final ValueChanged<int>? onClose;
 
   @override
   Widget build(BuildContext context) {
-    final NotificationAction? defaultAction =
-        notification.actions.firstWhereOrNull((e) => e.key == "default");
-    final List<NotificationAction> actions = List.from(notification.actions)
+    final defaultAction =
+        notification.actions.firstWhereOrNull((e) => e.key == 'default');
+    final actions = List<NotificationAction>.from(notification.actions)
       ..remove(defaultAction);
 
     return Material(
@@ -55,13 +55,13 @@ class NotificationView extends StatelessWidget {
 }
 
 class _NotificationBody extends StatelessWidget {
-  final UserNotification notification;
-  final ValueChanged<int>? onClose;
 
   const _NotificationBody({
     required this.notification,
     this.onClose,
   });
+  final UserNotification notification;
+  final ValueChanged<int>? onClose;
 
   @override
   Widget build(BuildContext context) {
@@ -75,8 +75,8 @@ class _NotificationBody extends StatelessWidget {
         type: MaterialType.transparency,
         child: InkWell(
           onTap: () {
-            if (!notification.actions.any((e) => e.key == "default")) return;
-            notification.invokeAction("default");
+            if (!notification.actions.any((e) => e.key == 'default')) return;
+            notification.invokeAction('default');
             NotificationService.current.closeNotification(
               notification.id,
               NotificationCloseReason.closed,
@@ -173,13 +173,13 @@ class _NotificationBody extends StatelessWidget {
 }
 
 class _NotificationActionButton extends StatelessWidget {
-  final UserNotification notification;
-  final NotificationAction action;
 
   const _NotificationActionButton({
     required this.notification,
     required this.action,
   });
+  final UserNotification notification;
+  final NotificationAction action;
 
   @override
   Widget build(BuildContext context) {

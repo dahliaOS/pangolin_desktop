@@ -39,7 +39,7 @@ class QuickSettingsButton extends StatelessWidget
       ),
       overlayID: QuickSettingsOverlay.overlayId,
       child: Padding(
-        padding: const EdgeInsets.only(left: 8.0, right: 4.0),
+        padding: const EdgeInsets.only(left: 8, right: 4),
         child: ValueListenableBuilder<bool>(
           valueListenable: Shell.of(context)
               .getShowingNotifier(QuickSettingsOverlay.overlayId),
@@ -60,10 +60,10 @@ class QuickSettingsButton extends StatelessWidget
                 SizedBox(
                   width: 74,
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
                     child: ListenableServiceBuilder<DateTimeService>(
                       builder: (BuildContext context, _) {
-                        final DateTimeService service = DateTimeService.current;
+                        final service = DateTimeService.current;
 
                         return Text(
                           service.formattedTime,
@@ -90,22 +90,22 @@ class QuickSettingsButton extends StatelessWidget
     return [
       if (service.enableWifi)
         const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 4.0),
+          padding: EdgeInsets.symmetric(horizontal: 4),
           child: Icon(Icons.wifi),
         ),
       if (service.enableBluetooth)
         const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 4.0),
+          padding: EdgeInsets.symmetric(horizontal: 4),
           child: Icon(Icons.bluetooth),
         ),
       const Padding(
-        padding: EdgeInsets.symmetric(horizontal: 4.0),
+        padding: EdgeInsets.symmetric(horizontal: 4),
         child: Icon(
           Icons.settings_ethernet,
         ),
       ),
       const Padding(
-        padding: EdgeInsets.symmetric(horizontal: 4.0),
+        padding: EdgeInsets.symmetric(horizontal: 4),
         child: RotatedBox(
           quarterTurns: 1,
           child: Icon(Icons.battery_charging_full),

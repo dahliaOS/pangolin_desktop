@@ -18,19 +18,6 @@ import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/services/application.dart';
 
 class Application {
-  final String name;
-  final String? version;
-  final String? description;
-  final String packageName;
-  final Widget app;
-  final ApplicationCategory? category;
-  final bool isTest;
-  final String? iconName;
-  final Color color;
-  final Color appBarTextColor;
-  final bool supportsWeb;
-  final bool systemExecutable;
-  final List<String> runtimeFlags;
 
   const Application({
     required this.app,
@@ -51,17 +38,30 @@ class Application {
     required this.app,
     required this.packageName,
     this.category = ApplicationCategory.testing,
-    this.description = "TESING APP",
+    this.description = 'TESING APP',
     this.iconName,
     required this.name,
     this.isTest = true,
     required this.color,
     this.appBarTextColor = Colors.white,
-    this.version = "TEST",
+    this.version = 'TEST',
     this.supportsWeb = true,
     this.runtimeFlags = const [],
     this.systemExecutable = false,
   });
+  final String name;
+  final String? version;
+  final String? description;
+  final String packageName;
+  final Widget app;
+  final ApplicationCategory? category;
+  final bool isTest;
+  final String? iconName;
+  final Color color;
+  final Color appBarTextColor;
+  final bool supportsWeb;
+  final bool systemExecutable;
+  final List<String> runtimeFlags;
 
   void launch(BuildContext context) {
     Shell.of(context, listen: false).dismissEverything();

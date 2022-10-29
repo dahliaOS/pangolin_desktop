@@ -24,13 +24,12 @@ import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/wm/wm.dart';
 
 class PangolinWindowToolbar extends StatefulWidget {
-  static const double dockEdgeSize = 40;
-
   const PangolinWindowToolbar({
     super.key,
     required this.barColor,
     required this.textColor,
   });
+  static const double dockEdgeSize = 40;
 
   final Color barColor;
   final Color textColor;
@@ -59,26 +58,26 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
             ContextMenuItem(
               icon: Icons.close,
               //TODO Localize
-              title: "Close Window",
+              title: 'Close Window',
               onTap: () => onClose(properties),
-              shortcut: "",
+              shortcut: '',
             ),
             ContextMenuItem(
               icon: Icons.minimize,
               //TODO Localize
-              title: "Minimize Window",
+              title: 'Minimize Window',
               onTap: () => onMinimize(properties, layout),
-              shortcut: "",
+              shortcut: '',
             ),
             ContextMenuItem(
               icon: Icons.info_outline_rounded,
               //TODO Localize
-              title: "App Info",
+              title: 'App Info',
               onTap: () {
-                showDialog(
+                showDialog<void>(
                   context: context,
                   builder: (context) => AlertDialog(
-                    elevation: 1.0,
+                    elevation: 1,
                     backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                     content: Column(
                       mainAxisSize: MainAxisSize.min,
@@ -99,15 +98,15 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
                           Navigator.pop(context);
                         },
                         child: const Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text("Close"),
+                          padding: EdgeInsets.all(8),
+                          child: Text('Close'),
                         ),
                       )
                     ],
                   ),
                 );
               },
-              shortcut: "",
+              shortcut: '',
             ),
           ],
         ),
@@ -142,7 +141,7 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
                         const Spacer(),
                         WindowToolbarButton(
                           icon: const Padding(
-                            padding: EdgeInsets.only(bottom: 8.0),
+                            padding: EdgeInsets.only(bottom: 8),
                             child: Icon(Icons.minimize),
                           ),
                           onTap: () => onMinimize(properties, layout),
@@ -198,12 +197,13 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
                           layer?.startDockEffect(layout);
 
                           if (layout.dock != WindowDock.none) {
-                            layout.dock = WindowDock.none;
-                            layout.position = details.globalPosition +
-                                Offset(
-                                  -layout.size.width / 2,
-                                  -properties.toolbar.size / 2,
-                                );
+                            layout
+                              ..dock = WindowDock.none
+                              ..position = details.globalPosition +
+                                  Offset(
+                                    -layout.size.width / 2,
+                                    -properties.toolbar.size / 2,
+                                  );
                           }
                         },
                         onDoubleTap: () => onDoubleTap(layout),
@@ -228,8 +228,8 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
   }
 
   void onClose(WindowPropertyRegistry properties) {
-    final hierarchy = WindowHierarchy.of(context, listen: false);
-    hierarchy.removeWindowEntry(properties.info.id);
+    WindowHierarchy.of(context, listen: false)
+        .removeWindowEntry(properties.info.id);
   }
 
   void onMinimize(WindowPropertyRegistry properties, LayoutState layout) {
@@ -252,7 +252,7 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
       _cursor = SystemMouseCursors.move;
     });
     _lastDetails = details;
-    final WindowDock dock =
+    final dock =
         _getDockForPosition(hierarchy.wmBounds, details.globalPosition);
     if (_draggingDock != dock) {
       _draggingDock = dock;
@@ -260,55 +260,56 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
       layer?.updateDockEffect(dock);
     }
 
-    layout.position += details.delta;
-    layout.position = Offset(
-      layout.position.dx,
-      layout.position.dy.clamp(
-        0,
-        hierarchy.wmBounds.bottom - properties.toolbar.size,
-      ),
-    );
+    layout
+      ..position += details.delta
+      ..position = Offset(
+        layout.position.dx,
+        layout.position.dy.clamp(
+          0,
+          hierarchy.wmBounds.bottom - properties.toolbar.size,
+        ),
+      );
     setState(() {});
   }
 
   WindowDock _getDockForPosition(Rect bounds, Offset position) {
-    final Rect topLeft = Rect.fromLTWH(
+    final topLeft = Rect.fromLTWH(
       bounds.left,
       bounds.top,
       PangolinWindowToolbar.dockEdgeSize,
       PangolinWindowToolbar.dockEdgeSize,
     );
-    final Rect left = Rect.fromLTWH(
+    final left = Rect.fromLTWH(
       bounds.left,
       bounds.top + PangolinWindowToolbar.dockEdgeSize,
       PangolinWindowToolbar.dockEdgeSize,
       bounds.height - PangolinWindowToolbar.dockEdgeSize * 2,
     );
-    final Rect bottomLeft = Rect.fromLTWH(
+    final bottomLeft = Rect.fromLTWH(
       bounds.left,
       bounds.bottom - PangolinWindowToolbar.dockEdgeSize,
       PangolinWindowToolbar.dockEdgeSize,
       PangolinWindowToolbar.dockEdgeSize,
     );
-    final Rect topRight = Rect.fromLTWH(
+    final topRight = Rect.fromLTWH(
       bounds.right - PangolinWindowToolbar.dockEdgeSize,
       bounds.top,
       PangolinWindowToolbar.dockEdgeSize,
       PangolinWindowToolbar.dockEdgeSize,
     );
-    final Rect right = Rect.fromLTWH(
+    final right = Rect.fromLTWH(
       bounds.right - PangolinWindowToolbar.dockEdgeSize,
       bounds.top + PangolinWindowToolbar.dockEdgeSize,
       PangolinWindowToolbar.dockEdgeSize,
       bounds.height - PangolinWindowToolbar.dockEdgeSize * 2,
     );
-    final Rect bottomRight = Rect.fromLTWH(
+    final bottomRight = Rect.fromLTWH(
       bounds.right - PangolinWindowToolbar.dockEdgeSize,
       bounds.bottom - PangolinWindowToolbar.dockEdgeSize,
       PangolinWindowToolbar.dockEdgeSize,
       PangolinWindowToolbar.dockEdgeSize,
     );
-    final Rect maximized = Rect.fromLTWH(
+    final maximized = Rect.fromLTWH(
       bounds.left + PangolinWindowToolbar.dockEdgeSize,
       bounds.top,
       bounds.width - PangolinWindowToolbar.dockEdgeSize * 2,
@@ -337,7 +338,7 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
     setState(() {
       _cursor = SystemMouseCursors.click;
     });
-    final WindowDock dock =
+    final dock =
         _getDockForPosition(hierarchy.wmBounds, _lastDetails.globalPosition);
     layout.dock = dock;
     final layer = EffectsLayer.of(context);
@@ -355,16 +356,15 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
 }
 
 class WindowToolbarButton extends StatelessWidget {
-  final Widget icon;
-  final VoidCallback onTap;
-  final Color? hoverColor;
-
   const WindowToolbarButton({
     super.key,
     required this.icon,
     required this.onTap,
     this.hoverColor,
   });
+  final Widget icon;
+  final VoidCallback onTap;
+  final Color? hoverColor;
 
   @override
   Widget build(BuildContext context) {

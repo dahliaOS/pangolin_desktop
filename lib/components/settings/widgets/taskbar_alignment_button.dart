@@ -20,18 +20,18 @@ import 'package:pangolin/utils/data/constants.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 
 class TaskbarAlignmentButton extends StatelessWidget {
-  final TaskbarAlignmentModelData model;
-  final bool selected;
 
   const TaskbarAlignmentButton({
     super.key,
     required this.model,
     this.selected = false,
   });
+  final TaskbarAlignmentModelData model;
+  final bool selected;
 
   @override
   Widget build(BuildContext context) {
-    final bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return InkWell(
       customBorder: Constants.smallShape,
@@ -45,7 +45,7 @@ class TaskbarAlignmentButton extends StatelessWidget {
           color: selected ? context.theme.accent : Colors.transparent,
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
+          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
           child: Column(
             children: [
               Container(
@@ -57,7 +57,7 @@ class TaskbarAlignmentButton extends StatelessWidget {
                   color: Theme.of(context).backgroundColor,
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8),
                   child: Stack(
                     alignment: Alignment.center,
                     children: [
@@ -138,7 +138,7 @@ class TaskbarAlignmentButton extends StatelessWidget {
     double multiplier = 1,
     bool shaded = false,
   }) {
-    final bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final hslBgc =
         HSLColor.fromColor(Theme.of(context).scaffoldBackgroundColor);
     return Container(

@@ -2,15 +2,13 @@ import 'package:dbus/dbus.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/services/dbus/image.dart';
-import 'package:pangolin/services/dbus/menu.dart';
 import 'package:pangolin/services/dbus/status_item.dart';
 import 'package:pangolin/widgets/global/dbus/image.dart';
 import 'package:pangolin/widgets/global/dbus/menu.dart';
 
 class TrayItem extends StatefulWidget {
-  final StatusNotifierItem item;
-
   const TrayItem({required this.item, super.key});
+  final StatusNotifierItem item;
 
   @override
   State<TrayItem> createState() => _TrayItemState();
@@ -24,13 +22,15 @@ class _TrayItemState extends State<TrayItem> {
   }
 
   void _startListening(StatusNotifierItem item) {
-    item.addListener(update);
-    item.startListening();
+    item
+      ..addListener(update)
+      ..startListening();
   }
 
   void _stopListening(StatusNotifierItem item) {
-    item.stopListening();
-    item.removeListener(update);
+    item
+      ..stopListening()
+      ..removeListener(update);
   }
 
   @override
@@ -63,11 +63,12 @@ class _TrayItemState extends State<TrayItem> {
           );
         },
         onSecondaryTapDown: (details) async {
-          final MenuEntry? menu = widget.item.menu;
+          final menu = widget.item.menu;
 
           if (menu == null) return;
 
-          menu.object.callEvent(menu.id, "opened", DBusArray.string([]), 0);
+          await menu.object
+              .callEvent(menu.id, 'opened', DBusArray.string([]), 0);
 
           await showMenu(
             context: context,
@@ -79,11 +80,12 @@ class _TrayItemState extends State<TrayItem> {
             ),
             items: menu.children
                 .where((e) => e.visible)
-                .map((e) => DBusMenuEntry(e))
+                .map(DBusMenuEntry.new)
                 .toList(),
           );
 
-          menu.object.callEvent(menu.id, "closed", DBusArray.string([]), 0);
+          await menu.object
+              .callEvent(menu.id, 'closed', DBusArray.string([]), 0);
         },
         child: Listener(
           onPointerSignal: (event) {

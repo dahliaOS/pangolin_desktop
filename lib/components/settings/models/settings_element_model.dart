@@ -17,12 +17,12 @@ limitations under the License.
 import 'package:flutter/material.dart';
 
 abstract class SettingsElementModel extends StatefulWidget {
-  final SettingsElementModelType type;
 
   const SettingsElementModel({
     required this.type,
     super.key,
   });
+  final SettingsElementModelType type;
 }
 
 // Types of SettingsCards

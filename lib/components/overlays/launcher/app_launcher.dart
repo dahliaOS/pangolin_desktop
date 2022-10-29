@@ -26,14 +26,14 @@ import 'package:xdg_desktop/xdg_desktop.dart';
 import 'package:yatl_flutter/yatl_flutter.dart';
 
 class AppLauncherButton extends StatelessWidget {
-  final DesktopEntry application;
 
   const AppLauncherButton({required this.application, super.key});
+  final DesktopEntry application;
 
   @override
   Widget build(BuildContext context) {
     return Tooltip(
-      message: application.getLocalizedComment(context.locale) ?? "",
+      message: application.getLocalizedComment(context.locale) ?? '',
       waitDuration: const Duration(seconds: 1),
       preferBelow: true,
       verticalOffset: 80,
@@ -48,7 +48,7 @@ class AppLauncherButton extends StatelessWidget {
             onLongPress: () =>
                 CustomizationService.current.togglePinnedApp(application.id),
             onTap: () async {
-              final ShellState shell = Shell.of(context, listen: false);
+              final shell = Shell.of(context, listen: false);
               await ApplicationService.current.startApp(application.id);
               shell.dismissEverything();
             },
@@ -56,7 +56,7 @@ class AppLauncherButton extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 AutoVisualResource(
-                  resource: application.icon?.main ?? "",
+                  resource: application.icon?.main ?? '',
                   size: 64,
                 ),
                 Text(
@@ -74,12 +74,12 @@ class AppLauncherButton extends StatelessWidget {
 }
 
 class AppLauncherTile extends StatefulWidget {
-  final DesktopEntry application;
 
   const AppLauncherTile({
     required this.application,
     super.key,
   });
+  final DesktopEntry application;
 
   @override
   State<AppLauncherTile> createState() => _AppLauncherTileState();
@@ -102,7 +102,7 @@ class _AppLauncherTileState extends State<AppLauncherTile> {
           leading: SizedBox.fromSize(
             size: const Size.square(32),
             child: AutoVisualResource(
-              resource: widget.application.icon?.main ?? "",
+              resource: widget.application.icon?.main ?? '',
               size: 32,
             ),
           ),

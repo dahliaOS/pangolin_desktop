@@ -20,12 +20,6 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 
 class AcrylicLayer extends StatelessWidget {
-  final Widget? child;
-  final bool isBackground;
-  final bool enableBlur;
-  final bool enableNoise;
-  final double opacity;
-
   const AcrylicLayer({
     super.key,
     required this.child,
@@ -34,6 +28,11 @@ class AcrylicLayer extends StatelessWidget {
     this.enableNoise = true,
     this.opacity = 0.5,
   });
+  final Widget? child;
+  final bool isBackground;
+  final bool enableBlur;
+  final bool enableNoise;
+  final double opacity;
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +54,7 @@ class AcrylicLayer extends StatelessWidget {
                   decoration: const BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage(
-                        "assets/textures/NoiseAsset_256X256_PNG.png",
+                        'assets/textures/NoiseAsset_256X256_PNG.png',
                       ),
                       alignment: Alignment.topLeft,
                       repeat: ImageRepeat.repeat,
@@ -80,39 +79,39 @@ class AcrylicLayer extends StatelessWidget {
 }
 
 class AcrylicLayerPainter extends CustomPainter {
-  // vars
-  final bool darkMode;
-  final bool isBackground;
-  final double opacity;
-
   // const
   const AcrylicLayerPainter({
     required this.darkMode,
     required this.isBackground,
     this.opacity = 0.5,
   });
+  // vars
+  final bool darkMode;
+  final bool isBackground;
+  final double opacity;
 
   // painter
   @override
   Future<void> paint(Canvas canvas, Size size) async {
-    final Color darkModeColor = const Color(0xff0a0a0a).withOpacity(opacity);
-    final Color lightModeColor = const Color(0xfffafafa).withOpacity(opacity);
+    final darkModeColor = const Color(0xff0a0a0a).withOpacity(opacity);
+    final lightModeColor = const Color(0xfffafafa).withOpacity(opacity);
 
     /* canvas.drawColor(
       darkMode ? _darkModeColor : _lightModeColor,
       BlendMode.luminosity,
     ); */
-    const Color red = Color(0x00ff0000);
-    const Color green = Color(0x0000ff00);
-    const Color blue = Color(0x000000ff);
+    const red = Color(0x00ff0000);
+    const green = Color(0x0000ff00);
+    const blue = Color(0x000000ff);
     if (isBackground) {
-      canvas.drawColor(red.withOpacity(0.25), BlendMode.luminosity);
-      canvas.drawColor(green.withOpacity(0.25), BlendMode.luminosity);
-      canvas.drawColor(blue.withOpacity(0.25), BlendMode.luminosity);
-      canvas.drawColor(red.withOpacity(0.05), BlendMode.saturation);
-      canvas.drawColor(green.withOpacity(0.05), BlendMode.saturation);
-      canvas.drawColor(blue.withOpacity(0.05), BlendMode.saturation);
-      canvas.drawColor(Colors.black.withOpacity(0.2), BlendMode.darken);
+      canvas
+        ..drawColor(red.withOpacity(0.25), BlendMode.luminosity)
+        ..drawColor(green.withOpacity(0.25), BlendMode.luminosity)
+        ..drawColor(blue.withOpacity(0.25), BlendMode.luminosity)
+        ..drawColor(red.withOpacity(0.05), BlendMode.saturation)
+        ..drawColor(green.withOpacity(0.05), BlendMode.saturation)
+        ..drawColor(blue.withOpacity(0.05), BlendMode.saturation)
+        ..drawColor(Colors.black.withOpacity(0.2), BlendMode.darken);
     }
     darkMode
         ? canvas.drawColor(darkModeColor, BlendMode.darken)

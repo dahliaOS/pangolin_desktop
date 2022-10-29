@@ -31,7 +31,7 @@ class KeyboardButton extends StatelessWidget {
       //width: 96,
       width: 48,
       child: Padding(
-        padding: const EdgeInsets.all(4.0),
+        padding: const EdgeInsets.all(4),
         child: Material(
           type: MaterialType.transparency,
           shape: Constants.smallShape,

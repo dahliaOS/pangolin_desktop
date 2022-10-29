@@ -17,13 +17,13 @@ limitations under the License.
 import 'package:flutter/widgets.dart';
 
 class ThemeModeDataModel {
-  final Color color;
-  final bool darkMode;
-  final String label;
 
   const ThemeModeDataModel({
     required this.color,
     required this.label,
     required this.darkMode,
   });
+  final Color color;
+  final bool darkMode;
+  final String label;
 }

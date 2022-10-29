@@ -36,7 +36,7 @@ class _QsShortcutButtonState extends State<QsShortcutButton> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(right: 8.0),
+      padding: const EdgeInsets.only(right: 8),
       child: Material(
         color: context.theme.backgroundColor.op(0.5),
         clipBehavior: Clip.antiAlias,
@@ -44,7 +44,7 @@ class _QsShortcutButtonState extends State<QsShortcutButton> {
         child: InkWell(
           onTap: () => widget.onPressed?.call(),
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12),
+            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
             child: Row(
               children: [
                 Icon(

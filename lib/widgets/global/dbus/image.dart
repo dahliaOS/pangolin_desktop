@@ -9,12 +9,6 @@ import 'package:pangolin/widgets/global/resource/icon/icon.dart';
 import 'package:pangolin/widgets/global/resource/image/image.dart';
 
 class DBusImageWidget extends StatefulWidget {
-  final DBusImage image;
-  final double? width;
-  final double? height;
-
-  /// Valid only for xdg icons
-  final String? themePath;
 
   const DBusImageWidget({
     required this.image,
@@ -23,6 +17,12 @@ class DBusImageWidget extends StatefulWidget {
     this.themePath,
     super.key,
   });
+  final DBusImage image;
+  final double? width;
+  final double? height;
+
+  /// Valid only for xdg icons
+  final String? themePath;
 
   @override
   State<DBusImageWidget> createState() => _DBusImageWidgetState();
@@ -49,7 +49,7 @@ class _DBusImageWidgetState extends State<DBusImageWidget> {
   DBusImage _selectBestForSize(Map<int, DBusImage> images) {
     if (squareSize == null) return images.values.last;
 
-    for (final int size in images.keys) {
+    for (final size in images.keys) {
       if (size > squareSize!) {
         return images[size]!;
       }
@@ -59,7 +59,7 @@ class _DBusImageWidgetState extends State<DBusImageWidget> {
   }
 
   Future<void> _decodeImage() async {
-    DBusImage image = widget.image;
+    var image = widget.image;
 
     if (image is RawDBusImageCollection) {
       image = _selectBestForSize(image.pixmaps);
@@ -88,24 +88,24 @@ class _DBusImageWidgetState extends State<DBusImageWidget> {
         targetHeight: widget.height?.round(),
       );
     } else if (image is PngDBusImage) {
-      final ui.Codec codec = await ui.instantiateImageCodec(
+      final codec = await ui.instantiateImageCodec(
         image.bytes,
         targetWidth: widget.width?.round(),
         targetHeight: widget.height?.round(),
       );
-      final ui.FrameInfo frame = await codec.getNextFrame();
+      final frame = await codec.getNextFrame();
       _updateImage(frame.image);
     }
   }
 
   Uint8List _patchBytes(Uint8List bytes, int width, int height) {
-    final List<int> result = [];
+    final result = <int>[];
 
-    for (int y = 0; y < height; y++) {
-      for (int x = 0; x < width * 3; x += 3) {
-        final int r = bytes[x + y * width * 3];
-        final int g = bytes[x + 1 + y * width * 3];
-        final int b = bytes[x + 2 + y * width * 3];
+    for (var y = 0; y < height; y++) {
+      for (var x = 0; x < width * 3; x += 3) {
+        final r = bytes[x + y * width * 3];
+        final g = bytes[x + 1 + y * width * 3];
+        final b = bytes[x + 2 + y * width * 3];
 
         result.addAll([r, g, b, 255]);
       }
@@ -130,16 +130,16 @@ class _DBusImageWidgetState extends State<DBusImageWidget> {
 
   @override
   Widget build(BuildContext context) {
-    DBusImage image = widget.image;
+    var image = widget.image;
 
     if (image is RawDBusImageCollection) {
       image = _selectBestForSize(image.pixmaps);
     }
 
     if (image is NameDBusImage) {
-      final Uri? uri = Uri.tryParse(image.name);
+      final uri = Uri.tryParse(image.name);
 
-      if (uri != null && (uri.scheme == "file" || image.name.startsWith("/"))) {
+      if (uri != null && (uri.scheme == 'file' || image.name.startsWith('/'))) {
         return ResourceImage(
           resource: ImageResource(
             type: ImageResourceType.file,
@@ -196,9 +196,9 @@ class _DBusImageWidgetState extends State<DBusImageWidget> {
 }
 
 class _UiImagePainter extends CustomPainter {
-  final ui.Image image;
 
   const _UiImagePainter(this.image);
+  final ui.Image image;
 
   @override
   void paint(ui.Canvas canvas, ui.Size size) {

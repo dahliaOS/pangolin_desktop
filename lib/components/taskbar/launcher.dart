@@ -61,13 +61,13 @@ class LauncherButton extends StatelessWidget
 }
 
 enum LauncherIcon {
-  first("Icon 1", "launcher_1"),
-  second("Icon 2", "launcher_2"),
-  third("Icon 3", "launcher_3"),
-  fourth("Icon 4", "launcher_4");
+  first('Icon 1', 'launcher_1'),
+  second('Icon 2', 'launcher_2'),
+  third('Icon 3', 'launcher_3'),
+  fourth('Icon 4', 'launcher_4');
+
+  const LauncherIcon(this.label, this.iconName);
 
   final String label;
   final String iconName;
-
-  const LauncherIcon(this.label, this.iconName);
 }

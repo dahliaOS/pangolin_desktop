@@ -2,7 +2,7 @@ import 'dart:async';
 
 Future<T?> callAsNullable<T>(FutureOr<T> Function() method) async {
   try {
-    final T value = await method();
+    final value = await method();
     return value;
   } catch (e) {
     return null;
@@ -11,7 +11,7 @@ Future<T?> callAsNullable<T>(FutureOr<T> Function() method) async {
 
 T? callAsNullableSync<T>(T Function() method) {
   try {
-    final T value = method();
+    final value = method();
     return value;
   } catch (e) {
     return null;

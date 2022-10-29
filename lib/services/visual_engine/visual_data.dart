@@ -14,27 +14,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 class VisualInformation {
-  final double taskbarHeight;
-  final bool opaqueTitlebars;
-  final bool titleInfo;
-  final double windowRadius;
-  final double taskbarRounding;
-  final double taskbarOpacity;
-  final String activeAppsPosition;
-  final bool showDate;
-  final bool searchIcon;
-  final bool overviewIcon;
-  final bool notificationsIcon;
-  final String launcherIndicator;
-  final bool launcherCategories;
-  final String searchBarString;
-  final bool launcherSystemOptions;
-  final double searchbarRounding;
-  final double qsTileRounding;
-  final double qsRounding;
-  final double overlayOpacity;
-  final double overlayButtonRounding;
-  final String userName;
 
   const VisualInformation({
     required this.taskbarHeight,
@@ -85,4 +64,25 @@ class VisualInformation {
       taskbarRounding: parsedJson['taskbarRounding']! as double,
     ); //complete
   }
+  final double taskbarHeight;
+  final bool opaqueTitlebars;
+  final bool titleInfo;
+  final double windowRadius;
+  final double taskbarRounding;
+  final double taskbarOpacity;
+  final String activeAppsPosition;
+  final bool showDate;
+  final bool searchIcon;
+  final bool overviewIcon;
+  final bool notificationsIcon;
+  final String launcherIndicator;
+  final bool launcherCategories;
+  final String searchBarString;
+  final bool launcherSystemOptions;
+  final double searchbarRounding;
+  final double qsTileRounding;
+  final double qsRounding;
+  final double overlayOpacity;
+  final double overlayButtonRounding;
+  final String userName;
 }

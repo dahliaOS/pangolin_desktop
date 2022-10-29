@@ -5,11 +5,6 @@ import 'package:pangolin/utils/other/resource.dart';
 import 'package:pangolin/widgets/global/resource/image/image.dart';
 
 class ResourceIcon extends StatefulWidget {
-  final IconResource resource;
-  final String? themePath;
-  final double? size;
-  final Color? color;
-  final bool lookupForSize;
 
   const ResourceIcon({
     required this.resource,
@@ -19,6 +14,11 @@ class ResourceIcon extends StatefulWidget {
     this.lookupForSize = false,
     super.key,
   });
+  final IconResource resource;
+  final String? themePath;
+  final double? size;
+  final Color? color;
+  final bool lookupForSize;
 
   @override
   State<ResourceIcon> createState() => _ResourceIconState();
@@ -47,10 +47,10 @@ class _ResourceIconState extends State<ResourceIcon> {
       future: widget.resource.resolve(
         size: widget.lookupForSize ? widget.size?.toInt() : null,
         directory: widget.themePath,
-        fallback: "application-x-executable",
+        fallback: 'application-x-executable',
       ),
       builder: (context, snapshot) {
-        final String? resolvedResource = snapshot.data;
+        final resolvedResource = snapshot.data;
 
         if (resolvedResource == null) {
           return SizedBox.square(dimension: widget.size);

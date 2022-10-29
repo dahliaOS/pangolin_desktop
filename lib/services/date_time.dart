@@ -29,10 +29,10 @@ class _DateTimeServiceImpl extends DateTimeService {
   DateTime get date => _lastDate;
 
   @override
-  String get formattedDate => DateFormat("dd.MM.yyyy").format(date);
+  String get formattedDate => DateFormat('dd.MM.yyyy').format(date);
 
   @override
-  String get formattedTime => DateFormat("Hms").format(date);
+  String get formattedTime => DateFormat('Hms').format(date);
 
   @override
   Future<void> start() async {
@@ -51,7 +51,7 @@ class _DateTimeServiceImpl extends DateTimeService {
   }
 
   void _checkTime(Timer timer) {
-    final DateTime now = DateTime.now();
+    final now = DateTime.now();
 
     if (_lastDate.second == now.second) return;
 

@@ -20,7 +20,7 @@ class ComputationPool<K, V> {
   void completeComputation(K key, V result) {
     if (_results[key] == null) {
       throw Exception(
-        "No computation registered for key $key, nothing to complete",
+        'No computation registered for key $key, nothing to complete',
       );
     }
 
@@ -28,10 +28,10 @@ class ComputationPool<K, V> {
   }
 
   Future<Map<K, V>> waitForResults([OnResultCallback<K, V>? callback]) async {
-    final Map<K, V> results = {};
+    final results = <K, V>{};
 
-    for (final MapEntry<K, Completer<V>> computation in _results.entries) {
-      final V value = await computation.value.future;
+    for (final computation in _results.entries) {
+      final value = await computation.value.future;
       callback?.call(computation.key, value);
       results[computation.key] = value;
     }

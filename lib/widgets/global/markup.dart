@@ -3,13 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class MarkupText extends StatelessWidget {
-  static final _hrefRegexp = RegExp('(?<=href=").+?(?=")');
-
-  final String text;
-  final TextAlign textAlign;
-  final TextStyle? style;
-  final int? maxLines;
-  final TextOverflow overflow;
 
   const MarkupText(
     this.text, {
@@ -19,17 +12,24 @@ class MarkupText extends StatelessWidget {
     this.maxLines,
     this.overflow = TextOverflow.clip,
   });
+  static final _hrefRegexp = RegExp('(?<=href=").+?(?=")');
+
+  final String text;
+  final TextAlign textAlign;
+  final TextStyle? style;
+  final int? maxLines;
+  final TextOverflow overflow;
 
   @override
   Widget build(BuildContext context) {
-    final List<TextPart> partList = [];
-    String current = "";
-    final List<TextType> currentTypes = [];
+    final partList = <TextPart>[];
+    var current = '';
+    final currentTypes = <TextType>[];
     String? cUrl;
     String? cColor;
 
     void addPart() {
-      if (current != "") {
+      if (current != '') {
         partList.add(
           TextPart(
             current,
@@ -37,7 +37,7 @@ class MarkupText extends StatelessWidget {
             color: cColor,
           )..addAll(currentTypes),
         );
-        current = "";
+        current = '';
       }
     }
 
@@ -49,50 +49,50 @@ class MarkupText extends StatelessWidget {
       if (currentTypes.contains(t)) currentTypes.remove(t);
     }
 
-    for (int pointer = 0; pointer < text.length; pointer++) {
-      if (text[pointer] == "<") {
-        final int end = text.indexOf(">", pointer);
+    for (var pointer = 0; pointer < text.length; pointer++) {
+      if (text[pointer] == '<') {
+        final end = text.indexOf('>', pointer);
         if (end > 0) {
-          final String code = text.substring(pointer + 1, end);
+          final code = text.substring(pointer + 1, end);
           switch (code) {
-            case "b":
+            case 'b':
               addPart();
               addType(TextType.bold);
               pointer += 2;
               break;
-            case "i":
+            case 'i':
               addPart();
               addType(TextType.italic);
               pointer += 2;
               break;
-            case "u":
+            case 'u':
               addPart();
               addType(TextType.underlined);
               pointer += 2;
               break;
-            case "/b":
+            case '/b':
               addPart();
               removeType(TextType.bold);
               pointer += 3;
               break;
-            case "/i":
+            case '/i':
               addPart();
               removeType(TextType.italic);
               pointer += 3;
               break;
-            case "/u":
+            case '/u':
               addPart();
               removeType(TextType.underlined);
               pointer += 3;
               break;
-            case "/a":
+            case '/a':
               addPart();
               removeType(TextType.link);
               cUrl = null;
               pointer += 3;
               break;
             default:
-              if (code.startsWith("a ") &&
+              if (code.startsWith('a ') &&
                   _hrefRegexp.firstMatch(code) != null) {
                 addPart();
                 addType(TextType.link);
@@ -127,35 +127,35 @@ class MarkupText extends StatelessWidget {
 enum TextType { link, bold, italic, underlined }
 
 class TextPart {
-  final String text;
-  final String? url;
-  final String? color;
-  final List<TextType> types = [];
 
   TextPart(
     this.text, {
     this.url,
     this.color,
   });
+  final String text;
+  final String? url;
+  final String? color;
+  final List<TextType> types = [];
 
   void add(TextType type) {
     types.add(type);
   }
 
   void addAll(List<TextType> currentTypes) {
-    for (final TextType type in currentTypes) {
+    for (final type in currentTypes) {
       types.add(type);
     }
   }
 
   InlineSpan toSpan() {
-    final List<TextDecoration> decorations = [];
+    final decorations = <TextDecoration>[];
     Color? cColor;
     TapGestureRecognizer? recognizer;
-    FontWeight fontWeight = FontWeight.normal;
-    FontStyle fontStyle = FontStyle.normal;
+    var fontWeight = FontWeight.normal;
+    var fontStyle = FontStyle.normal;
 
-    for (final TextType type in types) {
+    for (final type in types) {
       switch (type) {
         case TextType.link:
           cColor = Colors.blue;
@@ -163,7 +163,7 @@ class TextPart {
           if (url != null) {
             recognizer = TapGestureRecognizer()
               ..onTap = () async {
-                if (await canLaunchUrlString(url!)) launchUrlString(url!);
+                if (await canLaunchUrlString(url!)) await launchUrlString(url!);
               };
           }
           break;

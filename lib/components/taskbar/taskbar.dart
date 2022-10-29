@@ -21,10 +21,6 @@ import 'package:pangolin/widgets/global/box/box_container.dart';
 import 'package:pangolin/widgets/services.dart';
 
 class Taskbar extends StatefulWidget {
-  final List<Widget> leading;
-  final List<Widget> center;
-  final List<Widget> trailing;
-  final bool centerRelativeToScreen;
 
   const Taskbar({
     this.leading = const [],
@@ -33,6 +29,10 @@ class Taskbar extends StatefulWidget {
     this.centerRelativeToScreen = false,
     super.key,
   });
+  final List<Widget> leading;
+  final List<Widget> center;
+  final List<Widget> trailing;
+  final bool centerRelativeToScreen;
 
   @override
   State<Taskbar> createState() => _TaskbarState();

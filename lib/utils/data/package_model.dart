@@ -1,14 +1,12 @@
 class PackageManifest {
-  final bool enabled;
-  final List<IndividualPackage> package;
 
   PackageManifest({required this.enabled, required this.package});
 
   factory PackageManifest.fromJson(Map<String, dynamic> parsedJson) {
-    final List<dynamic> list = parsedJson['package']! as List<dynamic>;
+    final list = parsedJson['package']! as List<dynamic>;
 
     // print(list.runtimeType);
-    final List<IndividualPackage> packageList = list
+    final packageList = list
         .map((i) => IndividualPackage.fromJson(i as Map<String, dynamic>))
         .toList();
 
@@ -17,20 +15,11 @@ class PackageManifest {
       package: packageList,
     );
   }
+  final bool enabled;
+  final List<IndividualPackage> package;
 }
 
 class IndividualPackage {
-  final String id;
-  final String altName;
-  final String realName;
-  final String version;
-  final String description;
-  final String url;
-  final String iconURL;
-  final String accentColor;
-  final String backgroundColor;
-  final String titleBarColor;
-  final String themeMode;
 
   const IndividualPackage({
     required this.id, //e.g. "com.google.android.apps.docs"
@@ -60,4 +49,15 @@ class IndividualPackage {
       titleBarColor: parsedJson['titleBarColor']! as String,
     );
   }
+  final String id;
+  final String altName;
+  final String realName;
+  final String version;
+  final String description;
+  final String url;
+  final String iconURL;
+  final String accentColor;
+  final String backgroundColor;
+  final String titleBarColor;
+  final String themeMode;
 }

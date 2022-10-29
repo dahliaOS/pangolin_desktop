@@ -100,7 +100,6 @@ dependencies:
 
 dev_dependencies:
   build_runner: ^2.1.11
-  lint: ^1.10.0
 
 dependency_overrides:
   dbus: ^0.7.7

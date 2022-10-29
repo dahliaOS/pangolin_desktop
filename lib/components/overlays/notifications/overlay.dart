@@ -13,9 +13,8 @@ import 'package:pangolin/widgets/global/separated_flex.dart';
 import 'package:pangolin/widgets/services.dart';
 
 class NotificationsOverlay extends ShellOverlay {
-  static const String overlayId = "notifications";
-
   NotificationsOverlay({super.key}) : super(id: overlayId);
+  static const String overlayId = 'notifications';
 
   @override
   ShellOverlayState<NotificationsOverlay> createState() =>
@@ -36,7 +35,7 @@ class _NotificationsOverlayState extends State<NotificationsOverlay>
 
   @override
   void dispose() {
-    for (final int id in notifications.keys) {
+    for (final id in notifications.keys) {
       onNotificationRemoved(id, NotificationCloseReason.closed);
     }
     notifications.clear();
@@ -47,7 +46,7 @@ class _NotificationsOverlayState extends State<NotificationsOverlay>
 
   @override
   void onNotificationAdded(UserNotification notification) {
-    final AnimationController animationController = _newController();
+    final animationController = _newController();
     notifications[notification.id] = NotificationWrapperData(
       notification: notification,
       controller: animationController,
@@ -65,7 +64,7 @@ class _NotificationsOverlayState extends State<NotificationsOverlay>
     int id,
     NotificationCloseReason reason,
   ) async {
-    final NotificationWrapperData? notif = notifications[id];
+    final notif = notifications[id];
 
     if (notif == null) return;
 
@@ -88,8 +87,8 @@ class _NotificationsOverlayState extends State<NotificationsOverlay>
 
   @override
   void onNotificationReplaced(int oldId, int id) {
-    final NotificationWrapperData? notification = notifications[oldId];
-    final UserNotification? newNotification = service.getNotification(id);
+    final notification = notifications[oldId];
+    final newNotification = service.getNotification(id);
 
     if (newNotification == null || notification == null) return;
 
@@ -120,19 +119,19 @@ class _NotificationsOverlayState extends State<NotificationsOverlay>
   }
 
   Future<void> _dismissNotification(int id) async {
-    final NotificationWrapperData? notif = notifications[id];
+    final notif = notifications[id];
 
     if (notif == null) return;
 
     await notif.controller.reverse();
-    onNotificationRemoved(id, NotificationCloseReason.dismissed);
+    await onNotificationRemoved(id, NotificationCloseReason.dismissed);
   }
 
   @override
   Widget buildChild(BuildContext context, NotificationService service) {
     if (!controller.showing) return const SizedBox();
 
-    final EdgeInsets wmInsets = WindowHierarchy.of(context).wmInsets;
+    final wmInsets = WindowHierarchy.of(context).wmInsets;
     final Animation<double> animation = CurvedAnimation(
       parent: ac,
       curve: decelerateEasing,
@@ -166,11 +165,10 @@ class _NotificationsOverlayState extends State<NotificationsOverlay>
                       reverse: true,
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
-                        final NotificationWrapperData notification =
-                            notifications.values
-                                .toList()
-                                .reversed
-                                .toList()[index];
+                        final notification = notifications.values
+                            .toList()
+                            .reversed
+                            .toList()[index];
 
                         return NotificationViewWrapper(
                           notification: notification,
@@ -199,9 +197,8 @@ class _NotificationsOverlayState extends State<NotificationsOverlay>
 }
 
 class _NotificationHeaderBar extends StatelessWidget {
-  final NotificationService service;
-
   const _NotificationHeaderBar({required this.service});
+  final NotificationService service;
 
   @override
   Widget build(BuildContext context) {
@@ -219,12 +216,12 @@ class _NotificationHeaderBar extends StatelessWidget {
               separator: const Spacer(),
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text("Notifications (${service.notifications.length})"),
+                Text('Notifications (${service.notifications.length})'),
                 TextButton(
                   onPressed: service.notifications.isNotEmpty
                       ? _clearNotifications
                       : null,
-                  child: const Text("Clear all"),
+                  child: const Text('Clear all'),
                 ),
               ],
             ),
@@ -235,11 +232,11 @@ class _NotificationHeaderBar extends StatelessWidget {
   }
 
   Future<void> _clearNotifications() async {
-    final List<int> ids = List.from(service.notifications.map((e) => e.id));
+    final ids = List<int>.from(service.notifications.map((e) => e.id));
 
-    for (final int id in ids) {
+    for (final id in ids) {
       service.closeNotification(id, NotificationCloseReason.dismissed);
-      await Future.delayed(const Duration(milliseconds: 10));
+      await Future<void>.delayed(const Duration(milliseconds: 10));
     }
   }
 }

@@ -25,11 +25,10 @@ Future<String> _loadDataAsset() {
   return rootBundle.loadString('assets/json/visualData.json');
 }
 
-Future loadVisualEngine() async {
-  final String jsonString = await _loadDataAsset();
-  final Map<String, dynamic> jsonResponse =
-      json.decode(jsonString) as Map<String, dynamic>;
-  final VisualInformation visuals = VisualInformation.fromJson(jsonResponse);
+Future<void> loadVisualEngine() async {
+  final jsonString = await _loadDataAsset();
+  final jsonResponse = json.decode(jsonString) as Map<String, dynamic>;
+  final visuals = VisualInformation.fromJson(jsonResponse);
   if (kDebugMode) {
     print(visuals.taskbarHeight);
     print(visuals.opaqueTitlebars);

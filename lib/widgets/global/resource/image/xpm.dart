@@ -6,78 +6,78 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 
 class XpmParser {
-  static final RegExp _varDeclRegex = RegExp(
-    r"static\s+char(\s*\*\s+|\s+\*\s*)[a-zA-Z_][a-zA-Z_0-9]+\s*\[\]\s*=\s*{",
-  );
 
   const XpmParser();
+  static final RegExp _varDeclRegex = RegExp(
+    r'static\s+char(\s*\*\s+|\s+\*\s*)[a-zA-Z_][a-zA-Z_0-9]+\s*\[\]\s*=\s*{',
+  );
 
   Xpm? parse(String input) {
-    final _ConsumableStringBuffer buffer = _ConsumableStringBuffer(input, "\n");
+    final buffer = _ConsumableStringBuffer(input, '\n');
 
     if (!buffer.canRead()) return null;
-    if (buffer.read() != "/* XPM */") return null;
+    if (buffer.read() != '/* XPM */') return null;
     if (!_varDeclRegex.hasMatch(buffer.read())) return null;
 
-    buffer.parts.removeWhere((e) => RegExp(r"\/\*.*\*\/").hasMatch(e));
+    buffer.parts.removeWhere((e) => RegExp(r'\/\*.*\*\/').hasMatch(e));
 
-    final List<String> parts =
-        buffer.read().replaceAll(RegExp('",?'), "").trim().split(RegExp(r"\s"));
-    final List<int> values = parts.map((e) => int.parse(e)).toList();
+    final parts =
+        buffer.read().replaceAll(RegExp('",?'), '').trim().split(RegExp(r'\s'));
+    final values = parts.map(int.parse).toList();
 
     if (values.length != 4 && values.length != 6) return null;
 
-    final int width = values[0];
-    final int height = values[1];
-    final int ncolors = values[2];
-    final int cpp = values[3];
+    final width = values[0];
+    final height = values[1];
+    final ncolors = values[2];
+    final cpp = values[3];
 
-    final Map<String, ui.Color> colors = {};
+    final colors = <String, ui.Color>{};
 
-    for (int i = 0; i < ncolors && buffer.canRead(); i++) {
-      final String line = buffer
+    for (var i = 0; i < ncolors && buffer.canRead(); i++) {
+      final line = buffer
           .read()
-          .replaceAll(RegExp(r'",$'), "")
-          .replaceAll(RegExp('"'), "");
-      final _ConsumableStringBuffer lineBuffer =
-          _ConsumableStringBuffer(line, "");
+          .replaceAll(RegExp(r'",$'), '')
+          .replaceAll(RegExp('"'), '');
+      final lineBuffer =
+          _ConsumableStringBuffer(line, '');
 
-      final String char = lineBuffer.read(cpp);
-      lineBuffer.skip(RegExp(r"\s"));
+      final char = lineBuffer.read(cpp);
+      lineBuffer.skip(RegExp(r'\s'));
 
-      if (lineBuffer.read() != "c") return null;
-      lineBuffer.skip(RegExp(r"\s"));
+      if (lineBuffer.read() != 'c') return null;
+      lineBuffer.skip(RegExp(r'\s'));
 
-      if (lineBuffer.toString() == "None") {
+      if (lineBuffer.toString() == 'None') {
         colors[char] = const ui.Color(0x00000000);
         continue;
       }
 
-      if (lineBuffer.read() != "#") return null;
+      if (lineBuffer.read() != '#') return null;
 
-      final String hexColorStr = lineBuffer.toString().substring(0, 6);
-      final int? hexColor = int.tryParse(hexColorStr, radix: 16);
+      final hexColorStr = lineBuffer.toString().substring(0, 6);
+      final hexColor = int.tryParse(hexColorStr, radix: 16);
       if (hexColor == null) return null;
 
-      final int r = (0xff0000 & hexColor) >> 16;
-      final int g = (0x00ff00 & hexColor) >> 8;
-      final int b = (0x0000ff & hexColor) >> 0;
+      final r = (0xff0000 & hexColor) >> 16;
+      final g = (0x00ff00 & hexColor) >> 8;
+      final b = (0x0000ff & hexColor) >> 0;
 
       colors[char] = ui.Color.fromARGB(0xff, r, g, b);
     }
 
     if (colors.length != ncolors) return null;
 
-    final Uint32List colorBuffer = Uint32List(width * height);
+    final colorBuffer = Uint32List(width * height);
 
-    for (int y = 0; y < height; y++) {
-      final String line = buffer.read().replaceAll(RegExp('"(,|};)?'), "");
-      final _ConsumableStringBuffer lineBuffer =
-          _ConsumableStringBuffer(line, "");
+    for (var y = 0; y < height; y++) {
+      final line = buffer.read().replaceAll(RegExp('"(,|};)?'), '');
+      final lineBuffer =
+          _ConsumableStringBuffer(line, '');
 
-      for (int x = 0; x < width; x++) {
-        final String char = lineBuffer.read(cpp);
-        final int? color = colors[char]?.value;
+      for (var x = 0; x < width; x++) {
+        final char = lineBuffer.read(cpp);
+        final color = colors[char]?.value;
 
         if (color == null) return null;
 
@@ -94,15 +94,15 @@ class XpmParser {
 }
 
 class Xpm {
-  final int width;
-  final int height;
-  final Uint8List data;
 
   const Xpm({
     required this.width,
     required this.height,
     required this.data,
   }) : assert(data.length == width * height * 4);
+  final int width;
+  final int height;
+  final Uint8List data;
 
   @override
   int get hashCode => Object.hash(width, height, data);
@@ -120,14 +120,14 @@ class Xpm {
 }
 
 class _ConsumableStringBuffer {
-  final String separator;
-  final List<String> parts;
 
   _ConsumableStringBuffer(String string, this.separator)
       : parts = string.split(separator);
+  final String separator;
+  final List<String> parts;
 
   String read([int amount = 1]) {
-    final String content = parts.getRange(0, amount).join(separator);
+    final content = parts.getRange(0, amount).join(separator);
     parts.removeRange(0, amount);
     return content;
   }
@@ -151,11 +151,6 @@ class _ConsumableStringBuffer {
 }
 
 class XpmImage extends StatefulWidget {
-  final File file;
-  final double? width;
-  final double? height;
-  final double scale;
-  final BoxFit? fit;
 
   const XpmImage(
     this.file, {
@@ -165,6 +160,11 @@ class XpmImage extends StatefulWidget {
     this.fit,
     super.key,
   });
+  final File file;
+  final double? width;
+  final double? height;
+  final double scale;
+  final BoxFit? fit;
 
   @override
   State<XpmImage> createState() => _XpmImageState();
@@ -190,11 +190,11 @@ class _XpmImageState extends State<XpmImage> {
   }
 
   Future<void> loadXpm(File file) async {
-    final String input = await file.readAsString();
+    final input = await file.readAsString();
     loadedXpm = parser.parse(input);
 
     if (loadedXpm == null) {
-      throw Exception("Invalid xpm file");
+      throw Exception('Invalid xpm file');
     }
 
     ui.decodeImageFromPixels(

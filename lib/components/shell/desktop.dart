@@ -46,8 +46,8 @@ class _DesktopState extends State<Desktop> {
       alwaysOnTopMode: AlwaysOnTopMode.systemOverlay,
     ),
     properties: {
-      WindowEntry.title: "shell",
-      WindowExtras.stableId: "shell",
+      WindowEntry.title: 'shell',
+      WindowExtras.stableId: 'shell',
       WindowEntry.showOnTaskbar: false,
       WindowEntry.icon: null,
     },
@@ -74,14 +74,14 @@ class _DesktopState extends State<Desktop> {
             ],
             onShellShown: (shell) {
               if (CustomizationService.current.showWelcomeScreen) {
-                shell.showOverlay("welcome");
+                shell.showOverlay('welcome');
               }
             },
           ),
         ),
       );
       // ignore: avoid_print
-      print("Initilized Desktop Shell");
+      print('Initilized Desktop Shell');
     });
   }
 

@@ -35,12 +35,12 @@ class SettingsPresets {
       [
         const ThemeModeDataModel(
           color: Color(0xffffffff),
-          label: "Light",
+          label: 'Light',
           darkMode: false,
         ),
         const ThemeModeDataModel(
           color: Color(0xff0a0a0a),
-          label: "Dark",
+          label: 'Dark',
           darkMode: true,
         ),
       ],
@@ -53,11 +53,11 @@ class SettingsPresets {
     return List.from(
       [
         const TaskbarAlignmentModelData(
-          label: "Start",
+          label: 'Start',
           centered: false,
         ),
         const TaskbarAlignmentModelData(
-          label: "Center",
+          label: 'Center',
           centered: true,
         ),
       ],

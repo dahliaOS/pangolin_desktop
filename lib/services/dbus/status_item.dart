@@ -11,6 +11,22 @@ import 'package:pangolin/services/dbus/objects/remote/status_item.dart';
 import 'package:pangolin/services/dbus/utils.dart';
 
 class StatusNotifierItem extends ChangeNotifier {
+
+  StatusNotifierItem({
+    required this.object,
+    required this.title,
+    required this.id,
+    required this.category,
+    required this.windowId,
+    required this.itemIsMenu,
+    required this.icon,
+    required this.attentionIcon,
+    required this.overlayIcon,
+    required this.status,
+    required this.iconThemePath,
+    required this.tooltip,
+    required this.menu,
+  });
   final StatusNotifierItemObject object;
   final String? id;
   final StatusNotifierItemCategory? category;
@@ -36,22 +52,6 @@ class StatusNotifierItem extends ChangeNotifier {
       _newIconThemePath;
   StreamSubscription<StatusNotifierItemObjectNewMenu>? _newMenu;
   StreamSubscription<StatusNotifierItemObjectNewToolTip>? _newTooltip;
-
-  StatusNotifierItem({
-    required this.object,
-    required this.title,
-    required this.id,
-    required this.category,
-    required this.windowId,
-    required this.itemIsMenu,
-    required this.icon,
-    required this.attentionIcon,
-    required this.overlayIcon,
-    required this.status,
-    required this.iconThemePath,
-    required this.tooltip,
-    required this.menu,
-  });
 
   static Future<StatusNotifierItem> fromObject(
     StatusNotifierItemObject object,
@@ -163,19 +163,19 @@ class StatusNotifierItem extends ChangeNotifier {
   static Future<StatusNotifierItemTooltip?> _getTooltip(
     FutureOr<DBusStruct> Function() getTooltip,
   ) async {
-    final DBusStruct? tooltipStruct = await callAsNullable(getTooltip);
+    final tooltipStruct = await callAsNullable(getTooltip);
 
     if (tooltipStruct == null) return null;
 
-    final String iconName = tooltipStruct.children[0].asString();
-    final List<DBusStruct> iconPixmaps = tooltipStruct.children[1]
+    final iconName = tooltipStruct.children[0].asString();
+    final iconPixmaps = tooltipStruct.children[1]
         .asArray()
         .map((e) => e as DBusStruct)
         .toList();
 
-    final DBusImage? icon = await _getIcon(() => iconPixmaps, () => iconName);
-    final String title = tooltipStruct.children[2].asString();
-    final String description = tooltipStruct.children[3].asString();
+    final icon = await _getIcon(() => iconPixmaps, () => iconName);
+    final title = tooltipStruct.children[2].asString();
+    final description = tooltipStruct.children[3].asString();
 
     return StatusNotifierItemTooltip(
       icon: icon,
@@ -188,17 +188,17 @@ class StatusNotifierItem extends ChangeNotifier {
     DBusRemoteObject refObject,
     FutureOr<DBusObjectPath> Function() getMenu,
   ) async {
-    final DBusObjectPath? menuObjectPath = await callAsNullable(getMenu);
+    final menuObjectPath = await callAsNullable(getMenu);
 
     if (menuObjectPath == null) return null;
 
-    final DBusMenuObject menu = DBusMenuObject(
+    final menu = DBusMenuObject(
       refObject.client,
       refObject.name,
       path: menuObjectPath,
     );
 
-    final List<DBusValue> entries = await menu.callGetLayout(0, -1, []);
+    final entries = await menu.callGetLayout(0, -1, []);
 
     return MenuEntry.fromDBus(menu, entries[1] as DBusStruct);
   }
@@ -207,8 +207,8 @@ class StatusNotifierItem extends ChangeNotifier {
     FutureOr<List<DBusStruct>> Function() getPixmap,
     FutureOr<String> Function() getName,
   ) async {
-    final List<DBusStruct>? rawPixmaps = await callAsNullable(getPixmap);
-    final String? rawName = await callAsNullable(getName);
+    final rawPixmaps = await callAsNullable(getPixmap);
+    final rawName = await callAsNullable(getName);
 
     if (rawPixmaps != null) {
       return _parseRawPixmaps(rawPixmaps);
@@ -222,7 +222,7 @@ class StatusNotifierItem extends ChangeNotifier {
   static RawDBusImageCollection _parseRawPixmaps(
     List<DBusStruct> pixmaps,
   ) {
-    final List<RawDBusImage> parsedPixmaps =
+    final parsedPixmaps =
         pixmaps.map(_parseRawPixmap).toList();
 
     return RawDBusImageCollection(
@@ -234,9 +234,9 @@ class StatusNotifierItem extends ChangeNotifier {
   }
 
   static RawDBusImage _parseRawPixmap(DBusStruct pixmap) {
-    final int width = pixmap.children[0].asInt32();
-    final int height = pixmap.children[1].asInt32();
-    final List<int> bytes = pixmap.children[2].asByteArray().toList();
+    final width = pixmap.children[0].asInt32();
+    final height = pixmap.children[1].asInt32();
+    final bytes = pixmap.children[2].asByteArray().toList();
 
     return RawDBusImage(
       width: width,
@@ -248,14 +248,14 @@ class StatusNotifierItem extends ChangeNotifier {
   }
 
   static List<int> _patchBytes(List<int> bytes, int width, int height) {
-    final List<int> result = [];
+    final result = <int>[];
 
-    for (int y = 0; y < height; y++) {
-      for (int x = 0; x < width * 4; x += 4) {
-        final int a = bytes[x + y * width * 4];
-        final int r = bytes[x + 1 + y * width * 4];
-        final int g = bytes[x + 2 + y * width * 4];
-        final int b = bytes[x + 3 + y * width * 4];
+    for (var y = 0; y < height; y++) {
+      for (var x = 0; x < width * 4; x += 4) {
+        final a = bytes[x + y * width * 4];
+        final r = bytes[x + 1 + y * width * 4];
+        final g = bytes[x + 2 + y * width * 4];
+        final b = bytes[x + 3 + y * width * 4];
 
         result.addAll([r, g, b, a]);
       }
@@ -322,13 +322,13 @@ enum StatusNotifierItemCategory {
 }
 
 class StatusNotifierItemTooltip {
-  final DBusImage? icon;
-  final String title;
-  final String? description;
 
   const StatusNotifierItemTooltip({
     required this.icon,
     required this.title,
     required this.description,
   });
+  final DBusImage? icon;
+  final String title;
+  final String? description;
 }

@@ -19,7 +19,7 @@ import 'dart:io' show Platform;
 import 'package:flutter/foundation.dart' show kDebugMode, kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import "package:intl/locale.dart" as intl;
+import 'package:intl/locale.dart' as intl;
 import 'package:logging/logging.dart';
 import 'package:pangolin/components/shell/desktop.dart';
 import 'package:pangolin/services/application.dart';
@@ -103,7 +103,7 @@ Future<void> main() async {
 
         return ListenableServiceBuilder<CustomizationService>(
           builder: (context, child) {
-            final CustomizationService service = CustomizationService.current;
+            final service = CustomizationService.current;
             return YatlApp(
               core: yatl,
               getLocale: () =>

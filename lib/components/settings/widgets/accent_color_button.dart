@@ -22,16 +22,16 @@ import 'package:pangolin/widgets/services.dart';
 
 class AccentColorButton extends StatelessWidget
     with StatelessServiceListener<CustomizationService> {
-  final BuiltinColor color;
 
   const AccentColorButton({
     super.key,
     required this.color,
   });
+  final BuiltinColor color;
 
   @override
   Widget buildChild(BuildContext context, CustomizationService service) {
-    final bool selected = service.accentColor == color.resource;
+    final selected = service.accentColor == color.resource;
 
     return Tooltip(
       message: color.label,
@@ -42,7 +42,7 @@ class AccentColorButton extends StatelessWidget
           service.accentColor = color.resource;
         },
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(8),
           child: Stack(
             children: [
               Center(

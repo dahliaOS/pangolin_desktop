@@ -60,7 +60,7 @@ class _WallpaperContextMenu extends StatelessWidget {
         items: [
           ContextMenuItem(
             onTap: () {
-              showDialog(
+              showDialog<void>(
                 barrierColor: Colors.transparent,
                 context: context,
                 builder: (context) {
@@ -69,16 +69,16 @@ class _WallpaperContextMenu extends StatelessWidget {
               );
             },
             icon: Icons.image,
-            title: "Change Wallpaper",
-            shortcut: "",
+            title: 'Change Wallpaper',
+            shortcut: '',
           ),
           ContextMenuItem(
             onTap: () {
-              ApplicationService.current.startApp("io.dahlia.settings");
+              ApplicationService.current.startApp('io.dahlia.settings');
             },
             icon: Icons.settings_outlined,
-            title: "Settings",
-            shortcut: "",
+            title: 'Settings',
+            shortcut: '',
           ),
         ],
       ),

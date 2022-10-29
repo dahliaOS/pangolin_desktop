@@ -7,19 +7,19 @@ import 'package:pangolin/utils/data/constants.dart';
 import 'package:pausable_timer/pausable_timer.dart';
 
 class NotificationViewWrapper extends StatelessWidget {
-  final NotificationWrapperData notification;
-  final ValueChanged<int>? onClose;
-  final bool clipChild;
-
   const NotificationViewWrapper({
     required this.notification,
     this.onClose,
     this.clipChild = false,
+    super.key,
   });
+  final NotificationWrapperData notification;
+  final ValueChanged<int>? onClose;
+  final bool clipChild;
 
   @override
   Widget build(BuildContext context) {
-    final CurvedAnimation curved = CurvedAnimation(
+    final curved = CurvedAnimation(
       parent: notification.controller,
       curve: decelerateEasing,
       reverseCurve: decelerateEasing.flipped,
@@ -76,12 +76,6 @@ class NotificationViewWrapper extends StatelessWidget {
 }
 
 class _NotificationDismissible extends StatelessWidget {
-  final Widget child;
-  final double value;
-  final ValueChanged<double> onDismissing;
-  final VoidCallback? onKept;
-  final VoidCallback? onDismissed;
-
   const _NotificationDismissible({
     required this.child,
     required this.value,
@@ -89,16 +83,21 @@ class _NotificationDismissible extends StatelessWidget {
     required this.onDismissing,
     this.onDismissed,
   });
+  final Widget child;
+  final double value;
+  final ValueChanged<double> onDismissing;
+  final VoidCallback? onKept;
+  final VoidCallback? onDismissed;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onHorizontalDragUpdate: (details) {
-        final RenderBox? box = context.findRenderObject() as RenderBox?;
+        final box = context.findRenderObject() as RenderBox?;
 
         if (box == null) return;
 
-        final double fraction = details.localPosition.dx / box.size.width;
+        final fraction = details.localPosition.dx / box.size.width;
         onDismissing(1 - fraction);
       },
       onHorizontalDragEnd: (details) {
@@ -118,13 +117,6 @@ class _NotificationDismissible extends StatelessWidget {
 }
 
 class SizeTransitionWithBehavior extends AnimatedWidget {
-  final Axis axis;
-  Animation<double> get sizeFactor => listenable as Animation<double>;
-  final double axisAlignment;
-  final Clip clipBehavior;
-  final ShapeBorder clipShape;
-  final Widget? child;
-
   const SizeTransitionWithBehavior({
     super.key,
     this.axis = Axis.vertical,
@@ -134,23 +126,28 @@ class SizeTransitionWithBehavior extends AnimatedWidget {
     this.clipShape = const RoundedRectangleBorder(),
     this.child,
   }) : super(listenable: sizeFactor);
+  final Axis axis;
+  Animation<double> get sizeFactor => listenable as Animation<double>;
+  final double axisAlignment;
+  final Clip clipBehavior;
+  final ShapeBorder clipShape;
+  final Widget? child;
 
   @override
   Widget build(BuildContext context) {
     final AlignmentDirectional alignment;
     if (axis == Axis.vertical) {
-      alignment = AlignmentDirectional(-1.0, axisAlignment);
+      alignment = AlignmentDirectional(-1, axisAlignment);
     } else {
-      alignment = AlignmentDirectional(axisAlignment, -1.0);
+      alignment = AlignmentDirectional(axisAlignment, -1);
     }
     return ClipPath(
       clipper: ShapeBorderClipper(shape: clipShape),
       clipBehavior: clipBehavior,
       child: Align(
         alignment: alignment,
-        heightFactor: axis == Axis.vertical ? max(sizeFactor.value, 0.0) : null,
-        widthFactor:
-            axis == Axis.horizontal ? max(sizeFactor.value, 0.0) : null,
+        heightFactor: axis == Axis.vertical ? max(sizeFactor.value, 0) : null,
+        widthFactor: axis == Axis.horizontal ? max(sizeFactor.value, 0) : null,
         child: child,
       ),
     );
@@ -158,10 +155,6 @@ class SizeTransitionWithBehavior extends AnimatedWidget {
 }
 
 class NotificationWrapperData {
-  final UserNotification notification;
-  final AnimationController controller;
-  final PausableTimer? timer;
-
   const NotificationWrapperData({
     required this.notification,
     required this.controller,
@@ -172,4 +165,7 @@ class NotificationWrapperData {
     required this.controller,
     required this.timer,
   });
+  final UserNotification notification;
+  final AnimationController controller;
+  final PausableTimer? timer;
 }

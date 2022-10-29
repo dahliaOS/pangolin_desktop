@@ -14,15 +14,15 @@ limitations under the License.
 import 'package:flutter/material.dart';
 
 class SettingsTile extends StatelessWidget {
-  final Widget? child;
-  final String? title;
-  final EdgeInsetsGeometry? margin;
   const SettingsTile({
     super.key,
     required this.child,
     this.margin,
     this.title,
   });
+  final Widget? child;
+  final String? title;
+  final EdgeInsetsGeometry? margin;
 
   @override
   Widget build(BuildContext context) {
@@ -31,14 +31,14 @@ class SettingsTile extends StatelessWidget {
       child: Card(
         elevation: 0,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0),
+          borderRadius: BorderRadius.circular(10),
           side: BorderSide(
             color: Colors.grey.withOpacity(0.2),
           ),
         ),
         color: Theme.of(context).cardColor,
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(8),
           child: Container(
             margin: margin,
             child: Column(

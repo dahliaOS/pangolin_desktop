@@ -21,7 +21,6 @@ import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/services/customization.dart';
 import 'package:pangolin/utils/data/constants.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
-import 'package:pangolin/utils/other/resource.dart';
 import 'package:pangolin/utils/providers/locale_provider.dart';
 import 'package:pangolin/utils/wm/wm.dart';
 import 'package:pangolin/widgets/global/box/box_container.dart';
@@ -29,9 +28,9 @@ import 'package:pangolin/widgets/global/resource/image/image.dart';
 import 'package:pangolin/widgets/services.dart';
 
 class OverviewOverlay extends ShellOverlay {
-  static const String overlayId = "overview";
 
   OverviewOverlay({super.key}) : super(id: overlayId);
+  static const String overlayId = 'overview';
 
   @override
   _OverviewOverlayState createState() => _OverviewOverlayState();
@@ -53,8 +52,8 @@ class _OverviewOverlayState extends State<OverviewOverlay>
 
   @override
   Widget buildChild(BuildContext context, CustomizationService service) {
-    final WindowHierarchyController hierarchy = WindowHierarchy.of(context);
-    final ImageResource image = service.wallpaper;
+    final hierarchy = WindowHierarchy.of(context);
+    final image = service.wallpaper;
 
     if (!controller.showing) return const SizedBox();
 
@@ -78,7 +77,7 @@ class _OverviewOverlayState extends State<OverviewOverlay>
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(12.0),
+                        padding: const EdgeInsets.all(12),
                         child: Material(
                           color: Colors.transparent,
                           clipBehavior: Clip.antiAlias,
@@ -98,7 +97,7 @@ class _OverviewOverlayState extends State<OverviewOverlay>
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(12.0),
+                        padding: const EdgeInsets.all(12),
                         child: FloatingActionButton.extended(
                           highlightElevation: 2,
                           onPressed: () {},
@@ -111,7 +110,7 @@ class _OverviewOverlayState extends State<OverviewOverlay>
                           backgroundColor: Theme.of(context)
                               .backgroundColor
                               .withOpacity(0.5),
-                          elevation: 0.0,
+                          elevation: 0,
                         ),
                       )
                     ],

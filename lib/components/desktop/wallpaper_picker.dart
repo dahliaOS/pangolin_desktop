@@ -16,7 +16,6 @@ limitations under the License.
 
 import 'package:flutter/material.dart';
 import 'package:pangolin/services/customization.dart';
-import 'package:pangolin/utils/api_models/bing_wallpaper_api_model.dart';
 import 'package:pangolin/utils/data/constants.dart';
 import 'package:pangolin/utils/data/globals.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
@@ -47,9 +46,8 @@ class _WallpaperPickerState extends State<WallpaperPicker>
 
   @override
   Widget buildChild(BuildContext context, CustomizationService service) {
-    final List<ImageResource> recentWallpapers =
-        service.recentWallpapers.reversed.toList();
-    final List<ImageResource> builtinWalls = wallpapers
+    final recentWallpapers = service.recentWallpapers.reversed.toList();
+    final builtinWalls = wallpapers
         .map((e) => ImageResource(type: ImageResourceType.dahlia, value: e))
         .toList();
 
@@ -64,7 +62,7 @@ class _WallpaperPickerState extends State<WallpaperPicker>
           onTap: () {},
           child: AlertDialog(
             insetPadding: const EdgeInsets.fromLTRB(16, 4, 16, 16),
-            elevation: 0.0,
+            elevation: 0,
             backgroundColor: Colors.transparent,
             title: TabBar(
               enableFeedback: true,
@@ -82,9 +80,9 @@ class _WallpaperPickerState extends State<WallpaperPicker>
                       ),
               controller: tabController,
               tabs: const [
-                Tab(text: "Default Wallpapers"),
-                Tab(text: "Wallpapers Repository"),
-                Tab(text: "Recent Wallpapers"),
+                Tab(text: 'Default Wallpapers'),
+                Tab(text: 'Wallpapers Repository'),
+                Tab(text: 'Recent Wallpapers'),
               ],
             ),
             content: SizedBox(
@@ -108,11 +106,12 @@ class _WallpaperPickerState extends State<WallpaperPicker>
                     itemBuilder: (BuildContext context, int index) {
                       //_index = index;
                       return Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(8),
                         child: InkWell(
                           onTap: () {
-                            service.wallpaper = builtinWalls[index];
-                            service.addRecentWallpaper(service.wallpaper);
+                            service
+                              ..wallpaper = builtinWalls[index]
+                              ..addRecentWallpaper(service.wallpaper);
                           },
                           child: Stack(
                             children: [
@@ -146,7 +145,7 @@ class _WallpaperPickerState extends State<WallpaperPicker>
                   //
                   const ColoredBox(
                     color: Colors.green,
-                    child: Center(child: Text("Coming Soon")),
+                    child: Center(child: Text('Coming Soon')),
                   ),
                   //
                   //Recent Wallpapers
@@ -161,7 +160,7 @@ class _WallpaperPickerState extends State<WallpaperPicker>
                     ),
                     itemBuilder: (context, index) {
                       return Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(8),
                         child: InkWell(
                           mouseCursor: SystemMouseCursors.click,
                           onTap: () =>
@@ -171,7 +170,7 @@ class _WallpaperPickerState extends State<WallpaperPicker>
                               color: Theme.of(context).colorScheme.secondary,
                               child: const Center(
                                 child: Text(
-                                  "Error\nImage does not exist anymore",
+                                  'Error\nImage does not exist anymore',
                                   textAlign: TextAlign.center,
                                 ),
                               ),
@@ -197,17 +196,18 @@ class _WallpaperPickerState extends State<WallpaperPicker>
                       decoration: const InputDecoration(
                         contentPadding:
                             EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-                        hintText: "Set wallpaper from URL",
-                        labelText: "Wallpaper URL",
+                        hintText: 'Set wallpaper from URL',
+                        labelText: 'Wallpaper URL',
                       ),
                       controller: _controller,
                       onSubmitted: (text) {
-                        if (text.startsWith("http")) {
-                          service.wallpaper = ImageResource(
-                            type: ImageResourceType.network,
-                            value: text,
-                          );
-                          service.addRecentWallpaper(service.wallpaper);
+                        if (text.startsWith('http')) {
+                          service
+                            ..wallpaper = ImageResource(
+                              type: ImageResourceType.network,
+                              value: text,
+                            )
+                            ..addRecentWallpaper(service.wallpaper);
                           Navigator.pop(context);
                         } else {
                           Navigator.pop(context);
@@ -226,21 +226,21 @@ class _WallpaperPickerState extends State<WallpaperPicker>
                       borderRadius: BorderRadius.circular(8),
                     ),
                     onPressed: () async {
-                      final BingImageOfTheDay? wallpaper =
-                          await getBingWallpaper();
+                      final wallpaper = await getBingWallpaper();
 
                       if (wallpaper == null) return;
 
-                      service.wallpaper = ImageResource(
-                        type: ImageResourceType.network,
-                        value: wallpaper.images.first.url.toString(),
-                      );
-                      service.addRecentWallpaper(service.wallpaper);
+                      service
+                        ..wallpaper = ImageResource(
+                          type: ImageResourceType.network,
+                          value: wallpaper.images.first.url.toString(),
+                        )
+                        ..addRecentWallpaper(service.wallpaper);
 
                       if (mounted) Navigator.pop(context);
                     },
                     label: const Text(
-                      "Use Bing Wallpaper",
+                      'Use Bing Wallpaper',
                     ),
                     icon: const Icon(
                       Icons.image_outlined,
@@ -257,19 +257,20 @@ class _WallpaperPickerState extends State<WallpaperPicker>
                       borderRadius: BorderRadius.circular(8),
                     ),
                     onPressed: () {
-                      if (_controller.text.startsWith("http")) {
-                        service.wallpaper = ImageResource(
-                          type: ImageResourceType.network,
-                          value: _controller.text,
-                        );
-                        service.addRecentWallpaper(service.wallpaper);
+                      if (_controller.text.startsWith('http')) {
+                        service
+                          ..wallpaper = ImageResource(
+                            type: ImageResourceType.network,
+                            value: _controller.text,
+                          )
+                          ..addRecentWallpaper(service.wallpaper);
                         Navigator.pop(context);
                       } else {
                         Navigator.pop(context);
                       }
                     },
                     label: const Text(
-                      "Save",
+                      'Save',
                       style: TextStyle(),
                     ),
                     icon: const Icon(

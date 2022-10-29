@@ -1,32 +1,30 @@
 import 'dart:ui' as ui show Color;
 
 import 'package:collection/collection.dart';
-import 'package:flutter/material.dart';
 import 'package:pangolin/services/icon.dart';
 import 'package:pangolin/utils/data/constants.dart';
 
 abstract class Resource<T extends Enum, V> {
+  const Resource._(this.type, this.subtype, this.value);
   static final RegExp _syntaxRegex =
-      RegExp(r"^(?<type>[a-zA-Z]+):(?<subtype>[a-zA-Z]+)#(?<value>.+)$");
+      RegExp(r'^(?<type>[a-zA-Z]+):(?<subtype>[a-zA-Z]+)#(?<value>.+)$');
 
   final ResourceType type;
   final T subtype;
   final String value;
 
-  const Resource._(this.type, this.subtype, this.value);
-
-  static Resource? tryParse(String input) {
-    final RegExpMatch? match = _syntaxRegex.firstMatch(input);
+  static Resource<Enum, dynamic>? tryParse(String input) {
+    final match = _syntaxRegex.firstMatch(input);
 
     if (match == null) return null;
 
-    final String type = match.namedGroup("type")!;
-    final String subtypeStr = match.namedGroup("subtype")!;
-    final String value = match.namedGroup("value")!;
+    final type = match.namedGroup('type')!;
+    final subtypeStr = match.namedGroup('subtype')!;
+    final value = match.namedGroup('value')!;
 
     switch (type) {
-      case "image":
-        final ImageResourceType? subtype = ImageResourceType.values
+      case 'image':
+        final subtype = ImageResourceType.values
             .firstWhereOrNull((e) => e.name == subtypeStr);
 
         if (subtype != null) {
@@ -34,8 +32,8 @@ abstract class Resource<T extends Enum, V> {
         }
 
         break;
-      case "icon":
-        final IconResourceType? subtype = IconResourceType.values
+      case 'icon':
+        final subtype = IconResourceType.values
             .firstWhereOrNull((e) => e.name == subtypeStr);
 
         if (subtype != null) {
@@ -43,8 +41,8 @@ abstract class Resource<T extends Enum, V> {
         }
 
         break;
-      case "color":
-        final ColorResourceType? subtype = ColorResourceType.values
+      case 'color':
+        final subtype = ColorResourceType.values
             .firstWhereOrNull((e) => e.name == subtypeStr);
 
         if (subtype != null) {
@@ -57,11 +55,11 @@ abstract class Resource<T extends Enum, V> {
     return null;
   }
 
-  static Resource parse(String input) {
-    final Resource? result = tryParse(input);
+  static Resource<Enum, dynamic> parse(String input) {
+    final result = tryParse(input);
 
     if (result == null) {
-      throw FormatException("Invalid format for resource pointer", input);
+      throw FormatException('Invalid format for resource pointer', input);
     }
 
     return result;
@@ -71,7 +69,7 @@ abstract class Resource<T extends Enum, V> {
 
   @override
   String toString() {
-    return "${type.name}:${subtype.name}#$value";
+    return '${type.name}:${subtype.name}#$value';
   }
 
   @override
@@ -96,10 +94,10 @@ class ImageResource extends Resource<ImageResourceType, String> {
   }) : super._(ResourceType.image, type, value);
 
   static ImageResource parse(String input) {
-    final Resource? result = Resource.tryParse(input);
+    final result = Resource.tryParse(input);
 
     if (result == null || result is! ImageResource) {
-      throw FormatException("Invalid format for image resource pointer", input);
+      throw FormatException('Invalid format for image resource pointer', input);
     }
 
     return result;
@@ -109,7 +107,7 @@ class ImageResource extends Resource<ImageResourceType, String> {
   String resolve() {
     switch (subtype) {
       case ImageResourceType.dahlia:
-        return "assets/$value";
+        return 'assets/$value';
       case ImageResourceType.file:
       case ImageResourceType.network:
         return value;
@@ -133,7 +131,7 @@ class IconResource extends Resource<IconResourceType, Future<String?>> {
       case IconResourceType.dahlia:
         return value;
       case IconResourceType.xdg:
-        if (value.startsWith("/")) return value;
+        if (value.startsWith('/')) return value;
 
         if (directory != null && directory.isNotEmpty) {
           return IconService.current.lookupFromDirectory(
@@ -161,22 +159,21 @@ class ColorResource extends Resource<ColorResourceType, ui.Color?> {
       case ColorResourceType.dahlia:
         return BuiltinColor.getFromName(value)?.value;
       case ColorResourceType.material:
-        final List<String> parts = value.split("/");
+        final parts = value.split('/');
         if (value.isEmpty || parts.isEmpty || parts.length > 2) return null;
 
-        final MaterialColor? basePalette =
-            Constants.materialColors[parts.first];
+        final basePalette = Constants.materialColors[parts.first];
 
         if (basePalette == null) return null;
 
-        final int? shade = parts.length > 1 ? int.tryParse(parts[1]) : null;
-        final Color? color = shade != null ? basePalette[shade] : basePalette;
+        final shade = parts.length > 1 ? int.tryParse(parts[1]) : null;
+        final color = shade != null ? basePalette[shade] : basePalette;
 
         return color;
       case ColorResourceType.hex:
         if (value.length != 6 && value.length != 8) return null;
 
-        int? parsed = int.tryParse(value, radix: 16);
+        var parsed = int.tryParse(value, radix: 16);
         if (parsed == null) return null;
 
         if (value.length == 6) {

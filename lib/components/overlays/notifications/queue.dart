@@ -23,7 +23,7 @@ class _NotificationQueueState extends State<NotificationQueue>
 
   @override
   void dispose() {
-    for (final int id in incomingNotifications.keys) {
+    for (final id in incomingNotifications.keys) {
       onNotificationRemoved(id, NotificationCloseReason.closed);
     }
     incomingNotifications.clear();
@@ -37,14 +37,14 @@ class _NotificationQueueState extends State<NotificationQueue>
 
   @override
   void onNotificationAdded(UserNotification notification) {
-    final ShellState shell = Shell.of(context, listen: false);
-    final bool showingShelf =
+    final shell = Shell.of(context, listen: false);
+    final showingShelf =
         shell.currentlyShownOverlays.contains(NotificationsOverlay.overlayId);
 
     if (showingShelf) return;
 
-    final AnimationController controller = _newController();
-    final PausableTimer timer = _newTimer(notification.id);
+    final controller = _newController();
+    final timer = _newTimer(notification.id);
 
     incomingNotifications[notification.id] = NotificationWrapperData.incoming(
       notification: notification,
@@ -58,12 +58,10 @@ class _NotificationQueueState extends State<NotificationQueue>
 
     // kinda ugly but it seems to work so it's fine?
     if (incomingNotifications.length > 5) {
-      final List<NotificationWrapperData> notifications =
-          incomingNotifications.values.toList();
-      final List<NotificationWrapperData> notifsToHide =
-          notifications.sublist(0, notifications.length - 5);
+      final notifications = incomingNotifications.values.toList();
+      final notifsToHide = notifications.sublist(0, notifications.length - 5);
 
-      for (final NotificationWrapperData notif in notifsToHide) {
+      for (final notif in notifsToHide) {
         _dismissNotification(notif.notification.id);
       }
     }
@@ -71,14 +69,14 @@ class _NotificationQueueState extends State<NotificationQueue>
 
   @override
   void onNotificationReplaced(int oldId, int id) {
-    final ShellState shell = Shell.of(context, listen: false);
-    final bool showingShelf =
+    final shell = Shell.of(context, listen: false);
+    final showingShelf =
         shell.currentlyShownOverlays.contains(NotificationsOverlay.overlayId);
 
     if (showingShelf) return;
 
-    final NotificationWrapperData? notification = incomingNotifications[oldId];
-    final UserNotification? newNotification = service.getNotification(id);
+    final notification = incomingNotifications[oldId];
+    final newNotification = service.getNotification(id);
 
     if (newNotification == null) return;
 
@@ -101,7 +99,7 @@ class _NotificationQueueState extends State<NotificationQueue>
     int id,
     NotificationCloseReason reason,
   ) async {
-    final NotificationWrapperData? notif = incomingNotifications[id];
+    final notif = incomingNotifications[id];
 
     if (notif == null) return;
 
@@ -122,16 +120,16 @@ class _NotificationQueueState extends State<NotificationQueue>
   }
 
   Future<void> _dismissNotification(int id) async {
-    final NotificationWrapperData? notif = incomingNotifications[id];
+    final notif = incomingNotifications[id];
 
     if (notif == null) return;
 
     await notif.controller.reverse();
-    onNotificationRemoved(id, NotificationCloseReason.dismissed);
+    await onNotificationRemoved(id, NotificationCloseReason.dismissed);
   }
 
   void _dismissNotificationImmediately(int id) {
-    final NotificationWrapperData? notif = incomingNotifications[id];
+    final notif = incomingNotifications[id];
 
     if (notif == null) return;
 
@@ -153,7 +151,7 @@ class _NotificationQueueState extends State<NotificationQueue>
   void didChangeDependencies() {
     if (listeningForShelf) return;
 
-    final ShellState shell = Shell.of(context);
+    final shell = Shell.of(context);
     shell
         .getShowingNotifier(NotificationsOverlay.overlayId)
         .addListener(_dismissNotificationsOptionally);
@@ -164,11 +162,11 @@ class _NotificationQueueState extends State<NotificationQueue>
   }
 
   void _dismissNotificationsOptionally() {
-    final ShellState shell = Shell.of(context, listen: false);
+    final shell = Shell.of(context, listen: false);
 
     if (shell.currentlyShownOverlays.contains(NotificationsOverlay.overlayId)) {
-      final List<int> ids = List.from(incomingNotifications.keys);
-      ids.forEach(_dismissNotificationImmediately);
+      List<int>.from(incomingNotifications.keys)
+          .forEach(_dismissNotificationImmediately);
       setState(() {});
     }
   }
@@ -180,8 +178,7 @@ class _NotificationQueueState extends State<NotificationQueue>
       clipBehavior: Clip.none,
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
-        final NotificationWrapperData notification =
-            incomingNotifications.values.toList()[index];
+        final notification = incomingNotifications.values.toList()[index];
 
         return NotificationViewWrapper(
           notification: notification,

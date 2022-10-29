@@ -22,12 +22,11 @@ import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/locale_provider.dart';
 import 'package:pangolin/widgets/global/resource/auto_image.dart';
 import 'package:pangolin/widgets/services.dart';
-import 'package:xdg_desktop/xdg_desktop.dart';
 import 'package:yatl_flutter/yatl_flutter.dart';
 
 class SearchTile extends StatefulWidget {
-  final String packageName;
   const SearchTile(this.packageName, {super.key});
+  final String packageName;
 
   @override
   _SearchTileState createState() => _SearchTileState();
@@ -37,7 +36,7 @@ class _SearchTileState extends State<SearchTile>
     with StateServiceListener<CustomizationService, SearchTile> {
   @override
   Widget buildChild(BuildContext context, CustomizationService service) {
-    final DesktopEntry application =
+    final application =
         ApplicationService.current.getApp(widget.packageName)!;
 
     return Material(
@@ -68,7 +67,7 @@ class _SearchTileState extends State<SearchTile>
             ...service.recentSearchResults,
             application.id
           ];
-          final ShellState shell = Shell.of(context, listen: false);
+          final shell = Shell.of(context, listen: false);
           await ApplicationService.current.startApp(application.id);
           shell.dismissEverything();
         },

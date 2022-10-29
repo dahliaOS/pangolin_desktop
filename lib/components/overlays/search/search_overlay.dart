@@ -29,9 +29,8 @@ import 'package:xdg_desktop/xdg_desktop.dart';
 import 'package:yatl_flutter/yatl_flutter.dart';
 
 class SearchOverlay extends ShellOverlay {
-  static const String overlayId = "search";
-
   SearchOverlay({super.key}) : super(id: overlayId);
+  static const String overlayId = 'search';
 
   @override
   _SearchOverlayState createState() => _SearchOverlayState();
@@ -65,7 +64,7 @@ class _SearchOverlayState extends State<SearchOverlay>
 
   @override
   Future<void> requestShow(Map<String, Object?> args) async {
-    _controller.text = args['searchQuery'] as String? ?? "";
+    _controller.text = args['searchQuery'] as String? ?? '';
     controller.showing = true;
     await ac.forward();
   }
@@ -116,13 +115,14 @@ class _SearchOverlayState extends State<SearchOverlay>
                       leading: const Icon(Icons.search),
                       trailing: const Icon(Icons.menu_rounded),
                       onTextChanged: (text) async {
-                        results.clear();
-                        results.addAll(
-                          await SearchService.current.search(
-                            text,
-                            context.locale,
-                          ),
-                        );
+                        results
+                          ..clear()
+                          ..addAll(
+                            await SearchService.current.search(
+                              text,
+                              context.locale,
+                            ),
+                          );
                         setState(() {});
                       },
                     ),

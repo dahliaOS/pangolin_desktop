@@ -6,9 +6,9 @@ import 'package:pangolin/utils/data/dap_index.dart';
 
 void wapInstall(String url) {
   Process.run('wget', [
-    "-N",
-    "https://packages.dahliaos.io/$url",
-    "-P" + "/root/Applications/data/"
+    '-N',
+    'https://packages.dahliaos.io/$url',
+    '-P' '/root/Applications/data/'
   ]).then((result) {
     indexApplications();
   });
@@ -48,34 +48,34 @@ Widget webAppManagerHomePage() {
       child: ListView(
         children: [
           webApp(
-            "Discord",
-            "Chat, Talk & Hangout",
-            "com.discordapp.discord.json",
+            'Discord',
+            'Chat, Talk & Hangout',
+            'com.discordapp.discord.json',
           ),
           webApp(
-            "Visual Studio Code",
-            "Code editing. Redefined.",
-            "dev.vscode.app.json",
+            'Visual Studio Code',
+            'Code editing. Redefined.',
+            'dev.vscode.app.json',
           ),
           webApp(
-            "Google",
-            "Google Search",
-            "com.google.search.json",
+            'Google',
+            'Google Search',
+            'com.google.search.json',
           ),
           webApp(
-            "Townscaper",
-            "City builder game",
-            "com.oskarstalberg.townscaper.json",
+            'Townscaper',
+            'City builder game',
+            'com.oskarstalberg.townscaper.json',
           ),
           webApp(
-            "dahliaOS Documentation",
-            "dahliaOS Documentation",
-            "io.dahliaos.documentation.json",
+            'dahliaOS Documentation',
+            'dahliaOS Documentation',
+            'io.dahliaos.documentation.json',
           ),
           webApp(
-            "Minecraft Classic",
-            "Minecraft Classic Online",
-            "net.minecraft.classic.json",
+            'Minecraft Classic',
+            'Minecraft Classic Online',
+            'net.minecraft.classic.json',
           ),
         ],
       ),

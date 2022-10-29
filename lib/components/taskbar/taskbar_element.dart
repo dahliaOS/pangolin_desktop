@@ -20,10 +20,6 @@ import 'package:pangolin/utils/data/constants.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 
 class TaskbarElement extends StatefulWidget {
-  final Widget child;
-  final String? overlayID;
-  final Size? size;
-  final double? iconSize;
 
   const TaskbarElement({
     super.key,
@@ -32,6 +28,10 @@ class TaskbarElement extends StatefulWidget {
     this.size,
     this.iconSize,
   });
+  final Widget child;
+  final String? overlayID;
+  final Size? size;
+  final double? iconSize;
 
   @override
   _TaskbarElementState createState() => _TaskbarElementState();
@@ -57,7 +57,7 @@ class _TaskbarElementState extends State<TaskbarElement> {
           onEnter: (state) => setState(() => _hover = true),
           onExit: (state) => setState(() => _hover = false),
           child: Padding(
-            padding: const EdgeInsets.all(4.0),
+            padding: const EdgeInsets.all(4),
             child: Material(
               type: MaterialType.transparency,
               shape: Constants.smallShape,

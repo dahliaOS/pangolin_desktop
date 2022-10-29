@@ -105,7 +105,7 @@ extension LocalizedResourceResolve<T> on LocalizedResource<T> {
 
 extension DesktopEntryLocalizer on DesktopEntry {
   String? get domainKey => extra.keys.firstWhereOrNull(
-        (e) => RegExp("X-.+-Gettext-Domain").hasMatch(e),
+        (e) => RegExp('X-.+-Gettext-Domain').hasMatch(e),
       );
   String? get domain => domainKey != null ? extra[domainKey!] : null;
 
@@ -141,14 +141,12 @@ extension DesktopEntryLocalizer on DesktopEntry {
 
   List<String>? getLocalizedKeywords(Locale locale) {
     if (domainKey != null && keywords != null) {
-      final String translatedFromLangPack =
-          LangPacksService.current.cacheLookup(
+      final translatedFromLangPack = LangPacksService.current.cacheLookup(
         extra[domainKey]!,
         "${keywords!.main.join(";")};",
         locale.toIntlLocale(),
       );
-      final List<String> parts = translatedFromLangPack.split(";");
-      parts.removeLast();
+      final parts = translatedFromLangPack.split(';')..removeLast();
 
       return parts;
     }
@@ -158,12 +156,12 @@ extension DesktopEntryLocalizer on DesktopEntry {
 }
 
 extension ResourcePointerUtils on String {
-  Resource toResource() {
+  Resource<Enum, dynamic> toResource() {
     return Resource.parse(this);
   }
 
   Color? toColor() {
-    final Resource resource;
+    final Resource<Enum, dynamic> resource;
 
     try {
       resource = toResource();

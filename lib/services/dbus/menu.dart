@@ -7,25 +7,12 @@ import 'package:pangolin/services/dbus/image.dart';
 import 'package:pangolin/services/dbus/objects/remote/dbusmenu.dart';
 
 class MenuEntry {
-  final DBusMenuObject object;
-  final int id;
-  final MenuEntryType type;
-  final String label;
-  final bool enabled;
-  final bool visible;
-  final DBusImage? icon;
-  final List<ShortcutActivator> shortcuts;
-  final EntryToggleType toggleType;
-  final bool? toggleState;
-  final bool childrenAsSubmenu;
-  final MenuDisposition disposition;
-  final List<MenuEntry> children;
 
   const MenuEntry({
     required this.object,
     required this.id,
     this.type = MenuEntryType.standard,
-    this.label = "",
+    this.label = '',
     this.enabled = true,
     this.visible = true,
     this.icon,
@@ -52,7 +39,7 @@ class MenuEntry {
     MenuDisposition? disposition,
     List<MenuEntry>? children,
   })  : type = type ?? MenuEntryType.standard,
-        label = label ?? "",
+        label = label ?? '',
         enabled = enabled ?? true,
         visible = visible ?? true,
         shortcuts = shortcuts ?? const [],
@@ -60,17 +47,30 @@ class MenuEntry {
         childrenAsSubmenu = childrenAsSubmenu ?? false,
         disposition = disposition ?? MenuDisposition.normal,
         children = children ?? const [];
+  final DBusMenuObject object;
+  final int id;
+  final MenuEntryType type;
+  final String label;
+  final bool enabled;
+  final bool visible;
+  final DBusImage? icon;
+  final List<ShortcutActivator> shortcuts;
+  final EntryToggleType toggleType;
+  final bool? toggleState;
+  final bool childrenAsSubmenu;
+  final MenuDisposition disposition;
+  final List<MenuEntry> children;
 
   static MenuEntry? fromDBus(DBusMenuObject object, DBusStruct struct) {
     if (struct.signature != DBusSignature('(ia{sv}av)')) return null;
 
-    final int id = struct.children[0].asInt32();
-    final Map<String, DBusValue> properties =
+    final id = struct.children[0].asInt32();
+    final properties =
         struct.children[1].asStringVariantDict();
-    final List<DBusValue> children =
+    final children =
         struct.children[2].asVariantArray().toList();
 
-    final List<MenuEntry> childEntries = children
+    final childEntries = children
         .map((e) => e is DBusStruct ? MenuEntry.fromDBus(object, e) : null)
         .where((e) => e != null)
         .map((e) => e!)
@@ -98,7 +98,7 @@ class MenuEntry {
         properties['toggle-state']?.asInt32(),
       ),
       childrenAsSubmenu:
-          properties['children-display']?.asString() == "submenu",
+          properties['children-display']?.asString() == 'submenu',
       disposition: _getEnum(
         properties['disposition']?.asString(),
         MenuDisposition.values,

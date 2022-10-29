@@ -11,22 +11,22 @@ String applicationPath = '${Platform.environment['HOME']!}/Applications/data/';
 void indexApplications() {
 //remove every web app from the list of applications
 
-  final List<String> packages =
+  final packages =
       Process.runSync('ls', [applicationPath]).stdout.toString().split('\n');
 
-  for (final String package in packages) {
+  for (final package in packages) {
     if (package.endsWith('.json')) {
       Process.run('cat', ['$applicationPath$package']).then(
         (result) {
-          final String rawData = result.stdout.toString();
-          final Map<String, dynamic> json =
+          final rawData = result.stdout.toString();
+          final json =
               jsonDecode(rawData) as Map<String, dynamic>;
           final manifest = PackageManifest.fromJson(json);
 
           applications.add(
             Application(
               app: appInfoPage(
-                "${manifest.package.first.realName} - Web Application",
+                '${manifest.package.first.realName} - Web Application',
                 Color(
                   int.parse(
                     manifest.package.first.accentColor.substring(1, 7),
@@ -116,7 +116,7 @@ Widget appInfoPage(String title, Color accentColor, PackageManifest manifest) {
                   height: 16,
                 ),
                 const Text(
-                  "Warning: You are running dahliaOS as root. Web runtime sandboxing is disabled.",
+                  'Warning: You are running dahliaOS as root. Web runtime sandboxing is disabled.',
                 ),
                 Container(
                   height: 16,

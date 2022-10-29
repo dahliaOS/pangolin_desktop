@@ -48,7 +48,7 @@ class _SettingsPageCustomizationState extends State<SettingsPageCustomization>
             SizedBox(
               width: double.infinity,
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(8),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: SettingsPresets.themeModePresets
@@ -60,7 +60,7 @@ class _SettingsPageCustomizationState extends State<SettingsPageCustomization>
             SizedBox(
               width: double.infinity,
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(8),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: BuiltinColor.values
@@ -71,14 +71,14 @@ class _SettingsPageCustomizationState extends State<SettingsPageCustomization>
             ),
           ],
         ),
-        const SettingsContentHeader("Taskbar Alignment"),
+        const SettingsContentHeader('Taskbar Alignment'),
         //TODO make this strings.settings.pagesCustomizationTaskbarAlignment
         SettingsCard(
           children: [
             SizedBox(
               width: double.infinity,
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(8),
                 child: Wrap(
                   alignment: WrapAlignment.spaceEvenly,
                   // mainAxisAlignment: MainAxisAlignment.spaceEvenly,

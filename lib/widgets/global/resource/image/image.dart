@@ -24,11 +24,6 @@ typedef ImageBuilder = Widget Function(
 );
 
 class ResourceImage extends StatefulWidget {
-  final ImageResource resource;
-  final ImageErrorWidgetBuilder? errorBuilder;
-  final double? width;
-  final double? height;
-  final BoxFit? fit;
 
   const ResourceImage({
     required this.resource,
@@ -38,6 +33,11 @@ class ResourceImage extends StatefulWidget {
     this.fit,
     super.key,
   });
+  final ImageResource resource;
+  final ImageErrorWidgetBuilder? errorBuilder;
+  final double? width;
+  final double? height;
+  final BoxFit? fit;
 
   @override
   State<ResourceImage> createState() => _ResourceImageState();
@@ -92,19 +92,19 @@ Widget _buildResourceIO(
             : null,
       );
     case ImageResourceType.file:
-      final String path = resolvedResource;
-      final String ext = p.extension(path);
+      final path = resolvedResource;
+      final ext = p.extension(path);
 
       switch (ext) {
-        case ".svg":
-        case ".svgz":
+        case '.svg':
+        case '.svgz':
           return _SvgFileRenderer(
             file: File(path),
             width: width,
             height: height,
             fit: fit,
           );
-        case ".xpm":
+        case '.xpm':
           return XpmImage(
             File(path),
             width: width,
@@ -166,10 +166,6 @@ Widget _buildResourceWeb(
 }
 
 class _SvgFileRenderer extends StatefulWidget {
-  final File file;
-  final BoxFit? fit;
-  final double? width;
-  final double? height;
 
   const _SvgFileRenderer({
     required this.file,
@@ -177,6 +173,10 @@ class _SvgFileRenderer extends StatefulWidget {
     this.width,
     this.height,
   });
+  final File file;
+  final BoxFit? fit;
+  final double? width;
+  final double? height;
 
   @override
   State<_SvgFileRenderer> createState() => _SvgFileRendererState();
@@ -201,8 +201,8 @@ class _SvgFileRendererState extends State<_SvgFileRenderer> {
 
   Future<void> _loadResource() async {
     List<int> src = await widget.file.readAsBytes();
-    final ByteData data = ByteData.sublistView(Uint8List.fromList(src));
-    final int header = data.getUint16(0);
+    final data = ByteData.sublistView(Uint8List.fromList(src));
+    final header = data.getUint16(0);
 
     if (header == 0x1f8b || header == 0x8b1f) {
       src = gzip.decode(src);

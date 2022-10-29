@@ -80,12 +80,12 @@ class _SettingsHomeState extends State<_SettingsHome> {
       builder: (context, provider, _) {
         return LayoutBuilder(
           builder: (context, constraints) {
-            final bool isExpanded = constraints.maxWidth > 1024;
+            final isExpanded = constraints.maxWidth > 1024;
 
             return Row(
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8),
                   child: SizedBox(
                     width: isExpanded ? 340 : 90,
                     child: ListView.builder(
@@ -93,11 +93,11 @@ class _SettingsHomeState extends State<_SettingsHome> {
                       itemCount: _settingsTiles.length,
                       itemBuilder: (context, index) {
                         //check if tile is a header
-                        final bool isTile =
+                        final isTile =
                             _settingsTiles[index].subtitle != null;
-                        final bool isSearch =
-                            _settingsTiles[index].title == "Search";
-                        final bool isSelected = provider._pageIndex == index;
+                        final isSearch =
+                            _settingsTiles[index].title == 'Search';
+                        final isSelected = provider._pageIndex == index;
 
                         return !isTile && !isExpanded
                             ? const SizedBox(
@@ -108,7 +108,7 @@ class _SettingsHomeState extends State<_SettingsHome> {
                                 child: Padding(
                                   padding: isTile
                                       ? const EdgeInsets.symmetric(
-                                          vertical: 2.0,
+                                          vertical: 2,
                                           horizontal: 8,
                                         )
                                       : const EdgeInsets.only(left: 8),
@@ -124,7 +124,7 @@ class _SettingsHomeState extends State<_SettingsHome> {
                                           showDuration:
                                               const Duration(milliseconds: 250),
                                           message: isExpanded
-                                              ? ""
+                                              ? ''
                                               : _settingsTiles[index].title,
                                           child: ListTile(
                                             dense: true,
@@ -160,7 +160,7 @@ class _SettingsHomeState extends State<_SettingsHome> {
                                                           : null,
                                                     ),
                                                   )
-                                                : const Text(""),
+                                                : const Text(''),
                                             subtitle: isTile
                                                 ? isExpanded
                                                     ? Text(
@@ -177,7 +177,7 @@ class _SettingsHomeState extends State<_SettingsHome> {
                                                               : null,
                                                         ),
                                                       )
-                                                    : const Text("")
+                                                    : const Text('')
                                                 : null,
                                             leading: !isTile
                                                 ? null
@@ -241,11 +241,11 @@ class _SettingsHomeState extends State<_SettingsHome> {
 }
 
 class _SettingsSearchBar extends StatelessWidget {
-  final bool isExpanded;
 
   const _SettingsSearchBar({
     required this.isExpanded,
   });
+  final bool isExpanded;
 
   @override
   Widget build(BuildContext context) {
@@ -266,10 +266,6 @@ class _SettingsSearchBar extends StatelessWidget {
 }
 
 class _SettingsTileData {
-  final String title;
-  final String? subtitle;
-  final IconData? icon;
-  final Widget? page;
 
   const _SettingsTileData({
     required this.title,
@@ -277,12 +273,16 @@ class _SettingsTileData {
     this.icon,
     this.page,
   });
+  final String title;
+  final String? subtitle;
+  final IconData? icon;
+  final Widget? page;
 }
 
 List<_SettingsTileData> get _settingsTiles => <_SettingsTileData>[
       //Search HEADER
       const _SettingsTileData(
-        title: "Search",
+        title: 'Search',
       ),
       //Connectivity HEADER
       _SettingsTileData(

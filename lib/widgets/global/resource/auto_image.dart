@@ -4,18 +4,18 @@ import 'package:pangolin/widgets/global/resource/icon/icon.dart';
 import 'package:pangolin/widgets/global/resource/image/image.dart';
 
 class AutoVisualResource extends StatelessWidget {
-  final String resource;
-  final double size;
 
   const AutoVisualResource({
     required this.resource,
     required this.size,
     super.key,
   });
+  final String resource;
+  final double size;
 
   @override
   Widget build(BuildContext context) {
-    final Resource? parsedResource = Resource.tryParse(resource);
+    final parsedResource = Resource.tryParse(resource);
 
     if (parsedResource == null || parsedResource is IconResource) {
       return ResourceIcon(

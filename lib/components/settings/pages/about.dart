@@ -38,7 +38,7 @@ class SettingsPageAbout extends StatelessWidget {
                 color: context.theme.accent,
               ),
               Image.asset(
-                "assets/images/other/about-mask.png",
+                'assets/images/other/about-mask.png',
                 width: double.maxFinite,
                 height: 200,
                 fit: BoxFit.fitWidth,
@@ -51,7 +51,7 @@ class SettingsPageAbout extends StatelessWidget {
                       height: 70,
                     ),
                     Image.asset(
-                      "assets/images/logos/dahliaOS-white.png",
+                      'assets/images/logos/dahliaOS-white.png',
                       height: 50,
                     ),
                     Text(
@@ -92,7 +92,7 @@ class SettingsPageAbout extends StatelessWidget {
                       title: Text(
                         strings.settings.pagesAboutSystemInformationDesktop,
                       ),
-                      subtitle: Text("Pangolin $pangolinCommit"),
+                      subtitle: Text('Pangolin $pangolinCommit'),
                       leading: const Icon(Icons.desktop_mac),
                     )
                   ],
@@ -105,11 +105,11 @@ class SettingsPageAbout extends StatelessWidget {
                     ListTile(
                       title: Text(
                         strings.settings
-                            .pagesAboutSoftwareUpdateTileTitle("220222"),
+                            .pagesAboutSoftwareUpdateTileTitle('220222'),
                       ),
                       subtitle: Text(
                         strings.settings.pagesAboutSoftwareUpdateTileSubtitle(
-                          "2/22/2022",
+                          '2/22/2022',
                         ),
                       ),
                       leading: const Icon(Icons.update),
@@ -118,32 +118,32 @@ class SettingsPageAbout extends StatelessWidget {
                         child: Padding(
                           padding: ThemeConstants.buttonPadding,
                           child: const Text(
-                            "Check for update",
+                            'Check for update',
                           ),
                         ),
                       ),
                     ),
                   ],
                 ),
-                const SettingsContentHeader("Legal"),
+                const SettingsContentHeader('Legal'),
                 SettingsCard(
                   children: [
                     RouterListTile(
                       leading: const Icon(Icons.info_outline_rounded),
-                      title: const Text("Licenses"),
-                      subtitle: const Text("Show third party licenses"),
+                      title: const Text('Licenses'),
+                      subtitle: const Text('Show third party licenses'),
                       onTap: () => showLicensePage(
                         context: context,
-                        applicationName: "Pangolin Desktop",
+                        applicationName: 'Pangolin Desktop',
                         applicationIcon: Padding(
-                          padding: const EdgeInsets.only(top: 24.0),
+                          padding: const EdgeInsets.only(top: 24),
                           child: Image.asset(
-                            "assets/images/logos/pangolin.png",
+                            'assets/images/logos/pangolin.png',
                             height: 64,
                             width: 64,
                           ),
                         ),
-                        applicationLegalese: "Apache-2.0 License",
+                        applicationLegalese: 'Apache-2.0 License',
                       ),
                     )
                   ],

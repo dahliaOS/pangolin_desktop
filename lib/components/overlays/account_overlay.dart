@@ -25,9 +25,9 @@ import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/widgets/global/box/box_container.dart';
 
 class AccountOverlay extends ShellOverlay {
-  static const String overlayId = "account";
 
   AccountOverlay({super.key}) : super(id: overlayId);
+  static const String overlayId = 'account';
 
   @override
   _AccountOverlayState createState() => _AccountOverlayState();
@@ -103,19 +103,19 @@ class _AccountOverlayState extends State<AccountOverlay>
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.all(24.0),
+                          padding: const EdgeInsets.all(24),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: const [
                               Text(
-                                "Account Menu",
+                                'Account Menu',
                                 style: TextStyle(
                                   fontSize: 24,
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
                               SizedBox(height: 12),
-                              Text("Choose what to do as user"),
+                              Text('Choose what to do as user'),
                             ],
                           ),
                         ),
@@ -125,23 +125,23 @@ class _AccountOverlayState extends State<AccountOverlay>
                           height: 224,
                           color: context.theme.backgroundColor.op(0.35),
                           child: Padding(
-                            padding: const EdgeInsets.all(16.0),
+                            padding: const EdgeInsets.all(16),
                             child: Column(
                               children: [
                                 _accountMenuButton(
-                                  "Sign out",
+                                  'Sign out',
                                   Icons.logout_rounded,
                                   context,
-                                  onPressed: () => ActionManager.logout(),
+                                  onPressed: ActionManager.logout,
                                 ),
                                 _accountMenuButton(
-                                  "Lock",
+                                  'Lock',
                                   Icons.lock_outline,
                                   context,
-                                  onPressed: () => ActionManager.lock(),
+                                  onPressed: ActionManager.lock,
                                 ),
                                 _accountMenuButton(
-                                  "Account Settings",
+                                  'Account Settings',
                                   Icons.settings_outlined,
                                   context,
                                   onPressed: () =>
@@ -170,7 +170,7 @@ class _AccountOverlayState extends State<AccountOverlay>
     VoidCallback? onPressed,
   }) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(8),
       child: SizedBox(
         height: 48,
         width: 280,
@@ -181,7 +181,7 @@ class _AccountOverlayState extends State<AccountOverlay>
           child: InkWell(
             onTap: onPressed,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Row(
                 children: [
                   Icon(

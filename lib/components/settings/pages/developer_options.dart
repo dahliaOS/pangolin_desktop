@@ -58,10 +58,10 @@ class _SettingsPageDeveloperOptionsState
           children: [
             ListTile(
               title: const Text(
-                "Reset Database",
+                'Reset Database',
               ),
               subtitle: const Text(
-                "Needs restart to take effect",
+                'Needs restart to take effect',
               ),
               leading: const Icon(Icons.new_releases_outlined),
               trailing: ElevatedButton(
@@ -69,7 +69,7 @@ class _SettingsPageDeveloperOptionsState
                 child: Padding(
                   padding: ThemeConstants.buttonPadding,
                   child: const Text(
-                    "Reset Database",
+                    'Reset Database',
                   ),
                 ),
               ),

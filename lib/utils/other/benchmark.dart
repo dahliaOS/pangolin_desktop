@@ -8,7 +8,7 @@ class Benchmark {
 
   void end() {
     if (_before == null) {
-      throw Exception("Should begin the benchmark before calling end()");
+      throw Exception('Should begin the benchmark before calling end()');
     }
 
     _after = DateTime.now();
@@ -17,7 +17,7 @@ class Benchmark {
   Duration get duration {
     if (_before == null || _after == null) {
       throw Exception(
-        "Should begin and end the benchmark before getting the duration",
+        'Should begin and end the benchmark before getting the duration',
       );
     }
 

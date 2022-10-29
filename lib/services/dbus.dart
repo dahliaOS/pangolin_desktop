@@ -4,7 +4,7 @@ import 'package:dbus/dbus.dart';
 import 'package:pangolin/services/service.dart';
 
 mixin DBusService<T extends Service<T>> on Service<T> {
-  DBusServiceBackend get backend;
+  DBusServiceBackend<dynamic> get backend;
   final DBusServer _server = DBusServer();
 
   DBusClient? _client;
@@ -20,7 +20,7 @@ mixin DBusService<T extends Service<T>> on Service<T> {
     }
 
     throw Exception(
-      "Could not connect to a DBus instance, crashing the service to get fallback",
+      'Could not connect to a DBus instance, crashing the service to get fallback',
     );
   }
 
@@ -40,7 +40,7 @@ mixin DBusService<T extends Service<T>> on Service<T> {
       return true;
     } catch (e) {
       logger.warning(
-        "Could not register client $client for notification service, unregistering",
+        'Could not register client $client for notification service, unregistering',
       );
       await _unregisterClient(client);
       _client = null;

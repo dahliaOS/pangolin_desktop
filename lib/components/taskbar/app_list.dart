@@ -46,24 +46,24 @@ class _AppListElementState extends State<AppListElement> {
   void _onPinnedAppsChanged() {
     if (listEquals(customization.pinnedApps, _pinnedApps)) return;
 
-    final DiffResult<String> diff = calculateListDiff(
+    final diff = calculateListDiff(
       _pinnedApps,
       customization.pinnedApps,
       detectMoves: false,
     );
 
-    for (final DataDiffUpdate<String> update in diff.getUpdatesWithData()) {
+    for (final update in diff.getUpdatesWithData()) {
       update.when(
         insert: (position, data) {
           // A pinned shortcut refers to an app that can't be found for whatever
           // reason, so we just skip it
           if (ApplicationService.current.getApp(data) == null) return;
 
-          final _AppSlot? runningItem =
+          final runningItem =
               _slots.firstWhereOrNull((e) => e.id == data && e.running);
 
           if (runningItem != null) {
-            final int index = _slots.indexOf(runningItem);
+            final index = _slots.indexOf(runningItem);
             _slots[index] = runningItem.copyWith(pinned: true);
           } else {
             _slots.add(_AppSlot(id: data, pinned: true, running: false));
@@ -72,11 +72,11 @@ class _AppListElementState extends State<AppListElement> {
           setState(() {});
         },
         remove: (position, data) {
-          final _AppSlot? runningItem =
+          final runningItem =
               _slots.firstWhereOrNull((e) => e.id == data && e.running);
 
           if (runningItem != null) {
-            final int index = _slots.indexOf(runningItem);
+            final index = _slots.indexOf(runningItem);
             _slots[index] = runningItem.copyWith(pinned: false);
           } else {
             _slots.removeWhere((e) => e.id == data);
@@ -91,23 +91,23 @@ class _AppListElementState extends State<AppListElement> {
   }
 
   void _onCurrentEntriesChanged() {
-    final List<String> entries =
+    final entries =
         wm.controller.entries.map((e) => e.registry.extra.appId).toList();
 
-    final DiffResult<String> diff = calculateListDiff(
+    final diff = calculateListDiff(
       _runningApps,
       entries,
       detectMoves: false,
     );
 
-    for (final DataDiffUpdate<String> update in diff.getUpdatesWithData()) {
+    for (final update in diff.getUpdatesWithData()) {
       update.when(
         insert: (position, data) {
-          final _AppSlot? pinnedItem =
+          final pinnedItem =
               _slots.firstWhereOrNull((e) => e.id == data && e.pinned);
 
           if (pinnedItem != null) {
-            final int index = _slots.indexOf(pinnedItem);
+            final index = _slots.indexOf(pinnedItem);
             _slots[index] = pinnedItem.copyWith(running: true);
           } else {
             _slots.add(
@@ -122,7 +122,7 @@ class _AppListElementState extends State<AppListElement> {
           setState(() {});
         },
         remove: (position, data) {
-          final _AppSlot? item = _slots.firstWhereOrNull((e) => e.id == data);
+          final item = _slots.firstWhereOrNull((e) => e.id == data);
 
           if (item == null) return;
 
@@ -150,9 +150,10 @@ class _AppListElementState extends State<AppListElement> {
           newIndex -= 1;
         }
 
-        final _AppSlot item = _slots[oldIndex];
-        _slots.removeAt(oldIndex);
-        _slots.insert(newIndex, item);
+        final item = _slots[oldIndex];
+        _slots
+          ..removeAt(oldIndex)
+          ..insert(newIndex, item);
 
         setState(() {});
 
@@ -160,7 +161,7 @@ class _AppListElementState extends State<AppListElement> {
           // if a pinned item is moved then we might need to update the order
           // it's saved inside the preferences, time to check
 
-          final bool orderChanged =
+          final orderChanged =
               !listEquals(_pinnedApps, customization.pinnedApps);
 
           if (orderChanged) {
@@ -183,15 +184,14 @@ class _AppListElementState extends State<AppListElement> {
 }
 
 class _AppSlot {
-  final String id;
-  final bool pinned;
-  final bool running;
-
   const _AppSlot({
     required this.id,
     required this.pinned,
     required this.running,
   });
+  final String id;
+  final bool pinned;
+  final bool running;
 
   _AppSlot copyWith({
     String? id,

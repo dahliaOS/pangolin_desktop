@@ -21,21 +21,21 @@ import 'package:pangolin/utils/data/constants.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 
 ThemeData theme(BuildContext context) {
-  final CustomizationService customization = CustomizationService.current;
+  final customization = CustomizationService.current;
 
-  final bool darkMode = customization.darkMode;
+  final darkMode = customization.darkMode;
 
-  final Color accentColor =
+  final accentColor =
       customization.accentColor.resolve() ?? BuiltinColor.orange.value;
-  final Color foregroundColor = context.theme.foregroundColor;
-  final Color backgroundColor = darkMode ? Colors.black : Colors.white;
-  final Color surfaceForegroundColor = darkMode ? Colors.white : Colors.black;
-  final Color surfaceColor = Color(darkMode ? 0xff1E1E1E : 0xffffffff);
-  final Color cardColor = Color(darkMode ? 0xFF2c2c2c : 0xFFEBEBEB);
+  final foregroundColor = context.theme.foregroundColor;
+  final backgroundColor = darkMode ? Colors.black : Colors.white;
+  final surfaceForegroundColor = darkMode ? Colors.white : Colors.black;
+  final surfaceColor = Color(darkMode ? 0xff1E1E1E : 0xffffffff);
+  final cardColor = Color(darkMode ? 0xFF2c2c2c : 0xFFEBEBEB);
 
-  final String fontFamily = customization.fontFamily;
+  final fontFamily = customization.fontFamily;
 
-  final Brightness brightness = darkMode ? Brightness.dark : Brightness.light;
+  final brightness = darkMode ? Brightness.dark : Brightness.light;
 
   return ThemeData(
     pageTransitionsTheme: const PageTransitionsTheme(
@@ -46,10 +46,10 @@ ThemeData theme(BuildContext context) {
     ),
     hoverColor: context.theme.colorScheme.surface.withOpacity(0.25),
     floatingActionButtonTheme: FloatingActionButtonThemeData(
-      elevation: 0.0,
-      hoverElevation: 0.0,
-      focusElevation: 0.0,
-      highlightElevation: 0.0,
+      elevation: 0,
+      hoverElevation: 0,
+      focusElevation: 0,
+      highlightElevation: 0,
       foregroundColor: foregroundColor,
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
@@ -57,7 +57,7 @@ ThemeData theme(BuildContext context) {
         backgroundColor: MaterialStateProperty.all(
           accentColor,
         ),
-        elevation: MaterialStateProperty.all(0.0),
+        elevation: MaterialStateProperty.all(0),
         foregroundColor: MaterialStateProperty.all(
           foregroundColor,
         ),
@@ -65,7 +65,7 @@ ThemeData theme(BuildContext context) {
     ),
     appBarTheme: AppBarTheme(
       color: accentColor,
-      elevation: 0.0,
+      elevation: 0,
       iconTheme: IconThemeData(color: foregroundColor),
     ),
     fontFamily: fontFamily,

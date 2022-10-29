@@ -8,7 +8,7 @@ import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/widgets/services.dart';
 
 class WelcomeOverlay extends ShellOverlay {
-  WelcomeOverlay({super.key}) : super(id: "welcome");
+  WelcomeOverlay({super.key}) : super(id: 'welcome');
 
   @override
   ShellOverlayState<WelcomeOverlay> createState() => _WelcomeOverlayState();
@@ -66,7 +66,7 @@ class _WelcomeScreenState extends State<_WelcomeScreen>
 
   @override
   Widget buildChild(BuildContext context, CustomizationService service) {
-    final bool darkMode = service.darkMode;
+    final darkMode = service.darkMode;
 
     return SizedBox(
       width: 640,
@@ -110,18 +110,18 @@ class _WelcomeScreenState extends State<_WelcomeScreen>
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: const [
                   Text(
-                    "Welcome!",
+                    'Welcome!',
                     style: TextStyle(
                       fontSize: 48,
                       fontWeight: FontWeight.w100,
-                      fontFamily: "Roboto",
+                      fontFamily: 'Roboto',
                     ),
                   ),
                   Text(
-                    "\nFor now, dahliaOS is pre-release software. Some features are incomplete, applications may not work as expected, and the experience may not be stable on certain devices. \n\nWe are always looking to improve our software, so feel free to share feedback with us on any of our social media. Have fun!",
+                    '\nFor now, dahliaOS is pre-release software. Some features are incomplete, applications may not work as expected, and the experience may not be stable on certain devices. \n\nWe are always looking to improve our software, so feel free to share feedback with us on any of our social media. Have fun!',
                     style: TextStyle(
                       fontSize: 16,
-                      fontFamily: "Roboto",
+                      fontFamily: 'Roboto',
                     ),
                   ),
                 ],
@@ -141,7 +141,7 @@ class _WelcomeScreenState extends State<_WelcomeScreen>
                       });
                     },
                   ),
-                  const Text("Show at every startup"),
+                  const Text('Show at every startup'),
                 ],
               ),
             ),
@@ -152,7 +152,7 @@ class _WelcomeScreenState extends State<_WelcomeScreen>
                 onPressed: () {
                   service.showWelcomeScreen = showAtStartup;
 
-                  Shell.of(context, listen: false).dismissOverlay("welcome");
+                  Shell.of(context, listen: false).dismissOverlay('welcome');
                 },
                 child: Padding(
                   padding: ThemeConstants.buttonPadding,

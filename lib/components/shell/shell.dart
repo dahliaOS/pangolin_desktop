@@ -38,14 +38,14 @@ import 'package:provider/provider.dart';
 typedef ShellShownCallback = void Function(ShellState shell);
 
 class Shell extends StatefulWidget {
-  final List<ShellOverlay> overlays;
-  final ShellShownCallback? onShellShown;
 
   const Shell({
     required this.overlays,
     this.onShellShown,
     super.key,
   });
+  final List<ShellOverlay> overlays;
+  final ShellShownCallback? onShellShown;
 
   @override
   ShellState createState() => ShellState();
@@ -72,7 +72,7 @@ class ShellState extends State<Shell>
     Map<String, dynamic> args = const {},
     bool dismissEverything = true,
   }) async {
-    final ShellOverlay overlay =
+    final overlay =
         widget.overlays.firstWhere((o) => o.id == overlayId);
     if (dismissEverything) this.dismissEverything();
     await overlay._controller.requestShow(args);
@@ -82,7 +82,7 @@ class ShellState extends State<Shell>
     String overlayId, {
     Map<String, dynamic> args = const {},
   }) async {
-    final ShellOverlay overlay =
+    final overlay =
         widget.overlays.firstWhere((o) => o.id == overlayId);
     await overlay._controller.requestDismiss(args);
   }
@@ -99,27 +99,27 @@ class ShellState extends State<Shell>
   }
 
   bool currentlyShown(String overlayId) {
-    final ShellOverlay overlay =
+    final overlay =
         widget.overlays.firstWhere((o) => o.id == overlayId);
     return overlay._controller.showing;
   }
 
   ValueNotifier<bool> getShowingNotifier(String overlayId) {
-    final ShellOverlay overlay =
+    final overlay =
         widget.overlays.firstWhere((o) => o.id == overlayId);
     return overlay._controller.showingNotifier;
   }
 
   List<String> get currentlyShownOverlays {
-    final List<String> shownIds = [];
-    for (final ShellOverlay o in widget.overlays) {
+    final shownIds = <String>[];
+    for (final o in widget.overlays) {
       if (o._controller.showing) shownIds.add(o.id);
     }
     return shownIds;
   }
 
   void dismissEverything() {
-    for (final String id in currentlyShownOverlays) {
+    for (final id in currentlyShownOverlays) {
       dismissOverlay(id);
     }
     setState(() {});
@@ -179,7 +179,7 @@ class ShellState extends State<Shell>
               child: Listener(
                 onPointerDown: (event) {
                   WindowHierarchy.of(context, listen: false)
-                      .removeFromStableId("shell:context_menu");
+                      .removeFromStableId('shell:context_menu');
                 },
                 behavior: HitTestBehavior.translucent,
               ),
@@ -217,20 +217,20 @@ class ShellOverlayController<T extends ShellOverlayState> {
   void _requireOverlayConnection() {
     if (_overlay == null) {
       throw Exception(
-        "The controller is not connected to any overlay or it had no time to connect yet.",
+        'The controller is not connected to any overlay or it had no time to connect yet.',
       );
     }
   }
 }
 
 abstract class ShellOverlay extends StatefulWidget {
-  final String id;
-  final ShellOverlayController _controller = ShellOverlayController();
 
   ShellOverlay({
     required this.id,
     super.key,
   });
+  final String id;
+  final ShellOverlayController _controller = ShellOverlayController();
 
   @override
   ShellOverlayState createState();

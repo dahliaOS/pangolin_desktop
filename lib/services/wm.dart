@@ -65,15 +65,15 @@ class _WindowManagerServiceImpl extends WindowManagerService {
       ),
     );
 
-    for (final LiveWindowEntry e in controller.entries) {
+    for (final e in controller.entries) {
       e.layoutState.minimized = true;
     }
   }
 
   @override
   void unminimizeEverything() {
-    for (final LiveWindowEntry entry in controller.entries) {
-      final bool? cachedStatus = _minimizedCache[entry.registry.info.id];
+    for (final entry in controller.entries) {
+      final cachedStatus = _minimizedCache[entry.registry.info.id];
 
       entry.layoutState.minimized = cachedStatus ?? false;
     }

@@ -20,10 +20,10 @@ import 'package:flutter/material.dart';
 //TODO Localize this File
 
 List<String> getNetworks() {
-  final ProcessResult result =
+  final result =
       Process.runSync('nmcli', ['--terse', '-e', 'no', 'dev', 'wifi']);
-  final String networks = result.stdout as String;
-  final List<String> availableNetworks = networks.split("\n");
+  final networks = result.stdout as String;
+  final availableNetworks = networks.split('\n');
 
   //.forEach((network) {network = network.split(':');});
 
@@ -31,8 +31,8 @@ List<String> getNetworks() {
 }
 
 IconData wifiBars(String nmcliIn, String security) {
-  if (nmcliIn == "▂▄▆█" || nmcliIn == "▂▄▆_" || nmcliIn == "▂▄__") {
-    if (security == "WPA2") {
+  if (nmcliIn == '▂▄▆█' || nmcliIn == '▂▄▆_' || nmcliIn == '▂▄__') {
+    if (security == 'WPA2') {
       return Icons.signal_wifi_4_bar_lock;
     } else {
       return Icons.signal_wifi_4_bar;
@@ -54,15 +54,15 @@ Widget networkTile({
     leading: Icon(wifiBars(strength, security)),
     title: Text(title),
     subtitle: connected
-        ? const Text("Connected", style: TextStyle(color: Colors.green))
-        : const Text("Not connected"),
+        ? const Text('Connected', style: TextStyle(color: Colors.green))
+        : const Text('Not connected'),
     onTap: () {
       final passwordController = TextEditingController();
-      if (security == "WPA2" || security == "WPA1 WPA2" || security == "") {
+      if (security == 'WPA2' || security == 'WPA1 WPA2' || security == '') {
         showDialog(
           context: context,
           builder: (ctx) => AlertDialog(
-            title: const Text("Join Wi-Fi network"),
+            title: const Text('Join Wi-Fi network'),
             content: SizedBox(
               height: 125,
               child: Column(
@@ -94,35 +94,35 @@ Widget networkTile({
             actions: <Widget>[
               TextButton(
                 onPressed: () {
-                  Process.runSync("nmcli", [
-                    "dev",
-                    "wifi",
-                    "connect",
+                  Process.runSync('nmcli', [
+                    'dev',
+                    'wifi',
+                    'connect',
                     title,
-                    "password",
+                    'password',
                     passwordController.text
                   ]);
                   // print("Connecting to: " + title);
                   Navigator.of(ctx).pop();
-                  final String networkConnection = Process.runSync('curl', [
+                  final networkConnection = Process.runSync('curl', [
                     'https://packages.dahliaos.io/validation.get'
                   ]).stdout.toString().replaceAll('\n', '');
-                  if (networkConnection == "true") {
+                  if (networkConnection == 'true') {
                     final snackBar = SnackBar(
-                      content: Text("Successfully connected to $title"),
+                      content: Text('Successfully connected to $title'),
                     );
 
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
                   } else {
                     final snackBar = SnackBar(
-                      content: Text("$title does not have internet access."),
+                      content: Text('$title does not have internet access.'),
                     );
 
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
                   }
                   //TODO: Set state here to indicate connection/fail
                 },
-                child: const Text("Connect"),
+                child: const Text('Connect'),
               ),
             ],
           ),
@@ -130,7 +130,7 @@ Widget networkTile({
       } else {
         final snackBar = SnackBar(
           content: Text(
-            "$title does not use a supported security protocol ($security)",
+            '$title does not use a supported security protocol ($security)',
           ),
         );
 
@@ -143,22 +143,22 @@ Widget networkTile({
 }
 
 List<Widget> parseNetworks(BuildContext context) {
-  final List<String> input = getNetworks();
-  final List<Widget> tiles = [
+  final input = getNetworks();
+  final tiles = <Widget>[
     Container(
       height: 10,
     ),
   ];
-  for (final String network in input) {
+  for (final network in input) {
     //TODO: Remove channel and frequency duplicate networks
-    if (network.split(":").length > 1) {
+    if (network.split(':').length > 1) {
       //print(network);
       tiles.add(
         networkTile(
-          title: network.split(":")[7],
-          connected: network.split(":")[0] == "*",
-          strength: network.split(":")[12],
-          security: network.split(":")[13],
+          title: network.split(':')[7],
+          connected: network.split(':')[0] == '*',
+          strength: network.split(':')[12],
+          security: network.split(':')[13],
           context: context,
         ),
       );

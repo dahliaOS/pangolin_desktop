@@ -219,7 +219,7 @@ class StatusNotifierWatcherBase extends DBusObject {
 
   @override
   Future<DBusMethodResponse> getAllProperties(String interface) async {
-    final Map<String, DBusValue> properties = <String, DBusValue>{};
+    final properties = <String, DBusValue>{};
     if (interface == 'org.kde.StatusNotifierWatcher') {
       properties['RegisteredStatusNotifierItems'] =
           (await getRegisteredStatusNotifierItems()).returnValues[0];

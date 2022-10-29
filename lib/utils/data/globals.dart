@@ -22,52 +22,52 @@ import 'package:http/http.dart';
 import 'package:pangolin/utils/api_models/bing_wallpaper_api_model.dart';
 import 'package:pangolin/utils/wm/wm.dart';
 
-String totalVersionNumber = "220222";
-String headingFeatureString = "dahliaOS Linux $totalVersionNumber ...";
-String longName = "dahliaOS Linux $totalVersionNumber ALPHA";
+String totalVersionNumber = '220222';
+String headingFeatureString = 'dahliaOS Linux $totalVersionNumber ...';
+String longName = 'dahliaOS Linux $totalVersionNumber ALPHA';
 String get kernel {
   if (!kIsWeb) {
     if (!Platform.isWindows) {
-      final ProcessResult result = Process.runSync('uname', ['-sr']);
-      final String kernelString = result.stdout.toString();
+      final result = Process.runSync('uname', ['-sr']);
+      final kernelString = result.stdout.toString();
       return kernelString.replaceAll('\n', '');
     } else {
-      return "Windows";
+      return 'Windows';
     }
   } else {
-    return "Web Build";
+    return 'Web Build';
   }
 }
 
 String get architecture {
   if (!kIsWeb) {
     if (!Platform.isWindows) {
-      final ProcessResult result = Process.runSync('uname', ['-m']);
-      final String architechtureString = result.stdout.toString();
+      final result = Process.runSync('uname', ['-m']);
+      final architechtureString = result.stdout.toString();
       return architechtureString.replaceAll('\n', '');
     } else {
-      return "x86_64 / ARM64 based Windows operating system";
+      return 'x86_64 / ARM64 based Windows operating system';
     }
   } else {
-    return "x86_64";
+    return 'x86_64';
   }
 }
 
 String get username {
   if (!kIsWeb) {
     if (!Platform.isWindows) {
-      final ProcessResult result = Process.runSync('whoami', []);
-      final String architechtureString = result.stdout.toString();
+      final result = Process.runSync('whoami', []);
+      final architechtureString = result.stdout.toString();
       return architechtureString.replaceAll('\n', '');
     } else {
-      return "Windows user";
+      return 'Windows user';
     }
   } else {
-    return "dahliaOS Live user";
+    return 'dahliaOS Live user';
   }
 }
 
-String pangolinCommit = "220222-dahliaOS_linux";
+String pangolinCommit = '220222-dahliaOS_linux';
 String fullPangolinVersion = pangolinCommit;
 
 double horizontalPadding(BuildContext context, double size) =>
@@ -79,18 +79,18 @@ double verticalPadding(BuildContext context, double size) =>
 List<String> timeZones = [];
 
 List<String> wallpapers = [
-  "images/wallpapers/dahliaOS_white_logo_pattern_wallpaper.png",
-  "images/wallpapers/dahliaOS_white_wallpaper.png",
-  "images/wallpapers/Gradient_logo_wallpaper.png",
-  "images/wallpapers/Three_Bubbles.png",
-  "images/wallpapers/Bubbles_wallpaper.png",
-  "images/wallpapers/Mountains_wallpaper.png",
-  "images/wallpapers/mountain.jpg",
-  "images/wallpapers/forest.jpg",
-  "images/wallpapers/modern.png",
-  "images/wallpapers/modern_dark.png",
-  "images/wallpapers/wood.jpg",
-  "images/wallpapers/beach.jpg",
+  'images/wallpapers/dahliaOS_white_logo_pattern_wallpaper.png',
+  'images/wallpapers/dahliaOS_white_wallpaper.png',
+  'images/wallpapers/Gradient_logo_wallpaper.png',
+  'images/wallpapers/Three_Bubbles.png',
+  'images/wallpapers/Bubbles_wallpaper.png',
+  'images/wallpapers/Mountains_wallpaper.png',
+  'images/wallpapers/mountain.jpg',
+  'images/wallpapers/forest.jpg',
+  'images/wallpapers/modern.png',
+  'images/wallpapers/modern_dark.png',
+  'images/wallpapers/wood.jpg',
+  'images/wallpapers/beach.jpg',
 ];
 
 Future<BingImageOfTheDay?> getBingWallpaper() async {
@@ -99,8 +99,8 @@ Future<BingImageOfTheDay?> getBingWallpaper() async {
       'http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US',
     ),
     headers: {
-      "Access-Control-Allow-Origin": "true",
-      "Access-Control-Allow-Methods": "POST, GET, OPTIONS, PUT, DELETE, HEAD",
+      'Access-Control-Allow-Origin': 'true',
+      'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT, DELETE, HEAD',
     },
   );
 

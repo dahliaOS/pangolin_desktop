@@ -28,13 +28,11 @@ import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/providers/locale_provider.dart';
 import 'package:pangolin/widgets/global/box/box_container.dart';
 import 'package:pangolin/widgets/global/quick_button.dart';
-import 'package:xdg_desktop/xdg_desktop.dart';
 import 'package:yatl_flutter/yatl_flutter.dart';
 
 class LauncherOverlay extends ShellOverlay {
-  static const String overlayId = 'launcher';
-
   LauncherOverlay({super.key}) : super(id: overlayId);
+  static const String overlayId = 'launcher';
 
   @override
   _LauncherOverlayState createState() => _LauncherOverlayState();
@@ -78,7 +76,7 @@ class _LauncherOverlayState extends State<LauncherOverlay>
 
   @override
   Widget build(BuildContext context) {
-    final ShellState shell = Shell.of(context);
+    final shell = Shell.of(context);
     final Animation<double> animation = CurvedAnimation(
       parent: ac,
       curve: Constants.animationCurve,
@@ -104,15 +102,15 @@ class _LauncherOverlayState extends State<LauncherOverlay>
         },
         onVerticalDragEnd: (details) async {
           if (ac.value > 0.6) {
-            ac.animateBack(1.0);
+            await ac.animateBack(1);
           } else {
             await ac.reverse();
-            shell.dismissOverlay(LauncherOverlay.overlayId);
+            await shell.dismissOverlay(LauncherOverlay.overlayId);
           }
         },
         onTap: () async {
           await ac.reverse();
-          shell.dismissOverlay(LauncherOverlay.overlayId);
+          await shell.dismissOverlay(LauncherOverlay.overlayId);
         },
         child: Stack(
           children: [
@@ -169,20 +167,20 @@ class _SearchState extends State<Search> {
 
   @override
   Widget build(BuildContext context) {
-    final ShellState shell = Shell.of(context);
+    final shell = Shell.of(context);
 
     return RawKeyboardListener(
       focusNode: _focusNode,
       autofocus: true,
       onKey: (event) async {
         if (event.character == null ||
-            !RegExp("[a-zA-Z]").hasMatch(event.character!)) return;
+            !RegExp('[a-zA-Z]').hasMatch(event.character!)) return;
 
-        shell.dismissOverlay(LauncherOverlay.overlayId);
-        await Future.delayed(const Duration(milliseconds: 150));
-        shell.showOverlay(
+        await shell.dismissOverlay(LauncherOverlay.overlayId);
+        await Future<void>.delayed(const Duration(milliseconds: 150));
+        await shell.showOverlay(
           SearchOverlay.overlayId,
-          args: {"searchQuery": event.character},
+          args: {'searchQuery': event.character},
           dismissEverything: false,
         );
       },
@@ -190,16 +188,17 @@ class _SearchState extends State<Search> {
         padding: const EdgeInsets.only(top: 50),
         child: Searchbar(
           onTextChanged: (change) {
-            shell.dismissOverlay(LauncherOverlay.overlayId);
-            shell.showOverlay(
-              SearchOverlay.overlayId,
-              args: {"searchQuery": change},
-              dismissEverything: false,
-            );
+            shell
+              ..dismissOverlay(LauncherOverlay.overlayId)
+              ..showOverlay(
+                SearchOverlay.overlayId,
+                args: {'searchQuery': change},
+                dismissEverything: false,
+              );
           },
           leading: const Icon(Icons.search),
           trailing: const Icon(Icons.menu),
-          hint: "Search Device, Apps and Web",
+          hint: 'Search Device, Apps and Web',
           controller: TextEditingController(),
         ),
       ),
@@ -210,9 +209,8 @@ class _SearchState extends State<Search> {
 // Categories
 
 class LauncherCategories extends StatefulWidget {
-  final PageController? controller;
-
   const LauncherCategories({this.controller, super.key});
+  final PageController? controller;
 
   @override
   _LauncherCategoriesState createState() => _LauncherCategoriesState();
@@ -262,7 +260,7 @@ class _LauncherCategoriesState extends State<LauncherCategories> {
                   mouseCursor: SystemMouseCursors.click,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
-                      vertical: 8.0,
+                      vertical: 8,
                       horizontal: 18,
                     ),
                     child: Center(
@@ -289,12 +287,12 @@ class _LauncherCategoriesState extends State<LauncherCategories> {
 // Grid
 
 class LauncherGrid extends StatelessWidget {
-  final PageController? controller;
   const LauncherGrid({required this.controller, super.key});
+  final PageController? controller;
 
   @override
   Widget build(BuildContext context) {
-    final double width = MediaQuery.of(context).size.width;
+    final width = MediaQuery.of(context).size.width;
 
     /* final List<Application> _applications = applications;
     final List<Application> _internet = [];
@@ -351,17 +349,16 @@ class LauncherGrid extends StatelessWidget {
               controller: controller,
               itemCount: 1,
               itemBuilder: (context, int pvindex) {
-                final List<DesktopEntry> applications =
-                    ApplicationService.current.listApplications();
-
-                applications.sort(
-                  (a, b) => a
-                      .getLocalizedName(context.locale)
-                      .toLowerCase()
-                      .compareTo(
-                        b.getLocalizedName(context.locale).toLowerCase(),
-                      ),
-                );
+                final applications =
+                    ApplicationService.current.listApplications()
+                      ..sort(
+                        (a, b) => a
+                            .getLocalizedName(context.locale)
+                            .toLowerCase()
+                            .compareTo(
+                              b.getLocalizedName(context.locale).toLowerCase(),
+                            ),
+                      );
 
                 //final List<Application> page = pages[pvindex];
                 return GridView.builder(
@@ -374,7 +371,7 @@ class LauncherGrid extends StatelessWidget {
                   ),
                   itemBuilder: (BuildContext context, int index) {
                     return Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(8),
                       child: AppLauncherButton(
                         application: applications[index],
                       ),
@@ -403,7 +400,7 @@ class _LauncherActionMenuState extends State<LauncherActionMenu> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(50.0),
+      padding: const EdgeInsets.all(50),
       child: SizedBox(
         width: 28 * 3 + 16 * 4,
         height: 32 + 16,
@@ -415,19 +412,19 @@ class _LauncherActionMenuState extends State<LauncherActionMenu> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 _launcherActionWidget(
-                  "Power Menu",
+                  'Power Menu',
                   Icons.power_settings_new_rounded,
                   context,
                   () => ActionManager.showPowerMenu(context),
                 ),
                 _launcherActionWidget(
-                  "Account Menu",
+                  'Account Menu',
                   Icons.person,
                   context,
                   () => ActionManager.showAccountMenu(context),
                 ),
                 _launcherActionWidget(
-                  "Settings",
+                  'Settings',
                   Icons.settings_outlined,
                   context,
                   //close launcher as well

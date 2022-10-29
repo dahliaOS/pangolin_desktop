@@ -10,7 +10,6 @@ import 'package:pangolin/services/service.dart';
 import 'package:pangolin/services/wm.dart';
 import 'package:pangolin/utils/data/app_list.dart' as app_list;
 import 'package:pangolin/utils/data/constants.dart';
-import 'package:pangolin/utils/data/models/application.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/wm/properties.dart';
 import 'package:path/path.dart' as p;
@@ -22,6 +21,8 @@ abstract class ApplicationService
     extends ListenableService<ApplicationService> {
   ApplicationService();
 
+  factory ApplicationService.fallback() = _BuiltInApplicationService;
+
   static ApplicationService get current {
     return ServiceManager.getService<ApplicationService>()!;
   }
@@ -31,8 +32,6 @@ abstract class ApplicationService
 
     return _LinuxApplicationService();
   }
-
-  factory ApplicationService.fallback() = _BuiltInApplicationService;
 
   List<DesktopEntry> listApplications();
 
@@ -49,7 +48,7 @@ class _LinuxApplicationService extends ApplicationService {
 
   @override
   void startApp(String name) {
-    final DesktopEntry? app = getApp(name);
+    final app = getApp(name);
 
     if (app == null) {
       logger.warning(
@@ -58,8 +57,8 @@ class _LinuxApplicationService extends ApplicationService {
       return;
     }
 
-    final List<String> commandParts = app.exec!.split(" ");
-    commandParts.removeWhere((e) => e.startsWith(RegExp("%[fuFU]")));
+    final commandParts = app.exec!.split(' ')
+      ..removeWhere((e) => e.startsWith(RegExp('%[fuFU]')));
 
     Process.run(
       commandParts.first,
@@ -73,13 +72,13 @@ class _LinuxApplicationService extends ApplicationService {
   @override
   Future<void> start() async {
     await ServiceManager.waitForService<LangPacksService>();
-    logger.info("Starting loading app service");
+    logger.info('Starting loading app service');
 
-    _loadFolder(p.join(xdg.dataHome.path, "applications"));
-    for (final Directory dir in xdg.dataDirs) {
-      _loadFolder(p.join(dir.path, "applications"));
+    await _loadFolder(p.join(xdg.dataHome.path, 'applications'));
+    for (final dir in xdg.dataDirs) {
+      await _loadFolder(p.join(dir.path, 'applications'));
     }
-    _loadFolder("/usr/share/applications");
+    await _loadFolder('/usr/share/applications');
   }
 
   @override
@@ -88,7 +87,7 @@ class _LinuxApplicationService extends ApplicationService {
       );
 
   Future<void> _loadFolder(String path) async {
-    final Directory directory = Directory(path);
+    final directory = Directory(path);
     final List<FileSystemEntity> entities;
 
     if (!directory.existsSync()) return;
@@ -96,34 +95,34 @@ class _LinuxApplicationService extends ApplicationService {
     try {
       entities = await directory.list(recursive: true).toList();
     } catch (e) {
-      logger.warning("Exception while listing applications for $path", e);
+      logger.warning('Exception while listing applications for $path', e);
       return;
     }
 
-    for (final FileSystemEntity entity in entities) {
+    for (final entity in entities) {
       await _parseEntity(entity);
     }
 
-    final Stream<FileSystemEvent> watcher = directory.watch();
+    final watcher = directory.watch();
     directoryWatchers.add(watcher.listen(_onDirectoryEvent));
   }
 
   Future<void> _parseEntity(FileSystemEntity entity) async {
     if (entity is! File) return;
-    if (p.extension(entity.path) != ".desktop") return;
+    if (p.extension(entity.path) != '.desktop') return;
 
-    final String content = await entity.readAsString();
+    final content = await entity.readAsString();
     try {
-      final DesktopEntry entry = DesktopEntry.fromIni(entity.path, content);
-      if (entry.noDisplay == true || entry.hidden == true) return;
+      final entry = DesktopEntry.fromIni(entity.path, content);
+      if (entry.noDisplay ?? false || (entry.hidden ?? false)) return;
 
       if (entry.tryExec != null && !File(entry.tryExec!).existsSync()) return;
 
-      final List<String> onlyShowIn = entry.onlyShowIn ?? [];
-      final List<String> notShowIn = entry.notShowIn ?? [];
+      final onlyShowIn = entry.onlyShowIn ?? [];
+      final notShowIn = entry.notShowIn ?? [];
 
-      if (onlyShowIn.isNotEmpty && !onlyShowIn.contains("Pangolin") ||
-          notShowIn.contains("Pangolin")) {
+      if (onlyShowIn.isNotEmpty && !onlyShowIn.contains('Pangolin') ||
+          notShowIn.contains('Pangolin')) {
         return;
       }
 
@@ -156,7 +155,7 @@ class _LinuxApplicationService extends ApplicationService {
 
   @override
   Future<void> stop() async {
-    for (final StreamSubscription watcher in directoryWatchers) {
+    for (final StreamSubscription<dynamic> watcher in directoryWatchers) {
       await watcher.cancel();
     }
   }
@@ -192,21 +191,21 @@ class _BuiltInApplicationService extends ApplicationService {
 
   @override
   void start() {
-    for (final Application app in app_list.applications) {
+    for (final app in app_list.applications) {
       if (!app.canBeOpened) continue;
 
-      String exec = app.packageName;
+      var exec = app.packageName;
 
       if (app.runtimeFlags.isNotEmpty) {
         exec += " ${app.runtimeFlags.join(" ")}";
       }
 
-      final _BuiltinDesktopEntry entry = _BuiltinDesktopEntry(
+      final entry = _BuiltinDesktopEntry(
         id: app.packageName,
         content: app.app,
         type: DesktopEntryType.application,
         name: LocalizedString(app.name),
-        icon: LocalizedString("image:dahlia#icons/${app.iconName}.png"),
+        icon: LocalizedString('image:dahlia#icons/${app.iconName}.png'),
         exec: exec,
         version: app.version,
         categories: app.category != null ? [app.category!.name] : null,
@@ -227,7 +226,7 @@ class _BuiltInApplicationService extends ApplicationService {
 
   @override
   void startApp(String name) {
-    final _BuiltinDesktopEntry? app = getApp(name);
+    final app = getApp(name);
 
     if (app == null) {
       logger.warning(
@@ -260,8 +259,6 @@ class _BuiltInApplicationService extends ApplicationService {
 }
 
 class _BuiltinDesktopEntry extends DesktopEntry {
-  final Widget content;
-
   const _BuiltinDesktopEntry({
     required super.id,
     required this.content,
@@ -272,4 +269,5 @@ class _BuiltinDesktopEntry extends DesktopEntry {
     super.exec,
     super.categories,
   });
+  final Widget content;
 }

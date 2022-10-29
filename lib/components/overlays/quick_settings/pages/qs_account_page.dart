@@ -26,7 +26,7 @@ class QsAccountPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       appBar: QsTitlebar(
-        title: "User Accounts",
+        title: 'User Accounts',
         trailing: [
           QuickActionButton(
             leading: Icon(

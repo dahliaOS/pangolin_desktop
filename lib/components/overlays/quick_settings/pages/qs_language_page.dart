@@ -41,13 +41,13 @@ class QsLanguagePage extends StatelessWidget {
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16.0),
+        padding: const EdgeInsets.symmetric(vertical: 16),
         child: ListView.builder(
           itemCount: locales.supportedLocales.length,
           itemBuilder: (context, index) {
-            final int? translatedStrings = locales
+            final translatedStrings = locales
                 .progressData[locales.supportedLocales[index].toLanguageTag()];
-            final int? totalTranslationStrings =
+            final totalTranslationStrings =
                 locales.progressData[context.fallbackLocale.toLanguageTag()];
             return ListTile(
               shape: RoundedRectangleBorder(
@@ -73,7 +73,7 @@ class QsLanguagePage extends StatelessWidget {
               title: Text(
                 localeNativeNames[
                         locales.supportedLocales[index].languageCode] ??
-                    "Language code not found",
+                    'Language code not found',
               ),
               subtitle: Text(locales.supportedLocales[index].toLanguageTag()),
               trailing: Text(

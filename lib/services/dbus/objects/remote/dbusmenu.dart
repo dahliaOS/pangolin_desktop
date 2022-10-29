@@ -5,10 +5,6 @@ import 'package:dbus/dbus.dart';
 
 /// Signal data for com.canonical.dbusmenu.ItemsPropertiesUpdated.
 class DBusMenuObjectItemsPropertiesUpdated extends DBusSignal {
-  List<DBusStruct> get updatedProps =>
-      values[0].asArray().map((child) => child as DBusStruct).toList();
-  List<DBusStruct> get removedProps =>
-      values[1].asArray().map((child) => child as DBusStruct).toList();
 
   DBusMenuObjectItemsPropertiesUpdated(DBusSignal signal)
       : super(
@@ -18,12 +14,14 @@ class DBusMenuObjectItemsPropertiesUpdated extends DBusSignal {
           name: signal.name,
           values: signal.values,
         );
+  List<DBusStruct> get updatedProps =>
+      values[0].asArray().map((child) => child as DBusStruct).toList();
+  List<DBusStruct> get removedProps =>
+      values[1].asArray().map((child) => child as DBusStruct).toList();
 }
 
 /// Signal data for com.canonical.dbusmenu.LayoutUpdated.
 class DBusMenuObjectLayoutUpdated extends DBusSignal {
-  int get revision => values[0].asUint32();
-  int get parent => values[1].asInt32();
 
   DBusMenuObjectLayoutUpdated(DBusSignal signal)
       : super(
@@ -33,12 +31,12 @@ class DBusMenuObjectLayoutUpdated extends DBusSignal {
           name: signal.name,
           values: signal.values,
         );
+  int get revision => values[0].asUint32();
+  int get parent => values[1].asInt32();
 }
 
 /// Signal data for com.canonical.dbusmenu.ItemActivationRequested.
 class DBusMenuObjectItemActivationRequested extends DBusSignal {
-  int get id => values[0].asInt32();
-  int get timestamp => values[1].asUint32();
 
   DBusMenuObjectItemActivationRequested(DBusSignal signal)
       : super(
@@ -48,19 +46,11 @@ class DBusMenuObjectItemActivationRequested extends DBusSignal {
           name: signal.name,
           values: signal.values,
         );
+  int get id => values[0].asInt32();
+  int get timestamp => values[1].asUint32();
 }
 
 class DBusMenuObject extends DBusRemoteObject {
-  /// Stream of com.canonical.dbusmenu.ItemsPropertiesUpdated signals.
-  late final Stream<DBusMenuObjectItemsPropertiesUpdated>
-      itemsPropertiesUpdated;
-
-  /// Stream of com.canonical.dbusmenu.LayoutUpdated signals.
-  late final Stream<DBusMenuObjectLayoutUpdated> layoutUpdated;
-
-  /// Stream of com.canonical.dbusmenu.ItemActivationRequested signals.
-  late final Stream<DBusMenuObjectItemActivationRequested>
-      itemActivationRequested;
 
   DBusMenuObject(
     super.client,
@@ -74,14 +64,14 @@ class DBusMenuObject extends DBusRemoteObject {
       signature: DBusSignature('a(ia{sv})a(ias)'),
     )
         .asBroadcastStream()
-        .map((signal) => DBusMenuObjectItemsPropertiesUpdated(signal));
+        .map(DBusMenuObjectItemsPropertiesUpdated.new);
 
     layoutUpdated = DBusRemoteObjectSignalStream(
       object: this,
       interface: 'com.canonical.dbusmenu',
       name: 'LayoutUpdated',
       signature: DBusSignature('ui'),
-    ).asBroadcastStream().map((signal) => DBusMenuObjectLayoutUpdated(signal));
+    ).asBroadcastStream().map(DBusMenuObjectLayoutUpdated.new);
 
     itemActivationRequested = DBusRemoteObjectSignalStream(
       object: this,
@@ -90,12 +80,22 @@ class DBusMenuObject extends DBusRemoteObject {
       signature: DBusSignature('iu'),
     )
         .asBroadcastStream()
-        .map((signal) => DBusMenuObjectItemActivationRequested(signal));
+        .map(DBusMenuObjectItemActivationRequested.new);
   }
+  /// Stream of com.canonical.dbusmenu.ItemsPropertiesUpdated signals.
+  late final Stream<DBusMenuObjectItemsPropertiesUpdated>
+      itemsPropertiesUpdated;
+
+  /// Stream of com.canonical.dbusmenu.LayoutUpdated signals.
+  late final Stream<DBusMenuObjectLayoutUpdated> layoutUpdated;
+
+  /// Stream of com.canonical.dbusmenu.ItemActivationRequested signals.
+  late final Stream<DBusMenuObjectItemActivationRequested>
+      itemActivationRequested;
 
   /// Gets com.canonical.dbusmenu.Version
   Future<int> getVersion() async {
-    final DBusValue value = await getProperty(
+    final value = await getProperty(
       'com.canonical.dbusmenu',
       'Version',
       signature: DBusSignature('u'),
@@ -105,7 +105,7 @@ class DBusMenuObject extends DBusRemoteObject {
 
   /// Gets com.canonical.dbusmenu.TextDirection
   Future<String> getTextDirection() async {
-    final DBusValue value = await getProperty(
+    final value = await getProperty(
       'com.canonical.dbusmenu',
       'TextDirection',
       signature: DBusSignature('s'),
@@ -115,7 +115,7 @@ class DBusMenuObject extends DBusRemoteObject {
 
   /// Gets com.canonical.dbusmenu.Status
   Future<String> getStatus() async {
-    final DBusValue value = await getProperty(
+    final value = await getProperty(
       'com.canonical.dbusmenu',
       'Status',
       signature: DBusSignature('s'),
@@ -125,7 +125,7 @@ class DBusMenuObject extends DBusRemoteObject {
 
   /// Gets com.canonical.dbusmenu.IconThemePath
   Future<List<String>> getIconThemePath() async {
-    final DBusValue value = await getProperty(
+    final value = await getProperty(
       'com.canonical.dbusmenu',
       'IconThemePath',
       signature: DBusSignature('as'),
@@ -141,7 +141,7 @@ class DBusMenuObject extends DBusRemoteObject {
     bool noAutoStart = false,
     bool allowInteractiveAuthorization = false,
   }) async {
-    final DBusMethodSuccessResponse result = await callMethod(
+    final result = await callMethod(
       'com.canonical.dbusmenu',
       'GetLayout',
       [
@@ -163,7 +163,7 @@ class DBusMenuObject extends DBusRemoteObject {
     bool noAutoStart = false,
     bool allowInteractiveAuthorization = false,
   }) async {
-    final DBusMethodSuccessResponse result = await callMethod(
+    final result = await callMethod(
       'com.canonical.dbusmenu',
       'GetGroupProperties',
       [DBusArray.int32(ids), DBusArray.string(propertyNames)],
@@ -184,7 +184,7 @@ class DBusMenuObject extends DBusRemoteObject {
     bool noAutoStart = false,
     bool allowInteractiveAuthorization = false,
   }) async {
-    final DBusMethodSuccessResponse result = await callMethod(
+    final result = await callMethod(
       'com.canonical.dbusmenu',
       'GetProperty',
       [DBusInt32(id), DBusString(name)],
@@ -225,7 +225,7 @@ class DBusMenuObject extends DBusRemoteObject {
     bool noAutoStart = false,
     bool allowInteractiveAuthorization = false,
   }) async {
-    final DBusMethodSuccessResponse result = await callMethod(
+    final result = await callMethod(
       'com.canonical.dbusmenu',
       'EventGroup',
       [DBusArray(DBusSignature('(isvu)'), events.map((child) => child))],
@@ -242,7 +242,7 @@ class DBusMenuObject extends DBusRemoteObject {
     bool noAutoStart = false,
     bool allowInteractiveAuthorization = false,
   }) async {
-    final DBusMethodSuccessResponse result = await callMethod(
+    final result = await callMethod(
       'com.canonical.dbusmenu',
       'AboutToShow',
       [DBusInt32(id)],
@@ -259,7 +259,7 @@ class DBusMenuObject extends DBusRemoteObject {
     bool noAutoStart = false,
     bool allowInteractiveAuthorization = false,
   }) async {
-    final DBusMethodSuccessResponse result = await callMethod(
+    final result = await callMethod(
       'com.canonical.dbusmenu',
       'AboutToShowGroup',
       [DBusArray.int32(ids)],

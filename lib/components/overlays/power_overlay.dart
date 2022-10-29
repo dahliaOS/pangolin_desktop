@@ -26,9 +26,9 @@ import 'package:pangolin/utils/providers/locale_provider.dart';
 import 'package:pangolin/widgets/global/box/box_container.dart';
 
 class PowerOverlay extends ShellOverlay {
-  static const String overlayId = "power";
 
   PowerOverlay({super.key}) : super(id: overlayId);
+  static const String overlayId = 'power';
 
   @override
   _PowerOverlayState createState() => _PowerOverlayState();
@@ -104,7 +104,7 @@ class _PowerOverlayState extends State<PowerOverlay>
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.all(24.0),
+                          padding: const EdgeInsets.all(24),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -126,26 +126,26 @@ class _PowerOverlayState extends State<PowerOverlay>
                           height: 224,
                           color: context.theme.backgroundColor.op(0.35),
                           child: Padding(
-                            padding: const EdgeInsets.all(16.0),
+                            padding: const EdgeInsets.all(16),
                             child: Column(
                               children: [
                                 _powerMenuButton(
                                   strings.powerOverlay.poweroff,
                                   Icons.power_settings_new_rounded,
                                   context,
-                                  onPressed: () => ActionManager.powerOff(),
+                                  onPressed: ActionManager.powerOff,
                                 ),
                                 _powerMenuButton(
                                   strings.powerOverlay.sleep,
                                   Icons.brightness_4_outlined,
                                   context,
-                                  onPressed: () => ActionManager.suspend(),
+                                  onPressed: ActionManager.suspend,
                                 ),
                                 _powerMenuButton(
                                   strings.powerOverlay.restart,
                                   Icons.replay_rounded,
                                   context,
-                                  onPressed: () => ActionManager.reboot(),
+                                  onPressed: ActionManager.reboot,
                                 ),
                               ],
                             ),
@@ -170,7 +170,7 @@ class _PowerOverlayState extends State<PowerOverlay>
     VoidCallback? onPressed,
   }) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(8),
       child: SizedBox(
         height: 48,
         width: 280,
@@ -181,7 +181,7 @@ class _PowerOverlayState extends State<PowerOverlay>
           child: InkWell(
             onTap: onPressed,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Row(
                 children: [
                   Icon(

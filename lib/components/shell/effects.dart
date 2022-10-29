@@ -7,9 +7,8 @@ import 'package:provider/provider.dart';
 import 'package:utopia_wm/wm.dart';
 
 class EffectsLayer extends StatefulWidget {
-  final EffectsLayerController controller;
-
   const EffectsLayer({required this.controller, super.key});
+  final EffectsLayerController controller;
 
   @override
   State<EffectsLayer> createState() => EffectsLayerState();
@@ -71,8 +70,9 @@ class EffectsLayerState extends State<EffectsLayer>
   }
 
   void startDockEffect(LayoutState window) {
-    _rectTween.begin = null;
-    _rectTween.end = null;
+    _rectTween
+      ..begin = null
+      ..end = null;
     _rectController.value = 0;
 
     _lastDock = null;
@@ -81,8 +81,9 @@ class EffectsLayerState extends State<EffectsLayer>
   }
 
   void endDockEffect() {
-    _rectTween.begin = null;
-    _rectTween.end = null;
+    _rectTween
+      ..begin = null
+      ..end = null;
     _rectController.value = 0;
 
     _dockingWindow!.removeListener(_updateWindowRect);
@@ -98,11 +99,12 @@ class EffectsLayerState extends State<EffectsLayer>
       _rectController.value = 0;
       _rectTween.end = _windowRect;
 
-      _opacityController.animateTo(0);
+      await _opacityController.animateTo(0);
       await _rectController.animateTo(1);
 
-      _rectTween.begin = null;
-      _rectTween.end = null;
+      _rectTween
+        ..begin = null
+        ..end = null;
 
       return;
     }
@@ -123,7 +125,7 @@ class EffectsLayerState extends State<EffectsLayer>
     );
 
     _opacityController.value = 1;
-    _rectController.animateTo(1);
+    await _rectController.animateTo(1);
   }
 
   Rect _insetRectForDock(Rect rect, WindowDock dock) {

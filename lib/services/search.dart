@@ -39,17 +39,17 @@ abstract class SearchService extends Service<SearchService> {
 class _SearchServiceImpl extends SearchService {
   @override
   List<DesktopEntry> search(String term, [ui.Locale? locale]) {
-    final List<DesktopEntry> entries =
+    final entries =
         ApplicationService.current.listApplications();
 
     return entries.where((app) {
-      final String name =
+      final name =
           _localizeWithLocale(locale, app.getLocalizedName) ?? app.name.main;
-      final String comment =
+      final comment =
           _localizeWithLocale(locale, app.getLocalizedComment) ??
               app.comment?.main ??
-              "";
-      final List<String> keywords =
+              '';
+      final keywords =
           _localizeWithLocale(locale, app.getLocalizedKeywords) ??
               app.keywords?.main ??
               [];

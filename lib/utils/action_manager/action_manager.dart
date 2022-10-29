@@ -32,20 +32,18 @@ class ActionManager {
   const ActionManager._();
 
   static Future<void> showPowerMenu(BuildContext context) async {
-    final shell = Shell.of(context, listen: false);
-    shell.dismissEverything();
-    await Future.delayed(Constants.animationDuration);
-    shell.showOverlay(
+    final shell = Shell.of(context, listen: false)..dismissEverything();
+    await Future<void>.delayed(Constants.animationDuration);
+    await shell.showOverlay(
       PowerOverlay.overlayId,
       dismissEverything: false,
     );
   }
 
   static Future<void> showAccountMenu(BuildContext context) async {
-    final shell = Shell.of(context, listen: false);
-    shell.dismissEverything();
-    await Future.delayed(Constants.animationDuration);
-    shell.showOverlay(
+    final shell = Shell.of(context, listen: false)..dismissEverything();
+    await Future<void>.delayed(Constants.animationDuration);
+    await shell.showOverlay(
       AccountOverlay.overlayId,
       dismissEverything: false,
     );
@@ -53,11 +51,11 @@ class ActionManager {
 
   static Future<void> switchLauncher(BuildContext context) async {
     final shell = Shell.of(context, listen: false);
-    final CustomizationService service = CustomizationService.current;
+    final service = CustomizationService.current;
     shell.dismissEverything();
     service.compactLauncher = !service.compactLauncher;
-    await Future.delayed(Constants.animationDuration);
-    shell.showOverlay(
+    await Future<void>.delayed(Constants.animationDuration);
+    await shell.showOverlay(
       service.compactLauncher
           ? CompactLauncherOverlay.overlayId
           : LauncherOverlay.overlayId,
@@ -65,24 +63,23 @@ class ActionManager {
   }
 
   static void openSettings(BuildContext context) {
-    final shell = Shell.of(context, listen: false);
-    shell.dismissEverything();
-    ApplicationService.current.startApp("io.dahlia.settings");
+    Shell.of(context, listen: false).dismissEverything();
+    ApplicationService.current.startApp('io.dahlia.settings');
   }
 
   static void powerOff() {
     if (Platform.isLinux) {
-      Process.run("poweroff", []);
+      Process.run('poweroff', []);
     } else {
-      print("Not supported on this Platform");
+      print('Not supported on this Platform');
     }
   }
 
   static void reboot() {
     if (Platform.isLinux) {
-      Process.run("reboot", []);
+      Process.run('reboot', []);
     } else {
-      print("Not supported on this Platform");
+      print('Not supported on this Platform');
     }
   }
 

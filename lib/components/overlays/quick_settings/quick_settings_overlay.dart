@@ -39,9 +39,8 @@ import 'package:pangolin/widgets/services.dart';
 import 'package:yatl_flutter/yatl_flutter.dart';
 
 class QuickSettingsOverlay extends ShellOverlay {
-  static const String overlayId = 'quicksettings';
-
   QuickSettingsOverlay({super.key}) : super(id: overlayId);
+  static const String overlayId = 'quicksettings';
 
   @override
   _QuickSettingsOverlayState createState() => _QuickSettingsOverlayState();
@@ -91,21 +90,21 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
           opacity: animation,
           child: ScaleTransition(
             scale: animation,
-            alignment: const FractionalOffset(0.8, 1.0),
+            alignment: const FractionalOffset(0.8, 1),
             child: BoxSurface(
               shape: Constants.bigShape,
               width: 540,
               height: 474,
               dropShadow: true,
               child: Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(16),
                 child: MaterialApp(
                   routes: {
-                    "/": (context) => const QsMain(),
-                    "/pages/account": (context) => const QsAccountPage(),
-                    "/pages/network": (context) => const QsNetworkPage(),
-                    "/pages/theme": (context) => const QsThemePage(),
-                    "/pages/language": (context) => const QsLanguagePage(),
+                    '/': (context) => const QsMain(),
+                    '/pages/account': (context) => const QsAccountPage(),
+                    '/pages/network': (context) => const QsNetworkPage(),
+                    '/pages/theme': (context) => const QsThemePage(),
+                    '/pages/language': (context) => const QsLanguagePage(),
                   },
                   theme: Theme.of(context)
                       .copyWith(scaffoldBackgroundColor: Colors.transparent),
@@ -128,13 +127,13 @@ class QsMain extends StatelessWidget
   @override
   Widget buildChild(BuildContext context, CustomizationService service) {
     // Action Button Bar
-    final List<Widget> qsActionButton = [
+    final qsActionButton = <Widget>[
       QuickActionButton(
         leading: const FlutterLogo(
           size: 18,
         ),
         title: username,
-        onPressed: () => Navigator.pushNamed(context, "/pages/account"),
+        onPressed: () => Navigator.pushNamed(context, '/pages/account'),
         margin: EdgeInsets.zero,
         isCircular: false,
         textStyle: TextStyle(
@@ -201,7 +200,7 @@ class QsMain extends StatelessWidget
                           service.enableWifi && !service.enableAirplaneMode,
                       onPressed: (value) => service.enableWifi = value,
                       onMenuPressed: () {
-                        Navigator.pushNamed(context, "/pages/network");
+                        Navigator.pushNamed(context, '/pages/network');
                       },
                     ),
                     QsToggleButton(
@@ -252,7 +251,7 @@ class QsMain extends StatelessWidget
                       ),
                       enabled: true,
                       onPressed: (_) {
-                        final int index =
+                        final index =
                             context.supportedLocales.indexOf(context.locale);
                         if (index + 1 < locales.supportedLocales.length) {
                           context.locale = context.supportedLocales[index + 1];
@@ -261,7 +260,7 @@ class QsMain extends StatelessWidget
                         }
                       },
                       onMenuPressed: () {
-                        Navigator.pushNamed(context, "/pages/language");
+                        Navigator.pushNamed(context, '/pages/language');
                       },
                     ),
                     //TODO remove the provider option for this
@@ -281,7 +280,7 @@ class QsMain extends StatelessWidget
                       enabled: true,
                       onPressed: (_) => service.darkMode = !service.darkMode,
                       onMenuPressed: () =>
-                          Navigator.pushNamed(context, "/pages/theme"),
+                          Navigator.pushNamed(context, '/pages/theme'),
                     ),
                     QsToggleButton(
                       title: ToggleProperty.singleState(
@@ -316,7 +315,7 @@ class QsMain extends StatelessWidget
                   icon: Icons.info_outline_rounded,
                 ),
                 const QsShortcutButton(
-                  title: "dahliaos.io",
+                  title: 'dahliaos.io',
                   icon: Icons.language_rounded,
                 ),
                 const QsShortcutButton(),
@@ -332,8 +331,9 @@ class QsMain extends StatelessWidget
                       ? Icons.volume_off_rounded
                       : Icons.volume_up_rounded,
                   onChanged: (val) {
-                    service.volume = val;
-                    service.muteVolume = val == 0;
+                    service
+                      ..volume = val
+                      ..muteVolume = val == 0;
                   },
                   value: !service.muteVolume ? service.volume : 0,
                   steps: 20,
@@ -359,13 +359,13 @@ class QsMain extends StatelessWidget
               children: [
                 ListenableServiceBuilder<DateTimeService>(
                   builder: (BuildContext context, _) {
-                    final String date = DateTimeService.current.formattedDate;
-                    final String time = DateTimeService.current.formattedTime;
+                    final date = DateTimeService.current.formattedDate;
+                    final time = DateTimeService.current.formattedTime;
 
                     return QuickActionButton(
                       isCircular: false,
                       leading: const Icon(Icons.calendar_today),
-                      title: "$date - $time",
+                      title: '$date - $time',
                       margin: EdgeInsets.zero,
                     );
                   },
@@ -375,13 +375,12 @@ class QsMain extends StatelessWidget
                     return FutureBuilder(
                       future: Battery().batteryLevel,
                       builder: (context, AsyncSnapshot<int?> data) {
-                        final String batteryPercentage = data.data
-                                ?.toString() ??
+                        final batteryPercentage = data.data?.toString() ??
                             strings.quicksettingsOverlay.shortcutsEnergyMode;
                         return QuickActionButton(
                           leading: const Icon(Icons.battery_charging_full),
                           title: data.data != null
-                              ? "$batteryPercentage%"
+                              ? '$batteryPercentage%'
                               : batteryPercentage,
                           margin: EdgeInsets.zero,
                           isCircular: false,
@@ -400,7 +399,7 @@ class QsMain extends StatelessWidget
 
   Padding _qsTitle(String title) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(4.0, 12.0, 0.0, 12.0),
+      padding: const EdgeInsets.fromLTRB(4, 12, 0, 12),
       child: Align(
         alignment: Alignment.centerLeft,
         child: Text(

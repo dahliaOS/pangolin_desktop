@@ -33,7 +33,7 @@ class _LocaleProviders {
     _yatl = YatlCore(
       loader: const LocalesTranslationsLoader(_locales),
       supportedLocales: _locales.supportedLocales,
-      fallbackLocale: Locale.parse("en_US"),
+      fallbackLocale: Locale.parse('en_US'),
     );
     await _yatl.init();
     _strings = GeneratedLocaleStrings(_yatl);

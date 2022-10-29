@@ -17,80 +17,80 @@ limitations under the License.
 import 'package:flutter/material.dart';
 
 void showKeyboard(BuildContext context) {
-  const List<String> row1 = [
-    "~\n`",
-    "!\n1",
-    "@\n2",
-    "#\n3",
-    "\$\n4",
-    "%\n5",
-    "^\n6",
-    "&\n7",
-    "*\n8",
-    "(\n9",
-    ")\n0",
-    "_\n-",
-    "+\n=",
-    "delete"
+  const row1 = <String>[
+    '~\n`',
+    '!\n1',
+    '@\n2',
+    '#\n3',
+    '\$\n4',
+    '%\n5',
+    '^\n6',
+    '&\n7',
+    '*\n8',
+    '(\n9',
+    ')\n0',
+    '_\n-',
+    '+\n=',
+    'delete'
   ];
-  const List<String> row2 = [
-    "tab",
-    "q",
-    "w",
-    "e",
-    "r",
-    "t",
-    "y",
-    "u",
-    "i",
-    "o",
-    "p",
-    "{\n[",
-    "}\n]",
-    "|\n\\"
+  const row2 = <String>[
+    'tab',
+    'q',
+    'w',
+    'e',
+    'r',
+    't',
+    'y',
+    'u',
+    'i',
+    'o',
+    'p',
+    '{\n[',
+    '}\n]',
+    '|\n\\'
   ];
-  const List<String> row3 = [
-    "caps",
-    "a",
-    "s",
-    "d",
-    "f",
-    "g",
-    "h",
-    "j",
-    "k",
-    "l",
-    ":\n;",
+  const row3 = <String>[
+    'caps',
+    'a',
+    's',
+    'd',
+    'f',
+    'g',
+    'h',
+    'j',
+    'k',
+    'l',
+    ':\n;',
     "\"\n'",
-    "enter"
+    'enter'
   ];
-  const List<String> row4 = [
-    "shift",
-    "z",
-    "x",
-    "c",
-    "v",
-    "b",
-    "n",
-    "m",
-    "<\n,",
-    ">\n.",
-    "?\n/",
-    "shift"
+  const row4 = <String>[
+    'shift',
+    'z',
+    'x',
+    'c',
+    'v',
+    'b',
+    'n',
+    'm',
+    '<\n,',
+    '>\n.',
+    '?\n/',
+    'shift'
   ];
-  const List<String> row5 = [
-    "fn",
-    "control",
-    "alt",
-    "meta",
-    "[----------------------]",
-    "control",
-    "alt",
-    "up",
-    "dn"
+  const row5 = <String>[
+    'fn',
+    'control',
+    'alt',
+    'meta',
+    '[----------------------]',
+    'control',
+    'alt',
+    'up',
+    'dn'
   ];
   showGeneralDialog(
-    barrierLabel: "Barrier",
+    barrierLabel: 'Barrier',
     barrierDismissible: true,
     barrierColor: Colors.black.withOpacity(0),
     transitionDuration: const Duration(milliseconds: 120),
