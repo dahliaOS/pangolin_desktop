@@ -22,8 +22,6 @@ import 'package:media/main.dart';
 import 'package:pangolin/components/settings/settings.dart';
 import 'package:pangolin/utils/data/models/application.dart';
 // Stub import
-import 'package:pangolin/utils/other/apps_stub.dart'
-    if (dart.library.io) 'package:terminal/main.dart';
 // ignore: duplicate_import
 import 'package:pangolin/utils/other/apps_stub.dart'
     if (dart.library.io) 'package:files/main.dart';
@@ -62,27 +60,8 @@ List<Application> get applications => <Application>[
         description: strings.apps.calculatorDescription,
         iconName: "calculator",
         category: ApplicationCategory.office,
-      ),
-      Application(
-        color: Colors.grey.shade900,
-        packageName: "io.dahlia.terminal",
-        app: const Terminal(),
-        name: strings.apps.terminal,
-        description: strings.apps.terminalDescription,
-        iconName: "terminal",
-        category: ApplicationCategory.system,
-        supportsWeb: false,
-      ),
-      Application(
-        color: Colors.amber.shade800,
-        packageName: "io.dahlia.editor",
-        app: TextEditorApp(),
-        name: strings.apps.notes,
-        description: strings.apps.notesDescription,
-        iconName: "notes",
-        category: ApplicationCategory.office,
-      ),
-      Application(
+      )
+      ,Application(
         color: Colors.blue.shade800,
         packageName: "io.dahlia.graft",
         app: Graft(),
