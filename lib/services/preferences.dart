@@ -262,23 +262,23 @@ class _SharedPrefPreferencesServiceImpl extends PreferencesService {
   @override
   Future<void> set<T>(String key, T value) async {
     if (value is int) {
-      await _sharedPreferences?.setInt(key, value);
+      unawaited(_sharedPreferences?.setInt(key, value));
     }
 
     if (value is double) {
-      await _sharedPreferences?.setDouble(key, value);
+      unawaited(_sharedPreferences?.setDouble(key, value));
     }
 
     if (value is bool) {
-      await _sharedPreferences?.setBool(key, value);
+      unawaited(_sharedPreferences?.setBool(key, value));
     }
 
     if (value is String) {
-      await _sharedPreferences?.setString(key, value);
+      unawaited(_sharedPreferences?.setString(key, value));
     }
 
     if (value is List<String>) {
-      await _sharedPreferences?.setStringList(key, value);
+      unawaited(_sharedPreferences?.setStringList(key, value));
     }
   }
 

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:dbus/dbus.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -67,8 +69,9 @@ class _TrayItemState extends State<TrayItem> {
 
           if (menu == null) return;
 
-          await menu.object
-              .callEvent(menu.id, 'opened', DBusArray.string([]), 0);
+          unawaited(
+            menu.object.callEvent(menu.id, 'opened', DBusArray.string([]), 0),
+          );
 
           await showMenu(
             context: context,
@@ -84,8 +87,9 @@ class _TrayItemState extends State<TrayItem> {
                 .toList(),
           );
 
-          await menu.object
-              .callEvent(menu.id, 'closed', DBusArray.string([]), 0);
+          unawaited(
+            menu.object.callEvent(menu.id, 'closed', DBusArray.string([]), 0),
+          );
         },
         child: Listener(
           onPointerSignal: (event) {

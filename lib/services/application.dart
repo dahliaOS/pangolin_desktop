@@ -74,11 +74,11 @@ class _LinuxApplicationService extends ApplicationService {
     await ServiceManager.waitForService<LangPacksService>();
     logger.info('Starting loading app service');
 
-    await _loadFolder(p.join(xdg.dataHome.path, 'applications'));
+    unawaited(_loadFolder(p.join(xdg.dataHome.path, 'applications')));
     for (final dir in xdg.dataDirs) {
-      await _loadFolder(p.join(dir.path, 'applications'));
+      unawaited(_loadFolder(p.join(dir.path, 'applications')));
     }
-    await _loadFolder('/usr/share/applications');
+    unawaited(_loadFolder('/usr/share/applications'));
   }
 
   @override

@@ -260,7 +260,7 @@ class _LinuxIconService extends IconService {
       case FileSystemEvent.create:
       case FileSystemEvent.delete:
       case FileSystemEvent.move:
-        await _loadThemes();
+        unawaited(_loadThemes());
         break;
     }
   }

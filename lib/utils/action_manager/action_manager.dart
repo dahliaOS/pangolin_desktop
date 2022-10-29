@@ -16,6 +16,7 @@ limitations under the License.
 
 // ignore_for_file: avoid_print
 
+import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -34,18 +35,22 @@ class ActionManager {
   static Future<void> showPowerMenu(BuildContext context) async {
     final shell = Shell.of(context, listen: false)..dismissEverything();
     await Future<void>.delayed(Constants.animationDuration);
-    await shell.showOverlay(
-      PowerOverlay.overlayId,
-      dismissEverything: false,
+    unawaited(
+      shell.showOverlay(
+        PowerOverlay.overlayId,
+        dismissEverything: false,
+      ),
     );
   }
 
   static Future<void> showAccountMenu(BuildContext context) async {
     final shell = Shell.of(context, listen: false)..dismissEverything();
     await Future<void>.delayed(Constants.animationDuration);
-    await shell.showOverlay(
-      AccountOverlay.overlayId,
-      dismissEverything: false,
+    unawaited(
+      shell.showOverlay(
+        AccountOverlay.overlayId,
+        dismissEverything: false,
+      ),
     );
   }
 

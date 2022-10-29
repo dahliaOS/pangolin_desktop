@@ -1,9 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class MarkupText extends StatelessWidget {
-
   const MarkupText(
     this.text, {
     super.key,
@@ -127,7 +128,6 @@ class MarkupText extends StatelessWidget {
 enum TextType { link, bold, italic, underlined }
 
 class TextPart {
-
   TextPart(
     this.text, {
     this.url,
@@ -163,7 +163,9 @@ class TextPart {
           if (url != null) {
             recognizer = TapGestureRecognizer()
               ..onTap = () async {
-                if (await canLaunchUrlString(url!)) await launchUrlString(url!);
+                if (await canLaunchUrlString(url!)) {
+                  unawaited(launchUrlString(url!));
+                }
               };
           }
           break;

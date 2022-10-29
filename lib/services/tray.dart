@@ -47,12 +47,14 @@ class _DbusTrayService extends TrayService with DBusService {
 
     final item = await StatusNotifierItem.fromObject(object);
     _items.add(item);
-    await backend.emitStatusNotifierItemRegistered('$name$path');
-    await backend.emitPropertiesChanged(
-      backend.interface,
-      changedProperties: {
-        'RegisteredStatusNotifierItems': DBusArray.string(_dbusItems),
-      },
+    unawaited(backend.emitStatusNotifierItemRegistered('$name$path'));
+    unawaited(
+      backend.emitPropertiesChanged(
+        backend.interface,
+        changedProperties: {
+          'RegisteredStatusNotifierItems': DBusArray.string(_dbusItems),
+        },
+      ),
     );
     logger.info('Registered tray item $name$path');
     notifyListeners();
@@ -132,7 +134,7 @@ class _DbusTrayService extends TrayService with DBusService {
           .firstWhereOrNull((e) => e.name == 'org.kde.StatusNotifierItem');
 
       if (interface != null) {
-        await registerItem(name, '/');
+        unawaited(registerItem(name, '/'));
       }
     }
   }
@@ -180,7 +182,7 @@ class _DBusTrayBackend extends StatusNotifierWatcherBase
       path = '/StatusNotifierItem';
     }
 
-    await this.service.registerItem(name, path);
+    unawaited(this.service.registerItem(name, path));
 
     return DBusMethodSuccessResponse();
   }

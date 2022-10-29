@@ -124,7 +124,7 @@ class _NotificationsOverlayState extends State<NotificationsOverlay>
     if (notif == null) return;
 
     await notif.controller.reverse();
-    await onNotificationRemoved(id, NotificationCloseReason.dismissed);
+    unawaited(onNotificationRemoved(id, NotificationCloseReason.dismissed));
   }
 
   @override

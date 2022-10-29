@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:pangolin/services/wm.dart';
 import 'package:pangolin/utils/data/constants.dart';
@@ -99,7 +101,7 @@ class EffectsLayerState extends State<EffectsLayer>
       _rectController.value = 0;
       _rectTween.end = _windowRect;
 
-      await _opacityController.animateTo(0);
+      unawaited(_opacityController.animateTo(0));
       await _rectController.animateTo(1);
 
       _rectTween
@@ -125,7 +127,7 @@ class EffectsLayerState extends State<EffectsLayer>
     );
 
     _opacityController.value = 1;
-    await _rectController.animateTo(1);
+    unawaited(_rectController.animateTo(1));
   }
 
   Rect _insetRectForDock(Rect rect, WindowDock dock) {
