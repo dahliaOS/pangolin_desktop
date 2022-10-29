@@ -76,7 +76,7 @@ class _QuickActionButtonState extends State<QuickActionButton> {
                         fontSize: 13,
                         fontWeight: FontWeight.normal,
                       ),
-                  child: !(widget.isCircular == true)
+                  child: !(widget.isCircular ?? false)
                       ? Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
