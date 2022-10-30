@@ -60,10 +60,12 @@ class ActionManager {
     shell.dismissEverything();
     service.compactLauncher = !service.compactLauncher;
     await Future<void>.delayed(Constants.animationDuration);
-    await shell.showOverlay(
-      service.compactLauncher
-          ? CompactLauncherOverlay.overlayId
-          : LauncherOverlay.overlayId,
+    unawaited(
+      shell.showOverlay(
+        service.compactLauncher
+            ? CompactLauncherOverlay.overlayId
+            : LauncherOverlay.overlayId,
+      ),
     );
   }
 

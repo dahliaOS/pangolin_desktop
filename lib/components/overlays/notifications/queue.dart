@@ -125,7 +125,7 @@ class _NotificationQueueState extends State<NotificationQueue>
     if (notif == null) return;
 
     await notif.controller.reverse();
-    await onNotificationRemoved(id, NotificationCloseReason.dismissed);
+    unawaited(onNotificationRemoved(id, NotificationCloseReason.dismissed));
   }
 
   void _dismissNotificationImmediately(int id) {

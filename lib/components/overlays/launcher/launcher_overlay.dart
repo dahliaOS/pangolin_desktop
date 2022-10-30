@@ -14,6 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'dart:async';
+
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/overlays/launcher/app_launcher.dart';
@@ -102,15 +104,15 @@ class _LauncherOverlayState extends State<LauncherOverlay>
         },
         onVerticalDragEnd: (details) async {
           if (ac.value > 0.6) {
-            await ac.animateBack(1);
+            unawaited(ac.animateBack(1));
           } else {
             await ac.reverse();
-            await shell.dismissOverlay(LauncherOverlay.overlayId);
+            unawaited(shell.dismissOverlay(LauncherOverlay.overlayId));
           }
         },
         onTap: () async {
           await ac.reverse();
-          await shell.dismissOverlay(LauncherOverlay.overlayId);
+          unawaited(shell.dismissOverlay(LauncherOverlay.overlayId));
         },
         child: Stack(
           children: [
@@ -176,12 +178,14 @@ class _SearchState extends State<Search> {
         if (event.character == null ||
             !RegExp('[a-zA-Z]').hasMatch(event.character!)) return;
 
-        await shell.dismissOverlay(LauncherOverlay.overlayId);
+        unawaited(shell.dismissOverlay(LauncherOverlay.overlayId));
         await Future<void>.delayed(const Duration(milliseconds: 150));
-        await shell.showOverlay(
-          SearchOverlay.overlayId,
-          args: {'searchQuery': event.character},
-          dismissEverything: false,
+        unawaited(
+          shell.showOverlay(
+            SearchOverlay.overlayId,
+            args: {'searchQuery': event.character},
+            dismissEverything: false,
+          ),
         );
       },
       child: Container(
