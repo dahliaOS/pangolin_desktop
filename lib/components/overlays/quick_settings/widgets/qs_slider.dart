@@ -13,22 +13,21 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-
-import 'package:flutter/material.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
+import 'package:zenit_ui/zenit_ui.dart';
 
 class QsSlider extends StatefulWidget {
   const QsSlider({
     super.key,
     this.icon,
-    this.onChanged,
+    required this.onChanged,
     this.value,
     this.steps,
     this.onIconTap,
   });
 
   final IconData? icon;
-  final void Function(double)? onChanged;
+  final void Function(double) onChanged;
   final double? value;
   final int? steps;
   final VoidCallback? onIconTap;
@@ -40,7 +39,7 @@ class QsSlider extends StatefulWidget {
 class _QsSliderState extends State<QsSlider> {
   @override
   Widget build(BuildContext context) {
-    final Color backgroundColor = context.theme.backgroundColor.op(0.5);
+    final Color backgroundColor = context.theme.colorScheme.background.op(0.5);
     return Material(
       color: Colors.transparent,
       clipBehavior: Clip.antiAlias,
@@ -59,7 +58,7 @@ class _QsSliderState extends State<QsSlider> {
             ),
           ),
           Expanded(
-            child: Slider(
+            child: ZenitSlider(
               onChanged: widget.onChanged,
               value: widget.value ?? 0,
               divisions: widget.steps,
