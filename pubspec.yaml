@@ -97,6 +97,9 @@ dependencies:
     git:
       url: https://github.com/HrX03/yatl
       path: yatl_gen
+  zenit_ui:
+    git:
+      url: https://github.com/dahliaOS/zenit_ui.git
 
 dev_dependencies:
   build_runner: ^2.1.11
