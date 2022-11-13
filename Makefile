@@ -20,29 +20,29 @@ lint:
 	@dart analyze . || (echo "Error in project"; exit 1)
 
 run_web:
-	ifdef browser
-		@echo "Running Pangolin Desktop in $(browser)"
-		@flutter run -d $(browser)
-	else
-		@echo "no browser target found"
-	endif
+ifdef browser
+	@echo "Running Pangolin Desktop in $(browser)"
+	@flutter run -d $(browser)
+else
+	@echo "no browser target found"
+endif
 
 run:
-	ifdef target
-		@echo "Running Pangolin Desktop"
-		@flutter config --enable-$(target)-desktop
-		@flutter create .
-		@flutter run -d $(target)
-	else
-		@echo "no target found"
-	endif
+ifdef target
+	@echo "Running Pangolin Desktop"
+	@flutter config --enable-$(target)-desktop
+	@flutter create .
+	@flutter run -d $(target)
+else
+	@echo "no target found"
+endif
 
 build: clean
-	ifdef target
-		@echo "Building Pangolin Desktop for $(target)."
-		@flutter config --enable-$(target)-desktop
-		@flutter create .
-		@flutter build $(target) --debug
-	else
-		@echo "no target found"
-	endif
+ifdef target
+	@echo "Building Pangolin Desktop for $(target)."
+	@flutter config --enable-$(target)-desktop
+	@flutter create .
+	@flutter build $(target) --debug
+else
+	@echo "no target found"
+endif
