@@ -45,23 +45,20 @@ To develop and locally test Pangolin:
     * We also recommend installing Dart and Flutter extensions if you're opting in for VSCode.
     For other IDEs, please inform yourself.
 
-### Step 2. Install dependencies
-
-Install pub dependencies required to run Pangolin by running:
-
-```dart
-flutter pub get
-```
-
-### Step 3. Run Pangolin
+### Step 2. Run Pangolin
 
 **Note**: You can run Pangolin on any platform that Flutter supports but we recommend running it on Linux as some features of Pangolin are designed exclusively for Linux and won't work on other platforms.
 
 Run Pangolin by running:
 
-```dart
-flutter run
 ```
+make run target=linux
+```
+
+List of targets:
+- linux
+- windows
+- macos
 
 Flutter has hot reloading so no need to restart the instance when it's running!
 
