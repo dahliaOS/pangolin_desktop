@@ -42,7 +42,7 @@ ifdef target
 	@echo "Building Pangolin Desktop for $(target)."
 	@flutter config --enable-$(target)-desktop
 	@flutter create .
-	@flutter build $(target) --debug
+	@flutter build $(target) --release
 else
 	@echo "no target found"
 endif
