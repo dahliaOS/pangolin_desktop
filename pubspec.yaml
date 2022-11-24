@@ -12,7 +12,7 @@ dependencies:
     git:
       url: https://github.com/dahliaOS/app_store.git
   archive: ^3.3.0
-  battery_plus: ^2.0.1
+  battery_plus: ^3.0.2
   cached_network_image: ^3.2.0
   calculator:
     git:
