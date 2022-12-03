@@ -66,7 +66,7 @@ class BoxSurface extends StatelessWidget {
           // Create outline around the surface
           side: outline
               ? BorderSide(
-                  color: context.theme.backgroundColor.op(0.2),
+                  color: context.theme.colorScheme.background.op(0.2),
                   width: 2,
                 )
               : BorderSide.none,

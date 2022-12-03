@@ -124,7 +124,7 @@ class _PowerOverlayState extends State<PowerOverlay>
                         Container(
                           width: double.infinity,
                           height: 224,
-                          color: context.theme.backgroundColor.op(0.35),
+                          color: context.theme.colorScheme.background.op(0.35),
                           child: Padding(
                             padding: const EdgeInsets.all(16.0),
                             child: Column(
@@ -191,7 +191,7 @@ class _PowerOverlayState extends State<PowerOverlay>
                   const SizedBox(width: 12),
                   Text(
                     title,
-                    style: context.theme.textTheme.button?.copyWith(
+                    style: context.theme.textTheme.labelLarge?.copyWith(
                       fontSize: 16,
                       color: context.theme.foregroundColor,
                     ),

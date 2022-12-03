@@ -156,10 +156,13 @@ class _TaskbarItemState extends State<TaskbarItem>
                     ? (showSelected
                         ? Theme.of(context)
                             .textTheme
-                            .bodyText1
+                            .bodyLarge
                             ?.color
                             ?.withOpacity(0.2)
-                        : Theme.of(context).backgroundColor.withOpacity(0.0))
+                        : Theme.of(context)
+                            .colorScheme
+                            .background
+                            .withOpacity(0.0))
                     : Colors.transparent,
                 child: InkWell(
                   onHover: (value) {

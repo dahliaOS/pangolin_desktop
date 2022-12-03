@@ -54,7 +54,7 @@ class TaskbarAlignmentButton extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
                   border: borderStyle(isDarkMode: isDarkMode),
-                  color: Theme.of(context).backgroundColor,
+                  color: Theme.of(context).colorScheme.background,
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -113,7 +113,7 @@ class TaskbarAlignmentButton extends StatelessWidget {
               const SizedBox(height: 8),
               Text(
                 model.label,
-                style: Theme.of(context).textTheme.subtitle1?.copyWith(
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       color: selected ? context.theme.foregroundColor : null,
                     ),
               ),

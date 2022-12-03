@@ -81,7 +81,7 @@ class _ThemeModeButtonState extends State<ThemeModeButton>
               const SizedBox(height: 8),
               Text(
                 widget.model.label,
-                style: Theme.of(context).textTheme.subtitle1?.copyWith(
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       color: widget.model.darkMode == service.darkMode
                           ? context.theme.foregroundColor
                           : null,

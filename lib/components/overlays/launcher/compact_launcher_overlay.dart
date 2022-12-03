@@ -118,7 +118,7 @@ class CompactLauncher extends StatelessWidget {
         children: [
           DecoratedBox(
             decoration: BoxDecoration(
-              color: context.theme.backgroundColor.op(0.25),
+              color: context.theme.colorScheme.background.op(0.25),
             ),
             child: Column(
               children: [

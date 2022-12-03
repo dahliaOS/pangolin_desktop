@@ -46,8 +46,9 @@ class _QsToggleButtonState extends State<QsToggleButton> {
   Widget build(BuildContext context) {
     final theme = context.theme;
 
-    final Color color =
-        widget.enabled ? theme.accent : theme.backgroundColor.withOpacity(0.5);
+    final Color color = widget.enabled
+        ? theme.accent
+        : theme.colorScheme.background.withOpacity(0.5);
     final String? subtitle = widget.subtitle?.resolve(enabled: widget.enabled);
 
     return SizedBox(
@@ -104,7 +105,7 @@ class _QsToggleButtonState extends State<QsToggleButton> {
                 ),
                 VerticalDivider(
                   color: widget.enabled
-                      ? theme.backgroundColor.op(0.2)
+                      ? theme.colorScheme.background.op(0.2)
                       : theme.surfaceForegroundColor.op(0.2),
                 ),
                 Material(
