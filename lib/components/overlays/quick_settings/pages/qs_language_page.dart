@@ -49,6 +49,8 @@ class QsLanguagePage extends StatelessWidget {
                 .progressData[locales.supportedLocales[index].toLanguageTag()];
             final int? totalTranslationStrings =
                 locales.progressData[context.fallbackLocale.toLanguageTag()];
+            final double translationPercentage =
+                translatedStrings! / totalTranslationStrings! * 100;
             return ListTile(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8),
@@ -76,9 +78,7 @@ class QsLanguagePage extends StatelessWidget {
                     "Language code not found",
               ),
               subtitle: Text(locales.supportedLocales[index].toLanguageTag()),
-              trailing: Text(
-                '$translatedStrings / $totalTranslationStrings',
-              ),
+              trailing: Text("${translationPercentage.toStringAsFixed(0)}%"),
               onTap: () {
                 context.locale = context.supportedLocales[index];
 
