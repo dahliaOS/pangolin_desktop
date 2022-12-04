@@ -65,7 +65,7 @@ class _ShowDesktopButtonState extends State<ShowDesktopButton> {
                     height: 20,
                     width: 2,
                     color: isHovered
-                        ? context.theme.textTheme.bodyText1?.color
+                        ? context.theme.textTheme.bodyLarge?.color
                         : Colors.transparent,
                   ),
                 ),

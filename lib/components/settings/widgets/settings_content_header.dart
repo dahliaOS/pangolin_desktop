@@ -39,7 +39,7 @@ class _SettingsContentHeaderState extends State<SettingsContentHeader> {
         alignment: Alignment.centerLeft,
         child: Text(
           widget.title,
-          style: Theme.of(context).textTheme.subtitle1,
+          style: Theme.of(context).textTheme.titleMedium,
         ),
       ),
     );

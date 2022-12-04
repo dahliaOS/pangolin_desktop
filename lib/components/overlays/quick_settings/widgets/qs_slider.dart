@@ -40,7 +40,7 @@ class QsSlider extends StatefulWidget {
 class _QsSliderState extends State<QsSlider> {
   @override
   Widget build(BuildContext context) {
-    final Color backgroundColor = context.theme.backgroundColor.op(0.5);
+    final Color backgroundColor = context.theme.colorScheme.background.op(0.5);
     return Material(
       color: Colors.transparent,
       clipBehavior: Clip.antiAlias,

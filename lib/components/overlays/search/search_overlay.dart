@@ -109,7 +109,10 @@ class _SearchOverlayState extends State<SearchOverlay>
                     //  outline: false,
                     height: 48 + 10,
                     child: Searchbar(
-                      color: Theme.of(context).backgroundColor.withOpacity(0.2),
+                      color: Theme.of(context)
+                          .colorScheme
+                          .background
+                          .withOpacity(0.2),
                       focusNode: _focusNode,
                       controller: _controller,
                       hint: strings.searchOverlay.hint,

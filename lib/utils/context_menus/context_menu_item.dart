@@ -56,7 +56,7 @@ class ContextMenuItem extends StatelessWidget {
                 ),
                 Text(
                   title,
-                  style: Theme.of(context).textTheme.subtitle1,
+                  style: Theme.of(context).textTheme.titleMedium,
                 ),
                 //Spacer(),
                 Align(

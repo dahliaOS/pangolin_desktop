@@ -102,14 +102,15 @@ class _OverviewOverlayState extends State<OverviewOverlay>
                         child: FloatingActionButton.extended(
                           highlightElevation: 2,
                           onPressed: () {},
-                          hoverColor: Theme.of(context).backgroundColor,
+                          hoverColor: Theme.of(context).colorScheme.background,
                           label: Text(strings.overviewOverlay.newDesktop),
                           icon: const Icon(Icons.add),
                           hoverElevation: 1,
                           foregroundColor:
-                              Theme.of(context).textTheme.bodyText1?.color,
+                              Theme.of(context).textTheme.bodyLarge?.color,
                           backgroundColor: Theme.of(context)
-                              .backgroundColor
+                              .colorScheme
+                              .background
                               .withOpacity(0.5),
                           elevation: 0.0,
                         ),

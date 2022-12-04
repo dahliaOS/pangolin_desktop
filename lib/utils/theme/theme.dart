@@ -69,12 +69,6 @@ ThemeData theme(BuildContext context) {
       iconTheme: IconThemeData(color: foregroundColor),
     ),
     fontFamily: fontFamily,
-    colorScheme: ColorScheme.fromSeed(
-      brightness: brightness,
-      seedColor: accentColor,
-      secondary: accentColor,
-    ),
-    backgroundColor: backgroundColor,
     canvasColor: surfaceColor,
     primaryColor: accentColor,
     primaryColorDark: accentColor,
@@ -103,7 +97,7 @@ ThemeData theme(BuildContext context) {
     ),
     //TODO Text Theme
     textTheme: const TextTheme(
-      button: TextStyle(fontSize: 13),
+      labelLarge: TextStyle(fontSize: 13),
       /* displaySmall: TextStyle(fontSize: 11),
       displayMedium: TextStyle(fontSize: 12),
       displayLarge: TextStyle(fontSize: 13),
@@ -137,6 +131,12 @@ ThemeData theme(BuildContext context) {
     ),
     iconTheme: IconThemeData(
       color: surfaceForegroundColor,
+    ),
+    colorScheme: ColorScheme.fromSeed(
+      brightness: brightness,
+      seedColor: accentColor,
+      secondary: accentColor,
+      background: backgroundColor,
     ),
   );
 }
