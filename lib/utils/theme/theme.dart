@@ -136,6 +136,7 @@ ThemeData theme(BuildContext context) {
       brightness: brightness,
       seedColor: accentColor,
       secondary: accentColor,
-    ).copyWith(background: backgroundColor),
+      background: backgroundColor,
+    ),
   );
 }
