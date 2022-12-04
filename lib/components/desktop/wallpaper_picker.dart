@@ -101,15 +101,20 @@ class _WallpaperPickerState extends State<WallpaperPicker>
                   //
                   FutureBuilder<List<Wallpaper?>?>(
                     future: wallpapers,
-                    builder: (context, snapshot) {
+                    builder: (
+                      BuildContext context,
+                      AsyncSnapshot<List<Wallpaper?>?> snapshot,
+                    ) {
                       if (snapshot.hasData) {
                         return GridView.builder(
                           itemCount: snapshot.data!.length,
+                          physics: const BouncingScrollPhysics(),
                           gridDelegate:
                               const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 4,
+                            childAspectRatio: 16 / 9,
                           ),
-                          itemBuilder: (context, index) {
+                          itemBuilder: (BuildContext context, int index) {
                             return Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: InkWell(
