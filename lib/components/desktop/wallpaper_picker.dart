@@ -17,6 +17,7 @@ limitations under the License.
 import 'package:flutter/material.dart';
 import 'package:pangolin/services/customization.dart';
 import 'package:pangolin/utils/api_models/bing_wallpaper_api_model.dart';
+import 'package:pangolin/utils/api_models/wallpaper_api_model.dart';
 import 'package:pangolin/utils/data/constants.dart';
 import 'package:pangolin/utils/data/globals.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
@@ -38,20 +39,22 @@ class _WallpaperPickerState extends State<WallpaperPicker>
         StateServiceListener<CustomizationService, WallpaperPicker> {
   final TextEditingController _controller = TextEditingController();
   late TabController tabController;
+  late Future<List<Wallpaper>?> wallpapers;
 
   @override
   void initState() {
     super.initState();
-    tabController = TabController(length: 3, vsync: this);
+    tabController = TabController(length: 2, vsync: this);
+    wallpapers = getWallpapers();
   }
 
   @override
-  Widget buildChild(BuildContext context, CustomizationService service) {
+  Widget buildChild(
+    BuildContext context,
+    CustomizationService service,
+  ) {
     final List<ImageResource> recentWallpapers =
         service.recentWallpapers.reversed.toList();
-    final List<ImageResource> builtinWalls = wallpapers
-        .map((e) => ImageResource(type: ImageResourceType.dahlia, value: e))
-        .toList();
 
     return GestureDetector(
       onTap: () => Navigator.pop(context),
@@ -71,19 +74,18 @@ class _WallpaperPickerState extends State<WallpaperPicker>
               physics: const BouncingScrollPhysics(),
               indicatorColor: Theme.of(context).colorScheme.secondary,
               labelColor: Theme.of(context).colorScheme.secondary,
-              labelStyle: Theme.of(context).textTheme.bodyText2?.copyWith(
+              labelStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
               unselectedLabelColor:
-                  Theme.of(context).textTheme.bodyText1?.color,
+                  Theme.of(context).textTheme.bodyLarge?.color,
               unselectedLabelStyle:
-                  Theme.of(context).textTheme.bodyText2?.copyWith(
+                  Theme.of(context).textTheme.bodyMedium?.copyWith(
                         fontWeight: FontWeight.normal,
                       ),
               controller: tabController,
               tabs: const [
                 Tab(text: "Default Wallpapers"),
-                Tab(text: "Wallpapers Repository"),
                 Tab(text: "Recent Wallpapers"),
               ],
             ),
@@ -97,56 +99,81 @@ class _WallpaperPickerState extends State<WallpaperPicker>
                   //
                   //Default Wallpapers
                   //
-                  GridView.builder(
-                    physics: const BouncingScrollPhysics(),
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 4,
-                      childAspectRatio: 16 / 9,
-                    ),
-                    itemCount: wallpapers.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      //_index = index;
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: InkWell(
-                          onTap: () {
-                            service.wallpaper = builtinWalls[index];
-                            service.addRecentWallpaper(service.wallpaper);
-                          },
-                          child: Stack(
-                            children: [
-                              Positioned.fill(
-                                child: ResourceImage(
-                                  resource: builtinWalls[index],
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                              if (service.wallpaper == builtinWalls[index])
-                                Positioned(
-                                  bottom: 5,
-                                  right: 5,
-                                  child: CircleAvatar(
-                                    backgroundColor:
-                                        Theme.of(context).colorScheme.secondary,
-                                    foregroundColor: Colors.white,
-                                    child: const Icon(Icons.check),
-                                  ),
-                                )
-                              else
-                                const SizedBox.shrink(),
-                            ],
-                          ),
+                  FutureBuilder<List<Wallpaper>?>(
+                    future: wallpapers,
+                    builder: (
+                      BuildContext context,
+                      AsyncSnapshot<List<Wallpaper>?> snapshot,
+                    ) {
+                      if (snapshot.data == null) {
+                        return const Text(
+                          "Loading the data from dahliaOS' GitHub Wallpaper repository API....",
+                        );
+                      }
+
+                      if (snapshot.hasError) {
+                        return const Text(
+                          "Error: Failed to fetch data from dahliaOS' GitHub Wallpaper repository API.",
+                        );
+                      }
+
+                      return GridView.builder(
+                        itemCount: snapshot.data!.length,
+                        physics: const BouncingScrollPhysics(),
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 4,
+                          childAspectRatio: 16 / 9,
                         ),
+                        itemBuilder: (BuildContext context, int index) {
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: InkWell(
+                              onTap: () {
+                                service.wallpaper = ImageResource(
+                                  type: ImageResourceType.network,
+                                  value: snapshot.data![index].downloadUrl,
+                                );
+                                service.addRecentWallpaper(service.wallpaper);
+                              },
+                              child: Stack(
+                                children: [
+                                  Positioned.fill(
+                                    child: ResourceImage(
+                                      resource: ImageResource(
+                                        type: ImageResourceType.network,
+                                        value:
+                                            snapshot.data![index].downloadUrl,
+                                      ),
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                  if (service.wallpaper ==
+                                      ImageResource(
+                                        type: ImageResourceType.network,
+                                        value:
+                                            snapshot.data![index].downloadUrl,
+                                      ))
+                                    Positioned(
+                                      bottom: 5,
+                                      right: 5,
+                                      child: CircleAvatar(
+                                        backgroundColor: Theme.of(context)
+                                            .colorScheme
+                                            .secondary,
+                                        foregroundColor: Colors.white,
+                                        child: const Icon(Icons.check),
+                                      ),
+                                    )
+                                  else
+                                    const SizedBox.shrink(),
+                                ],
+                              ),
+                            ),
+                          );
+                        },
                       );
                     },
-                  ),
-                  //
-                  //TODO Wallpapers Repository
-                  //
-                  const ColoredBox(
-                    color: Colors.green,
-                    child: Center(child: Text("Coming Soon")),
                   ),
                   //
                   //Recent Wallpapers
@@ -190,7 +217,7 @@ class _WallpaperPickerState extends State<WallpaperPicker>
               Row(
                 children: [
                   //
-                  //Text Filed for Wallpaper URL
+                  //Text Field for Wallpaper URL
                   //
                   Expanded(
                     child: TextField(
