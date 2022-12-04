@@ -20,6 +20,7 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:pangolin/utils/api_models/bing_wallpaper_api_model.dart';
+import 'package:pangolin/utils/api_models/wallpaper_api_model.dart';
 import 'package:pangolin/utils/wm/wm.dart';
 
 String totalVersionNumber = "220222";
@@ -78,20 +79,27 @@ double verticalPadding(BuildContext context, double size) =>
 
 List<String> timeZones = [];
 
-List<String> wallpapers = [
-  "images/wallpapers/dahliaOS_white_logo_pattern_wallpaper.png",
-  "images/wallpapers/dahliaOS_white_wallpaper.png",
-  "images/wallpapers/Gradient_logo_wallpaper.png",
-  "images/wallpapers/Three_Bubbles.png",
-  "images/wallpapers/Bubbles_wallpaper.png",
-  "images/wallpapers/Mountains_wallpaper.png",
-  "images/wallpapers/mountain.jpg",
-  "images/wallpapers/forest.jpg",
-  "images/wallpapers/modern.png",
-  "images/wallpapers/modern_dark.png",
-  "images/wallpapers/wood.jpg",
-  "images/wallpapers/beach.jpg",
-];
+Future<List<Wallpaper?>?> getWallpapers() async {
+  final response = await get(
+    Uri.parse(
+      'https://api.github.com/repos/dahliaOS/wallpapers/contents/Official/Desktop/PNG?ref=main',
+    ),
+    headers: {
+      "Access-Control-Allow-Origin": "true",
+      "Access-Control-Allow-Methods": "POST, GET, OPTIONS, PUT, DELETE, HEAD",
+    },
+  );
+
+  if (response.statusCode == 200) {
+    return wallpaperParser
+        .validate(jsonDecode(response.body))
+        ?.cast<Wallpaper>();
+  } else {
+    throw Exception(
+      "Failed to fetch data from dahliaOS' GitHub Wallpaper repository API.",
+    );
+  }
+}
 
 Future<BingImageOfTheDay?> getBingWallpaper() async {
   final response = await get(
