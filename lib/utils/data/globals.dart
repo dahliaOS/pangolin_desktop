@@ -79,7 +79,7 @@ double verticalPadding(BuildContext context, double size) =>
 
 List<String> timeZones = [];
 
-Future<List<Wallpaper?>?> getWallpapers() async {
+Future<List<Wallpaper>?> getWallpapers() async {
   final response = await get(
     Uri.parse(
       'https://api.github.com/repos/dahliaOS/wallpapers/contents/Official/Desktop/PNG?ref=main',

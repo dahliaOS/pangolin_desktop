@@ -39,7 +39,7 @@ class _WallpaperPickerState extends State<WallpaperPicker>
         StateServiceListener<CustomizationService, WallpaperPicker> {
   final TextEditingController _controller = TextEditingController();
   late TabController tabController;
-  late Future<List<Wallpaper?>?> wallpapers;
+  late Future<List<Wallpaper>?> wallpapers;
 
   @override
   void initState() {
@@ -99,76 +99,79 @@ class _WallpaperPickerState extends State<WallpaperPicker>
                   //
                   //Default Wallpapers
                   //
-                  FutureBuilder<List<Wallpaper?>?>(
+                  FutureBuilder<List<Wallpaper>?>(
                     future: wallpapers,
                     builder: (
                       BuildContext context,
-                      AsyncSnapshot<List<Wallpaper?>?> snapshot,
+                      AsyncSnapshot<List<Wallpaper>?> snapshot,
                     ) {
-                      if (snapshot.hasData) {
-                        return GridView.builder(
-                          itemCount: snapshot.data!.length,
-                          physics: const BouncingScrollPhysics(),
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 4,
-                            childAspectRatio: 16 / 9,
-                          ),
-                          itemBuilder: (BuildContext context, int index) {
-                            return Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: InkWell(
-                                onTap: () {
-                                  service.wallpaper = ImageResource(
-                                    type: ImageResourceType.network,
-                                    value: snapshot.data![index]!.downloadUrl,
-                                  );
-                                  service.addRecentWallpaper(service.wallpaper);
-                                },
-                                child: Stack(
-                                  children: [
-                                    Positioned.fill(
-                                      child: ResourceImage(
-                                        resource: ImageResource(
-                                          type: ImageResourceType.network,
-                                          value: snapshot
-                                              .data![index]!.downloadUrl,
-                                        ),
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                    if (service.wallpaper ==
-                                        ImageResource(
-                                          type: ImageResourceType.network,
-                                          value: snapshot
-                                              .data![index]!.downloadUrl,
-                                        ))
-                                      Positioned(
-                                        bottom: 5,
-                                        right: 5,
-                                        child: CircleAvatar(
-                                          backgroundColor: Theme.of(context)
-                                              .colorScheme
-                                              .secondary,
-                                          foregroundColor: Colors.white,
-                                          child: const Icon(Icons.check),
-                                        ),
-                                      )
-                                    else
-                                      const SizedBox.shrink(),
-                                  ],
-                                ),
-                              ),
-                            );
-                          },
+                      if (snapshot.data == null) {
+                        return const Text(
+                          "Loading the data from dahliaOS' GitHub Wallpaper repository API....",
                         );
-                      } else if (snapshot.hasError) {
+                      }
+
+                      if (snapshot.hasError) {
                         return const Text(
                           "Error: Failed to fetch data from dahliaOS' GitHub Wallpaper repository API.",
                         );
                       }
-                      return const Text(
-                        "Loading the data from dahliaOS' GitHub Wallpaper repository API....",
+
+                      return GridView.builder(
+                        itemCount: snapshot.data!.length,
+                        physics: const BouncingScrollPhysics(),
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 4,
+                          childAspectRatio: 16 / 9,
+                        ),
+                        itemBuilder: (BuildContext context, int index) {
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: InkWell(
+                              onTap: () {
+                                service.wallpaper = ImageResource(
+                                  type: ImageResourceType.network,
+                                  value: snapshot.data![index].downloadUrl,
+                                );
+                                service.addRecentWallpaper(service.wallpaper);
+                              },
+                              child: Stack(
+                                children: [
+                                  Positioned.fill(
+                                    child: ResourceImage(
+                                      resource: ImageResource(
+                                        type: ImageResourceType.network,
+                                        value:
+                                            snapshot.data![index].downloadUrl,
+                                      ),
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                  if (service.wallpaper ==
+                                      ImageResource(
+                                        type: ImageResourceType.network,
+                                        value:
+                                            snapshot.data![index].downloadUrl,
+                                      ))
+                                    Positioned(
+                                      bottom: 5,
+                                      right: 5,
+                                      child: CircleAvatar(
+                                        backgroundColor: Theme.of(context)
+                                            .colorScheme
+                                            .secondary,
+                                        foregroundColor: Colors.white,
+                                        child: const Icon(Icons.check),
+                                      ),
+                                    )
+                                  else
+                                    const SizedBox.shrink(),
+                                ],
+                              ),
+                            ),
+                          );
+                        },
                       );
                     },
                   ),
