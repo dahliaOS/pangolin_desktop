@@ -78,6 +78,6 @@ If you're interested in translating Pangolin, click [here](https://github.com/da
   <img width="30%" src="https://github.com/dahliaOS/brand/blob/main/dahliaOS/logotype/svg/logotype-light.svg#gh-light-mode-only"/>
 </p>
 
-Copyright @ 2019-2022 - The dahliaOS Authors - contact@dahliaos.io
+Copyright @ 2019-2023 - The dahliaOS Authors - contact@dahliaos.io
 
 This project is licensed under the [Apache 2.0 license](/LICENSE)
