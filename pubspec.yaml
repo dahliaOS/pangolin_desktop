@@ -53,7 +53,7 @@ dependencies:
   pausable_timer: ^1.0.0+5
   provider: ^6.0.1
   recase: ^4.0.0
-  reorderables: ^0.5.0
+  reorderables: ^0.6.0
   shared_preferences: ^2.0.15
   system_logs:
     git:
