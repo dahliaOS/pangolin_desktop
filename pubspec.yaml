@@ -41,7 +41,7 @@ dependencies:
   gsettings: ^0.2.5
   http: ^0.13.5
   implicitly_animated_list: ^2.1.0
-  intl: ^0.17.0
+  intl: ^0.18.0
   jovial_svg: ^1.1.5
   logging: ^1.0.2
   media:
