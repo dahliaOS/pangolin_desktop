@@ -41,7 +41,7 @@ dependencies:
   gsettings: ^0.2.5
   http: ^0.13.5
   implicitly_animated_list: ^2.1.0
-  intl: ^0.17.0
+  intl: ^0.18.0
   jovial_svg: ^1.1.5
   logging: ^1.0.2
   media:
@@ -53,7 +53,7 @@ dependencies:
   pausable_timer: ^1.0.0+5
   provider: ^6.0.1
   recase: ^4.0.0
-  reorderables: ^0.5.0
+  reorderables: ^0.6.0
   shared_preferences: ^2.0.15
   system_logs:
     git:
