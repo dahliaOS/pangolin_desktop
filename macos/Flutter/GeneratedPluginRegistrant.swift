@@ -5,8 +5,8 @@
 import FlutterMacOS
 import Foundation
 
-import battery_plus_macos
-import path_provider_macos
+import battery_plus
+import path_provider_foundation
 import screen_retriever
 import shared_preferences_foundation
 import sqflite

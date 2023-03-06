@@ -2,6 +2,7 @@ include: package:lint/analysis_options.yaml
 
 linter:
   rules:
+    sort_pub_dependencies: false
 
 analyzer:
   exclude:
