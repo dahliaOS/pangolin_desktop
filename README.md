@@ -23,13 +23,13 @@
  - 🌐 **Check** the web preview [here](https://web.dahliaos.io).
 
 <p align="center">
-  <img width="100%" src="https://docs.dahliaos.io/docs/pangolin/settings.png"
+  <img width="100%" src="https://docs.dahliaos.io/docs/pangolin/settings.webp"
 </p>
 
 > Settings and start menu, commit [876180d](https://github.com/dahliaOS/pangolin_desktop/commit/876180df15d3b6c8720fb7474d1bcf1b5202fc67).
 
 <p align="center">
-  <img width="100%" src="https://docs.dahliaos.io/docs/pangolin/search.png"
+  <img width="100%" src="https://docs.dahliaos.io/docs/pangolin/search.webp"
 </p>
 
 > Calculator, Terminal, Notes and search, commit [876180d](https://github.com/dahliaOS/pangolin_desktop/commit/876180df15d3b6c8720fb7474d1bcf1b5202fc67).
