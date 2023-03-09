@@ -21,8 +21,7 @@ class XpmParser {
 
     buffer.parts.removeWhere((e) => RegExp(r"\/\*.*\*\/").hasMatch(e));
 
-    final List<String> parts =
-        buffer.read().replaceAll(RegExp('",?'), "").trim().split(RegExp(r"\s"));
+    final List<String> parts = buffer.read().replaceAll(RegExp('",?'), "").trim().split(RegExp(r"\s"));
     final List<int> values = parts.map((e) => int.parse(e)).toList();
 
     if (values.length != 4 && values.length != 6) return null;
@@ -35,12 +34,8 @@ class XpmParser {
     final Map<String, ui.Color> colors = {};
 
     for (int i = 0; i < ncolors && buffer.canRead(); i++) {
-      final String line = buffer
-          .read()
-          .replaceAll(RegExp(r'",$'), "")
-          .replaceAll(RegExp('"'), "");
-      final _ConsumableStringBuffer lineBuffer =
-          _ConsumableStringBuffer(line, "");
+      final String line = buffer.read().replaceAll(RegExp(r'",$'), "").replaceAll(RegExp('"'), "");
+      final _ConsumableStringBuffer lineBuffer = _ConsumableStringBuffer(line, "");
 
       final String char = lineBuffer.read(cpp);
       lineBuffer.skip(RegExp(r"\s"));
@@ -72,8 +67,7 @@ class XpmParser {
 
     for (int y = 0; y < height; y++) {
       final String line = buffer.read().replaceAll(RegExp('"(,|};)?'), "");
-      final _ConsumableStringBuffer lineBuffer =
-          _ConsumableStringBuffer(line, "");
+      final _ConsumableStringBuffer lineBuffer = _ConsumableStringBuffer(line, "");
 
       for (int x = 0; x < width; x++) {
         final String char = lineBuffer.read(cpp);
@@ -110,9 +104,7 @@ class Xpm {
   @override
   bool operator ==(Object? other) {
     if (other is Xpm) {
-      return width == other.width &&
-          height == other.height &&
-          data == other.data;
+      return width == other.width && height == other.height && data == other.data;
     }
 
     return false;
@@ -122,18 +114,27 @@ class Xpm {
 class _ConsumableStringBuffer {
   final String separator;
   final List<String> parts;
+  int _arrayHead = 0;
 
-  _ConsumableStringBuffer(String string, this.separator)
-      : parts = string.split(separator);
+  _ConsumableStringBuffer(String string, this.separator) : parts = string.split(separator);
 
   String read([int amount = 1]) {
-    final String content = parts.getRange(0, amount).join(separator);
-    parts.removeRange(0, amount);
+    if (!canRead()) throw Exception();
+
+    int endIndex = _arrayHead + amount;
+
+    if (endIndex > parts.length) {
+      endIndex = parts.length;
+    }
+
+    final String content = parts.getRange(_arrayHead, _arrayHead + amount).join(separator);
+    _arrayHead = endIndex;
+
     return content;
   }
 
   String peek() {
-    return parts.first;
+    return parts[_arrayHead];
   }
 
   void skip(Pattern pattern) {
@@ -141,7 +142,7 @@ class _ConsumableStringBuffer {
   }
 
   bool canRead() {
-    return parts.isNotEmpty;
+    return _arrayHead < parts.length;
   }
 
   @override
