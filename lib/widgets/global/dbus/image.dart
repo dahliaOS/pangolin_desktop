@@ -2,9 +2,9 @@ import 'dart:math';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 
+import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/services/dbus/image.dart';
-import 'package:pangolin/utils/other/resource.dart';
 import 'package:pangolin/widgets/global/resource/icon/icon.dart';
 import 'package:pangolin/widgets/global/resource/image/image.dart';
 

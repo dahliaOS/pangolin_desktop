@@ -14,18 +14,15 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/overlays/launcher/compact_launcher_overlay.dart';
 import 'package:pangolin/components/overlays/launcher/launcher_overlay.dart';
 import 'package:pangolin/components/taskbar/taskbar_element.dart';
-import 'package:pangolin/services/customization.dart';
 import 'package:pangolin/utils/context_menus/context_menu.dart';
 import 'package:pangolin/utils/context_menus/context_menu_item.dart';
 import 'package:pangolin/utils/context_menus/core/context_menu_region.dart';
-import 'package:pangolin/utils/data/constants.dart';
-import 'package:pangolin/utils/other/resource.dart';
 import 'package:pangolin/widgets/global/resource/icon/icon.dart';
-import 'package:pangolin/widgets/services.dart';
 
 //TODO: Context menu for changing the taskbar's icon is cut off.
 class LauncherButton extends StatelessWidget

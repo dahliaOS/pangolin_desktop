@@ -14,8 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'package:dahlia_shared/utils/extensions.dart';
 import 'package:flutter/material.dart';
-import 'package:pangolin/utils/extensions/extensions.dart';
 
 class QsShortcutButton extends StatefulWidget {
   const QsShortcutButton({

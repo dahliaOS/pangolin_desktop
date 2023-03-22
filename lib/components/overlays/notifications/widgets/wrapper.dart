@@ -1,9 +1,9 @@
 import 'dart:math';
 
+import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/overlays/notifications/widgets/notification.dart';
 import 'package:pangolin/services/notifications.dart';
-import 'package:pangolin/utils/data/constants.dart';
 import 'package:pausable_timer/pausable_timer.dart';
 
 class NotificationViewWrapper extends StatelessWidget {

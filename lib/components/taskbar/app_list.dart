@@ -1,10 +1,10 @@
 import 'package:collection/collection.dart';
+import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:diffutil_dart/diffutil.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/taskbar/taskbar_item.dart';
 import 'package:pangolin/services/application.dart';
-import 'package:pangolin/services/customization.dart';
 import 'package:pangolin/services/wm.dart';
 import 'package:pangolin/utils/wm/properties.dart';
 

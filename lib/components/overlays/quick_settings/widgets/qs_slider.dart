@@ -13,8 +13,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
+import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
-import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:zenit_ui/zenit_ui.dart';
 
 class QsSlider extends StatefulWidget {

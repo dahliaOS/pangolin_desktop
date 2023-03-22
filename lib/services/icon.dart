@@ -2,9 +2,9 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:collection/collection.dart';
+import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:dbus/dbus.dart';
 import 'package:gsettings/gsettings.dart';
-import 'package:pangolin/services/service.dart';
 import 'package:pangolin/utils/other/benchmark.dart';
 import 'package:pangolin/widgets/global/resource/icon/cache.dart';
 import 'package:path/path.dart' as p;

@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:jovial_svg/jovial_svg.dart';
@@ -9,7 +10,6 @@ import 'package:jovial_svg/jovial_svg.dart';
 import 'package:jovial_svg/src/dag.dart';
 // ignore: implementation_imports
 import 'package:jovial_svg/src/svg_parser.dart';
-import 'package:pangolin/utils/other/resource.dart';
 import 'package:pangolin/widgets/global/resource/image/xpm.dart';
 import 'package:path/path.dart' as p;
 

@@ -14,10 +14,8 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:pangolin/components/settings/settings.dart';
 import 'package:pangolin/utils/data/models/application.dart';
 import 'package:pangolin/utils/other/webapp_manager.dart';
-import 'package:pangolin/utils/providers/locale_provider.dart';
 
 List<Application> get applications => <Application>[
       Application(
@@ -30,19 +28,11 @@ List<Application> get applications => <Application>[
         category: ApplicationCategory.internet,
         supportsWeb: false,
       ),
-      Application(
-        color: Colors.transparent,
-        packageName: "io.dahlia.settings",
-        app: const Settings(),
-        name: strings.apps.settings,
-        description: strings.apps.settingsDescription,
-        iconName: "settings",
-        category: ApplicationCategory.system,
-      ),
     ];
 
 Application getApp(String packageName) {
-  return applications.firstWhere((element) => element.packageName == packageName);
+  return applications
+      .firstWhere((element) => element.packageName == packageName);
 }
 
 Widget getAppIcon({

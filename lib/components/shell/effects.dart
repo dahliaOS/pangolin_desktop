@@ -1,6 +1,6 @@
+import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/services/wm.dart';
-import 'package:pangolin/utils/data/constants.dart';
 import 'package:pangolin/utils/wm/layout.dart';
 import 'package:pangolin/widgets/global/box/box_container.dart';
 import 'package:provider/provider.dart';

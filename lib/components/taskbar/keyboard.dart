@@ -14,11 +14,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/overlays/keyboard_overlay.dart';
 import 'package:pangolin/components/overlays/quick_settings/quick_settings_overlay.dart';
 import 'package:pangolin/components/shell/shell.dart';
-import 'package:pangolin/utils/data/constants.dart';
 
 class KeyboardButton extends StatelessWidget {
   const KeyboardButton({super.key});
@@ -51,12 +51,12 @@ class KeyboardButton extends StatelessWidget {
                   Theme.of(context).colorScheme.secondary.withOpacity(0.5),
               mouseCursor: SystemMouseCursors.click,
               onTap: () => showKeyboard(context),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+              child: const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                 child: Center(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [Icon(Icons.keyboard_outlined)],
+                    children: [Icon(Icons.keyboard_outlined)],
                   ),
                 ),
               ),

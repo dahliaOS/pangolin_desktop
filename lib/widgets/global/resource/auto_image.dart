@@ -1,5 +1,5 @@
+import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
-import 'package:pangolin/utils/other/resource.dart';
 import 'package:pangolin/widgets/global/resource/icon/icon.dart';
 import 'package:pangolin/widgets/global/resource/image/image.dart';
 

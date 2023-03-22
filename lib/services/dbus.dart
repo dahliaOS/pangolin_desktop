@@ -1,7 +1,7 @@
 import 'dart:async';
 
+import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:dbus/dbus.dart';
-import 'package:pangolin/services/service.dart';
 
 mixin DBusService<T extends Service<T>> on Service<T> {
   DBusServiceBackend get backend;

@@ -1,8 +1,7 @@
 import 'dart:async';
 
+import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:intl/intl.dart';
-import 'package:pangolin/services/customization.dart';
-import 'package:pangolin/services/service.dart';
 
 abstract class DateTimeService extends ListenableService<DateTimeService> {
   DateTimeService();

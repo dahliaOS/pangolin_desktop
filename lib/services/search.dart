@@ -17,8 +17,8 @@ limitations under the License.
 import 'dart:async';
 import 'dart:ui' as ui;
 
+import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:pangolin/services/application.dart';
-import 'package:pangolin/services/service.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:xdg_desktop/xdg_desktop.dart';
 

@@ -18,6 +18,7 @@ limitations under the License.
 
 import 'dart:io';
 
+import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/overlays/account_overlay.dart';
 import 'package:pangolin/components/overlays/launcher/compact_launcher_overlay.dart';
@@ -25,8 +26,6 @@ import 'package:pangolin/components/overlays/launcher/launcher_overlay.dart';
 import 'package:pangolin/components/overlays/power_overlay.dart';
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/services/application.dart';
-import 'package:pangolin/services/customization.dart';
-import 'package:pangolin/utils/data/constants.dart';
 
 class ActionManager {
   const ActionManager._();

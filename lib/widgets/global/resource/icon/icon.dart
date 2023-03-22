@@ -1,7 +1,6 @@
+import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/services/icon.dart';
-import 'package:pangolin/utils/data/constants.dart';
-import 'package:pangolin/utils/other/resource.dart';
 import 'package:pangolin/widgets/global/resource/image/image.dart';
 
 class ResourceIcon extends StatefulWidget {
@@ -41,13 +40,39 @@ class _ResourceIconState extends State<ResourceIcon> {
     if (mounted) setState(() {});
   }
 
+  Future<String?> resolveReference(IconReference reference) {
+    return switch (reference) {
+      DahliaIconReference(:final name) => Future.value(name),
+      FileIconReference(:final name) => Future.value(name),
+      XdgIconReference() => _resolveXdg(reference),
+    };
+  }
+
+  Future<String?> _resolveXdg(XdgIconReference ref) async {
+    if (ref.directory != null) {
+      return IconService.current.lookupFromDirectory(
+        ref.directory!,
+        ref.name,
+        fallback: ref.fallback,
+      );
+    } else {
+      return IconService.current.lookup(
+        ref.name,
+        size: ref.size,
+        fallback: ref.fallback,
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<String?>(
-      future: widget.resource.resolve(
-        size: widget.lookupForSize ? widget.size?.toInt() : null,
-        directory: widget.themePath,
-        fallback: "application-x-executable",
+      future: resolveReference(
+        widget.resource.resolve(
+          size: widget.lookupForSize ? widget.size?.toInt() : null,
+          directory: widget.themePath,
+          fallback: "application-x-executable",
+        ),
       ),
       builder: (context, snapshot) {
         final String? resolvedResource = snapshot.data;

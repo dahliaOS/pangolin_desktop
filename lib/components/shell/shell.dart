@@ -16,6 +16,7 @@ limitations under the License.
 
 import 'dart:async';
 
+import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/overlays/launcher/launcher_overlay.dart';
 import 'package:pangolin/components/overlays/notifications/queue.dart';
@@ -32,7 +33,6 @@ import 'package:pangolin/services/dbus/status_item.dart';
 import 'package:pangolin/services/tray.dart';
 import 'package:pangolin/utils/wm/wm.dart';
 import 'package:pangolin/widgets/global/box/box_container.dart';
-import 'package:pangolin/widgets/services.dart';
 import 'package:provider/provider.dart';
 
 typedef ShellShownCallback = void Function(ShellState shell);

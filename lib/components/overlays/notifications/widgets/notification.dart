@@ -1,8 +1,8 @@
 import 'package:collection/collection.dart';
+import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/services/dbus/image.dart';
 import 'package:pangolin/services/notifications.dart';
-import 'package:pangolin/utils/data/constants.dart';
 import 'package:pangolin/widgets/global/box/box_container.dart';
 import 'package:pangolin/widgets/global/dbus/image.dart';
 import 'package:pangolin/widgets/global/markup.dart';

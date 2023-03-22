@@ -14,16 +14,15 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/desktop/wallpaper_picker.dart';
 import 'package:pangolin/services/application.dart';
-import 'package:pangolin/services/customization.dart';
 import 'package:pangolin/services/wm.dart';
 import 'package:pangolin/utils/context_menus/context_menu.dart';
 import 'package:pangolin/utils/context_menus/context_menu_item.dart';
 import 'package:pangolin/utils/context_menus/core/context_menu_region.dart';
 import 'package:pangolin/widgets/global/resource/image/image.dart';
-import 'package:pangolin/widgets/services.dart';
 import 'package:provider/provider.dart';
 
 class WallpaperLayer extends StatelessWidget

@@ -16,17 +16,12 @@ limitations under the License.
 
 import 'dart:async';
 
+import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/shell/shell.dart';
-import 'package:pangolin/services/customization.dart';
-import 'package:pangolin/utils/data/constants.dart';
-import 'package:pangolin/utils/extensions/extensions.dart';
-import 'package:pangolin/utils/other/resource.dart';
-import 'package:pangolin/utils/providers/locale_provider.dart';
 import 'package:pangolin/utils/wm/wm.dart';
 import 'package:pangolin/widgets/global/box/box_container.dart';
 import 'package:pangolin/widgets/global/resource/image/image.dart';
-import 'package:pangolin/widgets/services.dart';
 
 class OverviewOverlay extends ShellOverlay {
   static const String overlayId = "overview";

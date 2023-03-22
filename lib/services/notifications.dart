@@ -3,11 +3,11 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:collection/collection.dart';
+import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:dbus/dbus.dart';
 import 'package:pangolin/services/dbus.dart';
 import 'package:pangolin/services/dbus/image.dart';
 import 'package:pangolin/services/dbus/objects/notifications.dart';
-import 'package:pangolin/services/service.dart';
 
 abstract class NotificationService
     extends ListenableService<NotificationService> {

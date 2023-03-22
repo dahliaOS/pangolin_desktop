@@ -1,11 +1,8 @@
 import 'dart:async';
 
+import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/shell/shell.dart';
-import 'package:pangolin/services/customization.dart';
-import 'package:pangolin/utils/data/constants.dart';
-import 'package:pangolin/utils/extensions/extensions.dart';
-import 'package:pangolin/widgets/services.dart';
 
 class WelcomeOverlay extends ShellOverlay {
   WelcomeOverlay({super.key}) : super(id: "welcome");
@@ -39,8 +36,8 @@ class _WelcomeOverlayState extends State<WelcomeOverlay>
 
     return FadeTransition(
       opacity: CurvedAnimation(parent: _ac, curve: decelerateEasing),
-      child: Stack(
-        children: const [
+      child: const Stack(
+        children: [
           Positioned.fill(
             child: ColoredBox(
               color: Colors.black38,
@@ -102,13 +99,13 @@ class _WelcomeScreenState extends State<_WelcomeScreen>
                 height: 32,
               ),
             ),
-            Positioned(
+            const Positioned(
               top: 132,
               left: 40,
               width: 368,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
+                children: [
                   Text(
                     "Welcome!",
                     style: TextStyle(

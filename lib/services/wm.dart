@@ -1,4 +1,4 @@
-import 'package:pangolin/services/service.dart';
+import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:utopia_wm/wm.dart';
 
 abstract class WindowManagerService extends Service<WindowManagerService> {

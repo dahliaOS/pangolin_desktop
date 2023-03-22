@@ -16,13 +16,11 @@ limitations under the License.
 
 import 'dart:async';
 
+import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/utils/action_manager/action_manager.dart';
-import 'package:pangolin/utils/data/constants.dart';
 import 'package:pangolin/utils/data/globals.dart';
-import 'package:pangolin/utils/extensions/extensions.dart';
-import 'package:pangolin/utils/providers/locale_provider.dart';
 import 'package:pangolin/widgets/global/box/box_container.dart';
 
 class PowerOverlay extends ShellOverlay {

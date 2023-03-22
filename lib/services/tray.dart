@@ -2,12 +2,12 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:collection/collection.dart';
+import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:dbus/dbus.dart';
 import 'package:pangolin/services/dbus.dart';
 import 'package:pangolin/services/dbus/objects/remote/status_item.dart';
 import 'package:pangolin/services/dbus/objects/status_watcher.dart';
 import 'package:pangolin/services/dbus/status_item.dart';
-import 'package:pangolin/services/service.dart';
 
 abstract class TrayService extends ListenableService<TrayService> {
   TrayService();

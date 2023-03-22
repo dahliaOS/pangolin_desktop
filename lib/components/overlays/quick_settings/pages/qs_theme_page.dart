@@ -1,9 +1,6 @@
+import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/overlays/quick_settings/widgets/qs_titlebar.dart';
-import 'package:pangolin/components/settings/widgets/accent_color_button.dart';
-import 'package:pangolin/services/customization.dart';
-import 'package:pangolin/utils/data/constants.dart';
-import 'package:pangolin/widgets/services.dart';
 
 class QsThemePage extends StatelessWidget
     with StatelessServiceListener<CustomizationService> {
@@ -33,7 +30,7 @@ class QsThemePage extends StatelessWidget
                 ),
                 shrinkWrap: true,
                 children: BuiltinColor.values
-                    .map((e) => AccentColorButton(color: e))
+                    .map((e) => ColoredBox(color: e.value))
                     .toList(),
               ),
             ),

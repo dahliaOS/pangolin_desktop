@@ -4,8 +4,8 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:collection/collection.dart';
+import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:intl/locale.dart';
-import 'package:pangolin/services/service.dart';
 import 'package:path/path.dart' as p;
 
 abstract class LangPacksService extends Service<LangPacksService> {

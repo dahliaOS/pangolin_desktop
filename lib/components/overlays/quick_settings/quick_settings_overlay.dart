@@ -17,6 +17,7 @@ limitations under the License.
 import 'dart:async';
 
 import 'package:battery_plus/battery_plus.dart';
+import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/overlays/quick_settings/pages/qs_account_page.dart';
 import 'package:pangolin/components/overlays/quick_settings/pages/qs_language_page.dart';
@@ -26,16 +27,11 @@ import 'package:pangolin/components/overlays/quick_settings/widgets/qs_shortcut_
 import 'package:pangolin/components/overlays/quick_settings/widgets/qs_slider.dart';
 import 'package:pangolin/components/overlays/quick_settings/widgets/qs_toggle_button.dart';
 import 'package:pangolin/components/shell/shell.dart';
-import 'package:pangolin/services/customization.dart';
 import 'package:pangolin/services/date_time.dart';
 import 'package:pangolin/utils/action_manager/action_manager.dart';
-import 'package:pangolin/utils/data/constants.dart';
 import 'package:pangolin/utils/data/globals.dart';
-import 'package:pangolin/utils/extensions/extensions.dart';
-import 'package:pangolin/utils/providers/locale_provider.dart';
 import 'package:pangolin/widgets/global/box/box_container.dart';
 import 'package:pangolin/widgets/global/quick_button.dart';
-import 'package:pangolin/widgets/services.dart';
 import 'package:yatl_flutter/yatl_flutter.dart';
 
 class QuickSettingsOverlay extends ShellOverlay {

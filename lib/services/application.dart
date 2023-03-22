@@ -2,14 +2,13 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:collection/collection.dart';
+import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/window/window_surface.dart';
 import 'package:pangolin/components/window/window_toolbar.dart';
 import 'package:pangolin/services/langpacks.dart';
-import 'package:pangolin/services/service.dart';
 import 'package:pangolin/services/wm.dart';
 import 'package:pangolin/utils/data/app_list.dart' as app_list;
-import 'package:pangolin/utils/data/constants.dart';
 import 'package:pangolin/utils/data/models/application.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/wm/properties.dart';

@@ -16,6 +16,7 @@ limitations under the License.
 import 'dart:developer';
 import 'dart:io' show Platform;
 
+import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/foundation.dart' show kDebugMode, kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -23,19 +24,14 @@ import "package:intl/locale.dart" as intl;
 import 'package:logging/logging.dart';
 import 'package:pangolin/components/shell/desktop.dart';
 import 'package:pangolin/services/application.dart';
-import 'package:pangolin/services/customization.dart';
 import 'package:pangolin/services/date_time.dart';
 import 'package:pangolin/services/icon.dart';
 import 'package:pangolin/services/langpacks.dart';
 import 'package:pangolin/services/notifications.dart';
-import 'package:pangolin/services/preferences.dart';
 import 'package:pangolin/services/search.dart';
 import 'package:pangolin/services/tray.dart';
 import 'package:pangolin/services/wm.dart';
 import 'package:pangolin/utils/data/dap_index.dart';
-import 'package:pangolin/utils/providers/locale_provider.dart';
-import 'package:pangolin/utils/theme/theme.dart';
-import 'package:pangolin/widgets/services.dart';
 import 'package:yatl_flutter/yatl_flutter.dart';
 
 Future<void> main() async {
@@ -57,9 +53,6 @@ Future<void> main() async {
     }
   });
 
-  // initialize locale providers
-  await initProviders();
-
   if (kIsWeb == false) {
     if (Platform.isLinux) {
       indexApplications();
@@ -69,6 +62,7 @@ Future<void> main() async {
   runApp(
     ServiceBuilderWidget(
       services: [
+        const ServiceEntry<LocaleService>(LocaleService.build),
         const ServiceEntry<SearchService>(SearchService.build),
         const ServiceEntry<WindowManagerService>(WindowManagerService.build),
         ServiceEntry<LangPacksService>(
@@ -129,7 +123,7 @@ class Pangolin extends StatelessWidget {
       builder: (context, child) {
         return MaterialApp(
           home: child,
-          theme: theme(context),
+          theme: buildDahliaTheme(context),
           supportedLocales: context.supportedLocales,
           locale: context.locale,
           localizationsDelegates: [
