@@ -95,6 +95,7 @@ flutter:
   assets:
     - assets/images/logos/
     - assets/images/other/
+    - assets/images/wallpapers/
     - assets/icons/
     - assets/json/visualData.json
     - assets/textures/
