@@ -64,7 +64,7 @@ dependencies:
   ### Miscellaneous
   animations: ^2.0.3
 
-  battery_plus: ^3.0.2
+  battery_plus: ^4.0.0
 
   cached_network_image: ^3.2.0
 
