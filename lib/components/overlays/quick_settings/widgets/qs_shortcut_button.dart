@@ -14,10 +14,10 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:dahlia_shared/utils/extensions.dart';
 import 'package:flutter/material.dart';
+import 'package:zenit_ui/zenit_ui.dart';
 
-class QsShortcutButton extends StatefulWidget {
+class QsShortcutButton extends StatelessWidget {
   const QsShortcutButton({
     super.key,
     this.onPressed,
@@ -29,35 +29,27 @@ class QsShortcutButton extends StatefulWidget {
   final IconData? icon;
 
   @override
-  _QsShortcutButtonState createState() => _QsShortcutButtonState();
-}
-
-class _QsShortcutButtonState extends State<QsShortcutButton> {
-  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(right: 8.0),
       child: Material(
-        color: context.theme.colorScheme.background.op(0.5),
+        color: ZenitTheme.of(context).surfaceColor,
         clipBehavior: Clip.antiAlias,
         borderRadius: BorderRadius.circular(16),
         child: InkWell(
-          onTap: () => widget.onPressed?.call(),
+          onTap: onPressed,
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12),
             child: Row(
               children: [
                 Icon(
-                  widget.icon ?? Icons.add,
+                  icon ?? Icons.add,
                   size: 16,
                 ),
-                if (widget.title != null)
-                  const SizedBox(width: 8)
-                else
-                  const SizedBox.shrink(),
-                if (widget.title != null)
+                if (title != null) const SizedBox(width: 8) else const SizedBox.shrink(),
+                if (title != null)
                   Text(
-                    widget.title!,
+                    title!,
                     style: const TextStyle(fontSize: 13),
                   )
                 else

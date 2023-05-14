@@ -20,65 +20,58 @@ import 'package:pangolin/components/overlays/quick_settings/quick_settings_overl
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/components/taskbar/taskbar_element.dart';
 import 'package:pangolin/services/date_time.dart';
+import 'package:zenit_ui/zenit_ui.dart';
 
-class QuickSettingsButton extends StatelessWidget
-    with StatelessServiceListener<CustomizationService> {
+class QuickSettingsButton extends StatelessWidget with StatelessServiceListener<CustomizationService> {
   const QuickSettingsButton({super.key});
 
   @override
   Widget buildChild(BuildContext context, CustomizationService service) {
-    final theme = context.theme;
+    final theme = ZenitTheme.of(context);
     return TaskbarElement(
       iconSize: 18,
       size: Size.fromWidth(
-        152 +
-            (service.enableWifi ? 26 : 0) +
-            (service.enableBluetooth ? 26 : 0),
+        148 + (service.enableWifi ? 26 : 0) + (service.enableBluetooth ? 26 : 0),
       ),
       overlayID: QuickSettingsOverlay.overlayId,
       child: Padding(
-        padding: const EdgeInsets.only(left: 8.0, right: 4.0),
+        padding: const EdgeInsets.only(left: 8.0),
         child: ValueListenableBuilder<bool>(
-          valueListenable: Shell.of(context)
-              .getShowingNotifier(QuickSettingsOverlay.overlayId),
-          builder: (context, showing, child) => Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: items(context, service)
-              ..addAll([
-                Container(
-                  width: 2,
-                  height: 16,
-                  decoration: BoxDecoration(
-                    color: showing
-                        ? theme.foregroundColor
-                        : theme.surfaceForegroundColor,
-                    borderRadius: const BorderRadius.all(Radius.circular(4)),
+          valueListenable: Shell.of(context).getShowingNotifier(QuickSettingsOverlay.overlayId),
+          builder: (context, showing, child) {
+            final foregroundColor = showing ? theme.accentForegroundColor : theme.foregroundColor;
+            return Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: items(context, service)
+                ..addAll([
+                  VerticalDivider(
+                    width: 2,
+                    endIndent: 12,
+                    indent: 12,
+                    color: foregroundColor,
                   ),
-                ),
-                SizedBox(
-                  width: 74,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: ListenableServiceBuilder<DateTimeService>(
-                      builder: (BuildContext context, _) {
-                        final DateTimeService service = DateTimeService.current;
-
-                        return Text(
-                          service.formattedTime,
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 13,
-                            color: showing
-                                ? theme.foregroundColor
-                                : theme.surfaceForegroundColor,
-                          ),
-                        );
-                      },
+                  SizedBox(
+                    width: 74,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: ListenableServiceBuilder<DateTimeService>(
+                        builder: (BuildContext context, _) {
+                          final DateTimeService service = DateTimeService.current;
+                          return Text(
+                            service.formattedTime,
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 13,
+                              color: foregroundColor,
+                            ),
+                          );
+                        },
+                      ),
                     ),
                   ),
-                ),
-              ]),
-          ),
+                ]),
+            );
+          },
         ),
       ),
     );

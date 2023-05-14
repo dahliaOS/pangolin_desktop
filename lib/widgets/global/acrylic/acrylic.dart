@@ -32,7 +32,7 @@ class AcrylicLayer extends StatelessWidget {
     this.isBackground = false,
     this.enableBlur = true,
     this.enableNoise = true,
-    this.opacity = 0.5,
+    this.opacity = 0.8,
   });
 
   @override
@@ -89,13 +89,13 @@ class AcrylicLayerPainter extends CustomPainter {
   const AcrylicLayerPainter({
     required this.darkMode,
     required this.isBackground,
-    this.opacity = 0.5,
+    this.opacity = 0.8,
   });
 
   // painter
   @override
   Future<void> paint(Canvas canvas, Size size) async {
-    final Color darkModeColor = const Color(0xff0a0a0a).withOpacity(opacity);
+    final Color darkModeColor = const Color(0xff1C1C1E).withOpacity(opacity);
     final Color lightModeColor = const Color(0xfffafafa).withOpacity(opacity);
 
     /* canvas.drawColor(

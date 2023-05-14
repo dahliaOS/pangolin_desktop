@@ -3,10 +3,10 @@ import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/services/dbus/image.dart';
 import 'package:pangolin/services/notifications.dart';
-import 'package:pangolin/widgets/global/box/box_container.dart';
 import 'package:pangolin/widgets/global/dbus/image.dart';
 import 'package:pangolin/widgets/global/markup.dart';
 import 'package:pangolin/widgets/global/separated_flex.dart';
+import 'package:pangolin/widgets/global/surface/surface_layer.dart';
 
 class NotificationView extends StatelessWidget {
   final UserNotification notification;
@@ -22,8 +22,7 @@ class NotificationView extends StatelessWidget {
   Widget build(BuildContext context) {
     final NotificationAction? defaultAction =
         notification.actions.firstWhereOrNull((e) => e.key == "default");
-    final List<NotificationAction> actions = List.from(notification.actions)
-      ..remove(defaultAction);
+    final List<NotificationAction> actions = List.from(notification.actions)..remove(defaultAction);
 
     return Material(
       type: MaterialType.transparency,
@@ -65,7 +64,7 @@ class _NotificationBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BoxSurface(
+    return SurfaceLayer(
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(
           Radius.circular(4),
@@ -91,8 +90,7 @@ class _NotificationBody extends StatelessWidget {
                 Container(
                   width: 56,
                   height: 56,
-                  decoration:
-                      const ShapeDecoration(shape: Constants.smallShape),
+                  decoration: const ShapeDecoration(shape: Constants.smallShape),
                   clipBehavior: Clip.antiAlias,
                   child: DBusImageWidget(
                     image: notification.image ??
@@ -117,8 +115,7 @@ class _NotificationBody extends StatelessWidget {
                             separator: const SizedBox(width: 4),
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              if (notification.image != null &&
-                                  notification.appImage != null)
+                              if (notification.image != null && notification.appImage != null)
                                 DBusImageWidget(
                                   image: notification.appImage!,
                                   width: 16,
@@ -155,8 +152,7 @@ class _NotificationBody extends StatelessWidget {
                   ),
                 ),
                 IconButton(
-                  onPressed:
-                      onClose != null ? () => onClose!(notification.id) : null,
+                  onPressed: onClose != null ? () => onClose!(notification.id) : null,
                   icon: const Icon(Icons.close),
                   iconSize: 16,
                   padding: EdgeInsets.zero,
@@ -183,7 +179,7 @@ class _NotificationActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BoxSurface(
+    return SurfaceLayer(
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(4)),
       ),

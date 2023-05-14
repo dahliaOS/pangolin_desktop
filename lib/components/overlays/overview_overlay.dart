@@ -20,8 +20,8 @@ import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/utils/wm/wm.dart';
-import 'package:pangolin/widgets/global/box/box_container.dart';
 import 'package:pangolin/widgets/global/resource/image/image.dart';
+import 'package:zenit_ui/zenit_ui.dart';
 
 class OverviewOverlay extends ShellOverlay {
   static const String overlayId = "overview";
@@ -33,9 +33,7 @@ class OverviewOverlay extends ShellOverlay {
 }
 
 class _OverviewOverlayState extends State<OverviewOverlay>
-    with
-        ShellOverlayState,
-        StateServiceListener<CustomizationService, OverviewOverlay> {
+    with ShellOverlayState, StateServiceListener<CustomizationService, OverviewOverlay> {
   @override
   FutureOr<void> requestShow(Map<String, dynamic> args) {
     controller.showing = true;
@@ -50,6 +48,7 @@ class _OverviewOverlayState extends State<OverviewOverlay>
   Widget buildChild(BuildContext context, CustomizationService service) {
     final WindowHierarchyController hierarchy = WindowHierarchy.of(context);
     final ImageResource image = service.wallpaper;
+    final theme = ZenitTheme.of(context);
 
     if (!controller.showing) return const SizedBox();
 
@@ -60,7 +59,10 @@ class _OverviewOverlayState extends State<OverviewOverlay>
           Shell.of(context, listen: false).dismissEverything();
           setState(() {});
         },
-        child: BoxSurface(
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            color: theme.surfaceColor,
+          ),
           child: Stack(
             children: [
               Positioned(
@@ -68,7 +70,8 @@ class _OverviewOverlayState extends State<OverviewOverlay>
                 left: 0,
                 right: 0,
                 height: 152,
-                child: BoxContainer(
+                child: DecoratedBox(
+                  decoration: BoxDecoration(color: theme.backgroundColor),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -79,7 +82,7 @@ class _OverviewOverlayState extends State<OverviewOverlay>
                           clipBehavior: Clip.antiAlias,
                           shape: Constants.smallShape.copyWith(
                             side: BorderSide(
-                              color: context.theme.surfaceForegroundColor,
+                              color: theme.foregroundColor,
                               width: 2,
                             ),
                           ),
@@ -97,17 +100,8 @@ class _OverviewOverlayState extends State<OverviewOverlay>
                         child: FloatingActionButton.extended(
                           highlightElevation: 2,
                           onPressed: () {},
-                          hoverColor: Theme.of(context).colorScheme.background,
-                          label: Text(strings.overviewOverlay.newDesktop),
                           icon: const Icon(Icons.add),
-                          hoverElevation: 1,
-                          foregroundColor:
-                              Theme.of(context).textTheme.bodyLarge?.color,
-                          backgroundColor: Theme.of(context)
-                              .colorScheme
-                              .background
-                              .withOpacity(0.5),
-                          elevation: 0.0,
+                          label: Text(strings.overviewOverlay.newDesktop),
                         ),
                       )
                     ],

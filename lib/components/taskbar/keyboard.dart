@@ -36,19 +36,15 @@ class KeyboardButton extends StatelessWidget {
           type: MaterialType.transparency,
           shape: Constants.smallShape,
           child: ValueListenableBuilder<bool>(
-            valueListenable:
-                shell.getShowingNotifier(QuickSettingsOverlay.overlayId),
+            valueListenable: shell.getShowingNotifier(QuickSettingsOverlay.overlayId),
             builder: (context, showing, child) {
               return Material(
-                color: showing
-                    ? Theme.of(context).colorScheme.secondary
-                    : Colors.transparent,
+                color: showing ? Theme.of(context).colorScheme.secondary : Colors.transparent,
                 child: child,
               );
             },
             child: InkWell(
-              hoverColor:
-                  Theme.of(context).colorScheme.secondary.withOpacity(0.5),
+              hoverColor: Theme.of(context).colorScheme.secondary.withOpacity(0.5),
               mouseCursor: SystemMouseCursors.click,
               onTap: () => showKeyboard(context),
               child: const Padding(

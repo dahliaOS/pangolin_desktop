@@ -16,8 +16,10 @@ limitations under the License.
 
 import 'dart:convert';
 import 'dart:io';
+
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
 import 'package:http/http.dart';
 import 'package:pangolin/utils/api_models/bing_wallpaper_api_model.dart';
 import 'package:pangolin/utils/api_models/wallpaper_api_model.dart';
@@ -91,9 +93,7 @@ Future<List<Wallpaper>?> getWallpapers() async {
   );
 
   if (response.statusCode == 200) {
-    return wallpaperParser
-        .validate(jsonDecode(response.body))
-        ?.cast<Wallpaper>();
+    return wallpaperParser.validate(jsonDecode(response.body))?.cast<Wallpaper>();
   } else {
     throw Exception(
       "Failed to fetch data from dahliaOS' GitHub Wallpaper repository API.",

@@ -8,8 +8,8 @@ import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/services/notifications.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/wm/wm.dart';
-import 'package:pangolin/widgets/global/box/box_container.dart';
 import 'package:pangolin/widgets/global/separated_flex.dart';
+import 'package:pangolin/widgets/global/surface/surface_layer.dart';
 
 class NotificationsOverlay extends ShellOverlay {
   static const String overlayId = "notifications";
@@ -17,8 +17,7 @@ class NotificationsOverlay extends ShellOverlay {
   NotificationsOverlay({super.key}) : super(id: overlayId);
 
   @override
-  ShellOverlayState<NotificationsOverlay> createState() =>
-      _NotificationsOverlayState();
+  ShellOverlayState<NotificationsOverlay> createState() => _NotificationsOverlayState();
 }
 
 class _NotificationsOverlayState extends State<NotificationsOverlay>
@@ -156,20 +155,15 @@ class _NotificationsOverlayState extends State<NotificationsOverlay>
               _NotificationHeaderBar(service: service),
               if (notifications.isNotEmpty)
                 ConstrainedBox(
-                  constraints:
-                      BoxConstraints(maxHeight: context.mSize.height * 2 / 3),
+                  constraints: BoxConstraints(maxHeight: context.mSize.height * 2 / 3),
                   child: ClipPath(
-                    clipper:
-                        const ShapeBorderClipper(shape: Constants.mediumShape),
+                    clipper: const ShapeBorderClipper(shape: Constants.mediumShape),
                     child: ListView.separated(
                       reverse: true,
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
                         final NotificationWrapperData notification =
-                            notifications.values
-                                .toList()
-                                .reversed
-                                .toList()[index];
+                            notifications.values.toList().reversed.toList()[index];
 
                         return NotificationViewWrapper(
                           notification: notification,
@@ -184,8 +178,7 @@ class _NotificationsOverlayState extends State<NotificationsOverlay>
                         );
                       },
                       itemCount: notifications.length,
-                      separatorBuilder: (context, index) =>
-                          const SizedBox(height: 8),
+                      separatorBuilder: (context, index) => const SizedBox(height: 8),
                     ),
                   ),
                 ),
@@ -209,7 +202,7 @@ class _NotificationHeaderBar extends StatelessWidget {
       width: double.infinity,
       child: Material(
         type: MaterialType.transparency,
-        child: BoxSurface(
+        child: SurfaceLayer(
           shape: Constants.smallShape,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -220,9 +213,7 @@ class _NotificationHeaderBar extends StatelessWidget {
               children: [
                 Text("Notifications (${service.notifications.length})"),
                 TextButton(
-                  onPressed: service.notifications.isNotEmpty
-                      ? _clearNotifications
-                      : null,
+                  onPressed: service.notifications.isNotEmpty ? _clearNotifications : null,
                   child: const Text("Clear all"),
                 ),
               ],

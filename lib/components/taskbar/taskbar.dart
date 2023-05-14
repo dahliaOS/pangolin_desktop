@@ -17,7 +17,7 @@ limitations under the License.
 import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/shell/shell.dart';
-import 'package:pangolin/widgets/global/box/box_container.dart';
+import 'package:pangolin/widgets/global/surface/surface_layer.dart';
 
 class Taskbar extends StatefulWidget {
   final List<Widget> leading;
@@ -37,8 +37,7 @@ class Taskbar extends StatefulWidget {
   State<Taskbar> createState() => _TaskbarState();
 }
 
-class _TaskbarState extends State<Taskbar>
-    with StateServiceListener<CustomizationService, Taskbar> {
+class _TaskbarState extends State<Taskbar> with StateServiceListener<CustomizationService, Taskbar> {
   @override
   Widget buildChild(BuildContext context, CustomizationService service) {
     return Positioned(
@@ -46,14 +45,13 @@ class _TaskbarState extends State<Taskbar>
       right: 0,
       bottom: 0,
       height: 48,
-      child: SizedBox.expand(
-        child: Listener(
-          onPointerDown: (event) {
-            Shell.of(context, listen: false).dismissEverything();
-          },
-          behavior: HitTestBehavior.translucent,
-          child: BoxContainer(
-            opacity: 0.25,
+      child: SurfaceLayer(
+        child: SizedBox.expand(
+          child: Listener(
+            onPointerDown: (event) {
+              Shell.of(context, listen: false).dismissEverything();
+            },
+            behavior: HitTestBehavior.translucent,
             child: Material(
               type: MaterialType.transparency,
               child: Stack(

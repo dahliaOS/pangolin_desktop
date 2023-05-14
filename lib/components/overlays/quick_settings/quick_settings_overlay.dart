@@ -30,9 +30,10 @@ import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/services/date_time.dart';
 import 'package:pangolin/utils/action_manager/action_manager.dart';
 import 'package:pangolin/utils/data/globals.dart';
-import 'package:pangolin/widgets/global/box/box_container.dart';
 import 'package:pangolin/widgets/global/quick_button.dart';
+import 'package:pangolin/widgets/global/surface/surface_layer.dart';
 import 'package:yatl_flutter/yatl_flutter.dart';
+import 'package:zenit_ui/zenit_ui.dart';
 
 class QuickSettingsOverlay extends ShellOverlay {
   static const String overlayId = 'quicksettings';
@@ -88,11 +89,12 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
           child: ScaleTransition(
             scale: animation,
             alignment: const FractionalOffset(0.8, 1.0),
-            child: BoxSurface(
+            child: SurfaceLayer(
               shape: Constants.bigShape,
-              width: 540,
-              height: 474,
+              width: 524,
+              height: 460,
               dropShadow: true,
+              outline: true,
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: MaterialApp(
@@ -103,8 +105,7 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
                     "/pages/theme": (context) => const QsThemePage(),
                     "/pages/language": (context) => const QsLanguagePage(),
                   },
-                  theme: Theme.of(context)
-                      .copyWith(scaffoldBackgroundColor: Colors.transparent),
+                  theme: Theme.of(context).copyWith(scaffoldBackgroundColor: Colors.transparent),
                   debugShowCheckedModeBanner: false,
                   locale: context.locale,
                 ),
@@ -117,8 +118,7 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
   }
 }
 
-class QsMain extends StatelessWidget
-    with StatelessServiceListener<CustomizationService> {
+class QsMain extends StatelessWidget with StatelessServiceListener<CustomizationService> {
   const QsMain({super.key});
 
   @override
@@ -132,36 +132,29 @@ class QsMain extends StatelessWidget
         title: username,
         onPressed: () => Navigator.pushNamed(context, "/pages/account"),
         margin: EdgeInsets.zero,
-        isCircular: false,
         textStyle: TextStyle(
           fontSize: 14,
           fontWeight: FontWeight.w600,
           height: 1.1,
-          color: context.theme.surfaceForegroundColor,
+          color: ZenitTheme.of(context).foregroundColor,
         ),
       ),
       const Spacer(),
       QuickActionButton(
         leading: const Icon(Icons.settings),
-        //title: "Settings",
         onPressed: () => ActionManager.openSettings(context),
-      ),
-      const QuickActionButton(
-        leading: Icon(Icons.edit),
-        //title: "Edit panel",
       ),
       QuickActionButton(
         leading: const Icon(Icons.logout),
         onPressed: () => ActionManager.showAccountMenu(context),
-        //title: "Sign out",
       ),
       QuickActionButton(
         leading: const Icon(Icons.power_settings_new),
         margin: const EdgeInsets.only(left: 8),
         onPressed: () => ActionManager.showPowerMenu(context),
-        //title: "Power",
       ),
     ];
+
     return Material(
       color: Colors.transparent,
       child: Align(
@@ -190,11 +183,9 @@ class QsMain extends StatelessWidget
                       //TODO Capitalise
                       subtitle: ToggleProperty(
                         base: null,
-                        active: strings.quicksettingsOverlay
-                            .quickControlsNetworkSubtitleConnected,
+                        active: strings.quicksettingsOverlay.quickControlsNetworkSubtitleConnected,
                       ),
-                      enabled:
-                          service.enableWifi && !service.enableAirplaneMode,
+                      enabled: service.enableWifi && !service.enableAirplaneMode,
                       onPressed: (value) => service.enableWifi = value,
                       onMenuPressed: () {
                         Navigator.pushNamed(context, "/pages/network");
@@ -202,8 +193,7 @@ class QsMain extends StatelessWidget
                     ),
                     QsToggleButton(
                       title: ToggleProperty.singleState(
-                        strings
-                            .quicksettingsOverlay.quickControlsBluetoothTitle,
+                        strings.quicksettingsOverlay.quickControlsBluetoothTitle,
                       ),
                       subtitle: ToggleProperty(
                         base: strings.global.off,
@@ -213,14 +203,12 @@ class QsMain extends StatelessWidget
                         base: Icons.bluetooth_disabled_rounded,
                         active: Icons.bluetooth_connected_rounded,
                       ),
-                      enabled: service.enableBluetooth &&
-                          !service.enableAirplaneMode,
+                      enabled: service.enableBluetooth && !service.enableAirplaneMode,
                       onPressed: (value) => service.enableBluetooth = value,
                     ),
                     QsToggleButton(
                       title: ToggleProperty.singleState(
-                        strings.quicksettingsOverlay
-                            .quickControlsAirplaneModeTitle,
+                        strings.quicksettingsOverlay.quickControlsAirplaneModeTitle,
                       ),
                       icon: const ToggleProperty(
                         base: Icons.airplanemode_off_rounded,
@@ -231,7 +219,7 @@ class QsMain extends StatelessWidget
                     ),
                   ],
                 ),
-                const SizedBox(height: 12),
+                const SizedBox(height: 8),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -248,8 +236,7 @@ class QsMain extends StatelessWidget
                       ),
                       enabled: true,
                       onPressed: (_) {
-                        final int index =
-                            context.supportedLocales.indexOf(context.locale);
+                        final int index = context.supportedLocales.indexOf(context.locale);
                         if (index + 1 < locales.supportedLocales.length) {
                           context.locale = context.supportedLocales[index + 1];
                         } else {
@@ -260,13 +247,6 @@ class QsMain extends StatelessWidget
                         Navigator.pushNamed(context, "/pages/language");
                       },
                     ),
-                    //TODO remove the provider option for this
-                    /* 
-                      QsToggleButton(
-                        title: strings.qs.autorotate,
-                        icon: Icons.screen_lock_rotation_rounded,
-                        value: false,
-                      ), */
                     QsToggleButton(
                       title: ToggleProperty.singleState(
                         strings.quicksettingsOverlay.quickControlsThemeTitle,
@@ -276,26 +256,16 @@ class QsMain extends StatelessWidget
                       ),
                       enabled: true,
                       onPressed: (_) => service.darkMode = !service.darkMode,
-                      onMenuPressed: () =>
-                          Navigator.pushNamed(context, "/pages/theme"),
+                      onMenuPressed: () => Navigator.pushNamed(context, "/pages/theme"),
                     ),
                     QsToggleButton(
                       title: ToggleProperty.singleState(
-                        strings.quicksettingsOverlay
-                            .quickControlsDonotdisturbTitle,
+                        strings.quicksettingsOverlay.quickControlsDonotdisturbTitle,
                       ),
                       icon: const ToggleProperty.singleState(
                         Icons.do_not_disturb_off_rounded,
                       ),
-                      onPressed: (_) {},
                     ),
-                    //TODO move night light to the brightness control submenu
-                    /* 
-                      QsToggleButton(
-                        title: "Night light",
-                        icon: Icons.brightness_4_rounded,
-                        value: false,
-                      ), */
                   ],
                 ),
               ],
@@ -324,9 +294,7 @@ class QsMain extends StatelessWidget
             Column(
               children: [
                 QsSlider(
-                  icon: service.muteVolume
-                      ? Icons.volume_off_rounded
-                      : Icons.volume_up_rounded,
+                  icon: service.muteVolume ? Icons.volume_off_rounded : Icons.volume_up_rounded,
                   onChanged: (val) {
                     service.volume = val;
                     service.muteVolume = val == 0;
@@ -336,14 +304,11 @@ class QsMain extends StatelessWidget
                   onIconTap: () => service.muteVolume = !service.muteVolume,
                 ),
                 QsSlider(
-                  icon: service.autoBrightness
-                      ? Icons.brightness_auto_rounded
-                      : Icons.brightness_5_rounded,
+                  icon: service.autoBrightness ? Icons.brightness_auto_rounded : Icons.brightness_5_rounded,
                   onChanged: (val) => service.brightness = val,
                   value: service.brightness,
                   steps: 10,
-                  onIconTap: () =>
-                      service.autoBrightness = !service.autoBrightness,
+                  onIconTap: () => service.autoBrightness = !service.autoBrightness,
                 ),
               ],
             ),
@@ -359,7 +324,6 @@ class QsMain extends StatelessWidget
                     final String time = DateTimeService.current.formattedTime;
 
                     return QuickActionButton(
-                      isCircular: false,
                       leading: const Icon(Icons.calendar_today),
                       title: "$date - $time",
                       margin: EdgeInsets.zero,
@@ -371,16 +335,12 @@ class QsMain extends StatelessWidget
                     return FutureBuilder(
                       future: Battery().batteryLevel,
                       builder: (context, AsyncSnapshot<int?> data) {
-                        final String batteryPercentage = data.data
-                                ?.toString() ??
-                            strings.quicksettingsOverlay.shortcutsEnergyMode;
+                        final String batteryPercentage =
+                            data.data?.toString() ?? strings.quicksettingsOverlay.shortcutsEnergyMode;
                         return QuickActionButton(
                           leading: const Icon(Icons.battery_charging_full),
-                          title: data.data != null
-                              ? "$batteryPercentage%"
-                              : batteryPercentage,
+                          title: data.data != null ? "$batteryPercentage%" : batteryPercentage,
                           margin: EdgeInsets.zero,
-                          isCircular: false,
                         );
                       },
                     );

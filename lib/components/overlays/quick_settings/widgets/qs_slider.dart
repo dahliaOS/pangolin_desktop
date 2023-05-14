@@ -13,11 +13,11 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
+import 'package:pangolin/widgets/global/quick_button.dart';
 import 'package:zenit_ui/zenit_ui.dart';
 
-class QsSlider extends StatefulWidget {
+class QsSlider extends StatelessWidget {
   const QsSlider({
     super.key,
     this.icon,
@@ -34,57 +34,33 @@ class QsSlider extends StatefulWidget {
   final VoidCallback? onIconTap;
 
   @override
-  _QsSliderState createState() => _QsSliderState();
-}
-
-class _QsSliderState extends State<QsSlider> {
-  @override
   Widget build(BuildContext context) {
-    final Color backgroundColor = context.theme.colorScheme.background.op(0.5);
-    return Material(
-      color: Colors.transparent,
-      clipBehavior: Clip.antiAlias,
-      child: Row(
-        children: [
-          SizedBox.square(
-            dimension: 40,
-            child: Material(
-              color: backgroundColor,
-              clipBehavior: Clip.antiAlias,
-              borderRadius: BorderRadius.circular(20),
-              child: InkWell(
-                onTap: widget.onIconTap,
-                child: Icon(widget.icon, size: 20),
-              ),
-            ),
+    return Row(
+      children: [
+        QuickActionButton(
+          leading: Icon(
+            icon,
+            size: 22,
           ),
-          Expanded(
-            child: ZenitSlider(
-              onChanged: widget.onChanged,
-              value: widget.value ?? 0,
-              divisions: widget.steps,
-              label: widget.value != null
-                  ? '${(widget.value! * 100).toStringAsFixed(0)}%'
-                  : null,
-            ),
+          margin: EdgeInsets.zero,
+          onPressed: onIconTap,
+        ),
+        Expanded(
+          child: ZenitSlider(
+            onChanged: onChanged,
+            value: value ?? 0,
+            divisions: steps,
+            label: value != null ? '${(value! * 100).toStringAsFixed(0)}%' : null,
           ),
-          SizedBox.square(
-            dimension: 40,
-            child: Material(
-              color: backgroundColor,
-              clipBehavior: Clip.antiAlias,
-              borderRadius: BorderRadius.circular(20),
-              child: InkWell(
-                child: const Icon(
-                  Icons.chevron_right,
-                  size: 22,
-                ),
-                onTap: () {},
-              ),
-            ),
+        ),
+        const QuickActionButton(
+          leading: Icon(
+            Icons.chevron_right,
+            size: 22,
           ),
-        ],
-      ),
+          margin: EdgeInsets.zero,
+        ),
+      ],
     );
   }
 }

@@ -19,8 +19,9 @@ import 'package:flutter/material.dart';
 import 'package:pangolin/utils/api_models/bing_wallpaper_api_model.dart';
 import 'package:pangolin/utils/api_models/wallpaper_api_model.dart';
 import 'package:pangolin/utils/data/globals.dart';
-import 'package:pangolin/widgets/global/box/box_container.dart';
 import 'package:pangolin/widgets/global/resource/image/image.dart';
+import 'package:pangolin/widgets/global/surface/surface_layer.dart';
+import 'package:zenit_ui/zenit_ui.dart';
 
 class WallpaperPicker extends StatefulWidget {
   const WallpaperPicker({super.key});
@@ -30,9 +31,7 @@ class WallpaperPicker extends StatefulWidget {
 }
 
 class _WallpaperPickerState extends State<WallpaperPicker>
-    with
-        TickerProviderStateMixin,
-        StateServiceListener<CustomizationService, WallpaperPicker> {
+    with TickerProviderStateMixin, StateServiceListener<CustomizationService, WallpaperPicker> {
   final TextEditingController _controller = TextEditingController();
   late TabController tabController;
   late Future<List<Wallpaper>?> wallpapers;
@@ -49,13 +48,12 @@ class _WallpaperPickerState extends State<WallpaperPicker>
     BuildContext context,
     CustomizationService service,
   ) {
-    final List<ImageResource> recentWallpapers =
-        service.recentWallpapers.reversed.toList();
+    final List<ImageResource> recentWallpapers = service.recentWallpapers.reversed.toList();
 
     return GestureDetector(
       onTap: () => Navigator.pop(context),
-      child: BoxSurface(
-        shape: Constants.smallShape,
+      child: SurfaceLayer(
+        shape: Constants.mediumShape,
         margin: const EdgeInsets.symmetric(horizontal: 300, vertical: 100),
         width: MediaQuery.of(context).size.width - 300,
         height: MediaQuery.of(context).size.height - 300,
@@ -73,12 +71,10 @@ class _WallpaperPickerState extends State<WallpaperPicker>
               labelStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
-              unselectedLabelColor:
-                  Theme.of(context).textTheme.bodyLarge?.color,
-              unselectedLabelStyle:
-                  Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        fontWeight: FontWeight.normal,
-                      ),
+              unselectedLabelColor: Theme.of(context).textTheme.bodyLarge?.color,
+              unselectedLabelStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    fontWeight: FontWeight.normal,
+                  ),
               controller: tabController,
               tabs: const [
                 Tab(text: "Default Wallpapers"),
@@ -116,8 +112,7 @@ class _WallpaperPickerState extends State<WallpaperPicker>
                       return GridView.builder(
                         itemCount: snapshot.data!.length,
                         physics: const BouncingScrollPhysics(),
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 4,
                           childAspectRatio: 16 / 9,
                         ),
@@ -138,8 +133,7 @@ class _WallpaperPickerState extends State<WallpaperPicker>
                                     child: ResourceImage(
                                       resource: ImageResource(
                                         type: ImageResourceType.network,
-                                        value:
-                                            snapshot.data![index].downloadUrl,
+                                        value: snapshot.data![index].downloadUrl,
                                       ),
                                       fit: BoxFit.cover,
                                     ),
@@ -147,16 +141,13 @@ class _WallpaperPickerState extends State<WallpaperPicker>
                                   if (service.wallpaper ==
                                       ImageResource(
                                         type: ImageResourceType.network,
-                                        value:
-                                            snapshot.data![index].downloadUrl,
+                                        value: snapshot.data![index].downloadUrl,
                                       ))
                                     Positioned(
                                       bottom: 5,
                                       right: 5,
                                       child: CircleAvatar(
-                                        backgroundColor: Theme.of(context)
-                                            .colorScheme
-                                            .secondary,
+                                        backgroundColor: Theme.of(context).colorScheme.secondary,
                                         foregroundColor: Colors.white,
                                         child: const Icon(Icons.check),
                                       ),
@@ -177,8 +168,7 @@ class _WallpaperPickerState extends State<WallpaperPicker>
                   GridView.builder(
                     physics: const BouncingScrollPhysics(),
                     itemCount: recentWallpapers.length,
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 4,
                       childAspectRatio: 16 / 9,
                     ),
@@ -187,8 +177,7 @@ class _WallpaperPickerState extends State<WallpaperPicker>
                         padding: const EdgeInsets.all(8.0),
                         child: InkWell(
                           mouseCursor: SystemMouseCursors.click,
-                          onTap: () =>
-                              service.wallpaper = recentWallpapers[index],
+                          onTap: () => service.wallpaper = recentWallpapers[index],
                           child: ResourceImage(
                             errorBuilder: (context, url, _) => ColoredBox(
                               color: Theme.of(context).colorScheme.secondary,
@@ -216,10 +205,9 @@ class _WallpaperPickerState extends State<WallpaperPicker>
                   //Text Field for Wallpaper URL
                   //
                   Expanded(
-                    child: TextField(
+                    child: ZenitTextField(
                       decoration: const InputDecoration(
-                        contentPadding:
-                            EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                        contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                         hintText: "Set wallpaper from URL",
                         labelText: "Wallpaper URL",
                       ),
@@ -249,8 +237,7 @@ class _WallpaperPickerState extends State<WallpaperPicker>
                       borderRadius: BorderRadius.circular(8),
                     ),
                     onPressed: () async {
-                      final BingImageOfTheDay? wallpaper =
-                          await getBingWallpaper();
+                      final BingImageOfTheDay? wallpaper = await getBingWallpaper();
 
                       if (wallpaper == null) return;
 

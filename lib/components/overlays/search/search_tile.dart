@@ -31,12 +31,10 @@ class SearchTile extends StatefulWidget {
   _SearchTileState createState() => _SearchTileState();
 }
 
-class _SearchTileState extends State<SearchTile>
-    with StateServiceListener<CustomizationService, SearchTile> {
+class _SearchTileState extends State<SearchTile> with StateServiceListener<CustomizationService, SearchTile> {
   @override
   Widget buildChild(BuildContext context, CustomizationService service) {
-    final DesktopEntry application =
-        ApplicationService.current.getApp(widget.packageName)!;
+    final DesktopEntry application = ApplicationService.current.getApp(widget.packageName)!;
 
     return Material(
       borderRadius: BorderRadius.circular(8),
@@ -58,14 +56,9 @@ class _SearchTileState extends State<SearchTile>
           ],
         ),
         trailing: Text(strings.searchOverlay.app),
-        subtitle: application.comment != null
-            ? Text(application.getLocalizedComment(context.locale)!)
-            : null,
+        subtitle: application.comment != null ? Text(application.getLocalizedComment(context.locale)!) : null,
         onTap: () async {
-          service.recentSearchResults = [
-            ...service.recentSearchResults,
-            application.id
-          ];
+          service.recentSearchResults = [...service.recentSearchResults, application.id];
           final ShellState shell = Shell.of(context, listen: false);
           await ApplicationService.current.startApp(application.id);
           shell.dismissEverything();

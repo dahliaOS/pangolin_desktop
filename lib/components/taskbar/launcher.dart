@@ -17,54 +17,17 @@ limitations under the License.
 import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/overlays/launcher/compact_launcher_overlay.dart';
-import 'package:pangolin/components/overlays/launcher/launcher_overlay.dart';
 import 'package:pangolin/components/taskbar/taskbar_element.dart';
-import 'package:pangolin/utils/context_menus/context_menu.dart';
-import 'package:pangolin/utils/context_menus/context_menu_item.dart';
-import 'package:pangolin/utils/context_menus/core/context_menu_region.dart';
 import 'package:pangolin/widgets/global/resource/icon/icon.dart';
 
-//TODO: Context menu for changing the taskbar's icon is cut off.
-class LauncherButton extends StatelessWidget
-    with StatelessServiceListener<CustomizationService> {
+class LauncherButton extends StatelessWidget {
   const LauncherButton({super.key});
 
   @override
-  Widget buildChild(BuildContext context, CustomizationService service) {
-    return ContextMenuRegion(
-      centerAboveElement: true,
-      contextMenu: ContextMenu(
-        items: LauncherIcon.values
-            .map(
-              (e) => ContextMenuItem(
-                icon: Constants.builtinIcons[e.iconName]!,
-                title: e.label,
-                onTap: () => service.launcherIcon = IconResource(
-                  type: IconResourceType.dahlia,
-                  value: e.iconName,
-                ),
-              ),
-            )
-            .toList(),
-      ),
-      child: TaskbarElement(
-        overlayID: service.compactLauncher
-            ? CompactLauncherOverlay.overlayId
-            : LauncherOverlay.overlayId,
-        child: ResourceIcon(resource: service.launcherIcon),
-      ),
+  Widget build(BuildContext context) {
+    return const TaskbarElement(
+      overlayID: CompactLauncherOverlay.overlayId,
+      child: ResourceIcon(resource: IconResource(type: IconResourceType.dahlia, value: "launcher_1")),
     );
   }
-}
-
-enum LauncherIcon {
-  first("Icon 1", "launcher_1"),
-  second("Icon 2", "launcher_2"),
-  third("Icon 3", "launcher_3"),
-  fourth("Icon 4", "launcher_4");
-
-  final String label;
-  final String iconName;
-
-  const LauncherIcon(this.label, this.iconName);
 }

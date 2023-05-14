@@ -18,7 +18,6 @@ import 'dart:async';
 
 import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
-import 'package:pangolin/components/overlays/launcher/launcher_overlay.dart';
 import 'package:pangolin/components/overlays/notifications/queue.dart';
 import 'package:pangolin/components/taskbar/app_list.dart';
 import 'package:pangolin/components/taskbar/launcher.dart';
@@ -32,7 +31,6 @@ import 'package:pangolin/components/taskbar/tray_item.dart';
 import 'package:pangolin/services/dbus/status_item.dart';
 import 'package:pangolin/services/tray.dart';
 import 'package:pangolin/utils/wm/wm.dart';
-import 'package:pangolin/widgets/global/box/box_container.dart';
 import 'package:provider/provider.dart';
 
 typedef ShellShownCallback = void Function(ShellState shell);
@@ -55,8 +53,7 @@ class Shell extends StatefulWidget {
   }
 }
 
-class ShellState extends State<Shell>
-    with StateServiceListener<TrayService, Shell> {
+class ShellState extends State<Shell> with StateServiceListener<TrayService, Shell> {
   final List<String> minimizedWindowsCache = [];
 
   @override
@@ -72,8 +69,7 @@ class ShellState extends State<Shell>
     Map<String, dynamic> args = const {},
     bool dismissEverything = true,
   }) async {
-    final ShellOverlay overlay =
-        widget.overlays.firstWhere((o) => o.id == overlayId);
+    final ShellOverlay overlay = widget.overlays.firstWhere((o) => o.id == overlayId);
     if (dismissEverything) this.dismissEverything();
     await overlay._controller.requestShow(args);
   }
@@ -82,8 +78,7 @@ class ShellState extends State<Shell>
     String overlayId, {
     Map<String, dynamic> args = const {},
   }) async {
-    final ShellOverlay overlay =
-        widget.overlays.firstWhere((o) => o.id == overlayId);
+    final ShellOverlay overlay = widget.overlays.firstWhere((o) => o.id == overlayId);
     await overlay._controller.requestDismiss(args);
   }
 
@@ -99,14 +94,12 @@ class ShellState extends State<Shell>
   }
 
   bool currentlyShown(String overlayId) {
-    final ShellOverlay overlay =
-        widget.overlays.firstWhere((o) => o.id == overlayId);
+    final ShellOverlay overlay = widget.overlays.firstWhere((o) => o.id == overlayId);
     return overlay._controller.showing;
   }
 
   ValueNotifier<bool> getShowingNotifier(String overlayId) {
-    final ShellOverlay overlay =
-        widget.overlays.firstWhere((o) => o.id == overlayId);
+    final ShellOverlay overlay = widget.overlays.firstWhere((o) => o.id == overlayId);
     return overlay._controller.showingNotifier;
   }
 
@@ -141,16 +134,6 @@ class ShellState extends State<Shell>
                 behavior: HitTestBehavior.translucent,
               ),
             ),
-            ValueListenableBuilder<bool>(
-              valueListenable: getShowingNotifier(LauncherOverlay.overlayId),
-              builder: (context, showing, child) => Positioned(
-                height: !showing ? 48 : MediaQuery.of(context).size.height,
-                bottom: 0,
-                right: 0,
-                left: 0,
-                child: const BoxSurface(),
-              ),
-            ),
             Taskbar(
               leading: const [
                 LauncherButton(),
@@ -164,9 +147,7 @@ class ShellState extends State<Shell>
                 //KeyboardButton(),
                 ...service.items
                     .where(
-                      (e) =>
-                          e.category !=
-                          StatusNotifierItemCategory.systemServices,
+                      (e) => e.category != StatusNotifierItemCategory.systemServices,
                     )
                     .map((e) => TrayItem(item: e)),
                 const QuickSettingsButton(),
@@ -178,8 +159,7 @@ class ShellState extends State<Shell>
             Positioned.fill(
               child: Listener(
                 onPointerDown: (event) {
-                  WindowHierarchy.of(context, listen: false)
-                      .removeFromStableId("shell:context_menu");
+                  WindowHierarchy.of(context, listen: false).removeFromStableId("shell:context_menu");
                 },
                 behavior: HitTestBehavior.translucent,
               ),

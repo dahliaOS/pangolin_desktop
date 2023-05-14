@@ -31,14 +31,10 @@ class QsTitlebar extends StatelessWidget implements PreferredSizeWidget {
       size: preferredSize,
       child: Row(
         children: [
-          if (leading == null && Navigator.canPop(context))
-            const BackButton()
-          else
-            leading!,
+          if (leading == null && Navigator.canPop(context)) const BackButton() else leading!,
           if (title != null)
             QuickActionButton(
               title: title,
-              isCircular: false,
               textStyle: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
