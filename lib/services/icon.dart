@@ -1,10 +1,12 @@
 import 'dart:async';
 import 'dart:io';
+import 'dart:isolate';
 
 import 'package:collection/collection.dart';
 import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:dbus/dbus.dart';
 import 'package:gsettings/gsettings.dart';
+import 'package:logging/logging.dart';
 import 'package:pangolin/utils/other/benchmark.dart';
 import 'package:pangolin/widgets/global/resource/icon/cache.dart';
 import 'package:path/path.dart' as p;
@@ -12,6 +14,17 @@ import 'package:xdg_desktop/xdg_desktop.dart';
 import 'package:xdg_directories/xdg_directories.dart' as xdg;
 
 typedef _IconCache = Map<String, _CachedIconSet>;
+typedef _ComputationResult<T> = (int, T);
+
+typedef _CacheKey = ({
+  int? size,
+  int? minSize,
+  int? maxSize,
+  int? threshold,
+  IconThemeDirectoryType? type,
+});
+
+typedef _IconFolder = ({String path, List<IconTheme> themes});
 
 abstract class IconService extends ListenableService<IconService> {
   IconService();
@@ -120,122 +133,158 @@ class _LinuxIconService extends IconService {
     settingPollingTimer =
         Timer.periodic(const Duration(seconds: 1), _pollForSetting);
 
-    await _populateFor(p.join(xdg.dataHome.path, "icons"));
-    for (final Directory dir in xdg.dataDirs) {
-      await _populateFor(p.join(dir.path, "icons"));
-    }
-
     systemTheme = await _getCurrentTheme();
+
+    final Benchmark b = Benchmark()..begin();
+    final _OrdererCompleterGroup<_IconFolder> group =
+        _OrdererCompleterGroup(xdg.dataDirs.length + 1);
+
+    int i = 0;
+    group.run(
+      callback: () => _populateFor(p.join(xdg.dataHome.path, "icons")),
+      index: i,
+      useIsolate: true,
+    );
+
+    for (final Directory dir in xdg.dataDirs) {
+      group.run(
+        callback: () => _populateFor(p.join(dir.path, "icons")),
+        index: ++i,
+        useIsolate: true,
+      );
+    }
+    final List<_IconFolder> results = await group.waitForCompletion();
+    b.end();
+    logger.finest(
+      "Parsing every icon folder took ${b.duration.inMilliseconds}ms",
+    );
+
+    for (final folder in results) {
+      dirWatchers.add(
+        Directory(folder.path).watch(recursive: true).listen(_directoryWatcher),
+      );
+      iconFolders.add(folder);
+    }
 
     await _loadThemes(systemTheme);
   }
 
-  Future<void> _populateFor(String path) async {
+  static Future<_IconFolder?> _populateFor(String path) async {
+    final logger = Logger("_LinuxIconService");
     final Directory directory = Directory(path);
     final List<FileSystemEntity> entities;
 
-    if (!directory.existsSync()) return;
+    if (!directory.existsSync()) return null;
 
     try {
       entities = await directory.list(recursive: true).toList();
     } catch (e) {
       logger.warning("Exception while listing icons for $path", e);
-      return;
+      return null;
     }
+    entities.removeWhere((e) => e is! Directory);
 
     final List<IconTheme> foundIconThemes = [];
     final Benchmark benchmark = Benchmark();
 
     benchmark.begin();
+    final _OrdererCompleterGroup<IconTheme> group =
+        _OrdererCompleterGroup(entities.length);
+
+    int i = 0;
     for (final FileSystemEntity entity in entities) {
-      if (entity is! Directory) continue;
-
-      final List<FileSystemEntity> children =
-          await Directory(entity.path).list().toList();
-
-      bool hasThemeFile = false;
-      bool hasCacheFile = false;
-      File? cacheFile;
-
-      for (final FileSystemEntity child in children) {
-        if (child is! File) continue;
-
-        final String ext = p.extension(child.path);
-        if (ext != ".theme") {
-          if (ext == ".cache") {
-            hasCacheFile = true;
-            cacheFile = child;
-          }
-          continue;
-        }
-
-        hasThemeFile = true;
-
-        final String content = await child.readAsString();
-        try {
-          final IconTheme entry = IconTheme.fromIni(child.parent.path, content);
-
-          final List<String> directoryNames = List.of(entry.directoryNames);
-          final List<IconThemeDirectory> directories =
-              List.of(entry.directories);
-
-          directories.removeWhere((e) {
-            final bool exists =
-                Directory(p.join(entry.path, e.name)).existsSync();
-
-            if (!exists) {
-              directoryNames.remove(e.name);
-            }
-
-            return !exists;
-          });
-
-          foundIconThemes.add(
-            entry.copyWith(
-              directoryNames: directoryNames,
-              directories: directories,
-            ),
-          );
-        } catch (error) {
-          logger.warning("Failed to parse icon theme for ${child.path}", error);
-        }
-      }
-
-      if (!hasThemeFile && hasCacheFile && cacheFile != null) {
-        // Chances are this is one of these dumb fuck themes that has a cache but
-        // doesn't have an icon theme file (the unfortunate case of the .local hicolor theme).
-        // For such "people" we have to use this weird ass mechanism, oh well
-
-        final String path = cacheFile.parent.path;
-        final IconCache? cache = await IconCache.create(path);
-
-        if (cache == null) continue;
-
-        final List<IconThemeDirectory?> directories =
-            cache.directories.map(_buildDirFromName).toList();
-        directories.removeWhere((e) => e == null);
-
-        foundIconThemes.add(
-          IconTheme(
-            path: path,
-            name: LocalizedString(p.basenameWithoutExtension(path)),
-            comment: const LocalizedString("Generated by IconService"),
-            directoryNames: cache.directories,
-            directories: directories.cast<IconThemeDirectory>(),
-          ),
-        );
-      }
+      group.run(
+        callback: () => _loadDirectory(entity.path, logger),
+        index: i++,
+      );
     }
+
+    final results = await group.waitForCompletion();
+    foundIconThemes.addAll(results);
 
     benchmark.end();
     logger.finest(
       "Loaded themes for $path, took ${benchmark.duration.inMilliseconds}ms",
     );
-    dirWatchers.add(directory.watch(recursive: true).listen(_directoryWatcher));
-    iconFolders.add(_IconFolder(path, foundIconThemes));
+
+    return (path: path, themes: foundIconThemes);
   }
 
-  IconThemeDirectory? _buildDirFromName(String name) {
+  static Future<IconTheme?> _loadDirectory(String path, Logger logger) async {
+    final List<FileSystemEntity> children =
+        await Directory(path).list().toList();
+    children.removeWhere((e) => e is! File);
+
+    bool hasThemeFile = false;
+    bool hasCacheFile = false;
+    File? cacheFile;
+
+    for (final File child in children.cast<File>()) {
+      final String ext = p.extension(child.path);
+      if (ext != ".theme") {
+        if (ext == ".cache") {
+          hasCacheFile = true;
+          cacheFile = child;
+        }
+        continue;
+      }
+
+      hasThemeFile = true;
+
+      final String content = await child.readAsString();
+      try {
+        final IconTheme entry = IconTheme.fromIni(child.parent.path, content);
+
+        final List<String> directoryNames = List.of(entry.directoryNames);
+        final List<IconThemeDirectory> directories = List.of(entry.directories);
+
+        directories.removeWhere((e) {
+          final bool exists =
+              Directory(p.join(entry.path, e.name)).existsSync();
+
+          if (!exists) {
+            directoryNames.remove(e.name);
+          }
+
+          return !exists;
+        });
+
+        return entry.copyWith(
+          directoryNames: directoryNames,
+          directories: directories,
+        );
+      } catch (error) {
+        logger.warning("Failed to parse icon theme for ${child.path}", error);
+      }
+    }
+
+    if (!hasThemeFile && hasCacheFile && cacheFile != null) {
+      // Chances are this is one of these dumb fuck themes that has a cache but
+      // doesn't have an icon theme file (the unfortunate case of the .local hicolor theme).
+      // For such "people" we have to use this weird ass mechanism, oh well
+
+      final String path = cacheFile.parent.path;
+      final IconCache? cache = await IconCache.create(path);
+
+      if (cache == null) return null;
+
+      final List<IconThemeDirectory?> directories =
+          cache.directories.map(_buildDirFromName).toList();
+      directories.removeWhere((e) => e == null);
+
+      return IconTheme(
+        path: path,
+        name: LocalizedString(p.basenameWithoutExtension(path)),
+        comment: const LocalizedString("Generated by IconService"),
+        directoryNames: cache.directories,
+        directories: directories.cast<IconThemeDirectory>(),
+      );
+    }
+
+    return null;
+  }
+
+  static IconThemeDirectory? _buildDirFromName(String name) {
     final RegExp nameRegex =
         RegExp("(?<sizeA>[0-9]+)x(?<sizeB>[0-9]+)(@(?<scale>[0-9]+))?");
     final RegExpMatch? match = nameRegex.firstMatch(name);
@@ -268,7 +317,6 @@ class _LinuxIconService extends IconService {
       case FileSystemEvent.delete:
       case FileSystemEvent.move:
         _loadThemes();
-        break;
     }
   }
 
@@ -288,7 +336,13 @@ class _LinuxIconService extends IconService {
     for (final FileSystemEntity entity in entities) {
       if (entity is! File) continue;
 
-      const _CacheKey key = _CacheKey();
+      const _CacheKey key = (
+        maxSize: null,
+        minSize: null,
+        size: null,
+        threshold: null,
+        type: null,
+      );
       final String iconName = p.basenameWithoutExtension(entity.path);
       cache[iconName] ??= _CachedIconSet({key: entity.path});
     }
@@ -358,7 +412,7 @@ class _LinuxIconService extends IconService {
       final String name = p.basenameWithoutExtension(item.path);
       iconCache[name] ??= {};
 
-      final _CacheKey key = _CacheKey(
+      final _CacheKey key = (
         size: dir.size,
         minSize: dir.minSize,
         maxSize: dir.maxSize,
@@ -433,7 +487,7 @@ class _LinuxIconService extends IconService {
       await sub.cancel();
     }
     dirWatchers.clear();
-    await settings.close();
+    //await settings.close();
   }
 }
 
@@ -497,27 +551,30 @@ class _CachedIconSet {
   }
 }
 
-class _CacheKey {
-  final int? size;
-  final int? minSize;
-  final int? maxSize;
-  final int? threshold;
-  final IconThemeDirectoryType? type;
+class _OrdererCompleterGroup<T> {
+  final CompleterGroup<int, _ComputationResult<T?>> _group;
 
-  const _CacheKey({
-    this.size,
-    this.minSize,
-    this.maxSize,
-    this.threshold,
-    this.type,
-  });
-}
+  _OrdererCompleterGroup(int length)
+      : _group = CompleterGroup(List.generate(length, (i) => i));
 
-class _IconFolder {
-  final String path;
-  final List<IconTheme> themes;
+  Future<void> run({
+    required int index,
+    required Future<T?> Function() callback,
+    bool useIsolate = false,
+  }) async {
+    final result =
+        await (useIsolate ? Isolate.run(() => callback()) : callback());
+    _group.complete(index, (index, result));
+  }
 
-  const _IconFolder(this.path, this.themes);
+  Future<List<T>> waitForCompletion() async {
+    final List<_ComputationResult<T?>> results =
+        await _group.waitForCompletion();
+    results.removeWhere((e) => e.$2 == null);
+    results.sort((a, b) => a.$1.compareTo(b.$1));
+
+    return results.map((e) => e.$2!).toList().cast<T>();
+  }
 }
 
 extension on _CacheKey {
