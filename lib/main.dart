@@ -62,9 +62,11 @@ Future<void> main() async {
   runApp(
     ServiceBuilderWidget(
       services: [
-        const ServiceEntry<LocaleService>(LocaleService.build),
+        const ServiceEntry<LocaleService>.critical(LocaleService.build),
         const ServiceEntry<SearchService>(SearchService.build),
-        const ServiceEntry<WindowManagerService>(WindowManagerService.build),
+        const ServiceEntry<WindowManagerService>.critical(
+          WindowManagerService.build,
+        ),
         ServiceEntry<LangPacksService>(
           LangPacksService.build,
           LangPacksService.fallback(),
@@ -77,7 +79,7 @@ Future<void> main() async {
           IconService.build,
           IconService.fallback(),
         ),
-        ServiceEntry<PreferencesService>(
+        ServiceEntry<PreferencesService>.critical(
           PreferencesService.build,
           PreferencesService.fallback(),
         ),
@@ -89,8 +91,10 @@ Future<void> main() async {
           NotificationService.build,
           NotificationService.fallback(),
         ),
-        const ServiceEntry<CustomizationService>(CustomizationService.build),
-        const ServiceEntry<DateTimeService>(DateTimeService.build),
+        const ServiceEntry<CustomizationService>.critical(
+          CustomizationService.build,
+        ),
+        const ServiceEntry<DateTimeService>.critical(DateTimeService.build),
       ],
       builder: (context, loaded, child) {
         if (!loaded) return const ColoredBox(color: Colors.black);

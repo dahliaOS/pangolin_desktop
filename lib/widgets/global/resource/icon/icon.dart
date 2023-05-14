@@ -24,10 +24,19 @@ class ResourceIcon extends StatefulWidget {
 }
 
 class _ResourceIconState extends State<ResourceIcon> {
+  bool _iconServiceReady = false;
+
   @override
   void initState() {
     super.initState();
+    init();
+  }
+
+  Future<void> init() async {
+    await ServiceManager.waitForService<IconService>();
+    _iconServiceReady = true;
     IconService.current.addListener(_update);
+    _update();
   }
 
   @override
@@ -49,6 +58,8 @@ class _ResourceIconState extends State<ResourceIcon> {
   }
 
   Future<String?> _resolveXdg(XdgIconReference ref) async {
+    if (!_iconServiceReady) return null;
+
     if (ref.directory != null) {
       return IconService.current.lookupFromDirectory(
         ref.directory!,
