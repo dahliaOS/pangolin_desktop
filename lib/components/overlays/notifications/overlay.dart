@@ -70,7 +70,6 @@ class _NotificationsOverlayState extends State<NotificationsOverlay>
     switch (reason) {
       case NotificationCloseReason.dismissed:
         await notif.controller.reverse();
-        break;
       case NotificationCloseReason.closed:
       case NotificationCloseReason.expired:
       case NotificationCloseReason.unknown:

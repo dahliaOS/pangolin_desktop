@@ -131,11 +131,9 @@ class _LinuxApplicationService extends ApplicationService {
       case FileSystemEvent.delete:
         entries.remove(event.path);
         notifyListeners();
-        break;
       case FileSystemEvent.create:
       case FileSystemEvent.modify:
         await _parseEntity(File(event.path));
-        break;
     }
   }
 

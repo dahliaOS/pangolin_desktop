@@ -107,8 +107,7 @@ class _LinuxIconService extends IconService {
     String name, {
     String? fallback,
   }) async {
-    if (FileSystemEntity.typeSync(directory) !=
-        FileSystemEntityType.directory) {
+    if (FileSystemEntity.typeSync(directory) != FileSystemEntityType.directory) {
       return null;
     }
 
@@ -130,14 +129,12 @@ class _LinuxIconService extends IconService {
 
   @override
   FutureOr<void> start() async {
-    settingPollingTimer =
-        Timer.periodic(const Duration(seconds: 1), _pollForSetting);
+    settingPollingTimer = Timer.periodic(const Duration(seconds: 1), _pollForSetting);
 
     systemTheme = await _getCurrentTheme();
 
     final Benchmark b = Benchmark()..begin();
-    final _OrdererCompleterGroup<_IconFolder> group =
-        _OrdererCompleterGroup(xdg.dataDirs.length + 1);
+    final _OrdererCompleterGroup<_IconFolder> group = _OrdererCompleterGroup(xdg.dataDirs.length + 1);
 
     int i = 0;
     group.run(
@@ -188,8 +185,7 @@ class _LinuxIconService extends IconService {
     final Benchmark benchmark = Benchmark();
 
     benchmark.begin();
-    final _OrdererCompleterGroup<IconTheme> group =
-        _OrdererCompleterGroup(entities.length);
+    final _OrdererCompleterGroup<IconTheme> group = _OrdererCompleterGroup(entities.length);
 
     int i = 0;
     for (final FileSystemEntity entity in entities) {
@@ -211,8 +207,7 @@ class _LinuxIconService extends IconService {
   }
 
   static Future<IconTheme?> _loadDirectory(String path, Logger logger) async {
-    final List<FileSystemEntity> children =
-        await Directory(path).list().toList();
+    final List<FileSystemEntity> children = await Directory(path).list().toList();
     children.removeWhere((e) => e is! File);
 
     bool hasThemeFile = false;
@@ -239,8 +234,7 @@ class _LinuxIconService extends IconService {
         final List<IconThemeDirectory> directories = List.of(entry.directories);
 
         directories.removeWhere((e) {
-          final bool exists =
-              Directory(p.join(entry.path, e.name)).existsSync();
+          final bool exists = Directory(p.join(entry.path, e.name)).existsSync();
 
           if (!exists) {
             directoryNames.remove(e.name);
@@ -268,8 +262,7 @@ class _LinuxIconService extends IconService {
 
       if (cache == null) return null;
 
-      final List<IconThemeDirectory?> directories =
-          cache.directories.map(_buildDirFromName).toList();
+      final List<IconThemeDirectory?> directories = cache.directories.map(_buildDirFromName).toList();
       directories.removeWhere((e) => e == null);
 
       return IconTheme(
@@ -285,8 +278,7 @@ class _LinuxIconService extends IconService {
   }
 
   static IconThemeDirectory? _buildDirFromName(String name) {
-    final RegExp nameRegex =
-        RegExp("(?<sizeA>[0-9]+)x(?<sizeB>[0-9]+)(@(?<scale>[0-9]+))?");
+    final RegExp nameRegex = RegExp("(?<sizeA>[0-9]+)x(?<sizeB>[0-9]+)(@(?<scale>[0-9]+))?");
     final RegExpMatch? match = nameRegex.firstMatch(name);
 
     if (match == null) return null;
@@ -349,8 +341,7 @@ class _LinuxIconService extends IconService {
 
     for (final _IconFolder folder in iconFolders.reversed) {
       benchmark.begin();
-      final IconTheme? rootTheme =
-          folder.themes.firstWhereOrNull((e) => e.name.main == resolvedName);
+      final IconTheme? rootTheme = folder.themes.firstWhereOrNull((e) => e.name.main == resolvedName);
 
       if (rootTheme == null) {
         final _IconCache? themeCache = await _loadTheme("hicolor", folder);
@@ -398,14 +389,12 @@ class _LinuxIconService extends IconService {
     final List<IconThemeDirectory> dirs = List.of(iconTheme.directories);
     dirs.sort((a, b) => b.size.compareTo(a.size));
 
-    final List<FileSystemEntity> items =
-        await Directory(iconTheme.path).list(recursive: true).toList();
+    final List<FileSystemEntity> items = await Directory(iconTheme.path).list(recursive: true).toList();
 
     final Map<String, Map<_CacheKey, String>> iconCache = {};
     for (final FileSystemEntity item in items) {
       if (item is! File) continue;
-      final IconThemeDirectory? dir =
-          dirs.firstWhereOrNull((e) => item.path.contains(e.name));
+      final IconThemeDirectory? dir = dirs.firstWhereOrNull((e) => item.path.contains(e.name));
 
       if (dir == null) continue;
 
@@ -442,8 +431,7 @@ class _LinuxIconService extends IconService {
 
     results.addAll(theme.inherits ?? []);
     for (final String inheritance in theme.inherits ?? []) {
-      final IconTheme? inheritedTheme =
-          folder.themes.firstWhereOrNull((e) => e.name.main == inheritance);
+      final IconTheme? inheritedTheme = folder.themes.firstWhereOrNull((e) => e.name.main == inheritance);
 
       if (inheritedTheme == null) continue;
 
@@ -465,8 +453,7 @@ class _LinuxIconService extends IconService {
     return result.reversed.toList();
   }
 
-  Future<String> _getCurrentTheme() async =>
-      (await settings.get("icon-theme") as DBusString).value;
+  Future<String> _getCurrentTheme() async => (await settings.get("icon-theme") as DBusString).value;
 
   Future<void> _pollForSetting(Timer timer) async {
     final String currentTheme = await _getCurrentTheme();
@@ -554,22 +541,19 @@ class _CachedIconSet {
 class _OrdererCompleterGroup<T> {
   final CompleterGroup<int, _ComputationResult<T?>> _group;
 
-  _OrdererCompleterGroup(int length)
-      : _group = CompleterGroup(List.generate(length, (i) => i));
+  _OrdererCompleterGroup(int length) : _group = CompleterGroup(List.generate(length, (i) => i));
 
   Future<void> run({
     required int index,
     required Future<T?> Function() callback,
     bool useIsolate = false,
   }) async {
-    final result =
-        await (useIsolate ? Isolate.run(() => callback()) : callback());
+    final result = await (useIsolate ? Isolate.run(() => callback()) : callback());
     _group.complete(index, (index, result));
   }
 
   Future<List<T>> waitForCompletion() async {
-    final List<_ComputationResult<T?>> results =
-        await _group.waitForCompletion();
+    final List<_ComputationResult<T?>> results = await _group.waitForCompletion();
     results.removeWhere((e) => e.$2 == null);
     results.sort((a, b) => a.$1.compareTo(b.$1));
 
