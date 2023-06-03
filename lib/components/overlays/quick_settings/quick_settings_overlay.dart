@@ -126,8 +126,8 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
 
 PageRouteBuilder customRouteTransition(Widget screen) {
   return PageRouteBuilder(
-    transitionDuration: const Duration(milliseconds: 150),
-    reverseTransitionDuration: const Duration(milliseconds: 150),
+    transitionDuration: Constants.animationDuration,
+    reverseTransitionDuration: Constants.animationDuration,
     pageBuilder: (context, animation, secondaryAnimation) => screen,
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       final fadeAnimationIn = Tween(
