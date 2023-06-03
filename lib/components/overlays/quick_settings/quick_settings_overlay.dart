@@ -100,17 +100,15 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
                     createCustomTransition(const QsMain()),
                   ],
                   onGenerateRoute: (settings) {
-                    if (settings.name == '/pages/account') {
-                      return createCustomTransition(const QsAccountPage());
-                    }
-                    if (settings.name == '/pages/network') {
-                      return createCustomTransition(const QsNetworkPage());
-                    }
-                    if (settings.name == '/pages/theme') {
-                      return createCustomTransition(const QsThemePage());
-                    }
-                    if (settings.name == '/pages/language') {
-                      return createCustomTransition(const QsLanguagePage());
+                    switch (settings.name) {
+                      case '/pages/account':
+                        return createCustomTransition(const QsAccountPage());
+                      case '/pages/network':
+                        return createCustomTransition(const QsNetworkPage());
+                      case '/pages/theme':
+                        return createCustomTransition(const QsNetworkPage());
+                      case '/pages/language':
+                        return createCustomTransition(const QsLanguagePage());
                     }
                   },
                   theme: Theme.of(context)
@@ -133,39 +131,54 @@ PageRouteBuilder createCustomTransition(Widget screen) {
     reverseTransitionDuration: const Duration(milliseconds: 150),
     pageBuilder: (context, animation, secondaryAnimation) => screen,
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      const beginFade = 0.0;
-      const endFade = 1.0;
-      const curveFade = Curves.linear;
+      final fadeAnimationIn = Tween(
+        begin: 0.0,
+        end: 1.0,
+      ).animate(
+        CurvedAnimation(
+          parent: animation,
+          curve: Curves.linear,
+        ),
+      );
 
-      const beginFade2 = 1.0;
-      const endFade2 = 0.0;
-      const curveFade2 = Curves.linear;
+      final fadeAnimationOut = Tween(
+        begin: 1.0,
+        end: 0.0,
+      ).animate(
+        CurvedAnimation(
+          parent: secondaryAnimation,
+          curve: Curves.linear,
+        ),
+      );
 
-      const beginScale = 0.95;
-      const endScale = 1.0;
-      const curveScale = Curves.linear;
+      final scaleAnimationIn = Tween(
+        begin: 0.95,
+        end: 1.0,
+      ).animate(
+        CurvedAnimation(
+          parent: animation,
+          curve: Curves.linear,
+        ),
+      );
 
-      const beginScale2 = 1.0;
-      const endScale2 = 1.05;
-      const curveScale2 = Curves.linear;
-
-      var tweenFade = Tween(begin: beginFade, end: endFade)
-          .chain(CurveTween(curve: curveFade));
-      var tweenFade2 = Tween(begin: beginFade2, end: endFade2)
-          .chain(CurveTween(curve: curveFade2));
-      var tweenScale = Tween(begin: beginScale, end: endScale)
-          .chain(CurveTween(curve: curveScale));
-      var tweenScale2 = Tween(begin: beginScale2, end: endScale2)
-          .chain(CurveTween(curve: curveScale2));
+      final scaleAnimationOut = Tween(
+        begin: 1.0,
+        end: 1.05,
+      ).animate(
+        CurvedAnimation(
+          parent: secondaryAnimation,
+          curve: Curves.linear,
+        ),
+      );
 
       return FadeTransition(
-        opacity: secondaryAnimation.drive(tweenFade2),
+        opacity: fadeAnimationIn,
         child: ScaleTransition(
-          scale: secondaryAnimation.drive(tweenScale2),
+          scale: scaleAnimationIn,
           child: FadeTransition(
-            opacity: animation.drive(tweenFade),
+            opacity: fadeAnimationOut,
             child: ScaleTransition(
-              scale: animation.drive(tweenScale),
+              scale: scaleAnimationOut,
               child: child,
             ),
           ),
