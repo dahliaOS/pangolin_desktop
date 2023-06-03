@@ -96,12 +96,22 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: MaterialApp(
-                  routes: {
-                    "/": (context) => const QsMain(),
-                    "/pages/account": (context) => const QsAccountPage(),
-                    "/pages/network": (context) => const QsNetworkPage(),
-                    "/pages/theme": (context) => const QsThemePage(),
-                    "/pages/language": (context) => const QsLanguagePage(),
+                  onGenerateInitialRoutes: (initialRoute) => [
+                    createCustomTransition(const QsMain()),
+                  ],
+                  onGenerateRoute: (settings) {
+                    if (settings.name == '/pages/account') {
+                      return createCustomTransition(const QsAccountPage());
+                    }
+                    if (settings.name == '/pages/network') {
+                      return createCustomTransition(const QsNetworkPage());
+                    }
+                    if (settings.name == '/pages/theme') {
+                      return createCustomTransition(const QsThemePage());
+                    }
+                    if (settings.name == '/pages/language') {
+                      return createCustomTransition(const QsLanguagePage());
+                    }
                   },
                   theme: Theme.of(context)
                       .copyWith(scaffoldBackgroundColor: Colors.transparent),
@@ -115,6 +125,54 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
       ),
     );
   }
+}
+
+PageRouteBuilder createCustomTransition(Widget screen) {
+  return PageRouteBuilder(
+    transitionDuration: const Duration(milliseconds: 150),
+    reverseTransitionDuration: const Duration(milliseconds: 150),
+    pageBuilder: (context, animation, secondaryAnimation) => screen,
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const beginFade = 0.0;
+      const endFade = 1.0;
+      const curveFade = Curves.linear;
+
+      const beginFade2 = 1.0;
+      const endFade2 = 0.0;
+      const curveFade2 = Curves.linear;
+
+      const beginScale = 0.95;
+      const endScale = 1.0;
+      const curveScale = Curves.linear;
+
+      const beginScale2 = 1.0;
+      const endScale2 = 1.05;
+      const curveScale2 = Curves.linear;
+
+      var tweenFade = Tween(begin: beginFade, end: endFade)
+          .chain(CurveTween(curve: curveFade));
+      var tweenFade2 = Tween(begin: beginFade2, end: endFade2)
+          .chain(CurveTween(curve: curveFade2));
+      var tweenScale = Tween(begin: beginScale, end: endScale)
+          .chain(CurveTween(curve: curveScale));
+      var tweenScale2 = Tween(begin: beginScale2, end: endScale2)
+          .chain(CurveTween(curve: curveScale2));
+
+      return FadeTransition(
+        opacity: secondaryAnimation.drive(tweenFade2),
+        child: ScaleTransition(
+          scale: secondaryAnimation.drive(tweenScale2),
+          child: FadeTransition(
+            opacity: animation.drive(tweenFade),
+            child: ScaleTransition(
+              scale: animation.drive(tweenScale),
+              child: child,
+            ),
+          ),
+        ),
+      );
+    },
+  );
 }
 
 class QsMain extends StatelessWidget
