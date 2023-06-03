@@ -97,18 +97,18 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
                 padding: const EdgeInsets.all(16.0),
                 child: MaterialApp(
                   onGenerateInitialRoutes: (initialRoute) => [
-                    createCustomTransition(const QsMain()),
+                    customRouteTransition(const QsMain()),
                   ],
                   onGenerateRoute: (settings) {
                     switch (settings.name) {
                       case '/pages/account':
-                        return createCustomTransition(const QsAccountPage());
+                        return customRouteTransition(const QsAccountPage());
                       case '/pages/network':
-                        return createCustomTransition(const QsNetworkPage());
+                        return customRouteTransition(const QsNetworkPage());
                       case '/pages/theme':
-                        return createCustomTransition(const QsThemePage());
+                        return customRouteTransition(const QsThemePage());
                       case '/pages/language':
-                        return createCustomTransition(const QsLanguagePage());
+                        return customRouteTransition(const QsLanguagePage());
                     }
                   },
                   theme: Theme.of(context)
@@ -125,7 +125,7 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
   }
 }
 
-PageRouteBuilder createCustomTransition(Widget screen) {
+PageRouteBuilder customRouteTransition(Widget screen) {
   return PageRouteBuilder(
     transitionDuration: const Duration(milliseconds: 150),
     reverseTransitionDuration: const Duration(milliseconds: 150),
