@@ -16,7 +16,6 @@ limitations under the License.
 
 import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
-import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/widgets/global/box/box_container.dart';
 
 class Taskbar extends StatefulWidget {
