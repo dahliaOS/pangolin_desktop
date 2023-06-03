@@ -100,16 +100,15 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
                     customRouteTransition(const QsMain()),
                   ],
                   onGenerateRoute: (settings) {
-                    switch (settings.name) {
-                      case '/pages/account':
-                        return customRouteTransition(const QsAccountPage());
-                      case '/pages/network':
-                        return customRouteTransition(const QsNetworkPage());
-                      case '/pages/theme':
-                        return customRouteTransition(const QsThemePage());
-                      case '/pages/language':
-                        return customRouteTransition(const QsLanguagePage());
-                    }
+                    return customRouteTransition(
+                      switch (settings.name) {
+                        '/pages/account' => const QsAccountPage(),
+                        '/pages/network' => const QsNetworkPage(),
+                        '/pages/theme' => const QsThemePage(),
+                        '/pages/language' => const QsLanguagePage(),
+                        _ => const QsMain(),
+                      },
+                    );
                   },
                   theme: Theme.of(context)
                       .copyWith(scaffoldBackgroundColor: Colors.transparent),
