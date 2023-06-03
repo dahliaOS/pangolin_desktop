@@ -130,14 +130,11 @@ PageRouteBuilder customRouteTransition(Widget screen) {
     reverseTransitionDuration: Constants.animationDuration,
     pageBuilder: (context, animation, secondaryAnimation) => screen,
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      final fadeAnimationIn = Tween(
-        begin: animation.value,
-        end: animation.value,
-      ).animate(animation);
+      final fadeAnimationIn = animation;
 
       final fadeAnimationOut = Tween(
-        begin: animation.value,
-        end: 1 - animation.value,
+        begin: 1.0,
+        end: 0.0,
       ).animate(secondaryAnimation);
 
       final scaleAnimationIn = Tween(
