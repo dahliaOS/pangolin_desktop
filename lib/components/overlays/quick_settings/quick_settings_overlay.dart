@@ -132,44 +132,24 @@ PageRouteBuilder customRouteTransition(Widget screen) {
     pageBuilder: (context, animation, secondaryAnimation) => screen,
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       final fadeAnimationIn = Tween(
-        begin: 0.0,
-        end: 1.0,
-      ).animate(
-        CurvedAnimation(
-          parent: animation,
-          curve: Curves.linear,
-        ),
-      );
+        begin: animation.value,
+        end: animation.value,
+      ).animate(animation);
 
       final fadeAnimationOut = Tween(
-        begin: 1.0,
-        end: 0.0,
-      ).animate(
-        CurvedAnimation(
-          parent: secondaryAnimation,
-          curve: Curves.linear,
-        ),
-      );
+        begin: animation.value,
+        end: 1 - animation.value,
+      ).animate(secondaryAnimation);
 
       final scaleAnimationIn = Tween(
         begin: 0.95,
         end: 1.0,
-      ).animate(
-        CurvedAnimation(
-          parent: animation,
-          curve: Curves.linear,
-        ),
-      );
+      ).animate(animation);
 
       final scaleAnimationOut = Tween(
         begin: 1.0,
         end: 1.05,
-      ).animate(
-        CurvedAnimation(
-          parent: secondaryAnimation,
-          curve: Curves.linear,
-        ),
-      );
+      ).animate(secondaryAnimation);
 
       return FadeTransition(
         opacity: fadeAnimationIn,
