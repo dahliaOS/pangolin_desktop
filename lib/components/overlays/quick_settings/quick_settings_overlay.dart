@@ -106,7 +106,7 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
                       case '/pages/network':
                         return createCustomTransition(const QsNetworkPage());
                       case '/pages/theme':
-                        return createCustomTransition(const QsNetworkPage());
+                        return createCustomTransition(const QsThemePage());
                       case '/pages/language':
                         return createCustomTransition(const QsLanguagePage());
                     }
