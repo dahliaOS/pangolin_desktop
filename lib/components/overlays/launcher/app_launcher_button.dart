@@ -44,7 +44,8 @@ class AppLauncherButton extends StatelessWidget {
           shape: Constants.mediumShape,
           clipBehavior: Clip.antiAlias,
           child: InkWell(
-            onLongPress: () => CustomizationService.current.togglePinnedApp(application.id),
+            onLongPress: () =>
+                CustomizationService.current.togglePinnedApp(application.id),
             onTap: () async {
               final ShellState shell = Shell.of(context, listen: false);
               await ApplicationService.current.startApp(application.id);
@@ -93,7 +94,8 @@ class _AppLauncherTileState extends State<AppLauncherTile> {
       onExit: (details) => setState(() => _hover = false),
       child: GestureDetector(
         child: ListTile(
-          contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+          contentPadding:
+              const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
           shape: Constants.smallShape,
           dense: true,
           leading: SizedBox.fromSize(
@@ -125,7 +127,8 @@ class _AppLauncherTileState extends State<AppLauncherTile> {
                   padding: EdgeInsets.zero,
                   leading: const Icon(Icons.push_pin_rounded),
                   onPressed: () {
-                    CustomizationService.current.togglePinnedApp(widget.application.id);
+                    CustomizationService.current
+                        .togglePinnedApp(widget.application.id);
                   },
                 ),
                 const QuickActionButton(

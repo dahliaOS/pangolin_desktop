@@ -22,7 +22,8 @@ class NotificationView extends StatelessWidget {
   Widget build(BuildContext context) {
     final NotificationAction? defaultAction =
         notification.actions.firstWhereOrNull((e) => e.key == "default");
-    final List<NotificationAction> actions = List.from(notification.actions)..remove(defaultAction);
+    final List<NotificationAction> actions = List.from(notification.actions)
+      ..remove(defaultAction);
 
     return Material(
       type: MaterialType.transparency,
@@ -90,7 +91,8 @@ class _NotificationBody extends StatelessWidget {
                 Container(
                   width: 56,
                   height: 56,
-                  decoration: const ShapeDecoration(shape: Constants.smallShape),
+                  decoration:
+                      const ShapeDecoration(shape: Constants.smallShape),
                   clipBehavior: Clip.antiAlias,
                   child: DBusImageWidget(
                     image: notification.image ??
@@ -115,7 +117,8 @@ class _NotificationBody extends StatelessWidget {
                             separator: const SizedBox(width: 4),
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              if (notification.image != null && notification.appImage != null)
+                              if (notification.image != null &&
+                                  notification.appImage != null)
                                 DBusImageWidget(
                                   image: notification.appImage!,
                                   width: 16,
@@ -152,7 +155,8 @@ class _NotificationBody extends StatelessWidget {
                   ),
                 ),
                 IconButton(
-                  onPressed: onClose != null ? () => onClose!(notification.id) : null,
+                  onPressed:
+                      onClose != null ? () => onClose!(notification.id) : null,
                   icon: const Icon(Icons.close),
                   iconSize: 16,
                   padding: EdgeInsets.zero,

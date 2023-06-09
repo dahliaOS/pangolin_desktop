@@ -33,7 +33,9 @@ class OverviewOverlay extends ShellOverlay {
 }
 
 class _OverviewOverlayState extends State<OverviewOverlay>
-    with ShellOverlayState, StateServiceListener<CustomizationService, OverviewOverlay> {
+    with
+        ShellOverlayState,
+        StateServiceListener<CustomizationService, OverviewOverlay> {
   @override
   FutureOr<void> requestShow(Map<String, dynamic> args) {
     controller.showing = true;

@@ -37,7 +37,8 @@ class Taskbar extends StatefulWidget {
   State<Taskbar> createState() => _TaskbarState();
 }
 
-class _TaskbarState extends State<Taskbar> with StateServiceListener<CustomizationService, Taskbar> {
+class _TaskbarState extends State<Taskbar>
+    with StateServiceListener<CustomizationService, Taskbar> {
   @override
   Widget buildChild(BuildContext context, CustomizationService service) {
     return Positioned(

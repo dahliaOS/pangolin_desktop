@@ -166,10 +166,14 @@ class CompactLauncher extends StatelessWidget {
                 child: AnimatedBuilder(
                   animation: ApplicationService.current,
                   builder: (context, _) {
-                    final List<DesktopEntry> applications = ApplicationService.current.listApplications();
+                    final List<DesktopEntry> applications =
+                        ApplicationService.current.listApplications();
 
                     applications.sort(
-                      (a, b) => a.getLocalizedName(context.locale).toLowerCase().compareTo(
+                      (a, b) => a
+                          .getLocalizedName(context.locale)
+                          .toLowerCase()
+                          .compareTo(
                             b.getLocalizedName(context.locale).toLowerCase(),
                           ),
                     );
@@ -179,7 +183,8 @@ class CompactLauncher extends StatelessWidget {
                       itemBuilder: (context, index) => AppLauncherTile(
                         application: applications[index],
                       ),
-                      separatorBuilder: (context, index) => const SizedBox(height: 4),
+                      separatorBuilder: (context, index) =>
+                          const SizedBox(height: 4),
                     );
                   },
                 ),

@@ -73,7 +73,8 @@ class QsToggleButton extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
-                        color: theme.materialTheme.computedForegroundColor(color),
+                        color:
+                            theme.materialTheme.computedForegroundColor(color),
                       ),
                     ),
                     if (subtitle != null)
@@ -81,7 +82,8 @@ class QsToggleButton extends StatelessWidget {
                         subtitle,
                         style: TextStyle(
                           fontSize: 10,
-                          color: theme.materialTheme.computedForegroundColor(color),
+                          color: theme.materialTheme
+                              .computedForegroundColor(color),
                         ),
                       ),
                   ],
@@ -99,7 +101,8 @@ class QsToggleButton extends StatelessWidget {
                         child: Icon(
                           Icons.chevron_right_rounded,
                           size: 20,
-                          color: theme.materialTheme.computedForegroundColor(color),
+                          color: theme.materialTheme
+                              .computedForegroundColor(color),
                         ),
                       ),
                     ),

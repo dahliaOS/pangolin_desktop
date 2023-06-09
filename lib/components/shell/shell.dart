@@ -53,7 +53,8 @@ class Shell extends StatefulWidget {
   }
 }
 
-class ShellState extends State<Shell> with StateServiceListener<TrayService, Shell> {
+class ShellState extends State<Shell>
+    with StateServiceListener<TrayService, Shell> {
   final List<String> minimizedWindowsCache = [];
 
   @override
@@ -69,7 +70,8 @@ class ShellState extends State<Shell> with StateServiceListener<TrayService, She
     Map<String, dynamic> args = const {},
     bool dismissEverything = true,
   }) async {
-    final ShellOverlay overlay = widget.overlays.firstWhere((o) => o.id == overlayId);
+    final ShellOverlay overlay =
+        widget.overlays.firstWhere((o) => o.id == overlayId);
     if (dismissEverything) this.dismissEverything();
     await overlay._controller.requestShow(args);
   }
@@ -78,7 +80,8 @@ class ShellState extends State<Shell> with StateServiceListener<TrayService, She
     String overlayId, {
     Map<String, dynamic> args = const {},
   }) async {
-    final ShellOverlay overlay = widget.overlays.firstWhere((o) => o.id == overlayId);
+    final ShellOverlay overlay =
+        widget.overlays.firstWhere((o) => o.id == overlayId);
     await overlay._controller.requestDismiss(args);
   }
 
@@ -94,12 +97,14 @@ class ShellState extends State<Shell> with StateServiceListener<TrayService, She
   }
 
   bool currentlyShown(String overlayId) {
-    final ShellOverlay overlay = widget.overlays.firstWhere((o) => o.id == overlayId);
+    final ShellOverlay overlay =
+        widget.overlays.firstWhere((o) => o.id == overlayId);
     return overlay._controller.showing;
   }
 
   ValueNotifier<bool> getShowingNotifier(String overlayId) {
-    final ShellOverlay overlay = widget.overlays.firstWhere((o) => o.id == overlayId);
+    final ShellOverlay overlay =
+        widget.overlays.firstWhere((o) => o.id == overlayId);
     return overlay._controller.showingNotifier;
   }
 
@@ -147,7 +152,9 @@ class ShellState extends State<Shell> with StateServiceListener<TrayService, She
                 //KeyboardButton(),
                 ...service.items
                     .where(
-                      (e) => e.category != StatusNotifierItemCategory.systemServices,
+                      (e) =>
+                          e.category !=
+                          StatusNotifierItemCategory.systemServices,
                     )
                     .map((e) => TrayItem(item: e)),
                 const QuickSettingsButton(),
@@ -159,7 +166,8 @@ class ShellState extends State<Shell> with StateServiceListener<TrayService, She
             Positioned.fill(
               child: Listener(
                 onPointerDown: (event) {
-                  WindowHierarchy.of(context, listen: false).removeFromStableId("shell:context_menu");
+                  WindowHierarchy.of(context, listen: false)
+                      .removeFromStableId("shell:context_menu");
                 },
                 behavior: HitTestBehavior.translucent,
               ),

@@ -34,7 +34,8 @@ class AccountOverlay extends ShellOverlay {
   _AccountOverlayState createState() => _AccountOverlayState();
 }
 
-class _AccountOverlayState extends State<AccountOverlay> with SingleTickerProviderStateMixin, ShellOverlayState {
+class _AccountOverlayState extends State<AccountOverlay>
+    with SingleTickerProviderStateMixin, ShellOverlayState {
   late AnimationController ac;
 
   @override
@@ -148,7 +149,8 @@ class _AccountOverlayState extends State<AccountOverlay> with SingleTickerProvid
                                 title: "Account Settings",
                                 icon: Icons.settings_outlined,
                                 context: context,
-                                onPressed: () => ActionManager.openSettings(context),
+                                onPressed: () =>
+                                    ActionManager.openSettings(context),
                               ),
                             ],
                           ),

@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:pangolin/components/overlays/quick_settings/widgets/qs_titlebar.dart';
 import 'package:zenit_ui/zenit_ui.dart';
 
-class QsThemePage extends StatelessWidget with StatelessServiceListener<CustomizationService> {
+class QsThemePage extends StatelessWidget
+    with StatelessServiceListener<CustomizationService> {
   const QsThemePage({super.key});
 
   @override
@@ -29,7 +30,9 @@ class QsThemePage extends StatelessWidget with StatelessServiceListener<Customiz
                   crossAxisCount: 5,
                 ),
                 shrinkWrap: true,
-                children: BuiltinColor.values.map((e) => _AccentColorBox(e: e, service: service)).toList(),
+                children: BuiltinColor.values
+                    .map((e) => _AccentColorBox(e: e, service: service))
+                    .toList(),
               ),
             ),
           ],
@@ -55,7 +58,8 @@ class _AccentColorBox extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(8.0),
         child: InkWell(
-          onTap: () => service.accentColor = ColorResource(type: ColorResourceType.dahlia, value: e.name),
+          onTap: () => service.accentColor =
+              ColorResource(type: ColorResourceType.dahlia, value: e.name),
           borderRadius: BorderRadius.circular(8.0),
           child: ColoredBox(
             color: e.value,

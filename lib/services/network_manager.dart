@@ -22,7 +22,8 @@ import 'package:flutter/material.dart';
 //TODO Remove this pain
 
 List<String> getNetworks() {
-  final ProcessResult result = Process.runSync('nmcli', ['--terse', '-e', 'no', 'dev', 'wifi']);
+  final ProcessResult result =
+      Process.runSync('nmcli', ['--terse', '-e', 'no', 'dev', 'wifi']);
   final String networks = result.stdout as String;
   final List<String> availableNetworks = networks.split("\n");
 
@@ -97,15 +98,20 @@ Widget networkTile({
                 onPressed: () {
                   Process.runSync(
                     "nmcli",
-                    ["dev", "wifi", "connect", title, "password", passwordController.text],
+                    [
+                      "dev",
+                      "wifi",
+                      "connect",
+                      title,
+                      "password",
+                      passwordController.text
+                    ],
                   );
                   // print("Connecting to: " + title);
                   Navigator.of(ctx).pop();
-                  final String networkConnection =
-                      Process.runSync('curl', ['https://packages.dahliaos.io/validation.get'])
-                          .stdout
-                          .toString()
-                          .replaceAll('\n', '');
+                  final String networkConnection = Process.runSync('curl', [
+                    'https://packages.dahliaos.io/validation.get'
+                  ]).stdout.toString().replaceAll('\n', '');
                   if (networkConnection == "true") {
                     final snackBar = SnackBar(
                       content: Text("Successfully connected to $title"),

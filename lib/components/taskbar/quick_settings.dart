@@ -22,7 +22,8 @@ import 'package:pangolin/components/taskbar/taskbar_element.dart';
 import 'package:pangolin/services/date_time.dart';
 import 'package:zenit_ui/zenit_ui.dart';
 
-class QuickSettingsButton extends StatelessWidget with StatelessServiceListener<CustomizationService> {
+class QuickSettingsButton extends StatelessWidget
+    with StatelessServiceListener<CustomizationService> {
   const QuickSettingsButton({super.key});
 
   @override
@@ -31,15 +32,19 @@ class QuickSettingsButton extends StatelessWidget with StatelessServiceListener<
     return TaskbarElement(
       iconSize: 18,
       size: Size.fromWidth(
-        148 + (service.enableWifi ? 26 : 0) + (service.enableBluetooth ? 26 : 0),
+        148 +
+            (service.enableWifi ? 26 : 0) +
+            (service.enableBluetooth ? 26 : 0),
       ),
       overlayID: QuickSettingsOverlay.overlayId,
       child: Padding(
         padding: const EdgeInsets.only(left: 8.0),
         child: ValueListenableBuilder<bool>(
-          valueListenable: Shell.of(context).getShowingNotifier(QuickSettingsOverlay.overlayId),
+          valueListenable: Shell.of(context)
+              .getShowingNotifier(QuickSettingsOverlay.overlayId),
           builder: (context, showing, child) {
-            final foregroundColor = showing ? theme.accentForegroundColor : theme.foregroundColor;
+            final foregroundColor =
+                showing ? theme.accentForegroundColor : theme.foregroundColor;
             return Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

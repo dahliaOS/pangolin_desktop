@@ -84,7 +84,10 @@ class _QuickActionButtonState extends State<QuickActionButton> {
                               const SizedBox(width: 8)
                             else
                               const SizedBox.shrink(),
-                            if (!titleIsNull) Text(widget.title!) else const SizedBox.shrink(),
+                            if (!titleIsNull)
+                              Text(widget.title!)
+                            else
+                              const SizedBox.shrink(),
                           ],
                         )
                       : widget.leading ?? const SizedBox.shrink(),

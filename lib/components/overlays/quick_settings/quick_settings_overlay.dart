@@ -105,7 +105,8 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
                     "/pages/theme": (context) => const QsThemePage(),
                     "/pages/language": (context) => const QsLanguagePage(),
                   },
-                  theme: Theme.of(context).copyWith(scaffoldBackgroundColor: Colors.transparent),
+                  theme: Theme.of(context)
+                      .copyWith(scaffoldBackgroundColor: Colors.transparent),
                   debugShowCheckedModeBanner: false,
                   locale: context.locale,
                 ),
@@ -118,7 +119,8 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
   }
 }
 
-class QsMain extends StatelessWidget with StatelessServiceListener<CustomizationService> {
+class QsMain extends StatelessWidget
+    with StatelessServiceListener<CustomizationService> {
   const QsMain({super.key});
 
   @override
@@ -183,9 +185,11 @@ class QsMain extends StatelessWidget with StatelessServiceListener<Customization
                       //TODO Capitalise
                       subtitle: ToggleProperty(
                         base: null,
-                        active: strings.quicksettingsOverlay.quickControlsNetworkSubtitleConnected,
+                        active: strings.quicksettingsOverlay
+                            .quickControlsNetworkSubtitleConnected,
                       ),
-                      enabled: service.enableWifi && !service.enableAirplaneMode,
+                      enabled:
+                          service.enableWifi && !service.enableAirplaneMode,
                       onPressed: (value) => service.enableWifi = value,
                       onMenuPressed: () {
                         Navigator.pushNamed(context, "/pages/network");
@@ -193,7 +197,8 @@ class QsMain extends StatelessWidget with StatelessServiceListener<Customization
                     ),
                     QsToggleButton(
                       title: ToggleProperty.singleState(
-                        strings.quicksettingsOverlay.quickControlsBluetoothTitle,
+                        strings
+                            .quicksettingsOverlay.quickControlsBluetoothTitle,
                       ),
                       subtitle: ToggleProperty(
                         base: strings.global.off,
@@ -203,12 +208,14 @@ class QsMain extends StatelessWidget with StatelessServiceListener<Customization
                         base: Icons.bluetooth_disabled_rounded,
                         active: Icons.bluetooth_connected_rounded,
                       ),
-                      enabled: service.enableBluetooth && !service.enableAirplaneMode,
+                      enabled: service.enableBluetooth &&
+                          !service.enableAirplaneMode,
                       onPressed: (value) => service.enableBluetooth = value,
                     ),
                     QsToggleButton(
                       title: ToggleProperty.singleState(
-                        strings.quicksettingsOverlay.quickControlsAirplaneModeTitle,
+                        strings.quicksettingsOverlay
+                            .quickControlsAirplaneModeTitle,
                       ),
                       icon: const ToggleProperty(
                         base: Icons.airplanemode_off_rounded,
@@ -236,7 +243,8 @@ class QsMain extends StatelessWidget with StatelessServiceListener<Customization
                       ),
                       enabled: true,
                       onPressed: (_) {
-                        final int index = context.supportedLocales.indexOf(context.locale);
+                        final int index =
+                            context.supportedLocales.indexOf(context.locale);
                         if (index + 1 < locales.supportedLocales.length) {
                           context.locale = context.supportedLocales[index + 1];
                         } else {
@@ -256,11 +264,13 @@ class QsMain extends StatelessWidget with StatelessServiceListener<Customization
                       ),
                       enabled: true,
                       onPressed: (_) => service.darkMode = !service.darkMode,
-                      onMenuPressed: () => Navigator.pushNamed(context, "/pages/theme"),
+                      onMenuPressed: () =>
+                          Navigator.pushNamed(context, "/pages/theme"),
                     ),
                     QsToggleButton(
                       title: ToggleProperty.singleState(
-                        strings.quicksettingsOverlay.quickControlsDonotdisturbTitle,
+                        strings.quicksettingsOverlay
+                            .quickControlsDonotdisturbTitle,
                       ),
                       icon: const ToggleProperty.singleState(
                         Icons.do_not_disturb_off_rounded,
@@ -294,7 +304,9 @@ class QsMain extends StatelessWidget with StatelessServiceListener<Customization
             Column(
               children: [
                 QsSlider(
-                  icon: service.muteVolume ? Icons.volume_off_rounded : Icons.volume_up_rounded,
+                  icon: service.muteVolume
+                      ? Icons.volume_off_rounded
+                      : Icons.volume_up_rounded,
                   onChanged: (val) {
                     service.volume = val;
                     service.muteVolume = val == 0;
@@ -304,11 +316,14 @@ class QsMain extends StatelessWidget with StatelessServiceListener<Customization
                   onIconTap: () => service.muteVolume = !service.muteVolume,
                 ),
                 QsSlider(
-                  icon: service.autoBrightness ? Icons.brightness_auto_rounded : Icons.brightness_5_rounded,
+                  icon: service.autoBrightness
+                      ? Icons.brightness_auto_rounded
+                      : Icons.brightness_5_rounded,
                   onChanged: (val) => service.brightness = val,
                   value: service.brightness,
                   steps: 10,
-                  onIconTap: () => service.autoBrightness = !service.autoBrightness,
+                  onIconTap: () =>
+                      service.autoBrightness = !service.autoBrightness,
                 ),
               ],
             ),
@@ -335,11 +350,14 @@ class QsMain extends StatelessWidget with StatelessServiceListener<Customization
                     return FutureBuilder<int>(
                       future: Battery().batteryLevel,
                       builder: (context, snapshot) {
-                        final String batteryPercentage =
-                            snapshot.data?.toString() ?? strings.quicksettingsOverlay.shortcutsEnergyMode;
+                        final String batteryPercentage = snapshot.data
+                                ?.toString() ??
+                            strings.quicksettingsOverlay.shortcutsEnergyMode;
                         return QuickActionButton(
                           leading: const Icon(Icons.battery_charging_full),
-                          title: snapshot.data != null ? "$batteryPercentage%" : batteryPercentage,
+                          title: snapshot.data != null
+                              ? "$batteryPercentage%"
+                              : batteryPercentage,
                           margin: EdgeInsets.zero,
                         );
                       },

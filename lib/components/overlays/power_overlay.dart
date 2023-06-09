@@ -34,7 +34,8 @@ class PowerOverlay extends ShellOverlay {
   _PowerOverlayState createState() => _PowerOverlayState();
 }
 
-class _PowerOverlayState extends State<PowerOverlay> with SingleTickerProviderStateMixin, ShellOverlayState {
+class _PowerOverlayState extends State<PowerOverlay>
+    with SingleTickerProviderStateMixin, ShellOverlayState {
   late AnimationController ac;
 
   @override

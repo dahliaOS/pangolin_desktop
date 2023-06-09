@@ -92,7 +92,9 @@ Future<List<Wallpaper>?> getWallpapers() async {
   );
 
   if (response.statusCode == 200) {
-    return wallpaperParser.validate(jsonDecode(response.body))?.cast<Wallpaper>();
+    return wallpaperParser
+        .validate(jsonDecode(response.body))
+        ?.cast<Wallpaper>();
   } else {
     throw Exception(
       "Failed to fetch data from dahliaOS' GitHub Wallpaper repository API.",

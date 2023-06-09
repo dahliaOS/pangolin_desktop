@@ -14,7 +14,8 @@ import 'package:path/path.dart' as p;
 import 'package:xdg_desktop/xdg_desktop.dart';
 import 'package:xdg_directories/xdg_directories.dart' as xdg;
 
-abstract class ApplicationService extends ListenableService<ApplicationService> {
+abstract class ApplicationService
+    extends ListenableService<ApplicationService> {
   ApplicationService();
 
   static ApplicationService get current {
@@ -113,7 +114,8 @@ class _LinuxApplicationService extends ApplicationService {
       final List<String> onlyShowIn = entry.onlyShowIn ?? [];
       final List<String> notShowIn = entry.notShowIn ?? [];
 
-      if (onlyShowIn.isNotEmpty && !onlyShowIn.contains("Pangolin") || notShowIn.contains("Pangolin")) {
+      if (onlyShowIn.isNotEmpty && !onlyShowIn.contains("Pangolin") ||
+          notShowIn.contains("Pangolin")) {
         return;
       }
 
@@ -182,7 +184,8 @@ class _BuiltInApplicationService extends ApplicationService {
   void start() {}
 
   @override
-  _BuiltinDesktopEntry? getApp(String name) => entries.firstWhereOrNull((e) => e.id == name);
+  _BuiltinDesktopEntry? getApp(String name) =>
+      entries.firstWhereOrNull((e) => e.id == name);
 
   @override
   List<_BuiltinDesktopEntry> listApplications() => entries;

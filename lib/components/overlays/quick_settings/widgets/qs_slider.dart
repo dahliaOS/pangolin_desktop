@@ -50,7 +50,8 @@ class QsSlider extends StatelessWidget {
             onChanged: onChanged,
             value: value ?? 0,
             divisions: steps,
-            label: value != null ? '${(value! * 100).toStringAsFixed(0)}%' : null,
+            label:
+                value != null ? '${(value! * 100).toStringAsFixed(0)}%' : null,
           ),
         ),
         const QuickActionButton(

@@ -86,7 +86,8 @@ class _DesktopState extends State<Desktop> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    WindowManagerService.current.controller.wmInsets = const EdgeInsets.only(bottom: 48);
+    WindowManagerService.current.controller.wmInsets =
+        const EdgeInsets.only(bottom: 48);
   }
 
   @override

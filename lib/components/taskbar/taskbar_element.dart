@@ -48,7 +48,9 @@ class _TaskbarElementState extends State<TaskbarElement> {
     return SizedBox.fromSize(
       size: widget.size ?? const Size(48, 48),
       child: GestureDetector(
-        onTap: widget.overlayID != null ? () => shell.toggleOverlay(widget.overlayID!) : null,
+        onTap: widget.overlayID != null
+            ? () => shell.toggleOverlay(widget.overlayID!)
+            : null,
         child: MouseRegion(
           cursor: SystemMouseCursors.click,
           onEnter: (state) => setState(() => _hover = true),
@@ -60,8 +62,9 @@ class _TaskbarElementState extends State<TaskbarElement> {
               shape: Constants.smallShape,
               clipBehavior: Clip.antiAlias,
               child: ValueListenableBuilder<bool>(
-                valueListenable:
-                    widget.overlayID != null ? shell.getShowingNotifier(widget.overlayID!) : ValueNotifier(false),
+                valueListenable: widget.overlayID != null
+                    ? shell.getShowingNotifier(widget.overlayID!)
+                    : ValueNotifier(false),
                 builder: (context, showing, child) {
                   return IconTheme.merge(
                     data: IconThemeData(
@@ -77,7 +80,9 @@ class _TaskbarElementState extends State<TaskbarElement> {
                     child: Material(
                       shape: Constants.smallShape,
                       clipBehavior: Clip.antiAlias,
-                      color: _hover ? context.theme.hoverColor : Colors.transparent,
+                      color: _hover
+                          ? context.theme.hoverColor
+                          : Colors.transparent,
                       child: DefaultTextStyle(
                         style: TextStyle(
                           color: showing

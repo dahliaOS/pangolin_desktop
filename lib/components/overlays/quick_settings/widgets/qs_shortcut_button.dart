@@ -46,7 +46,10 @@ class QsShortcutButton extends StatelessWidget {
                   icon ?? Icons.add,
                   size: 16,
                 ),
-                if (title != null) const SizedBox(width: 8) else const SizedBox.shrink(),
+                if (title != null)
+                  const SizedBox(width: 8)
+                else
+                  const SizedBox.shrink(),
                 if (title != null)
                   Text(
                     title!,

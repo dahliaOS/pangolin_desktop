@@ -56,14 +56,20 @@ Future<void> main() async {
       services: [
         const ServiceEntry<LocaleService>.critical(LocaleService.build),
         const ServiceEntry<SearchService>(SearchService.build),
-        const ServiceEntry<WindowManagerService>.critical(WindowManagerService.build),
-        ServiceEntry<LangPacksService>(LangPacksService.build, LangPacksService.fallback()),
-        ServiceEntry<ApplicationService>(ApplicationService.build, ApplicationService.fallback()),
+        const ServiceEntry<WindowManagerService>.critical(
+            WindowManagerService.build),
+        ServiceEntry<LangPacksService>(
+            LangPacksService.build, LangPacksService.fallback()),
+        ServiceEntry<ApplicationService>(
+            ApplicationService.build, ApplicationService.fallback()),
         ServiceEntry<IconService>(IconService.build, IconService.fallback()),
-        ServiceEntry<PreferencesService>.critical(PreferencesService.build, PreferencesService.fallback()),
+        ServiceEntry<PreferencesService>.critical(
+            PreferencesService.build, PreferencesService.fallback()),
         ServiceEntry<TrayService>(TrayService.build, TrayService.fallback()),
-        ServiceEntry<NotificationService>(NotificationService.build, NotificationService.fallback()),
-        const ServiceEntry<CustomizationService>.critical(CustomizationService.build),
+        ServiceEntry<NotificationService>(
+            NotificationService.build, NotificationService.fallback()),
+        const ServiceEntry<CustomizationService>.critical(
+            CustomizationService.build),
         const ServiceEntry<DateTimeService>.critical(DateTimeService.build),
       ],
       builder: (context, loaded, child) {
@@ -74,7 +80,8 @@ Future<void> main() async {
             final CustomizationService service = CustomizationService.current;
             return YatlApp(
               core: yatl,
-              getLocale: () => intl.Locale.tryParse(service.locale)?.toFlutterLocale(),
+              getLocale: () =>
+                  intl.Locale.tryParse(service.locale)?.toFlutterLocale(),
               setLocale: (locale) => service.locale = locale?.toString(),
               child: child!,
             );
@@ -98,7 +105,9 @@ class Pangolin extends StatelessWidget {
           home: child,
           theme: dahliaLightTheme,
           darkTheme: dahliaDarkTheme,
-          themeMode: CustomizationService.current.darkMode ? ThemeMode.dark : ThemeMode.light,
+          themeMode: CustomizationService.current.darkMode
+              ? ThemeMode.dark
+              : ThemeMode.light,
           supportedLocales: context.supportedLocales,
           locale: context.locale,
           localizationsDelegates: [

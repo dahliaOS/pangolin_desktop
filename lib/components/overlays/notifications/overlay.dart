@@ -17,7 +17,8 @@ class NotificationsOverlay extends ShellOverlay {
   NotificationsOverlay({super.key}) : super(id: overlayId);
 
   @override
-  ShellOverlayState<NotificationsOverlay> createState() => _NotificationsOverlayState();
+  ShellOverlayState<NotificationsOverlay> createState() =>
+      _NotificationsOverlayState();
 }
 
 class _NotificationsOverlayState extends State<NotificationsOverlay>
@@ -154,15 +155,20 @@ class _NotificationsOverlayState extends State<NotificationsOverlay>
               _NotificationHeaderBar(service: service),
               if (notifications.isNotEmpty)
                 ConstrainedBox(
-                  constraints: BoxConstraints(maxHeight: context.mSize.height * 2 / 3),
+                  constraints:
+                      BoxConstraints(maxHeight: context.mSize.height * 2 / 3),
                   child: ClipPath(
-                    clipper: const ShapeBorderClipper(shape: Constants.mediumShape),
+                    clipper:
+                        const ShapeBorderClipper(shape: Constants.mediumShape),
                     child: ListView.separated(
                       reverse: true,
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
                         final NotificationWrapperData notification =
-                            notifications.values.toList().reversed.toList()[index];
+                            notifications.values
+                                .toList()
+                                .reversed
+                                .toList()[index];
 
                         return NotificationViewWrapper(
                           notification: notification,
@@ -177,7 +183,8 @@ class _NotificationsOverlayState extends State<NotificationsOverlay>
                         );
                       },
                       itemCount: notifications.length,
-                      separatorBuilder: (context, index) => const SizedBox(height: 8),
+                      separatorBuilder: (context, index) =>
+                          const SizedBox(height: 8),
                     ),
                   ),
                 ),
@@ -212,7 +219,9 @@ class _NotificationHeaderBar extends StatelessWidget {
               children: [
                 Text("Notifications (${service.notifications.length})"),
                 TextButton(
-                  onPressed: service.notifications.isNotEmpty ? _clearNotifications : null,
+                  onPressed: service.notifications.isNotEmpty
+                      ? _clearNotifications
+                      : null,
                   child: const Text("Clear all"),
                 ),
               ],

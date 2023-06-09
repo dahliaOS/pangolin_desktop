@@ -27,7 +27,9 @@ class LauncherButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return const TaskbarElement(
       overlayID: CompactLauncherOverlay.overlayId,
-      child: ResourceIcon(resource: IconResource(type: IconResourceType.dahlia, value: "launcher_1")),
+      child: ResourceIcon(
+          resource:
+              IconResource(type: IconResourceType.dahlia, value: "launcher_1")),
     );
   }
 }

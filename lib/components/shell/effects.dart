@@ -19,7 +19,8 @@ class EffectsLayer extends StatefulWidget {
   }
 }
 
-class EffectsLayerState extends State<EffectsLayer> with TickerProviderStateMixin {
+class EffectsLayerState extends State<EffectsLayer>
+    with TickerProviderStateMixin {
   static const double _dockRectInset = 8;
   static const int _dockEffectDuration = 200;
 
@@ -162,5 +163,6 @@ class EffectsLayerController {
 
   void startDockEffect(LayoutState window) => _state?.startDockEffect(window);
   void endDockEffect() => _state?.endDockEffect();
-  Future<void> updateDockEffect(WindowDock dock) async => _state?.updateDockEffect(dock);
+  Future<void> updateDockEffect(WindowDock dock) async =>
+      _state?.updateDockEffect(dock);
 }
