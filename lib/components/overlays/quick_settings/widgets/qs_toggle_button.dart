@@ -18,7 +18,6 @@ import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
 import 'package:zenit_ui/zenit_ui.dart';
 
-// ignore: must_be_immutable
 class QsToggleButton extends StatelessWidget {
   final ToggleProperty<String> title;
   final ToggleProperty<String?>? subtitle;
@@ -42,8 +41,7 @@ class QsToggleButton extends StatelessWidget {
     final theme = ZenitTheme.of(context);
 
     final Color color = enabled ? theme.primaryColor : theme.surfaceColor;
-    // ignore: no_leading_underscores_for_local_identifiers
-    final String? _subtitle = subtitle?.resolve(enabled: enabled);
+    final String? subtitle = this.subtitle?.resolve(enabled: enabled);
 
     return SizedBox(
       height: 56,
@@ -78,9 +76,9 @@ class QsToggleButton extends StatelessWidget {
                         color: theme.materialTheme.computedForegroundColor(color),
                       ),
                     ),
-                    if (_subtitle != null)
+                    if (subtitle != null)
                       Text(
-                        _subtitle,
+                        subtitle,
                         style: TextStyle(
                           fontSize: 10,
                           color: theme.materialTheme.computedForegroundColor(color),

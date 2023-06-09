@@ -21,6 +21,7 @@ import 'package:flutter/material.dart';
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/utils/action_manager/action_manager.dart';
 import 'package:pangolin/utils/data/globals.dart';
+import 'package:pangolin/widgets/global/power_account_button.dart';
 import 'package:pangolin/widgets/global/surface/surface_layer.dart';
 import 'package:zenit_ui/zenit_ui.dart';
 
@@ -33,8 +34,7 @@ class AccountOverlay extends ShellOverlay {
   _AccountOverlayState createState() => _AccountOverlayState();
 }
 
-class _AccountOverlayState extends State<AccountOverlay>
-    with SingleTickerProviderStateMixin, ShellOverlayState {
+class _AccountOverlayState extends State<AccountOverlay> with SingleTickerProviderStateMixin, ShellOverlayState {
   late AnimationController ac;
 
   @override
@@ -132,22 +132,22 @@ class _AccountOverlayState extends State<AccountOverlay>
                           padding: const EdgeInsets.all(16.0),
                           child: Column(
                             children: [
-                              _accountMenuButton(
-                                "Sign out",
-                                Icons.logout_rounded,
-                                context,
-                                onPressed: () => ActionManager.logout(),
+                              PowerAccountMenuButton(
+                                title: "Sign out",
+                                icon: Icons.logout_rounded,
+                                context: context,
+                                onPressed: ActionManager.logout,
                               ),
-                              _accountMenuButton(
-                                "Lock",
-                                Icons.lock_outline,
-                                context,
-                                onPressed: () => ActionManager.lock(),
+                              PowerAccountMenuButton(
+                                title: "Lock",
+                                icon: Icons.lock_outline,
+                                context: context,
+                                onPressed: ActionManager.lock,
                               ),
-                              _accountMenuButton(
-                                "Account Settings",
-                                Icons.settings_outlined,
-                                context,
+                              PowerAccountMenuButton(
+                                title: "Account Settings",
+                                icon: Icons.settings_outlined,
+                                context: context,
                                 onPressed: () => ActionManager.openSettings(context),
                               ),
                             ],
@@ -162,49 +162,6 @@ class _AccountOverlayState extends State<AccountOverlay>
           ),
         ),
       ],
-    );
-  }
-
-  Padding _accountMenuButton(
-    String title,
-    IconData icon,
-    BuildContext context, {
-    VoidCallback? onPressed,
-  }) {
-    final theme = ZenitTheme.of(context);
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: SizedBox(
-        height: 48,
-        width: 280,
-        child: Material(
-          clipBehavior: Clip.antiAlias,
-          shape: Constants.smallShape,
-          color: theme.primaryColor,
-          child: InkWell(
-            onTap: onPressed,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Row(
-                children: [
-                  Icon(
-                    icon,
-                    color: theme.accentForegroundColor,
-                  ),
-                  const SizedBox(width: 12),
-                  Text(
-                    title,
-                    style: theme.materialTheme.textTheme.labelLarge?.copyWith(
-                      fontSize: 16,
-                      color: theme.accentForegroundColor,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
     );
   }
 }

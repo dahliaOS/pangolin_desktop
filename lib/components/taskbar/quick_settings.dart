@@ -42,34 +42,34 @@ class QuickSettingsButton extends StatelessWidget with StatelessServiceListener<
             final foregroundColor = showing ? theme.accentForegroundColor : theme.foregroundColor;
             return Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: items(context, service)
-                ..addAll([
-                  VerticalDivider(
-                    width: 2,
-                    endIndent: 12,
-                    indent: 12,
-                    color: foregroundColor,
-                  ),
-                  SizedBox(
-                    width: 74,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: ListenableServiceBuilder<DateTimeService>(
-                        builder: (BuildContext context, _) {
-                          final DateTimeService service = DateTimeService.current;
-                          return Text(
-                            service.formattedTime,
-                            style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 13,
-                              color: foregroundColor,
-                            ),
-                          );
-                        },
-                      ),
+              children: [
+                ...items(context, service),
+                VerticalDivider(
+                  width: 2,
+                  endIndent: 12,
+                  indent: 12,
+                  color: foregroundColor,
+                ),
+                SizedBox(
+                  width: 74,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: ListenableServiceBuilder<DateTimeService>(
+                      builder: (BuildContext context, _) {
+                        final DateTimeService service = DateTimeService.current;
+                        return Text(
+                          service.formattedTime,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 13,
+                            color: foregroundColor,
+                          ),
+                        );
+                      },
                     ),
                   ),
-                ]),
+                ),
+              ],
             );
           },
         ),

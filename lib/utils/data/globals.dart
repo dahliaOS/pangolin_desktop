@@ -19,7 +19,6 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
-// ignore: depend_on_referenced_packages
 import 'package:http/http.dart';
 import 'package:pangolin/utils/api_models/bing_wallpaper_api_model.dart';
 import 'package:pangolin/utils/api_models/wallpaper_api_model.dart';

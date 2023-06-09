@@ -21,6 +21,7 @@ import 'package:flutter/material.dart';
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/utils/action_manager/action_manager.dart';
 import 'package:pangolin/utils/data/globals.dart';
+import 'package:pangolin/widgets/global/power_account_button.dart';
 import 'package:pangolin/widgets/global/surface/surface_layer.dart';
 import 'package:zenit_ui/zenit_ui.dart';
 
@@ -130,23 +131,23 @@ class _PowerOverlayState extends State<PowerOverlay> with SingleTickerProviderSt
                           padding: const EdgeInsets.all(16.0),
                           child: Column(
                             children: [
-                              _powerMenuButton(
-                                strings.powerOverlay.poweroff,
-                                Icons.power_settings_new_rounded,
-                                context,
-                                onPressed: () => ActionManager.powerOff(),
+                              PowerAccountMenuButton(
+                                title: strings.powerOverlay.poweroff,
+                                icon: Icons.power_settings_new_rounded,
+                                context: context,
+                                onPressed: ActionManager.powerOff,
                               ),
-                              _powerMenuButton(
-                                strings.powerOverlay.sleep,
-                                Icons.brightness_4_outlined,
-                                context,
-                                onPressed: () => ActionManager.suspend(),
+                              PowerAccountMenuButton(
+                                title: strings.powerOverlay.sleep,
+                                icon: Icons.brightness_4_outlined,
+                                context: context,
+                                onPressed: ActionManager.suspend,
                               ),
-                              _powerMenuButton(
-                                strings.powerOverlay.restart,
-                                Icons.replay_rounded,
-                                context,
-                                onPressed: () => ActionManager.reboot(),
+                              PowerAccountMenuButton(
+                                title: strings.powerOverlay.restart,
+                                icon: Icons.replay_rounded,
+                                context: context,
+                                onPressed: ActionManager.reboot,
                               ),
                             ],
                           ),
@@ -160,49 +161,6 @@ class _PowerOverlayState extends State<PowerOverlay> with SingleTickerProviderSt
           ),
         ),
       ],
-    );
-  }
-
-  Padding _powerMenuButton(
-    String title,
-    IconData icon,
-    BuildContext context, {
-    VoidCallback? onPressed,
-  }) {
-    final theme = ZenitTheme.of(context);
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: SizedBox(
-        height: 48,
-        width: 280,
-        child: Material(
-          clipBehavior: Clip.antiAlias,
-          shape: Constants.smallShape,
-          color: theme.primaryColor,
-          child: InkWell(
-            onTap: onPressed,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Row(
-                children: [
-                  Icon(
-                    icon,
-                    color: theme.accentForegroundColor,
-                  ),
-                  const SizedBox(width: 12),
-                  Text(
-                    title,
-                    style: theme.materialTheme.textTheme.labelLarge?.copyWith(
-                      fontSize: 16,
-                      color: theme.accentForegroundColor,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
     );
   }
 }

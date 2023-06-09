@@ -29,7 +29,7 @@ class QsThemePage extends StatelessWidget with StatelessServiceListener<Customiz
                   crossAxisCount: 5,
                 ),
                 shrinkWrap: true,
-                children: BuiltinColor.values.map((e) => accentColorBox(e, service)).toList(),
+                children: BuiltinColor.values.map((e) => _AccentColorBox(e: e, service: service)).toList(),
               ),
             ),
           ],
@@ -37,8 +37,19 @@ class QsThemePage extends StatelessWidget with StatelessServiceListener<Customiz
       ),
     );
   }
+}
 
-  Widget accentColorBox(BuiltinColor e, CustomizationService service) {
+class _AccentColorBox extends StatelessWidget {
+  const _AccentColorBox({
+    required this.e,
+    required this.service,
+  });
+
+  final BuiltinColor e;
+  final CustomizationService service;
+
+  @override
+  Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: ClipRRect(
