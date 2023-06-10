@@ -68,6 +68,46 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
     controller.showing = false;
   }
 
+  PageRouteBuilder _customRouteTransition(Widget screen) {
+    return PageRouteBuilder(
+      transitionDuration: Constants.animationDuration,
+      reverseTransitionDuration: Constants.animationDuration,
+      pageBuilder: (context, animation, secondaryAnimation) => screen,
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        final fadeAnimationIn = animation;
+
+        final fadeAnimationOut = Tween(
+          begin: 1.0,
+          end: 0.0,
+        ).animate(secondaryAnimation);
+
+        final scaleAnimationIn = Tween(
+          begin: 0.95,
+          end: 1.0,
+        ).animate(animation);
+
+        final scaleAnimationOut = Tween(
+          begin: 1.0,
+          end: 1.05,
+        ).animate(secondaryAnimation);
+
+        return FadeTransition(
+          opacity: fadeAnimationIn,
+          child: ScaleTransition(
+            scale: scaleAnimationIn,
+            child: FadeTransition(
+              opacity: fadeAnimationOut,
+              child: ScaleTransition(
+                scale: scaleAnimationOut,
+                child: child,
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     // _getTime(context);
@@ -83,7 +123,7 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
       right: 8,
       child: AnimatedBuilder(
         animation: animation,
-        builder: (context, chilld) => FadeTransition(
+        builder: (context, child) => FadeTransition(
           opacity: animation,
           child: ScaleTransition(
             scale: animation,
@@ -97,10 +137,10 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
                 padding: const EdgeInsets.all(16.0),
                 child: MaterialApp(
                   onGenerateInitialRoutes: (initialRoute) => [
-                    customRouteTransition(const QsMain()),
+                    _customRouteTransition(const QsMain()),
                   ],
                   onGenerateRoute: (settings) {
-                    return customRouteTransition(
+                    return _customRouteTransition(
                       switch (settings.name) {
                         '/pages/account' => const QsAccountPage(),
                         '/pages/network' => const QsNetworkPage(),
@@ -122,46 +162,6 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
       ),
     );
   }
-}
-
-PageRouteBuilder customRouteTransition(Widget screen) {
-  return PageRouteBuilder(
-    transitionDuration: Constants.animationDuration,
-    reverseTransitionDuration: Constants.animationDuration,
-    pageBuilder: (context, animation, secondaryAnimation) => screen,
-    transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      final fadeAnimationIn = animation;
-
-      final fadeAnimationOut = Tween(
-        begin: 1.0,
-        end: 0.0,
-      ).animate(secondaryAnimation);
-
-      final scaleAnimationIn = Tween(
-        begin: 0.95,
-        end: 1.0,
-      ).animate(animation);
-
-      final scaleAnimationOut = Tween(
-        begin: 1.0,
-        end: 1.05,
-      ).animate(secondaryAnimation);
-
-      return FadeTransition(
-        opacity: fadeAnimationIn,
-        child: ScaleTransition(
-          scale: scaleAnimationIn,
-          child: FadeTransition(
-            opacity: fadeAnimationOut,
-            child: ScaleTransition(
-              scale: scaleAnimationOut,
-              child: child,
-            ),
-          ),
-        ),
-      );
-    },
-  );
 }
 
 class QsMain extends StatelessWidget
@@ -308,7 +308,7 @@ class QsMain extends StatelessWidget
                       },
                     ),
                     //TODO remove the provider option for this
-                    /* 
+                    /*
                       QsToggleButton(
                         title: strings.qs.autorotate,
                         icon: Icons.screen_lock_rotation_rounded,
@@ -337,7 +337,7 @@ class QsMain extends StatelessWidget
                       onPressed: (_) {},
                     ),
                     //TODO move night light to the brightness control submenu
-                    /* 
+                    /*
                       QsToggleButton(
                         title: "Night light",
                         icon: Icons.brightness_4_rounded,
