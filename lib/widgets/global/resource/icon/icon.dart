@@ -41,7 +41,7 @@ class _ResourceIconState extends State<ResourceIcon> {
 
   @override
   void dispose() {
-    IconService.current.removeListener(_update);
+    if (_iconServiceReady) IconService.current.removeListener(_update);
     super.dispose();
   }
 

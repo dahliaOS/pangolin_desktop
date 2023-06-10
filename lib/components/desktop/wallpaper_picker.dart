@@ -19,8 +19,9 @@ import 'package:flutter/material.dart';
 import 'package:pangolin/utils/api_models/bing_wallpaper_api_model.dart';
 import 'package:pangolin/utils/api_models/wallpaper_api_model.dart';
 import 'package:pangolin/utils/data/globals.dart';
-import 'package:pangolin/widgets/global/box/box_container.dart';
 import 'package:pangolin/widgets/global/resource/image/image.dart';
+import 'package:pangolin/widgets/global/surface/surface_layer.dart';
+import 'package:zenit_ui/zenit_ui.dart';
 
 class WallpaperPicker extends StatefulWidget {
   const WallpaperPicker({super.key});
@@ -54,8 +55,8 @@ class _WallpaperPickerState extends State<WallpaperPicker>
 
     return GestureDetector(
       onTap: () => Navigator.pop(context),
-      child: BoxSurface(
-        shape: Constants.smallShape,
+      child: SurfaceLayer(
+        shape: Constants.mediumShape,
         margin: const EdgeInsets.symmetric(horizontal: 300, vertical: 100),
         width: MediaQuery.of(context).size.width - 300,
         height: MediaQuery.of(context).size.height - 300,
@@ -216,7 +217,7 @@ class _WallpaperPickerState extends State<WallpaperPicker>
                   //Text Field for Wallpaper URL
                   //
                   Expanded(
-                    child: TextField(
+                    child: ZenitTextField(
                       decoration: const InputDecoration(
                         contentPadding:
                             EdgeInsets.symmetric(vertical: 8, horizontal: 16),

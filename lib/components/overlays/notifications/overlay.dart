@@ -8,8 +8,8 @@ import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/services/notifications.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/wm/wm.dart';
-import 'package:pangolin/widgets/global/box/box_container.dart';
 import 'package:pangolin/widgets/global/separated_flex.dart';
+import 'package:pangolin/widgets/global/surface/surface_layer.dart';
 
 class NotificationsOverlay extends ShellOverlay {
   static const String overlayId = "notifications";
@@ -71,7 +71,6 @@ class _NotificationsOverlayState extends State<NotificationsOverlay>
     switch (reason) {
       case NotificationCloseReason.dismissed:
         await notif.controller.reverse();
-        break;
       case NotificationCloseReason.closed:
       case NotificationCloseReason.expired:
       case NotificationCloseReason.unknown:
@@ -209,7 +208,7 @@ class _NotificationHeaderBar extends StatelessWidget {
       width: double.infinity,
       child: Material(
         type: MaterialType.transparency,
-        child: BoxSurface(
+        child: SurfaceLayer(
           shape: Constants.smallShape,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),

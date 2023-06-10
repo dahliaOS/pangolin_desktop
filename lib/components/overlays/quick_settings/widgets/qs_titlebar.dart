@@ -38,7 +38,6 @@ class QsTitlebar extends StatelessWidget implements PreferredSizeWidget {
           if (title != null)
             QuickActionButton(
               title: title,
-              isCircular: false,
               textStyle: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
