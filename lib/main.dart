@@ -14,10 +14,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 import 'dart:developer';
-import 'dart:io' show Platform;
 
 import 'package:dahlia_shared/dahlia_shared.dart';
-import 'package:flutter/foundation.dart' show kDebugMode, kIsWeb;
+import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import "package:intl/locale.dart" as intl;
@@ -31,7 +30,6 @@ import 'package:pangolin/services/notifications.dart';
 import 'package:pangolin/services/search.dart';
 import 'package:pangolin/services/tray.dart';
 import 'package:pangolin/services/wm.dart';
-import 'package:pangolin/utils/data/dap_index.dart';
 import 'package:yatl_flutter/yatl_flutter.dart';
 
 Future<void> main() async {
@@ -52,12 +50,6 @@ Future<void> main() async {
       );
     }
   });
-
-  if (kIsWeb == false) {
-    if (Platform.isLinux) {
-      indexApplications();
-    }
-  }
 
   runApp(
     ServiceBuilderWidget(
@@ -127,7 +119,11 @@ class Pangolin extends StatelessWidget {
       builder: (context, child) {
         return MaterialApp(
           home: child,
-          theme: buildDahliaTheme(context),
+          theme: dahliaLightTheme,
+          darkTheme: dahliaDarkTheme,
+          themeMode: CustomizationService.current.darkMode
+              ? ThemeMode.dark
+              : ThemeMode.light,
           supportedLocales: context.supportedLocales,
           locale: context.locale,
           localizationsDelegates: [

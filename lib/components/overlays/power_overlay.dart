@@ -21,7 +21,9 @@ import 'package:flutter/material.dart';
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/utils/action_manager/action_manager.dart';
 import 'package:pangolin/utils/data/globals.dart';
-import 'package:pangolin/widgets/global/box/box_container.dart';
+import 'package:pangolin/widgets/global/power_account_button.dart';
+import 'package:pangolin/widgets/global/surface/surface_layer.dart';
+import 'package:zenit_ui/zenit_ui.dart';
 
 class PowerOverlay extends ShellOverlay {
   static const String overlayId = "power";
@@ -75,15 +77,14 @@ class _PowerOverlayState extends State<PowerOverlay>
 
     return Stack(
       children: [
-        //Wallpaper(),
         GestureDetector(
           onTap: () {
             controller.requestDismiss({});
           },
         ),
         Positioned(
-          left: horizontalPadding(context, 330),
-          right: horizontalPadding(context, 330),
+          left: horizontalPadding(context, 328),
+          right: horizontalPadding(context, 328),
           top: verticalPadding(context, 500),
           bottom: verticalPadding(context, 500),
           child: AnimatedBuilder(
@@ -93,60 +94,63 @@ class _PowerOverlayState extends State<PowerOverlay>
               child: ScaleTransition(
                 scale: animation,
                 alignment: FractionalOffset.center,
-                child: Material(
-                  color: Colors.transparent,
-                  child: BoxSurface(
-                    dropShadow: true,
-                    shape: Constants.bigShape,
+                child: SurfaceLayer(
+                  outline: true,
+                  shape: Constants.bigShape,
+                  child: Material(
+                    type: MaterialType.transparency,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.all(24.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                strings.powerOverlay.title,
-                                style: const TextStyle(
-                                  fontSize: 24,
-                                  fontWeight: FontWeight.w600,
-                                ),
+                        SizedBox(
+                          width: 328,
+                          child: DecoratedBox(
+                            decoration: BoxDecoration(
+                              color: ZenitTheme.of(context).cardColor,
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(24.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    strings.powerOverlay.title,
+                                    style: const TextStyle(
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 12),
+                                  Text(strings.powerOverlay.subtitle),
+                                ],
                               ),
-                              const SizedBox(height: 12),
-                              Text(strings.powerOverlay.subtitle),
-                            ],
+                            ),
                           ),
                         ),
                         const Spacer(),
-                        Container(
-                          width: double.infinity,
-                          height: 224,
-                          color: context.theme.colorScheme.background.op(0.35),
-                          child: Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Column(
-                              children: [
-                                _powerMenuButton(
-                                  strings.powerOverlay.poweroff,
-                                  Icons.power_settings_new_rounded,
-                                  context,
-                                  onPressed: () => ActionManager.powerOff(),
-                                ),
-                                _powerMenuButton(
-                                  strings.powerOverlay.sleep,
-                                  Icons.brightness_4_outlined,
-                                  context,
-                                  onPressed: () => ActionManager.suspend(),
-                                ),
-                                _powerMenuButton(
-                                  strings.powerOverlay.restart,
-                                  Icons.replay_rounded,
-                                  context,
-                                  onPressed: () => ActionManager.reboot(),
-                                ),
-                              ],
-                            ),
+                        Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Column(
+                            children: [
+                              PowerAccountMenuButton(
+                                title: strings.powerOverlay.poweroff,
+                                icon: Icons.power_settings_new_rounded,
+                                context: context,
+                                onPressed: ActionManager.powerOff,
+                              ),
+                              PowerAccountMenuButton(
+                                title: strings.powerOverlay.sleep,
+                                icon: Icons.brightness_4_outlined,
+                                context: context,
+                                onPressed: ActionManager.suspend,
+                              ),
+                              PowerAccountMenuButton(
+                                title: strings.powerOverlay.restart,
+                                icon: Icons.replay_rounded,
+                                context: context,
+                                onPressed: ActionManager.reboot,
+                              ),
+                            ],
                           ),
                         ),
                       ],
@@ -158,48 +162,6 @@ class _PowerOverlayState extends State<PowerOverlay>
           ),
         ),
       ],
-    );
-  }
-
-  Padding _powerMenuButton(
-    String title,
-    IconData icon,
-    BuildContext context, {
-    VoidCallback? onPressed,
-  }) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: SizedBox(
-        height: 48,
-        width: 280,
-        child: Material(
-          clipBehavior: Clip.antiAlias,
-          shape: Constants.smallShape,
-          color: context.theme.accent,
-          child: InkWell(
-            onTap: onPressed,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Row(
-                children: [
-                  Icon(
-                    icon,
-                    color: context.theme.foregroundColor,
-                  ),
-                  const SizedBox(width: 12),
-                  Text(
-                    title,
-                    style: context.theme.textTheme.labelLarge?.copyWith(
-                      fontSize: 16,
-                      color: context.theme.foregroundColor,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
     );
   }
 }

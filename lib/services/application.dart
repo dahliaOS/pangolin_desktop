@@ -8,12 +8,9 @@ import 'package:pangolin/components/window/window_surface.dart';
 import 'package:pangolin/components/window/window_toolbar.dart';
 import 'package:pangolin/services/langpacks.dart';
 import 'package:pangolin/services/wm.dart';
-import 'package:pangolin/utils/data/app_list.dart' as app_list;
-import 'package:pangolin/utils/data/models/application.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
-import 'package:pangolin/utils/wm/properties.dart';
+import 'package:pangolin/utils/wm/wm.dart';
 import 'package:path/path.dart' as p;
-import 'package:utopia_wm/wm.dart';
 import 'package:xdg_desktop/xdg_desktop.dart';
 import 'package:xdg_directories/xdg_directories.dart' as xdg;
 
@@ -25,11 +22,7 @@ abstract class ApplicationService
     return ServiceManager.getService<ApplicationService>()!;
   }
 
-  static ApplicationService build() {
-    if (!Platform.isLinux) return _BuiltInApplicationService();
-
-    return _LinuxApplicationService();
-  }
+  static ApplicationService build() => _LinuxApplicationService();
 
   factory ApplicationService.fallback() = _BuiltInApplicationService;
 
@@ -145,11 +138,9 @@ class _LinuxApplicationService extends ApplicationService {
       case FileSystemEvent.delete:
         entries.remove(event.path);
         notifyListeners();
-        break;
       case FileSystemEvent.create:
       case FileSystemEvent.modify:
         await _parseEntity(File(event.path));
-        break;
     }
   }
 
@@ -190,32 +181,7 @@ class _BuiltInApplicationService extends ApplicationService {
   );
 
   @override
-  void start() {
-    for (final Application app in app_list.applications) {
-      if (!app.canBeOpened) continue;
-
-      String exec = app.packageName;
-
-      if (app.runtimeFlags.isNotEmpty) {
-        exec += " ${app.runtimeFlags.join(" ")}";
-      }
-
-      final _BuiltinDesktopEntry entry = _BuiltinDesktopEntry(
-        id: app.packageName,
-        content: app.app,
-        type: DesktopEntryType.application,
-        name: LocalizedString(app.name),
-        icon: LocalizedString("image:dahlia#icons/${app.iconName}.png"),
-        exec: exec,
-        version: app.version,
-        categories: app.category != null ? [app.category!.name] : null,
-      );
-
-      entries.add(entry);
-
-      builders[entry] = app.app;
-    }
-  }
+  void start() {}
 
   @override
   _BuiltinDesktopEntry? getApp(String name) =>
@@ -265,10 +231,6 @@ class _BuiltinDesktopEntry extends DesktopEntry {
     required super.id,
     required this.content,
     required super.type,
-    super.version,
     required super.name,
-    super.icon,
-    super.exec,
-    super.categories,
   });
 }

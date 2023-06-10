@@ -15,9 +15,11 @@ limitations under the License.
 */
 
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 //TODO Localize this File
+//TODO Remove this pain
 
 List<String> getNetworks() {
   final ProcessResult result =
@@ -94,14 +96,17 @@ Widget networkTile({
             actions: <Widget>[
               TextButton(
                 onPressed: () {
-                  Process.runSync("nmcli", [
-                    "dev",
-                    "wifi",
-                    "connect",
-                    title,
-                    "password",
-                    passwordController.text
-                  ]);
+                  Process.runSync(
+                    "nmcli",
+                    [
+                      "dev",
+                      "wifi",
+                      "connect",
+                      title,
+                      "password",
+                      passwordController.text
+                    ],
+                  );
                   // print("Connecting to: " + title);
                   Navigator.of(ctx).pop();
                   final String networkConnection = Process.runSync('curl', [

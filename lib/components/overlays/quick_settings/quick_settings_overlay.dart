@@ -30,9 +30,10 @@ import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/services/date_time.dart';
 import 'package:pangolin/utils/action_manager/action_manager.dart';
 import 'package:pangolin/utils/data/globals.dart';
-import 'package:pangolin/widgets/global/box/box_container.dart';
 import 'package:pangolin/widgets/global/quick_button.dart';
+import 'package:pangolin/widgets/global/surface/surface_layer.dart';
 import 'package:yatl_flutter/yatl_flutter.dart';
+import 'package:zenit_ui/zenit_ui.dart';
 
 class QuickSettingsOverlay extends ShellOverlay {
   static const String overlayId = 'quicksettings';
@@ -128,11 +129,12 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
           child: ScaleTransition(
             scale: animation,
             alignment: const FractionalOffset(0.8, 1.0),
-            child: BoxSurface(
+            child: SurfaceLayer(
               shape: Constants.bigShape,
-              width: 540,
-              height: 474,
+              width: 524,
+              height: 460,
               dropShadow: true,
+              outline: true,
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: MaterialApp(
@@ -179,36 +181,29 @@ class QsMain extends StatelessWidget
         title: username,
         onPressed: () => Navigator.pushNamed(context, "/pages/account"),
         margin: EdgeInsets.zero,
-        isCircular: false,
         textStyle: TextStyle(
           fontSize: 14,
           fontWeight: FontWeight.w600,
           height: 1.1,
-          color: context.theme.surfaceForegroundColor,
+          color: ZenitTheme.of(context).foregroundColor,
         ),
       ),
       const Spacer(),
       QuickActionButton(
         leading: const Icon(Icons.settings),
-        //title: "Settings",
         onPressed: () => ActionManager.openSettings(context),
-      ),
-      const QuickActionButton(
-        leading: Icon(Icons.edit),
-        //title: "Edit panel",
       ),
       QuickActionButton(
         leading: const Icon(Icons.logout),
         onPressed: () => ActionManager.showAccountMenu(context),
-        //title: "Sign out",
       ),
       QuickActionButton(
         leading: const Icon(Icons.power_settings_new),
         margin: const EdgeInsets.only(left: 8),
         onPressed: () => ActionManager.showPowerMenu(context),
-        //title: "Power",
       ),
     ];
+
     return Material(
       color: Colors.transparent,
       child: Align(
@@ -278,7 +273,7 @@ class QsMain extends StatelessWidget
                     ),
                   ],
                 ),
-                const SizedBox(height: 12),
+                const SizedBox(height: 8),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -307,13 +302,6 @@ class QsMain extends StatelessWidget
                         Navigator.pushNamed(context, "/pages/language");
                       },
                     ),
-                    //TODO remove the provider option for this
-                    /*
-                      QsToggleButton(
-                        title: strings.qs.autorotate,
-                        icon: Icons.screen_lock_rotation_rounded,
-                        value: false,
-                      ), */
                     QsToggleButton(
                       title: ToggleProperty.singleState(
                         strings.quicksettingsOverlay.quickControlsThemeTitle,
@@ -334,15 +322,7 @@ class QsMain extends StatelessWidget
                       icon: const ToggleProperty.singleState(
                         Icons.do_not_disturb_off_rounded,
                       ),
-                      onPressed: (_) {},
                     ),
-                    //TODO move night light to the brightness control submenu
-                    /*
-                      QsToggleButton(
-                        title: "Night light",
-                        icon: Icons.brightness_4_rounded,
-                        value: false,
-                      ), */
                   ],
                 ),
               ],
@@ -406,7 +386,6 @@ class QsMain extends StatelessWidget
                     final String time = DateTimeService.current.formattedTime;
 
                     return QuickActionButton(
-                      isCircular: false,
                       leading: const Icon(Icons.calendar_today),
                       title: "$date - $time",
                       margin: EdgeInsets.zero,
@@ -415,19 +394,18 @@ class QsMain extends StatelessWidget
                 ),
                 Builder(
                   builder: (context) {
-                    return FutureBuilder(
+                    return FutureBuilder<int>(
                       future: Battery().batteryLevel,
-                      builder: (context, AsyncSnapshot<int?> data) {
-                        final String batteryPercentage = data.data
+                      builder: (context, snapshot) {
+                        final String batteryPercentage = snapshot.data
                                 ?.toString() ??
                             strings.quicksettingsOverlay.shortcutsEnergyMode;
                         return QuickActionButton(
                           leading: const Icon(Icons.battery_charging_full),
-                          title: data.data != null
+                          title: snapshot.data != null
                               ? "$batteryPercentage%"
                               : batteryPercentage,
                           margin: EdgeInsets.zero,
-                          isCircular: false,
                         );
                       },
                     );

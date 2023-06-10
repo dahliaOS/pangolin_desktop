@@ -18,7 +18,6 @@ import 'dart:async';
 
 import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
-import 'package:pangolin/components/overlays/launcher/launcher_overlay.dart';
 import 'package:pangolin/components/overlays/notifications/queue.dart';
 import 'package:pangolin/components/taskbar/app_list.dart';
 import 'package:pangolin/components/taskbar/launcher.dart';
@@ -32,7 +31,6 @@ import 'package:pangolin/components/taskbar/tray_item.dart';
 import 'package:pangolin/services/dbus/status_item.dart';
 import 'package:pangolin/services/tray.dart';
 import 'package:pangolin/utils/wm/wm.dart';
-import 'package:pangolin/widgets/global/box/box_container.dart';
 import 'package:provider/provider.dart';
 
 typedef ShellShownCallback = void Function(ShellState shell);
@@ -139,16 +137,6 @@ class ShellState extends State<Shell>
                   dismissEverything();
                 },
                 behavior: HitTestBehavior.translucent,
-              ),
-            ),
-            ValueListenableBuilder<bool>(
-              valueListenable: getShowingNotifier(LauncherOverlay.overlayId),
-              builder: (context, showing, child) => Positioned(
-                height: !showing ? 48 : MediaQuery.of(context).size.height,
-                bottom: 0,
-                right: 0,
-                left: 0,
-                child: const BoxSurface(),
               ),
             ),
             Taskbar(

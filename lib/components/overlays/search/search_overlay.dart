@@ -16,12 +16,12 @@ limitations under the License.
 
 import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
-import 'package:pangolin/components/overlays/search/widgets/search_tile.dart';
-import 'package:pangolin/components/overlays/search/widgets/searchbar.dart';
+import 'package:pangolin/components/overlays/search/search_tile.dart';
+import 'package:pangolin/components/overlays/search/searchbar.dart';
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/services/search.dart';
 import 'package:pangolin/utils/data/globals.dart';
-import 'package:pangolin/widgets/global/box/box_container.dart';
+import 'package:pangolin/widgets/global/surface/surface_layer.dart';
 import 'package:xdg_desktop/xdg_desktop.dart';
 import 'package:yatl_flutter/yatl_flutter.dart';
 
@@ -85,8 +85,8 @@ class _SearchOverlayState extends State<SearchOverlay>
 
     return Positioned(
       top: 64,
-      left: horizontalPadding(context, 600),
-      right: horizontalPadding(context, 600),
+      left: horizontalPadding(context, 720),
+      right: horizontalPadding(context, 720),
       child: AnimatedBuilder(
         animation: animation,
         builder: (context, child) => FadeTransition(
@@ -94,28 +94,19 @@ class _SearchOverlayState extends State<SearchOverlay>
           child: ScaleTransition(
             scale: animation,
             alignment: FractionalOffset.bottomCenter,
-            child: BoxSurface(
+            child: SurfaceLayer(
+              outline: true,
               dropShadow: true,
-              width: 500,
-              height: 324,
+              height: 400,
               shape: Constants.bigShape,
               child: Column(
                 children: [
-                  Container(
-                    padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-                    //  outline: false,
-                    height: 48 + 10,
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(12, 12, 12, 0),
                     child: Searchbar(
-                      color: Theme.of(context)
-                          .colorScheme
-                          .background
-                          .withOpacity(0.2),
                       focusNode: _focusNode,
                       controller: _controller,
-                      hint: strings.searchOverlay.hint,
-                      leading: const Icon(Icons.search),
-                      trailing: const Icon(Icons.menu_rounded),
-                      onTextChanged: (text) async {
+                      onChanged: (text) async {
                         results.clear();
                         results.addAll(
                           await SearchService.current.search(
@@ -127,83 +118,70 @@ class _SearchOverlayState extends State<SearchOverlay>
                       },
                     ),
                   ),
-
-                  /// `Applications builder`
-
                   Material(
                     type: MaterialType.transparency,
-                    child: results.isNotEmpty
-                        ? SizedBox(
-                            height: 240,
-                            child: ListView(
-                              children: [
-                                Container(
-                                  padding: const EdgeInsets.only(
-                                    top: 16,
-                                    left: 24,
-                                    right: 24,
-                                  ),
-                                  child: Text(
-                                    strings.searchOverlay.results,
-                                    style: const TextStyle(
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ),
-                                ListView.builder(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 16,
-                                    vertical: 4,
-                                  ),
-                                  shrinkWrap: true,
-                                  itemCount: results.length,
-                                  physics: const BouncingScrollPhysics(),
-                                  itemBuilder: (_, index) =>
-                                      SearchTile(results[index].id),
-                                ),
-                              ],
-                            ),
-                          )
-                        : SizedBox(
-                            height: 240,
-                            child: ListView(
-                              children: [
-                                Container(
-                                  padding: const EdgeInsets.only(
-                                    top: 16,
-                                    left: 24,
-                                    right: 24,
-                                  ),
-                                  child: Text(
-                                    strings.searchOverlay.recent,
-                                    style: const TextStyle(
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ),
-                                ListView.builder(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 16,
-                                    vertical: 4,
-                                  ),
-                                  shrinkWrap: true,
-                                  reverse: true,
-                                  itemCount: service.recentSearchResults.length,
-                                  physics: const BouncingScrollPhysics(),
-                                  itemBuilder: (_, index) => SearchTile(
-                                    service.recentSearchResults[index],
-                                  ),
-                                ),
-                              ],
-                            ),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                          top: 16,
+                          left: 24,
+                          right: 24,
+                        ),
+                        child: Text(
+                          strings.searchOverlay.results,
+                          style: const TextStyle(
+                            fontSize: 17,
+                            fontWeight: FontWeight.w600,
                           ),
+                        ),
+                      ),
+                    ),
                   ),
+                  if (results.isNotEmpty)
+                    searchResults()
+                  else if (results.isEmpty && _controller.text.isEmpty)
+                    searchSuggestions(service)
+                  else
+                    const SizedBox.shrink()
                 ],
               ),
             ),
           ),
+        ),
+      ),
+    );
+  }
+
+  SizedBox searchResults() {
+    return SizedBox(
+      height: 284,
+      child: ListView.builder(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 4,
+        ),
+        shrinkWrap: true,
+        itemCount: results.length,
+        physics: const BouncingScrollPhysics(),
+        itemBuilder: (_, index) => SearchTile(results[index].id),
+      ),
+    );
+  }
+
+  SizedBox searchSuggestions(CustomizationService service) {
+    return SizedBox(
+      height: 282,
+      child: ListView.builder(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 4,
+        ),
+        shrinkWrap: true,
+        itemCount: service.recentSearchResults.length,
+        physics: const BouncingScrollPhysics(),
+        itemBuilder: (_, index) => SearchTile(
+          service.recentSearchResults[index],
         ),
       ),
     );

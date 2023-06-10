@@ -1,6 +1,5 @@
 import 'package:dbus/dbus.dart';
 import 'package:flutter/material.dart';
-import 'package:mnemonic_label/mnemonic_label.dart';
 import 'package:pangolin/services/dbus/menu.dart';
 import 'package:pangolin/widgets/global/dbus/image.dart';
 
@@ -75,7 +74,8 @@ class _DBusMenuEntryState extends State<DBusMenuEntry> {
             Navigator.pop(context);
           },
           trailing: _getTrailing(context),
-          title: Mnemonic(entry.label),
+          //TODO wait for https://github.com/ubuntu-flutter-community/mnemonic_label/issues/2 to be fixed
+          title: Text(entry.label),
         ),
       ),
     );

@@ -16,9 +16,9 @@ limitations under the License.
 
 import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
-import 'package:pangolin/widgets/global/acrylic/acrylic.dart';
+import 'package:zenit_ui/zenit_ui.dart';
 
-class BoxSurface extends StatelessWidget {
+class SurfaceLayer extends StatelessWidget {
   final EdgeInsetsGeometry? padding;
   final EdgeInsetsGeometry? margin;
   final OutlinedBorder shape;
@@ -28,7 +28,7 @@ class BoxSurface extends StatelessWidget {
   final bool outline;
   final bool dropShadow;
 
-  const BoxSurface({
+  const SurfaceLayer({
     super.key,
     this.child,
     this.shape = const RoundedRectangleBorder(),
@@ -42,6 +42,7 @@ class BoxSurface extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = ZenitTheme.of(context);
     return Container(
       width: width,
       height: height,
@@ -49,6 +50,7 @@ class BoxSurface extends StatelessWidget {
       margin: margin,
       decoration: ShapeDecoration(
         shape: shape,
+        color: theme.backgroundColor,
         shadows: dropShadow
             ? [
                 BoxShadow(
@@ -66,72 +68,13 @@ class BoxSurface extends StatelessWidget {
           // Create outline around the surface
           side: outline
               ? BorderSide(
-                  color: context.theme.colorScheme.background.op(0.2),
-                  width: 2,
+                  color: theme.foregroundColor.op(0.1),
                 )
               : BorderSide.none,
         ),
       ),
       clipBehavior: Clip.antiAlias,
-      child: AcrylicLayer(
-        isBackground: true,
-        child: child ?? Container(),
-      ),
-    );
-  }
-}
-
-class BoxContainer extends StatelessWidget {
-  final EdgeInsetsGeometry? padding;
-  final EdgeInsetsGeometry? margin;
-  final OutlinedBorder shape;
-  final Widget? child;
-  final double? width;
-  final double? height;
-  final bool outline;
-  final double opacity;
-
-  const BoxContainer({
-    super.key,
-    this.child,
-    this.shape = const RoundedRectangleBorder(),
-    this.padding,
-    this.margin,
-    this.width,
-    this.height,
-    this.outline = false,
-    this.opacity = 0.5,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final bool darkMode = Theme.of(context).darkMode;
-    return Container(
-      width: width,
-      height: height,
-      padding: padding,
-      margin: margin,
-      decoration: ShapeDecoration(
-        color: Colors.transparent,
-        shape: shape.copyWith(
-          // Create outline around the surface
-          side: outline
-              ? BorderSide(
-                  color: darkMode
-                      ? Colors.white.withOpacity(0.1)
-                      : Colors.black.withOpacity(0.2),
-                  width: 2,
-                )
-              : BorderSide.none,
-        ),
-      ),
-      clipBehavior: Clip.antiAlias,
-      child: AcrylicLayer(
-        opacity: opacity,
-        enableBlur: false,
-        enableNoise: false,
-        child: child ?? Container(),
-      ),
+      child: child,
     );
   }
 }

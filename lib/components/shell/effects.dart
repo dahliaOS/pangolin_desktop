@@ -2,7 +2,7 @@ import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/services/wm.dart';
 import 'package:pangolin/utils/wm/layout.dart';
-import 'package:pangolin/widgets/global/box/box_container.dart';
+import 'package:pangolin/widgets/global/surface/surface_layer.dart';
 import 'package:provider/provider.dart';
 import 'package:utopia_wm/wm.dart';
 
@@ -143,7 +143,7 @@ class EffectsLayerState extends State<EffectsLayer>
                 rect: _rectTween.evaluate(_curvedAnim) ?? Rect.zero,
                 child: FadeTransition(
                   opacity: _opacityController,
-                  child: const BoxSurface(
+                  child: const SurfaceLayer(
                     shape: Constants.mediumShape,
                     dropShadow: true,
                     child: SizedBox.expand(),
