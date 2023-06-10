@@ -57,19 +57,35 @@ Future<void> main() async {
         const ServiceEntry<LocaleService>.critical(LocaleService.build),
         const ServiceEntry<SearchService>(SearchService.build),
         const ServiceEntry<WindowManagerService>.critical(
-            WindowManagerService.build),
+          WindowManagerService.build,
+        ),
         ServiceEntry<LangPacksService>(
-            LangPacksService.build, LangPacksService.fallback()),
+          LangPacksService.build,
+          LangPacksService.fallback(),
+        ),
         ServiceEntry<ApplicationService>(
-            ApplicationService.build, ApplicationService.fallback()),
-        ServiceEntry<IconService>(IconService.build, IconService.fallback()),
+          ApplicationService.build,
+          ApplicationService.fallback(),
+        ),
+        ServiceEntry<IconService>(
+          IconService.build,
+          IconService.fallback(),
+        ),
         ServiceEntry<PreferencesService>.critical(
-            PreferencesService.build, PreferencesService.fallback()),
-        ServiceEntry<TrayService>(TrayService.build, TrayService.fallback()),
+          PreferencesService.build,
+          PreferencesService.fallback(),
+        ),
+        ServiceEntry<TrayService>(
+          TrayService.build,
+          TrayService.fallback(),
+        ),
         ServiceEntry<NotificationService>(
-            NotificationService.build, NotificationService.fallback()),
+          NotificationService.build,
+          NotificationService.fallback(),
+        ),
         const ServiceEntry<CustomizationService>.critical(
-            CustomizationService.build),
+          CustomizationService.build,
+        ),
         const ServiceEntry<DateTimeService>.critical(DateTimeService.build),
       ],
       builder: (context, loaded, child) {

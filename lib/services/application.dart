@@ -156,7 +156,7 @@ class _BuiltInApplicationService extends ApplicationService {
   final List<_BuiltinDesktopEntry> entries = [];
   final Map<DesktopEntry, Widget> builders = {};
 
-  static WindowEntry windowEntry = const WindowEntry(
+  static const WindowEntry windowEntry = WindowEntry(
     features: [
       ResizeWindowFeature(),
       SurfaceWindowFeature(),
