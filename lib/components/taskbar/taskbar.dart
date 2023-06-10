@@ -48,40 +48,34 @@ class _TaskbarState extends State<Taskbar>
       height: 48,
       child: SurfaceLayer(
         child: SizedBox.expand(
-          child: Listener(
-            onPointerDown: (event) {
-              Shell.of(context, listen: false).dismissEverything();
-            },
-            behavior: HitTestBehavior.translucent,
-            child: Material(
-              type: MaterialType.transparency,
-              child: Stack(
-                children: [
+          child: Material(
+            type: MaterialType.transparency,
+            child: Stack(
+              children: [
+                Positioned.fill(
+                  child: Row(
+                    children: [
+                      Row(children: widget.leading),
+                      Expanded(
+                        child: !widget.centerRelativeToScreen
+                            ? Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: widget.center,
+                              )
+                            : const SizedBox.shrink(),
+                      ),
+                      Row(children: widget.trailing),
+                    ],
+                  ),
+                ),
+                if (widget.centerRelativeToScreen)
                   Positioned.fill(
                     child: Row(
-                      children: [
-                        Row(children: widget.leading),
-                        Expanded(
-                          child: !widget.centerRelativeToScreen
-                              ? Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: widget.center,
-                                )
-                              : const SizedBox.shrink(),
-                        ),
-                        Row(children: widget.trailing),
-                      ],
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: widget.center,
                     ),
                   ),
-                  if (widget.centerRelativeToScreen)
-                    Positioned.fill(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: widget.center,
-                      ),
-                    ),
-                ],
-              ),
+              ],
             ),
           ),
         ),
