@@ -21,8 +21,6 @@ import 'dart:io';
 import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/overlays/account_overlay.dart';
-import 'package:pangolin/components/overlays/launcher/compact_launcher_overlay.dart';
-import 'package:pangolin/components/overlays/launcher/launcher_overlay.dart';
 import 'package:pangolin/components/overlays/power_overlay.dart';
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/services/application.dart';
@@ -47,19 +45,6 @@ class ActionManager {
     shell.showOverlay(
       AccountOverlay.overlayId,
       dismissEverything: false,
-    );
-  }
-
-  static Future<void> switchLauncher(BuildContext context) async {
-    final shell = Shell.of(context, listen: false);
-    final CustomizationService service = CustomizationService.current;
-    shell.dismissEverything();
-    service.compactLauncher = !service.compactLauncher;
-    await Future.delayed(Constants.animationDuration);
-    shell.showOverlay(
-      service.compactLauncher
-          ? CompactLauncherOverlay.overlayId
-          : LauncherOverlay.overlayId,
     );
   }
 

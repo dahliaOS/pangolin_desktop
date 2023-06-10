@@ -149,13 +149,6 @@ class _AppLauncherTileState extends State<AppLauncherTile> {
           onTap: () async {
             await ApplicationService.current.startApp(widget.application.id);
             if (mounted) Shell.of(context, listen: false).dismissEverything();
-            // if (widget.application.systemExecutable == true) {
-            //   Process.run(
-            //     'io.dahliaos.web_runtime.dap',
-            //     widget.application.runtimeFlags,
-            //   );
-            // }
-            // widget.application.launch(context);
           },
         ),
       ),

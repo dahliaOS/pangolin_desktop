@@ -15,13 +15,13 @@ limitations under the License.
 */
 
 import 'package:flutter/material.dart';
-import 'package:pangolin/widgets/global/box/box_container.dart';
+import 'package:pangolin/widgets/global/surface/surface_layer.dart';
 
 class PangolinWindowSurface extends StatelessWidget {
   const PangolinWindowSurface({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const BoxSurface(dropShadow: true);
+    return const SurfaceLayer(dropShadow: true);
   }
 }

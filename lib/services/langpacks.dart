@@ -174,10 +174,8 @@ class _MessageCatalogParser {
     switch (data.getUint32(0)) {
       case 0x950412de:
         endian = Endian.big;
-        break;
       case 0xde120495:
         endian = Endian.little;
-        break;
       default:
         return null;
     }

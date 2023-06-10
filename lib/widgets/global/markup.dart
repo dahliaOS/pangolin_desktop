@@ -59,38 +59,31 @@ class MarkupText extends StatelessWidget {
               addPart();
               addType(TextType.bold);
               pointer += 2;
-              break;
             case "i":
               addPart();
               addType(TextType.italic);
               pointer += 2;
-              break;
             case "u":
               addPart();
               addType(TextType.underlined);
               pointer += 2;
-              break;
             case "/b":
               addPart();
               removeType(TextType.bold);
               pointer += 3;
-              break;
             case "/i":
               addPart();
               removeType(TextType.italic);
               pointer += 3;
-              break;
             case "/u":
               addPart();
               removeType(TextType.underlined);
               pointer += 3;
-              break;
             case "/a":
               addPart();
               removeType(TextType.link);
               cUrl = null;
               pointer += 3;
-              break;
             default:
               if (code.startsWith("a ") &&
                   _hrefRegexp.firstMatch(code) != null) {
@@ -166,16 +159,12 @@ class TextPart {
                 if (await canLaunchUrlString(url!)) launchUrlString(url!);
               };
           }
-          break;
         case TextType.bold:
           fontWeight = FontWeight.bold;
-          break;
         case TextType.italic:
           fontStyle = FontStyle.italic;
-          break;
         case TextType.underlined:
           decorations.add(TextDecoration.underline);
-          break;
       }
     }
 

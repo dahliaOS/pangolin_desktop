@@ -108,7 +108,6 @@ class _NotificationQueueState extends State<NotificationQueue>
     switch (reason) {
       case NotificationCloseReason.dismissed:
         await notif.controller.reverse();
-        break;
       case NotificationCloseReason.closed:
       case NotificationCloseReason.expired:
       case NotificationCloseReason.unknown:

@@ -14,7 +14,7 @@ limitations under the License.
 import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/utils/context_menus/context_menu_item.dart';
-import 'package:pangolin/widgets/global/box/box_container.dart';
+import 'package:pangolin/widgets/global/surface/surface_layer.dart';
 
 class ContextMenu extends StatefulWidget {
   final List<ContextMenuItem> items;
@@ -29,7 +29,7 @@ class _ContextMenuState extends State<ContextMenu> {
   Size size = Size.zero;
   @override
   Widget build(BuildContext context) {
-    return BoxSurface(
+    return SurfaceLayer(
       shape: Constants.smallShape,
       child: SingleChildScrollView(
         child: SizedBox(

@@ -21,7 +21,9 @@ import 'package:flutter/material.dart';
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/utils/action_manager/action_manager.dart';
 import 'package:pangolin/utils/data/globals.dart';
-import 'package:pangolin/widgets/global/box/box_container.dart';
+import 'package:pangolin/widgets/global/power_account_button.dart';
+import 'package:pangolin/widgets/global/surface/surface_layer.dart';
+import 'package:zenit_ui/zenit_ui.dart';
 
 class AccountOverlay extends ShellOverlay {
   static const String overlayId = "account";
@@ -93,61 +95,64 @@ class _AccountOverlayState extends State<AccountOverlay>
               child: ScaleTransition(
                 scale: animation,
                 alignment: FractionalOffset.center,
-                child: Material(
-                  color: Colors.transparent,
-                  child: BoxSurface(
-                    dropShadow: true,
-                    shape: Constants.bigShape,
+                child: SurfaceLayer(
+                  outline: true,
+                  shape: Constants.bigShape,
+                  child: Material(
+                    type: MaterialType.transparency,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Padding(
-                          padding: EdgeInsets.all(24.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Account Menu",
-                                style: TextStyle(
-                                  fontSize: 24,
-                                  fontWeight: FontWeight.w600,
-                                ),
+                        SizedBox(
+                          width: 328,
+                          child: DecoratedBox(
+                            decoration: BoxDecoration(
+                              color: ZenitTheme.of(context).cardColor,
+                            ),
+                            child: const Padding(
+                              padding: EdgeInsets.all(24.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Account Menu",
+                                    style: TextStyle(
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                  SizedBox(height: 12),
+                                  Text("Choose what to do as user"),
+                                ],
                               ),
-                              SizedBox(height: 12),
-                              Text("Choose what to do as user"),
-                            ],
+                            ),
                           ),
                         ),
                         const Spacer(),
-                        Container(
-                          width: double.infinity,
-                          height: 224,
-                          color: context.theme.colorScheme.background.op(0.35),
-                          child: Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Column(
-                              children: [
-                                _accountMenuButton(
-                                  "Sign out",
-                                  Icons.logout_rounded,
-                                  context,
-                                  onPressed: () => ActionManager.logout(),
-                                ),
-                                _accountMenuButton(
-                                  "Lock",
-                                  Icons.lock_outline,
-                                  context,
-                                  onPressed: () => ActionManager.lock(),
-                                ),
-                                _accountMenuButton(
-                                  "Account Settings",
-                                  Icons.settings_outlined,
-                                  context,
-                                  onPressed: () =>
-                                      ActionManager.openSettings(context),
-                                ),
-                              ],
-                            ),
+                        Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Column(
+                            children: [
+                              PowerAccountMenuButton(
+                                title: "Sign out",
+                                icon: Icons.logout_rounded,
+                                context: context,
+                                onPressed: ActionManager.logout,
+                              ),
+                              PowerAccountMenuButton(
+                                title: "Lock",
+                                icon: Icons.lock_outline,
+                                context: context,
+                                onPressed: ActionManager.lock,
+                              ),
+                              PowerAccountMenuButton(
+                                title: "Account Settings",
+                                icon: Icons.settings_outlined,
+                                context: context,
+                                onPressed: () =>
+                                    ActionManager.openSettings(context),
+                              ),
+                            ],
                           ),
                         ),
                       ],
@@ -159,48 +164,6 @@ class _AccountOverlayState extends State<AccountOverlay>
           ),
         ),
       ],
-    );
-  }
-
-  Padding _accountMenuButton(
-    String title,
-    IconData icon,
-    BuildContext context, {
-    VoidCallback? onPressed,
-  }) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: SizedBox(
-        height: 48,
-        width: 280,
-        child: Material(
-          shape: Constants.smallShape,
-          clipBehavior: Clip.antiAlias,
-          color: context.theme.accent,
-          child: InkWell(
-            onTap: onPressed,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Row(
-                children: [
-                  Icon(
-                    icon,
-                    color: context.theme.foregroundColor,
-                  ),
-                  const SizedBox(width: 12),
-                  Text(
-                    title,
-                    style: context.theme.textTheme.labelLarge?.copyWith(
-                      fontSize: 16,
-                      color: context.theme.foregroundColor,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
     );
   }
 }

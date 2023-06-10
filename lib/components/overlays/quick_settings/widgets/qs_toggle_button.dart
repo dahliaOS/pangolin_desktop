@@ -16,9 +16,9 @@ limitations under the License.
 
 import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
+import 'package:zenit_ui/zenit_ui.dart';
 
-// ignore: must_be_immutable
-class QsToggleButton extends StatefulWidget {
+class QsToggleButton extends StatelessWidget {
   final ToggleProperty<String> title;
   final ToggleProperty<String?>? subtitle;
   final ToggleProperty<IconData> icon;
@@ -37,92 +37,76 @@ class QsToggleButton extends StatefulWidget {
   });
 
   @override
-  _QsToggleButtonState createState() => _QsToggleButtonState();
-}
-
-class _QsToggleButtonState extends State<QsToggleButton> {
-  @override
   Widget build(BuildContext context) {
-    final theme = context.theme;
+    final theme = ZenitTheme.of(context);
 
-    final Color color = widget.enabled
-        ? theme.accent
-        : theme.colorScheme.background.withOpacity(0.5);
-    final String? subtitle = widget.subtitle?.resolve(enabled: widget.enabled);
+    final Color color = enabled ? theme.primaryColor : theme.surfaceColor;
+    final String? subtitle = this.subtitle?.resolve(enabled: enabled);
 
     return SizedBox(
-      height: 60,
-      width: 162,
+      height: 56,
+      width: 160,
       child: Material(
         color: color,
         shape: Constants.mediumShape,
         clipBehavior: Clip.antiAlias,
         child: InkWell(
-          onTap: () {
-            widget.onPressed?.call(!widget.enabled);
-            setState(() {});
-          },
+          onTap: () => onPressed?.call(!enabled),
           child: Padding(
             padding: const EdgeInsets.fromLTRB(12, 12, 8, 12),
             child: Row(
               children: [
                 Icon(
-                  widget.icon.resolve(enabled: widget.enabled),
+                  icon.resolve(enabled: enabled),
                   size: 20,
-                  color: theme.computedForegroundColor(color),
+                  color: theme.materialTheme.computedForegroundColor(color),
                 ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Flexible(
-                        child: Text(
-                          widget.title.resolve(enabled: widget.enabled),
-                          overflow: TextOverflow.visible,
-                          maxLines: 2,
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
-                            color: theme.computedForegroundColor(color),
-                          ),
+                const SizedBox(width: 8),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      title.resolve(enabled: enabled),
+                      overflow: TextOverflow.visible,
+                      maxLines: 2,
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                        color:
+                            theme.materialTheme.computedForegroundColor(color),
+                      ),
+                    ),
+                    if (subtitle != null)
+                      Text(
+                        subtitle,
+                        style: TextStyle(
+                          fontSize: 10,
+                          color: theme.materialTheme
+                              .computedForegroundColor(color),
                         ),
                       ),
-                      if (subtitle != null)
-                        Text(
-                          subtitle,
-                          style: TextStyle(
-                            fontSize: 10,
-                            color: theme.computedForegroundColor(color),
-                          ),
-                        )
-                      else
-                        const SizedBox.shrink(),
-                    ],
-                  ),
+                  ],
                 ),
-                VerticalDivider(
-                  color: widget.enabled
-                      ? theme.colorScheme.background.op(0.2)
-                      : theme.surfaceForegroundColor.op(0.2),
-                ),
-                Material(
-                  color: Colors.transparent,
-                  shape: const CircleBorder(),
-                  clipBehavior: Clip.antiAlias,
-                  child: InkWell(
-                    onTap: widget.onMenuPressed,
-                    child: Padding(
-                      padding: const EdgeInsets.all(6.0),
-                      child: Icon(
-                        Icons.chevron_right_rounded,
-                        size: 20,
-                        color: theme.computedForegroundColor(color),
+                const Spacer(),
+                if (onMenuPressed.isNotNull)
+                  Material(
+                    color: theme.accentForegroundColor.op(0.2),
+                    shape: const CircleBorder(),
+                    clipBehavior: Clip.antiAlias,
+                    child: InkWell(
+                      onTap: onMenuPressed,
+                      child: Padding(
+                        padding: const EdgeInsets.all(6.0),
+                        child: Icon(
+                          Icons.chevron_right_rounded,
+                          size: 20,
+                          color: theme.materialTheme
+                              .computedForegroundColor(color),
+                        ),
                       ),
                     ),
                   ),
-                )
               ],
             ),
           ),

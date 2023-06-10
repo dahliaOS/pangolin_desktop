@@ -48,9 +48,9 @@ class _TaskbarElementState extends State<TaskbarElement> {
     return SizedBox.fromSize(
       size: widget.size ?? const Size(48, 48),
       child: GestureDetector(
-        onTap: () => widget.overlayID != null
-            ? shell.toggleOverlay(widget.overlayID!)
-            : {},
+        onTap: widget.overlayID != null
+            ? () => shell.toggleOverlay(widget.overlayID!)
+            : null,
         child: MouseRegion(
           cursor: SystemMouseCursors.click,
           onEnter: (state) => setState(() => _hover = true),
