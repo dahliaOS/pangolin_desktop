@@ -59,9 +59,9 @@ class _TaskbarState extends State<Taskbar>
                       Expanded(
                         child: !widget.centerRelativeToScreen
                             ? Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: widget.center,
-                        )
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: widget.center,
+                              )
                             : const SizedBox.shrink(),
                       ),
                       Row(children: widget.trailing),
