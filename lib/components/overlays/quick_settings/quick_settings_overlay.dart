@@ -69,6 +69,46 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
     controller.showing = false;
   }
 
+  PageRouteBuilder _customRouteTransition(Widget screen) {
+    return PageRouteBuilder(
+      transitionDuration: Constants.animationDuration,
+      reverseTransitionDuration: Constants.animationDuration,
+      pageBuilder: (context, animation, secondaryAnimation) => screen,
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        final fadeAnimationIn = animation;
+
+        final fadeAnimationOut = Tween(
+          begin: 1.0,
+          end: 0.0,
+        ).animate(secondaryAnimation);
+
+        final scaleAnimationIn = Tween(
+          begin: 0.95,
+          end: 1.0,
+        ).animate(animation);
+
+        final scaleAnimationOut = Tween(
+          begin: 1.0,
+          end: 1.05,
+        ).animate(secondaryAnimation);
+
+        return FadeTransition(
+          opacity: fadeAnimationIn,
+          child: ScaleTransition(
+            scale: scaleAnimationIn,
+            child: FadeTransition(
+              opacity: fadeAnimationOut,
+              child: ScaleTransition(
+                scale: scaleAnimationOut,
+                child: child,
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     // _getTime(context);
@@ -84,7 +124,7 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
       right: 8,
       child: AnimatedBuilder(
         animation: animation,
-        builder: (context, chilld) => FadeTransition(
+        builder: (context, child) => FadeTransition(
           opacity: animation,
           child: ScaleTransition(
             scale: animation,
@@ -98,12 +138,19 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: MaterialApp(
-                  routes: {
-                    "/": (context) => const QsMain(),
-                    "/pages/account": (context) => const QsAccountPage(),
-                    "/pages/network": (context) => const QsNetworkPage(),
-                    "/pages/theme": (context) => const QsThemePage(),
-                    "/pages/language": (context) => const QsLanguagePage(),
+                  onGenerateInitialRoutes: (initialRoute) => [
+                    _customRouteTransition(const QsMain()),
+                  ],
+                  onGenerateRoute: (settings) {
+                    return _customRouteTransition(
+                      switch (settings.name) {
+                        '/pages/account' => const QsAccountPage(),
+                        '/pages/network' => const QsNetworkPage(),
+                        '/pages/theme' => const QsThemePage(),
+                        '/pages/language' => const QsLanguagePage(),
+                        _ => const QsMain(),
+                      },
+                    );
                   },
                   theme: Theme.of(context)
                       .copyWith(scaffoldBackgroundColor: Colors.transparent),
