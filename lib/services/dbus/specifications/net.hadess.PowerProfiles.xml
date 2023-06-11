@@ -1,0 +1,141 @@
+<!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN"
+"http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
+
+<node>
+
+  <!--
+      net.hadess.PowerProfiles:
+      @short_description: Power Profiles daemon
+
+      The power-profiles-daemon API is meant to be used by parts of the OS or
+      desktop environment to switch system power profiles based on user choice,
+      or user intent.
+
+      OS components would typically use the "Profiles" property to construct
+      their UI (2 or 3 profiles available), and monitor the "ActiveProfile"
+      and the "PerformanceDegraded" properties to update that UI. The UI
+      would try to set the "ActiveProfile" property if the user selected
+      a different one.
+
+      Note that the reason why the project exists and how it is different from
+      existing projects is explained <ulink href=" https://gitlab.freedesktop.org/hadess/power-profiles-daemon/-/blob/master/README.md">
+      in the project's README file</ulink>.
+
+      The object path will be "/net/hadess/PowerProfiles".
+  -->
+  <interface name="net.hadess.PowerProfiles">
+
+    <!--
+        HoldProfile:
+
+        This forces the passed profile (either 'power-saver' or 'performance')
+        to be activated until either the caller quits, "ReleaseProfile" is
+        called, or the "ActiveProfile" is changed by the user.
+
+        This should be used programmatically by OS components when, eg. high-
+        performance workloads are started with the "performance" profile, or
+        battery will soon be critically low with the "power-saver" profile.
+
+        When conflicting profiles are requested to be held, the 'power-saver' profile
+        will be activated in preference to the 'performance' profile.
+
+        Those holds will be automatically cancelled if the user manually switches
+        to another profile, and the "ProfileReleased" signal will be emitted.
+    -->
+    <method name="HoldProfile">
+      <arg name="profile" type="s" direction="in"/>
+      <arg name="reason" type="s" direction="in"/>
+      <arg name="application_id" type="s" direction="in" />
+      <arg name="cookie" type="u" direction="out"/>
+    </method>
+
+    <!--
+        ReleaseProfile:
+
+        This removes the hold that was set on a profile.
+    -->
+    <method name="ReleaseProfile">
+      <arg name="cookie" type="u" direction="in"/>
+    </method>
+
+    <!--
+        ProfileReleased:
+
+        This signal will be emitted if the profile is released because the
+        "ActiveProfile" was manually changed. The signal will only be emitted
+        to the process that originally called "HoldProfile".
+    -->
+    <signal name="ProfileReleased">
+      <arg name="cookie" type="u" direction="out"/>
+    </signal>
+
+    <!--
+        ActiveProfile:
+
+        The type of the currently active profile. It might change automatically
+        if a profile is held, using the "HoldProfile" function.
+    -->
+    <property name="ActiveProfile" type="s" access="readwrite"/>
+
+    <!--
+        PerformanceInhibited:
+
+        This property is deprecated, and unused since version 0.9.
+    -->
+    <property name="PerformanceInhibited" type="s" access="read"/>
+
+    <!--
+        PerformanceDegraded:
+
+        This will be set if the performance power profile is running in degraded
+        mode, with the value being used to identify the reason for that degradation.
+        As new reasons can be added, it is recommended that front-ends show a generic
+        reason if they do not recognise the value. Possible values are:
+        - "lap-detected" (the computer is sitting on the user's lap)
+        - "high-operating-temperature" (the computer is close to overheating)
+        - "" (the empty string, if not performance is not degraded)
+    -->
+    <property name="PerformanceDegraded" type="s" access="read"/>
+
+    <!--
+        Profiles:
+
+        An array of key-pair values representing each profile. The key named
+        "Driver" (s) identifies the power-profiles-daemon backend code used to
+        implement the profile.
+
+        The key named "Profile" (s) will be one of:
+        - "power-saver" (battery saving profile)
+        - "balanced" (the default  profile)
+        - "performance" (a profile that does not care about noise or battery consumption)
+
+        Only one of each type of profile will be listed, with the daemon choosing the
+        more appropriate "driver" for each profile type.
+
+        This list is guaranteed to be sorted in the same order that the profiles
+        are listed above.
+    -->
+    <property name="Profiles" type="aa{sv}" access="read"/>
+
+    <!--
+        Actions:
+
+        An array of strings listing each one of the "actions" implemented in
+        the running daemon. This is used by API users to figure out whether
+        particular functionality is available in a version of the daemon.
+    -->
+    <property name="Actions" type="as" access="read"/>
+
+    <!--
+      ActiveProfileHolds:
+
+      A list of dictionaries representing the current profile holds.
+      The keys in the dict are "ApplicationId", "Profile" and "Reason",
+      and correspond to the "application_id", "profile" and "reason" arguments
+      passed to the HoldProfile() method.
+    -->
+    <property name="ActiveProfileHolds" type="aa{sv}" access="read"/>
+
+  </interface>
+</node>
+

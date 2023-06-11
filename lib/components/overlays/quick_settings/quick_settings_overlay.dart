@@ -16,7 +16,6 @@ limitations under the License.
 
 import 'dart:async';
 
-import 'package:battery_plus/battery_plus.dart';
 import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/overlays/quick_settings/pages/qs_account_page.dart';
@@ -28,8 +27,10 @@ import 'package:pangolin/components/overlays/quick_settings/widgets/qs_slider.da
 import 'package:pangolin/components/overlays/quick_settings/widgets/qs_toggle_button.dart';
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/services/date_time.dart';
+import 'package:pangolin/services/power.dart';
 import 'package:pangolin/utils/action_manager/action_manager.dart';
 import 'package:pangolin/utils/data/globals.dart';
+import 'package:pangolin/widgets/global/battery_indicator.dart';
 import 'package:pangolin/widgets/global/quick_button.dart';
 import 'package:pangolin/widgets/global/surface/surface_layer.dart';
 import 'package:yatl_flutter/yatl_flutter.dart';
@@ -392,25 +393,30 @@ class QsMain extends StatelessWidget
                     );
                   },
                 ),
-                Builder(
-                  builder: (context) {
-                    return FutureBuilder<int>(
-                      future: Battery().batteryLevel,
-                      builder: (context, snapshot) {
-                        final String batteryPercentage = snapshot.data
-                                ?.toString() ??
-                            strings.quicksettingsOverlay.shortcutsEnergyMode;
-                        return QuickActionButton(
-                          leading: const Icon(Icons.battery_charging_full),
-                          title: snapshot.data != null
-                              ? "$batteryPercentage%"
-                              : batteryPercentage,
-                          margin: EdgeInsets.zero,
-                        );
-                      },
-                    );
-                  },
-                ),
+                if (PowerService.current.hasBattery)
+                  ListenableBuilder(
+                    listenable: Listenable.merge([
+                      PowerService.current.mainBattery,
+                      PowerService.current.activeProfileNotifier,
+                    ]),
+                    builder: (context, _) {
+                      final device = PowerService.current.mainBattery!;
+                      final percentage = device.percentage.toInt();
+                      final charging =
+                          device.state == UPowerDeviceState.charging;
+                      final activeProfile = PowerService.current.activeProfile;
+
+                      return QuickActionButton(
+                        leading: BatteryIndicator(
+                          percentage: percentage,
+                          charging: charging,
+                          powerSaving: activeProfile == PowerProfile.powerSaver,
+                        ),
+                        title: "$percentage %",
+                        margin: EdgeInsets.zero,
+                      );
+                    },
+                  ),
               ],
             )
           ],

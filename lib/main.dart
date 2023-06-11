@@ -27,6 +27,7 @@ import 'package:pangolin/services/date_time.dart';
 import 'package:pangolin/services/icon.dart';
 import 'package:pangolin/services/langpacks.dart';
 import 'package:pangolin/services/notifications.dart';
+import 'package:pangolin/services/power.dart';
 import 'package:pangolin/services/search.dart';
 import 'package:pangolin/services/tray.dart';
 import 'package:pangolin/services/wm.dart';
@@ -82,6 +83,10 @@ Future<void> main() async {
         ServiceEntry<NotificationService>(
           NotificationService.build,
           NotificationService.fallback(),
+        ),
+        ServiceEntry<PowerService>(
+          PowerService.build,
+          PowerService.fallback(),
         ),
         const ServiceEntry<CustomizationService>.critical(
           CustomizationService.build,

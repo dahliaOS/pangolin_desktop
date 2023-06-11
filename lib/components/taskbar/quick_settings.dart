@@ -20,6 +20,8 @@ import 'package:pangolin/components/overlays/quick_settings/quick_settings_overl
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/components/taskbar/taskbar_element.dart';
 import 'package:pangolin/services/date_time.dart';
+import 'package:pangolin/services/power.dart';
+import 'package:pangolin/widgets/global/battery_indicator.dart';
 import 'package:zenit_ui/zenit_ui.dart';
 
 class QuickSettingsButton extends StatelessWidget
@@ -32,9 +34,10 @@ class QuickSettingsButton extends StatelessWidget
     return TaskbarElement(
       iconSize: 18,
       size: Size.fromWidth(
-        148 +
+        124 +
             (service.enableWifi ? 26 : 0) +
-            (service.enableBluetooth ? 26 : 0),
+            (service.enableBluetooth ? 26 : 0) +
+            (PowerService.current.hasBattery ? 24 : 0),
       ),
       overlayID: QuickSettingsOverlay.overlayId,
       child: Padding(
@@ -48,7 +51,7 @@ class QuickSettingsButton extends StatelessWidget
             return Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ...items(context, service),
+                ...items(context, foregroundColor, service),
                 VerticalDivider(
                   width: 2,
                   endIndent: 12,
@@ -82,7 +85,11 @@ class QuickSettingsButton extends StatelessWidget
     );
   }
 
-  List<Widget> items(BuildContext context, CustomizationService service) {
+  List<Widget> items(
+    BuildContext context,
+    Color foregroundColor,
+    CustomizationService service,
+  ) {
     return [
       if (service.enableWifi)
         const Padding(
@@ -100,13 +107,30 @@ class QuickSettingsButton extends StatelessWidget
           Icons.settings_ethernet,
         ),
       ),
-      const Padding(
-        padding: EdgeInsets.symmetric(horizontal: 4.0),
-        child: RotatedBox(
-          quarterTurns: 1,
-          child: Icon(Icons.battery_charging_full),
+      if (PowerService.current.hasBattery)
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 4.0),
+          child: ListenableBuilder(
+            listenable: Listenable.merge([
+              PowerService.current.mainBattery,
+              PowerService.current.activeProfileNotifier,
+            ]),
+            builder: (context, _) {
+              final device = PowerService.current.mainBattery!;
+              final percentage = device.percentage.toInt();
+              final charging = device.state == UPowerDeviceState.charging;
+              final activeProfile = PowerService.current.activeProfile;
+
+              return BatteryIndicator(
+                percentage: percentage,
+                charging: charging,
+                color: foregroundColor,
+                powerSaving: activeProfile == PowerProfile.powerSaver,
+                size: 16,
+              );
+            },
+          ),
         ),
-      ),
       const SizedBox(width: 4),
     ];
   }
