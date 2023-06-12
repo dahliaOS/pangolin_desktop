@@ -6,13 +6,13 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/services/dbus/image.dart';
-import 'package:pangolin/services/dbus/menu.dart';
 import 'package:pangolin/services/dbus/status_item.dart';
 import 'package:pangolin/services/tray.dart';
 import 'package:pangolin/services/wm.dart';
-import 'package:pangolin/widgets/global/dbus/image.dart';
-import 'package:pangolin/widgets/global/dbus/menu.dart';
-import 'package:pangolin/widgets/global/surface/surface_layer.dart';
+import 'package:pangolin/widgets/context_menu.dart';
+import 'package:pangolin/widgets/dbus/image.dart';
+import 'package:pangolin/widgets/dbus/menu.dart';
+import 'package:pangolin/widgets/surface/surface_layer.dart';
 
 class TrayMenuOverlay extends ShellOverlay {
   static const String overlayId = "tray";
@@ -180,63 +180,64 @@ class _TrayMenuItemState extends State<_TrayMenuItem> {
         child: Material(
           shape: Constants.smallShape,
           clipBehavior: Clip.antiAlias,
-          child: InkWell(
-            onTapDown: (details) {
-              widget.item.activate(
-                details.globalPosition.dx.round(),
-                details.globalPosition.dy.round(),
-              );
-            },
-            onSecondaryTapDown: (details) async {
-              final MenuEntry? menu = widget.item.menu;
-
-              if (menu == null) return;
-
-              menu.object.callEvent(menu.id, "opened", DBusArray.string([]), 0);
-
-              await showMenu(
-                context: context,
-                position: RelativeRect.fromLTRB(
-                  details.globalPosition.dx,
-                  details.globalPosition.dy,
-                  details.globalPosition.dx,
-                  details.globalPosition.dy,
-                ),
-                items: menu.children
+          child: ContextMenu(
+            entries: widget.item.menu != null
+                ? widget.item.menu!.children
                     .where((e) => e.visible)
                     .map((e) => DBusMenuEntry(e))
-                    .toList(),
+                    .toList()
+                : null,
+            onOpen: () {
+              widget.item.menu!.object.callEvent(
+                widget.item.menu!.id,
+                "opened",
+                DBusArray.string([]),
+                (DateTime.now().millisecondsSinceEpoch / 1000).round(),
               );
-
-              menu.object.callEvent(menu.id, "closed", DBusArray.string([]), 0);
             },
-            child: Listener(
-              onPointerSignal: (event) {
-                if (event is PointerScrollEvent) {
-                  if (event.scrollDelta.dx != 0) {
-                    widget.item.scroll(
-                      event.scrollDelta.dx.round(),
-                      ScrollOrientation.horizontal,
-                    );
-                  }
-
-                  if (event.scrollDelta.dy != 0) {
-                    widget.item.scroll(
-                      event.scrollDelta.dy.round(),
-                      ScrollOrientation.vertical,
-                    );
-                  }
-                }
+            onClose: () {
+              widget.item.menu!.object.callEvent(
+                widget.item.menu!.id,
+                "closed",
+                DBusArray.string([]),
+                (DateTime.now().millisecondsSinceEpoch / 1000).round(),
+              );
+            },
+            child: InkWell(
+              onTapDown: (details) {
+                widget.item.activate(
+                  details.globalPosition.dx.round(),
+                  details.globalPosition.dy.round(),
+                );
               },
-              child: Center(
-                child: SizedBox.square(
-                  dimension: 20,
-                  child: DBusImageWidget(
-                    height: 20,
-                    width: 20,
-                    themePath: widget.item.iconThemePath,
-                    image:
-                        widget.item.icon ?? const IconDataDBusImage(Icons.info),
+              child: Listener(
+                onPointerSignal: (event) {
+                  if (event is PointerScrollEvent) {
+                    if (event.scrollDelta.dx != 0) {
+                      widget.item.scroll(
+                        event.scrollDelta.dx.round(),
+                        ScrollOrientation.horizontal,
+                      );
+                    }
+
+                    if (event.scrollDelta.dy != 0) {
+                      widget.item.scroll(
+                        event.scrollDelta.dy.round(),
+                        ScrollOrientation.vertical,
+                      );
+                    }
+                  }
+                },
+                child: Center(
+                  child: SizedBox.square(
+                    dimension: 20,
+                    child: DBusImageWidget(
+                      height: 20,
+                      width: 20,
+                      themePath: widget.item.iconThemePath,
+                      image: widget.item.icon ??
+                          const IconDataDBusImage(Icons.info),
+                    ),
                   ),
                 ),
               ),

@@ -16,7 +16,7 @@ limitations under the License.
 
 import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
-import 'package:pangolin/widgets/global/surface/surface_layer.dart';
+import 'package:pangolin/widgets/surface/surface_layer.dart';
 
 class Taskbar extends StatefulWidget {
   final List<Widget> leading;

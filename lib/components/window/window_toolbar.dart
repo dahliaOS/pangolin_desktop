@@ -18,10 +18,8 @@ import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pangolin/components/shell/effects.dart';
-import 'package:pangolin/utils/context_menus/context_menu.dart';
-import 'package:pangolin/utils/context_menus/context_menu_item.dart';
-import 'package:pangolin/utils/context_menus/core/context_menu_region.dart';
 import 'package:pangolin/utils/wm/wm.dart';
+import 'package:pangolin/widgets/context_menu.dart';
 
 class PangolinWindowToolbar extends StatefulWidget {
   static const double dockEdgeSize = 40;
@@ -53,64 +51,59 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
     final fgColor = !context.theme.darkMode ? Colors.grey[900]! : Colors.white;
 
     return GestureDetector(
-      child: ContextMenuRegion(
-        contextMenu: ContextMenu(
-          items: [
-            ContextMenuItem(
-              icon: Icons.close,
-              //TODO Localize
-              title: "Close Window",
-              onTap: () => onClose(properties),
-              shortcut: "",
-            ),
-            ContextMenuItem(
-              icon: Icons.minimize,
-              //TODO Localize
-              title: "Minimize Window",
-              onTap: () => onMinimize(properties, layout),
-              shortcut: "",
-            ),
-            ContextMenuItem(
-              icon: Icons.info_outline_rounded,
-              //TODO Localize
-              title: "App Info",
-              onTap: () {
-                showDialog(
-                  context: context,
-                  builder: (context) => AlertDialog(
-                    elevation: 1.0,
-                    backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-                    content: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        if (properties.info.icon != null)
-                          Image(image: properties.info.icon!)
-                        else
-                          const Icon(Icons.apps),
-                        const SizedBox(
-                          height: 16,
-                        ),
-                        Text(properties.info.title)
-                      ],
-                    ),
-                    actions: [
-                      TextButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: const Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text("Close"),
-                        ),
-                      )
+      child: ContextMenu(
+        entries: [
+          ContextMenuItem(
+            leading: const Icon(Icons.close),
+            //TODO Localize
+            child: const Text("Close Window"),
+            onTap: () => onClose(properties),
+          ),
+          ContextMenuItem(
+            leading: const Icon(Icons.minimize),
+            //TODO Localize
+            child: const Text("Minimize Window"),
+            onTap: () => onMinimize(properties, layout),
+          ),
+          ContextMenuItem(
+            leading: const Icon(Icons.info_outline_rounded),
+            //TODO Localize
+            child: const Text("App Info"),
+            onTap: () {
+              showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                  elevation: 1.0,
+                  backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                  content: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      if (properties.info.icon != null)
+                        Image(image: properties.info.icon!)
+                      else
+                        const Icon(Icons.apps),
+                      const SizedBox(
+                        height: 16,
+                      ),
+                      Text(properties.info.title)
                     ],
                   ),
-                );
-              },
-              shortcut: "",
-            ),
-          ],
-        ),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Text("Close"),
+                      ),
+                    )
+                  ],
+                ),
+              );
+            },
+          ),
+        ],
         child: SizedBox(
           height: 40,
           child: Material(

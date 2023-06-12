@@ -3,10 +3,10 @@ import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/services/dbus/image.dart';
 import 'package:pangolin/services/notifications.dart';
-import 'package:pangolin/widgets/global/dbus/image.dart';
-import 'package:pangolin/widgets/global/markup.dart';
-import 'package:pangolin/widgets/global/separated_flex.dart';
-import 'package:pangolin/widgets/global/surface/surface_layer.dart';
+import 'package:pangolin/widgets/dbus/image.dart';
+import 'package:pangolin/widgets/markup.dart';
+import 'package:pangolin/widgets/separated_flex.dart';
+import 'package:pangolin/widgets/surface/surface_layer.dart';
 
 class NotificationView extends StatelessWidget {
   final UserNotification notification;

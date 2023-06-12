@@ -8,8 +8,8 @@ import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/services/notifications.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/wm/wm.dart';
-import 'package:pangolin/widgets/global/separated_flex.dart';
-import 'package:pangolin/widgets/global/surface/surface_layer.dart';
+import 'package:pangolin/widgets/separated_flex.dart';
+import 'package:pangolin/widgets/surface/surface_layer.dart';
 
 class NotificationsOverlay extends ShellOverlay {
   static const String overlayId = "notifications";

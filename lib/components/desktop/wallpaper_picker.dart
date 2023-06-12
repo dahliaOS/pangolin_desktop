@@ -19,8 +19,8 @@ import 'package:flutter/material.dart';
 import 'package:pangolin/utils/api_models/bing_wallpaper_api_model.dart';
 import 'package:pangolin/utils/api_models/wallpaper_api_model.dart';
 import 'package:pangolin/utils/data/globals.dart';
-import 'package:pangolin/widgets/global/resource/image/image.dart';
-import 'package:pangolin/widgets/global/surface/surface_layer.dart';
+import 'package:pangolin/widgets/resource/image/image.dart';
+import 'package:pangolin/widgets/surface/surface_layer.dart';
 import 'package:zenit_ui/zenit_ui.dart';
 
 class WallpaperPicker extends StatefulWidget {

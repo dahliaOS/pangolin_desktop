@@ -18,7 +18,7 @@ import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/overlays/quick_settings/widgets/qs_titlebar.dart';
 import 'package:pangolin/utils/data/native_names.dart';
-import 'package:pangolin/widgets/global/quick_button.dart';
+import 'package:pangolin/widgets/quick_button.dart';
 import 'package:yatl_flutter/yatl_flutter.dart';
 
 class QsLanguagePage extends StatelessWidget {

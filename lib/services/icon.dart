@@ -8,7 +8,7 @@ import 'package:dbus/dbus.dart';
 import 'package:gsettings/gsettings.dart';
 import 'package:logging/logging.dart';
 import 'package:pangolin/utils/other/benchmark.dart';
-import 'package:pangolin/widgets/global/resource/icon/cache.dart';
+import 'package:pangolin/widgets/resource/icon/cache.dart';
 import 'package:path/path.dart' as p;
 import 'package:xdg_desktop/xdg_desktop.dart';
 import 'package:xdg_directories/xdg_directories.dart' as xdg;

@@ -19,10 +19,8 @@ import 'package:flutter/material.dart';
 import 'package:pangolin/components/desktop/wallpaper_picker.dart';
 import 'package:pangolin/services/application.dart';
 import 'package:pangolin/services/wm.dart';
-import 'package:pangolin/utils/context_menus/context_menu.dart';
-import 'package:pangolin/utils/context_menus/context_menu_item.dart';
-import 'package:pangolin/utils/context_menus/core/context_menu_region.dart';
-import 'package:pangolin/widgets/global/resource/image/image.dart';
+import 'package:pangolin/widgets/context_menu.dart';
+import 'package:pangolin/widgets/resource/image/image.dart';
 import 'package:provider/provider.dart';
 
 class WallpaperLayer extends StatelessWidget
@@ -54,33 +52,29 @@ class _WallpaperContextMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ContextMenuRegion(
-      contextMenu: ContextMenu(
-        items: [
-          ContextMenuItem(
-            onTap: () {
-              showDialog(
-                barrierColor: Colors.transparent,
-                context: context,
-                builder: (context) {
-                  return const WallpaperPicker();
-                },
-              );
-            },
-            icon: Icons.image,
-            title: "Change Wallpaper",
-            shortcut: "",
-          ),
-          ContextMenuItem(
-            onTap: () {
-              ApplicationService.current.startApp("io.dahlia.settings");
-            },
-            icon: Icons.settings_outlined,
-            title: "Settings",
-            shortcut: "",
-          ),
-        ],
-      ),
+    return ContextMenu(
+      entries: [
+        ContextMenuItem(
+          onTap: () {
+            showDialog(
+              barrierColor: Colors.transparent,
+              context: context,
+              builder: (context) {
+                return const WallpaperPicker();
+              },
+            );
+          },
+          leading: const Icon(Icons.image),
+          child: const Text("Change Wallpaper"),
+        ),
+        ContextMenuItem(
+          onTap: () {
+            ApplicationService.current.startApp("io.dahlia.settings");
+          },
+          leading: const Icon(Icons.settings_outlined),
+          child: const Text("Settings"),
+        ),
+      ],
       child: child,
     );
   }

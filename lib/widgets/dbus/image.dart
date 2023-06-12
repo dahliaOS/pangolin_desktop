@@ -5,8 +5,8 @@ import 'dart:ui' as ui;
 import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/services/dbus/image.dart';
-import 'package:pangolin/widgets/global/resource/icon/icon.dart';
-import 'package:pangolin/widgets/global/resource/image/image.dart';
+import 'package:pangolin/widgets/resource/icon/icon.dart';
+import 'package:pangolin/widgets/resource/image/image.dart';
 
 class DBusImageWidget extends StatefulWidget {
   final DBusImage image;

@@ -18,12 +18,10 @@ import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/services/application.dart';
 import 'package:pangolin/services/wm.dart';
-import 'package:pangolin/utils/context_menus/context_menu.dart';
-import 'package:pangolin/utils/context_menus/context_menu_item.dart';
-import 'package:pangolin/utils/context_menus/core/context_menu_region.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/wm/wm.dart';
-import 'package:pangolin/widgets/global/resource/auto_image.dart';
+import 'package:pangolin/widgets/context_menu.dart';
+import 'package:pangolin/widgets/resource/auto_image.dart';
 import 'package:xdg_desktop/xdg_desktop.dart';
 import 'package:yatl_flutter/yatl_flutter.dart';
 
@@ -105,37 +103,32 @@ class _TaskbarItemState extends State<TaskbarItem>
         child: SizedBox(
           height: 44,
           width: 42,
-          child: ContextMenuRegion(
-            centerAboveElement: true,
-            useLongPress: false,
-            contextMenu: ContextMenu(
-              items: [
-                ContextMenuItem(
-                  icon: Icons.info_outline_rounded,
-                  title: widget.entry.name.resolve(context.locale),
-                  onTap: () {},
-                  shortcut: "",
-                ),
-                ContextMenuItem(
-                  icon: Icons.push_pin_outlined,
-                  title: service.pinnedApps.contains(widget.entry.id)
+          child: ContextMenu(
+            entries: [
+              ContextMenuItem(
+                leading: const Icon(Icons.info_outline_rounded),
+                child: Text(widget.entry.name.resolve(context.locale)),
+                onTap: () {},
+              ),
+              ContextMenuItem(
+                leading: const Icon(Icons.push_pin_outlined),
+                child: Text(
+                  service.pinnedApps.contains(widget.entry.id)
                       ? "Unpin from Taskbar"
                       : "Pin to Taskbar",
-                  onTap: () {
-                    service.togglePinnedApp(widget.entry.id);
-                  },
-                  shortcut: "",
                 ),
-                if (appIsRunning)
-                  ContextMenuItem(
-                    icon: Icons.close_outlined,
-                    title: "Close Window",
-                    onTap: () => WindowManagerService.current
-                        .pop(entry!.registry.info.id),
-                    shortcut: "",
-                  ),
-              ],
-            ),
+                onTap: () {
+                  service.togglePinnedApp(widget.entry.id);
+                },
+              ),
+              if (appIsRunning)
+                ContextMenuItem(
+                  leading: const Icon(Icons.close_outlined),
+                  child: const Text("Close Window"),
+                  onTap: () =>
+                      WindowManagerService.current.pop(entry!.registry.info.id),
+                ),
+            ],
             child: Material(
               borderRadius: BorderRadius.circular(4),
               color: appIsRunning

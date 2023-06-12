@@ -2,7 +2,7 @@ import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/services/wm.dart';
 import 'package:pangolin/utils/wm/layout.dart';
-import 'package:pangolin/widgets/global/surface/surface_layer.dart';
+import 'package:pangolin/widgets/surface/surface_layer.dart';
 import 'package:provider/provider.dart';
 import 'package:utopia_wm/wm.dart';
 

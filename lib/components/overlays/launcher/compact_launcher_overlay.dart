@@ -24,8 +24,8 @@ import 'package:pangolin/services/application.dart';
 import 'package:pangolin/utils/action_manager/action_manager.dart';
 import 'package:pangolin/utils/data/globals.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
-import 'package:pangolin/widgets/global/quick_button.dart';
-import 'package:pangolin/widgets/global/surface/surface_layer.dart';
+import 'package:pangolin/widgets/quick_button.dart';
+import 'package:pangolin/widgets/surface/surface_layer.dart';
 import 'package:xdg_desktop/xdg_desktop.dart';
 import 'package:yatl_flutter/yatl_flutter.dart';
 

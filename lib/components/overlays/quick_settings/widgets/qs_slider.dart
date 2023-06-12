@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 import 'package:flutter/material.dart';
-import 'package:pangolin/widgets/global/quick_button.dart';
+import 'package:pangolin/widgets/quick_button.dart';
 import 'package:zenit_ui/zenit_ui.dart';
 
 class QsSlider extends StatelessWidget {

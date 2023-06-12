@@ -18,7 +18,7 @@ import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/overlays/launcher/compact_launcher_overlay.dart';
 import 'package:pangolin/components/taskbar/taskbar_element.dart';
-import 'package:pangolin/widgets/global/resource/icon/icon.dart';
+import 'package:pangolin/widgets/resource/icon/icon.dart';
 
 class LauncherButton extends StatelessWidget {
   const LauncherButton({super.key});

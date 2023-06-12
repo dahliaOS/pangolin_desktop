@@ -15,7 +15,7 @@ limitations under the License.
 */
 
 import 'package:flutter/material.dart';
-import 'package:pangolin/widgets/global/surface/surface_layer.dart';
+import 'package:pangolin/widgets/surface/surface_layer.dart';
 
 class PangolinWindowSurface extends StatelessWidget {
   const PangolinWindowSurface({super.key});

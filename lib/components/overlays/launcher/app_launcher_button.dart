@@ -19,8 +19,8 @@ import 'package:flutter/material.dart';
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/services/application.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
-import 'package:pangolin/widgets/global/resource/auto_image.dart';
 import 'package:pangolin/widgets/quick_button.dart';
+import 'package:pangolin/widgets/resource/auto_image.dart';
 import 'package:xdg_desktop/xdg_desktop.dart';
 import 'package:yatl_flutter/yatl_flutter.dart';
 

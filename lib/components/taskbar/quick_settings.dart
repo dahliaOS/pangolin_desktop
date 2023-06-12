@@ -21,8 +21,8 @@ import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/components/taskbar/taskbar_element.dart';
 import 'package:pangolin/services/date_time.dart';
 import 'package:pangolin/services/power.dart';
-import 'package:pangolin/widgets/global/battery_indicator.dart';
-import 'package:pangolin/widgets/global/separated_flex.dart';
+import 'package:pangolin/widgets/battery_indicator.dart';
+import 'package:pangolin/widgets/separated_flex.dart';
 import 'package:zenit_ui/zenit_ui.dart';
 
 class QuickSettingsButton extends StatelessWidget

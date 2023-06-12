@@ -1,35 +1,34 @@
 import 'package:dbus/dbus.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/services/dbus/menu.dart';
-import 'package:pangolin/widgets/global/dbus/image.dart';
+import 'package:pangolin/widgets/context_menu.dart';
+import 'package:pangolin/widgets/dbus/image.dart';
 
-class DBusMenuEntry extends PopupMenuEntry<int> {
+class DBusMenuEntry extends BaseContextMenuItem {
   final MenuEntry entry;
 
-  const DBusMenuEntry(this.entry);
+  const DBusMenuEntry(this.entry) : super();
 
   @override
-  State<DBusMenuEntry> createState() => _DBusMenuEntryState();
-
-  @override
-  double get height {
-    switch (entry.type) {
-      case MenuEntryType.standard:
-        return 32;
-      case MenuEntryType.separator:
-        return 8;
-    }
+  Widget build(BuildContext context) {
+    return _DBusMenuEntry(entry);
   }
-
-  @override
-  bool represents(int? value) => value == entry.id;
 }
 
-class _DBusMenuEntryState extends State<DBusMenuEntry> {
+class _DBusMenuEntry extends StatefulWidget {
+  final MenuEntry entry;
+
+  const _DBusMenuEntry(this.entry);
+
+  @override
+  State<_DBusMenuEntry> createState() => _DBusMenuEntryState();
+}
+
+class _DBusMenuEntryState extends State<_DBusMenuEntry> {
   late MenuEntry entry = widget.entry;
 
   @override
-  void didUpdateWidget(covariant DBusMenuEntry oldWidget) {
+  void didUpdateWidget(covariant _DBusMenuEntry oldWidget) {
     if (widget.entry != oldWidget.entry) {
       entry = widget.entry;
     }
@@ -47,14 +46,13 @@ class _DBusMenuEntryState extends State<DBusMenuEntry> {
       type: MaterialType.transparency,
       child: SizedBox(
         width: double.infinity,
-        height: widget.height,
-        child: ListTile(
-          dense: true,
-          enabled: entry.enabled,
-          visualDensity: const VisualDensity(vertical: -4),
-          shape: const RoundedRectangleBorder(),
-          minLeadingWidth: 16,
-          leading: SizedBox.square(
+        child: MenuItemButton(
+          style: MenuItemButton.styleFrom(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            minimumSize: const Size(0, 40),
+            maximumSize: const Size(double.infinity, 40),
+          ),
+          leadingIcon: SizedBox.square(
             dimension: 16,
             child: entry.icon != null
                 ? DBusImageWidget(
@@ -64,17 +62,18 @@ class _DBusMenuEntryState extends State<DBusMenuEntry> {
                   )
                 : null,
           ),
-          onTap: () {
-            entry.object.callEvent(
-              entry.id,
-              "clicked",
-              DBusArray.variant([]),
-              DateTime.now().millisecondsSinceEpoch,
-            );
-            Navigator.pop(context);
-          },
-          trailing: _getTrailing(context),
-          title: Text(entry.label.replaceAll("_", "")),
+          onPressed: entry.enabled
+              ? () {
+                  entry.object.callEvent(
+                    entry.id,
+                    "clicked",
+                    DBusArray.variant([]),
+                    (DateTime.now().millisecondsSinceEpoch / 1000).round(),
+                  );
+                }
+              : null,
+          trailingIcon: _getTrailing(context),
+          child: Text(entry.label.replaceAll("_", "")),
         ),
       ),
     );

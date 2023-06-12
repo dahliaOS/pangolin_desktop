@@ -21,8 +21,8 @@ import 'package:flutter/material.dart';
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/utils/action_manager/action_manager.dart';
 import 'package:pangolin/utils/data/globals.dart';
-import 'package:pangolin/widgets/global/power_account_button.dart';
-import 'package:pangolin/widgets/global/surface/surface_layer.dart';
+import 'package:pangolin/widgets/power_account_button.dart';
+import 'package:pangolin/widgets/surface/surface_layer.dart';
 import 'package:zenit_ui/zenit_ui.dart';
 
 class AccountOverlay extends ShellOverlay {
