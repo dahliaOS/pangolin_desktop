@@ -61,8 +61,8 @@ enum _TransitionDirection {
   const _TransitionDirection(this.value);
 }
 
-class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
-    with SingleTickerProviderStateMixin, ShellOverlayState {
+class _QuickSettingsOverlayState
+    extends ShellOverlayState<QuickSettingsOverlay> {
   static const Map<String, Widget> routes = {
     '/': QsMain(),
     '/pages/account': QsAccountPage(),
@@ -71,29 +71,19 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
     '/pages/language': QsLanguagePage(),
   };
 
-  late final AnimationController ac = AnimationController(
-    vsync: this,
-    duration: Constants.animationDuration,
-  );
   late final QsControllerState qsController = QsControllerState._(this);
-
-  @override
-  void dispose() {
-    ac.dispose();
-    super.dispose();
-  }
 
   @override
   Future<void> requestShow(Map<String, dynamic> args) async {
     routeStack = ['/'];
     controller.showing = true;
-    await ac.forward();
+    await animationController.forward();
   }
 
   @override
   Future<void> requestDismiss(Map<String, dynamic> args) async {
     controller.showing = false;
-    await ac.reverse();
+    await animationController.reverse();
   }
 
   void pushRoute(String name) {
@@ -120,13 +110,7 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
 
   @override
   Widget build(BuildContext context) {
-    // _getTime(context);
-    final Animation<double> animation = CurvedAnimation(
-      parent: ac,
-      curve: Constants.animationCurve,
-    );
-
-    if (!controller.showing && ac.value == 0) return const SizedBox();
+    if (shouldHide) return const SizedBox();
 
     return Positioned(
       bottom: WindowManagerService.current.controller.wmInsets.bottom + 8.0,

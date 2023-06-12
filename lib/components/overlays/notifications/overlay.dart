@@ -21,16 +21,10 @@ class NotificationsOverlay extends ShellOverlay {
       _NotificationsOverlayState();
 }
 
-class _NotificationsOverlayState extends State<NotificationsOverlay>
+class _NotificationsOverlayState extends ShellOverlayState<NotificationsOverlay>
     with
-        ShellOverlayState,
-        TickerProviderStateMixin,
         StateServiceListener<NotificationService, NotificationsOverlay>,
         NotificationServiceListener {
-  late final AnimationController ac = AnimationController(
-    vsync: this,
-    duration: Constants.animationDuration,
-  );
   final Map<int, NotificationWrapperData> notifications = {};
 
   @override
@@ -39,7 +33,6 @@ class _NotificationsOverlayState extends State<NotificationsOverlay>
       onNotificationRemoved(id, NotificationCloseReason.closed);
     }
     notifications.clear();
-    ac.dispose();
 
     super.dispose();
   }
@@ -108,13 +101,13 @@ class _NotificationsOverlayState extends State<NotificationsOverlay>
   @override
   FutureOr<void> requestShow(Map<String, dynamic> args) async {
     controller.showing = true;
-    await ac.forward();
+    animationController.forward();
   }
 
   @override
   FutureOr<void> requestDismiss(Map<String, dynamic> args) async {
     controller.showing = false;
-    await ac.reverse();
+    animationController.reverse();
   }
 
   Future<void> _dismissNotification(int id) async {
@@ -128,13 +121,9 @@ class _NotificationsOverlayState extends State<NotificationsOverlay>
 
   @override
   Widget buildChild(BuildContext context, NotificationService service) {
-    if (!controller.showing && ac.value == 0) return const SizedBox();
+    if (shouldHide) return const SizedBox();
 
     final EdgeInsets wmInsets = WindowHierarchy.of(context).wmInsets;
-    final Animation<double> animation = CurvedAnimation(
-      parent: ac,
-      curve: Constants.animationCurve,
-    );
 
     return Positioned(
       right: wmInsets.right + 8,

@@ -53,7 +53,7 @@ class Shell extends StatefulWidget {
 }
 
 class ShellState extends State<Shell>
-    with StateServiceListener<TrayService, Shell> {
+    with TickerProviderStateMixin, StateServiceListener<TrayService, Shell> {
   final List<String> minimizedWindowsCache = [];
 
   @override
@@ -156,15 +156,6 @@ class ShellState extends State<Shell>
               ],
             ),
             ...widget.overlays,
-            Positioned.fill(
-              child: Listener(
-                onPointerDown: (event) {
-                  WindowHierarchy.of(context, listen: false)
-                      .removeFromStableId("shell:context_menu");
-                },
-                behavior: HitTestBehavior.translucent,
-              ),
-            ),
             Positioned(
               width: 420,
               right: WindowHierarchy.of(context).wmInsets.right + 8,
@@ -217,8 +208,18 @@ abstract class ShellOverlay extends StatefulWidget {
   ShellOverlayState createState();
 }
 
-mixin ShellOverlayState<T extends ShellOverlay> on State<T> {
+abstract class ShellOverlayState<T extends ShellOverlay> extends State<T>
+    with TickerProviderStateMixin {
+  late final AnimationController animationController = AnimationController(
+    vsync: this,
+    duration: Constants.animationDuration,
+  );
   ShellOverlayController get controller => widget._controller;
+
+  Animation<double> get animation => CurvedAnimation(
+        parent: animationController,
+        curve: Constants.animationCurve,
+      );
 
   @override
   void initState() {
@@ -230,6 +231,7 @@ mixin ShellOverlayState<T extends ShellOverlay> on State<T> {
   @override
   void dispose() {
     controller.showingNotifier.removeListener(_showListener);
+    animationController.dispose();
     super.dispose();
   }
 
@@ -240,4 +242,6 @@ mixin ShellOverlayState<T extends ShellOverlay> on State<T> {
   void _showListener() {
     setState(() {});
   }
+
+  bool get shouldHide => !controller.showing && animationController.value == 0;
 }

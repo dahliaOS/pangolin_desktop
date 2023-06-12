@@ -11,31 +11,25 @@ class WelcomeOverlay extends ShellOverlay {
   ShellOverlayState<WelcomeOverlay> createState() => _WelcomeOverlayState();
 }
 
-class _WelcomeOverlayState extends State<WelcomeOverlay>
-    with ShellOverlayState, SingleTickerProviderStateMixin {
-  late final AnimationController _ac = AnimationController(
-    vsync: this,
-    duration: const Duration(milliseconds: 300),
-  );
-
+class _WelcomeOverlayState extends ShellOverlayState<WelcomeOverlay> {
   @override
   FutureOr<void> requestShow(Map<String, dynamic> args) {
-    _ac.value = 1;
+    animationController.value = 1;
     controller.showing = true;
   }
 
   @override
   FutureOr<void> requestDismiss(Map<String, dynamic> args) async {
-    await _ac.reverse();
+    animationController.reverse();
     controller.showing = false;
   }
 
   @override
   Widget build(BuildContext context) {
-    if (!controller.showing) return const SizedBox();
+    if (shouldHide) return const SizedBox();
 
     return FadeTransition(
-      opacity: CurvedAnimation(parent: _ac, curve: decelerateEasing),
+      opacity: animation,
       child: const Stack(
         children: [
           Positioned.fill(

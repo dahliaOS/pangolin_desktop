@@ -23,11 +23,8 @@ class TrayMenuOverlay extends ShellOverlay {
   ShellOverlayState<TrayMenuOverlay> createState() => _TrayMenuOverlayState();
 }
 
-class _TrayMenuOverlayState extends State<TrayMenuOverlay>
-    with
-        SingleTickerProviderStateMixin,
-        ShellOverlayState,
-        StateServiceListener<TrayService, TrayMenuOverlay> {
+class _TrayMenuOverlayState extends ShellOverlayState<TrayMenuOverlay>
+    with StateServiceListener<TrayService, TrayMenuOverlay> {
   static const double _itemSize = 40.0;
   static const double _itemPadding = 8.0;
   static const double _sidePadding = 12.0;
@@ -35,25 +32,11 @@ class _TrayMenuOverlayState extends State<TrayMenuOverlay>
   static const double _layoutWidth = _itemSize * _itemRowCount +
       _itemPadding * (_itemRowCount - 1) +
       _sidePadding * 2;
-
-  late final AnimationController ac =
-      AnimationController(vsync: this, duration: Constants.animationDuration);
   Offset? origin;
 
   @override
-  void dispose() {
-    ac.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget buildChild(BuildContext context, TrayService service) {
-    final Animation<double> animation = CurvedAnimation(
-      parent: ac,
-      curve: Constants.animationCurve,
-    );
-
-    if (!controller.showing && ac.value == 0) return const SizedBox();
+    if (shouldHide) return const SizedBox();
 
     final origin = this.origin ??
         Offset(
@@ -116,14 +99,14 @@ class _TrayMenuOverlayState extends State<TrayMenuOverlay>
   @override
   FutureOr<void> requestDismiss(Map<String, dynamic> args) async {
     controller.showing = false;
-    await ac.reverse();
+    await animationController.reverse();
   }
 
   @override
   FutureOr<void> requestShow(Map<String, dynamic> args) async {
     origin = args["origin"] as Offset?;
     controller.showing = true;
-    await ac.forward();
+    await animationController.forward();
   }
 }
 

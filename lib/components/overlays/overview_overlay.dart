@@ -32,27 +32,27 @@ class OverviewOverlay extends ShellOverlay {
   _OverviewOverlayState createState() => _OverviewOverlayState();
 }
 
-class _OverviewOverlayState extends State<OverviewOverlay>
-    with
-        ShellOverlayState,
-        StateServiceListener<CustomizationService, OverviewOverlay> {
+class _OverviewOverlayState extends ShellOverlayState<OverviewOverlay>
+    with StateServiceListener<CustomizationService, OverviewOverlay> {
   @override
   FutureOr<void> requestShow(Map<String, dynamic> args) {
     controller.showing = true;
+    animationController.value = 1;
   }
 
   @override
   FutureOr<void> requestDismiss(Map<String, dynamic> args) {
     controller.showing = false;
+    animationController.value = 0;
   }
 
   @override
   Widget buildChild(BuildContext context, CustomizationService service) {
+    if (shouldHide) return const SizedBox();
+
     final WindowHierarchyController hierarchy = WindowHierarchy.of(context);
     final ImageResource image = service.wallpaper;
     final theme = ZenitTheme.of(context);
-
-    if (!controller.showing) return const SizedBox();
 
     return Positioned.fromRect(
       rect: hierarchy.wmBounds,

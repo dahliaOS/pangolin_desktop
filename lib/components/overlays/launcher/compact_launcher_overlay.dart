@@ -38,39 +38,23 @@ class CompactLauncherOverlay extends ShellOverlay {
   _CompactLauncherOverlayState createState() => _CompactLauncherOverlayState();
 }
 
-class _CompactLauncherOverlayState extends State<CompactLauncherOverlay>
-    with SingleTickerProviderStateMixin, ShellOverlayState {
-  late final AnimationController ac = AnimationController(
-    vsync: this,
-    duration: Constants.animationDuration,
-  );
-
-  @override
-  void dispose() {
-    ac.dispose();
-    super.dispose();
-  }
-
+class _CompactLauncherOverlayState
+    extends ShellOverlayState<CompactLauncherOverlay> {
   @override
   Future<void> requestShow(Map<String, dynamic> args) async {
     controller.showing = true;
-    await ac.forward();
+    animationController.forward();
   }
 
   @override
   Future<void> requestDismiss(Map<String, dynamic> args) async {
     controller.showing = false;
-    await ac.reverse();
+    animationController.reverse();
   }
 
   @override
   Widget build(BuildContext context) {
-    final Animation<double> animation = CurvedAnimation(
-      parent: ac,
-      curve: Constants.animationCurve,
-    );
-
-    if (!controller.showing && ac.value == 0) return const SizedBox();
+    if (shouldHide) return const SizedBox();
 
     return Positioned(
       bottom: 56,

@@ -34,46 +34,22 @@ class PowerOverlay extends ShellOverlay {
   _PowerOverlayState createState() => _PowerOverlayState();
 }
 
-class _PowerOverlayState extends State<PowerOverlay>
-    with SingleTickerProviderStateMixin, ShellOverlayState {
-  late AnimationController ac;
-
-  @override
-  void initState() {
-    super.initState();
-    ac = AnimationController(
-      vsync: this,
-      duration: Constants.animationDuration,
-    );
-    ac.forward();
-  }
-
-  @override
-  void dispose() {
-    ac.dispose();
-    super.dispose();
-  }
-
+class _PowerOverlayState extends ShellOverlayState<PowerOverlay> {
   @override
   FutureOr<void> requestShow(Map<String, dynamic> args) async {
     controller.showing = true;
-    await ac.forward();
+    animationController.forward();
   }
 
   @override
   FutureOr<void> requestDismiss(Map<String, dynamic> args) async {
-    await ac.reverse();
+    animationController.reverse();
     controller.showing = false;
   }
 
   @override
   Widget build(BuildContext context) {
-    if (!controller.showing) return const SizedBox();
-
-    final Animation<double> animation = CurvedAnimation(
-      parent: ac,
-      curve: Constants.animationCurve,
-    );
+    if (shouldHide) return const SizedBox();
 
     return Stack(
       children: [

@@ -34,47 +34,30 @@ class SearchOverlay extends ShellOverlay {
   _SearchOverlayState createState() => _SearchOverlayState();
 }
 
-class _SearchOverlayState extends State<SearchOverlay>
-    with
-        SingleTickerProviderStateMixin,
-        ShellOverlayState,
-        StateServiceListener<CustomizationService, SearchOverlay> {
-  late final AnimationController ac = AnimationController(
-    vsync: this,
-    duration: Constants.animationDuration,
-  );
+class _SearchOverlayState extends ShellOverlayState<SearchOverlay>
+    with StateServiceListener<CustomizationService, SearchOverlay> {
   final _controller = TextEditingController();
   final _focusNode = FocusNode();
   final List<DesktopEntry> results = [];
 
   @override
-  void dispose() {
-    ac.dispose();
-    super.dispose();
-  }
-
-  @override
   Future<void> requestShow(Map<String, Object?> args) async {
     _controller.text = args['searchQuery'] as String? ?? "";
     controller.showing = true;
-    await ac.forward();
+    await animationController.forward();
   }
 
   @override
   Future<void> requestDismiss(Map<String, dynamic> args) async {
     controller.showing = false;
-    await ac.reverse();
+    await animationController.reverse();
   }
 
   @override
   Widget buildChild(BuildContext context, CustomizationService service) {
-    final Animation<double> animation = CurvedAnimation(
-      parent: ac,
-      curve: Constants.animationCurve,
-    );
-    _focusNode.requestFocus();
+    if (shouldHide) return const SizedBox();
 
-    if (!controller.showing && ac.value == 0) return const SizedBox();
+    _focusNode.requestFocus();
 
     return Positioned(
       top: 64,
