@@ -45,8 +45,18 @@ class _DbusTrayService extends TrayService with DBusService {
     final StatusNotifierItemObject object =
         StatusNotifierItemObject(client!, name, DBusObjectPath(path));
 
+    final int existingItem = _items.indexWhere(
+      (e) => e.object.name == name || e.object.path.value == path,
+    );
+
     final StatusNotifierItem item = await StatusNotifierItem.fromObject(object);
-    _items.add(item);
+
+    if (existingItem >= 0) {
+      _items[existingItem] = item;
+    } else {
+      _items.add(item);
+    }
+
     backend.emitStatusNotifierItemRegistered("$name$path");
     backend.emitPropertiesChanged(
       backend.interface,

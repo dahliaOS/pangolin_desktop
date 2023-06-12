@@ -27,8 +27,7 @@ import 'package:pangolin/components/taskbar/quick_settings.dart';
 import 'package:pangolin/components/taskbar/search.dart';
 import 'package:pangolin/components/taskbar/show_desktop.dart';
 import 'package:pangolin/components/taskbar/taskbar.dart';
-import 'package:pangolin/components/taskbar/tray_item.dart';
-import 'package:pangolin/services/dbus/status_item.dart';
+import 'package:pangolin/components/taskbar/tray.dart';
 import 'package:pangolin/services/tray.dart';
 import 'package:pangolin/utils/wm/wm.dart';
 import 'package:provider/provider.dart';
@@ -139,27 +138,21 @@ class ShellState extends State<Shell>
                 behavior: HitTestBehavior.translucent,
               ),
             ),
-            Taskbar(
-              leading: const [
+            const Taskbar(
+              leading: [
                 LauncherButton(),
                 SearchButton(),
                 OverviewButton(),
               ],
               centerRelativeToScreen: true,
-              center: const [AppListElement()],
+              center: [AppListElement()],
               trailing: [
                 //TODO: here is the keyboard button
                 //KeyboardButton(),
-                ...service.items
-                    .where(
-                      (e) =>
-                          e.category !=
-                          StatusNotifierItemCategory.systemServices,
-                    )
-                    .map((e) => TrayItem(item: e)),
-                const QuickSettingsButton(),
-                const NotificationsButton(),
-                const ShowDesktopButton(),
+                TrayMenuButton(),
+                QuickSettingsButton(),
+                NotificationsButton(),
+                ShowDesktopButton(),
               ],
             ),
             ...widget.overlays,

@@ -1,4 +1,49 @@
 import 'package:flutter/material.dart';
+import 'package:pangolin/services/power.dart';
+
+typedef PowerServiceWidgetBuilder = Widget Function(
+  BuildContext context,
+  Widget? child,
+  int percentage,
+  bool charging,
+  bool powerSaver,
+);
+
+class PowerServiceBuilder extends StatelessWidget {
+  final PowerServiceWidgetBuilder builder;
+  final Widget? child;
+
+  const PowerServiceBuilder({
+    required this.builder,
+    this.child,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ListenableBuilder(
+      listenable: Listenable.merge([
+        PowerService.current.mainBattery,
+        PowerService.current.activeProfileNotifier,
+      ]),
+      builder: (context, child) {
+        final device = PowerService.current.mainBattery!;
+        final percentage = device.percentage.toInt();
+        final charging = device.state == UPowerDeviceState.charging;
+        final activeProfile = PowerService.current.activeProfile;
+
+        return builder(
+          context,
+          child,
+          percentage,
+          charging,
+          activeProfile == PowerProfile.powerSaver,
+        );
+      },
+      child: child,
+    );
+  }
+}
 
 class BatteryIndicator extends StatelessWidget {
   final BatteryIndicatorPainter? painter;

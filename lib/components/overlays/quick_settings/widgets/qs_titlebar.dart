@@ -16,6 +16,7 @@ limitations under the License.
 
 import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
+import 'package:pangolin/components/overlays/quick_settings/quick_settings_overlay.dart';
 import 'package:pangolin/widgets/global/quick_button.dart';
 
 class QsTitlebar extends StatelessWidget implements PreferredSizeWidget {
@@ -27,13 +28,14 @@ class QsTitlebar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = QsController.of(context);
     return SizedBox.fromSize(
       size: preferredSize,
       child: Row(
         children: [
-          if (leading == null && Navigator.canPop(context))
+          if (leading == null && controller.canPop())
             const BackButton()
-          else
+          else if (leading != null)
             leading!,
           if (title != null)
             QuickActionButton(
@@ -44,9 +46,7 @@ class QsTitlebar extends StatelessWidget implements PreferredSizeWidget {
                 height: 1.1,
                 color: context.theme.surfaceForegroundColor,
               ),
-            )
-          else
-            const SizedBox.shrink(),
+            ),
           const Spacer(),
           ...?trailing,
         ],
@@ -65,7 +65,7 @@ class BackButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return QuickActionButton(
       leading: const Icon(Icons.arrow_back),
-      onPressed: () => Navigator.pop(context),
+      onPressed: () => QsController.popRoute(context),
       margin: EdgeInsets.zero,
     );
   }

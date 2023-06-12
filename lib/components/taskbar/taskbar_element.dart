@@ -18,17 +18,25 @@ import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/shell/shell.dart';
 
+typedef ArgsBuilder = Map<String, dynamic> Function();
+
 class TaskbarElement extends StatefulWidget {
   final Widget child;
   final String? overlayID;
-  final Size? size;
+  final ArgsBuilder? buildShowArgs;
+  final double? width;
+  final double? height;
+  final bool shrinkWrap;
   final double? iconSize;
 
   const TaskbarElement({
     super.key,
     required this.child,
     this.overlayID,
-    this.size,
+    this.buildShowArgs,
+    this.width,
+    this.height,
+    this.shrinkWrap = false,
     this.iconSize,
   });
 
@@ -45,11 +53,24 @@ class _TaskbarElementState extends State<TaskbarElement> {
     final shell = Shell.of(context);
     final darkMode = theme.brightness == Brightness.dark;
 
-    return SizedBox.fromSize(
-      size: widget.size ?? const Size(48, 48),
+    final minSize = Size(
+      !widget.shrinkWrap ? 48.0 : 0.0,
+      !widget.shrinkWrap ? 48.0 : 0.0,
+    );
+
+    return ConstrainedBox(
+      constraints: BoxConstraints(
+        minWidth: widget.width != null ? widget.width! : minSize.width,
+        minHeight: widget.height != null ? widget.height! : minSize.height,
+        maxWidth: widget.width != null ? widget.width! : double.infinity,
+        maxHeight: widget.height != null ? widget.height! : double.infinity,
+      ),
       child: GestureDetector(
         onTap: widget.overlayID != null
-            ? () => shell.toggleOverlay(widget.overlayID!)
+            ? () => shell.toggleOverlay(
+                  widget.overlayID!,
+                  args: widget.buildShowArgs?.call() ?? const {},
+                )
             : null,
         child: MouseRegion(
           cursor: SystemMouseCursors.click,

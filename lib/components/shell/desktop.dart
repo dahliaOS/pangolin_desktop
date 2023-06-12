@@ -24,6 +24,7 @@ import 'package:pangolin/components/overlays/overview_overlay.dart';
 import 'package:pangolin/components/overlays/power_overlay.dart';
 import 'package:pangolin/components/overlays/quick_settings/quick_settings_overlay.dart';
 import 'package:pangolin/components/overlays/search/search_overlay.dart';
+import 'package:pangolin/components/overlays/tray_overlay.dart';
 import 'package:pangolin/components/overlays/welcome_overlay.dart';
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/services/wm.dart';
@@ -69,6 +70,7 @@ class _DesktopState extends State<Desktop> {
               AccountOverlay(),
               WelcomeOverlay(),
               NotificationsOverlay(),
+              TrayMenuOverlay(),
             ],
             onShellShown: (shell) {
               if (CustomizationService.current.showWelcomeScreen) {

@@ -69,13 +69,12 @@ class _DBusMenuEntryState extends State<DBusMenuEntry> {
               entry.id,
               "clicked",
               DBusArray.variant([]),
-              0, //DateTime.now().millisecondsSinceEpoch,
+              DateTime.now().millisecondsSinceEpoch,
             );
             Navigator.pop(context);
           },
           trailing: _getTrailing(context),
-          //TODO wait for https://github.com/ubuntu-flutter-community/mnemonic_label/issues/2 to be fixed
-          title: Text(entry.label),
+          title: Text(entry.label.replaceAll("_", "")),
         ),
       ),
     );

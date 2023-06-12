@@ -16,6 +16,7 @@ limitations under the License.
 
 import 'dart:async';
 
+import 'package:animations/animations.dart';
 import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/overlays/quick_settings/pages/qs_account_page.dart';
@@ -25,14 +26,18 @@ import 'package:pangolin/components/overlays/quick_settings/pages/qs_theme_page.
 import 'package:pangolin/components/overlays/quick_settings/widgets/qs_shortcut_button.dart';
 import 'package:pangolin/components/overlays/quick_settings/widgets/qs_slider.dart';
 import 'package:pangolin/components/overlays/quick_settings/widgets/qs_toggle_button.dart';
+import 'package:pangolin/components/overlays/quick_settings/widgets/qs_tray_item.dart';
 import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/services/date_time.dart';
 import 'package:pangolin/services/power.dart';
+import 'package:pangolin/services/tray.dart';
+import 'package:pangolin/services/wm.dart';
 import 'package:pangolin/utils/action_manager/action_manager.dart';
 import 'package:pangolin/utils/data/globals.dart';
 import 'package:pangolin/widgets/global/battery_indicator.dart';
 import 'package:pangolin/widgets/global/quick_button.dart';
 import 'package:pangolin/widgets/global/surface/surface_layer.dart';
+import 'package:provider/provider.dart';
 import 'package:yatl_flutter/yatl_flutter.dart';
 import 'package:zenit_ui/zenit_ui.dart';
 
@@ -45,12 +50,30 @@ class QuickSettingsOverlay extends ShellOverlay {
   _QuickSettingsOverlayState createState() => _QuickSettingsOverlayState();
 }
 
+enum _TransitionDirection {
+  forward(false),
+  reverse(true);
+
+  final bool value;
+
+  const _TransitionDirection(this.value);
+}
+
 class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
     with SingleTickerProviderStateMixin, ShellOverlayState {
+  static const Map<String, Widget> routes = {
+    '/': QsMain(),
+    '/pages/account': QsAccountPage(),
+    '/pages/network': QsNetworkPage(),
+    '/pages/theme': QsThemePage(),
+    '/pages/language': QsLanguagePage(),
+  };
+
   late final AnimationController ac = AnimationController(
     vsync: this,
     duration: Constants.animationDuration,
   );
+  late final QsControllerState qsController = QsControllerState._(this);
 
   @override
   void dispose() {
@@ -60,55 +83,38 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
 
   @override
   Future<void> requestShow(Map<String, dynamic> args) async {
+    routeStack = ['/'];
     controller.showing = true;
     await ac.forward();
   }
 
   @override
   Future<void> requestDismiss(Map<String, dynamic> args) async {
-    await ac.reverse();
     controller.showing = false;
+    await ac.reverse();
   }
 
-  PageRouteBuilder _customRouteTransition(Widget screen) {
-    return PageRouteBuilder(
-      transitionDuration: Constants.animationDuration,
-      reverseTransitionDuration: Constants.animationDuration,
-      pageBuilder: (context, animation, secondaryAnimation) => screen,
-      transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        final fadeAnimationIn = animation;
-
-        final fadeAnimationOut = Tween(
-          begin: 1.0,
-          end: 0.0,
-        ).animate(secondaryAnimation);
-
-        final scaleAnimationIn = Tween(
-          begin: 0.95,
-          end: 1.0,
-        ).animate(animation);
-
-        final scaleAnimationOut = Tween(
-          begin: 1.0,
-          end: 1.05,
-        ).animate(secondaryAnimation);
-
-        return FadeTransition(
-          opacity: fadeAnimationIn,
-          child: ScaleTransition(
-            scale: scaleAnimationIn,
-            child: FadeTransition(
-              opacity: fadeAnimationOut,
-              child: ScaleTransition(
-                scale: scaleAnimationOut,
-                child: child,
-              ),
-            ),
-          ),
-        );
-      },
-    );
+  void pushRoute(String name) {
+    direction = _TransitionDirection.forward;
+    routeStack.add(name);
+    setState(() {});
+    qsController._notify();
   }
+
+  void popRoute() {
+    if (!canPop()) return;
+    direction = _TransitionDirection.reverse;
+    routeStack.removeLast();
+    setState(() {});
+    qsController._notify();
+  }
+
+  bool canPop() {
+    return routeStack.length > 1;
+  }
+
+  List<String> routeStack = ['/'];
+  _TransitionDirection direction = _TransitionDirection.forward;
 
   @override
   Widget build(BuildContext context) {
@@ -118,45 +124,59 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
       curve: Constants.animationCurve,
     );
 
-    if (!controller.showing) return const SizedBox();
+    if (!controller.showing && ac.value == 0) return const SizedBox();
 
     return Positioned(
-      bottom: 56, // Bottom insets + some padding (8)
-      right: 8,
-      child: AnimatedBuilder(
-        animation: animation,
-        builder: (context, child) => FadeTransition(
-          opacity: animation,
-          child: ScaleTransition(
-            scale: animation,
-            alignment: const FractionalOffset(0.8, 1.0),
+      bottom: WindowManagerService.current.controller.wmInsets.bottom + 8.0,
+      right: WindowManagerService.current.controller.wmInsets.right + 8,
+      child: FadeTransition(
+        opacity: animation,
+        child: ScaleTransition(
+          scale: animation,
+          alignment: const FractionalOffset(0.8, 1.0),
+          child: AnimatedSize(
+            duration: Constants.animationDuration,
+            curve: decelerateEasing,
             child: SurfaceLayer(
               shape: Constants.bigShape,
               width: 524,
-              height: 460,
               dropShadow: true,
               outline: true,
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: MaterialApp(
-                  onGenerateInitialRoutes: (initialRoute) => [
-                    _customRouteTransition(const QsMain()),
-                  ],
-                  onGenerateRoute: (settings) {
-                    return _customRouteTransition(
-                      switch (settings.name) {
-                        '/pages/account' => const QsAccountPage(),
-                        '/pages/network' => const QsNetworkPage(),
-                        '/pages/theme' => const QsThemePage(),
-                        '/pages/language' => const QsLanguagePage(),
-                        _ => const QsMain(),
+              child: IntrinsicHeight(
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(minHeight: 360),
+                  child: ChangeNotifierProvider<QsControllerState>.value(
+                    value: qsController,
+                    child: PageTransitionSwitcher(
+                      reverse: direction.value,
+                      transitionBuilder: (child, primary, secondary) {
+                        return SharedAxisTransition(
+                          animation: primary,
+                          secondaryAnimation: secondary,
+                          transitionType: SharedAxisTransitionType.horizontal,
+                          fillColor: Colors.transparent,
+                          child: Material(
+                            type: MaterialType.transparency,
+                            child: child,
+                          ),
+                        );
                       },
-                    );
-                  },
-                  theme: Theme.of(context)
-                      .copyWith(scaffoldBackgroundColor: Colors.transparent),
-                  debugShowCheckedModeBanner: false,
-                  locale: context.locale,
+                      child: IndexedStack(
+                        key: ValueKey(routeStack.last),
+                        alignment: Alignment.bottomCenter,
+                        sizing: StackFit.expand,
+                        index: routes.keys.toList().indexOf(routeStack.last),
+                        children: routes.values
+                            .map(
+                              (e) => Padding(
+                                padding: const EdgeInsets.all(16.0),
+                                child: e,
+                              ),
+                            )
+                            .toList(),
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -167,9 +187,16 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
   }
 }
 
-class QsMain extends StatelessWidget
-    with StatelessServiceListener<CustomizationService> {
+class QsMain extends StatefulWidget {
   const QsMain({super.key});
+
+  @override
+  State<QsMain> createState() => _QsMainState();
+}
+
+class _QsMainState extends State<QsMain>
+    with StateServiceListener<CustomizationService, QsMain> {
+  bool showTray = false;
 
   @override
   Widget buildChild(BuildContext context, CustomizationService service) {
@@ -180,7 +207,7 @@ class QsMain extends StatelessWidget
           size: 18,
         ),
         title: username,
-        onPressed: () => Navigator.pushNamed(context, "/pages/account"),
+        onPressed: () => QsController.pushRoute(context, "/pages/account"),
         margin: EdgeInsets.zero,
         textStyle: TextStyle(
           fontSize: 14,
@@ -193,15 +220,6 @@ class QsMain extends StatelessWidget
       QuickActionButton(
         leading: const Icon(Icons.settings),
         onPressed: () => ActionManager.openSettings(context),
-      ),
-      QuickActionButton(
-        leading: const Icon(Icons.logout),
-        onPressed: () => ActionManager.showAccountMenu(context),
-      ),
-      QuickActionButton(
-        leading: const Icon(Icons.power_settings_new),
-        margin: const EdgeInsets.only(left: 8),
-        onPressed: () => ActionManager.showPowerMenu(context),
       ),
     ];
 
@@ -240,7 +258,7 @@ class QsMain extends StatelessWidget
                           service.enableWifi && !service.enableAirplaneMode,
                       onPressed: (value) => service.enableWifi = value,
                       onMenuPressed: () {
-                        Navigator.pushNamed(context, "/pages/network");
+                        QsController.pushRoute(context, "/pages/network");
                       },
                     ),
                     QsToggleButton(
@@ -300,7 +318,7 @@ class QsMain extends StatelessWidget
                         }
                       },
                       onMenuPressed: () {
-                        Navigator.pushNamed(context, "/pages/language");
+                        QsController.pushRoute(context, "/pages/language");
                       },
                     ),
                     QsToggleButton(
@@ -313,7 +331,7 @@ class QsMain extends StatelessWidget
                       enabled: true,
                       onPressed: (_) => service.darkMode = !service.darkMode,
                       onMenuPressed: () =>
-                          Navigator.pushNamed(context, "/pages/theme"),
+                          QsController.pushRoute(context, "/pages/theme"),
                     ),
                     QsToggleButton(
                       title: ToggleProperty.singleState(
@@ -327,6 +345,29 @@ class QsMain extends StatelessWidget
                   ],
                 ),
               ],
+            ),
+            ListenableServiceBuilder<TrayService>(
+              builder: (context, _) {
+                final items = TrayService.current.items;
+
+                if (items.isEmpty) return const SizedBox();
+
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _qsTitle("Tray icons"),
+                    Wrap(
+                      spacing: 8.0,
+                      runSpacing: 8.0,
+                      children: items
+                          .map(
+                            (e) => QsTrayMenuItem(item: e),
+                          )
+                          .toList(),
+                    )
+                  ],
+                );
+              },
             ),
             _qsTitle(strings.quicksettingsOverlay.shortcutsTitle),
             Row(
@@ -346,9 +387,7 @@ class QsMain extends StatelessWidget
                 const QsShortcutButton(),
               ],
             ),
-            const SizedBox(
-              height: 12,
-            ),
+            const SizedBox(height: 12),
             Column(
               children: [
                 QsSlider(
@@ -375,9 +414,7 @@ class QsMain extends StatelessWidget
                 ),
               ],
             ),
-            const SizedBox(
-              height: 8,
-            ),
+            const SizedBox(height: 8),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -394,23 +431,14 @@ class QsMain extends StatelessWidget
                   },
                 ),
                 if (PowerService.current.hasBattery)
-                  ListenableBuilder(
-                    listenable: Listenable.merge([
-                      PowerService.current.mainBattery,
-                      PowerService.current.activeProfileNotifier,
-                    ]),
-                    builder: (context, _) {
-                      final device = PowerService.current.mainBattery!;
-                      final percentage = device.percentage.toInt();
-                      final charging =
-                          device.state == UPowerDeviceState.charging;
-                      final activeProfile = PowerService.current.activeProfile;
-
+                  PowerServiceBuilder(
+                    builder:
+                        (context, child, percentage, charging, powerSaver) {
                       return QuickActionButton(
                         leading: BatteryIndicator(
                           percentage: percentage,
                           charging: charging,
-                          powerSaving: activeProfile == PowerProfile.powerSaver,
+                          powerSaving: powerSaver,
                         ),
                         title: "$percentage %",
                         margin: EdgeInsets.zero,
@@ -437,4 +465,43 @@ class QsMain extends StatelessWidget
       ),
     );
   }
+}
+
+final class QsController {
+  const QsController._();
+
+  static void pushRoute(
+    BuildContext context,
+    String name, {
+    bool listen = false,
+  }) {
+    final controller = QsController.of(context, listen: listen);
+    controller.pushRoute(name);
+  }
+
+  static void popRoute(BuildContext context, {bool listen = false}) {
+    final controller = QsController.of(context, listen: listen);
+    controller.popRoute();
+  }
+
+  static bool canPop(BuildContext context, {bool listen = false}) {
+    final controller = QsController.of(context, listen: listen);
+    return controller.canPop();
+  }
+
+  static QsControllerState of(BuildContext context, {bool listen = true}) {
+    return Provider.of<QsControllerState>(context, listen: listen);
+  }
+}
+
+class QsControllerState with ChangeNotifier {
+  final _QuickSettingsOverlayState _state;
+
+  QsControllerState._(this._state);
+
+  void pushRoute(String name) => _state.pushRoute(name);
+  void popRoute() => _state.popRoute();
+  bool canPop() => _state.canPop();
+
+  void _notify() => notifyListeners();
 }

@@ -22,6 +22,7 @@ import 'package:pangolin/components/taskbar/taskbar_element.dart';
 import 'package:pangolin/services/date_time.dart';
 import 'package:pangolin/services/power.dart';
 import 'package:pangolin/widgets/global/battery_indicator.dart';
+import 'package:pangolin/widgets/global/separated_flex.dart';
 import 'package:zenit_ui/zenit_ui.dart';
 
 class QuickSettingsButton extends StatelessWidget
@@ -33,23 +34,20 @@ class QuickSettingsButton extends StatelessWidget
     final theme = ZenitTheme.of(context);
     return TaskbarElement(
       iconSize: 18,
-      size: Size.fromWidth(
-        124 +
-            (service.enableWifi ? 26 : 0) +
-            (service.enableBluetooth ? 26 : 0) +
-            (PowerService.current.hasBattery ? 24 : 0),
-      ),
       overlayID: QuickSettingsOverlay.overlayId,
       child: Padding(
-        padding: const EdgeInsets.only(left: 8.0),
+        padding: const EdgeInsets.symmetric(horizontal: 12.0),
         child: ValueListenableBuilder<bool>(
           valueListenable: Shell.of(context)
               .getShowingNotifier(QuickSettingsOverlay.overlayId),
           builder: (context, showing, child) {
             final foregroundColor =
                 showing ? theme.accentForegroundColor : theme.foregroundColor;
-            return Row(
+            return SeparatedFlex(
+              axis: Axis.horizontal,
+              separator: const SizedBox(width: 8),
               mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 ...items(context, foregroundColor, service),
                 VerticalDivider(
@@ -59,22 +57,18 @@ class QuickSettingsButton extends StatelessWidget
                   color: foregroundColor,
                 ),
                 SizedBox(
-                  width: 74,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: ListenableServiceBuilder<DateTimeService>(
-                      builder: (BuildContext context, _) {
-                        final DateTimeService service = DateTimeService.current;
-                        return Text(
-                          service.formattedTime,
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 13,
-                            color: foregroundColor,
-                          ),
-                        );
-                      },
-                    ),
+                  child: ListenableServiceBuilder<DateTimeService>(
+                    builder: (BuildContext context, _) {
+                      final DateTimeService service = DateTimeService.current;
+                      return Text(
+                        service.formattedTime,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 13,
+                          color: foregroundColor,
+                        ),
+                      );
+                    },
                   ),
                 ),
               ],
@@ -91,47 +85,21 @@ class QuickSettingsButton extends StatelessWidget
     CustomizationService service,
   ) {
     return [
-      if (service.enableWifi)
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 4.0),
-          child: Icon(Icons.wifi),
-        ),
-      if (service.enableBluetooth)
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 4.0),
-          child: Icon(Icons.bluetooth),
-        ),
-      const Padding(
-        padding: EdgeInsets.symmetric(horizontal: 4.0),
-        child: Icon(
-          Icons.settings_ethernet,
-        ),
-      ),
+      if (service.enableWifi) const Icon(Icons.wifi),
+      if (service.enableBluetooth) const Icon(Icons.bluetooth),
+      const Icon(Icons.settings_ethernet),
       if (PowerService.current.hasBattery)
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 4.0),
-          child: ListenableBuilder(
-            listenable: Listenable.merge([
-              PowerService.current.mainBattery,
-              PowerService.current.activeProfileNotifier,
-            ]),
-            builder: (context, _) {
-              final device = PowerService.current.mainBattery!;
-              final percentage = device.percentage.toInt();
-              final charging = device.state == UPowerDeviceState.charging;
-              final activeProfile = PowerService.current.activeProfile;
-
-              return BatteryIndicator(
-                percentage: percentage,
-                charging: charging,
-                color: foregroundColor,
-                powerSaving: activeProfile == PowerProfile.powerSaver,
-                size: 16,
-              );
-            },
-          ),
+        PowerServiceBuilder(
+          builder: (context, child, percentage, charging, powerSaver) {
+            return BatteryIndicator(
+              percentage: percentage,
+              charging: charging,
+              color: foregroundColor,
+              powerSaving: powerSaver,
+              size: 18,
+            );
+          },
         ),
-      const SizedBox(width: 4),
     ];
   }
 }
