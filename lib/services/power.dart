@@ -47,7 +47,7 @@ abstract class PowerService extends ListenableService<PowerService> {
 class _UPowerPowerService extends PowerService {
   final DBusClient client = DBusClient.system();
   late final UPowerClient upower;
-  late final PowerProfilesClient powerProfiles;
+  late final PowerProfilesClient? powerProfiles;
   late final StreamSubscription deviceAddedSub;
   late final StreamSubscription deviceRemovedSub;
   late final StreamSubscription propertiesChangedSub;
@@ -68,8 +68,12 @@ class _UPowerPowerService extends PowerService {
 
     _displayDevice = PowerDevice._(upower.displayDevice);
 
-    powerProfiles = PowerProfilesClient(bus: client);
-    await powerProfiles.connect();
+    try {
+      powerProfiles = PowerProfilesClient(bus: client);
+      await powerProfiles!.connect();
+    } catch (e) {
+      logger.warning("Could not find power profiles service, ignoring");
+    }
   }
 
   @override
@@ -98,15 +102,16 @@ class _UPowerPowerService extends PowerService {
   bool get onBattery => upower.onBattery;
 
   @override
-  List<PowerProfile> get profiles => powerProfiles.profiles;
+  List<PowerProfile> get profiles =>
+      powerProfiles?.profiles ?? [PowerProfile.balanced];
 
   @override
   ValueNotifier<PowerProfile> get activeProfileNotifier =>
-      powerProfiles.activeProfile;
+      powerProfiles?.activeProfile ?? ValueNotifier(PowerProfile.balanced);
 
   @override
-  Future<void> setActiveProfile(PowerProfile profile) =>
-      powerProfiles.setActiveProfile(profile);
+  Future<void> setActiveProfile(PowerProfile profile) async =>
+      powerProfiles?.setActiveProfile(profile);
 
   void _notifyAddDevice(UPowerDevice device) {
     _devices.add(PowerDevice._(device));
