@@ -40,8 +40,11 @@ class CompactLauncherOverlay extends ShellOverlay {
 
 class _CompactLauncherOverlayState
     extends ShellOverlayState<CompactLauncherOverlay> {
+  final scrollController = ScrollController();
+
   @override
   Future<void> requestShow(Map<String, dynamic> args) async {
+    if (scrollController.hasClients) scrollController.jumpTo(0);
     controller.showing = true;
     animationController.forward();
   }
@@ -66,13 +69,13 @@ class _CompactLauncherOverlayState
           child: ScaleTransition(
             scale: animation,
             alignment: const FractionalOffset(0.025, 1.0),
-            child: const SurfaceLayer(
+            child: SurfaceLayer(
               shape: Constants.bigShape,
               height: 540,
               width: 474,
               outline: true,
               dropShadow: true,
-              child: CompactLauncher(),
+              child: CompactLauncher(controller: scrollController),
             ),
           ),
         ),
@@ -82,7 +85,9 @@ class _CompactLauncherOverlayState
 }
 
 class CompactLauncher extends StatelessWidget {
-  const CompactLauncher({super.key});
+  final ScrollController? controller;
+
+  const CompactLauncher({this.controller, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -167,6 +172,7 @@ class CompactLauncher extends StatelessWidget {
                       itemBuilder: (context, index) => AppLauncherTile(
                         application: applications[index],
                       ),
+                      controller: controller,
                       separatorBuilder: (context, index) =>
                           const SizedBox(height: 4),
                     );
