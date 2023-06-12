@@ -47,7 +47,7 @@ abstract class PowerService extends ListenableService<PowerService> {
 class _UPowerPowerService extends PowerService {
   final DBusClient client = DBusClient.system();
   late final UPowerClient upower;
-  late final PowerProfilesClient? powerProfiles;
+  late PowerProfilesClient? powerProfiles;
   late final StreamSubscription deviceAddedSub;
   late final StreamSubscription deviceRemovedSub;
   late final StreamSubscription propertiesChangedSub;
@@ -72,6 +72,7 @@ class _UPowerPowerService extends PowerService {
       powerProfiles = PowerProfilesClient(bus: client);
       await powerProfiles!.connect();
     } catch (e) {
+      powerProfiles = null;
       logger.warning("Could not find power profiles service, ignoring");
     }
   }
