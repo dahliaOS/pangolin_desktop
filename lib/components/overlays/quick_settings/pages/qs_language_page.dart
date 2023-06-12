@@ -16,6 +16,7 @@ limitations under the License.
 
 import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
+import 'package:pangolin/components/overlays/quick_settings/quick_settings_overlay.dart';
 import 'package:pangolin/components/overlays/quick_settings/widgets/qs_titlebar.dart';
 import 'package:pangolin/utils/data/native_names.dart';
 import 'package:pangolin/widgets/quick_button.dart';
@@ -82,7 +83,7 @@ class QsLanguagePage extends StatelessWidget {
               onTap: () {
                 context.locale = context.supportedLocales[index];
 
-                Navigator.pop(context);
+                QsController.popRoute(context);
               },
             );
           },

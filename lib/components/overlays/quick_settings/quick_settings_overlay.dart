@@ -15,10 +15,12 @@ limitations under the License.
 */
 
 import 'dart:async';
+import 'dart:math';
 
 import 'package:animations/animations.dart';
 import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:pangolin/components/overlays/quick_settings/pages/qs_account_page.dart';
 import 'package:pangolin/components/overlays/quick_settings/pages/qs_language_page.dart';
 import 'package:pangolin/components/overlays/quick_settings/pages/qs_network_page.dart';
@@ -134,48 +136,43 @@ class _QuickSettingsOverlayState extends State<QuickSettingsOverlay>
         child: ScaleTransition(
           scale: animation,
           alignment: const FractionalOffset(0.8, 1.0),
-          child: AnimatedSize(
-            duration: Constants.animationDuration,
-            curve: decelerateEasing,
-            child: SurfaceLayer(
-              shape: Constants.bigShape,
-              width: 524,
-              dropShadow: true,
-              outline: true,
-              child: IntrinsicHeight(
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints(minHeight: 360),
-                  child: ChangeNotifierProvider<QsControllerState>.value(
-                    value: qsController,
-                    child: PageTransitionSwitcher(
-                      reverse: direction.value,
-                      transitionBuilder: (child, primary, secondary) {
-                        return SharedAxisTransition(
-                          animation: primary,
-                          secondaryAnimation: secondary,
-                          transitionType: SharedAxisTransitionType.horizontal,
-                          fillColor: Colors.transparent,
-                          child: Material(
-                            type: MaterialType.transparency,
-                            child: child,
-                          ),
-                        );
-                      },
-                      child: IndexedStack(
-                        key: ValueKey(routeStack.last),
-                        alignment: Alignment.bottomCenter,
-                        sizing: StackFit.expand,
-                        index: routes.keys.toList().indexOf(routeStack.last),
-                        children: routes.values
-                            .map(
-                              (e) => Padding(
-                                padding: const EdgeInsets.all(16.0),
-                                child: e,
-                              ),
-                            )
-                            .toList(),
+          child: SurfaceLayer(
+            shape: Constants.bigShape,
+            width: 524,
+            dropShadow: true,
+            outline: true,
+            child: AnimatedSize(
+              duration: Constants.animationDuration,
+              curve: Constants.animationCurve,
+              alignment: Alignment.bottomCenter,
+              clipBehavior: Clip.none,
+              child: ChangeNotifierProvider<QsControllerState>.value(
+                value: qsController,
+                child: PageTransitionSwitcher(
+                  reverse: direction.value,
+                  transitionBuilder: (child, primary, secondary) {
+                    return SharedAxisTransition(
+                      animation: primary,
+                      secondaryAnimation: secondary,
+                      transitionType: SharedAxisTransitionType.horizontal,
+                      fillColor: Colors.transparent,
+                      child: Material(
+                        type: MaterialType.transparency,
+                        child: child,
                       ),
-                    ),
+                    );
+                  },
+                  layoutBuilder: (entries) {
+                    return _FixedSizeTransitionStack(
+                      reverseDirection: direction.value,
+                      fallbackSize: const Size(524, 460),
+                      children: entries,
+                    );
+                  },
+                  child: Padding(
+                    key: ValueKey(routeStack.last),
+                    padding: const EdgeInsets.all(16.0),
+                    child: routes[routeStack.last],
                   ),
                 ),
               ),
@@ -504,4 +501,353 @@ class QsControllerState with ChangeNotifier {
   bool canPop() => _state.canPop();
 
   void _notify() => notifyListeners();
+}
+
+class _FixedSizeTransitionStack extends MultiChildRenderObjectWidget {
+  final bool reverseDirection;
+  final Size fallbackSize;
+
+  const _FixedSizeTransitionStack({
+    required super.children,
+    this.reverseDirection = false,
+    required this.fallbackSize,
+  });
+
+  @override
+  RenderObject createRenderObject(BuildContext context) {
+    return _RenderFixedSizeTransitionStack(
+      alignment: Alignment.bottomCenter,
+      textDirection: Directionality.of(context),
+      reverseDirection: reverseDirection,
+      fallbackSize: fallbackSize,
+    );
+  }
+
+  @override
+  void updateRenderObject(
+    BuildContext context,
+    _RenderFixedSizeTransitionStack renderObject,
+  ) {
+    renderObject
+      ..alignment = Alignment.bottomCenter
+      ..textDirection = Directionality.of(context)
+      ..reverseDirection = reverseDirection
+      ..fallbackSize = fallbackSize;
+  }
+}
+
+class _RenderFixedSizeTransitionStack extends RenderBox
+    with
+        ContainerRenderObjectMixin<RenderBox, StackParentData>,
+        RenderBoxContainerDefaultsMixin<RenderBox, StackParentData> {
+  _RenderFixedSizeTransitionStack({
+    List<RenderBox>? children,
+    AlignmentGeometry alignment = AlignmentDirectional.topStart,
+    TextDirection? textDirection,
+    bool reverseDirection = false,
+    Size fallbackSize = Size.zero,
+  })  : _alignment = alignment,
+        _textDirection = textDirection,
+        _reverseDirection = reverseDirection,
+        _fallbackSize = fallbackSize {
+    addAll(children);
+  }
+
+  @override
+  void setupParentData(RenderBox child) {
+    if (child.parentData is! StackParentData) {
+      child.parentData = StackParentData();
+    }
+  }
+
+  AlignmentGeometry get alignment => _alignment;
+  AlignmentGeometry _alignment;
+  set alignment(AlignmentGeometry value) {
+    if (_alignment == value) {
+      return;
+    }
+    _alignment = value;
+    _markNeedResolution();
+  }
+
+  TextDirection? get textDirection => _textDirection;
+  TextDirection? _textDirection;
+  set textDirection(TextDirection? value) {
+    if (_textDirection == value) {
+      return;
+    }
+    _textDirection = value;
+    _markNeedResolution();
+  }
+
+  bool get reverseDirection => _reverseDirection;
+  bool _reverseDirection;
+  set reverseDirection(bool value) {
+    if (_reverseDirection == value) {
+      return;
+    }
+    _reverseDirection = value;
+    markNeedsLayout();
+  }
+
+  Size get fallbackSize => _fallbackSize;
+  Size _fallbackSize;
+  set fallbackSize(Size value) {
+    if (_fallbackSize == value) {
+      return;
+    }
+    _fallbackSize = value;
+    markNeedsLayout();
+  }
+
+  void _markNeedResolution() {
+    _resolvedAlignment = null;
+    markNeedsLayout();
+  }
+
+  Alignment? _resolvedAlignment;
+
+  void _resolve() {
+    if (_resolvedAlignment != null) {
+      return;
+    }
+    _resolvedAlignment = alignment.resolve(textDirection);
+  }
+
+  RenderBox? get startChild => reverseDirection ? firstChild : lastChild;
+
+  static double getIntrinsicDimension(
+    RenderBox? childToMeasure,
+    double Function(RenderBox child) mainChildSizeGetter,
+  ) {
+    double extent = 0.0;
+    final child = childToMeasure;
+    if (child != null) {
+      final StackParentData childParentData =
+          child.parentData! as StackParentData;
+      extent = mainChildSizeGetter(child);
+      assert(child.parentData == childParentData);
+    }
+    return extent;
+  }
+
+  @override
+  double computeMinIntrinsicWidth(double height) {
+    return getIntrinsicDimension(
+      startChild,
+      (RenderBox child) => child.getMinIntrinsicWidth(height),
+    );
+  }
+
+  @override
+  double computeMaxIntrinsicWidth(double height) {
+    return getIntrinsicDimension(
+      startChild,
+      (RenderBox child) => child.getMaxIntrinsicWidth(height),
+    );
+  }
+
+  @override
+  double computeMinIntrinsicHeight(double width) {
+    return getIntrinsicDimension(
+      startChild,
+      (RenderBox child) => child.getMinIntrinsicHeight(width),
+    );
+  }
+
+  @override
+  double computeMaxIntrinsicHeight(double width) {
+    return getIntrinsicDimension(
+      startChild,
+      (RenderBox child) => child.getMaxIntrinsicHeight(width),
+    );
+  }
+
+  @override
+  double? computeDistanceToActualBaseline(TextBaseline baseline) {
+    return defaultComputeDistanceToHighestActualBaseline(baseline);
+  }
+
+  Size _computeSize({
+    required BoxConstraints constraints,
+    required ChildLayouter layoutChild,
+  }) {
+    _resolve();
+    assert(_resolvedAlignment != null);
+    if (childCount == 0) {
+      return (constraints.biggest.isFinite)
+          ? constraints.biggest
+          : constraints.smallest;
+    }
+
+    double width = constraints.minWidth;
+    double height = constraints.minHeight;
+
+    final BoxConstraints nonPositionedConstraints = constraints.loosen();
+
+    RenderBox? child = startChild;
+    int i = 0;
+    while (child != null) {
+      final StackParentData childParentData =
+          child.parentData! as StackParentData;
+
+      if (!childParentData.isPositioned) {
+        final Size childSize = layoutChild(child, nonPositionedConstraints);
+
+        if (i == 0) {
+          width = max(width, childSize.width);
+          height = max(height, childSize.height);
+        }
+      }
+
+      child = reverseDirection
+          ? childParentData.nextSibling
+          : childParentData.previousSibling;
+      i++;
+    }
+
+    final Size size = Size(width, height);
+    assert(size.width == constraints.constrainWidth(width));
+    assert(size.height == constraints.constrainHeight(height));
+
+    assert(size.isFinite);
+
+    return size;
+  }
+
+  @override
+  void performLayout() {
+    final BoxConstraints constraints = this.constraints;
+
+    size = _computeSize(
+      constraints: constraints,
+      layoutChild: (box, constraints) {
+        final size = box.getDryLayout(constraints);
+
+        final unboundedWidth = size.width == double.infinity &&
+            constraints.maxWidth == double.infinity;
+        final unboundedHeight = size.height == double.infinity &&
+            constraints.maxHeight == double.infinity;
+
+        final BoxConstraints newConstraints;
+        if (unboundedWidth || unboundedHeight) {
+          newConstraints = BoxConstraints(
+            minWidth: constraints.minWidth,
+            maxWidth:
+                unboundedWidth ? fallbackSize.width : constraints.maxWidth,
+            minHeight: constraints.minHeight,
+            maxHeight:
+                unboundedHeight ? fallbackSize.height : constraints.maxHeight,
+          );
+        } else {
+          newConstraints = constraints;
+        }
+        box.layout(newConstraints, parentUsesSize: true);
+
+        return box.size;
+      },
+    );
+
+    assert(_resolvedAlignment != null);
+    RenderBox? child = firstChild;
+    while (child != null) {
+      final StackParentData childParentData =
+          child.parentData! as StackParentData;
+
+      if (!childParentData.isPositioned) {
+        childParentData.offset =
+            _resolvedAlignment!.alongOffset(size - child.size as Offset);
+      } else {
+        layoutPositionedChild(
+          child,
+          childParentData,
+          size,
+          _resolvedAlignment!,
+        );
+      }
+
+      assert(child.parentData == childParentData);
+      child = childParentData.nextSibling;
+    }
+  }
+
+  static bool layoutPositionedChild(
+    RenderBox child,
+    StackParentData childParentData,
+    Size size,
+    Alignment alignment,
+  ) {
+    assert(childParentData.isPositioned);
+    assert(child.parentData == childParentData);
+
+    bool hasVisualOverflow = false;
+    BoxConstraints childConstraints = const BoxConstraints();
+
+    if (childParentData.left != null && childParentData.right != null) {
+      childConstraints = childConstraints.tighten(
+        width: size.width - childParentData.right! - childParentData.left!,
+      );
+    } else if (childParentData.width != null) {
+      childConstraints = childConstraints.tighten(width: childParentData.width);
+    }
+
+    if (childParentData.top != null && childParentData.bottom != null) {
+      childConstraints = childConstraints.tighten(
+        height: size.height - childParentData.bottom! - childParentData.top!,
+      );
+    } else if (childParentData.height != null) {
+      childConstraints =
+          childConstraints.tighten(height: childParentData.height);
+    }
+
+    child.layout(childConstraints, parentUsesSize: true);
+
+    final double x;
+    if (childParentData.left != null) {
+      x = childParentData.left!;
+    } else if (childParentData.right != null) {
+      x = size.width - childParentData.right! - child.size.width;
+    } else {
+      x = alignment.alongOffset(size - child.size as Offset).dx;
+    }
+
+    if (x < 0.0 || x + child.size.width > size.width) {
+      hasVisualOverflow = true;
+    }
+
+    final double y;
+    if (childParentData.top != null) {
+      y = childParentData.top!;
+    } else if (childParentData.bottom != null) {
+      y = size.height - childParentData.bottom! - child.size.height;
+    } else {
+      y = alignment.alongOffset(size - child.size as Offset).dy;
+    }
+
+    if (y < 0.0 || y + child.size.height > size.height) {
+      hasVisualOverflow = true;
+    }
+
+    childParentData.offset = Offset(x, y);
+
+    return hasVisualOverflow;
+  }
+
+  @override
+  Size computeDryLayout(BoxConstraints constraints) {
+    return _computeSize(
+      constraints: constraints,
+      layoutChild: ChildLayoutHelper.dryLayoutChild,
+    );
+  }
+
+  @override
+  bool hitTestChildren(BoxHitTestResult result, {required Offset position}) {
+    return defaultHitTestChildren(result, position: position);
+  }
+
+  @override
+  void paint(PaintingContext context, Offset offset) {
+    defaultPaint(context, offset);
+  }
 }
