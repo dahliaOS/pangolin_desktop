@@ -28,9 +28,9 @@ import 'package:xdg_desktop/xdg_desktop.dart';
 import 'package:yatl_flutter/yatl_flutter.dart';
 
 class TaskbarItem extends StatefulWidget {
-  final String packageName;
+  final DesktopEntry entry;
 
-  const TaskbarItem({required this.packageName, super.key});
+  const TaskbarItem({required this.entry, super.key});
 
   @override
   _TaskbarItemState createState() => _TaskbarItemState();
@@ -65,26 +65,16 @@ class _TaskbarItemState extends State<TaskbarItem>
 
   @override
   Widget buildChild(BuildContext context, CustomizationService service) {
-    //Selected App
-    final DesktopEntry? app =
-        ApplicationService.current.getApp(widget.packageName);
-
-    if (app == null) {
-      throw Exception("Bad app");
-    }
-
-    //Running apps
-    //// ITS FAILING HERE
     final hierarchy = WindowManagerService.current.controller;
     final windows = hierarchy.entries;
     //Check if App is running or just pinned
     final bool appIsRunning = windows.any(
-      (element) => element.registry.extra.appId == widget.packageName,
+      (element) => element.registry.extra.appId == widget.entry.id,
     );
     //get the WindowEntry when the App is running
     final LiveWindowEntry? entry = appIsRunning
         ? windows.firstWhere(
-            (element) => element.registry.extra.appId == widget.packageName,
+            (element) => element.registry.extra.appId == widget.entry.id,
           )
         : null;
     //check if the App is focused
@@ -96,7 +86,7 @@ class _TaskbarItemState extends State<TaskbarItem>
           )
         : null;
     final bool focused = windows.length > 1 &&
-        (focusedEntry?.registry.extra.appId == widget.packageName &&
+        (focusedEntry?.registry.extra.appId == widget.entry.id &&
             !windows.last.layoutState.minimized);
 
     final bool showSelected =
@@ -122,17 +112,17 @@ class _TaskbarItemState extends State<TaskbarItem>
               items: [
                 ContextMenuItem(
                   icon: Icons.info_outline_rounded,
-                  title: app.getLocalizedName(context.locale),
+                  title: widget.entry.name.resolve(context.locale),
                   onTap: () {},
                   shortcut: "",
                 ),
                 ContextMenuItem(
                   icon: Icons.push_pin_outlined,
-                  title: service.pinnedApps.contains(app.id)
+                  title: service.pinnedApps.contains(widget.entry.id)
                       ? "Unpin from Taskbar"
                       : "Pin to Taskbar",
                   onTap: () {
-                    service.togglePinnedApp(app.id);
+                    service.togglePinnedApp(widget.entry.id);
                   },
                   shortcut: "",
                 ),
@@ -146,89 +136,85 @@ class _TaskbarItemState extends State<TaskbarItem>
                   ),
               ],
             ),
-            child: GestureDetector(
-              //key: _globalKey,
-              child: Material(
+            child: Material(
+              borderRadius: BorderRadius.circular(4),
+              color: appIsRunning
+                  ? (showSelected
+                      ? Theme.of(context)
+                          .textTheme
+                          .bodyLarge
+                          ?.color
+                          ?.withOpacity(0.2)
+                      : Theme.of(context)
+                          .colorScheme
+                          .background
+                          .withOpacity(0.0))
+                  : Colors.transparent,
+              child: InkWell(
+                onHover: (value) {
+                  _hovering = value;
+                  setState(() {});
+                },
                 borderRadius: BorderRadius.circular(4),
-                //set a background color if the app is running or focused
-                color: appIsRunning
-                    ? (showSelected
-                        ? Theme.of(context)
-                            .textTheme
-                            .bodyLarge
-                            ?.color
-                            ?.withOpacity(0.2)
-                        : Theme.of(context)
-                            .colorScheme
-                            .background
-                            .withOpacity(0.0))
-                    : Colors.transparent,
-                child: InkWell(
-                  onHover: (value) {
-                    _hovering = value;
-                    setState(() {});
-                  },
-                  borderRadius: BorderRadius.circular(4),
-                  onTap: () {
-                    //open the app or toggle
-                    if (appIsRunning) {
-                      _onTap(context, entry!);
-                    } else {
-                      ApplicationService.current.startApp(widget.packageName);
-                      //print(packageName);
-                    }
-                  },
-                  child: AnimatedBuilder(
-                    animation: _anim,
-                    builder: (context, child) {
-                      return Stack(
-                        children: [
-                          Center(
-                            child: Padding(
-                              padding: const EdgeInsets.fromLTRB(6.0, 5, 6, 7),
-                              child: appIsRunning
-                                  ? Image(
-                                      image: entry?.registry.info.icon ??
-                                          const NetworkImage(""),
-                                    )
-                                  : AutoVisualResource(
-                                      resource: app.icon!.main,
-                                      size: 36,
-                                    ),
-                            ),
+                onTap: () {
+                  //open the app or toggle
+                  if (appIsRunning) {
+                    _onTap(context, entry!);
+                  } else {
+                    ApplicationService.current.startApp(widget.entry.id);
+                    //print(packageName);
+                  }
+                },
+                child: AnimatedBuilder(
+                  animation: _anim,
+                  builder: (context, child) {
+                    return Stack(
+                      children: [
+                        Center(
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(6.0, 5, 6, 7),
+                            child: appIsRunning
+                                ? Image(
+                                    image: entry?.registry.info.icon ??
+                                        const NetworkImage(""),
+                                  )
+                                : AutoVisualResource(
+                                    resource: widget.entry.icon!.main,
+                                    size: 36,
+                                  ),
                           ),
-                          AnimatedPositioned(
-                            duration: const Duration(milliseconds: 150),
-                            curve: Curves.ease,
-                            bottom: 1,
-                            left: appIsRunning
-                                ? _hovering
-                                    ? showSelected
-                                        ? 4
-                                        : 8
-                                    : showSelected
-                                        ? 4
-                                        : constraints.maxHeight / 2 - 8
-                                : 50 / 2,
-                            right: appIsRunning
-                                ? _hovering
-                                    ? showSelected
-                                        ? 4
-                                        : 8
-                                    : showSelected
-                                        ? 4
-                                        : constraints.maxHeight / 2 - 8
-                                : 50 / 2,
-                            height: 3,
-                            child: Material(
-                              borderRadius: BorderRadius.circular(2),
-                              color: Theme.of(context).colorScheme.secondary,
-                            ),
+                        ),
+                        AnimatedPositioned(
+                          duration: const Duration(milliseconds: 150),
+                          curve: Curves.ease,
+                          bottom: 1,
+                          left: appIsRunning
+                              ? _hovering
+                                  ? showSelected
+                                      ? 4
+                                      : 8
+                                  : showSelected
+                                      ? 4
+                                      : constraints.maxHeight / 2 - 8
+                              : 50 / 2,
+                          right: appIsRunning
+                              ? _hovering
+                                  ? showSelected
+                                      ? 4
+                                      : 8
+                                  : showSelected
+                                      ? 4
+                                      : constraints.maxHeight / 2 - 8
+                              : 50 / 2,
+                          height: 3,
+                          child: Material(
+                            borderRadius: BorderRadius.circular(2),
+                            color: Theme.of(context).colorScheme.secondary,
                           ),
-                        ],
-                      );
-                    },
-                  ),
+                        ),
+                      ],
+                    );
+                  },
                 ),
               ),
             ),

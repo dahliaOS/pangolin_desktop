@@ -175,7 +175,9 @@ class _AppListElementState extends State<AppListElement> {
       itemBuilder: (context, index) => ReorderableDragStartListener(
         key: ValueKey(_slots[index]),
         index: index,
-        child: TaskbarItem(packageName: _slots[index].id),
+        child: TaskbarItem(
+          entry: ApplicationService.current.getApp(_slots[index].id)!,
+        ),
       ),
       itemCount: _slots.length,
     );

@@ -29,7 +29,7 @@ class _NotificationsOverlayState extends State<NotificationsOverlay>
         NotificationServiceListener {
   late final AnimationController ac = AnimationController(
     vsync: this,
-    duration: const Duration(milliseconds: 300),
+    duration: Constants.animationDuration,
   );
   final Map<int, NotificationWrapperData> notifications = {};
 
@@ -113,8 +113,8 @@ class _NotificationsOverlayState extends State<NotificationsOverlay>
 
   @override
   FutureOr<void> requestDismiss(Map<String, dynamic> args) async {
-    await ac.reverse();
     controller.showing = false;
+    await ac.reverse();
   }
 
   Future<void> _dismissNotification(int id) async {
@@ -128,13 +128,12 @@ class _NotificationsOverlayState extends State<NotificationsOverlay>
 
   @override
   Widget buildChild(BuildContext context, NotificationService service) {
-    if (!controller.showing) return const SizedBox();
+    if (!controller.showing && ac.value == 0) return const SizedBox();
 
     final EdgeInsets wmInsets = WindowHierarchy.of(context).wmInsets;
     final Animation<double> animation = CurvedAnimation(
       parent: ac,
-      curve: decelerateEasing,
-      reverseCurve: decelerateEasing.flipped,
+      curve: Constants.animationCurve,
     );
 
     return Positioned(

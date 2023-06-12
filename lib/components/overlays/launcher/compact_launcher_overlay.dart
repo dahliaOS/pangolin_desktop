@@ -59,8 +59,8 @@ class _CompactLauncherOverlayState extends State<CompactLauncherOverlay>
 
   @override
   Future<void> requestDismiss(Map<String, dynamic> args) async {
-    await ac.reverse();
     controller.showing = false;
+    await ac.reverse();
   }
 
   @override
@@ -70,7 +70,7 @@ class _CompactLauncherOverlayState extends State<CompactLauncherOverlay>
       curve: Constants.animationCurve,
     );
 
-    if (!controller.showing) return const SizedBox();
+    if (!controller.showing && ac.value == 0) return const SizedBox();
 
     return Positioned(
       bottom: 56,

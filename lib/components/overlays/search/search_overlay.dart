@@ -39,20 +39,13 @@ class _SearchOverlayState extends State<SearchOverlay>
         SingleTickerProviderStateMixin,
         ShellOverlayState,
         StateServiceListener<CustomizationService, SearchOverlay> {
-  late AnimationController ac;
+  late final AnimationController ac = AnimationController(
+    vsync: this,
+    duration: Constants.animationDuration,
+  );
   final _controller = TextEditingController();
   final _focusNode = FocusNode();
   final List<DesktopEntry> results = [];
-
-  @override
-  void initState() {
-    super.initState();
-    ac = AnimationController(
-      vsync: this,
-      duration: Constants.animationDuration,
-    );
-    ac.forward();
-  }
 
   @override
   void dispose() {
@@ -69,8 +62,8 @@ class _SearchOverlayState extends State<SearchOverlay>
 
   @override
   Future<void> requestDismiss(Map<String, dynamic> args) async {
-    await ac.reverse();
     controller.showing = false;
+    await ac.reverse();
   }
 
   @override
@@ -81,7 +74,7 @@ class _SearchOverlayState extends State<SearchOverlay>
     );
     _focusNode.requestFocus();
 
-    if (!controller.showing) return const SizedBox();
+    if (!controller.showing && ac.value == 0) return const SizedBox();
 
     return Positioned(
       top: 64,
