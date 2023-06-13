@@ -64,7 +64,7 @@ class _CompactLauncherOverlayState
       left: 8,
       child: AnimatedBuilder(
         animation: animation,
-        builder: (context, chilld) => FadeTransition(
+        builder: (context, child) => FadeTransition(
           opacity: animation,
           child: ScaleTransition(
             scale: animation,
