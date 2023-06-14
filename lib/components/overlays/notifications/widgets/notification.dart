@@ -97,9 +97,7 @@ class _NotificationBody extends StatelessWidget {
                   child: DBusImageWidget(
                     image: notification.image ??
                         notification.appImage ??
-                        const IconDataDBusImage(
-                          Icons.notifications_active,
-                        ),
+                        const IconDataDBusImage(Icons.notifications_active),
                     width: 56,
                     height: 56,
                   ),
@@ -136,7 +134,8 @@ class _NotificationBody extends StatelessWidget {
                             children: [
                               Text(
                                 notification.summary,
-                                maxLines: 1,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
                                 style: const TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w500,

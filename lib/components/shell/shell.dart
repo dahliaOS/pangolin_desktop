@@ -28,7 +28,6 @@ import 'package:pangolin/components/taskbar/search.dart';
 import 'package:pangolin/components/taskbar/show_desktop.dart';
 import 'package:pangolin/components/taskbar/taskbar.dart';
 import 'package:pangolin/components/taskbar/tray.dart';
-import 'package:pangolin/services/tray.dart';
 import 'package:pangolin/utils/wm/wm.dart';
 import 'package:provider/provider.dart';
 
@@ -52,10 +51,7 @@ class Shell extends StatefulWidget {
   }
 }
 
-class ShellState extends State<Shell>
-    with TickerProviderStateMixin, StateServiceListener<TrayService, Shell> {
-  final List<String> minimizedWindowsCache = [];
-
+class ShellState extends State<Shell> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
@@ -123,7 +119,7 @@ class ShellState extends State<Shell>
   }
 
   @override
-  Widget buildChild(BuildContext context, TrayService service) {
+  Widget build(BuildContext context) {
     return Provider.value(
       value: this,
       child: SizedBox.expand(

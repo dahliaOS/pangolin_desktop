@@ -2,7 +2,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/widgets.dart' show IconData;
 
-abstract class DBusImage {
+sealed class DBusImage {
   const DBusImage();
 }
 

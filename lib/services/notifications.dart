@@ -28,6 +28,7 @@ abstract class NotificationService
   List<UserNotification> get notifications;
   Stream<NotificationServiceEvent> get events;
 
+  void pushNotification(ShellNotification notification);
   void closeNotification(int id, NotificationCloseReason reason);
 }
 
@@ -66,6 +67,15 @@ class _DbusNotificationService extends NotificationService
         DBusRequestNameFlag.allowReplacement,
         DBusRequestNameFlag.replaceExisting,
       };
+
+  @override
+  void pushNotification(ShellNotification notification) {
+    if (notification.id >= 0) {
+      replaceNotification(notification.id, notification);
+    } else {
+      addNotification(notification.copyWith(id: getId()));
+    }
+  }
 
   void addNotification(UserNotification notification) {
     _notifications.add(notification);
@@ -109,6 +119,11 @@ class _DummyNotificationService extends NotificationService {
 
   @override
   Stream<NotificationServiceEvent> get events => const Stream.empty();
+
+  @override
+  void pushNotification(ShellNotification notification) {
+    // living the stub life
+  }
 
   @override
   void closeNotification(int id, NotificationCloseReason reason) {
@@ -265,7 +280,7 @@ class _DBusNotificationBackend extends NotificationsBase
 }
 
 class UserNotification {
-  final DBusObject owner;
+  final DBusObject? owner;
   final int id;
   final String appName;
   final String? appIcon;
@@ -288,7 +303,7 @@ class UserNotification {
   });
 
   void sendClose(NotificationCloseReason reason) {
-    owner.emitSignal(
+    owner?.emitSignal(
       'org.freedesktop.Notifications',
       'NotificationClosed',
       [DBusUint32(id), DBusUint32(reason.index + 1)],
@@ -296,10 +311,94 @@ class UserNotification {
   }
 
   void invokeAction(String action) {
-    owner.emitSignal(
+    owner?.emitSignal(
       'org.freedesktop.Notifications',
       'ActionInvoked',
       [DBusUint32(id), DBusString(action)],
+    );
+  }
+
+  UserNotification copyWith({
+    DBusObject? owner,
+    int? id,
+    String? appName,
+    String? appIcon,
+    String? summary,
+    String? body,
+    List<NotificationAction>? actions,
+    int? expireTimeout,
+    DBusImage? image,
+  }) {
+    return UserNotification(
+      owner: owner ?? this.owner,
+      id: id ?? this.id,
+      appName: appName ?? this.appName,
+      appIcon: appIcon ?? this.appIcon,
+      summary: summary ?? this.summary,
+      body: body ?? this.body,
+      actions: actions ?? this.actions,
+      expireTimeout: expireTimeout ?? this.expireTimeout,
+      image: image ?? this.image,
+    );
+  }
+}
+
+typedef OnNotificationCloseCallback = void Function(
+    NotificationCloseReason reason);
+typedef OnNotificationActionCallback = void Function(String action);
+
+class ShellNotification extends UserNotification {
+  final OnNotificationCloseCallback? onClose;
+  final OnNotificationActionCallback? onAction;
+
+  ShellNotification({
+    super.id = -1,
+    super.appName = "",
+    super.appIcon,
+    super.summary = "",
+    super.body = "",
+    super.actions = const [],
+    super.expireTimeout = -1,
+    super.image,
+    this.onClose,
+    this.onAction,
+  }) : super(owner: null);
+
+  @override
+  void sendClose(NotificationCloseReason reason) {
+    onClose?.call(reason);
+  }
+
+  @override
+  void invokeAction(String action) {
+    onAction?.call(action);
+  }
+
+  @override
+  ShellNotification copyWith({
+    DBusObject? owner,
+    int? id,
+    String? appName,
+    String? appIcon,
+    String? summary,
+    String? body,
+    List<NotificationAction>? actions,
+    int? expireTimeout,
+    DBusImage? image,
+    OnNotificationCloseCallback? onClose,
+    OnNotificationActionCallback? onAction,
+  }) {
+    return ShellNotification(
+      id: id ?? this.id,
+      appName: appName ?? this.appName,
+      appIcon: appIcon ?? this.appIcon,
+      summary: summary ?? this.summary,
+      body: body ?? this.body,
+      actions: actions ?? this.actions,
+      expireTimeout: expireTimeout ?? this.expireTimeout,
+      image: image ?? this.image,
+      onClose: onClose ?? this.onClose,
+      onAction: onAction ?? this.onAction,
     );
   }
 }
@@ -329,26 +428,22 @@ enum NotificationCloseReason {
   unknown,
 }
 
-abstract class NotificationServiceEvent {
+sealed class NotificationServiceEvent {
   final int id;
-  final NotificationEventType type;
 
   const NotificationServiceEvent({
     required this.id,
-    required this.type,
   });
 }
 
 class ShowNotificationEvent extends NotificationServiceEvent {
-  const ShowNotificationEvent({required super.id})
-      : super(type: NotificationEventType.show);
+  const ShowNotificationEvent({required super.id});
 }
 
 class ReplaceNotificationEvent extends NotificationServiceEvent {
   final int oldId;
 
-  const ReplaceNotificationEvent({required this.oldId, required super.id})
-      : super(type: NotificationEventType.replace);
+  const ReplaceNotificationEvent({required this.oldId, required super.id});
 }
 
 class CloseNotificationEvent extends NotificationServiceEvent {
@@ -357,11 +452,5 @@ class CloseNotificationEvent extends NotificationServiceEvent {
   const CloseNotificationEvent({
     required super.id,
     required this.reason,
-  }) : super(type: NotificationEventType.close);
-}
-
-enum NotificationEventType {
-  show,
-  replace,
-  close,
+  });
 }

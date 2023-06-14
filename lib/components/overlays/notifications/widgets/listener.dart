@@ -23,27 +23,19 @@ mixin NotificationServiceListener<T extends StatefulWidget> on State<T> {
   }
 
   void _notificationEventListener(NotificationServiceEvent event) {
-    switch (event.type) {
-      case NotificationEventType.show:
-        final ShowNotificationEvent showEvent = event as ShowNotificationEvent;
-        final UserNotification? notification =
-            service.getNotification(showEvent.id);
+    switch (event) {
+      case ShowNotificationEvent(id: final id):
+        final UserNotification? notification = service.getNotification(id);
 
         if (notification == null) return;
 
         onNotificationAdded(notification);
-      case NotificationEventType.close:
-        final CloseNotificationEvent closeEvent =
-            event as CloseNotificationEvent;
-
-        onNotificationRemoved(closeEvent.id, closeEvent.reason);
+      case CloseNotificationEvent(id: final id, reason: final reason):
+        onNotificationRemoved(id, reason);
 
         setState(() {});
-      case NotificationEventType.replace:
-        final ReplaceNotificationEvent replaceEvent =
-            event as ReplaceNotificationEvent;
-
-        onNotificationReplaced(replaceEvent.oldId, replaceEvent.id);
+      case ReplaceNotificationEvent(id: final id, oldId: final oldId):
+        onNotificationReplaced(oldId, id);
       default:
         break;
     }

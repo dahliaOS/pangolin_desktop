@@ -14,9 +14,14 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/overlays/notifications/overlay.dart';
+import 'package:pangolin/components/overlays/notifications/widgets/listener.dart';
+import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/components/taskbar/taskbar_element.dart';
+import 'package:pangolin/services/notifications.dart';
+import 'package:zenit_ui/zenit_ui.dart';
 
 class NotificationsButton extends StatelessWidget {
   const NotificationsButton({super.key});
@@ -24,8 +29,106 @@ class NotificationsButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const TaskbarElement(
+      shrinkWrap: true,
+      height: 48.0,
       overlayID: NotificationsOverlay.overlayId,
-      child: Icon(Icons.notifications),
+      child: _NotificationIcon(),
     );
   }
+}
+
+class _NotificationIcon extends StatefulWidget {
+  const _NotificationIcon();
+
+  @override
+  State<_NotificationIcon> createState() => _NotificationIconState();
+}
+
+class _NotificationIconState extends State<_NotificationIcon>
+    with
+        NotificationServiceListener,
+        StateServiceListener<NotificationService, _NotificationIcon> {
+  bool _shellListenerInit = false;
+  bool _unreadNotifs = false;
+
+  ValueNotifier<bool> get notifier =>
+      Shell.of(context).getShowingNotifier(NotificationsOverlay.overlayId);
+
+  @override
+  void initState() {
+    super.initState();
+    _unreadNotifs = NotificationService.current.notifications.isNotEmpty;
+  }
+
+  @override
+  void didChangeDependencies() {
+    if (!_shellListenerInit) {
+      _shellListenerInit = true;
+      notifier.addListener(_resetIndicator);
+    }
+    super.didChangeDependencies();
+  }
+
+  @override
+  void dispose() {
+    notifier.removeListener(_resetIndicator);
+    super.dispose();
+  }
+
+  void _resetIndicator() {
+    _unreadNotifs = false;
+    setState(() {});
+  }
+
+  @override
+  Widget buildChild(BuildContext context, NotificationService service) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      child: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(minWidth: 24, maxHeight: 24),
+          child: ValueListenableBuilder<bool>(
+            valueListenable: notifier,
+            builder: (context, showing, _) {
+              return service.notifications.isNotEmpty
+                  ? Material(
+                      color: _unreadNotifs
+                          ? Theme.of(context).colorScheme.secondary
+                          : ZenitTheme.of(context).surfaceColor,
+                      type: showing
+                          ? MaterialType.transparency
+                          : MaterialType.canvas,
+                      shape: Constants.circularShape,
+                      child: Center(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 4),
+                          child: Text(
+                            service.notifications.length.toString(),
+                            style: const TextStyle(fontSize: 12),
+                          ),
+                        ),
+                      ),
+                    )
+                  : const Icon(
+                      Icons.notifications,
+                      size: 18,
+                    );
+            },
+          ),
+        ),
+      ),
+    );
+  }
+
+  @override
+  void onNotificationAdded(UserNotification id) {
+    _unreadNotifs = true;
+    setState(() {});
+  }
+
+  @override
+  void onNotificationRemoved(int id, NotificationCloseReason reason) {}
+
+  @override
+  void onNotificationReplaced(int oldId, int id) {}
 }

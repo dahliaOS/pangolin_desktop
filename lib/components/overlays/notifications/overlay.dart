@@ -28,6 +28,14 @@ class _NotificationsOverlayState extends ShellOverlayState<NotificationsOverlay>
   final Map<int, NotificationWrapperData> notifications = {};
 
   @override
+  void initState() {
+    super.initState();
+    for (final notification in NotificationService.current.notifications) {
+      onNotificationAdded(notification);
+    }
+  }
+
+  @override
   void dispose() {
     for (final int id in notifications.keys) {
       onNotificationRemoved(id, NotificationCloseReason.closed);

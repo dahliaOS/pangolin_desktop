@@ -61,40 +61,49 @@ class _DBusImageWidgetState extends State<DBusImageWidget> {
   Future<void> _decodeImage() async {
     DBusImage image = widget.image;
 
-    if (image is RawDBusImageCollection) {
-      image = _selectBestForSize(image.pixmaps);
+    if (image case RawDBusImageCollection(pixmaps: final pixmaps)) {
+      image = _selectBestForSize(pixmaps);
     }
 
-    if (image is RawDBusImage) {
-      final Uint8List bytes;
-      final int rowBytes;
+    switch (image) {
+      case RawDBusImage(
+          bytes: final imgBytes,
+          width: final width,
+          height: final height,
+          rowStride: final rowStride,
+        ):
+        {
+          final Uint8List bytes;
+          final int rowBytes;
 
-      if (!image.hasAlpha) {
-        bytes = _patchBytes(image.bytes, image.width, image.height);
-        rowBytes = image.rowStride + image.width;
-      } else {
-        bytes = image.bytes;
-        rowBytes = image.rowStride;
-      }
+          if (!image.hasAlpha) {
+            bytes = _patchBytes(imgBytes, width, height);
+            rowBytes = rowStride + width;
+          } else {
+            bytes = imgBytes;
+            rowBytes = rowStride;
+          }
 
-      ui.decodeImageFromPixels(
-        bytes,
-        image.width,
-        image.height,
-        ui.PixelFormat.rgba8888,
-        _updateImage,
-        rowBytes: rowBytes,
-        targetWidth: widget.width?.round(),
-        targetHeight: widget.height?.round(),
-      );
-    } else if (image is PngDBusImage) {
-      final ui.Codec codec = await ui.instantiateImageCodec(
-        image.bytes,
-        targetWidth: widget.width?.round(),
-        targetHeight: widget.height?.round(),
-      );
-      final ui.FrameInfo frame = await codec.getNextFrame();
-      _updateImage(frame.image);
+          ui.decodeImageFromPixels(
+            bytes,
+            width,
+            height,
+            ui.PixelFormat.rgba8888,
+            _updateImage,
+            rowBytes: rowBytes,
+            targetWidth: width,
+            targetHeight: height,
+          );
+        }
+      case PngDBusImage(bytes: final bytes):
+        final ui.Codec codec = await ui.instantiateImageCodec(
+          bytes,
+          targetWidth: widget.width?.round(),
+          targetHeight: widget.height?.round(),
+        );
+        final ui.FrameInfo frame = await codec.getNextFrame();
+        _updateImage(frame.image);
+      default:
     }
   }
 
@@ -132,63 +141,56 @@ class _DBusImageWidgetState extends State<DBusImageWidget> {
   Widget build(BuildContext context) {
     DBusImage image = widget.image;
 
-    if (image is RawDBusImageCollection) {
-      image = _selectBestForSize(image.pixmaps);
+    if (image case RawDBusImageCollection(pixmaps: final pixmaps)) {
+      image = _selectBestForSize(pixmaps);
     }
 
-    if (image is NameDBusImage) {
-      final Uri? uri = Uri.tryParse(image.name);
+    switch (image) {
+      case NameDBusImage(name: final name):
+        final Uri? uri = Uri.tryParse(name);
 
-      if (uri != null && (uri.scheme == "file" || image.name.startsWith("/"))) {
-        return ResourceImage(
-          resource: ImageResource(
-            type: ImageResourceType.file,
-            value: uri.toFilePath(),
-          ),
-          fit: BoxFit.cover,
+        if (uri != null && (uri.scheme == "file" || name.startsWith("/"))) {
+          return ResourceImage(
+            resource: ImageResource(
+              type: ImageResourceType.file,
+              value: uri.toFilePath(),
+            ),
+            fit: BoxFit.cover,
+            width: widget.width,
+            height: widget.height,
+          );
+        } else {
+          return ResourceIcon(
+            resource: IconResource(
+              type: IconResourceType.xdg,
+              value: name,
+            ),
+            size: squareSize,
+            themePath: widget.themePath,
+          );
+        }
+      case RawDBusImage(width: final width, height: final height):
+        if (_rawImage != null) {
+          return CustomPaint(
+            painter: _UiImagePainter(_rawImage!),
+            size: Size(
+              widget.width ?? width.toDouble(),
+              widget.height ?? height.toDouble(),
+            ),
+          );
+        }
+      case PngDBusImage(bytes: final bytes):
+        return Image.memory(
+          bytes,
           width: widget.width,
           height: widget.height,
         );
-      } else {
-        return ResourceIcon(
-          resource: IconResource(
-            type: IconResourceType.xdg,
-            value: image.name,
-          ),
+      case IconDataDBusImage(data: final data):
+        return Icon(
+          data,
           size: squareSize,
-          themePath: widget.themePath,
         );
-      }
-    } else if (image is RawDBusImage) {
-      if (_rawImage != null) {
-        return CustomPaint(
-          painter: _UiImagePainter(_rawImage!),
-          size: Size(
-            widget.width ?? image.width.toDouble(),
-            widget.height ?? image.height.toDouble(),
-          ),
-        );
-      }
-    } else if (image is PngDBusImage) {
-      return Image.memory(
-        image.bytes,
-        width: widget.width,
-        height: widget.height,
-      );
-      /* if (_rawImage != null) {
-        return CustomPaint(
-          painter: _UiImagePainter(_rawImage!),
-          size: Size(
-            widget.width ?? double.infinity,
-            widget.height ?? double.infinity,
-          ),
-        );
-      } */
-    } else if (image is IconDataDBusImage) {
-      return Icon(
-        image.data,
-        size: squareSize,
-      );
+      default:
     }
 
     return const SizedBox.expand();
