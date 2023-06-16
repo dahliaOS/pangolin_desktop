@@ -16,12 +16,15 @@ limitations under the License.
 
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 //TODO Localize this File
 //TODO Remove this pain
 
 List<String> getNetworks() {
+  if (kIsWeb) return [];
+
   final ProcessResult result =
       Process.runSync('nmcli', ['--terse', '-e', 'no', 'dev', 'wifi']);
   final String networks = result.stdout as String;
