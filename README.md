@@ -2,7 +2,7 @@
   <img width="80%" src="https://github.com/dahliaOS/brand/blob/master/pangolin/svg/logotypewhitetext.svg#gh-dark-mode-only" />
   <img width="80%" src="https://github.com/dahliaOS/brand/blob/master/pangolin/svg/logotypeblacktext.svg#gh-light-mode-only" />
 </p>
-
+ 
 <p align="center">
 <a href="https://dahliaos.io">Website</a> •
 <a href="https://dahliaos.io/discord">Discord</a> •
