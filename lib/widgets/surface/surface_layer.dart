@@ -14,7 +14,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
 import 'package:zenit_ui/zenit_ui.dart';
 
@@ -42,7 +41,7 @@ class SurfaceLayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = ZenitTheme.of(context);
+    final theme = Theme.of(context);
     return Container(
       width: width,
       height: height,
@@ -50,7 +49,7 @@ class SurfaceLayer extends StatelessWidget {
       margin: margin,
       decoration: ShapeDecoration(
         shape: shape,
-        color: theme.backgroundColor,
+        color: theme.colorScheme.background,
         shadows: dropShadow
             ? [
                 BoxShadow(
@@ -68,7 +67,7 @@ class SurfaceLayer extends StatelessWidget {
           // Create outline around the surface
           side: outline
               ? BorderSide(
-                  color: theme.foregroundColor.op(0.1),
+                  color: theme.foregroundColor.withOpacity(0.1),
                 )
               : BorderSide.none,
         ),

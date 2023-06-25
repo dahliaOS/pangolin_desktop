@@ -83,7 +83,7 @@ class _AccountOverlayState extends ShellOverlayState<AccountOverlay> {
                           width: 328,
                           child: DecoratedBox(
                             decoration: BoxDecoration(
-                              color: ZenitTheme.of(context).cardColor,
+                              color: Theme.of(context).surfaceColor,
                             ),
                             child: const Padding(
                               padding: EdgeInsets.all(24.0),
@@ -125,8 +125,7 @@ class _AccountOverlayState extends ShellOverlayState<AccountOverlay> {
                                 title: "Account Settings",
                                 icon: Icons.settings_outlined,
                                 context: context,
-                                onPressed: () =>
-                                    ActionManager.openSettings(context),
+                                onPressed: () => ActionManager.openSettings(context),
                               ),
                             ],
                           ),

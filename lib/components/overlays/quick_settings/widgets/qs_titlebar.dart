@@ -14,10 +14,10 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/overlays/quick_settings/quick_settings_overlay.dart';
 import 'package:pangolin/widgets/quick_button.dart';
+import 'package:zenit_ui/zenit_ui.dart';
 
 class QsTitlebar extends StatelessWidget implements PreferredSizeWidget {
   const QsTitlebar({super.key, this.leading, this.title, this.trailing});
@@ -33,10 +33,7 @@ class QsTitlebar extends StatelessWidget implements PreferredSizeWidget {
       size: preferredSize,
       child: Row(
         children: [
-          if (leading == null && controller.canPop())
-            const BackButton()
-          else if (leading != null)
-            leading!,
+          if (leading == null && controller.canPop()) const BackButton() else if (leading != null) leading!,
           if (title != null)
             QuickActionButton(
               title: title,
@@ -44,7 +41,7 @@ class QsTitlebar extends StatelessWidget implements PreferredSizeWidget {
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
                 height: 1.1,
-                color: context.theme.surfaceForegroundColor,
+                color: Theme.of(context).foregroundColor,
               ),
             ),
           const Spacer(),

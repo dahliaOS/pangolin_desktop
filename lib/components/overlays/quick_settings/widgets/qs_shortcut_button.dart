@@ -33,7 +33,7 @@ class QsShortcutButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(right: 8.0),
       child: Material(
-        color: ZenitTheme.of(context).surfaceColor,
+        color: Theme.of(context).surfaceColor,
         clipBehavior: Clip.antiAlias,
         borderRadius: BorderRadius.circular(16),
         child: InkWell(
@@ -46,10 +46,7 @@ class QsShortcutButton extends StatelessWidget {
                   icon ?? Icons.add,
                   size: 16,
                 ),
-                if (title != null)
-                  const SizedBox(width: 8)
-                else
-                  const SizedBox.shrink(),
+                if (title != null) const SizedBox(width: 8) else const SizedBox.shrink(),
                 if (title != null)
                   Text(
                     title!,

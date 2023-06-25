@@ -55,7 +55,7 @@ class _QuickActionButtonState extends State<QuickActionButton> {
         width: titleIsNull ? widget.size ?? 40 : null,
         child: Material(
           clipBehavior: Clip.antiAlias,
-          color: ZenitTheme.of(context).surfaceColor,
+          color: Theme.of(context).surfaceColor,
           shape: Constants.circularShape,
           child: InkWell(
             onTap: widget.onPressed,
@@ -80,14 +80,8 @@ class _QuickActionButtonState extends State<QuickActionButton> {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             widget.leading ?? const SizedBox.shrink(),
-                            if (!(titleIsNull || leadingIsNull))
-                              const SizedBox(width: 8)
-                            else
-                              const SizedBox.shrink(),
-                            if (!titleIsNull)
-                              Text(widget.title!)
-                            else
-                              const SizedBox.shrink(),
+                            if (!(titleIsNull || leadingIsNull)) const SizedBox(width: 8) else const SizedBox.shrink(),
+                            if (!titleIsNull) Text(widget.title!) else const SizedBox.shrink(),
                           ],
                         )
                       : widget.leading ?? const SizedBox.shrink(),

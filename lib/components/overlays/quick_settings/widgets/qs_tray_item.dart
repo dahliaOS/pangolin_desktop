@@ -54,8 +54,7 @@ class _TrayMenuItemState extends State<QsTrayMenuItem> {
 
   @override
   Widget build(BuildContext context) {
-    final hasTooltipTitle = widget.item.tooltip?.title != null &&
-        widget.item.tooltip!.title.isNotEmpty;
+    final hasTooltipTitle = widget.item.tooltip?.title != null && widget.item.tooltip!.title.isNotEmpty;
     final hasTitle = widget.item.title != null && widget.item.title!.isNotEmpty;
     final String? title;
 
@@ -67,17 +66,11 @@ class _TrayMenuItemState extends State<QsTrayMenuItem> {
       title = null;
     }
 
-    final hasMenu =
-        widget.item.menu != null && widget.item.menu!.children.isNotEmpty;
+    final hasMenu = widget.item.menu != null && widget.item.menu!.children.isNotEmpty;
     final menu = widget.item.menu;
 
     final child = ContextMenu(
-      entries: hasMenu
-          ? menu!.children
-              .where((e) => e.visible)
-              .map((e) => DBusMenuEntry(e))
-              .toList()
-          : null,
+      entries: hasMenu ? menu!.children.where((e) => e.visible).map((e) => DBusMenuEntry(e)).toList() : null,
       onOpen: () {
         menu!.object.callEvent(
           menu.id,
@@ -132,8 +125,7 @@ class _TrayMenuItemState extends State<QsTrayMenuItem> {
                     height: 16,
                     width: 16,
                     themePath: widget.item.iconThemePath,
-                    image:
-                        widget.item.icon ?? const IconDataDBusImage(Icons.info),
+                    image: widget.item.icon ?? const IconDataDBusImage(Icons.info),
                   ),
                 ),
                 if (title != null) const SizedBox(width: 8),
@@ -150,7 +142,7 @@ class _TrayMenuItemState extends State<QsTrayMenuItem> {
     );
 
     return Material(
-      color: ZenitTheme.of(context).surfaceColor,
+      color: Theme.of(context).surfaceColor,
       clipBehavior: Clip.antiAlias,
       borderRadius: BorderRadius.circular(16),
       child: Tooltip(

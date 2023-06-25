@@ -32,6 +32,7 @@ import 'package:pangolin/services/search.dart';
 import 'package:pangolin/services/tray.dart';
 import 'package:pangolin/services/wm.dart';
 import 'package:yatl_flutter/yatl_flutter.dart';
+import 'package:zenit_ui/zenit_ui.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -101,8 +102,7 @@ Future<void> main() async {
             final CustomizationService service = CustomizationService.current;
             return YatlApp(
               core: yatl,
-              getLocale: () =>
-                  intl.Locale.tryParse(service.locale)?.toFlutterLocale(),
+              getLocale: () => intl.Locale.tryParse(service.locale)?.toFlutterLocale(),
               setLocale: (locale) => service.locale = locale?.toString(),
               child: child!,
             );
@@ -124,11 +124,12 @@ class Pangolin extends StatelessWidget {
       builder: (context, child) {
         return MaterialApp(
           home: child,
-          theme: dahliaLightTheme,
-          darkTheme: dahliaDarkTheme,
-          themeMode: CustomizationService.current.darkMode
-              ? ThemeMode.dark
-              : ThemeMode.light,
+          theme: createZenitTheme(primaryColor: CustomizationService.current.accentColor.resolve()),
+          darkTheme: createZenitTheme(
+            brightness: Brightness.dark,
+            primaryColor: CustomizationService.current.accentColor.resolve(),
+          ),
+          themeMode: CustomizationService.current.darkMode ? ThemeMode.dark : ThemeMode.light,
           supportedLocales: context.supportedLocales,
           locale: context.locale,
           localizationsDelegates: [

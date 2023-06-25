@@ -52,7 +52,7 @@ class _OverviewOverlayState extends ShellOverlayState<OverviewOverlay>
 
     final WindowHierarchyController hierarchy = WindowHierarchy.of(context);
     final ImageResource image = service.wallpaper;
-    final theme = ZenitTheme.of(context);
+    final theme = Theme.of(context);
 
     return Positioned.fromRect(
       rect: hierarchy.wmBounds,
@@ -73,7 +73,7 @@ class _OverviewOverlayState extends ShellOverlayState<OverviewOverlay>
                 right: 0,
                 height: 152,
                 child: DecoratedBox(
-                  decoration: BoxDecoration(color: theme.backgroundColor),
+                  decoration: BoxDecoration(color: theme.colorScheme.background),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

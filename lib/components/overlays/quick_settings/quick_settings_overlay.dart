@@ -61,8 +61,7 @@ enum _TransitionDirection {
   const _TransitionDirection(this.value);
 }
 
-class _QuickSettingsOverlayState
-    extends ShellOverlayState<QuickSettingsOverlay> {
+class _QuickSettingsOverlayState extends ShellOverlayState<QuickSettingsOverlay> {
   static const Map<String, Widget> routes = {
     '/': QsMain(),
     '/pages/account': QsAccountPage(),
@@ -175,8 +174,7 @@ class QsMain extends StatefulWidget {
   State<QsMain> createState() => _QsMainState();
 }
 
-class _QsMainState extends State<QsMain>
-    with StateServiceListener<CustomizationService, QsMain> {
+class _QsMainState extends State<QsMain> with StateServiceListener<CustomizationService, QsMain> {
   bool showTray = false;
 
   @override
@@ -194,7 +192,7 @@ class _QsMainState extends State<QsMain>
           fontSize: 14,
           fontWeight: FontWeight.w600,
           height: 1.1,
-          color: ZenitTheme.of(context).foregroundColor,
+          color: Theme.of(context).foregroundColor,
         ),
       ),
       const Spacer(),
@@ -232,11 +230,9 @@ class _QsMainState extends State<QsMain>
                       //TODO Capitalise
                       subtitle: ToggleProperty(
                         base: null,
-                        active: strings.quicksettingsOverlay
-                            .quickControlsNetworkSubtitleConnected,
+                        active: strings.quicksettingsOverlay.quickControlsNetworkSubtitleConnected,
                       ),
-                      enabled:
-                          service.enableWifi && !service.enableAirplaneMode,
+                      enabled: service.enableWifi && !service.enableAirplaneMode,
                       onPressed: (value) => service.enableWifi = value,
                       onMenuPressed: () {
                         QsController.pushRoute(context, "/pages/network");
@@ -244,8 +240,7 @@ class _QsMainState extends State<QsMain>
                     ),
                     QsToggleButton(
                       title: ToggleProperty.singleState(
-                        strings
-                            .quicksettingsOverlay.quickControlsBluetoothTitle,
+                        strings.quicksettingsOverlay.quickControlsBluetoothTitle,
                       ),
                       subtitle: ToggleProperty(
                         base: strings.global.off,
@@ -255,14 +250,12 @@ class _QsMainState extends State<QsMain>
                         base: Icons.bluetooth_disabled_rounded,
                         active: Icons.bluetooth_connected_rounded,
                       ),
-                      enabled: service.enableBluetooth &&
-                          !service.enableAirplaneMode,
+                      enabled: service.enableBluetooth && !service.enableAirplaneMode,
                       onPressed: (value) => service.enableBluetooth = value,
                     ),
                     QsToggleButton(
                       title: ToggleProperty.singleState(
-                        strings.quicksettingsOverlay
-                            .quickControlsAirplaneModeTitle,
+                        strings.quicksettingsOverlay.quickControlsAirplaneModeTitle,
                       ),
                       icon: const ToggleProperty(
                         base: Icons.airplanemode_off_rounded,
@@ -290,8 +283,7 @@ class _QsMainState extends State<QsMain>
                       ),
                       enabled: true,
                       onPressed: (_) {
-                        final int index =
-                            context.supportedLocales.indexOf(context.locale);
+                        final int index = context.supportedLocales.indexOf(context.locale);
                         if (index + 1 < locales.supportedLocales.length) {
                           context.locale = context.supportedLocales[index + 1];
                         } else {
@@ -311,13 +303,11 @@ class _QsMainState extends State<QsMain>
                       ),
                       enabled: true,
                       onPressed: (_) => service.darkMode = !service.darkMode,
-                      onMenuPressed: () =>
-                          QsController.pushRoute(context, "/pages/theme"),
+                      onMenuPressed: () => QsController.pushRoute(context, "/pages/theme"),
                     ),
                     QsToggleButton(
                       title: ToggleProperty.singleState(
-                        strings.quicksettingsOverlay
-                            .quickControlsDonotdisturbTitle,
+                        strings.quicksettingsOverlay.quickControlsDonotdisturbTitle,
                       ),
                       icon: const ToggleProperty.singleState(
                         Icons.do_not_disturb_off_rounded,
@@ -372,9 +362,7 @@ class _QsMainState extends State<QsMain>
             Column(
               children: [
                 QsSlider(
-                  icon: service.muteVolume
-                      ? Icons.volume_off_rounded
-                      : Icons.volume_up_rounded,
+                  icon: service.muteVolume ? Icons.volume_off_rounded : Icons.volume_up_rounded,
                   onChanged: (val) {
                     service.volume = val;
                     service.muteVolume = val == 0;
@@ -384,14 +372,11 @@ class _QsMainState extends State<QsMain>
                   onIconTap: () => service.muteVolume = !service.muteVolume,
                 ),
                 QsSlider(
-                  icon: service.autoBrightness
-                      ? Icons.brightness_auto_rounded
-                      : Icons.brightness_5_rounded,
+                  icon: service.autoBrightness ? Icons.brightness_auto_rounded : Icons.brightness_5_rounded,
                   onChanged: (val) => service.brightness = val,
                   value: service.brightness,
                   steps: 10,
-                  onIconTap: () =>
-                      service.autoBrightness = !service.autoBrightness,
+                  onIconTap: () => service.autoBrightness = !service.autoBrightness,
                 ),
               ],
             ),
@@ -413,8 +398,7 @@ class _QsMainState extends State<QsMain>
                 ),
                 if (PowerService.current.hasBattery)
                   PowerServiceBuilder(
-                    builder:
-                        (context, child, percentage, charging, powerSaver) {
+                    builder: (context, child, percentage, charging, powerSaver) {
                       return QuickActionButton(
                         leading: BatteryIndicator(
                           percentage: percentage,
@@ -607,8 +591,7 @@ class _RenderFixedSizeTransitionStack extends RenderBox
     double extent = 0.0;
     final child = childToMeasure;
     if (child != null) {
-      final StackParentData childParentData =
-          child.parentData! as StackParentData;
+      final StackParentData childParentData = child.parentData! as StackParentData;
       extent = mainChildSizeGetter(child);
       assert(child.parentData == childParentData);
     }
@@ -659,9 +642,7 @@ class _RenderFixedSizeTransitionStack extends RenderBox
     _resolve();
     assert(_resolvedAlignment != null);
     if (childCount == 0) {
-      return (constraints.biggest.isFinite)
-          ? constraints.biggest
-          : constraints.smallest;
+      return (constraints.biggest.isFinite) ? constraints.biggest : constraints.smallest;
     }
 
     double width = constraints.minWidth;
@@ -672,8 +653,7 @@ class _RenderFixedSizeTransitionStack extends RenderBox
     RenderBox? child = startChild;
     int i = 0;
     while (child != null) {
-      final StackParentData childParentData =
-          child.parentData! as StackParentData;
+      final StackParentData childParentData = child.parentData! as StackParentData;
 
       if (!childParentData.isPositioned) {
         final Size childSize = layoutChild(child, nonPositionedConstraints);
@@ -684,9 +664,7 @@ class _RenderFixedSizeTransitionStack extends RenderBox
         }
       }
 
-      child = reverseDirection
-          ? childParentData.nextSibling
-          : childParentData.previousSibling;
+      child = reverseDirection ? childParentData.nextSibling : childParentData.previousSibling;
       i++;
     }
 
@@ -708,20 +686,16 @@ class _RenderFixedSizeTransitionStack extends RenderBox
       layoutChild: (box, constraints) {
         final size = box.getDryLayout(constraints);
 
-        final unboundedWidth = size.width == double.infinity &&
-            constraints.maxWidth == double.infinity;
-        final unboundedHeight = size.height == double.infinity &&
-            constraints.maxHeight == double.infinity;
+        final unboundedWidth = size.width == double.infinity && constraints.maxWidth == double.infinity;
+        final unboundedHeight = size.height == double.infinity && constraints.maxHeight == double.infinity;
 
         final BoxConstraints newConstraints;
         if (unboundedWidth || unboundedHeight) {
           newConstraints = BoxConstraints(
             minWidth: constraints.minWidth,
-            maxWidth:
-                unboundedWidth ? fallbackSize.width : constraints.maxWidth,
+            maxWidth: unboundedWidth ? fallbackSize.width : constraints.maxWidth,
             minHeight: constraints.minHeight,
-            maxHeight:
-                unboundedHeight ? fallbackSize.height : constraints.maxHeight,
+            maxHeight: unboundedHeight ? fallbackSize.height : constraints.maxHeight,
           );
         } else {
           newConstraints = constraints;
@@ -735,12 +709,10 @@ class _RenderFixedSizeTransitionStack extends RenderBox
     assert(_resolvedAlignment != null);
     RenderBox? child = firstChild;
     while (child != null) {
-      final StackParentData childParentData =
-          child.parentData! as StackParentData;
+      final StackParentData childParentData = child.parentData! as StackParentData;
 
       if (!childParentData.isPositioned) {
-        childParentData.offset =
-            _resolvedAlignment!.alongOffset(size - child.size as Offset);
+        childParentData.offset = _resolvedAlignment!.alongOffset(size - child.size as Offset);
       } else {
         layoutPositionedChild(
           child,
@@ -780,8 +752,7 @@ class _RenderFixedSizeTransitionStack extends RenderBox
         height: size.height - childParentData.bottom! - childParentData.top!,
       );
     } else if (childParentData.height != null) {
-      childConstraints =
-          childConstraints.tighten(height: childParentData.height);
+      childConstraints = childConstraints.tighten(height: childParentData.height);
     }
 
     child.layout(childConstraints, parentUsesSize: true);

@@ -82,7 +82,7 @@ class _PowerOverlayState extends ShellOverlayState<PowerOverlay> {
                           width: 328,
                           child: DecoratedBox(
                             decoration: BoxDecoration(
-                              color: ZenitTheme.of(context).cardColor,
+                              color: Theme.of(context).surfaceColor,
                             ),
                             child: Padding(
                               padding: const EdgeInsets.all(24.0),

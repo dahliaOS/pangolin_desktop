@@ -14,8 +14,7 @@ dependencies:
   dahlia_shared: 
     git: 
       url: https://github.com/dahliaOS/shared
-      # change before merge
-      ref: develop
+      ref: main
   dbus: ^0.7.4
   diffutil_dart: ^3.0.0
   flutter: 
@@ -27,8 +26,6 @@ dependencies:
   intl: ^0.18.0
   jovial_svg: ^1.1.5
   logging: ^1.0.2
-  mnemonic_label: 
-    git: https://github.com/ubuntu-flutter-community/mnemonic_label
   path: ^1.8.2
   pausable_timer: ^1.0.0+5
   provider: ^6.0.1

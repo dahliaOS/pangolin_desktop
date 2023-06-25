@@ -17,7 +17,7 @@ class PowerAccountMenuButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = ZenitTheme.of(context);
+    final theme = Theme.of(context);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: SizedBox(
@@ -40,7 +40,7 @@ class PowerAccountMenuButton extends StatelessWidget {
                   const SizedBox(width: 12),
                   Text(
                     title,
-                    style: theme.materialTheme.textTheme.labelLarge?.copyWith(
+                    style: theme.textTheme.labelLarge?.copyWith(
                       fontSize: 16,
                       color: theme.accentForegroundColor,
                     ),

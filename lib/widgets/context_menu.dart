@@ -26,8 +26,7 @@ class ContextMenu extends StatefulWidget {
 }
 
 class _ContextMenuState extends State<ContextMenu> {
-  late final String controllerId =
-      _MenuControllerRegistry.instance.register(MenuController());
+  late final String controllerId = _MenuControllerRegistry.instance.register(MenuController());
   late Offset lastPosition;
 
   @override
@@ -41,11 +40,10 @@ class _ContextMenuState extends State<ContextMenu> {
     if (widget.entries == null || widget.entries!.isEmpty) return widget.child;
 
     return GestureDetector(
-      onSecondaryTapUp: (details) => _MenuControllerRegistry.instance
-          .open(controllerId, position: details.localPosition),
+      onSecondaryTapUp: (details) =>
+          _MenuControllerRegistry.instance.open(controllerId, position: details.localPosition),
       onLongPressDown: (details) => lastPosition = details.localPosition,
-      onLongPress: () => _MenuControllerRegistry.instance
-          .open(controllerId, position: lastPosition),
+      onLongPress: () => _MenuControllerRegistry.instance.open(controllerId, position: lastPosition),
       child: MenuAnchor(
         onOpen: widget.onOpen,
         onClose: widget.onClose,
@@ -53,14 +51,13 @@ class _ContextMenuState extends State<ContextMenu> {
           shape: const MaterialStatePropertyAll(Constants.mediumShape),
           side: MaterialStatePropertyAll(
             BorderSide(
-              color: ZenitTheme.of(context).foregroundColor.op(0.1),
+              color: ZenitThemeData(Theme.of(context)).foregroundColor.op(0.1),
             ),
           ),
         ),
         controller: _MenuControllerRegistry.instance.get(controllerId),
         anchorTapClosesMenu: true,
-        menuChildren:
-            widget.entries!.map((e) => e.buildWrapper(context)).toList(),
+        menuChildren: widget.entries!.map((e) => e.buildWrapper(context)).toList(),
         child: widget.child,
       ),
     );
@@ -101,8 +98,7 @@ abstract class BaseContextMenuItem {
     this.trailing,
   });
 
-  Widget buildWrapper(BuildContext context) =>
-      _EnabledBuilder(enabled: enabled, child: build(context));
+  Widget buildWrapper(BuildContext context) => _EnabledBuilder(enabled: enabled, child: build(context));
 
   Widget build(BuildContext context);
   Widget? buildLeading(BuildContext context) => leading;

@@ -38,7 +38,7 @@ class QsToggleButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = ZenitTheme.of(context);
+    final theme = Theme.of(context);
 
     final Color color = enabled ? theme.primaryColor : theme.surfaceColor;
     final String? subtitle = this.subtitle?.resolve(enabled: enabled);
@@ -59,7 +59,7 @@ class QsToggleButton extends StatelessWidget {
                 Icon(
                   icon.resolve(enabled: enabled),
                   size: 20,
-                  color: theme.materialTheme.computedForegroundColor(color),
+                  color: theme.computedForegroundColor(color),
                 ),
                 const SizedBox(width: 8),
                 Column(
@@ -73,8 +73,7 @@ class QsToggleButton extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
-                        color:
-                            theme.materialTheme.computedForegroundColor(color),
+                        color: theme.computedForegroundColor(color),
                       ),
                     ),
                     if (subtitle != null)
@@ -82,8 +81,7 @@ class QsToggleButton extends StatelessWidget {
                         subtitle,
                         style: TextStyle(
                           fontSize: 10,
-                          color: theme.materialTheme
-                              .computedForegroundColor(color),
+                          color: theme.computedForegroundColor(color),
                         ),
                       ),
                   ],
@@ -101,8 +99,7 @@ class QsToggleButton extends StatelessWidget {
                         child: Icon(
                           Icons.chevron_right_rounded,
                           size: 20,
-                          color: theme.materialTheme
-                              .computedForegroundColor(color),
+                          color: theme.computedForegroundColor(color),
                         ),
                       ),
                     ),

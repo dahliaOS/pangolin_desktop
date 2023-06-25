@@ -25,24 +25,21 @@ import 'package:pangolin/widgets/battery_indicator.dart';
 import 'package:pangolin/widgets/separated_flex.dart';
 import 'package:zenit_ui/zenit_ui.dart';
 
-class QuickSettingsButton extends StatelessWidget
-    with StatelessServiceListener<CustomizationService> {
+class QuickSettingsButton extends StatelessWidget with StatelessServiceListener<CustomizationService> {
   const QuickSettingsButton({super.key});
 
   @override
   Widget buildChild(BuildContext context, CustomizationService service) {
-    final theme = ZenitTheme.of(context);
+    final theme = Theme.of(context);
     return TaskbarElement(
       iconSize: 18,
       overlayID: QuickSettingsOverlay.overlayId,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12.0),
         child: ValueListenableBuilder<bool>(
-          valueListenable: Shell.of(context)
-              .getShowingNotifier(QuickSettingsOverlay.overlayId),
+          valueListenable: Shell.of(context).getShowingNotifier(QuickSettingsOverlay.overlayId),
           builder: (context, showing, child) {
-            final foregroundColor =
-                showing ? theme.accentForegroundColor : theme.foregroundColor;
+            final foregroundColor = showing ? theme.accentForegroundColor : theme.foregroundColor;
             return SeparatedFlex(
               axis: Axis.horizontal,
               separator: const SizedBox(width: 8),
