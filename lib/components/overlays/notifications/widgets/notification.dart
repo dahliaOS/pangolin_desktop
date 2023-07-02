@@ -76,11 +76,13 @@ class _NotificationBody extends StatelessWidget {
         child: InkWell(
           onTap: () {
             if (!notification.actions.any((e) => e.key == "default")) return;
-            notification.invokeAction("default");
-            NotificationService.current.closeNotification(
-              notification.id,
-              NotificationCloseReason.closed,
-            );
+            final bool shouldClose = notification.invokeAction("default");
+            if (shouldClose) {
+              NotificationService.current.closeNotification(
+                notification.id,
+                NotificationCloseReason.closed,
+              );
+            }
           },
           child: Padding(
             padding: const EdgeInsets.all(12),
@@ -190,11 +192,13 @@ class _NotificationActionButton extends StatelessWidget {
         type: MaterialType.transparency,
         child: InkWell(
           onTap: () {
-            notification.invokeAction(action.key);
-            NotificationService.current.closeNotification(
-              notification.id,
-              NotificationCloseReason.closed,
-            );
+            final shouldClose = notification.invokeAction(action.key);
+            if (shouldClose) {
+              NotificationService.current.closeNotification(
+                notification.id,
+                NotificationCloseReason.closed,
+              );
+            }
           },
           child: Center(
             child: Padding(

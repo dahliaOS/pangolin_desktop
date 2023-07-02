@@ -310,12 +310,13 @@ class UserNotification {
     );
   }
 
-  void invokeAction(String action) {
+  bool invokeAction(String action) {
     owner?.emitSignal(
       'org.freedesktop.Notifications',
       'ActionInvoked',
       [DBusUint32(id), DBusString(action)],
     );
+    return true;
   }
 
   UserNotification copyWith({
@@ -371,8 +372,9 @@ class ShellNotification extends UserNotification {
   }
 
   @override
-  void invokeAction(String action) {
+  bool invokeAction(String action) {
     onAction?.call(action);
+    return false;
   }
 
   @override

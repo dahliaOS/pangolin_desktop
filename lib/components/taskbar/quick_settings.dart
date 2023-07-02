@@ -35,6 +35,7 @@ class QuickSettingsButton extends StatelessWidget
     return TaskbarElement(
       iconSize: 18,
       overlayID: QuickSettingsOverlay.overlayId,
+      height: 40.0,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12.0),
         child: ValueListenableBuilder<bool>(

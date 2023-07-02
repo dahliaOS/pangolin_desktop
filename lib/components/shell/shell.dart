@@ -14,6 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/overlays/notifications/queue.dart';
 import 'package:pangolin/components/taskbar/app_list.dart';
@@ -27,9 +28,6 @@ import 'package:pangolin/components/taskbar/taskbar.dart';
 import 'package:pangolin/components/taskbar/tray.dart';
 import 'package:pangolin/services/shell.dart';
 import 'package:pangolin/utils/wm/wm.dart';
-import 'package:provider/provider.dart';
-
-typedef ShellShownCallback = void Function(ShellState shell);
 
 class Shell extends StatefulWidget {
   final List<ShellOverlay> overlays;
@@ -41,10 +39,6 @@ class Shell extends StatefulWidget {
 
   @override
   ShellState createState() => ShellState();
-
-  static ShellState of(BuildContext context, {bool listen = true}) {
-    return Provider.of<ShellState>(context, listen: listen);
-  }
 }
 
 class ShellState extends State<Shell> with TickerProviderStateMixin {
@@ -61,48 +55,62 @@ class ShellState extends State<Shell> with TickerProviderStateMixin {
     setState(() {});
   }
 
+  void showInformativeDialog(String title, String message) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(title),
+        content: Text(message, style: const TextStyle(fontFamily: "monospace")),
+        shape: Constants.bigShape,
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text("Close"),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Provider.value(
-      value: this,
-      child: SizedBox.expand(
-        child: Stack(
-          fit: StackFit.expand,
-          children: [
-            Positioned.fill(
-              child: Listener(
-                onPointerDown: (event) {
-                  ShellService.current.dismissEverything();
-                },
-                behavior: HitTestBehavior.translucent,
-              ),
+    return SizedBox.expand(
+      child: Stack(
+        fit: StackFit.expand,
+        children: [
+          Positioned.fill(
+            child: Listener(
+              onPointerDown: (event) {
+                ShellService.current.dismissEverything();
+              },
+              behavior: HitTestBehavior.translucent,
             ),
-            const Taskbar(
-              leading: [
-                LauncherButton(),
-                SearchButton(),
-                OverviewButton(),
-              ],
-              centerRelativeToScreen: true,
-              center: [AppListElement()],
-              trailing: [
-                //TODO: here is the keyboard button
-                //KeyboardButton(),
-                TrayMenuButton(),
-                QuickSettingsButton(),
-                NotificationsButton(),
-                ShowDesktopButton(),
-              ],
-            ),
-            ...widget.overlays,
-            Positioned(
-              width: 420,
-              right: WindowHierarchy.of(context).wmInsets.right + 8,
-              bottom: WindowHierarchy.of(context).wmInsets.bottom + 8,
-              child: const NotificationQueue(),
-            ),
-          ],
-        ),
+          ),
+          const Taskbar(
+            leading: [
+              LauncherButton(),
+              SearchButton(),
+              OverviewButton(),
+            ],
+            centerRelativeToScreen: true,
+            center: [AppListElement()],
+            trailing: [
+              //TODO: here is the keyboard button
+              //KeyboardButton(),
+              TrayMenuButton(),
+              QuickSettingsButton(),
+              NotificationsButton(),
+              ShowDesktopButton(),
+            ],
+          ),
+          ...widget.overlays,
+          Positioned(
+            width: 420,
+            right: WindowHierarchy.of(context).wmInsets.right + 8,
+            bottom: WindowHierarchy.of(context).wmInsets.bottom + 8,
+            child: const NotificationQueue(),
+          ),
+        ],
       ),
     );
   }

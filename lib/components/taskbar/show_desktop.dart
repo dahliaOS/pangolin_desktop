@@ -53,23 +53,18 @@ class _ShowDesktopButtonState extends State<ShowDesktopButton> {
           }
         },
         child: SizedBox(
-          width: 8,
-          child: Stack(
-            children: [
-              Align(
-                alignment: Alignment.centerLeft,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(4),
-                  child: Container(
-                    height: 20,
-                    width: 2,
-                    color: isHovered
-                        ? context.theme.textTheme.bodyLarge?.color
-                        : Colors.transparent,
-                  ),
-                ),
-              )
-            ],
+          width: 16,
+          child: Center(
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(4),
+              child: Container(
+                height: 20,
+                width: 2,
+                color: isHovered
+                    ? context.theme.textTheme.bodyLarge?.color
+                    : Colors.transparent,
+              ),
+            ),
           ),
         ),
       ),

@@ -32,8 +32,41 @@ import 'package:pangolin/services/search.dart';
 import 'package:pangolin/services/shell.dart';
 import 'package:pangolin/services/tray.dart';
 import 'package:pangolin/services/wm.dart';
+import 'package:stack_trace/stack_trace.dart';
 import 'package:yatl_flutter/yatl_flutter.dart';
 import 'package:zenit_ui/zenit_ui.dart';
+
+void _pushShellNotification(LogRecord record) {
+  NotificationService.current.pushNotification(
+    ShellNotification(
+      appName: record.loggerName,
+      summary:
+          "Logged a ${record.level.name.toLowerCase()} for ${record.loggerName}",
+      body: record.message,
+      actions: [
+        if (record.error != null)
+          const NotificationAction("error", "Show error"),
+        if (record.stackTrace != null &&
+            record.stackTrace.toString().isNotEmpty)
+          const NotificationAction("stackTrace", "Show stack trace"),
+      ],
+      onAction: (action) {
+        switch (action) {
+          case "error":
+            ShellService.current.showInformativeDialog(
+              "Error",
+              record.error.toString(),
+            );
+          case "stackTrace":
+            ShellService.current.showInformativeDialog(
+              "Stack trace",
+              Trace.from(record.stackTrace!).terse.toString(),
+            );
+        }
+      },
+    ),
+  );
+}
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -41,6 +74,17 @@ Future<void> main() async {
   Logger.root.level = Level.ALL;
   Logger.root.onRecord.listen((record) {
     if (kDebugMode) {
+      if (record.level.value >= Level.WARNING.value) {
+        Future.wait([
+          ServiceManager.waitForService<ShellService>(),
+          ServiceManager.waitForService<NotificationService>(),
+        ]).then((value) {
+          ShellService.current.onShellReadyCallback(() {
+            _pushShellNotification(record);
+          });
+        });
+      }
+
       log(
         record.message,
         time: record.time,
@@ -58,6 +102,10 @@ Future<void> main() async {
     ServiceBuilderWidget(
       services: [
         const ServiceEntry<ShellService>.critical(ShellService.build),
+        ServiceEntry<NotificationService>.critical(
+          NotificationService.build,
+          NotificationService.fallback(),
+        ),
         const ServiceEntry<LocaleService>.critical(LocaleService.build),
         const ServiceEntry<SearchService>(SearchService.build),
         const ServiceEntry<WindowManagerService>.critical(
@@ -82,10 +130,6 @@ Future<void> main() async {
         ServiceEntry<TrayService>(
           TrayService.build,
           TrayService.fallback(),
-        ),
-        ServiceEntry<NotificationService>(
-          NotificationService.build,
-          NotificationService.fallback(),
         ),
         ServiceEntry<PowerService>(
           PowerService.build,

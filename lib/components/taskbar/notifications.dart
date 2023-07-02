@@ -30,7 +30,7 @@ class NotificationsButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return const TaskbarElement(
       shrinkWrap: true,
-      height: 48.0,
+      height: 40.0,
       overlayID: NotificationsOverlay.overlayId,
       child: _NotificationIcon(),
     );
@@ -83,10 +83,10 @@ class _NotificationIconState extends State<_NotificationIcon>
   @override
   Widget buildChild(BuildContext context, NotificationService service) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 4),
       child: Center(
         child: ConstrainedBox(
-          constraints: const BoxConstraints(minWidth: 24, maxHeight: 24),
+          constraints: const BoxConstraints(minWidth: 20, maxHeight: 20),
           child: ValueListenableBuilder<bool>(
             valueListenable: notifier,
             builder: (context, showing, _) {
@@ -104,7 +104,12 @@ class _NotificationIconState extends State<_NotificationIcon>
                           padding: const EdgeInsets.symmetric(horizontal: 4),
                           child: Text(
                             service.notifications.length.toString(),
-                            style: const TextStyle(fontSize: 12),
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: _unreadNotifs || showing
+                                  ? Theme.of(context).colorScheme.onSecondary
+                                  : null,
+                            ),
                           ),
                         ),
                       ),

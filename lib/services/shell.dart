@@ -14,7 +14,7 @@ abstract class ShellService extends ListenableService<ShellService> {
   static ShellService build() => _ShellServiceImpl();
 
   void registerShell(ShellState shell, List<ShellOverlay> overlays);
-  void registerShellStartupCallback(void Function() callback);
+  void onShellReadyCallback(void Function() callback);
   void notifyStartupComplete();
 
   Future<void> showOverlay(
@@ -40,6 +40,8 @@ abstract class ShellService extends ListenableService<ShellService> {
   List<String> get currentlyShownOverlays;
 
   void dismissEverything();
+
+  void showInformativeDialog(String title, String message);
 }
 
 class _ShellServiceImpl extends ShellService {
@@ -58,7 +60,11 @@ class _ShellServiceImpl extends ShellService {
   }
 
   @override
-  void registerShellStartupCallback(void Function() callback) {
+  void onShellReadyCallback(void Function() callback) {
+    if (shellStarted) {
+      callback();
+      return;
+    }
     callbacks.add(callback);
   }
 
@@ -134,6 +140,10 @@ class _ShellServiceImpl extends ShellService {
     state?.notify();
     notifyListeners();
   }
+
+  @override
+  void showInformativeDialog(String title, String message) =>
+      state?.showInformativeDialog(title, message);
 
   @override
   FutureOr<void> start() {}

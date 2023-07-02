@@ -42,9 +42,19 @@ class _CompactLauncherOverlayState
     extends ShellOverlayState<CompactLauncherOverlay> {
   final scrollController = ScrollController();
   final snapshotController = SnapshotController();
+  final List<DesktopEntry> applications = [];
 
   @override
   Future<void> requestShow(Map<String, dynamic> args) async {
+    applications.clear();
+    applications.addAll(ApplicationService.current.listApplications());
+
+    applications.sort(
+      (a, b) => a.getLocalizedName(context.locale).toLowerCase().compareTo(
+            b.getLocalizedName(context.locale).toLowerCase(),
+          ),
+    );
+
     if (scrollController.hasClients) scrollController.jumpTo(0);
     controller.showing = true;
     snapshotController.allowSnapshotting = true;
@@ -78,7 +88,10 @@ class _CompactLauncherOverlayState
             width: 474,
             outline: true,
             dropShadow: true,
-            child: CompactLauncher(controller: scrollController),
+            child: CompactLauncher(
+              applications: applications,
+              controller: scrollController,
+            ),
           ),
         ),
       ),
@@ -87,9 +100,14 @@ class _CompactLauncherOverlayState
 }
 
 class CompactLauncher extends StatelessWidget {
+  final List<DesktopEntry> applications;
   final ScrollController? controller;
 
-  const CompactLauncher({this.controller, super.key});
+  const CompactLauncher({
+    required this.applications,
+    this.controller,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -154,31 +172,14 @@ class CompactLauncher extends StatelessWidget {
               SizedBox(
                 height: 460,
                 width: 380,
-                child: AnimatedBuilder(
-                  animation: ApplicationService.current,
-                  builder: (context, _) {
-                    final List<DesktopEntry> applications =
-                        ApplicationService.current.listApplications();
-
-                    applications.sort(
-                      (a, b) => a
-                          .getLocalizedName(context.locale)
-                          .toLowerCase()
-                          .compareTo(
-                            b.getLocalizedName(context.locale).toLowerCase(),
-                          ),
-                    );
-
-                    return ListView.separated(
-                      itemCount: applications.length,
-                      itemBuilder: (context, index) => AppLauncherTile(
-                        application: applications[index],
-                      ),
-                      controller: controller,
-                      separatorBuilder: (context, index) =>
-                          const SizedBox(height: 4),
-                    );
-                  },
+                child: ListView.separated(
+                  itemCount: applications.length,
+                  itemBuilder: (context, index) => AppLauncherTile(
+                    application: applications[index],
+                  ),
+                  controller: controller,
+                  separatorBuilder: (context, index) =>
+                      const SizedBox(height: 4),
                 ),
               ),
             ],

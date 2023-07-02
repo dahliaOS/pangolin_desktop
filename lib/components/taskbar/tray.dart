@@ -14,7 +14,7 @@ class TrayMenuButton extends StatelessWidget
     return TaskbarElement(
       overlayID: TrayMenuOverlay.overlayId,
       shrinkWrap: true,
-      height: 48.0,
+      height: 40.0,
       child: ValueListenableBuilder<bool>(
         valueListenable:
             ShellService.current.getShowingNotifier(TrayMenuOverlay.overlayId),

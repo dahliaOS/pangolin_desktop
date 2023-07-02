@@ -57,7 +57,7 @@ class _DesktopState extends State<Desktop> {
   @override
   void initState() {
     super.initState();
-    ShellService.current.registerShellStartupCallback(() {
+    ShellService.current.onShellReadyCallback(() {
       if (CustomizationService.current.showWelcomeScreen) {
         ShellService.current.showOverlay("welcome");
       }
