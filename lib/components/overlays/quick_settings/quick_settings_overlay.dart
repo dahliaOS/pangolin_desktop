@@ -29,9 +29,9 @@ import 'package:pangolin/components/overlays/quick_settings/widgets/qs_shortcut_
 import 'package:pangolin/components/overlays/quick_settings/widgets/qs_slider.dart';
 import 'package:pangolin/components/overlays/quick_settings/widgets/qs_toggle_button.dart';
 import 'package:pangolin/components/overlays/quick_settings/widgets/qs_tray_item.dart';
-import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/services/date_time.dart';
 import 'package:pangolin/services/power.dart';
+import 'package:pangolin/services/shell.dart';
 import 'package:pangolin/services/tray.dart';
 import 'package:pangolin/services/wm.dart';
 import 'package:pangolin/utils/action_manager/action_manager.dart';

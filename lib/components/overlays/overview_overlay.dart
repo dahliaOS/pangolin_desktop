@@ -18,7 +18,7 @@ import 'dart:async';
 
 import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
-import 'package:pangolin/components/shell/shell.dart';
+import 'package:pangolin/services/shell.dart';
 import 'package:pangolin/utils/wm/wm.dart';
 import 'package:pangolin/widgets/resource/image/image.dart';
 import 'package:zenit_ui/zenit_ui.dart';
@@ -58,7 +58,7 @@ class _OverviewOverlayState extends ShellOverlayState<OverviewOverlay>
       rect: hierarchy.wmBounds,
       child: GestureDetector(
         onTap: () {
-          Shell.of(context, listen: false).dismissEverything();
+          ShellService.current.dismissEverything();
           setState(() {});
         },
         child: DecoratedBox(

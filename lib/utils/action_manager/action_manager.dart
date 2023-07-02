@@ -22,35 +22,34 @@ import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/overlays/account_overlay.dart';
 import 'package:pangolin/components/overlays/power_overlay.dart';
-import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/services/application.dart';
+import 'package:pangolin/services/shell.dart';
 
 class ActionManager {
   const ActionManager._();
 
+  static ShellService get _shell => ShellService.current;
+
   static Future<void> showPowerMenu(BuildContext context) async {
-    final shell = Shell.of(context, listen: false);
-    shell.dismissEverything();
+    _shell.dismissEverything();
     await Future.delayed(Constants.animationDuration);
-    shell.showOverlay(
+    _shell.showOverlay(
       PowerOverlay.overlayId,
       dismissEverything: false,
     );
   }
 
   static Future<void> showAccountMenu(BuildContext context) async {
-    final shell = Shell.of(context, listen: false);
-    shell.dismissEverything();
+    _shell.dismissEverything();
     await Future.delayed(Constants.animationDuration);
-    shell.showOverlay(
+    _shell.showOverlay(
       AccountOverlay.overlayId,
       dismissEverything: false,
     );
   }
 
   static void openSettings(BuildContext context) {
-    final shell = Shell.of(context, listen: false);
-    shell.dismissEverything();
+    _shell.dismissEverything();
     ApplicationService.current.startApp("io.dahlia.settings");
   }
 

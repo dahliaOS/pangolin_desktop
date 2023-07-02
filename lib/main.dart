@@ -29,6 +29,7 @@ import 'package:pangolin/services/langpacks.dart';
 import 'package:pangolin/services/notifications.dart';
 import 'package:pangolin/services/power.dart';
 import 'package:pangolin/services/search.dart';
+import 'package:pangolin/services/shell.dart';
 import 'package:pangolin/services/tray.dart';
 import 'package:pangolin/services/wm.dart';
 import 'package:yatl_flutter/yatl_flutter.dart';
@@ -56,6 +57,7 @@ Future<void> main() async {
   runApp(
     ServiceBuilderWidget(
       services: [
+        const ServiceEntry<ShellService>.critical(ShellService.build),
         const ServiceEntry<LocaleService>.critical(LocaleService.build),
         const ServiceEntry<SearchService>(SearchService.build),
         const ServiceEntry<WindowManagerService>.critical(

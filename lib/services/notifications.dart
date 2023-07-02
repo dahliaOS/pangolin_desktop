@@ -344,7 +344,8 @@ class UserNotification {
 }
 
 typedef OnNotificationCloseCallback = void Function(
-    NotificationCloseReason reason);
+  NotificationCloseReason reason,
+);
 typedef OnNotificationActionCallback = void Function(String action);
 
 class ShellNotification extends UserNotification {

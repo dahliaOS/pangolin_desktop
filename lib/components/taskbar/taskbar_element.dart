@@ -16,7 +16,7 @@ limitations under the License.
 
 import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
-import 'package:pangolin/components/shell/shell.dart';
+import 'package:pangolin/services/shell.dart';
 
 typedef ArgsBuilder = Map<String, dynamic> Function();
 
@@ -50,7 +50,6 @@ class _TaskbarElementState extends State<TaskbarElement> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final accentColor = theme.colorScheme.secondary;
-    final shell = Shell.of(context);
     final darkMode = theme.brightness == Brightness.dark;
 
     final minSize = Size(
@@ -67,7 +66,7 @@ class _TaskbarElementState extends State<TaskbarElement> {
       ),
       child: GestureDetector(
         onTap: widget.overlayID != null
-            ? () => shell.toggleOverlay(
+            ? () => ShellService.current.toggleOverlay(
                   widget.overlayID!,
                   args: widget.buildShowArgs?.call() ?? const {},
                 )
@@ -84,7 +83,7 @@ class _TaskbarElementState extends State<TaskbarElement> {
               clipBehavior: Clip.antiAlias,
               child: ValueListenableBuilder<bool>(
                 valueListenable: widget.overlayID != null
-                    ? shell.getShowingNotifier(widget.overlayID!)
+                    ? ShellService.current.getShowingNotifier(widget.overlayID!)
                     : ValueNotifier(false),
                 builder: (context, showing, child) {
                   return IconTheme.merge(

@@ -16,8 +16,8 @@ limitations under the License.
 
 import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
-import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/services/application.dart';
+import 'package:pangolin/services/shell.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/widgets/quick_button.dart';
 import 'package:pangolin/widgets/resource/auto_image.dart';
@@ -47,9 +47,8 @@ class AppLauncherButton extends StatelessWidget {
             onLongPress: () =>
                 CustomizationService.current.togglePinnedApp(application.id),
             onTap: () async {
-              final ShellState shell = Shell.of(context, listen: false);
               await ApplicationService.current.startApp(application.id);
-              shell.dismissEverything();
+              ShellService.current.dismissEverything();
             },
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -150,7 +149,7 @@ class _AppLauncherTileState extends State<AppLauncherTile> {
             ),
             onTap: () async {
               await ApplicationService.current.startApp(widget.application.id);
-              if (mounted) Shell.of(context, listen: false).dismissEverything();
+              if (mounted) ShellService.current.dismissEverything();
             },
           ),
         ),

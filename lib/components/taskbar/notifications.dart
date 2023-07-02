@@ -18,9 +18,9 @@ import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/overlays/notifications/overlay.dart';
 import 'package:pangolin/components/overlays/notifications/widgets/listener.dart';
-import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/components/taskbar/taskbar_element.dart';
 import 'package:pangolin/services/notifications.dart';
+import 'package:pangolin/services/shell.dart';
 import 'package:zenit_ui/zenit_ui.dart';
 
 class NotificationsButton extends StatelessWidget {
@@ -52,7 +52,7 @@ class _NotificationIconState extends State<_NotificationIcon>
   bool _unreadNotifs = false;
 
   ValueNotifier<bool> get notifier =>
-      Shell.of(context).getShowingNotifier(NotificationsOverlay.overlayId);
+      ShellService.current.getShowingNotifier(NotificationsOverlay.overlayId);
 
   @override
   void initState() {
@@ -94,7 +94,7 @@ class _NotificationIconState extends State<_NotificationIcon>
                   ? Material(
                       color: _unreadNotifs
                           ? Theme.of(context).colorScheme.secondary
-                          : ZenitTheme.of(context).surfaceColor,
+                          : Theme.of(context).surfaceColor,
                       type: showing
                           ? MaterialType.transparency
                           : MaterialType.canvas,

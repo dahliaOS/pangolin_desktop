@@ -14,8 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 import 'package:flutter/material.dart';
-import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/services/application.dart';
+import 'package:pangolin/services/shell.dart';
 
 class Application {
   final String name;
@@ -64,7 +64,7 @@ class Application {
   });
 
   void launch(BuildContext context) {
-    Shell.of(context, listen: false).dismissEverything();
+    ShellService.current.dismissEverything();
     ApplicationService.current.startApp(packageName);
   }
 }

@@ -27,6 +27,7 @@ import 'package:pangolin/components/overlays/search/search_overlay.dart';
 import 'package:pangolin/components/overlays/tray_overlay.dart';
 import 'package:pangolin/components/overlays/welcome_overlay.dart';
 import 'package:pangolin/components/shell/shell.dart';
+import 'package:pangolin/services/shell.dart';
 import 'package:pangolin/services/wm.dart';
 import 'package:pangolin/utils/wm/layout.dart';
 import 'package:pangolin/utils/wm/wm.dart';
@@ -56,8 +57,13 @@ class _DesktopState extends State<Desktop> {
   @override
   void initState() {
     super.initState();
+    ShellService.current.registerShellStartupCallback(() {
+      if (CustomizationService.current.showWelcomeScreen) {
+        ShellService.current.showOverlay("welcome");
+      }
+    });
+
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      //Desktop.wmController.addWindowEntry(wallpaperEntry.newInstance());
       WindowManagerService.current.push(
         shellEntry.newInstance(
           content: Shell(
@@ -72,11 +78,6 @@ class _DesktopState extends State<Desktop> {
               NotificationsOverlay(),
               TrayMenuOverlay(),
             ],
-            onShellShown: (shell) {
-              if (CustomizationService.current.showWelcomeScreen) {
-                shell.showOverlay("welcome");
-              }
-            },
           ),
         ),
       );
