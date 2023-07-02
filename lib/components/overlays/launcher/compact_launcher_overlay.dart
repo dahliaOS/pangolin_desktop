@@ -41,18 +41,23 @@ class CompactLauncherOverlay extends ShellOverlay {
 class _CompactLauncherOverlayState
     extends ShellOverlayState<CompactLauncherOverlay> {
   final scrollController = ScrollController();
+  final snapshotController = SnapshotController();
 
   @override
   Future<void> requestShow(Map<String, dynamic> args) async {
     if (scrollController.hasClients) scrollController.jumpTo(0);
     controller.showing = true;
-    animationController.forward();
+    snapshotController.allowSnapshotting = true;
+    await animationController.forward();
+    snapshotController.allowSnapshotting = false;
   }
 
   @override
   Future<void> requestDismiss(Map<String, dynamic> args) async {
     controller.showing = false;
-    animationController.reverse();
+    snapshotController.allowSnapshotting = true;
+    await animationController.reverse();
+    snapshotController.allowSnapshotting = false;
   }
 
   @override
@@ -62,21 +67,18 @@ class _CompactLauncherOverlayState
     return Positioned(
       bottom: 56,
       left: 8,
-      child: AnimatedBuilder(
-        animation: animation,
-        builder: (context, child) => FadeTransition(
-          opacity: animation,
-          child: ScaleTransition(
-            scale: animation,
-            alignment: const FractionalOffset(0.025, 1.0),
-            child: SurfaceLayer(
-              shape: Constants.bigShape,
-              height: 540,
-              width: 474,
-              outline: true,
-              dropShadow: true,
-              child: CompactLauncher(controller: scrollController),
-            ),
+      child: FadeTransition(
+        opacity: animation,
+        child: ScaleTransition(
+          scale: animation,
+          alignment: const FractionalOffset(0.025, 1.0),
+          child: SurfaceLayer(
+            shape: Constants.bigShape,
+            height: 540,
+            width: 474,
+            outline: true,
+            dropShadow: true,
+            child: CompactLauncher(controller: scrollController),
           ),
         ),
       ),

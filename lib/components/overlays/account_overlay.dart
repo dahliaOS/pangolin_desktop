@@ -64,74 +64,72 @@ class _AccountOverlayState extends ShellOverlayState<AccountOverlay> {
           right: horizontalPadding(context, 330),
           top: verticalPadding(context, 500),
           bottom: verticalPadding(context, 500),
-          child: AnimatedBuilder(
-            animation: animation,
-            builder: (context, child) => FadeTransition(
-              opacity: animation,
-              child: ScaleTransition(
-                scale: animation,
-                alignment: FractionalOffset.center,
-                child: SurfaceLayer(
-                  outline: true,
-                  shape: Constants.bigShape,
-                  child: Material(
-                    type: MaterialType.transparency,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          width: 328,
-                          child: DecoratedBox(
-                            decoration: BoxDecoration(
-                              color: Theme.of(context).surfaceColor,
-                            ),
-                            child: const Padding(
-                              padding: EdgeInsets.all(24.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Account Menu",
-                                    style: TextStyle(
-                                      fontSize: 24,
-                                      fontWeight: FontWeight.w600,
-                                    ),
+          child: FadeTransition(
+            opacity: animation,
+            child: ScaleTransition(
+              scale: animation,
+              alignment: FractionalOffset.center,
+              child: SurfaceLayer(
+                outline: true,
+                shape: Constants.bigShape,
+                child: Material(
+                  type: MaterialType.transparency,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        width: 328,
+                        child: DecoratedBox(
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).surfaceColor,
+                          ),
+                          child: const Padding(
+                            padding: EdgeInsets.all(24.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Account Menu",
+                                  style: TextStyle(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.w600,
                                   ),
-                                  SizedBox(height: 12),
-                                  Text("Choose what to do as user"),
-                                ],
-                              ),
+                                ),
+                                SizedBox(height: 12),
+                                Text("Choose what to do as user"),
+                              ],
                             ),
                           ),
                         ),
-                        const Spacer(),
-                        Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Column(
-                            children: [
-                              PowerAccountMenuButton(
-                                title: "Sign out",
-                                icon: Icons.logout_rounded,
-                                context: context,
-                                onPressed: ActionManager.logout,
-                              ),
-                              PowerAccountMenuButton(
-                                title: "Lock",
-                                icon: Icons.lock_outline,
-                                context: context,
-                                onPressed: ActionManager.lock,
-                              ),
-                              PowerAccountMenuButton(
-                                title: "Account Settings",
-                                icon: Icons.settings_outlined,
-                                context: context,
-                                onPressed: () => ActionManager.openSettings(context),
-                              ),
-                            ],
-                          ),
+                      ),
+                      const Spacer(),
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Column(
+                          children: [
+                            PowerAccountMenuButton(
+                              title: "Sign out",
+                              icon: Icons.logout_rounded,
+                              context: context,
+                              onPressed: ActionManager.logout,
+                            ),
+                            PowerAccountMenuButton(
+                              title: "Lock",
+                              icon: Icons.lock_outline,
+                              context: context,
+                              onPressed: ActionManager.lock,
+                            ),
+                            PowerAccountMenuButton(
+                              title: "Account Settings",
+                              icon: Icons.settings_outlined,
+                              context: context,
+                              onPressed: () =>
+                                  ActionManager.openSettings(context),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               ),
