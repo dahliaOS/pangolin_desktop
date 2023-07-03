@@ -22,7 +22,7 @@ dependencies:
   flutter_localizations: 
     sdk: flutter
   gsettings: ^0.2.7
-  http: ^0.13.5
+  http: ^1.1.0
   intl: ^0.18.0
   jovial_svg: ^1.1.5
   logging: ^1.0.2
