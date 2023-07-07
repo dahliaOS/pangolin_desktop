@@ -434,9 +434,7 @@ enum NotificationCloseReason {
 sealed class NotificationServiceEvent {
   final int id;
 
-  const NotificationServiceEvent({
-    required this.id,
-  });
+  const NotificationServiceEvent({required this.id});
 }
 
 class ShowNotificationEvent extends NotificationServiceEvent {
@@ -452,8 +450,5 @@ class ReplaceNotificationEvent extends NotificationServiceEvent {
 class CloseNotificationEvent extends NotificationServiceEvent {
   final NotificationCloseReason reason;
 
-  const CloseNotificationEvent({
-    required super.id,
-    required this.reason,
-  });
+  const CloseNotificationEvent({required super.id, required this.reason});
 }

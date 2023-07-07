@@ -41,7 +41,6 @@ class CompactLauncherOverlay extends ShellOverlay {
 class _CompactLauncherOverlayState
     extends ShellOverlayState<CompactLauncherOverlay> {
   final scrollController = ScrollController();
-  final snapshotController = SnapshotController();
   final List<DesktopEntry> applications = [];
 
   @override
@@ -57,17 +56,13 @@ class _CompactLauncherOverlayState
 
     if (scrollController.hasClients) scrollController.jumpTo(0);
     controller.showing = true;
-    snapshotController.allowSnapshotting = true;
-    await animationController.forward();
-    snapshotController.allowSnapshotting = false;
+    animationController.forward();
   }
 
   @override
   Future<void> requestDismiss(Map<String, dynamic> args) async {
     controller.showing = false;
-    snapshotController.allowSnapshotting = true;
-    await animationController.reverse();
-    snapshotController.allowSnapshotting = false;
+    animationController.reverse();
   }
 
   @override

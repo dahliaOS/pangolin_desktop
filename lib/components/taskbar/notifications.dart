@@ -126,7 +126,7 @@ class _NotificationIconState extends State<_NotificationIcon>
   }
 
   @override
-  void onNotificationAdded(UserNotification id) {
+  void onNotificationAdded(UserNotification notification) {
     _unreadNotifs = true;
     setState(() {});
   }

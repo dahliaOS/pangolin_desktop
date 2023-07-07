@@ -41,7 +41,7 @@ mixin NotificationServiceListener<T extends StatefulWidget> on State<T> {
     }
   }
 
-  void onNotificationAdded(UserNotification id);
+  void onNotificationAdded(UserNotification notification);
   void onNotificationRemoved(int id, NotificationCloseReason reason);
   void onNotificationReplaced(int oldId, int id);
 }
