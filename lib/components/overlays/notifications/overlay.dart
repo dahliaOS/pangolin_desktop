@@ -4,8 +4,8 @@ import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/overlays/notifications/widgets/listener.dart';
 import 'package:pangolin/components/overlays/notifications/widgets/wrapper.dart';
-import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/services/notifications.dart';
+import 'package:pangolin/services/shell.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/utils/wm/wm.dart';
 import 'package:pangolin/widgets/separated_flex.dart';
@@ -26,6 +26,14 @@ class _NotificationsOverlayState extends ShellOverlayState<NotificationsOverlay>
         StateServiceListener<NotificationService, NotificationsOverlay>,
         NotificationServiceListener {
   final Map<int, NotificationWrapperData> notifications = {};
+
+  @override
+  void initState() {
+    super.initState();
+    for (final notification in NotificationService.current.notifications) {
+      onNotificationAdded(notification);
+    }
+  }
 
   @override
   void dispose() {

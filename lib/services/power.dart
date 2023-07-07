@@ -2,8 +2,9 @@ import 'dart:async';
 
 import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:dbus/dbus.dart';
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:pangolin/services/dbus/power_profiles.dart';
+import 'package:pangolin/services/notifications.dart';
 import 'package:upower/upower.dart';
 
 export 'package:pangolin/services/dbus/power_profiles.dart' show PowerProfile;
@@ -72,6 +73,14 @@ class _UPowerPowerService extends PowerService {
       powerProfiles = PowerProfilesClient(bus: client);
       await powerProfiles!.connect();
     } catch (e) {
+      NotificationService.current.pushNotification(
+        ShellNotification(
+          appName: "PowerService",
+          summary: "Failed to connect to Power profiles DBus daemon",
+          body:
+              "You won't be able to see battery saver status or switch battery profiles",
+        ),
+      );
       powerProfiles = null;
       logger.warning("Could not find power profiles service, ignoring");
     }

@@ -16,6 +16,7 @@ limitations under the License.
 
 import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
+import 'package:pangolin/widgets/separated_flex.dart';
 import 'package:pangolin/widgets/surface/surface_layer.dart';
 
 class Taskbar extends StatefulWidget {
@@ -46,6 +47,7 @@ class _TaskbarState extends State<Taskbar>
       bottom: 0,
       height: 48,
       child: SurfaceLayer(
+        padding: const EdgeInsets.symmetric(horizontal: 4.0),
         child: SizedBox.expand(
           child: Material(
             type: MaterialType.transparency,
@@ -54,7 +56,12 @@ class _TaskbarState extends State<Taskbar>
                 Positioned.fill(
                   child: Row(
                     children: [
-                      Row(children: widget.leading),
+                      SeparatedFlex(
+                        axis: Axis.horizontal,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        separator: const SizedBox(width: 4),
+                        children: widget.leading,
+                      ),
                       Expanded(
                         child: !widget.centerRelativeToScreen
                             ? Row(
@@ -63,7 +70,12 @@ class _TaskbarState extends State<Taskbar>
                               )
                             : const SizedBox.shrink(),
                       ),
-                      Row(children: widget.trailing),
+                      SeparatedFlex(
+                        axis: Axis.horizontal,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        separator: const SizedBox(width: 4),
+                        children: widget.trailing,
+                      ),
                     ],
                   ),
                 ),

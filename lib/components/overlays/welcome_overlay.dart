@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
-import 'package:pangolin/components/shell/shell.dart';
+import 'package:pangolin/services/shell.dart';
 
 class WelcomeOverlay extends ShellOverlay {
   WelcomeOverlay({super.key}) : super(id: "welcome");
@@ -143,7 +143,7 @@ class _WelcomeScreenState extends State<_WelcomeScreen>
                 onPressed: () {
                   service.showWelcomeScreen = showAtStartup;
 
-                  Shell.of(context, listen: false).dismissOverlay("welcome");
+                  ShellService.current.dismissOverlay("welcome");
                 },
                 child: Padding(
                   padding: ThemeConstants.buttonPadding,

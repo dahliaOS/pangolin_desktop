@@ -16,8 +16,8 @@ limitations under the License.
 
 import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
-import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/services/application.dart';
+import 'package:pangolin/services/shell.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pangolin/widgets/resource/auto_image.dart';
 import 'package:xdg_desktop/xdg_desktop.dart';
@@ -66,9 +66,8 @@ class _SearchTileState extends State<SearchTile>
             ...service.recentSearchResults,
             application.id
           ];
-          final ShellState shell = Shell.of(context, listen: false);
           await ApplicationService.current.startApp(application.id);
-          shell.dismissEverything();
+          ShellService.current.dismissEverything();
         },
       ),
     );

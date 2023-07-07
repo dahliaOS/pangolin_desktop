@@ -14,8 +14,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'dart:async';
-
 import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/overlays/notifications/queue.dart';
@@ -28,220 +26,92 @@ import 'package:pangolin/components/taskbar/search.dart';
 import 'package:pangolin/components/taskbar/show_desktop.dart';
 import 'package:pangolin/components/taskbar/taskbar.dart';
 import 'package:pangolin/components/taskbar/tray.dart';
-import 'package:pangolin/services/tray.dart';
+import 'package:pangolin/services/shell.dart';
 import 'package:pangolin/utils/wm/wm.dart';
-import 'package:provider/provider.dart';
-
-typedef ShellShownCallback = void Function(ShellState shell);
 
 class Shell extends StatefulWidget {
   final List<ShellOverlay> overlays;
-  final ShellShownCallback? onShellShown;
 
   const Shell({
     required this.overlays,
-    this.onShellShown,
     super.key,
   });
 
   @override
   ShellState createState() => ShellState();
-
-  static ShellState of(BuildContext context, {bool listen = true}) {
-    return Provider.of<ShellState>(context, listen: listen);
-  }
 }
 
-class ShellState extends State<Shell>
-    with TickerProviderStateMixin, StateServiceListener<TrayService, Shell> {
-  final List<String> minimizedWindowsCache = [];
-
+class ShellState extends State<Shell> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
+    ShellService.current.registerShell(this, widget.overlays);
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      widget.onShellShown?.call(this);
+      ShellService.current.notifyStartupComplete();
     });
   }
 
-  Future<void> showOverlay(
-    String overlayId, {
-    Map<String, dynamic> args = const {},
-    bool dismissEverything = true,
-  }) async {
-    final ShellOverlay overlay =
-        widget.overlays.firstWhere((o) => o.id == overlayId);
-    if (dismissEverything) this.dismissEverything();
-    await overlay._controller.requestShow(args);
-  }
-
-  Future<void> dismissOverlay(
-    String overlayId, {
-    Map<String, dynamic> args = const {},
-  }) async {
-    final ShellOverlay overlay =
-        widget.overlays.firstWhere((o) => o.id == overlayId);
-    await overlay._controller.requestDismiss(args);
-  }
-
-  Future<void> toggleOverlay(
-    String overlayId, {
-    Map<String, dynamic> args = const {},
-  }) async {
-    if (!currentlyShown(overlayId)) {
-      await showOverlay(overlayId, args: args);
-    } else {
-      await dismissOverlay(overlayId, args: args);
-    }
-  }
-
-  bool currentlyShown(String overlayId) {
-    final ShellOverlay overlay =
-        widget.overlays.firstWhere((o) => o.id == overlayId);
-    return overlay._controller.showing;
-  }
-
-  ValueNotifier<bool> getShowingNotifier(String overlayId) {
-    final ShellOverlay overlay =
-        widget.overlays.firstWhere((o) => o.id == overlayId);
-    return overlay._controller.showingNotifier;
-  }
-
-  List<String> get currentlyShownOverlays {
-    final List<String> shownIds = [];
-    for (final ShellOverlay o in widget.overlays) {
-      if (o._controller.showing) shownIds.add(o.id);
-    }
-    return shownIds;
-  }
-
-  void dismissEverything() {
-    for (final String id in currentlyShownOverlays) {
-      dismissOverlay(id);
-    }
+  void notify() {
     setState(() {});
   }
 
-  @override
-  Widget buildChild(BuildContext context, TrayService service) {
-    return Provider.value(
-      value: this,
-      child: SizedBox.expand(
-        child: Stack(
-          fit: StackFit.expand,
-          children: [
-            Positioned.fill(
-              child: Listener(
-                onPointerDown: (event) {
-                  dismissEverything();
-                },
-                behavior: HitTestBehavior.translucent,
-              ),
-            ),
-            const Taskbar(
-              leading: [
-                LauncherButton(),
-                SearchButton(),
-                OverviewButton(),
-              ],
-              centerRelativeToScreen: true,
-              center: [AppListElement()],
-              trailing: [
-                //TODO: here is the keyboard button
-                //KeyboardButton(),
-                TrayMenuButton(),
-                QuickSettingsButton(),
-                NotificationsButton(),
-                ShowDesktopButton(),
-              ],
-            ),
-            ...widget.overlays,
-            Positioned(
-              width: 420,
-              right: WindowHierarchy.of(context).wmInsets.right + 8,
-              bottom: WindowHierarchy.of(context).wmInsets.bottom + 8,
-              child: const NotificationQueue(),
-            ),
-          ],
-        ),
+  void showInformativeDialog(String title, String message) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(title),
+        content: Text(message, style: const TextStyle(fontFamily: "monospace")),
+        shape: Constants.bigShape,
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text("Close"),
+          ),
+        ],
       ),
     );
   }
-}
-
-class ShellOverlayController<T extends ShellOverlayState> {
-  T? _overlay;
-  final ValueNotifier<bool> showingNotifier = ValueNotifier(false);
-
-  bool get showing => showingNotifier.value;
-  set showing(bool value) => showingNotifier.value = value;
-
-  Future<void> requestShow(Map<String, dynamic> args) async {
-    _requireOverlayConnection();
-    await _overlay!.requestShow(args);
-  }
-
-  Future<void> requestDismiss(Map<String, dynamic> args) async {
-    _requireOverlayConnection();
-    await _overlay!.requestDismiss(args);
-  }
-
-  void _requireOverlayConnection() {
-    if (_overlay == null) {
-      throw Exception(
-        "The controller is not connected to any overlay or it had no time to connect yet.",
-      );
-    }
-  }
-}
-
-abstract class ShellOverlay extends StatefulWidget {
-  final String id;
-  final ShellOverlayController _controller = ShellOverlayController();
-
-  ShellOverlay({
-    required this.id,
-    super.key,
-  });
 
   @override
-  ShellOverlayState createState();
-}
-
-abstract class ShellOverlayState<T extends ShellOverlay> extends State<T>
-    with TickerProviderStateMixin {
-  late final AnimationController animationController = AnimationController(
-    vsync: this,
-    duration: Constants.animationDuration,
-  );
-  ShellOverlayController get controller => widget._controller;
-
-  Animation<double> get animation => CurvedAnimation(
-        parent: animationController,
-        curve: Constants.animationCurve,
-      );
-
-  @override
-  void initState() {
-    controller._overlay = this;
-    controller.showingNotifier.addListener(_showListener);
-    super.initState();
+  Widget build(BuildContext context) {
+    return SizedBox.expand(
+      child: Stack(
+        fit: StackFit.expand,
+        children: [
+          Positioned.fill(
+            child: Listener(
+              onPointerDown: (event) {
+                ShellService.current.dismissEverything();
+              },
+              behavior: HitTestBehavior.translucent,
+            ),
+          ),
+          const Taskbar(
+            leading: [
+              LauncherButton(),
+              SearchButton(),
+              OverviewButton(),
+            ],
+            centerRelativeToScreen: true,
+            center: [AppListElement()],
+            trailing: [
+              //TODO: here is the keyboard button
+              //KeyboardButton(),
+              TrayMenuButton(),
+              QuickSettingsButton(),
+              NotificationsButton(),
+              ShowDesktopButton(),
+            ],
+          ),
+          ...widget.overlays,
+          Positioned(
+            width: 420,
+            right: WindowHierarchy.of(context).wmInsets.right + 8,
+            bottom: WindowHierarchy.of(context).wmInsets.bottom + 8,
+            child: const NotificationQueue(),
+          ),
+        ],
+      ),
+    );
   }
-
-  @override
-  void dispose() {
-    controller.showingNotifier.removeListener(_showListener);
-    animationController.dispose();
-    super.dispose();
-  }
-
-  FutureOr<void> requestShow(Map<String, dynamic> args);
-
-  FutureOr<void> requestDismiss(Map<String, dynamic> args);
-
-  void _showListener() {
-    setState(() {});
-  }
-
-  bool get shouldHide => !controller.showing && animationController.value == 0;
 }

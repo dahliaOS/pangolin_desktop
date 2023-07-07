@@ -16,7 +16,7 @@ limitations under the License.
 
 import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
-import 'package:pangolin/components/shell/shell.dart';
+import 'package:pangolin/services/shell.dart';
 import 'package:pangolin/services/wm.dart';
 import 'package:pangolin/utils/wm/wm.dart';
 
@@ -43,7 +43,7 @@ class _ShowDesktopButtonState extends State<ShowDesktopButton> {
           });
         },
         onTap: () {
-          Shell.of(context, listen: false).dismissEverything();
+          ShellService.current.dismissEverything();
           if (WindowHierarchy.of(context, listen: false)
               .entries
               .any((e) => e.layoutState.minimized == false)) {
@@ -53,23 +53,18 @@ class _ShowDesktopButtonState extends State<ShowDesktopButton> {
           }
         },
         child: SizedBox(
-          width: 8,
-          child: Stack(
-            children: [
-              Align(
-                alignment: Alignment.centerLeft,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(4),
-                  child: Container(
-                    height: 20,
-                    width: 2,
-                    color: isHovered
-                        ? context.theme.textTheme.bodyLarge?.color
-                        : Colors.transparent,
-                  ),
-                ),
-              )
-            ],
+          width: 16,
+          child: Center(
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(4),
+              child: Container(
+                height: 20,
+                width: 2,
+                color: isHovered
+                    ? context.theme.textTheme.bodyLarge?.color
+                    : Colors.transparent,
+              ),
+            ),
           ),
         ),
       ),

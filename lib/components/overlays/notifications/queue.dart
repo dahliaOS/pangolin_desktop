@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:pangolin/components/overlays/notifications/overlay.dart';
 import 'package:pangolin/components/overlays/notifications/widgets/listener.dart';
 import 'package:pangolin/components/overlays/notifications/widgets/wrapper.dart';
-import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/services/notifications.dart';
+import 'package:pangolin/services/shell.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:pausable_timer/pausable_timer.dart';
 
@@ -28,7 +28,7 @@ class _NotificationQueueState extends State<NotificationQueue>
     }
     incomingNotifications.clear();
 
-    Shell.of(context, listen: false)
+    ShellService.current
         .getShowingNotifier(NotificationsOverlay.overlayId)
         .removeListener(_dismissNotificationsOptionally);
 
@@ -37,7 +37,7 @@ class _NotificationQueueState extends State<NotificationQueue>
 
   @override
   void onNotificationAdded(UserNotification notification) {
-    final ShellState shell = Shell.of(context, listen: false);
+    final shell = ShellService.current;
     final bool showingShelf =
         shell.currentlyShownOverlays.contains(NotificationsOverlay.overlayId);
 
@@ -71,7 +71,7 @@ class _NotificationQueueState extends State<NotificationQueue>
 
   @override
   void onNotificationReplaced(int oldId, int id) {
-    final ShellState shell = Shell.of(context, listen: false);
+    final shell = ShellService.current;
     final bool showingShelf =
         shell.currentlyShownOverlays.contains(NotificationsOverlay.overlayId);
 
@@ -152,7 +152,7 @@ class _NotificationQueueState extends State<NotificationQueue>
   void didChangeDependencies() {
     if (listeningForShelf) return;
 
-    final ShellState shell = Shell.of(context);
+    final shell = ShellService.current;
     shell
         .getShowingNotifier(NotificationsOverlay.overlayId)
         .addListener(_dismissNotificationsOptionally);
@@ -163,7 +163,7 @@ class _NotificationQueueState extends State<NotificationQueue>
   }
 
   void _dismissNotificationsOptionally() {
-    final ShellState shell = Shell.of(context, listen: false);
+    final shell = ShellService.current;
 
     if (shell.currentlyShownOverlays.contains(NotificationsOverlay.overlayId)) {
       final List<int> ids = List.from(incomingNotifications.keys);

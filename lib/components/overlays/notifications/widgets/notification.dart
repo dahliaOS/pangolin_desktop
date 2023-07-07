@@ -76,11 +76,13 @@ class _NotificationBody extends StatelessWidget {
         child: InkWell(
           onTap: () {
             if (!notification.actions.any((e) => e.key == "default")) return;
-            notification.invokeAction("default");
-            NotificationService.current.closeNotification(
-              notification.id,
-              NotificationCloseReason.closed,
-            );
+            final bool shouldClose = notification.invokeAction("default");
+            if (shouldClose) {
+              NotificationService.current.closeNotification(
+                notification.id,
+                NotificationCloseReason.closed,
+              );
+            }
           },
           child: Padding(
             padding: const EdgeInsets.all(12),
@@ -97,9 +99,7 @@ class _NotificationBody extends StatelessWidget {
                   child: DBusImageWidget(
                     image: notification.image ??
                         notification.appImage ??
-                        const IconDataDBusImage(
-                          Icons.notifications_active,
-                        ),
+                        const IconDataDBusImage(Icons.notifications_active),
                     width: 56,
                     height: 56,
                   ),
@@ -136,7 +136,8 @@ class _NotificationBody extends StatelessWidget {
                             children: [
                               Text(
                                 notification.summary,
-                                maxLines: 1,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
                                 style: const TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w500,
@@ -191,11 +192,13 @@ class _NotificationActionButton extends StatelessWidget {
         type: MaterialType.transparency,
         child: InkWell(
           onTap: () {
-            notification.invokeAction(action.key);
-            NotificationService.current.closeNotification(
-              notification.id,
-              NotificationCloseReason.closed,
-            );
+            final shouldClose = notification.invokeAction(action.key);
+            if (shouldClose) {
+              NotificationService.current.closeNotification(
+                notification.id,
+                NotificationCloseReason.closed,
+              );
+            }
           },
           child: Center(
             child: Padding(

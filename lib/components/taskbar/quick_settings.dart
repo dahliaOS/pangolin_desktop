@@ -17,15 +17,16 @@ limitations under the License.
 import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/overlays/quick_settings/quick_settings_overlay.dart';
-import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/components/taskbar/taskbar_element.dart';
 import 'package:pangolin/services/date_time.dart';
 import 'package:pangolin/services/power.dart';
+import 'package:pangolin/services/shell.dart';
 import 'package:pangolin/widgets/battery_indicator.dart';
 import 'package:pangolin/widgets/separated_flex.dart';
 import 'package:zenit_ui/zenit_ui.dart';
 
-class QuickSettingsButton extends StatelessWidget with StatelessServiceListener<CustomizationService> {
+class QuickSettingsButton extends StatelessWidget
+    with StatelessServiceListener<CustomizationService> {
   const QuickSettingsButton({super.key});
 
   @override
@@ -34,12 +35,15 @@ class QuickSettingsButton extends StatelessWidget with StatelessServiceListener<
     return TaskbarElement(
       iconSize: 18,
       overlayID: QuickSettingsOverlay.overlayId,
+      height: 40.0,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12.0),
         child: ValueListenableBuilder<bool>(
-          valueListenable: Shell.of(context).getShowingNotifier(QuickSettingsOverlay.overlayId),
+          valueListenable: ShellService.current
+              .getShowingNotifier(QuickSettingsOverlay.overlayId),
           builder: (context, showing, child) {
-            final foregroundColor = showing ? theme.accentForegroundColor : theme.foregroundColor;
+            final foregroundColor =
+                showing ? theme.accentForegroundColor : theme.foregroundColor;
             return SeparatedFlex(
               axis: Axis.horizontal,
               separator: const SizedBox(width: 8),

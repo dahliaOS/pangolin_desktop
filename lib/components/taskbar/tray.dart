@@ -1,8 +1,8 @@
 import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/overlays/tray_overlay.dart';
-import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/components/taskbar/taskbar_element.dart';
+import 'package:pangolin/services/shell.dart';
 import 'package:pangolin/services/tray.dart';
 
 class TrayMenuButton extends StatelessWidget
@@ -14,10 +14,10 @@ class TrayMenuButton extends StatelessWidget
     return TaskbarElement(
       overlayID: TrayMenuOverlay.overlayId,
       shrinkWrap: true,
-      height: 48.0,
+      height: 40.0,
       child: ValueListenableBuilder<bool>(
         valueListenable:
-            Shell.of(context).getShowingNotifier(TrayMenuOverlay.overlayId),
+            ShellService.current.getShowingNotifier(TrayMenuOverlay.overlayId),
         builder: (context, showing, _) {
           return Padding(
             padding: EdgeInsets.only(

@@ -1,9 +1,9 @@
 import 'package:dbus/dbus.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/services/dbus/image.dart';
 import 'package:pangolin/services/dbus/status_item.dart';
+import 'package:pangolin/services/shell.dart';
 import 'package:pangolin/widgets/context_menu.dart';
 import 'package:pangolin/widgets/dbus/image.dart';
 import 'package:pangolin/widgets/dbus/menu.dart';
@@ -89,12 +89,11 @@ class _TrayMenuItemState extends State<QsTrayMenuItem> {
       },
       child: InkWell(
         onTapDown: (details) async {
-          final shell = Shell.of(context, listen: false);
           final activated = await widget.item.activate(
             details.globalPosition.dx.round(),
             details.globalPosition.dy.round(),
           );
-          if (activated) shell.dismissEverything();
+          if (activated) ShellService.current.dismissEverything();
         },
         child: Listener(
           onPointerSignal: (event) {

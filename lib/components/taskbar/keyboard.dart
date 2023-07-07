@@ -18,15 +18,13 @@ import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/overlays/keyboard_overlay.dart';
 import 'package:pangolin/components/overlays/quick_settings/quick_settings_overlay.dart';
-import 'package:pangolin/components/shell/shell.dart';
+import 'package:pangolin/services/shell.dart';
 
 class KeyboardButton extends StatelessWidget {
   const KeyboardButton({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final shell = Shell.of(context);
-
     return SizedBox(
       //width: 96,
       width: 48,
@@ -36,8 +34,8 @@ class KeyboardButton extends StatelessWidget {
           type: MaterialType.transparency,
           shape: Constants.smallShape,
           child: ValueListenableBuilder<bool>(
-            valueListenable:
-                shell.getShowingNotifier(QuickSettingsOverlay.overlayId),
+            valueListenable: ShellService.current
+                .getShowingNotifier(QuickSettingsOverlay.overlayId),
             builder: (context, showing, child) {
               return Material(
                 color: showing

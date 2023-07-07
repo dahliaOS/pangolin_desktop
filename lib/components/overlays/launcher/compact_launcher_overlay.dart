@@ -19,8 +19,8 @@ import 'dart:async';
 import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/overlays/launcher/app_launcher_button.dart';
-import 'package:pangolin/components/shell/shell.dart';
 import 'package:pangolin/services/application.dart';
+import 'package:pangolin/services/shell.dart';
 import 'package:pangolin/utils/action_manager/action_manager.dart';
 import 'package:pangolin/utils/data/globals.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
@@ -41,9 +41,19 @@ class CompactLauncherOverlay extends ShellOverlay {
 class _CompactLauncherOverlayState
     extends ShellOverlayState<CompactLauncherOverlay> {
   final scrollController = ScrollController();
+  final List<DesktopEntry> applications = [];
 
   @override
   Future<void> requestShow(Map<String, dynamic> args) async {
+    applications.clear();
+    applications.addAll(ApplicationService.current.listApplications());
+
+    applications.sort(
+      (a, b) => a.getLocalizedName(context.locale).toLowerCase().compareTo(
+            b.getLocalizedName(context.locale).toLowerCase(),
+          ),
+    );
+
     if (scrollController.hasClients) scrollController.jumpTo(0);
     controller.showing = true;
     animationController.forward();
@@ -62,20 +72,20 @@ class _CompactLauncherOverlayState
     return Positioned(
       bottom: 56,
       left: 8,
-      child: AnimatedBuilder(
-        animation: animation,
-        builder: (context, child) => FadeTransition(
-          opacity: animation,
-          child: ScaleTransition(
-            scale: animation,
-            alignment: const FractionalOffset(0.025, 1.0),
-            child: SurfaceLayer(
-              shape: Constants.bigShape,
-              height: 540,
-              width: 474,
-              outline: true,
-              dropShadow: true,
-              child: CompactLauncher(controller: scrollController),
+      child: FadeTransition(
+        opacity: animation,
+        child: ScaleTransition(
+          scale: animation,
+          alignment: const FractionalOffset(0.025, 1.0),
+          child: SurfaceLayer(
+            shape: Constants.bigShape,
+            height: 540,
+            width: 474,
+            outline: true,
+            dropShadow: true,
+            child: CompactLauncher(
+              applications: applications,
+              controller: scrollController,
             ),
           ),
         ),
@@ -85,9 +95,14 @@ class _CompactLauncherOverlayState
 }
 
 class CompactLauncher extends StatelessWidget {
+  final List<DesktopEntry> applications;
   final ScrollController? controller;
 
-  const CompactLauncher({this.controller, super.key});
+  const CompactLauncher({
+    required this.applications,
+    this.controller,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -152,31 +167,14 @@ class CompactLauncher extends StatelessWidget {
               SizedBox(
                 height: 460,
                 width: 380,
-                child: AnimatedBuilder(
-                  animation: ApplicationService.current,
-                  builder: (context, _) {
-                    final List<DesktopEntry> applications =
-                        ApplicationService.current.listApplications();
-
-                    applications.sort(
-                      (a, b) => a
-                          .getLocalizedName(context.locale)
-                          .toLowerCase()
-                          .compareTo(
-                            b.getLocalizedName(context.locale).toLowerCase(),
-                          ),
-                    );
-
-                    return ListView.separated(
-                      itemCount: applications.length,
-                      itemBuilder: (context, index) => AppLauncherTile(
-                        application: applications[index],
-                      ),
-                      controller: controller,
-                      separatorBuilder: (context, index) =>
-                          const SizedBox(height: 4),
-                    );
-                  },
+                child: ListView.separated(
+                  itemCount: applications.length,
+                  itemBuilder: (context, index) => AppLauncherTile(
+                    application: applications[index],
+                  ),
+                  controller: controller,
+                  separatorBuilder: (context, index) =>
+                      const SizedBox(height: 4),
                 ),
               ),
             ],

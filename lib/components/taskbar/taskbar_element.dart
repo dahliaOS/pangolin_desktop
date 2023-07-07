@@ -16,7 +16,7 @@ limitations under the License.
 
 import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
-import 'package:pangolin/components/shell/shell.dart';
+import 'package:pangolin/services/shell.dart';
 
 typedef ArgsBuilder = Map<String, dynamic> Function();
 
@@ -50,12 +50,11 @@ class _TaskbarElementState extends State<TaskbarElement> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final accentColor = theme.colorScheme.secondary;
-    final shell = Shell.of(context);
     final darkMode = theme.brightness == Brightness.dark;
 
     final minSize = Size(
-      !widget.shrinkWrap ? 48.0 : 0.0,
-      !widget.shrinkWrap ? 48.0 : 0.0,
+      !widget.shrinkWrap ? 40.0 : 0.0,
+      !widget.shrinkWrap ? 40.0 : 0.0,
     );
 
     return ConstrainedBox(
@@ -67,7 +66,7 @@ class _TaskbarElementState extends State<TaskbarElement> {
       ),
       child: GestureDetector(
         onTap: widget.overlayID != null
-            ? () => shell.toggleOverlay(
+            ? () => ShellService.current.toggleOverlay(
                   widget.overlayID!,
                   args: widget.buildShowArgs?.call() ?? const {},
                 )
@@ -76,55 +75,51 @@ class _TaskbarElementState extends State<TaskbarElement> {
           cursor: SystemMouseCursors.click,
           onEnter: (state) => setState(() => _hover = true),
           onExit: (state) => setState(() => _hover = false),
-          child: Padding(
-            padding: const EdgeInsets.all(4.0),
-            child: Material(
-              type: MaterialType.transparency,
-              shape: Constants.smallShape,
-              clipBehavior: Clip.antiAlias,
-              child: ValueListenableBuilder<bool>(
-                valueListenable: widget.overlayID != null
-                    ? shell.getShowingNotifier(widget.overlayID!)
-                    : ValueNotifier(false),
-                builder: (context, showing, child) {
-                  return IconTheme.merge(
-                    data: IconThemeData(
-                      color: showing
-                          ? accentColor.computeLuminance() < 0.3
-                              ? const Color(0xffffffff)
-                              : const Color(0xff000000)
-                          : darkMode
-                              ? const Color(0xffffffff)
-                              : const Color(0xff000000),
-                      size: widget.iconSize ?? 20,
-                    ),
-                    child: Material(
-                      shape: Constants.smallShape,
-                      clipBehavior: Clip.antiAlias,
-                      color: _hover
-                          ? context.theme.hoverColor
-                          : Colors.transparent,
-                      child: DefaultTextStyle(
-                        style: TextStyle(
-                          color: showing
-                              ? accentColor.computeLuminance() < 0.3
-                                  ? const Color(0xffffffff)
-                                  : const Color(0xff000000)
-                              : darkMode
-                                  ? const Color(0xffffffff)
-                                  : const Color(0xff000000),
-                        ),
-                        child: Material(
-                          clipBehavior: Clip.antiAlias,
-                          color: showing ? accentColor : Colors.transparent,
-                          child: child,
-                        ),
+          child: Material(
+            type: MaterialType.transparency,
+            shape: Constants.smallShape,
+            clipBehavior: Clip.antiAlias,
+            child: ValueListenableBuilder<bool>(
+              valueListenable: widget.overlayID != null
+                  ? ShellService.current.getShowingNotifier(widget.overlayID!)
+                  : ValueNotifier(false),
+              builder: (context, showing, child) {
+                return IconTheme.merge(
+                  data: IconThemeData(
+                    color: showing
+                        ? accentColor.computeLuminance() < 0.3
+                            ? const Color(0xffffffff)
+                            : const Color(0xff000000)
+                        : darkMode
+                            ? const Color(0xffffffff)
+                            : const Color(0xff000000),
+                    size: widget.iconSize ?? 20,
+                  ),
+                  child: Material(
+                    shape: Constants.smallShape,
+                    clipBehavior: Clip.antiAlias,
+                    color:
+                        _hover ? context.theme.hoverColor : Colors.transparent,
+                    child: DefaultTextStyle(
+                      style: TextStyle(
+                        color: showing
+                            ? accentColor.computeLuminance() < 0.3
+                                ? const Color(0xffffffff)
+                                : const Color(0xff000000)
+                            : darkMode
+                                ? const Color(0xffffffff)
+                                : const Color(0xff000000),
+                      ),
+                      child: Material(
+                        clipBehavior: Clip.antiAlias,
+                        color: showing ? accentColor : Colors.transparent,
+                        child: child,
                       ),
                     ),
-                  );
-                },
-                child: widget.child,
-              ),
+                  ),
+                );
+              },
+              child: widget.child,
             ),
           ),
         ),

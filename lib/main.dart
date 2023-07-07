@@ -13,14 +13,11 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import 'dart:developer';
 
 import 'package:dahlia_shared/dahlia_shared.dart';
-import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import "package:intl/locale.dart" as intl;
-import 'package:logging/logging.dart';
 import 'package:pangolin/components/shell/desktop.dart';
 import 'package:pangolin/services/application.dart';
 import 'package:pangolin/services/date_time.dart';
@@ -29,33 +26,26 @@ import 'package:pangolin/services/langpacks.dart';
 import 'package:pangolin/services/notifications.dart';
 import 'package:pangolin/services/power.dart';
 import 'package:pangolin/services/search.dart';
+import 'package:pangolin/services/shell.dart';
 import 'package:pangolin/services/tray.dart';
 import 'package:pangolin/services/wm.dart';
+import 'package:pangolin/utils/other/logging.dart';
 import 'package:yatl_flutter/yatl_flutter.dart';
 import 'package:zenit_ui/zenit_ui.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  Logger.root.level = Level.ALL;
-  Logger.root.onRecord.listen((record) {
-    if (kDebugMode) {
-      log(
-        record.message,
-        time: record.time,
-        sequenceNumber: record.sequenceNumber,
-        level: record.level.value,
-        name: record.loggerName,
-        zone: record.zone,
-        error: record.error,
-        stackTrace: record.stackTrace,
-      );
-    }
-  });
+  setupLogger();
 
   runApp(
     ServiceBuilderWidget(
       services: [
+        const ServiceEntry<ShellService>.critical(ShellService.build),
+        ServiceEntry<NotificationService>.critical(
+          NotificationService.build,
+          NotificationService.fallback(),
+        ),
         const ServiceEntry<LocaleService>.critical(LocaleService.build),
         const ServiceEntry<SearchService>(SearchService.build),
         const ServiceEntry<WindowManagerService>.critical(
@@ -81,10 +71,6 @@ Future<void> main() async {
           TrayService.build,
           TrayService.fallback(),
         ),
-        ServiceEntry<NotificationService>(
-          NotificationService.build,
-          NotificationService.fallback(),
-        ),
         ServiceEntry<PowerService>(
           PowerService.build,
           PowerService.fallback(),
@@ -102,7 +88,8 @@ Future<void> main() async {
             final CustomizationService service = CustomizationService.current;
             return YatlApp(
               core: yatl,
-              getLocale: () => intl.Locale.tryParse(service.locale)?.toFlutterLocale(),
+              getLocale: () =>
+                  intl.Locale.tryParse(service.locale)?.toFlutterLocale(),
               setLocale: (locale) => service.locale = locale?.toString(),
               child: child!,
             );
@@ -124,12 +111,16 @@ class Pangolin extends StatelessWidget {
       builder: (context, child) {
         return MaterialApp(
           home: child,
-          theme: createZenitTheme(primaryColor: CustomizationService.current.accentColor.resolve()),
+          theme: createZenitTheme(
+            primaryColor: CustomizationService.current.accentColor.resolve(),
+          ),
           darkTheme: createZenitTheme(
             brightness: Brightness.dark,
             primaryColor: CustomizationService.current.accentColor.resolve(),
           ),
-          themeMode: CustomizationService.current.darkMode ? ThemeMode.dark : ThemeMode.light,
+          themeMode: CustomizationService.current.darkMode
+              ? ThemeMode.dark
+              : ThemeMode.light,
           supportedLocales: context.supportedLocales,
           locale: context.locale,
           localizationsDelegates: [
