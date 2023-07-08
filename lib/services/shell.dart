@@ -4,14 +4,19 @@ import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/widgets.dart';
 import 'package:pangolin/components/shell/shell.dart';
 
-abstract class ShellService extends ListenableService<ShellService> {
+class ShellServiceFactory extends ServiceFactory<ShellService> {
+  const ShellServiceFactory();
+
+  @override
+  ShellService build() => _ShellServiceImpl();
+}
+
+abstract class ShellService extends ListenableService {
   ShellService();
 
   static ShellService get current {
     return ServiceManager.getService<ShellService>()!;
   }
-
-  static ShellService build() => _ShellServiceImpl();
 
   void registerShell(ShellState shell, List<ShellOverlay> overlays);
   void onShellReadyCallback(void Function() callback);

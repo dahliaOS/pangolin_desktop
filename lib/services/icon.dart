@@ -26,20 +26,26 @@ typedef _CacheKey = ({
 
 typedef _IconFolder = ({String path, List<IconTheme> themes});
 
-abstract class IconService extends ListenableService<IconService> {
-  IconService();
+class IconServiceFactory extends ServiceFactory<IconService> {
+  const IconServiceFactory();
 
-  static IconService get current {
-    return ServiceManager.getService<IconService>()!;
-  }
-
-  static IconService build() {
+  @override
+  IconService build() {
     if (!Platform.isLinux) return _StraightThroughIconServiceImpl();
 
     return _LinuxIconService();
   }
 
-  factory IconService.fallback() = _StraightThroughIconServiceImpl;
+  @override
+  IconService? fallback() => _StraightThroughIconServiceImpl();
+}
+
+abstract class IconService extends ListenableService {
+  IconService();
+
+  static IconService get current {
+    return ServiceManager.getService<IconService>()!;
+  }
 
   String? lookup(String name, {int? size, String? fallback});
   Future<String?> lookupFromDirectory(

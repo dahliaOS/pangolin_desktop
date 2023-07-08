@@ -9,20 +9,26 @@ import 'package:pangolin/services/dbus/objects/remote/status_item.dart';
 import 'package:pangolin/services/dbus/objects/status_watcher.dart';
 import 'package:pangolin/services/dbus/status_item.dart';
 
-abstract class TrayService extends ListenableService<TrayService> {
-  TrayService();
+class TrayServiceFactory extends ServiceFactory<TrayService> {
+  const TrayServiceFactory();
 
-  static TrayService get current {
-    return ServiceManager.getService<TrayService>()!;
-  }
-
-  static TrayService build() {
+  @override
+  TrayService build() {
     if (!Platform.isLinux) return _DummyTrayService();
 
     return _DbusTrayService();
   }
 
-  factory TrayService.fallback() = _DummyTrayService;
+  @override
+  TrayService? fallback() => _DummyTrayService();
+}
+
+abstract class TrayService extends ListenableService {
+  TrayService();
+
+  static TrayService get current {
+    return ServiceManager.getService<TrayService>()!;
+  }
 
   List<StatusNotifierItem> get items;
 }

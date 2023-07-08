@@ -14,17 +14,22 @@ import 'package:path/path.dart' as p;
 import 'package:xdg_desktop/xdg_desktop.dart';
 import 'package:xdg_directories/xdg_directories.dart' as xdg;
 
-abstract class ApplicationService
-    extends ListenableService<ApplicationService> {
+class ApplicationServiceFactory extends ServiceFactory<ApplicationService> {
+  const ApplicationServiceFactory();
+
+  @override
+  ApplicationService build() => _LinuxApplicationService();
+
+  @override
+  ApplicationService? fallback() => _BuiltInApplicationService();
+}
+
+abstract class ApplicationService extends ListenableService {
   ApplicationService();
 
   static ApplicationService get current {
     return ServiceManager.getService<ApplicationService>()!;
   }
-
-  static ApplicationService build() => _LinuxApplicationService();
-
-  factory ApplicationService.fallback() = _BuiltInApplicationService;
 
   List<DesktopEntry> listApplications();
 
