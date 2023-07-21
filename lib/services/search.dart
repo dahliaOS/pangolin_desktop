@@ -22,15 +22,18 @@ import 'package:pangolin/services/application.dart';
 import 'package:pangolin/utils/extensions/extensions.dart';
 import 'package:xdg_desktop/xdg_desktop.dart';
 
-abstract class SearchService extends Service<SearchService> {
+class SearchServiceFactory extends ServiceFactory<SearchService> {
+  const SearchServiceFactory();
+
+  @override
+  SearchService build() => _SearchServiceImpl();
+}
+
+abstract class SearchService extends Service {
   SearchService();
 
   static SearchService get current {
     return ServiceManager.getService<SearchService>()!;
-  }
-
-  static SearchService build() {
-    return _SearchServiceImpl();
   }
 
   FutureOr<List<DesktopEntry>> search(String term, [ui.Locale? locale]);

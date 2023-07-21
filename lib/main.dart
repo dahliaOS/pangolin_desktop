@@ -40,45 +40,24 @@ Future<void> main() async {
 
   runApp(
     ServiceBuilderWidget(
-      services: [
-        const ServiceEntry<ShellService>.critical(ShellService.build),
-        ServiceEntry<NotificationService>.critical(
-          NotificationService.build,
-          NotificationService.fallback(),
+      services: const [
+        ServiceEntry<ShellService>.critical(ShellServiceFactory()),
+        ServiceEntry<LocaleService>.critical(LocaleServiceFactory()),
+        ServiceEntry<SearchService>(SearchServiceFactory()),
+        ServiceEntry<WindowManagerService>.critical(
+          WindowManagerServiceFactory(),
         ),
-        const ServiceEntry<LocaleService>.critical(LocaleService.build),
-        const ServiceEntry<SearchService>(SearchService.build),
-        const ServiceEntry<WindowManagerService>.critical(
-          WindowManagerService.build,
+        ServiceEntry<LangPacksService>(LangPacksServiceFactory()),
+        ServiceEntry<ApplicationService>(ApplicationServiceFactory()),
+        ServiceEntry<IconService>(IconServiceFactory()),
+        ServiceEntry<PreferencesService>.critical(PreferencesServiceFactory()),
+        ServiceEntry<TrayService>(TrayServiceFactory()),
+        ServiceEntry<NotificationService>(NotificationServiceFactory()),
+        ServiceEntry<PowerService>(PowerServiceFactory()),
+        ServiceEntry<CustomizationService>.critical(
+          CustomizationServiceFactory(),
         ),
-        ServiceEntry<LangPacksService>(
-          LangPacksService.build,
-          LangPacksService.fallback(),
-        ),
-        ServiceEntry<ApplicationService>(
-          ApplicationService.build,
-          ApplicationService.fallback(),
-        ),
-        ServiceEntry<IconService>(
-          IconService.build,
-          IconService.fallback(),
-        ),
-        ServiceEntry<PreferencesService>.critical(
-          PreferencesService.build,
-          PreferencesService.fallback(),
-        ),
-        ServiceEntry<TrayService>(
-          TrayService.build,
-          TrayService.fallback(),
-        ),
-        ServiceEntry<PowerService>(
-          PowerService.build,
-          PowerService.fallback(),
-        ),
-        const ServiceEntry<CustomizationService>.critical(
-          CustomizationService.build,
-        ),
-        const ServiceEntry<DateTimeService>.critical(DateTimeService.build),
+        ServiceEntry<DateTimeService>.critical(DateTimeServiceFactory()),
       ],
       builder: (context, loaded, child) {
         if (!loaded) return const ColoredBox(color: Colors.black);

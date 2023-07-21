@@ -1,15 +1,20 @@
 import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:utopia_wm/wm.dart';
 
-abstract class WindowManagerService extends Service<WindowManagerService> {
+class WindowManagerServiceFactory extends ServiceFactory<WindowManagerService> {
+  const WindowManagerServiceFactory();
+
+  @override
+  WindowManagerService build() {
+    return _WindowManagerServiceImpl();
+  }
+}
+
+abstract class WindowManagerService extends Service {
   WindowManagerService();
 
   static WindowManagerService get current {
     return ServiceManager.getService<WindowManagerService>()!;
-  }
-
-  static WindowManagerService build() {
-    return _WindowManagerServiceImpl();
   }
 
   WindowHierarchyController get controller;

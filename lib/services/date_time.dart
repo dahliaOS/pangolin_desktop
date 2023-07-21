@@ -3,14 +3,19 @@ import 'dart:async';
 import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:intl/intl.dart';
 
-abstract class DateTimeService extends ListenableService<DateTimeService> {
+class DateTimeServiceFactory extends ServiceFactory<DateTimeService> {
+  const DateTimeServiceFactory();
+
+  @override
+  DateTimeService build() => _DateTimeServiceImpl();
+}
+
+abstract class DateTimeService extends ListenableService {
   DateTimeService();
 
   static DateTimeService get current {
     return ServiceManager.getService<DateTimeService>()!;
   }
-
-  static DateTimeService build() => _DateTimeServiceImpl();
 
   DateTime get date;
 

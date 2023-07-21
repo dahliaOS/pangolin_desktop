@@ -20,16 +20,22 @@ export 'package:upower/upower.dart'
 
 enum LidStatus { unknown, open, closed }
 
-abstract class PowerService extends ListenableService<PowerService> {
+class PowerServiceFactory extends ServiceFactory<PowerService> {
+  const PowerServiceFactory();
+
+  @override
+  PowerService build() => _UPowerPowerService();
+
+  @override
+  PowerService fallback() => _DummyPowerService();
+}
+
+abstract class PowerService extends ListenableService {
   PowerService();
 
   static PowerService get current {
     return ServiceManager.getService<PowerService>()!;
   }
-
-  static PowerService build() => _UPowerPowerService();
-
-  factory PowerService.fallback() = _DummyPowerService;
 
   bool get hasBattery =>
       mainBattery != null && mainBattery!.type == UPowerDeviceType.battery;

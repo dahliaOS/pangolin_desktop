@@ -9,21 +9,26 @@ import 'package:pangolin/services/dbus.dart';
 import 'package:pangolin/services/dbus/image.dart';
 import 'package:pangolin/services/dbus/objects/notifications.dart';
 
-abstract class NotificationService
-    extends ListenableService<NotificationService> {
-  NotificationService();
+class NotificationServiceFactory extends ServiceFactory<NotificationService> {
+  const NotificationServiceFactory();
 
-  static NotificationService get current {
-    return ServiceManager.getService<NotificationService>()!;
-  }
-
-  static NotificationService build() {
+  @override
+  NotificationService build() {
     if (!Platform.isLinux) return _DummyNotificationService();
 
     return _DbusNotificationService();
   }
 
-  factory NotificationService.fallback() = _DummyNotificationService;
+  @override
+  NotificationService? fallback() => _DummyNotificationService();
+}
+
+abstract class NotificationService extends ListenableService {
+  NotificationService();
+
+  static NotificationService get current {
+    return ServiceManager.getService<NotificationService>()!;
+  }
 
   List<UserNotification> get notifications;
   Stream<NotificationServiceEvent> get events;

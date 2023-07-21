@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:dbus/dbus.dart';
 
-mixin DBusService<T extends Service<T>> on Service<T> {
+mixin DBusService<T extends Service> on Service {
   DBusServiceBackend get backend;
   final DBusServer _server = DBusServer();
 

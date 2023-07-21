@@ -8,20 +8,26 @@ import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:intl/locale.dart';
 import 'package:path/path.dart' as p;
 
-abstract class LangPacksService extends Service<LangPacksService> {
-  LangPacksService();
+class LangPacksServiceFactory extends ServiceFactory<LangPacksService> {
+  const LangPacksServiceFactory();
 
-  static LangPacksService get current {
-    return ServiceManager.getService<LangPacksService>()!;
-  }
-
-  static LangPacksService build() {
+  @override
+  LangPacksService build() {
     if (!Platform.isLinux) return _StraightThroughLangPacksService();
 
     return _LinuxLangPacksService();
   }
 
-  factory LangPacksService.fallback() = _StraightThroughLangPacksService;
+  @override
+  LangPacksService? fallback() => _StraightThroughLangPacksService();
+}
+
+abstract class LangPacksService extends Service {
+  LangPacksService();
+
+  static LangPacksService get current {
+    return ServiceManager.getService<LangPacksService>()!;
+  }
 
   FutureOr<void> warmup(String domain);
   FutureOr<String> lookup(String domain, String key, [Locale? locale]);
