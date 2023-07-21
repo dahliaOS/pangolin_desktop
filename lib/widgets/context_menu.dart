@@ -50,6 +50,12 @@ class _ContextMenuState extends State<ContextMenu> {
         onOpen: widget.onOpen,
         onClose: widget.onClose,
         style: MenuStyle(
+          backgroundColor: MaterialStatePropertyAll<Color>(
+            Theme.of(context).colorScheme.background,
+          ),
+          padding: const MaterialStatePropertyAll(
+            EdgeInsets.only(left: 6, right: 6, top: 14, bottom: 12),
+          ),
           shape: const MaterialStatePropertyAll(Constants.mediumShape),
           side: MaterialStatePropertyAll(
             BorderSide(
@@ -131,6 +137,7 @@ class SubmenuMenuItem extends BaseContextMenuItem {
       leadingIcon: buildLeading(context),
       trailingIcon: buildTrailing(context),
       style: ButtonStyle(
+        shape: const MaterialStatePropertyAll(Constants.smallShape),
         backgroundColor: MaterialStatePropertyAll<Color>(
           Theme.of(context).colorScheme.background,
         ),
@@ -160,25 +167,29 @@ class ContextMenuItem extends BaseContextMenuItem {
   Widget build(BuildContext context) {
     final Widget? leading = buildLeading(context);
 
-    return MenuItemButton(
-      leadingIcon: leading != null
-          ? IconTheme.merge(
-              data: Theme.of(context).iconTheme.copyWith(size: 20),
-              child: leading,
-            )
-          : null,
-      trailingIcon: buildTrailing(context),
-      onPressed: onTap,
-      shortcut: shortcut,
-      style: ButtonStyle(
-        backgroundColor: MaterialStatePropertyAll<Color>(
-          Theme.of(context).colorScheme.background,
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 2),
+      child: MenuItemButton(
+        leadingIcon: leading != null
+            ? IconTheme.merge(
+                data: Theme.of(context).iconTheme.copyWith(size: 20),
+                child: leading,
+              )
+            : null,
+        trailingIcon: buildTrailing(context),
+        onPressed: onTap,
+        shortcut: shortcut,
+        style: ButtonStyle(
+          shape: const MaterialStatePropertyAll(Constants.smallShape),
+          backgroundColor: MaterialStatePropertyAll<Color>(
+            Theme.of(context).colorScheme.background,
+          ),
+          padding: const MaterialStatePropertyAll(
+            EdgeInsets.symmetric(horizontal: 16),
+          ),
         ),
-        padding: const MaterialStatePropertyAll(
-          EdgeInsets.symmetric(horizontal: 16),
-        ),
+        child: child,
       ),
-      child: child,
     );
   }
 }
