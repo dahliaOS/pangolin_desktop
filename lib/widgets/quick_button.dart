@@ -80,8 +80,14 @@ class _QuickActionButtonState extends State<QuickActionButton> {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             widget.leading ?? const SizedBox.shrink(),
-                            if (!(titleIsNull || leadingIsNull)) const SizedBox(width: 8) else const SizedBox.shrink(),
-                            if (!titleIsNull) Text(widget.title!) else const SizedBox.shrink(),
+                            if (!(titleIsNull || leadingIsNull))
+                              const SizedBox(width: 8)
+                            else
+                              const SizedBox.shrink(),
+                            if (!titleIsNull)
+                              Text(widget.title!)
+                            else
+                              const SizedBox.shrink(),
                           ],
                         )
                       : widget.leading ?? const SizedBox.shrink(),
