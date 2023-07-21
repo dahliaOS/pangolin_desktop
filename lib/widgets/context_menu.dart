@@ -132,20 +132,23 @@ class SubmenuMenuItem extends BaseContextMenuItem {
 
   @override
   Widget build(BuildContext context) {
-    return SubmenuButton(
-      menuChildren: menuChildren.map((e) => e.buildWrapper(context)).toList(),
-      leadingIcon: buildLeading(context),
-      trailingIcon: buildTrailing(context),
-      style: ButtonStyle(
-        shape: const MaterialStatePropertyAll(Constants.smallShape),
-        backgroundColor: MaterialStatePropertyAll<Color>(
-          Theme.of(context).colorScheme.background,
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 2.0),
+      child: SubmenuButton(
+        menuChildren: menuChildren.map((e) => e.buildWrapper(context)).toList(),
+        leadingIcon: buildLeading(context),
+        trailingIcon: buildTrailing(context),
+        style: ButtonStyle(
+          shape: const MaterialStatePropertyAll(Constants.smallShape),
+          backgroundColor: MaterialStatePropertyAll<Color>(
+            Theme.of(context).colorScheme.background,
+          ),
+          padding: const MaterialStatePropertyAll(
+            EdgeInsets.symmetric(horizontal: 16),
+          ),
         ),
-        padding: const MaterialStatePropertyAll(
-          EdgeInsets.symmetric(horizontal: 16),
-        ),
+        child: child,
       ),
-      child: child,
     );
   }
 }
