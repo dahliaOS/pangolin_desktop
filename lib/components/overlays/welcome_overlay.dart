@@ -20,7 +20,7 @@ class _WelcomeOverlayState extends ShellOverlayState<WelcomeOverlay> {
 
   @override
   FutureOr<void> requestDismiss(Map<String, dynamic> args) async {
-    animationController.reverse();
+    await animationController.reverse();
     controller.showing = false;
   }
 
