@@ -53,15 +53,6 @@ class _ContextMenuState extends State<ContextMenu> {
           backgroundColor: MaterialStatePropertyAll<Color>(
             Theme.of(context).colorScheme.background,
           ),
-          padding: MaterialStatePropertyAll(
-            EdgeInsets.only(
-              left: 4 - VisualDensity.compact.horizontal,
-              right: 4 - VisualDensity.compact.horizontal,
-              top: 4 - VisualDensity.compact.vertical,
-              bottom: 2 - VisualDensity.compact.vertical,
-            ),
-          ),
-          visualDensity: VisualDensity.standard,
           shape: const MaterialStatePropertyAll(Constants.mediumShape),
           side: MaterialStatePropertyAll(
             BorderSide(
@@ -138,24 +129,20 @@ class SubmenuMenuItem extends BaseContextMenuItem {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 2.0),
-      child: SubmenuButton(
-        menuChildren: menuChildren.map((e) => e.buildWrapper(context)).toList(),
-        leadingIcon: buildLeading(context),
-        trailingIcon: buildTrailing(context),
-        style: ButtonStyle(
-          shape: const MaterialStatePropertyAll(Constants.smallShape),
-          backgroundColor: MaterialStatePropertyAll<Color>(
-            Theme.of(context).colorScheme.background,
-          ),
-          visualDensity: VisualDensity.compact,
-          padding: const MaterialStatePropertyAll(
-            EdgeInsets.symmetric(horizontal: 16),
-          ),
+    return SubmenuButton(
+      menuChildren: menuChildren.map((e) => e.buildWrapper(context)).toList(),
+      leadingIcon: buildLeading(context),
+      trailingIcon: buildTrailing(context),
+      style: ButtonStyle(
+        shape: const MaterialStatePropertyAll(Constants.smallShape),
+        backgroundColor: MaterialStatePropertyAll<Color>(
+          Theme.of(context).colorScheme.background,
         ),
-        child: child,
+        padding: const MaterialStatePropertyAll(
+          EdgeInsets.symmetric(horizontal: 16),
+        ),
       ),
+      child: child,
     );
   }
 }
@@ -177,30 +164,26 @@ class ContextMenuItem extends BaseContextMenuItem {
   Widget build(BuildContext context) {
     final Widget? leading = buildLeading(context);
 
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 2),
-      child: MenuItemButton(
-        leadingIcon: leading != null
-            ? IconTheme.merge(
-                data: Theme.of(context).iconTheme.copyWith(size: 20),
-                child: leading,
-              )
-            : null,
-        trailingIcon: buildTrailing(context),
-        onPressed: onTap,
-        shortcut: shortcut,
-        style: ButtonStyle(
-          shape: const MaterialStatePropertyAll(Constants.smallShape),
-          backgroundColor: MaterialStatePropertyAll<Color>(
-            Theme.of(context).colorScheme.background,
-          ),
-          visualDensity: VisualDensity.compact,
-          padding: const MaterialStatePropertyAll(
-            EdgeInsets.symmetric(horizontal: 16),
-          ),
+    return MenuItemButton(
+      leadingIcon: leading != null
+          ? IconTheme.merge(
+              data: Theme.of(context).iconTheme.copyWith(size: 20),
+              child: leading,
+            )
+          : null,
+      trailingIcon: buildTrailing(context),
+      onPressed: onTap,
+      shortcut: shortcut,
+      style: ButtonStyle(
+        shape: const MaterialStatePropertyAll(Constants.smallShape),
+        backgroundColor: MaterialStatePropertyAll<Color>(
+          Theme.of(context).colorScheme.background,
         ),
-        child: child,
+        padding: const MaterialStatePropertyAll(
+          EdgeInsets.symmetric(horizontal: 16),
+        ),
       ),
+      child: child,
     );
   }
 }
