@@ -134,7 +134,6 @@ class SubmenuMenuItem extends BaseContextMenuItem {
       leadingIcon: buildLeading(context),
       trailingIcon: buildTrailing(context),
       style: ButtonStyle(
-        shape: const MaterialStatePropertyAll(Constants.smallShape),
         backgroundColor: MaterialStatePropertyAll<Color>(
           Theme.of(context).colorScheme.background,
         ),
@@ -175,7 +174,6 @@ class ContextMenuItem extends BaseContextMenuItem {
       onPressed: onTap,
       shortcut: shortcut,
       style: ButtonStyle(
-        shape: const MaterialStatePropertyAll(Constants.smallShape),
         backgroundColor: MaterialStatePropertyAll<Color>(
           Theme.of(context).colorScheme.background,
         ),
