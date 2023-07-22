@@ -48,7 +48,8 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
     final hierarchy = WindowHierarchy.of(context);
     final properties = WindowPropertyRegistry.of(context);
     final layout = LayoutState.of(context);
-    final fgColor = !Theme.of(context).darkMode ? Colors.grey[900]! : Colors.white;
+    final fgColor =
+        !Theme.of(context).darkMode ? Colors.grey[900]! : Colors.white;
 
     return GestureDetector(
       child: ContextMenu(
@@ -78,7 +79,10 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
                   content: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      if (properties.info.icon != null) Image(image: properties.info.icon!) else const Icon(Icons.apps),
+                      if (properties.info.icon != null)
+                        Image(image: properties.info.icon!)
+                      else
+                        const Icon(Icons.apps),
                       const SizedBox(
                         height: 16,
                       ),
@@ -197,7 +201,8 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
                           }
                         },
                         onDoubleTap: () => onDoubleTap(layout),
-                        onPanUpdate: (details) => onDrag(details, properties, layout),
+                        onPanUpdate: (details) =>
+                            onDrag(details, properties, layout),
                         onPanEnd: (details) => onDragEnd(
                           details,
                           hierarchy,
@@ -241,7 +246,8 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
       _cursor = SystemMouseCursors.move;
     });
     _lastDetails = details;
-    final WindowDock dock = _getDockForPosition(hierarchy.wmBounds, details.globalPosition);
+    final WindowDock dock =
+        _getDockForPosition(hierarchy.wmBounds, details.globalPosition);
     if (_draggingDock != dock) {
       _draggingDock = dock;
       final layer = EffectsLayer.of(context);
@@ -325,7 +331,8 @@ class _PangolinWindowToolbarState extends State<PangolinWindowToolbar> {
     setState(() {
       _cursor = SystemMouseCursors.click;
     });
-    final WindowDock dock = _getDockForPosition(hierarchy.wmBounds, _lastDetails.globalPosition);
+    final WindowDock dock =
+        _getDockForPosition(hierarchy.wmBounds, _lastDetails.globalPosition);
     layout.dock = dock;
     final layer = EffectsLayer.of(context);
     layer?.endDockEffect();

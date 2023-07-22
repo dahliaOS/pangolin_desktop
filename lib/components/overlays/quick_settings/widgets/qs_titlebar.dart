@@ -33,7 +33,10 @@ class QsTitlebar extends StatelessWidget implements PreferredSizeWidget {
       size: preferredSize,
       child: Row(
         children: [
-          if (leading == null && controller.canPop()) const BackButton() else if (leading != null) leading!,
+          if (leading == null && controller.canPop())
+            const BackButton()
+          else if (leading != null)
+            leading!,
           if (title != null)
             QuickActionButton(
               title: title,

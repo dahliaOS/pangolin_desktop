@@ -26,7 +26,8 @@ class ContextMenu extends StatefulWidget {
 }
 
 class _ContextMenuState extends State<ContextMenu> {
-  late final String controllerId = _MenuControllerRegistry.instance.register(MenuController());
+  late final String controllerId =
+      _MenuControllerRegistry.instance.register(MenuController());
   late Offset lastPosition;
 
   @override
@@ -40,14 +41,18 @@ class _ContextMenuState extends State<ContextMenu> {
     if (widget.entries == null || widget.entries!.isEmpty) return widget.child;
 
     return GestureDetector(
-      onSecondaryTapUp: (details) =>
-          _MenuControllerRegistry.instance.open(controllerId, position: details.localPosition),
+      onSecondaryTapUp: (details) => _MenuControllerRegistry.instance
+          .open(controllerId, position: details.localPosition),
       onLongPressDown: (details) => lastPosition = details.localPosition,
-      onLongPress: () => _MenuControllerRegistry.instance.open(controllerId, position: lastPosition),
+      onLongPress: () => _MenuControllerRegistry.instance
+          .open(controllerId, position: lastPosition),
       child: MenuAnchor(
         onOpen: widget.onOpen,
         onClose: widget.onClose,
         style: MenuStyle(
+          backgroundColor: MaterialStatePropertyAll<Color>(
+            Theme.of(context).colorScheme.background,
+          ),
           shape: const MaterialStatePropertyAll(Constants.mediumShape),
           side: MaterialStatePropertyAll(
             BorderSide(
@@ -57,7 +62,8 @@ class _ContextMenuState extends State<ContextMenu> {
         ),
         controller: _MenuControllerRegistry.instance.get(controllerId),
         anchorTapClosesMenu: true,
-        menuChildren: widget.entries!.map((e) => e.buildWrapper(context)).toList(),
+        menuChildren:
+            widget.entries!.map((e) => e.buildWrapper(context)).toList(),
         child: widget.child,
       ),
     );
@@ -98,7 +104,8 @@ abstract class BaseContextMenuItem {
     this.trailing,
   });
 
-  Widget buildWrapper(BuildContext context) => _EnabledBuilder(enabled: enabled, child: build(context));
+  Widget buildWrapper(BuildContext context) =>
+      _EnabledBuilder(enabled: enabled, child: build(context));
 
   Widget build(BuildContext context);
   Widget? buildLeading(BuildContext context) => leading;
@@ -126,8 +133,11 @@ class SubmenuMenuItem extends BaseContextMenuItem {
       menuChildren: menuChildren.map((e) => e.buildWrapper(context)).toList(),
       leadingIcon: buildLeading(context),
       trailingIcon: buildTrailing(context),
-      style: const ButtonStyle(
-        padding: MaterialStatePropertyAll(
+      style: ButtonStyle(
+        backgroundColor: MaterialStatePropertyAll<Color>(
+          Theme.of(context).colorScheme.background,
+        ),
+        padding: const MaterialStatePropertyAll(
           EdgeInsets.symmetric(horizontal: 16),
         ),
       ),
@@ -163,8 +173,11 @@ class ContextMenuItem extends BaseContextMenuItem {
       trailingIcon: buildTrailing(context),
       onPressed: onTap,
       shortcut: shortcut,
-      style: const ButtonStyle(
-        padding: MaterialStatePropertyAll(
+      style: ButtonStyle(
+        backgroundColor: MaterialStatePropertyAll<Color>(
+          Theme.of(context).colorScheme.background,
+        ),
+        padding: const MaterialStatePropertyAll(
           EdgeInsets.symmetric(horizontal: 16),
         ),
       ),

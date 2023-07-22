@@ -73,7 +73,8 @@ class _OverviewOverlayState extends ShellOverlayState<OverviewOverlay>
                 right: 0,
                 height: 152,
                 child: DecoratedBox(
-                  decoration: BoxDecoration(color: theme.colorScheme.background),
+                  decoration:
+                      BoxDecoration(color: theme.colorScheme.background),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
