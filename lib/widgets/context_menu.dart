@@ -53,9 +53,15 @@ class _ContextMenuState extends State<ContextMenu> {
           backgroundColor: MaterialStatePropertyAll<Color>(
             Theme.of(context).colorScheme.background,
           ),
-          padding: const MaterialStatePropertyAll(
-            EdgeInsets.only(left: 6, right: 6, top: 14, bottom: 12),
+          padding: MaterialStatePropertyAll(
+            EdgeInsets.only(
+              left: 4 - VisualDensity.compact.horizontal,
+              right: 4 - VisualDensity.compact.horizontal,
+              top: 4 - VisualDensity.compact.vertical,
+              bottom: 2 - VisualDensity.compact.vertical,
+            ),
           ),
+          visualDensity: VisualDensity.standard,
           shape: const MaterialStatePropertyAll(Constants.mediumShape),
           side: MaterialStatePropertyAll(
             BorderSide(
@@ -143,6 +149,7 @@ class SubmenuMenuItem extends BaseContextMenuItem {
           backgroundColor: MaterialStatePropertyAll<Color>(
             Theme.of(context).colorScheme.background,
           ),
+          visualDensity: VisualDensity.compact,
           padding: const MaterialStatePropertyAll(
             EdgeInsets.symmetric(horizontal: 16),
           ),
@@ -187,6 +194,7 @@ class ContextMenuItem extends BaseContextMenuItem {
           backgroundColor: MaterialStatePropertyAll<Color>(
             Theme.of(context).colorScheme.background,
           ),
+          visualDensity: VisualDensity.compact,
           padding: const MaterialStatePropertyAll(
             EdgeInsets.symmetric(horizontal: 16),
           ),
