@@ -39,7 +39,7 @@ dependencies:
   uuid: ^3.0.7
   xdg_desktop: 
     git: https://github.com/HrX03/xdg.dart
-  xdg_directories: ^0.2.0+3
+  xdg_directories: ^1.0.1
   yatl: 
     git: 
       url: https://github.com/HrX03/yatl
