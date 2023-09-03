@@ -19,7 +19,7 @@ dependencies:
       url: https://github.com/dahliaOS/shared
       ref: main
   dbus: ^0.7.4
-  diffutil_dart: ^3.0.0
+  diffutil_dart: ^4.0.0
   flutter: 
     sdk: flutter
   flutter_localizations: 
