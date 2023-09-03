@@ -19,3 +19,5 @@ jobs:
       - run: flutter pub get
       - name: Analyze Dart
         uses: zgosalvez/github-actions-analyze-dart@v2
+      - name: Build Pangolin Desktop
+        run: flutter build linux
