@@ -25,9 +25,9 @@ dependencies:
   flutter_localizations: 
     sdk: flutter
   gsettings: ^0.2.7
-  http: ^0.13.5
+  http: ^1.1.0
   intl: ^0.18.0
-  jovial_svg: ^1.1.5
+  jovial_svg: ^1.1.17
   logging: ^1.0.2
   path: ^1.8.2
   pausable_timer: ^2.0.0+1
@@ -40,7 +40,7 @@ dependencies:
     git: 
       url: https://github.com/dahliaOS/utopia.git
       ref: utopia
-  uuid: ^3.0.7
+  uuid: ^4.0.0
   xdg_desktop: 
     git: https://github.com/HrX03/xdg.dart
   xdg_directories: ^1.0.3
