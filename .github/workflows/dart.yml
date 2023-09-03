@@ -19,3 +19,7 @@ jobs:
       - run: flutter pub get
       - name: Analyze Dart
         uses: zgosalvez/github-actions-analyze-dart@v2
+      - name: Set up build environment
+        run: sudo apt-get install clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev libstdc++-12-dev libgtk-3-0 libblkid1 liblzma5 -y
+      - name: Build Pangolin Desktop
+        run: flutter build linux
