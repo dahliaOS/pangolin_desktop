@@ -14,7 +14,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'package:flutter/material.dart';
 import 'package:zenit_ui/zenit_ui.dart';
 
 class QsShortcutButton extends StatelessWidget {
@@ -53,7 +52,7 @@ class QsShortcutButton extends StatelessWidget {
                 if (title != null)
                   Text(
                     title!,
-                    style: const TextStyle(fontSize: 13),
+                    style: const TextStyle(fontSize: 12),
                   )
                 else
                   const SizedBox.shrink(),

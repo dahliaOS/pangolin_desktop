@@ -15,7 +15,6 @@ limitations under the License.
 */
 
 import 'package:dahlia_shared/dahlia_shared.dart';
-import 'package:flutter/material.dart';
 import 'package:zenit_ui/zenit_ui.dart';
 
 class QsToggleButton extends StatelessWidget {
@@ -71,7 +70,7 @@ class QsToggleButton extends StatelessWidget {
                       overflow: TextOverflow.visible,
                       maxLines: 2,
                       style: TextStyle(
-                        fontSize: 14,
+                        fontSize: 12,
                         fontWeight: FontWeight.w500,
                         color: theme.computedForegroundColor(color),
                       ),

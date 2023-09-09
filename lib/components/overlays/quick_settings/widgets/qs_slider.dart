@@ -13,7 +13,6 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import 'package:flutter/material.dart';
 import 'package:pangolin/widgets/quick_button.dart';
 import 'package:zenit_ui/zenit_ui.dart';
 
@@ -40,7 +39,7 @@ class QsSlider extends StatelessWidget {
         QuickActionButton(
           leading: Icon(
             icon,
-            size: 22,
+            size: 20,
           ),
           margin: EdgeInsets.zero,
           onPressed: onIconTap,
@@ -52,12 +51,13 @@ class QsSlider extends StatelessWidget {
             divisions: steps,
             label:
                 value != null ? '${(value! * 100).toStringAsFixed(0)}%' : null,
+            height: 6,
           ),
         ),
         const QuickActionButton(
           leading: Icon(
             Icons.chevron_right,
-            size: 22,
+            size: 20,
           ),
           margin: EdgeInsets.zero,
         ),
