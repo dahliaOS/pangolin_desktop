@@ -60,7 +60,7 @@ dependencies:
     git: 
       url: https://github.com/dahliaOS/zenit_ui.git
       # change before merge
-      ref: v0.0.11
+      ref: Version-0.0.12
 
 
 dev_dependencies: 

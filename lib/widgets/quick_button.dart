@@ -15,7 +15,6 @@ limitations under the License.
 */
 
 import 'package:dahlia_shared/dahlia_shared.dart';
-import 'package:flutter/material.dart';
 import 'package:zenit_ui/zenit_ui.dart';
 
 class QuickActionButton extends StatefulWidget {
@@ -72,7 +71,7 @@ class _QuickActionButtonState extends State<QuickActionButton> {
                 child: DefaultTextStyle(
                   style: widget.textStyle ??
                       context.theme.textTheme.bodyLarge!.copyWith(
-                        fontSize: 13,
+                        fontSize: 12,
                         fontWeight: FontWeight.normal,
                       ),
                   child: !titleIsNull

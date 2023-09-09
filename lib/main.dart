@@ -15,7 +15,6 @@ limitations under the License.
 */
 
 import 'package:dahlia_shared/dahlia_shared.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import "package:intl/locale.dart" as intl;
 import 'package:pangolin/components/shell/desktop.dart';

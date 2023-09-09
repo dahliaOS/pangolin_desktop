@@ -19,7 +19,6 @@ import 'dart:math';
 
 import 'package:animations/animations.dart';
 import 'package:dahlia_shared/dahlia_shared.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:pangolin/components/overlays/quick_settings/pages/qs_account_page.dart';
 import 'package:pangolin/components/overlays/quick_settings/pages/qs_language_page.dart';
@@ -191,9 +190,8 @@ class _QsMainState extends State<QsMain>
         onPressed: () => QsController.pushRoute(context, "/pages/account"),
         margin: EdgeInsets.zero,
         textStyle: TextStyle(
-          fontSize: 14,
-          fontWeight: FontWeight.w600,
-          height: 1.1,
+          fontSize: 13,
+          fontWeight: FontWeight.w500,
           color: Theme.of(context).foregroundColor,
         ),
       ),
@@ -345,7 +343,7 @@ class _QsMainState extends State<QsMain>
                             (e) => QsTrayMenuItem(item: e),
                           )
                           .toList(),
-                    )
+                    ),
                   ],
                 );
               },
@@ -427,7 +425,7 @@ class _QsMainState extends State<QsMain>
                     },
                   ),
               ],
-            )
+            ),
           ],
         ),
       ),
