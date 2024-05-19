@@ -14,6 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import 'package:pangolin/unused.dart';
 import 'package:zenit_ui/zenit_ui.dart';
 
 class QsShortcutButton extends StatelessWidget {

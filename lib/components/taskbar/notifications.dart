@@ -21,6 +21,7 @@ import 'package:pangolin/components/overlays/notifications/widgets/listener.dart
 import 'package:pangolin/components/taskbar/taskbar_element.dart';
 import 'package:pangolin/services/notifications.dart';
 import 'package:pangolin/services/shell.dart';
+import 'package:pangolin/unused.dart';
 import 'package:zenit_ui/zenit_ui.dart';
 
 class NotificationsButton extends StatelessWidget {

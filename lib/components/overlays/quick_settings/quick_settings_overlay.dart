@@ -33,6 +33,7 @@ import 'package:pangolin/services/power.dart';
 import 'package:pangolin/services/shell.dart';
 import 'package:pangolin/services/tray.dart';
 import 'package:pangolin/services/wm.dart';
+import 'package:pangolin/unused.dart';
 import 'package:pangolin/utils/action_manager/action_manager.dart';
 import 'package:pangolin/utils/data/globals.dart';
 import 'package:pangolin/widgets/battery_indicator.dart';

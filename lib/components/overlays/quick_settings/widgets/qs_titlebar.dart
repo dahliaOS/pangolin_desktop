@@ -16,6 +16,7 @@ limitations under the License.
 
 import 'package:flutter/material.dart';
 import 'package:pangolin/components/overlays/quick_settings/quick_settings_overlay.dart';
+import 'package:pangolin/unused.dart';
 import 'package:pangolin/widgets/quick_button.dart';
 import 'package:zenit_ui/zenit_ui.dart';
 

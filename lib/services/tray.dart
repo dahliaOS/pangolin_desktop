@@ -182,12 +182,12 @@ class _DBusTrayBackend extends StatusNotifierWatcherBase
 
   @override
   Future<DBusMethodResponse> doRegisterStatusNotifierItem(
-    String sender,
+    String? sender,
     String service,
   ) async {
     final String serviceValue = service;
 
-    final String name;
+    final String? name;
     final String path;
 
     if (serviceValue.startsWith("/")) {
@@ -198,7 +198,7 @@ class _DBusTrayBackend extends StatusNotifierWatcherBase
       path = "/StatusNotifierItem";
     }
 
-    this.service.registerItem(name, path);
+    this.service.registerItem(name!, path);
 
     return DBusMethodSuccessResponse();
   }

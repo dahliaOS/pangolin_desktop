@@ -32,7 +32,7 @@ class StatusNotifierWatcherBase extends DBusObject {
 
   /// Implementation of org.kde.StatusNotifierWatcher.RegisterStatusNotifierItem()
   Future<DBusMethodResponse> doRegisterStatusNotifierItem(
-    String sender,
+    String? sender,
     String service,
   ) async {
     return DBusMethodErrorResponse.failed(

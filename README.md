@@ -23,16 +23,16 @@
  - 🌐 **Check** the web preview [here](https://web.dahliaos.io).
 
 <p align="center">
-  <img width="100%" src="https://docs.dahliaos.io/docs/pangolin/settings.webp"
+  <img width="100%" src="https://cdn.discordapp.com/attachments/1241824839283773601/1241825062617616475/image1.png?ex=664b9b36&is=664a49b6&hm=39cab8d40eed70aea059e3404fb489084705841b7362c91807fe8bb3f3d5162b&"
 </p>
 
-> Settings and start menu, commit [876180d](https://github.com/dahliaOS/pangolin_desktop/commit/876180df15d3b6c8720fb7474d1bcf1b5202fc67).
+> Desktop and Notes, commit [876180d](https://github.com/dahliaOS/pangolin_desktop/commit/876180df15d3b6c8720fb7474d1bcf1b5202fc67).
 
 <p align="center">
-  <img width="100%" src="https://docs.dahliaos.io/docs/pangolin/search.webp"
+  <img width="100%" src="https://cdn.discordapp.com/attachments/1241824839283773601/1241825061946523700/image2.png?ex=664b9b36&is=664a49b6&hm=453a98f534c2b9145685d2ec6f3a529ea3eef288638a2b09d55e2a2d303f0e8e&"
 </p>
 
-> Calculator, Terminal, Notes and search, commit [876180d](https://github.com/dahliaOS/pangolin_desktop/commit/876180df15d3b6c8720fb7474d1bcf1b5202fc67).
+> Calculator, Control center, commit [876180d](https://github.com/dahliaOS/pangolin_desktop/commit/876180df15d3b6c8720fb7474d1bcf1b5202fc67).
 
 ## Development
 
@@ -62,6 +62,8 @@ List of targets:
 
 Flutter has hot reloading so no need to restart the instance when it's running!
 
+Dart is compatible with 3.3.4
+
 ## Contribute
 
 If you're wondering how to contribute to the project, please refer to [CONTRIBUTING.md](/CONTRIBUTING.md)
@@ -78,6 +80,6 @@ If you're interested in translating Pangolin, click [here](https://github.com/da
   <img width="30%" src="https://github.com/dahliaOS/brand/blob/main/dahliaOS/logotype/svg/logotype-light.svg#gh-light-mode-only"/>
 </p>
 
-Copyright @ 2019-2023 - The dahliaOS Authors - contact@dahliaos.io
+Copyright @ 2019-2024 - The dahliaOS Authors - contact@dahliaos.io
 
 This project is licensed under the [Apache 2.0 license](/LICENSE)

@@ -1,5 +1,6 @@
 import 'package:dahlia_shared/dahlia_shared.dart';
 import 'package:flutter/material.dart';
+import 'package:pangolin/unused.dart';
 import 'package:uuid/uuid.dart';
 import 'package:zenit_ui/zenit_ui.dart';
 
@@ -56,7 +57,8 @@ class _ContextMenuState extends State<ContextMenu> {
           shape: const MaterialStatePropertyAll(Constants.mediumShape),
           side: MaterialStatePropertyAll(
             BorderSide(
-              color: ZenitThemeData(Theme.of(context)).foregroundColor.op(0.1),
+              // color: ZenitThemeData(Theme.of(context)).foregroundColor.op(0.1),
+              color: Theme.of(context).foregroundColor.op(0.1),
             ),
           ),
         ),

@@ -209,7 +209,7 @@ class _SvgFileRendererState extends State<_SvgFileRenderer> {
     }
 
     final b = SIDagBuilder(warn: (_) {});
-    StringSvgParser(utf8.decode(src), b, warn: (_) {}).parse();
+    //StringSvgParser(utf8.decode(src), b, warn: (_) {}).parse();
     image = b.si;
     if (mounted) setState(() {});
   }

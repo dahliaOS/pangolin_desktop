@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:pangolin/services/dbus/image.dart';
 import 'package:pangolin/services/dbus/status_item.dart';
 import 'package:pangolin/services/shell.dart';
+import 'package:pangolin/unused.dart';
 import 'package:pangolin/widgets/context_menu.dart';
 import 'package:pangolin/widgets/dbus/image.dart';
 import 'package:pangolin/widgets/dbus/menu.dart';

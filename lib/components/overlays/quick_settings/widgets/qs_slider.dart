@@ -13,6 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
+import 'package:pangolin/unused.dart';
 import 'package:pangolin/widgets/quick_button.dart';
 import 'package:zenit_ui/zenit_ui.dart';
 
@@ -45,7 +46,7 @@ class QsSlider extends StatelessWidget {
           onPressed: onIconTap,
         ),
         Expanded(
-          child: ZenitSlider(
+          child: ZenitSliderOld(
             onChanged: onChanged,
             value: value ?? 0,
             divisions: steps,
