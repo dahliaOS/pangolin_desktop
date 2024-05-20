@@ -63,7 +63,7 @@ class _ContextMenuState extends State<ContextMenu> {
           ),
         ),
         controller: _MenuControllerRegistry.instance.get(controllerId),
-        anchorTapClosesMenu: true,
+        consumeOutsideTap: true,
         menuChildren:
             widget.entries!.map((e) => e.buildWrapper(context)).toList(),
         child: widget.child,
